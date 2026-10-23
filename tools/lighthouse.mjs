@@ -5,7 +5,7 @@ import chromium from '@sparticuz/chromium';
 import lighthouse from 'lighthouse';
 import * as chromeLauncher from 'chrome-launcher';
 
-const urls = { home: 'http://localhost:4173/?tier=lite#/', explore: 'http://localhost:4173/?tier=lite#/explore', provinces: 'http://localhost:4173/#/provinces', province: 'http://localhost:4173/#/provinces/guanacaste', sources: 'http://localhost:4173/#/sources' };
+const urls = { home: 'http://localhost:4173/?tier=lite#/', 'home-still': 'http://localhost:4173/?tier=still#/', explore: 'http://localhost:4173/?tier=lite#/explore', provinces: 'http://localhost:4173/#/provinces', province: 'http://localhost:4173/#/provinces/guanacaste', wildlife: 'http://localhost:4173/#/wildlife', food: 'http://localhost:4173/#/food', sources: 'http://localhost:4173/#/sources' };
 const chrome = await chromeLauncher.launch({ chromePath: await chromium.executablePath(), chromeFlags: [...chromium.args, '--headless=new', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
 const rows = [];
 for (const [name, url] of Object.entries(urls)) {

@@ -10,13 +10,14 @@ import { Sheet } from '../ui/Sheet';
 import { Stamp } from '../ui/Stamp';
 import { PROVINCE_ORDER, PROVINCE_COLORS } from '../map/geo';
 import { useMapData } from '../map/useMapData';
+import { useContent } from '../content';
 
 export function Shell() {
   const { t, lang } = useT();
   const location = useLocation();
   const isHome = location.pathname === '/';
   const [open, setOpen] = useState<'contents' | 'passport' | 'settings' | null>(null);
-  const stamps = usePassport((s) => s.discoveries.filter((d) => d.kind === 'province').length);
+  const stamps = usePassport((s) => s.discoveries.length);
   const mainRef = useRef<HTMLElement>(null);
 
   // route change: scroll top, move focus to main, set title
@@ -41,7 +42,7 @@ export function Shell() {
         <div className="topbar__tools">
           <LangSwitch />
           <button type="button" className="chip" onClick={() => setOpen('passport')} aria-haspopup="dialog">
-            <Icon name="stamp" /> <span>{t('nav.passport')}</span> <b className="tnum">{stamps}/7</b>
+            <Icon name="stamp" /> <span>{t('nav.passport')}</span> <b className="tnum">{stamps}</b>
           </button>
           <button type="button" className="chip chip--icon" onClick={() => setOpen('settings')} aria-haspopup="dialog" aria-label={t('nav.settings')}>
             <Icon name="settings" />
@@ -127,11 +128,14 @@ function ContentsList({ onNavigate }: { onNavigate: () => void }) {
 }
 
 function PassportSheet() {
-  const { t, lang } = useT();
+  const { t, l, lang } = useT();
   const discoveries = usePassport((s) => s.discoveries);
   const clear = usePassport((s) => s.clear);
   const { data } = useMapData();
+  const content = useContent();
   const done = PROVINCE_ORDER.filter((id) => discoveries.some((d) => d.kind === 'province' && d.id === id));
+  const speciesDone = discoveries.filter((d) => d.kind === 'species');
+  const foodDone = discoveries.filter((d) => d.kind === 'food');
   return (
     <div className="passport">
       <p>{t('passport.lede')}</p>
@@ -149,6 +153,19 @@ function PassportSheet() {
           );
         })}
       </ul>
+      {(speciesDone.length > 0 || foodDone.length > 0) && (
+        <>
+          <p className="eyebrow">{t('passport.others', { species: speciesDone.length, dishes: foodDone.length })}</p>
+          <ul className="passport__grid passport__grid--small">
+            {speciesDone.map((d) => { const sp = content?.species.find((x) => x.id === d.id); return (
+              <li key={'s-' + d.id}><Stamp label={sp ? l(sp.commonNames) : d.id} date={d.at} color="var(--forest)" stamped /><Link to={'/wildlife?focus=' + d.id} className="passport__name">{sp ? l(sp.commonNames) : d.id}</Link></li>
+            ); })}
+            {foodDone.map((d) => { const f = content?.foods.find((x) => x.id === d.id); return (
+              <li key={'f-' + d.id}><Stamp label={f ? l(f.name) : d.id} date={d.at} color="var(--sunset)" stamped /><Link to={'/food?focus=' + d.id} className="passport__name">{f ? l(f.name) : d.id}</Link></li>
+            ); })}
+          </ul>
+        </>
+      )}
       {discoveries.length > 0 && <button type="button" className="btn btn--ghost btn--sm" onClick={clear}>{t('passport.clear')}</button>}
     </div>
   );
@@ -183,10 +200,6 @@ function SettingsSheet() {
           ))}
         </div>
         <p className="muted"><small>{t('settings.qualityNote')} {t('settings.tier')}: <b>{tier}</b> ({reason}).</small></p>
-      </fieldset>
-      <fieldset>
-        <legend>{t('home.replayIntro')}</legend>
-        <Link to="/?replay=1" className="btn btn--ghost btn--sm" onClick={() => s.setIntroSeen(false)}>{t('settings.replay')}</Link>
       </fieldset>
       <p className="muted"><small>{t('settings.aboutText')}</small></p>
     </div>

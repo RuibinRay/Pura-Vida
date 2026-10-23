@@ -55,12 +55,15 @@ async function visit(name, hash, { width = 1440, height = 900, wait = 2500, acti
   await page.close();
 }
 
-await visit('home-intro', '/', { wait: 3000 });
-await visit('home-rest', '/', { wait: 12000, query: '?why&tier=lite', axe: true });
-await visit('home-skip', '/?replay=1', { wait: 1500, actions: async (p) => { const b = await p.$('button.btn--glass'); if (b) await b.click(); await sleep(3500); } });
-await visit('home-tour', '/', { wait: 2500, actions: async (p) => { await p.evaluate(() => { const b = [...document.querySelectorAll('button')].find((x) => /Discover|Descubrir|发现/.test(x.textContent || '')); b?.click(); }); await sleep(3500); } });
-await visit('home-night', '/', { wait: 1500, actions: async (p) => { await p.select('select', 'night'); await sleep(3000); } });
-await visit('home-sunset', '/', { wait: 1500, actions: async (p) => { await p.select('select', 'sunset'); await sleep(3000); } });
+// the homepage journey: the opening, then each chapter at the scroll position where it is on stage
+const scrollTo = (f) => async (p) => { await p.evaluate((ff) => { const total = document.documentElement.scrollHeight - window.innerHeight; window.scrollTo(0, Math.round(total * ff)); }, f); await sleep(3000); };
+await visit('home-open', '/', { wait: 3000, query: '?why&tier=lite', axe: true });
+await visit('home-ch2', '/', { wait: 2000, query: '?tier=lite', actions: scrollTo(0.3), axe: true });
+await visit('home-ch3-map', '/', { wait: 2000, query: '?tier=lite', actions: scrollTo(0.47), axe: true });
+await visit('home-ch4-wildlife', '/', { wait: 2000, query: '?tier=lite', actions: scrollTo(0.68), axe: true });
+await visit('home-ch5-table', '/', { wait: 2000, query: '?tier=lite', actions: scrollTo(0.84), axe: true });
+await visit('home-ch6-close', '/', { wait: 2000, query: '?tier=lite', actions: scrollTo(1), axe: true });
+await visit('home-still', '/', { wait: 2000, query: '?tier=still' });
 await visit('explore', '/explore', { wait: 6000, query: '?why&tier=lite', axe: true });
 await visit('explore-selected', '/explore', { wait: 4000, query: '?tier=lite', actions: async (p) => { await p.evaluate(() => { const li = document.querySelector('.province-list li[data-id="guanacaste"]'); li?.click(); }); await sleep(3000); } });
 await visit('explore-2d', '/explore', { wait: 2000, actions: async (p) => { await p.evaluate(() => { const b = [...document.querySelectorAll('.seg__btn')].find((x) => x.textContent?.trim() === '2D'); b?.click(); }); await sleep(1200); await p.evaluate(() => { const li = document.querySelector('.province-list li[data-id="limon"]'); li?.click(); }); await sleep(1500); } });
@@ -68,11 +71,13 @@ await visit('explore-text', '/explore', { wait: 1500, query: '?tier=text' });
 await visit('provinces', '/provinces', { wait: 2000, axe: true });
 await visit('province-puntarenas', '/provinces/puntarenas', { wait: 6000, query: '?tier=lite', axe: true });
 await visit('wildlife', '/wildlife', { wait: 1500, axe: true });
+await visit('food', '/food', { wait: 1500, axe: true });
 await visit('sources', '/sources', { wait: 1500, axe: true });
 await visit('my', '/my-costa-rica', { wait: 1000, axe: true });
 await visit('my-draft', '/my-costa-rica', { wait: 1000, query: '?draft' });
 await visit('coming', '/history', { wait: 1000 });
-await visit('es-home', '/', { wait: 9000, query: '?lang=es' });
+await visit('es-home', '/', { wait: 3000, query: '?lang=es&tier=lite' });
+await visit('zh-home-ch5', '/', { wait: 2000, query: '?lang=zh&tier=lite', actions: scrollTo(0.84) });
 await visit('zh-explore', '/explore', { wait: 5000, query: '?lang=zh' });
 // keyboard: tab into the province list on /explore and arrow down → a province gets selected
 await visit('explore-keyboard', '/explore', { wait: 5000, query: '?tier=lite', actions: async (p) => {
@@ -82,7 +87,9 @@ await visit('explore-keyboard', '/explore', { wait: 5000, query: '?tier=lite', a
   console.log('   keyboard selection →', sel);
 } });
 // phone
-await visit('home-rest', '/', { width: 390, height: 844, wait: 9000 });
+await visit('home-open', '/', { width: 390, height: 844, wait: 3000, query: '?tier=lite' });
+await visit('home-ch4-wildlife', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: scrollTo(0.68) });
+await visit('food', '/food', { width: 390, height: 844, wait: 1500 });
 await visit('explore', '/explore', { width: 390, height: 844, wait: 5000 });
 await visit('provinces', '/provinces', { width: 390, height: 844, wait: 1500 });
 await visit('province-limon', '/provinces/limon', { width: 390, height: 844, wait: 5000 });

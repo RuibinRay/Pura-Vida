@@ -13,8 +13,9 @@ export default defineConfig({
       output: {
         advancedChunks: {
           groups: [
-            { name: 'three', test: /node_modules[\\/](three|@react-three)[\\/]/ },
+            // react first, so the JSX runtime and friends never land in the three chunk (which would be preloaded on every route)
             { name: 'react', test: /node_modules[\\/](react|react-dom|react-router|react-router-dom|scheduler|zustand)[\\/]/ },
+            { name: 'three', test: /node_modules[\\/](three|@react-three|three-stdlib|its-fine|suspend-react|maath|camera-controls)[\\/]/ },
           ],
         },
       },

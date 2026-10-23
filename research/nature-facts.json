@@ -1,0 +1,791 @@
+{
+  "retrieved": "2026-10-23",
+  "notes": "Geography and biodiversity facts for the chapter 'A small country, extraordinary nature'. Facts already in research/country.json (area, population, protected territory, renewable electricity, highest point, UNESCO sites, army abolition) are not repeated here. Status vocabulary: confirmed (a fetched page states it), approximate (sourced but estimates vary or the source is secondary), interpretation, folklore, uncertain. Official Costa Rican sites that blocked automated fetching in this task: sinac.go.cr (robots), repositorio.una.ac.cr (bot filter), ovsicori.una.ac.cr volcano pages (server error), amphibiaweb.org (server error), worldbank.org results page (client error). Where an official page could not be read, the figure was taken from the official reports mirrored by the CBD, UNDP, FAO/SIREFOR or UNFCCC, from peer-reviewed Costa Rican journals, then from press, then Wikipedia (always marked approximate). See research/log-nature.md for every fetch.",
+  "facts": {
+    "biodiversityShare": {
+      "label": {
+        "en": "Share of the world's known species",
+        "es": "Porcentaje de la biodiversidad mundial",
+        "zh": "占全球已知物种的比例"
+      },
+      "value": 5,
+      "unit": "% of known species (claimed; sources range 4.7–6.5 %)",
+      "year": 2014,
+      "status": "approximate",
+      "text": {
+        "en": "Costa Rica's own reports to the Convention on Biological Diversity say the country holds about 5 % of the world's known biodiversity on only 0.03 % of the planet's land surface: the Fifth National Report (SINAC, 2014) states 'aproximadamente el 5% de la biodiversidad que se conoce en todo el mundo' and 'con tan solo el 0,03% de la superficie terrestre mundial', while the Fourth Report (SINAC, 2009) computed 4.7–4.75 % from roughly 95,000 known species against about 2 million described worldwide. The Sixth Report summary (MINAE–SINAC–CONAGEBIO–FONAFIFO, 2018) raised the claim to 'más del 6%' on the basis of 121,693 species known in Costa Rica (2015) out of 1,853,299 known worldwide (≈ 6.6 %), which UNDP quoted as 6.5 %; the UN World Tourism Organization (2017) and press repeat 5 % or 6 %. The figure is a ratio of described species, so it moves with taxonomy and is best presented as 'about 5–6 %'. Arithmetic check: 51,180 km² is 0.034 % of the Earth's land area (~148.9 million km²) but only 0.010 % of the Earth's total surface (~510 million km²); the claim refers to land surface, not the whole planet.",
+        "es": "Los propios informes de Costa Rica al Convenio sobre la Diversidad Biológica afirman que el país alberga cerca del 5 % de la biodiversidad conocida del mundo en apenas el 0,03 % de la superficie terrestre del planeta: el V Informe Nacional (SINAC, 2014) dice 'aproximadamente el 5% de la biodiversidad que se conoce en todo el mundo' y 'con tan solo el 0,03% de la superficie terrestre mundial', y el IV Informe (SINAC, 2009) calculó 4,7–4,75 % a partir de unas 95 000 especies conocidas frente a unos 2 millones descritas en el mundo. El resumen del VI Informe (MINAE–SINAC–CONAGEBIO–FONAFIFO, 2018) elevó la cifra a 'más del 6%' con base en 121 693 especies conocidas en Costa Rica (2015) de 1 853 299 conocidas en el mundo (≈ 6,6 %), que el PNUD citó como 6,5 %; la OMT (2017) y la prensa repiten 5 % o 6 %. Es una razón entre especies descritas, que cambia con la taxonomía, por lo que conviene presentarla como 'cerca del 5–6 %'. Verificación aritmética: 51 180 km² equivalen al 0,034 % de la superficie terrestre emergida (~148,9 millones de km²), pero solo al 0,010 % de la superficie total del planeta (~510 millones de km²); la afirmación se refiere a la tierra firme, no a todo el planeta."
+      },
+      "sources": [
+        {
+          "url": "https://www.cbd.int/doc/world/cr/cr-nr-05-es.pdf",
+          "title": "V Informe Nacional al Convenio sobre la Diversidad Biológica, Costa Rica",
+          "publisher": "SINAC (MINAE) / GEF-PNUD, mirrored by the CBD Secretariat",
+          "published": "2014-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "p. 10: 'aproximadamente el 5% de la biodiversidad que se conoce en todo el mundo'; 'aproximadamente el 3,6% de la biodiversidad esperada para el planeta (entre 13 y 14 millones de especies)'; p. 24: 'con tan solo el 0,03% de la superficie terrestre mundial, posee poco más de medio millón de especies'; 94,753 known species (2013)"
+        },
+        {
+          "url": "https://www.cbd.int/doc/world/cr/cr-nr-04-es.pdf",
+          "title": "IV Informe de País al Convenio sobre la Diversidad Biológica",
+          "publisher": "SINAC-MINAET / GEF-PNUD, mirrored by the CBD Secretariat",
+          "published": "2009-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "p. 24: 'Esto es el 4.75% de la biodiversidad descrita en el mundo'; p. 25: 'cerca de 95.000 especies, aproximadamente un 4.7% de las especies conocidas en el mundo'; p. 8, 13: 51,100 km² 'equivalente al 0,03% de la extensión terrestre mundial'; half-million expected species = 3.6 % of ~14 million expected worldwide"
+        },
+        {
+          "url": "https://files.acquia.undp.org/public/migration/cr/undp_cr_EstadodelaBiodiversidad_19.pdf",
+          "title": "Estado de la Biodiversidad Costa Rica 2014–2018. Resumen del Sexto Informe Nacional de Costa Rica ante el Convenio de Diversidad Biológica",
+          "publisher": "MINAE – SINAC – CONAGEBIO – FONAFIFO, with PNUD (UNDP) support",
+          "published": "2018-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "p. 11: 'posee más del 6% de la biodiversidad a nivel mundial (SINAC, 2014)'; p. 31 Table 3: 121,693 species known in Costa Rica (2015) of 1,853,299 known worldwide; 'entre los 20 países con mayor diversidad de especies'"
+        },
+        {
+          "url": "https://www.undp.org/es/node/41101",
+          "title": "Costa Rica presenta avances, desafíos y oportunidades sobre su estado de la biodiversidad",
+          "publisher": "PNUD Costa Rica (UNDP)",
+          "published": "2019-05-27",
+          "retrieved": "2026-10-23",
+          "supports": "Subtitle 'Costa Rica alberga 6,5% de la biodiversidad mundial'; 'más de 120 mil especies conocidas para el país'"
+        },
+        {
+          "url": "https://www.untourism.int/es/archive/press-release/2017-05-08/la-omt-nombra-al-presidente-de-costa-rica-embajador-especial-del-ano-intern",
+          "title": "La OMT nombra al presidente de Costa Rica Embajador Especial del Año Internacional del Turismo Sostenible para el Desarrollo (PR 17057)",
+          "publisher": "Organización Mundial del Turismo (UN Tourism)",
+          "published": "2017-05-10",
+          "retrieved": "2026-10-23",
+          "supports": "'Costa Rica alberga el 5% de la biodiversidad mundial'; 'más del 25% de la superficie del país ostenta la categoría de área protegida'"
+        },
+        {
+          "url": "https://revistas.uned.ac.cr/index.php/biocenosis/article/download/1203/1239/2667",
+          "title": "Educación ambiental en el Año Internacional de la Biodiversidad (Biocenosis 24(1-2))",
+          "publisher": "Universidad Estatal a Distancia (UNED), Costa Rica — author Carmen Roldán Chacón",
+          "published": "2011-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "Citing SINAC 2009: 'unas 95 000 especies, aproximadamente 4,7% de las variedades conocidas en el mundo'; '51 100 km2, equivalente al 0,03% de la extensión terrestre mundial'; marine area ~568,000 km² = 0.16 % of the oceans; 95,000 = 19 % of the half-million estimated"
+        },
+        {
+          "url": "https://www.teletica.com/nacional/las-cifras-que-destacan-a-costa-rica-en-el-dia-mundial-de-la-diversidad-biologica_335285",
+          "title": "Las cifras que destacan a Costa Rica en el Día Mundial de la Diversidad Biológica",
+          "publisher": "Teletica",
+          "published": "2023-05-22",
+          "retrieved": "2026-10-23",
+          "supports": "Press version of the claim: 'aproximadamente el 6% de la biodiversidad mundial', 0.03 % of the Earth's surface (51,179 km²), about 500,000 species; no source named"
+        }
+      ]
+    },
+    "speciesKnown": {
+      "label": {
+        "en": "Known species",
+        "es": "Especies conocidas",
+        "zh": "已知物种数量"
+      },
+      "value": 121693,
+      "unit": "described species recorded in Costa Rica (2015 count); ~500,000 estimated",
+      "year": 2015,
+      "status": "approximate",
+      "text": {
+        "en": "Official counts of species recorded in Costa Rica have risen with each national report: about 95,000 in 2008 (SINAC, 2009), 94,753 in 2013 (SINAC, 2014) and 121,693 in 2015 (Sixth National Report summary, 2018; UNDP: 'más de 120 mil especies conocidas'). All three reports estimate the real total at about half a million species, so roughly one species in five has been described; plants (about 96 %) and vertebrates (about 87 %) are nearly fully catalogued, while insects (68,494 known of some 365,000 expected in 2008) and fungi are the big unknowns. The Sixth Report warns that species lists 'aún no se encuentran sistematizados', so these are working totals, not a definitive inventory.",
+        "es": "Los recuentos oficiales de especies registradas en Costa Rica han subido con cada informe nacional: unas 95 000 en 2008 (SINAC, 2009), 94 753 en 2013 (SINAC, 2014) y 121 693 en 2015 (resumen del VI Informe Nacional, 2018; PNUD: 'más de 120 mil especies conocidas'). Los tres informes estiman el total real en cerca de medio millón de especies, de modo que apenas una de cada cinco está descrita; las plantas (≈ 96 %) y los vertebrados (≈ 87 %) están casi completamente catalogados, mientras que los insectos (68 494 conocidos de unos 365 000 esperados en 2008) y los hongos son la gran incógnita. El VI Informe advierte que las listas de especies 'aún no se encuentran sistematizados', por lo que son totales de trabajo, no un inventario definitivo."
+      },
+      "sources": [
+        {
+          "url": "https://files.acquia.undp.org/public/migration/cr/undp_cr_EstadodelaBiodiversidad_19.pdf",
+          "title": "Estado de la Biodiversidad Costa Rica 2014–2018. Resumen del Sexto Informe Nacional ante el CDB",
+          "publisher": "MINAE – SINAC – CONAGEBIO – FONAFIFO / PNUD",
+          "published": "2018-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "Table 3 (p. 31): 121,693 species known in Costa Rica (2015) of 1,853,299 worldwide; species lists 'aún no se encuentran sistematizados'"
+        },
+        {
+          "url": "https://www.cbd.int/doc/world/cr/cr-nr-05-es.pdf",
+          "title": "V Informe Nacional al Convenio sobre la Diversidad Biológica, Costa Rica",
+          "publisher": "SINAC / GEF-PNUD (CBD mirror)",
+          "published": "2014-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "'un registro aproximado de 94,753 especies conocidas' (2013); 'poco más de medio millón de especies' estimated; ~7,000 marine species"
+        },
+        {
+          "url": "https://www.cbd.int/doc/world/cr/cr-nr-04-es.pdf",
+          "title": "IV Informe de País al Convenio sobre la Diversidad Biológica",
+          "publisher": "SINAC-MINAET / GEF-PNUD (CBD mirror)",
+          "published": "2009-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "~95,000 known species (2008) = 19 % of the estimated half million; plants 11,467 known of ~12,000 expected (~96 %); vertebrates 2,664 of 3,073 (87 %); insects 68,494 of 365,000 (19 %); fungi and lichens 3,820 of 65,000"
+        },
+        {
+          "url": "https://www.undp.org/es/node/41101",
+          "title": "Costa Rica presenta avances, desafíos y oportunidades sobre su estado de la biodiversidad",
+          "publisher": "PNUD Costa Rica",
+          "published": "2019-05-27",
+          "retrieved": "2026-10-23",
+          "supports": "'más de 120 mil especies conocidas para el país'"
+        }
+      ]
+    },
+    "birdSpecies": {
+      "label": {
+        "en": "Bird species recorded",
+        "es": "Especies de aves registradas",
+        "zh": "已记录鸟类物种数"
+      },
+      "value": 942,
+      "unit": "species on the official list (October 2025)",
+      "year": 2025,
+      "status": "approximate",
+      "text": {
+        "en": "The 'Lista Oficial de las Aves de Costa Rica 2025–2026' (Garrigues, Camacho-Varela, Corrales, Jiménez, O'Donnell and Rodríguez, Comité de Especies Raras y Registros Ornitológicos – Comité Científico of the Asociación Ornitológica de Costa Rica, taxonomy updated to October 2025) lists 942 official species, marked as resident, breeding resident, migrant or accidental, with endemics flagged 'END'. The copy read for this task was hosted by a tour operator, not by the association itself, and the Unión de Ornitólogos de Costa Rica's former domain is now for sale, so the count is recorded as approximate; for comparison, Avibase (Clements 2025) gives 956 species with 8 endemics, and in 2017 the Unión de Ornitólogos counted 920 species, 7 of them endemic.",
+        "es": "La 'Lista Oficial de las Aves de Costa Rica 2025–2026' (Garrigues, Camacho-Varela, Corrales, Jiménez, O'Donnell y Rodríguez, Comité de Especies Raras y Registros Ornitológicos – Comité Científico de la Asociación Ornitológica de Costa Rica, taxonomía actualizada a octubre de 2025) registra 942 especies oficiales, clasificadas como residentes, residentes reproductivas, migratorias o accidentales, con las endémicas marcadas 'END'. La copia consultada estaba alojada por un operador turístico, no por la asociación, y el antiguo dominio de la Unión de Ornitólogos de Costa Rica está en venta, por lo que la cifra se registra como aproximada; como referencia, Avibase (Clements 2025) da 956 especies y 8 endémicas, y en 2017 la Unión de Ornitólogos contaba 920 especies, 7 de ellas endémicas."
+      },
+      "sources": [
+        {
+          "url": "https://nicoyapeninsula.com/img/wildlife/costa-rica-bird-list-2025.pdf",
+          "title": "Lista Oficial de las Aves de Costa Rica 2025–2026 (copy hosted by nicoyapeninsula.com)",
+          "publisher": "Comité de Especies Raras y Registros Ornitológicos, Comité Científico – AOCR (Asociación Ornitológica de Costa Rica); compilers R. Garrigues, P. Camacho-Varela, J. Corrales, R. Jiménez, P. O'Donnell, D. Rodríguez",
+          "published": "2025-10-01",
+          "retrieved": "2026-10-23",
+          "supports": "Header 'Listado Aves Oficiales para Costa Rica / Official Species (942)'; status codes R, RR, R?, M, M?, A, SC; endemics flagged END; taxonomy 'actualizados al octubre 2025'"
+        },
+        {
+          "url": "https://avibase.bsc-eoc.org/checklist.jsp?region=CR",
+          "title": "Avibase – Bird Checklists of the World: Costa Rica",
+          "publisher": "Avibase / Birds Canada (Lepage)",
+          "published": "2026-02-17",
+          "retrieved": "2026-10-23",
+          "supports": "'Number of species: 956'; 'Number of endemics: 8'; 38 globally threatened; 5 introduced; Clements version 2025"
+        },
+        {
+          "url": "https://www.ultimahora.com/ornitologos-anuncian-una-nueva-especie-ave-endemica-costa-rica-n1097180",
+          "title": "Ornitólogos anuncian una nueva especie de ave endémica de Costa Rica (EFE)",
+          "publisher": "Última Hora (EFE wire)",
+          "published": "2017-07-18",
+          "retrieved": "2026-10-23",
+          "supports": "Unión de Ornitólogos de Costa Rica: the country 'cuenta con 920 especies de aves, de las cuales siete son endémicas'; Melozone cabanisi as 7th endemic"
+        },
+        {
+          "url": "https://uniondeornitologos.com/",
+          "title": "UnionDeOrnitologos.com (domain for sale page)",
+          "publisher": "NamePros listing",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Negative result: the Unión de Ornitólogos' former domain shows only a 'domain for sale' notice; no list is hosted there"
+        }
+      ]
+    },
+    "mammalSpecies": {
+      "label": {
+        "en": "Mammal species",
+        "es": "Especies de mamíferos",
+        "zh": "哺乳动物物种数"
+      },
+      "value": 256,
+      "unit": "species confirmed (2023 checklist)",
+      "year": 2023,
+      "status": "confirmed",
+      "text": {
+        "en": "The revised national checklist by Ramírez-Fernández, Sánchez, May-Collado, González-Maya and Rodríguez-Herrera (Therya 14(2), 2023) states: 'A total of 256 mammals are now confirmed for Costa Rica, with the order Chiroptera and Rodentia as the most representative', with 30 endemic species (21 of them rodents). The older official figure was 237 species (SINAC, 2009).",
+        "es": "La lista nacional revisada de Ramírez-Fernández, Sánchez, May-Collado, González-Maya y Rodríguez-Herrera (Therya 14(2), 2023) indica: 'A total of 256 mammals are now confirmed for Costa Rica', con los murciélagos (Chiroptera) y los roedores como órdenes más numerosos y 30 especies endémicas (21 de ellas roedores). La cifra oficial anterior era de 237 especies (SINAC, 2009)."
+      },
+      "sources": [
+        {
+          "url": "https://therya.mastozoologiamexicana.com/index.php/THERYA/article/view/233",
+          "title": "Revised checklist and conservation status of the mammals of Costa Rica",
+          "publisher": "Therya 14(2) — Asociación Mexicana de Mastozoología; authors J. D. Ramírez-Fernández, R. Sánchez, L. J. May-Collado, J. F. González-Maya, B. Rodríguez-Herrera",
+          "published": "2023-03-02",
+          "retrieved": "2026-10-23",
+          "supports": "Abstract: 'A total of 256 mammals are now confirmed for Costa Rica'; 30 endemics, 21 rodents"
+        },
+        {
+          "url": "https://www.cbd.int/doc/world/cr/cr-nr-04-es.pdf",
+          "title": "IV Informe de País al Convenio sobre la Diversidad Biológica",
+          "publisher": "SINAC-MINAET (CBD mirror)",
+          "published": "2009-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "237 mammal species known (2008), p. 26, 29"
+        }
+      ]
+    },
+    "amphibianSpecies": {
+      "label": {
+        "en": "Amphibian species",
+        "es": "Especies de anfibios",
+        "zh": "两栖动物物种数"
+      },
+      "value": 221,
+      "unit": "species recognised (2025 annotated list)",
+      "year": 2025,
+      "status": "confirmed",
+      "text": {
+        "en": "The annotated list by Sasa, Arias and Chaves of the Museo de Zoología, Universidad de Costa Rica (Revista de Biología Tropical 73(S2), 2025) states: 'We recognized 221 species of amphibians and 257 species of reptiles in Costa Rica.' The 2009 national report counted 189 amphibians, so the total keeps growing as new frogs and salamanders are described.",
+        "es": "La lista anotada de Sasa, Arias y Chaves, del Museo de Zoología de la Universidad de Costa Rica (Revista de Biología Tropical 73(S2), 2025), indica: 'We recognized 221 species of amphibians and 257 species of reptiles in Costa Rica.' El informe nacional de 2009 contaba 189 anfibios, así que el total sigue creciendo conforme se describen nuevas ranas y salamandras."
+      },
+      "sources": [
+        {
+          "url": "https://archivo.revistas.ucr.ac.cr//index.php/rbt/article/view/64536",
+          "title": "Annotated list of amphibians and reptiles of Costa Rica: The role of the Museum of Zoology in cataloging the country's herpetological diversity",
+          "publisher": "Revista de Biología Tropical 73(S2), e64536, Universidad de Costa Rica; authors M. Sasa, E. Arias, G. Chaves; DOI 10.15517/rev.biol.trop.v73iS2.64536",
+          "published": "2025-03-26",
+          "retrieved": "2026-10-23",
+          "supports": "Abstract: 'We recognized 221 species of amphibians and 257 species of reptiles in Costa Rica.'"
+        },
+        {
+          "url": "https://www.cbd.int/doc/world/cr/cr-nr-04-es.pdf",
+          "title": "IV Informe de País al Convenio sobre la Diversidad Biológica",
+          "publisher": "SINAC-MINAET (CBD mirror)",
+          "published": "2009-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "189 amphibian species known (2008)"
+        }
+      ]
+    },
+    "reptileSpecies": {
+      "label": {
+        "en": "Reptile species",
+        "es": "Especies de reptiles",
+        "zh": "爬行动物物种数"
+      },
+      "value": 257,
+      "unit": "species recognised (2025 annotated list)",
+      "year": 2025,
+      "status": "confirmed",
+      "text": {
+        "en": "Sasa, Arias and Chaves (Museo de Zoología, UCR; Revista de Biología Tropical 73(S2), 2025) recognise 257 reptile species in Costa Rica. The Reptile Database's distribution search for 'Costa Rica' returns 254 species, and the 2009 national report listed 234, so 'about 250' is the safe rounded figure.",
+        "es": "Sasa, Arias y Chaves (Museo de Zoología, UCR; Revista de Biología Tropical 73(S2), 2025) reconocen 257 especies de reptiles en Costa Rica. La búsqueda por distribución 'Costa Rica' en The Reptile Database devuelve 254 especies y el informe nacional de 2009 listaba 234, de modo que 'unas 250' es la cifra redondeada segura."
+      },
+      "sources": [
+        {
+          "url": "https://archivo.revistas.ucr.ac.cr//index.php/rbt/article/view/64536",
+          "title": "Annotated list of amphibians and reptiles of Costa Rica",
+          "publisher": "Revista de Biología Tropical 73(S2), Universidad de Costa Rica; Sasa, Arias & Chaves",
+          "published": "2025-03-26",
+          "retrieved": "2026-10-23",
+          "supports": "'257 species of reptiles in Costa Rica'"
+        },
+        {
+          "url": "https://reptile-database.reptarium.cz/advanced_search?location=Costa+Rica&submit=Search",
+          "title": "The Reptile Database — advanced search, Distribution: Costa Rica",
+          "publisher": "The Reptile Database (Uetz et al.)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'Species found: 254'"
+        },
+        {
+          "url": "https://www.cbd.int/doc/world/cr/cr-nr-04-es.pdf",
+          "title": "IV Informe de País al Convenio sobre la Diversidad Biológica",
+          "publisher": "SINAC-MINAET (CBD mirror)",
+          "published": "2009-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "234 reptile species known (2008)"
+        }
+      ]
+    },
+    "plantSpecies": {
+      "label": {
+        "en": "Plant species (and orchids)",
+        "es": "Especies de plantas (y orquídeas)",
+        "zh": "植物物种数（含兰花）"
+      },
+      "value": 11467,
+      "unit": "plant species known (2008); orchids 1,684 species (2023)",
+      "year": 2008,
+      "status": "approximate",
+      "text": {
+        "en": "Costa Rica's Fourth National Report (SINAC, 2009) counted 11,467 known plant species of about 12,000 expected — 'poco más de un 95%' already described — including about 2,000 tree species and, at the time, some 1,416 orchids. The orchid count has since grown: the Lankester Catalogue of Costa Rican Orchidaceae (Pupulin, Bogarín and Karremans, Lankesteriana 23 Suppl., 2023) documents 1,684 species in 201 genera, about 30 % of them endemic. No newer official total for all vascular plants was fetched, so 'more than 10,000 plant species' is the defensible rounded statement.",
+        "es": "El IV Informe Nacional (SINAC, 2009) contó 11 467 especies de plantas conocidas de unas 12 000 esperadas —'poco más de un 95%' ya descritas—, incluidas unas 2 000 especies de árboles y, en ese momento, unas 1 416 orquídeas. El recuento de orquídeas ha crecido desde entonces: el Catálogo Lankester de las Orchidaceae de Costa Rica (Pupulin, Bogarín y Karremans, Lankesteriana 23 Supl., 2023) documenta 1 684 especies en 201 géneros, cerca del 30 % endémicas. No se obtuvo un total oficial más reciente para todas las plantas vasculares, así que 'más de 10 000 especies de plantas' es la afirmación redondeada defendible."
+      },
+      "sources": [
+        {
+          "url": "https://www.cbd.int/doc/world/cr/cr-nr-04-es.pdf",
+          "title": "IV Informe de País al Convenio sobre la Diversidad Biológica",
+          "publisher": "SINAC-MINAET (CBD mirror)",
+          "published": "2009-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "Plants 11,467 known of ~12,000 expected (~96 %); orchids 'unas 1,416 especies'; 'unas 2.000 especies de árboles registradas' (Obando 2002); ~1,100 endemic plants known of ~1,200 expected (pp. 25–29)"
+        },
+        {
+          "url": "https://archivo.revistas.ucr.ac.cr/index.php/lankesteriana/article/view/58145",
+          "title": "The Lankester Catalogue of Costa Rican Orchidaceae",
+          "publisher": "Lankesteriana 23 (Supplement), Jardín Botánico Lankester, Universidad de Costa Rica; F. Pupulin, D. Bogarín, A. P. Karremans; DOI 10.15517/lank.v23iSupplement.58145",
+          "published": "2023-12-30",
+          "retrieved": "2026-10-23",
+          "supports": "'We have documented 1684 species, four subspecies, 14 natural hybrids, and seven forms across 201 genera and two nothogenera'; 'About 30% of all the species are endemic'"
+        }
+      ]
+    },
+    "butterflySpecies": {
+      "label": {
+        "en": "Butterfly species",
+        "es": "Especies de mariposas",
+        "zh": "蝴蝶物种数"
+      },
+      "value": 1500,
+      "unit": "diurnal butterfly species (approx.); 12,000–14,000 Lepidoptera incl. moths",
+      "year": 2019,
+      "status": "approximate",
+      "text": {
+        "en": "No official or peer-reviewed national butterfly total was fetched. Press reports give about 1,500 diurnal butterfly species and more than 12,000 moths (El Mundo CR, 2019, reporting a UCR Escuela de Biología butterfly-farm congress), and La Nación (2007) quoted INBio entomologist José Montero, co-author of 'Mariposas de Costa Rica', that of some 150,000 Lepidoptera worldwide 'solo en Costa Rica hay entre 12.000 y 14.000 especies', about 8 % of them found only in the country. The national report (SINAC, 2009) counted 68,494 known insect species of some 365,000 expected without separating butterflies. Use 'around 1,500 butterfly species' with a hedge.",
+        "es": "No se obtuvo un total nacional oficial ni revisado por pares para las mariposas. La prensa da unas 1 500 especies de mariposas diurnas y más de 12 000 nocturnas (El Mundo CR, 2019, sobre un congreso de mariposarios en la Escuela de Biología de la UCR), y La Nación (2007) citó al entomólogo de INBio José Montero, coautor de 'Mariposas de Costa Rica': de unas 150 000 especies de lepidópteros en el mundo, 'solo en Costa Rica hay entre 12.000 y 14.000 especies', cerca del 8 % exclusivas del país. El informe nacional (SINAC, 2009) contó 68 494 especies de insectos conocidas de unas 365 000 esperadas, sin separar las mariposas. Conviene decir 'alrededor de 1 500 especies de mariposas' con cautela."
+      },
+      "sources": [
+        {
+          "url": "https://elmundo.cr/economia-y-negocios/mariposarios-del-pais-se-daran-cita-en-la-ucr/",
+          "title": "Mariposarios del país se darán cita en la UCR",
+          "publisher": "El Mundo CR",
+          "published": "2019-02-14",
+          "retrieved": "2026-10-23",
+          "supports": "'Costa Rica cuenta con más de 12 000 especies de mariposas nocturnas y 1500 especies diurnas' (no source named; UCR Mariposario coordinator Ricardo Murillo quoted on the event)"
+        },
+        {
+          "url": "https://www.nacion.com/ciencia/mariposas-ticas-generan-1-millon-al-ano/O2D6S66TCVGWTNWCBCN26C4EQE/story/",
+          "title": "Mariposas ticas generan $1 millón al año",
+          "publisher": "La Nación",
+          "published": "2007-01-29",
+          "retrieved": "2026-10-23",
+          "supports": "INBio's José Montero: 'en el mundo existen 150.000 especies de mariposas y solo en Costa Rica hay entre 12.000 y 14.000 especies'; ~8 % found only in Costa Rica"
+        },
+        {
+          "url": "https://www.scielo.sa.cr/pdf/rbt/v56n2/art45v56n2.pdf",
+          "title": "Reseña: Mariposas de Costa Rica (Chacón & Montero 2007, Editorial INBio)",
+          "publisher": "Revista de Biología Tropical 56(2), review by Luis D. Gómez",
+          "published": "2008-06-01",
+          "retrieved": "2026-10-23",
+          "supports": "Confirms the INBio guide (366 pp., 33 families described); gives no species total"
+        },
+        {
+          "url": "https://www.cbd.int/doc/world/cr/cr-nr-04-es.pdf",
+          "title": "IV Informe de País al Convenio sobre la Diversidad Biológica",
+          "publisher": "SINAC-MINAET (CBD mirror)",
+          "published": "2009-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "Insects 68,494 known of 365,000 expected (19 %); no separate Lepidoptera figure"
+        }
+      ]
+    },
+    "coastlines": {
+      "label": {
+        "en": "Coastline (Pacific and Caribbean)",
+        "es": "Litoral (Pacífico y Caribe)",
+        "zh": "海岸线（太平洋与加勒比海）"
+      },
+      "value": 1228,
+      "unit": "km (≈ 1,016 km Pacific + 212 km Caribbean)",
+      "year": null,
+      "status": "approximate",
+      "text": {
+        "en": "The commonly cited figures are 1,016 km of Pacific coast and 212 km of Caribbean coast, 1,228 km in total (Wikipedia; the English article's infobox gives 1,290 km). The Caribbean figure is consistent across sources — geomorphologist Luis Nelson Arroyo (UNA, 2011) writes that from Punta Castilla to the Sixaola river mouth 'existen solamente 212 km', about a fifth of the Pacific shore — but the Pacific length depends on how finely the coast is measured: Rojas León (Revista Reflexiones, UCR, 2008) cites MINAE-PNUMA (2002) for 1,254 km. No IGN page with coastline lengths could be fetched, so present the numbers as 'roughly 1,000 km of Pacific coast and about 200 km of Caribbean coast'.",
+        "es": "Las cifras más citadas son 1 016 km de costa pacífica y 212 km de costa caribeña, 1 228 km en total (Wikipedia; la ficha del artículo en inglés da 1 290 km). La cifra del Caribe es consistente entre fuentes —el geomorfólogo Luis Nelson Arroyo (UNA, 2011) escribe que de Punta Castilla a la desembocadura del Sixaola 'existen solamente 212 km', apenas la quinta parte de la costa del Pacífico—, pero la longitud del Pacífico depende de la escala de medición: Rojas León (Revista Reflexiones, UCR, 2008) cita a MINAE-PNUMA (2002) con 1 254 km. No se pudo obtener una página del IGN con longitudes de costa, así que conviene presentar 'cerca de 1 000 km de costa pacífica y unos 200 km de costa caribeña'."
+      },
+      "sources": [
+        {
+          "url": "https://es.wikipedia.org/wiki/Geograf%C3%ADa_de_Costa_Rica",
+          "title": "Geografía de Costa Rica",
+          "publisher": "Wikipedia (es)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'La longitud del litoral comprende 1.228 km, de los cuales 1.016 están en la costa pacífica y 212 km en el mar Caribe' (another section says 1,236 km / 220 km; no reference cited)"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Geography_of_Costa_Rica",
+          "title": "Geography of Costa Rica",
+          "publisher": "Wikipedia (en)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'212 km of Caribbean Sea coastline and 1,016 on the North Pacific Ocean'; infobox total 1,290 km"
+        },
+        {
+          "url": "https://www.ambientico.una.ac.cr/wp-content/uploads/tainacan-items/5/21637/209_3-4.pdf",
+          "title": "Transformaciones por sedimentos y acción del mar en isla Calero y alrededores (Ambientico 209)",
+          "publisher": "Universidad Nacional (UNA), Costa Rica — Luis Nelson Arroyo",
+          "published": "2011-02-01",
+          "retrieved": "2026-10-23",
+          "supports": "Caribbean coast 'existen solamente 212 km' (Punta Castilla to the Sixaola mouth), 'apenas la quinta parte de la costa del océano Pacífico'"
+        },
+        {
+          "url": "https://dialnet.unirioja.es/descarga/articulo/4796486.pdf",
+          "title": "Sitio y situación de la zona marítimo terrestre del Pacífico y Caribe costarricense (Revista Reflexiones 87(1))",
+          "publisher": "Universidad de Costa Rica — Alexis Rojas León",
+          "published": "2008-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "'la longitud del litoral Pacífico es de 1 254 kilómetros' (MINAE-PNUMA 2002); Caribbean '212 kilómetros de longitud'"
+        }
+      ]
+    },
+    "volcanoes": {
+      "label": {
+        "en": "Volcanoes",
+        "es": "Volcanes",
+        "zh": "火山"
+      },
+      "value": 5,
+      "unit": "historically active volcanoes (activity since 1700) among 10 volcanic complexes",
+      "year": 2021,
+      "status": "confirmed",
+      "text": {
+        "en": "According to the observatory scientists of OVSICORI-UNA and the RSN (UCR-ICE) writing in Volcanica (Avard et al., 2021), 'Costa Rica hosts ten volcanic complexes' forming the modern volcanic arc, and 'Los volcanes Rincón de la Vieja, Arenal, Poás, Irazú y Turrialba han presentado actividad histórica (desde 1700)'; monitoring covers 'los 10 complejos volcánicos potencialmente activos', with Barva and Platanar-Porvenir described as dormant. Larger totals circulate — Spanish Wikipedia says 'cerca de 200 volcanes, de los cuales 5 están activos' without a source, and '112 volcanic structures' is often repeated — but no fetched official page gives such a count, so the chapter should say 'five historically active volcanoes' rather than a grand total.",
+        "es": "Según los científicos del OVSICORI-UNA y de la RSN (UCR-ICE) que escriben en Volcanica (Avard et al., 2021), Costa Rica 'alberga diez complejos volcánicos' que forman el arco volcánico moderno, y 'Los volcanes Rincón de la Vieja, Arenal, Poás, Irazú y Turrialba han presentado actividad histórica (desde 1700)'; la vigilancia cubre 'los 10 complejos volcánicos potencialmente activos', con Barva y Platanar-Porvenir descritos como dormidos. Circulan totales mayores —Wikipedia en español dice 'cerca de 200 volcanes, de los cuales 5 están activos' sin fuente, y se repite mucho '112 estructuras volcánicas'—, pero ninguna página oficial consultada da tal recuento, así que el capítulo debe decir 'cinco volcanes históricamente activos' en lugar de un gran total."
+      },
+      "sources": [
+        {
+          "url": "https://jvolcanica.org/ojs/index.php/volcanica/article/download/65/122/3233",
+          "title": "Volcano hazard and surveillance in Costa Rica (full text PDF)",
+          "publisher": "Volcanica 4(S1): 141–161; authors from OVSICORI-UNA, RSN (UCR-ICE), CNE; DOI 10.30909/vol.04.S1.141161",
+          "published": "2021-11-01",
+          "retrieved": "2026-10-23",
+          "supports": "'Diez complejos volcánicos forman el arco volcánico moderno'; 'Los volcanes Rincón de la Vieja, Arenal, Poás, Irazú y Turrialba han presentado actividad histórica (desde 1700)'; Barva and Platanar-Porvenir 'volcanes dormidos'; OVSICORI created 1985, RSN 1982"
+        },
+        {
+          "url": "https://jvolcanica.org/ojs/index.php/volcanica/article/view/65",
+          "title": "Volcano hazard and surveillance in Costa Rica (abstract page)",
+          "publisher": "Volcanica",
+          "published": "2021-11-01",
+          "retrieved": "2026-10-23",
+          "supports": "'Costa Rica hosts ten volcanic complexes'; 'Three of the five historically active volcanoes had frequent eruptions in 2019'; authors G. Avard, M. Mora, H. Bakkar, G. Alvarado, J. M. de Moor, M. Martínez et al."
+        },
+        {
+          "url": "https://es.wikipedia.org/wiki/Geograf%C3%ADa_de_Costa_Rica",
+          "title": "Geografía de Costa Rica",
+          "publisher": "Wikipedia (es)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Unsourced larger total: 'El país cuenta con cerca de 200 volcanes, de los cuales 5 están activos'"
+        }
+      ]
+    },
+    "lifeZones": {
+      "label": {
+        "en": "Holdridge life zones",
+        "es": "Zonas de vida de Holdridge",
+        "zh": "霍尔德里奇生命带数量"
+      },
+      "value": 12,
+      "unit": "life zones (plus 12 transition zones)",
+      "year": 2007,
+      "status": "approximate",
+      "text": {
+        "en": "Using Leslie Holdridge's life-zone system, mapped for the country by the Centro Científico Tropical (Bolaños, Watson and Tosi, 1:750,000), Costa Rica is divided 'en 12 zonas de vida y 12 zonas de transición', from tropical dry forest to montane rain forest and páramo (Quesada Monge, Instituto Tecnológico de Costa Rica, 2007); Kohlmann et al. (2010) likewise analyse '12 Holdridge Life Zones in Costa Rica'. Counts differ with the treatment of transitions — a vocational-training text lists 17 units including transitions, and a 2019 climate study used 11 as its baseline — so '12 life zones' should be attributed to the CCT map.",
+        "es": "Con el sistema de zonas de vida de Leslie Holdridge, cartografiado para el país por el Centro Científico Tropical (Bolaños, Watson y Tosi, 1:750 000), Costa Rica se divide 'en 12 zonas de vida y 12 zonas de transición', desde el bosque seco tropical hasta el bosque pluvial montano y el páramo (Quesada Monge, Instituto Tecnológico de Costa Rica, 2007); Kohlmann et al. (2010) analizan igualmente '12 Holdridge Life Zones in Costa Rica'. Los recuentos cambian según cómo se traten las transiciones —un texto de formación técnica enumera 17 unidades incluidas las transiciones y un estudio climático de 2019 partió de 11—, así que las '12 zonas de vida' deben atribuirse al mapa del CCT."
+      },
+      "sources": [
+        {
+          "url": "https://d9.cientec.or.cr/exploraciones/ponencias2007/RupertoQuesada.pdf",
+          "title": "Los Bosques de Costa Rica (IX Congreso Nacional de Ciencias, Cartago, 24–25 August 2007)",
+          "publisher": "Ruperto Quesada Monge, Escuela de Ingeniería Forestal, Instituto Tecnológico de Costa Rica; hosted by CIENTEC",
+          "published": "2007-08-24",
+          "retrieved": "2026-10-23",
+          "supports": "'divide Costa Rica en 12 zonas de vida y 12 zonas de transición'; 'En Costa Rica existen 12 zonas de vida o formaciones vegetales distribuidas en pisos altitudinales'; map by Bolaños, Watson & Tosi (CCT, 2005, 1:750,000)"
+        },
+        {
+          "url": "https://restoration.elti.yale.edu/node/89079",
+          "title": "Biodiversity conservation in Costa Rica: a correspondence analysis between identified biodiversity hotspots (Araceae, Arecaceae, Bromeliaceae, and Scarabaeinae) and conservation priority life zones (Kohlmann et al. 2010, reference entry)",
+          "publisher": "ELTI, Yale School of the Environment (reference database)",
+          "published": "2010-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "'across 12 Holdridge Life Zones in Costa Rica'"
+        },
+        {
+          "url": "https://www.inavirtual.ed.cr/pluginfile.php/2861737/mod_resource/content/1/Vegetacion%20de%20Costa%20Rica%20%28v-asec%29.pdf",
+          "title": "Capítulo 4: Vegetación de Costa Rica: biodiversidad y riqueza",
+          "publisher": "INA Virtual (Instituto Nacional de Aprendizaje) course material; author not stated",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Alternative count including transitions: 'Costa Rica presenta 17 zonas de vida, desde bosque seco tropical hasta bosque pluvial Montano'"
+        },
+        {
+          "url": "https://meetingorganizer.copernicus.org/EGU2019/EGU2019-12725.pdf?pdf",
+          "title": "Climate Change impacts on the biodiversity of tropical ecosystems (EGU2019-12725)",
+          "publisher": "EGU General Assembly 2019 — Dehaspe, Birkel (UCR), Capell",
+          "published": "2019-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "Baseline of 11 life zones implied: 'A projected reduction from 11 to only 6 life zones in the near-future'"
+        }
+      ]
+    },
+    "arenalLake": {
+      "label": {
+        "en": "Arenal volcano and Lake Arenal",
+        "es": "Volcán Arenal y lago Arenal",
+        "zh": "阿雷纳尔火山与阿雷纳尔湖"
+      },
+      "value": 1670,
+      "unit": "m elevation (Smithsonian GVP; RSN gives ~1,750 m); lake ≈ 87 km²",
+      "year": 2010,
+      "status": "approximate",
+      "text": {
+        "en": "Arenal, a 1,670 m stratovolcano in the Cordillera de Tilarán (Alajuela, about 7 km from La Fortuna; the RSN-UCR page gives '~1750 m.s.n.m'), woke on the morning of 29 July 1968 with a Pelean explosive eruption that killed dozens (65 per the Smithsonian, 78 per Avard et al.) and then erupted almost continuously for 42 years until its activity ended in late 2010 (October per OVSICORI/RSN scientists, December per the Smithsonian; the RSN dates the repose from January 2011). At its foot lies Lake Arenal, an artificial reservoir of about 87 km² built by the ICE for the Arenal hydroelectric complex inaugurated on 9 December 1979 (plants Arenal, Dengo and Sandillal, 363.37 MW), which also feeds the Arenal–Tempisque irrigation system in Guanacaste. Caption guidance: the site's illustration is a generic volcano over a lake, so write 'a volcano over a lake, like Arenal' and do not present the drawing as Arenal itself.",
+        "es": "El Arenal, un estratovolcán de 1 670 m en la cordillera de Tilarán (Alajuela, a unos 7 km de La Fortuna; la página de la RSN-UCR da '~1750 m.s.n.m'), despertó la mañana del 29 de julio de 1968 con una erupción explosiva de tipo peleano que mató a decenas de personas (65 según el Smithsonian, 78 según Avard et al.) y luego mantuvo actividad casi continua durante 42 años hasta que cesó a finales de 2010 (octubre según los científicos del OVSICORI/RSN, diciembre según el Smithsonian; la RSN fecha el reposo desde enero de 2011). A sus pies está el lago Arenal, un embalse artificial de unos 87 km² construido por el ICE para el complejo hidroeléctrico Arenal, inaugurado el 9 de diciembre de 1979 (plantas Arenal, Dengo y Sandillal, 363,37 MW), que también alimenta el sistema de riego Arenal–Tempisque en Guanacaste. Guía para el pie de imagen: la ilustración del sitio es un volcán genérico sobre un lago, así que debe decir 'un volcán sobre un lago, como el Arenal' sin presentar el dibujo como el Arenal."
+      },
+      "sources": [
+        {
+          "url": "https://volcano.si.edu/volcano.cfm?vn=345033",
+          "title": "Arenal — Global Volcanism Program",
+          "publisher": "Smithsonian Institution, Global Volcanism Program",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Elevation 1,670 m; composite stratovolcano; 10.463°N 84.703°W; 'An eruptive period that began with a major explosive eruption in 1968 ended in December 2010'; 1968 'Eruption kills 65'"
+        },
+        {
+          "url": "https://rsn.ucr.ac.cr/index.php/component/content/article/arenal?catid=22",
+          "title": "Volcán Arenal",
+          "publisher": "Red Sismológica Nacional (RSN: UCR-ICE)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'~1750 m.s.n.m'; Alajuela, ~7 km WSW of La Fortuna, cordillera de Tilarán; eruptive phase began 'la mañana del 29 de julio de 1968' (peleana); 'entró en un reposo a partir de enero del 2011'; 81 deaths attributed overall"
+        },
+        {
+          "url": "https://jvolcanica.org/ojs/index.php/volcanica/article/download/65/122/3233",
+          "title": "Volcano hazard and surveillance in Costa Rica",
+          "publisher": "Volcanica 4(S1), OVSICORI-UNA / RSN authors",
+          "published": "2021-11-01",
+          "retrieved": "2026-10-23",
+          "supports": "'dramática erupción peleana' on 29 July 1968 killing 78; activity 'continuó durante 42 años y finalizó en octubre del 2010'"
+        },
+        {
+          "url": "https://www.nacion.com/el-pais/servicios/arenal-el-mayor-complejo-energetico-de-costa-rica/QE33IK6XNFFTDESYFQXL3UCMOA/story/",
+          "title": "Arenal, el mayor complejo energético de Costa Rica",
+          "publisher": "La Nación (on the ICE complex's 40th anniversary)",
+          "published": "2019-12-04",
+          "retrieved": "2026-10-23",
+          "supports": "'embalse artificial de 87 km cuadrados'; works began 1974; Arenal plant inaugurated 9 Dec 1979 (157.39 MW), Dengo 1982 (174.01 MW), Sandillal 1992 (31.97 MW), total 363.37 MW; Tronadora and Arenal relocated; Sistema de Riego Arenal–Tempisque"
+        },
+        {
+          "url": "https://es.wikipedia.org/wiki/Geograf%C3%ADa_de_Costa_Rica",
+          "title": "Geografía de Costa Rica",
+          "publisher": "Wikipedia (es)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Arenal (1,670 m) as the best-known volcano of the Sierra/Cordillera de Tilarán"
+        }
+      ]
+    },
+    "mountainRanges": {
+      "label": {
+        "en": "Main mountain ranges",
+        "es": "Principales cordilleras",
+        "zh": "主要山脉"
+      },
+      "value": 4,
+      "unit": "cordilleras: Guanacaste, Tilarán, Volcánica Central, Talamanca",
+      "year": null,
+      "status": "approximate",
+      "text": {
+        "en": "Four ranges run down the country from north-west to south-east: the volcanic Cordillera de Guanacaste (about 70 km long; highest point Miravalles, 2,028 m), the Cordillera de Tilarán (gold-bearing volcanic rocks; Cerro Cedral 1,842 m, with Arenal as its famous volcano), the Cordillera Volcánica Central (some 90 km of volcanic cones; Irazú 3,432 m) and the non-volcanic Cordillera de Talamanca, whose peaks exceed 3,000 m and include Chirripó, the country's highest point. Avard et al. (2021) describe the arc as 'cordilleras volcánicas de Guanacaste al norte, y Central al centro' with 'la zona no volcánica de Talamanca al sur', and Costa Rican teaching material names 'las cordilleras de Tilarán y Guanacaste', the Cordillera Volcánica Central and the Cordillera de Talamanca; the four-range description itself was fetched only from Wikipedia and educational sources, hence 'approximate'.",
+        "es": "Cuatro cordilleras recorren el país de noroeste a sureste: la volcánica Cordillera de Guanacaste (unos 70 km; punto más alto Miravalles, 2 028 m), la Cordillera de Tilarán (rocas volcánicas con oro; cerro Cedral 1 842 m, con el Arenal como volcán célebre), la Cordillera Volcánica Central (unos 90 km de conos volcánicos; Irazú 3 432 m) y la no volcánica Cordillera de Talamanca, cuyas cumbres superan los 3 000 m e incluyen el Chirripó, el punto más alto del país. Avard et al. (2021) describen el arco como 'cordilleras volcánicas de Guanacaste al norte, y Central al centro' con 'la zona no volcánica de Talamanca al sur', y el material didáctico costarricense nombra 'las cordilleras de Tilarán y Guanacaste', la Cordillera Volcánica Central y la Cordillera de Talamanca; la descripción de las cuatro cordilleras solo se obtuvo de Wikipedia y fuentes educativas, de ahí 'aproximado'."
+      },
+      "sources": [
+        {
+          "url": "https://es.wikipedia.org/wiki/Geograf%C3%ADa_de_Costa_Rica",
+          "title": "Geografía de Costa Rica",
+          "publisher": "Wikipedia (es)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Cordillera de Guanacaste (~70 km, Miravalles 2,028 m); Sierra/Cordillera de Tilarán (~50 km, Cerro Cedral 1,842 m, Arenal 1,670 m); Cordillera Volcánica Central ('90 km de conos volcánicos', Irazú 3,432 m); Cordillera de Talamanca ('sobrepasan los 3.000 m', Chirripó)"
+        },
+        {
+          "url": "https://jvolcanica.org/ojs/index.php/volcanica/article/download/65/122/3233",
+          "title": "Volcano hazard and surveillance in Costa Rica",
+          "publisher": "Volcanica 4(S1), OVSICORI-UNA / RSN authors",
+          "published": "2021-11-01",
+          "retrieved": "2026-10-23",
+          "supports": "'cordilleras volcánicas de Guanacaste al norte, y Central al centro'; 'la zona no volcánica de Talamanca al sur'"
+        },
+        {
+          "url": "https://www.inavirtual.ed.cr/pluginfile.php/2861737/mod_resource/content/1/Vegetacion%20de%20Costa%20Rica%20%28v-asec%29.pdf",
+          "title": "Capítulo 4: Vegetación de Costa Rica: biodiversidad y riqueza",
+          "publisher": "INA Virtual course material",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Names 'las cordilleras de Tilarán y Guanacaste', 'Cordillera de Talamanca' and 'Cordillera Volcánica Central'"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Geography_of_Costa_Rica",
+          "title": "Geography of Costa Rica",
+          "publisher": "Wikipedia (en)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Cordillera Central and Talamanca 'form the spine of the country and separate the Pacific and Caribbean drainage divides'; Guanacaste range on the Continental Divide; Talamanca largely inside La Amistad International Park"
+        }
+      ]
+    },
+    "forestCover": {
+      "label": {
+        "en": "Forest cover and its recovery",
+        "es": "Cobertura forestal y su recuperación",
+        "zh": "森林覆盖率及其恢复"
+      },
+      "value": 59.44,
+      "unit": "% of land area (FAO FRA 2020 definition, 2020); 52.4 % by the 2013 national map",
+      "year": 2020,
+      "status": "approximate",
+      "text": {
+        "en": "Costa Rica is the textbook case of a country that reversed deforestation. FONAFIFO's own series (Sánchez, 2014) shows forest cover falling from 75 % in 1950 to 53 % (1961), 31 % (1977) and a low of 21 % in 1987, then recovering to 42 % (1997) and 51 % (2005); the Fifth National Report puts it at 52.4 % in 2013 and the Sixth says it has stayed above 50 % since 2010, while the FAO Global Forest Resources Assessment 2020, compiled by SINAC with a broader definition that includes secondary forest, reports 3,034,870 ha or 59.44 % of land area in 2020. Estimates of the 1980s low vary with method (other studies put 1986 at about 40 %), so the honest phrasing is 'from roughly a fifth to a quarter of the country in the late 1980s to more than half today'. The turnaround rests on the Ley Forestal 7575 of 1996, which banned conversion of forest to other uses and created the Programa de Pago por Servicios Ambientales (PSA), run by FONAFIFO since 1997 and funded partly by a fuel tax; by 2019 it had paid landowners about USD 524 million for more than 1.3 million hectares under contract, benefiting over 18,000 families, and won a UN Global Climate Action Award in 2020.",
+        "es": "Costa Rica es el caso de manual de un país que revirtió la deforestación. La propia serie del FONAFIFO (Sánchez, 2014) muestra la cobertura forestal cayendo del 75 % en 1950 al 53 % (1961), 31 % (1977) y un mínimo del 21 % en 1987, para luego recuperarse al 42 % (1997) y 51 % (2005); el V Informe Nacional la sitúa en 52,4 % en 2013 y el VI dice que se mantiene por encima del 50 % desde 2010, mientras que la Evaluación de los Recursos Forestales Mundiales 2020 de la FAO, elaborada por el SINAC con una definición más amplia que incluye bosque secundario, reporta 3 034 870 ha, el 59,44 % de la superficie terrestre, en 2020. Las estimaciones del mínimo de los años ochenta varían según el método (otros estudios sitúan 1986 cerca del 40 %), así que lo honesto es decir 'de alrededor de una quinta a una cuarta parte del país a finales de los ochenta a más de la mitad hoy'. El cambio se apoya en la Ley Forestal 7575 de 1996, que prohibió el cambio de uso del suelo de bosque y creó el Programa de Pago por Servicios Ambientales (PSA), ejecutado por el FONAFIFO desde 1997 y financiado en parte con un impuesto a los combustibles; hasta 2019 había pagado a propietarios unos USD 524 millones por más de 1,3 millones de hectáreas bajo contrato, beneficiando a más de 18 000 familias, y recibió un Premio de Acción Climática Global de la ONU en 2020."
+      },
+      "sources": [
+        {
+          "url": "https://www.sirefor.go.cr/pdfs/publicaciones/FRA-FAO_2020-COSTA_RICA.pdf",
+          "title": "Evaluación de los Recursos Forestales Mundiales 2020 — Informe Costa Rica (FRA 2020)",
+          "publisher": "FAO; prepared by María Isabel Chavarría Espinoza (SINAC); hosted by SIREFOR (SINAC)",
+          "published": "2020-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "Forest area 2,907.40 (1990), 2,857.22 (2000), 2,871.20 (2010), 2,953.03 (2015), 3,034.87 thousand ha (2020); SDG 15.1.1: 55.96 % (2000), 56.23 % (2010), 57.83 % (2015), 59.44 % (2020); land area 5,106 thousand ha; forest 'incluye el bosque secundario en sus 3 etapas sucesionales'"
+        },
+        {
+          "url": "https://www.cbd.int/doc/meetings/ecr/cbwecr-2014-09/other/cbwecr-2014-09-presentation-10-es.pdf",
+          "title": "Experiencia de Costa Rica en el Pago por Servicios Ambientales como estrategia para la conservación de la Biodiversidad",
+          "publisher": "FONAFIFO (MINAE) — Ing. Oscar Sánchez Ch., Director Servicios Ambientales; CBD Mesoamerica workshop, San José, 25–28 August 2014",
+          "published": "2014-08-25",
+          "retrieved": "2026-10-23",
+          "supports": "Forest cover series: 1950 75 %, 1961 53 %, 1977 31 %, 1987 21 %, 1997 42 %, 2005 51 %; Ley Forestal No. 7575 (1996), art. 3 k and art. 69; '3.5% del imp.' funding"
+        },
+        {
+          "url": "https://www.cbd.int/doc/world/cr/cr-nr-05-es.pdf",
+          "title": "V Informe Nacional al Convenio sobre la Diversidad Biológica, Costa Rica",
+          "publisher": "SINAC / GEF-PNUD (CBD mirror)",
+          "published": "2014-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "'Se mantiene cobertura forestal reportada en 2010 como el 52.3% (Fonafifo, 2012) a 52.4% 2013 (SINAC, 2014)'"
+        },
+        {
+          "url": "https://files.acquia.undp.org/public/migration/cr/undp_cr_EstadodelaBiodiversidad_19.pdf",
+          "title": "Estado de la Biodiversidad Costa Rica 2014–2018 (Resumen del Sexto Informe Nacional)",
+          "publisher": "MINAE – SINAC – CONAGEBIO – FONAFIFO / PNUD",
+          "published": "2018-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "'Desde 2010, la cobertura forestal se ha mantenido por encima del 50%'"
+        },
+        {
+          "url": "https://www.cbd.int/countries/profile?country=cr",
+          "title": "Costa Rica — Country Profile",
+          "publisher": "Convention on Biological Diversity (SCBD draft profile)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'Since 2010, forest cover has been maintained at 52%'; terrestrial ecosystems 28,419.32 km² (55.6 %)"
+        },
+        {
+          "url": "https://unfccc.int/es/node/256478",
+          "title": "Payments for Environmental Services Program | Costa Rica (Momentum for Change / UN Global Climate Action Award 2020)",
+          "publisher": "UNFCCC secretariat",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'In 1950, forests covered more than one-half of Costa Rica'; 'by 1995, forest cover had declined to 25%'; run by FONAFIFO, funded by fuel tax and water charge; 'Over 1.3 million hectares' under contract; USD 524 million invested; 18,000+ families 1997–2019"
+        },
+        {
+          "url": "https://unfccc.int/files/land_use_and_climate_change/lulucf/application/pdf/060830_ulate.pdf",
+          "title": "Costa Rica: Environmental Services: Payment as a policy tool to avoid deforestation and promote forest recovery",
+          "publisher": "Government of Costa Rica (MINAE, FONAFIFO, OCIC) at the UNFCCC workshop on reducing emissions from deforestation, Rome, 30 Aug–1 Sep 2006",
+          "published": "2006-08-30",
+          "retrieved": "2026-10-23",
+          "supports": "PSA created under the 1995/96 Forestry Law 7575 with a fuel-tax funding source; programme 1997–2005: ~500,000 ha, ~USD 120 million, ~7,000 families; deforestation ~55,000 ha/yr in the 1960s–80s"
+        },
+        {
+          "url": "https://delfino.cr/2023/09/el-positivo-aumento-de-cobertura-forestal-en-costa-rica",
+          "title": "El positivo aumento de cobertura forestal en Costa Rica",
+          "publisher": "Delfino.cr (MOXIE/ULACIT student column)",
+          "published": "2023-09-11",
+          "retrieved": "2026-10-23",
+          "supports": "Alternative series citing Sánchez (2015): 59.5 % (1960) → 40 % (1986), loss of 956,675 ha; 40.8 % (1986) → 50.4 % (2010); 52.4 % in 2013; Ley Forestal 7575 art. 19 bans forest land-use change; PSA 'el mayor contribuyente'"
+        }
+      ]
+    },
+    "nationalParksCount": {
+      "label": {
+        "en": "National parks",
+        "es": "Parques nacionales",
+        "zh": "国家公园数量"
+      },
+      "value": 30,
+      "unit": "national parks (approx.; sources give 28–32)",
+      "year": 2014,
+      "status": "uncertain",
+      "text": {
+        "en": "The last official count fetched is from SINAC's Fifth National Report (2014): '28 parques nacionales y 8 reservas biológicas', within a protected-area system covering 26 % of the land and 3 % of the marine territory, organised in 11 conservation areas. SINAC's website blocked automated reading, so no current official figure could be confirmed; Spanish Wikipedia counts 30 national parks, the English list has 29–31 entries, and a 2023 Teletica piece says 32 without naming a source. Write 'around 30 national parks' and avoid an exact number unless SINAC's page is checked by hand.",
+        "es": "El último recuento oficial obtenido es del V Informe Nacional del SINAC (2014): '28 parques nacionales y 8 reservas biológicas', dentro de un sistema de áreas protegidas que cubre el 26 % del territorio terrestre y el 3 % del marino, organizado en 11 áreas de conservación. El sitio del SINAC bloqueó la lectura automatizada, por lo que no se pudo confirmar una cifra oficial actual; Wikipedia en español cuenta 30 parques nacionales, la lista en inglés tiene 29–31 entradas y una nota de Teletica de 2023 dice 32 sin citar fuente. Conviene escribir 'unos 30 parques nacionales' y evitar un número exacto salvo que se verifique a mano la página del SINAC."
+      },
+      "sources": [
+        {
+          "url": "https://www.cbd.int/doc/world/cr/cr-nr-05-es.pdf",
+          "title": "V Informe Nacional al Convenio sobre la Diversidad Biológica, Costa Rica",
+          "publisher": "SINAC / GEF-PNUD (CBD mirror)",
+          "published": "2014-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "p. 29: '28 parques nacionales y 8 reservas biológicas'; p. 19: 26 % of land and 3 % of marine territory under conservation"
+        },
+        {
+          "url": "https://es.wikipedia.org/wiki/Parques_nacionales_de_Costa_Rica",
+          "title": "Parques nacionales de Costa Rica",
+          "publisher": "Wikipedia (es)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "30 national parks; park system since 1970, SINAC since 1994 (fetched in the earlier country-facts task, see research/log-country.md #56)"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Geography_of_Costa_Rica",
+          "title": "Geography of Costa Rica",
+          "publisher": "Wikipedia (en)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'29 national parks' (garbled sentence); 'Over 25% of Costa Rica's national territory is protected by the National System of Conservation Areas'"
+        },
+        {
+          "url": "https://www.teletica.com/nacional/las-cifras-que-destacan-a-costa-rica-en-el-dia-mundial-de-la-diversidad-biologica_335285",
+          "title": "Las cifras que destacan a Costa Rica en el Día Mundial de la Diversidad Biológica",
+          "publisher": "Teletica",
+          "published": "2023-05-22",
+          "retrieved": "2026-10-23",
+          "supports": "'32 parques nacionales, 51 refugios de vida silvestre, 13 reservas forestales, 8 reservas biológicas' (no source named); protected land 26.51 % (Sexto Informe, 2019)"
+        },
+        {
+          "url": "https://www.sinac.go.cr/EN-US/Pages/default.aspx",
+          "title": "SINAC home page",
+          "publisher": "Sistema Nacional de Áreas de Conservación",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Negative result: fetch refused (robots_disallowed); no official current count obtained"
+        }
+      ]
+    }
+  },
+  "unverified": [
+    {
+      "claim": "Costa Rica has '112 volcanic structures' (or 'about 200 volcanoes').",
+      "reason": "No fetched OVSICORI, RSN or peer-reviewed page gives such a total; Avard et al. (2021) count ten volcanic complexes and five historically active volcanoes, and Spanish Wikipedia's 'cerca de 200 volcanes' is unsourced. OVSICORI's volcano list page returned a server error."
+    },
+    {
+      "claim": "Exact current number of national parks (28, 29, 30, 31 or 32).",
+      "reason": "sinac.go.cr blocks automated fetching; the only official count read is 28 (SINAC, 2014). Press and Wikipedia disagree (29–32)."
+    },
+    {
+      "claim": "Current official bird list as published by the Unión de Ornitólogos / Asociación Ornitológica de Costa Rica on its own site or in Zeledonia.",
+      "reason": "uniondeornitologos.com now shows only a domain-for-sale notice and repositorio.una.ac.cr rejected the requests (bot filter). The 942-species figure comes from a copy of the October 2025 official list hosted by a tour operator."
+    },
+    {
+      "claim": "'0.03 % of the Earth's surface' as a fraction of the whole planet.",
+      "reason": "Arithmetically 51,180 km² is 0.034 % of the Earth's land area (~148.9 million km²) but only 0.010 % of its total surface (~510 million km²); the official reports say 'superficie terrestre' (land), and the site should too."
+    },
+    {
+      "claim": "A single current total for vascular plant species (e.g. 'about 10,000' or '11,000').",
+      "reason": "The only fetched total is 11,467 known plant species from 2008 (SINAC, 2009); no newer official or Missouri Botanical Garden/Manual de Plantas de Costa Rica figure was obtained."
+    },
+    {
+      "claim": "Number of diurnal butterfly species (≈ 1,500) and of Lepidoptera overall (12,000–14,000).",
+      "reason": "Only press sources (El Mundo CR 2019; La Nación 2007 quoting INBio) were fetched; no checklist or national report gives a butterfly total."
+    },
+    {
+      "claim": "Pacific coastline length (1,016 km vs 1,254 km) and total coastline (1,228 vs 1,290 km).",
+      "reason": "Lengths depend on measurement scale; the 1,016 km figure was only found on Wikipedia, whereas a UCR article cites MINAE-PNUMA (2002) for 1,254 km. No IGN page with coastline lengths was fetched."
+    },
+    {
+      "claim": "Lake Arenal area from an ICE page (85–88 km²).",
+      "reason": "The 87 km² figure comes from La Nación's 2019 report on the ICE complex, not from an ICE page."
+    },
+    {
+      "claim": "Forest cover minimum in the 1980s (21 % in 1987 per FONAFIFO vs ~26 % often quoted vs 40 % in 1986 per Sánchez 2015).",
+      "reason": "Different mapping methods and forest definitions; FONAFIFO's own slide gives 21 % (1987), while a 2023 column citing Sánchez (2015) says cover never fell below 40 %. The 26 % figure was not found in any fetched source."
+    },
+    {
+      "claim": "Costa Rica has exactly 12 Holdridge life zones.",
+      "reason": "Supported by a TEC conference paper (citing the CCT map) and Kohlmann et al. 2010, but a vocational text lists 17 units including transitions and an EGU 2019 abstract uses 11; the CCT map itself was not fetched."
+    }
+  ]
+}

@@ -1,0 +1,1523 @@
+{
+  "retrieved": "2026-10-23",
+  "notes": {
+    "method": "Every fact below is supported by a page fetched with WebFetch on 2026-10-23 and listed in its species' 'sources' array (curl to api.gbif.org was refused by the egress proxy, so GBIF API responses were also read through WebFetch). iucnredlist.org blocks automated fetching, so IUCN categories, taxon IDs, assessment years, assessors and DOIs were taken from GBIF's mirror of the IUCN Red List (api.gbif.org .../iucnRedListCategory and .../distributions); each iucn.url is therefore the assessment DOI as fetched, not an iucnredlist.org page. Cornell's Neotropical Birds account of the scarlet macaw refused the fetch (robots), so that species rests on Animal Diversity Web and Wikipedia. The habitatFit field answers one question for the website's illustrated scene (a forest path opening onto a Pacific beach): does the species occur in Costa Rica's Pacific lowland coastal forests (Manuel Antonio, Carara, Osa)? Evidence used: GBIF occurrence counts restricted to Puntarenas province (country=CR&stateProvince=Puntarenas), range statements from primary catalogues (Amphibian Species of the World) and, as 'approximate', Wikipedia's species and Manuel Antonio National Park articles.",
+    "statusLegend": {
+      "confirmed": "stated directly by a preferred or primary source that was fetched (GBIF, ADW, AmphibiaWeb, ASW, Reptile Database, Presidencia)",
+      "approximate": "stated by a secondary/tertiary source (e.g. Wikipedia) or by sources that disagree in detail",
+      "interpretation": "our inference from sourced statements; not stated verbatim by a source",
+      "uncertain": "could not be settled from fetched sources; see 'unverified'"
+    },
+    "sizeFields": "Where sources give ranges, length_cm and mass_g hold the upper (or typical-male) figure stated by a source and the *_range arrays hold the sourced range; the size.note explains each case. No averages were invented.",
+    "zhNamesCaveat": "Simplified Chinese common names were supplied from general knowledge and were NOT verified against a fetched source (status: uncertain).",
+    "nationalSymbolCheck": "The Presidencia de la República symbols page (15 symbols; only bird: the yigüirro, 1977) was fetched; the 2021–2026 additions by law (sloths, morpho, hummingbirds, adobe house, Duelo de la Patria) were not re-fetched and are cited from this project's research/country.json. None of the five species is a national symbol; the scarlet macaw is the national bird of Honduras (Wikipedia)."
+  },
+  "species": [
+    {
+      "id": "white-faced-capuchin",
+      "commonNames": {
+        "en": "Panamanian White-faced Capuchin",
+        "es": "mono carablanca",
+        "esAlt": [
+          "mono cariblanco",
+          "capuchino cariblanco",
+          "maicero cariblanco",
+          "mono cara blanca",
+          "carita blanca"
+        ],
+        "zh": "白面卷尾猴（巴拿马白面卷尾猴）",
+        "status": "confirmed (en 'white-faced capuchin', ADW); approximate (en 'Panamanian white-faced capuchin' and the Spanish names, from Wikipedia; Spanish Wikipedia does not say which names are used in Costa Rica); uncertain (zh, not verified in a fetched source)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Cebus_capucinus/",
+          "https://en.wikipedia.org/wiki/Panamanian_white-faced_capuchin",
+          "https://es.wikipedia.org/wiki/Cebus_imitator"
+        ]
+      },
+      "scientific": "Cebus imitator",
+      "authority": "Thomas, 1903",
+      "family": "Cebidae",
+      "order": "Primates",
+      "taxonomyStatus": "confirmed (GBIF accepts Cebus imitator Thomas, 1903 as a species distinct from Cebus capucinus (Linnaeus, 1758); order Primates, family Cebidae); approximate (assignment of the Costa Rican population to C. imitator rests on Wikipedia's range statement and on GBIF record counts — see nomenclature)",
+      "nomenclature": {
+        "en": "Two names are in use for Costa Rica's white-faced capuchin. Until the 21st century all white-faced capuchins from Honduras to South America were treated as one species, Cebus capucinus (Linnaeus, 1758), with the Central American form as the subspecies C. c. imitator. A 2012 genetic study (Boubli et al., as cited by Wikipedia) found that the Central American and Colombian lineages separated up to two million years ago, and the Central American form is now widely treated as the species Cebus imitator Thomas, 1903, the Panamanian white-faced capuchin, ranging through Honduras, Nicaragua, Costa Rica and Panama. The GBIF Backbone Taxonomy accepts both C. imitator (usageKey 8028197) and C. capucinus (usageKey 2436637) as separate species, and the IUCN assesses them separately (both Vulnerable). GBIF's Costa Rican occurrence records are filed mostly under C. imitator (8,155) rather than C. capucinus (632). Animal Diversity Web and Spanish Wikipedia still describe the Costa Rican monkeys under C. capucinus, and Wikipedia notes that some primatologists continue to treat the two forms as one species. This file uses Cebus imitator; C. capucinus in the strict sense is the Colombian white-faced capuchin.",
+        "es": "Hay dos nombres en uso para el mono carablanca de Costa Rica. Hasta el siglo XXI todos los capuchinos de cara blanca, de Honduras a Sudamérica, se trataban como una sola especie, Cebus capucinus (Linnaeus, 1758), con la forma centroamericana como subespecie C. c. imitator. Un estudio genético de 2012 (Boubli et al., citado por Wikipedia) halló que los linajes centroamericano y colombiano se separaron hace hasta dos millones de años, y hoy la forma centroamericana se trata ampliamente como la especie Cebus imitator Thomas, 1903, el capuchino cariblanco panameño, distribuido por Honduras, Nicaragua, Costa Rica y Panamá. La taxonomía troncal de GBIF acepta tanto C. imitator (usageKey 8028197) como C. capucinus (usageKey 2436637) como especies separadas, y la UICN las evalúa por separado (ambas Vulnerables). Los registros de GBIF para Costa Rica están archivados sobre todo bajo C. imitator (8.155) y no bajo C. capucinus (632). Animal Diversity Web y la Wikipedia en español todavía describen a los monos costarricenses bajo C. capucinus, y Wikipedia anota que algunos primatólogos siguen tratando ambas formas como una sola especie. Este archivo usa Cebus imitator; C. capucinus en sentido estricto es el capuchino cariblanco de Colombia.",
+        "formerName": "Cebus capucinus imitator Thomas, 1903 (as a subspecies of Cebus capucinus (Linnaeus, 1758)); 'Cebus capucinus' sensu lato in older literature and still on ADW and Spanish Wikipedia",
+        "status": "confirmed (GBIF status of both names; IUCN categories; GBIF record counts); approximate (history of the split and range, per Wikipedia)",
+        "sources": [
+          "https://api.gbif.org/v1/species/match?name=Cebus%20imitator",
+          "https://api.gbif.org/v1/species/match?name=Cebus%20capucinus",
+          "https://api.gbif.org/v1/species/8028197/iucnRedListCategory",
+          "https://api.gbif.org/v1/species/2436637/iucnRedListCategory",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=8028197&country=CR&limit=0",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2436637&country=CR&limit=0",
+          "https://en.wikipedia.org/wiki/Panamanian_white-faced_capuchin",
+          "https://animaldiversity.org/accounts/Cebus_capucinus/",
+          "https://es.wikipedia.org/wiki/Cebus_imitator"
+        ]
+      },
+      "iucn": {
+        "category": "VU",
+        "categoryName": "Vulnerable",
+        "year": 2021,
+        "assessor": "Williams-Guillén, K., Rosales-Meda, M., Méndez-Carvajal, P.G., Solano-Rojas, D., Urbani, B. & Lynch Alfaro, J.W.",
+        "iucnTaxonId": "81265980",
+        "url": "https://doi.org/10.2305/IUCN.UK.2021-1.RLTS.T81265980A191708420.en",
+        "status": "confirmed",
+        "note": "Category, taxon ID, assessors, year and DOI taken from GBIF's mirror of the IUCN Red List because iucnredlist.org blocks fetching. The GBIF mirror also lists Cebus capucinus (IUCN taxon 81257277) as Vulnerable. Animal Diversity Web's account, written under C. capucinus, still shows 'Least Concern', which predates the split and the 2021 assessment. CITES Appendix II per ADW and Spanish Wikipedia.",
+        "sources": [
+          "https://api.gbif.org/v1/species/8028197/iucnRedListCategory",
+          "https://api.gbif.org/v1/species/176662707/distributions",
+          "https://api.gbif.org/v1/species/2436637/iucnRedListCategory"
+        ]
+      },
+      "size": {
+        "length_cm": 45.3,
+        "tail_cm": 55.1,
+        "mass_g": 3900,
+        "length_cm_range": [
+          33.5,
+          45.3
+        ],
+        "mass_g_range": [
+          2000,
+          4000
+        ],
+        "status": "approximate",
+        "note": "Head-body length 335–453 mm excluding the tail, tail up to 551 mm (longer than the body) and weight up to 3.9 kg per English Wikipedia (Spanish Wikipedia: 33.5–45.3 cm, tail up to 55.1 cm, 1.5–4 kg). ADW gives mass 2–4 kg (males 3–4 kg, females 2–3 kg) and a maximum length of 435 mm without saying whether it is head-body length. Males are about 27 % larger than females. length_cm and mass_g are the upper figures, not averages.",
+        "sources": [
+          "https://en.wikipedia.org/wiki/Panamanian_white-faced_capuchin",
+          "https://animaldiversity.org/accounts/Cebus_capucinus/",
+          "https://es.wikipedia.org/wiki/Cebus_imitator"
+        ]
+      },
+      "habitat": {
+        "en": "Mature and secondary forests of many kinds — evergreen and deciduous, wet and dry, mangrove and montane — with a preference for close-canopied primary or advanced secondary forest, where it moves mostly through the middle strata. It is also found on volcanic foothills and coastal plains, from sea level to about 2,100 m across its range; densities are highest in older, evergreen forest with water in the dry season.",
+        "es": "Bosques maduros y secundarios de muchos tipos —siempreverdes y caducifolios, húmedos y secos, manglares y bosques montanos—, con preferencia por bosque primario o secundario avanzado de dosel cerrado, donde se mueve sobre todo por los estratos medios. También se encuentra en faldas volcánicas y llanuras costeras, desde el nivel del mar hasta unos 2.100 m en toda su área de distribución; las densidades son mayores en bosque viejo y siempreverde con agua en la estación seca.",
+        "status": "confirmed (ADW: forest types, strata, coastal plains, 0–2,100 m); approximate (Wikipedia: mangrove and montane forest, preference for older forest and dry-season water)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Cebus_capucinus/",
+          "https://en.wikipedia.org/wiki/Panamanian_white-faced_capuchin"
+        ]
+      },
+      "distributionCR": {
+        "en": "Cebus imitator ranges from Honduras through Nicaragua and Costa Rica to Panama. In Costa Rica it is described as very common and is among the monkeys most often seen in Manuel Antonio, Corcovado and Santa Rosa national parks; the Guanacaste dry-forest population and Carara National Park are also mentioned. GBIF holds 8,155 occurrence records from Costa Rica under C. imitator — 4,787 of them in Puntarenas province, on the Pacific side — and a further 632 under the older name C. capucinus.",
+        "es": "Cebus imitator se distribuye desde Honduras, a través de Nicaragua y Costa Rica, hasta Panamá. En Costa Rica se describe como muy común y es uno de los monos que más se ven en los parques nacionales Manuel Antonio, Corcovado y Santa Rosa; también se mencionan la población del bosque seco de Guanacaste y el Parque Nacional Carara. GBIF tiene 8.155 registros de presencia en Costa Rica bajo C. imitator —4.787 de ellos en la provincia de Puntarenas, en el lado del Pacífico— y otros 632 bajo el nombre anterior C. capucinus.",
+        "slopes": "Pacific slope documented (Santa Rosa/Guanacaste, Carara, Manuel Antonio, Corcovado); Caribbean slope of Costa Rica not covered by fetched sources",
+        "elevationCR_m": null,
+        "gbifOccurrencesCR": 8155,
+        "status": "confirmed (occurs in Costa Rica and in Puntarenas province, GBIF; country range, ADW and Wikipedia); approximate (named parks, from Wikipedia); uncertain (Caribbean slope and elevation within Costa Rica)",
+        "sources": [
+          "https://en.wikipedia.org/wiki/Panamanian_white-faced_capuchin",
+          "https://animaldiversity.org/accounts/Cebus_capucinus/",
+          "https://es.wikipedia.org/wiki/Cebus_imitator",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=8028197&country=CR&limit=0",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2436637&country=CR&limit=0",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=8028197&taxonKey=5959227&taxonKey=2428197&taxonKey=2437576&taxonKey=2459658&country=CR&stateProvince=Puntarenas&facet=speciesKey&facetLimit=20&limit=0",
+          "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park"
+        ]
+      },
+      "diet": {
+        "en": "An omnivore. Fruit makes up roughly half to two-thirds of the diet or more (ADW: about 50–80 % fruit, 20–30 % animal matter and about 10 % other plant material); a study at Santa Rosa recorded 63 plant species from 34 families in the diet. It also takes flowers, young leaves, seeds and bromeliads, insects, and vertebrate prey such as lizards, birds and their eggs, frogs, squirrels and other small mammals; in the dry season the diet shifts toward figs, insects and vertebrates.",
+        "es": "Es omnívoro. La fruta forma aproximadamente de la mitad a dos tercios de la dieta o más (ADW: cerca de 50–80 % fruta, 20–30 % materia animal y alrededor de 10 % otro material vegetal); un estudio en Santa Rosa registró 63 especies de plantas de 34 familias en la dieta. También come flores, hojas tiernas, semillas y bromelias, insectos y presas vertebradas como lagartijas, aves y sus huevos, ranas, ardillas y otros pequeños mamíferos; en la estación seca la dieta se inclina hacia higos, insectos y vertebrados.",
+        "status": "confirmed (ADW); approximate (Wikipedia percentages, bromeliads and dry-season shift)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Cebus_capucinus/",
+          "https://en.wikipedia.org/wiki/Panamanian_white-faced_capuchin"
+        ]
+      },
+      "ecologicalRole": {
+        "en": "An important seed disperser that influences forest regeneration; it also carries pollen, eats insects that attack certain trees, and its gut passage speeds the germination of some seeds. In turn it is prey for tree boas, lanceheads, caimans, jaguars, ocelots and harpy eagles.",
+        "es": "Es un dispersor de semillas importante que influye en la regeneración del bosque; también transporta polen, come insectos que atacan ciertos árboles y su paso digestivo acelera la germinación de algunas semillas. A su vez es presa de boas arborícolas, terciopelos, caimanes, jaguares, ocelotes y águilas arpías.",
+        "status": "confirmed (ADW: seed dispersal and forest regeneration, predators); approximate (Wikipedia: pollen, pest insects, faster germination)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Cebus_capucinus/",
+          "https://en.wikipedia.org/wiki/Panamanian_white-faced_capuchin"
+        ]
+      },
+      "behaviour": {
+        "en": "Diurnal and highly social, living in multi-male, multi-female troops (ADW: 18–20 animals; Wikipedia: mean 16, range 4–40) that defend home ranges of roughly 80 ha and travel 1–3 km a day. Females usually stay in their natal group for life, while males leave at around four years and move between groups several times. The monkeys are known for using tools — stone hammers and anvils on Panama's Coiba Island, sticks to beat snakes or probe holes — and for rubbing plants over their fur, perhaps to deter parasites. Captive animals have lived more than 54 years; typical wild lifespan is about 30 years.",
+        "es": "Es diurno y muy social: vive en tropas de varios machos y varias hembras (ADW: 18–20 individuos; Wikipedia: promedio 16, rango 4–40) que defienden áreas de unas 80 ha y recorren 1–3 km al día. Las hembras suelen quedarse toda la vida en su grupo natal, mientras que los machos se van hacia los cuatro años y cambian de grupo varias veces. Estos monos son conocidos por usar herramientas —martillos y yunques de piedra en la isla de Coiba, Panamá; palos para golpear serpientes o sondear huecos— y por frotarse plantas en el pelaje, quizás para repeler parásitos. En cautiverio han vivido más de 54 años; en libertad la vida típica ronda los 30 años.",
+        "status": "confirmed (ADW: group size, philopatry, male dispersal, home range, lifespans); approximate (Wikipedia: troop range, tool use, fur-rubbing; Spanish Wikipedia: daily travel)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Cebus_capucinus/",
+          "https://en.wikipedia.org/wiki/Panamanian_white-faced_capuchin",
+          "https://es.wikipedia.org/wiki/Cebus_imitator"
+        ]
+      },
+      "facts": [
+        {
+          "en": "Since 2011 it has appeared on the reverse of Costa Rica's 5,000-colón banknote.",
+          "es": "Desde 2011 aparece en el reverso del billete de 5.000 colones de Costa Rica.",
+          "status": "approximate",
+          "note": "Stated by Spanish Wikipedia (with the year) and English Wikipedia (without it); not checked against the Banco Central.",
+          "sources": [
+            "https://es.wikipedia.org/wiki/Cebus_imitator",
+            "https://en.wikipedia.org/wiki/Panamanian_white-faced_capuchin"
+          ]
+        },
+        {
+          "en": "It is one of the few New World monkeys known to use tools: capuchins on Coiba Island (Panama) crack food with stone hammers and anvils, and troops elsewhere beat snakes with sticks and use sticks as probes.",
+          "es": "Es uno de los pocos monos del Nuevo Mundo que usa herramientas: los capuchinos de la isla de Coiba (Panamá) parten alimentos con martillos y yunques de piedra, y en otros lugares golpean serpientes con palos y los usan para sondear.",
+          "status": "approximate",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Panamanian_white-faced_capuchin"
+          ]
+        },
+        {
+          "en": "A single infant is born after a gestation of about 160 days (157–167), and females give birth only about once every two years.",
+          "es": "Nace una sola cría tras una gestación de unos 160 días (157–167), y las hembras paren apenas una vez cada dos años aproximadamente.",
+          "status": "confirmed",
+          "sources": [
+            "https://animaldiversity.org/accounts/Cebus_capucinus/"
+          ]
+        },
+        {
+          "en": "In Manuel Antonio National Park, capuchin troops have been seen travelling together with the Central American squirrel monkey (Saimiri oerstedii), a species listed as Endangered.",
+          "es": "En el Parque Nacional Manuel Antonio se han observado tropas de carablancas asociadas con el mono tití centroamericano (Saimiri oerstedii), una especie clasificada En Peligro.",
+          "status": "approximate",
+          "note": "Association reported by Spanish Wikipedia; the squirrel monkey's Endangered status is stated on the Manuel Antonio National Park article.",
+          "sources": [
+            "https://es.wikipedia.org/wiki/Cebus_imitator",
+            "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park"
+          ]
+        }
+      ],
+      "relatedSpecies": [
+        {
+          "scientific": "Cebus capucinus",
+          "en": "Colombian white-faced capuchin",
+          "es": "capuchino cariblanco colombiano",
+          "note": "The sister species from which C. imitator was separated; GBIF usageKey 2436637, IUCN Vulnerable (taxon 81257277). Older sources use this name for the Costa Rican animals. The English and Spanish names given here are descriptive; no fetched page states them.",
+          "status": "confirmed (GBIF and IUCN status); uncertain (common names)",
+          "sources": [
+            "https://api.gbif.org/v1/species/match?name=Cebus%20capucinus",
+            "https://api.gbif.org/v1/species/2436637/iucnRedListCategory"
+          ]
+        },
+        {
+          "scientific": "Saimiri oerstedii",
+          "en": "Central American squirrel monkey",
+          "es": "mono tití centroamericano",
+          "note": "Travels in mixed troops with capuchins in Manuel Antonio National Park; listed as Endangered with a decreasing population.",
+          "status": "approximate",
+          "sources": [
+            "https://es.wikipedia.org/wiki/Cebus_imitator",
+            "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park"
+          ]
+        }
+      ],
+      "habitatFit": {
+        "coastalLowlandForestPacific": true,
+        "note": {
+          "en": "Yes. The capuchin is one of the most frequently seen mammals of the Pacific lowland forests: Wikipedia names Manuel Antonio, Corcovado and Santa Rosa national parks and the Carara area, the Manuel Antonio National Park article lists it among the park's mammals, ADW includes coastal plains and mangrove in its habitat, and 4,787 of GBIF's Costa Rican records come from Puntarenas province. Appropriate for a scene of forest meeting a Pacific beach, in the trees or at the forest edge.",
+          "es": "Sí. El carablanca es uno de los mamíferos que más se ven en los bosques de las tierras bajas del Pacífico: Wikipedia nombra los parques nacionales Manuel Antonio, Corcovado y Santa Rosa y la zona de Carara, el artículo del Parque Nacional Manuel Antonio lo incluye entre los mamíferos del parque, ADW incluye llanuras costeras y manglar en su hábitat, y 4.787 de los registros de GBIF para Costa Rica provienen de la provincia de Puntarenas. Es apropiado para una escena de bosque que llega a una playa del Pacífico, en los árboles o en el borde del bosque."
+        },
+        "status": "confirmed (GBIF records in Puntarenas province; ADW coastal plains and mangrove); approximate (named Pacific parks, from Wikipedia)",
+        "sources": [
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=8028197&taxonKey=5959227&taxonKey=2428197&taxonKey=2437576&taxonKey=2459658&country=CR&stateProvince=Puntarenas&facet=speciesKey&facetLimit=20&limit=0",
+          "https://animaldiversity.org/accounts/Cebus_capucinus/",
+          "https://en.wikipedia.org/wiki/Panamanian_white-faced_capuchin",
+          "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park"
+        ]
+      },
+      "nationalSymbol": {
+        "isSymbol": false,
+        "year": null,
+        "instrument": null,
+        "note": {
+          "en": "Not among the 15 national symbols listed on the Presidencia de la República's symbols page as fetched on 2026-10-23 (the animal symbols there are the yigüirro, the white-tailed deer and the manatee), and not among the symbols added by law since then that are compiled in this project's research/country.json (sloths, morpho butterfly, hummingbirds). It appears on the 5,000-colón banknote, which is not a symbol declaration.",
+          "es": "No figura entre los 15 símbolos nacionales de la página de símbolos de la Presidencia de la República consultada el 2026-10-23 (los símbolos de fauna allí son el yigüirro, el venado cola blanca y el manatí), ni entre los símbolos añadidos por ley después, recopilados en research/country.json de este proyecto (perezosos, mariposa morpho, colibríes). Aparece en el billete de 5.000 colones, lo cual no es una declaratoria de símbolo."
+        },
+        "status": "confirmed",
+        "sources": [
+          "https://www.presidencia.go.cr/simbolos-nacionales/"
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://api.gbif.org/v1/species/match?name=Cebus%20imitator",
+          "title": "GBIF Backbone Taxonomy — species match: Cebus imitator Thomas, 1903",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "accepted species Cebus imitator Thomas, 1903; order Primates, family Cebidae; usageKey 8028197"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/match?name=Cebus%20capucinus",
+          "title": "GBIF Backbone Taxonomy — species match: Cebus capucinus (Linnaeus, 1758)",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Cebus capucinus (Linnaeus, 1758) also ACCEPTED as a separate species; usageKey 2436637"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/8028197/iucnRedListCategory",
+          "title": "GBIF — IUCN Red List category for Cebus imitator",
+          "publisher": "GBIF (mirror of IUCN Red List)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "IUCN category VULNERABLE (VU), iucnTaxonID 81265980, IUCN-checklist usageKey 176662707"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/2436637/iucnRedListCategory",
+          "title": "GBIF — IUCN Red List category for Cebus capucinus",
+          "publisher": "GBIF (mirror of IUCN Red List)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Cebus capucinus also VULNERABLE (VU), iucnTaxonID 81257277"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/176662707/distributions",
+          "title": "GBIF — IUCN distribution record for Cebus imitator (IUCN Red List 2021-1)",
+          "publisher": "GBIF (mirror of IUCN Red List)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "assessment by Williams-Guillén, Rosales-Meda, Méndez-Carvajal, Solano-Rojas, Urbani & Lynch Alfaro, 2021; DOI 10.2305/IUCN.UK.2021-1.RLTS.T81265980A191708420.en"
+        },
+        {
+          "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=8028197&country=CR&limit=0",
+          "title": "GBIF occurrence search — Cebus imitator, country=CR",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "8,155 occurrence records in Costa Rica under Cebus imitator"
+        },
+        {
+          "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2436637&country=CR&limit=0",
+          "title": "GBIF occurrence search — Cebus capucinus, country=CR",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "632 occurrence records in Costa Rica filed under Cebus capucinus"
+        },
+        {
+          "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=8028197&taxonKey=5959227&taxonKey=2428197&taxonKey=2437576&taxonKey=2459658&country=CR&stateProvince=Puntarenas&facet=speciesKey&facetLimit=20&limit=0",
+          "title": "GBIF occurrence search — country=CR, stateProvince=Puntarenas, facet speciesKey (multi-taxon query; only the first taxonKey, 8028197, was applied)",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "4,787 Cebus imitator records in Puntarenas province (Pacific side); the facet returned only speciesKey 8028197, so the other taxonKeys in the URL were ignored by the request"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Panamanian_white-faced_capuchin",
+          "title": "Panamanian white-faced capuchin — Wikipedia",
+          "publisher": "Wikimedia Foundation",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "approximate: taxonomy and 2012 split from C. capucinus, range Honduras–Panama, very common in Costa Rica (Manuel Antonio, Corcovado, Santa Rosa; Guanacaste; Carara), size 335–453 mm / tail to 551 mm / up to 3.9 kg, habitats, diet, troops 4–40, tool use, fur-rubbing, seed and pollen dispersal, lifespan >54 yr, IUCN VU, 5,000-colón note"
+        },
+        {
+          "url": "https://animaldiversity.org/accounts/Cebus_capucinus/",
+          "title": "Cebus capucinus (white-faced capuchin) — Animal Diversity Web",
+          "publisher": "University of Michigan Museum of Zoology",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "range incl. Costa Rica; forest types, coastal plains, 0–2,100 m; mass 2–4 kg; diet proportions and 63 plant species at Santa Rosa; groups 18–20, home range ~80 ha, female philopatry; seed dispersal; predators; lifespan (captivity max 55, wild ~30); gestation ~160 days; older IUCN LC listing; CITES II"
+        },
+        {
+          "url": "https://es.wikipedia.org/wiki/Cebus_imitator",
+          "title": "Capuchino cariblanco (Cebus capucinus) — Wikipedia en español (the URL Cebus_imitator redirected to this article)",
+          "publisher": "Wikimedia Foundation",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "approximate: Spanish names (mono carablanca, maicero cariblanco, capuchino, mono cara blanca, carita blanca and others); countries Honduras–Panamá; mixed troops with Saimiri oerstedii in Manuel Antonio; on the 5,000-colón bill since 2011; 33.5–45.3 cm, tail to 55.1 cm, 1.5–4 kg; home range 32–86 ha, daily travel 1–3 km"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park",
+          "title": "Manuel Antonio National Park — Wikipedia",
+          "publisher": "Wikimedia Foundation",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Pacific-coast park south of Quepos (Puntarenas), 1,983 ha, founded 1972; names the 'Panamanian white-faced capuchin monkey', 'green iguana', 'black spiny-tailed iguana', 'Central American squirrel monkey' (IUCN Endangered); does not name the agouti, scarlet macaw or red-eyed tree frog"
+        },
+        {
+          "url": "https://www.presidencia.go.cr/simbolos-nacionales/",
+          "title": "Símbolos Nacionales",
+          "publisher": "Presidencia de la República de Costa Rica",
+          "published": "2023-10-30",
+          "retrieved": "2026-10-23",
+          "supports": "15 national symbols listed (none of the five species of this file); 'En 1977 se decreta el Yigüirro como Ave Nacional debido a su armonioso canto'"
+        }
+      ]
+    },
+    {
+      "id": "scarlet-macaw",
+      "commonNames": {
+        "en": "Scarlet Macaw",
+        "es": "lapa roja",
+        "esAlt": [
+          "guacamaya roja",
+          "guacamayo macao",
+          "lapa colorada",
+          "guacamaya bandera",
+          "guacamayo rojo",
+          "guara roja"
+        ],
+        "zh": "绯红金刚鹦鹉",
+        "status": "confirmed (en, ADW); approximate (es: Spanish Wikipedia lists 'lapa roja' and 'guara roja' as the names used in Central America without naming Costa Rica specifically); uncertain (zh, not verified in a fetched source)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Ara_macao/",
+          "https://es.wikipedia.org/wiki/Ara_macao"
+        ]
+      },
+      "scientific": "Ara macao",
+      "authority": "(Linnaeus, 1758)",
+      "family": "Psittacidae",
+      "order": "Psittaciformes",
+      "taxonomyStatus": "confirmed",
+      "nomenclature": {
+        "en": "Two subspecies are recognised: the nominate Ara macao macao (Linnaeus, 1758), with green tips to the wing coverts, and the larger, blue-winged North Central American A. m. cyanopterus Wiedenfeld, 1995 (spelled cyanoptera on Spanish Wikipedia). Spanish Wikipedia gives the range of A. m. macao as Costa Rica to Brazil and Bolivia and that of A. m. cyanoptera as Mexico to Honduras, which would make the Costa Rican birds the nominate subspecies; English Wikipedia does not assign Costa Rica to either.",
+        "es": "Se reconocen dos subespecies: la nominal Ara macao macao (Linnaeus, 1758), con puntas verdes en las coberteras alares, y la más grande y de alas azules A. m. cyanopterus Wiedenfeld, 1995, del norte de Centroamérica (escrita cyanoptera en la Wikipedia en español). La Wikipedia en español da el área de A. m. macao como de Costa Rica a Brasil y Bolivia y la de A. m. cyanoptera de México a Honduras, lo que haría a las lapas costarricenses la subespecie nominal; la Wikipedia en inglés no asigna Costa Rica a ninguna.",
+        "formerName": "Psittacus macao Linnaeus, 1758 (original combination; placed in Ara by Lacépède, 1799)",
+        "status": "approximate",
+        "sources": [
+          "https://en.wikipedia.org/wiki/Scarlet_macaw",
+          "https://es.wikipedia.org/wiki/Ara_macao"
+        ]
+      },
+      "iucn": {
+        "category": "LC",
+        "categoryName": "Least Concern",
+        "year": 2022,
+        "assessor": "BirdLife International",
+        "iucnTaxonId": "22685563",
+        "url": "https://doi.org/10.2305/IUCN.UK.2022-2.RLTS.T22685563A163778999.en",
+        "status": "confirmed",
+        "note": "Category, taxon ID, assessment year and DOI taken from GBIF's mirror of the IUCN Red List because iucnredlist.org blocks fetching. Globally Least Concern, but the species is on CITES Appendix I (ADW; Spanish Wikipedia dates the listing to 1 August 1985), and the Central American subspecies A. m. cyanopterus is listed as endangered by the US Fish and Wildlife Service with an estimated 2,000–3,000 wild birds (English Wikipedia). Spanish Wikipedia reports that the Costa Rican range shrank from about 80 % to about 20 % of the country by 1993.",
+        "sources": [
+          "https://api.gbif.org/v1/species/5959227/iucnRedListCategory",
+          "https://api.gbif.org/v1/species/176622827/distributions",
+          "https://animaldiversity.org/accounts/Ara_macao/",
+          "https://en.wikipedia.org/wiki/Scarlet_macaw",
+          "https://es.wikipedia.org/wiki/Ara_macao"
+        ]
+      },
+      "size": {
+        "length_cm": 89,
+        "mass_g": 1200,
+        "wingspan_cm": null,
+        "length_cm_range": [
+          84,
+          90.7
+        ],
+        "mass_g_range": [
+          1000,
+          1200
+        ],
+        "status": "approximate",
+        "note": "ADW: body length 89 cm, of which the tail is one-third to one-half; mass 1,200 g (1,040 g per AnAge). English Wikipedia: about 84 cm, more than half of it tail, with the Central American subspecies averaging 89 cm; about 1 kg. Spanish Wikipedia: up to 90.7 cm, tail about 53 cm, wing about 41 cm, about 1 kg. No fetched source gives a wingspan.",
+        "sources": [
+          "https://animaldiversity.org/accounts/Ara_macao/",
+          "https://en.wikipedia.org/wiki/Scarlet_macaw",
+          "https://es.wikipedia.org/wiki/Ara_macao"
+        ]
+      },
+      "habitat": {
+        "en": "The high canopy of humid lowland forest — ADW places it in rainforest canopy below 1,000 m — together with gallery forest along rivers, open woodland, floodplains and savanna; it is usually found from sea level to about 500 m and only occasionally up to 1,000 m. In Costa Rica the birds spend nearly all their time more than 10 m above the ground, and on the central Pacific coast they also feed in planted teak and beach-almond trees.",
+        "es": "El dosel alto del bosque húmedo de tierras bajas —ADW lo ubica en el dosel del bosque lluvioso por debajo de los 1.000 m—, junto con bosque de galería a orillas de ríos, bosque abierto, llanuras de inundación y sabanas; suele encontrarse desde el nivel del mar hasta unos 500 m y solo ocasionalmente hasta 1.000 m. En Costa Rica las aves pasan casi todo el tiempo a más de 10 m del suelo, y en el Pacífico central también se alimentan en tecas y almendros de playa sembrados.",
+        "status": "confirmed (ADW: canopy, rainforest, below 1,000 m); approximate (Wikipedia en/es: other habitat types, elevation bands, Costa Rican notes)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Ara_macao/",
+          "https://en.wikipedia.org/wiki/Scarlet_macaw",
+          "https://es.wikipedia.org/wiki/Ara_macao"
+        ]
+      },
+      "distributionCR": {
+        "en": "The species ranges from southern Mexico through Central America into South America as far as north-eastern Argentina, and is most common in the Amazon basin. In Costa Rica it survives mainly in isolated Pacific-coast populations: around the Nicoya Peninsula, Carara National Park and the central Pacific (Tárcoles–Esterillos), the Osa Peninsula/Corcovado and the Área de Conservación Guanacaste, with isolated groups reported at Palo Verde and La Amistad. Spanish Wikipedia states that it was once common on both coasts but is now almost absent from the Caribbean side, and that its Costa Rican range shrank from about 80 % of the country to about 20 % by 1993. GBIF holds 102,348 occurrence records from Costa Rica.",
+        "es": "La especie se distribuye desde el sur de México, a través de Centroamérica, hasta Sudamérica, llegando al noreste de Argentina, y es más común en la cuenca amazónica. En Costa Rica sobrevive sobre todo en poblaciones aisladas de la costa pacífica: alrededor de la península de Nicoya, el Parque Nacional Carara y el Pacífico central (Tárcoles–Esterillos), la península de Osa/Corcovado y el Área de Conservación Guanacaste, con grupos aislados reportados en Palo Verde y La Amistad. La Wikipedia en español indica que antes era común en ambas costas pero hoy casi no existe del lado del Caribe, y que su área en Costa Rica se redujo de cerca del 80 % del país a un 20 % hacia 1993. GBIF tiene 102.348 registros de presencia en Costa Rica.",
+        "slopes": "Pacific slope (Nicoya, Carara/central Pacific, Osa–Corcovado, ACG; isolated groups at Palo Verde and La Amistad); almost absent from the Caribbean slope per Spanish Wikipedia; Caribbean reintroduction projects not covered by fetched sources",
+        "elevationCR_m": null,
+        "gbifOccurrencesCR": 102348,
+        "status": "confirmed (continental range, ADW; presence in Costa Rica, GBIF); approximate (Costa Rican localities, Caribbean status and range loss, from Wikipedia en/es)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Ara_macao/",
+          "https://en.wikipedia.org/wiki/Scarlet_macaw",
+          "https://es.wikipedia.org/wiki/Ara_macao",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=5959227&country=CR&limit=0"
+        ]
+      },
+      "diet": {
+        "en": "Mainly fruit, nuts and seeds, with flowers and nectar taken occasionally; Spanish Wikipedia puts seeds at about three-quarters of the diet. The powerful bill opens unripe fruit and tough nuts; insects, larvae and snails are rare items. Like other macaws it visits riverbank clay licks, which help it cope with the tannins and toxins of seeds such as those of the sandbox tree (javillo, Hura crepitans). On Costa Rica's central Pacific coast it also feeds on planted teak and beach almond.",
+        "es": "Principalmente frutas, nueces y semillas, con flores y néctar de forma ocasional; la Wikipedia en español estima que las semillas son cerca de tres cuartos de la dieta. El pico poderoso abre frutos verdes y nueces duras; los insectos, larvas y caracoles son raros. Como otras lapas, visita lamederos de arcilla a orillas de los ríos, que le ayudan a tolerar los taninos y toxinas de semillas como las del javillo (Hura crepitans). En el Pacífico central de Costa Rica también se alimenta de teca y almendro de playa sembrados.",
+        "status": "confirmed (ADW: fruit, nuts, nectar, flowers, clay against tannins); approximate (Wikipedia: proportions, rare animal food, Hura crepitans, Costa Rican trees)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Ara_macao/",
+          "https://en.wikipedia.org/wiki/Scarlet_macaw",
+          "https://es.wikipedia.org/wiki/Ara_macao"
+        ]
+      },
+      "ecologicalRole": {
+        "en": "Scarlet macaws are important predators of the seeds of large-fruited trees and may influence which forest trees regenerate; because they breed only in large cavities, scarce nest sites limit their reproduction and tie them to old, hollow trees. None of the fetched sources credits them with seed dispersal.",
+        "es": "Las lapas rojas son depredadores importantes de las semillas de árboles de frutos grandes y pueden influir en qué árboles del bosque se regeneran; como solo anidan en cavidades grandes, la escasez de sitios de anidación limita su reproducción y las liga a árboles viejos y huecos. Ninguna de las fuentes consultadas les atribuye dispersión de semillas.",
+        "status": "confirmed (ADW: seed predation, influence on regeneration, scarce nest sites); interpretation (dependence on old hollow trees)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Ara_macao/"
+        ]
+      },
+      "behaviour": {
+        "en": "Usually seen as mated pairs — which stay together for life — or in small groups flying above the canopy with loud, raucous calls, gathering in larger flocks to roost at night and at clay licks. Pairs nest in large tree cavities: ADW gives 2–4 eggs incubated mainly by the female for 24–25 days (Wikipedia: 2–3 eggs, about five weeks); chicks fledge at roughly 65–90 days and may stay with their parents for a year or more, and birds first breed at 3–5 years. Typical lifespan is 40–50 years; captive birds average 64 years and can reach 75 or more.",
+        "es": "Suele verse en parejas —que permanecen juntas de por vida— o en grupos pequeños que vuelan sobre el dosel con gritos fuertes y roncos, y se reúne en bandadas mayores para dormir y en los lamederos de arcilla. Las parejas anidan en huecos grandes de árboles: ADW indica 2–4 huevos incubados sobre todo por la hembra durante 24–25 días (Wikipedia: 2–3 huevos, unas cinco semanas); los pichones vuelan a los 65–90 días y pueden quedarse con los padres un año o más, y las aves se reproducen por primera vez a los 3–5 años. La vida típica es de 40–50 años; en cautiverio promedian 64 años y pueden llegar a 75 o más.",
+        "status": "confirmed (ADW: pairs, roosting flocks, clutch, incubation, maturity, lifespans); approximate (Wikipedia en/es: lifelong pair bond, calls, fledging age; figures differ between sources)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Ara_macao/",
+          "https://en.wikipedia.org/wiki/Scarlet_macaw",
+          "https://es.wikipedia.org/wiki/Ara_macao"
+        ]
+      },
+      "facts": [
+        {
+          "en": "Although strongly associated with Carara and the Osa Peninsula, the scarlet macaw is not a Costa Rican national symbol: it is the national bird of Honduras, while Costa Rica's national bird is the yigüirro (clay-colored thrush), declared in 1977.",
+          "es": "Aunque se la asocia con Carara y la península de Osa, la lapa roja no es símbolo nacional de Costa Rica: es el ave nacional de Honduras, mientras que el ave nacional costarricense es el yigüirro, declarado en 1977.",
+          "status": "confirmed (yigüirro as national bird, Presidencia page); approximate (national bird of Honduras, Wikipedia)",
+          "sources": [
+            "https://www.presidencia.go.cr/simbolos-nacionales/",
+            "https://en.wikipedia.org/wiki/Scarlet_macaw"
+          ]
+        },
+        {
+          "en": "It is listed on CITES Appendix I, which bans commercial international trade in the birds and their parts and feathers; Spanish Wikipedia dates the listing to 1 August 1985.",
+          "es": "Está en el Apéndice I de CITES, que prohíbe el comercio internacional de las aves y de sus partes y plumas; la Wikipedia en español fecha la inclusión el 1 de agosto de 1985.",
+          "status": "confirmed (Appendix I, ADW); approximate (date, Spanish Wikipedia)",
+          "sources": [
+            "https://animaldiversity.org/accounts/Ara_macao/",
+            "https://en.wikipedia.org/wiki/Scarlet_macaw",
+            "https://es.wikipedia.org/wiki/Ara_macao"
+          ]
+        },
+        {
+          "en": "On Costa Rica's central Pacific coast, local groups planted hundreds of beach-almond and teak trees between the Tárcoles River basin and Playa Esterillos to feed the macaws, which Wikipedia credits with a marked population increase; boat tours on the Tárcoles now show visitors the birds.",
+          "es": "En el Pacífico central de Costa Rica, grupos locales sembraron cientos de almendros de playa y tecas entre la cuenca del río Tárcoles y Playa Esterillos para alimentar a las lapas, a lo que Wikipedia atribuye un aumento marcado de la población; hoy los paseos en bote por el Tárcoles muestran las aves a los visitantes.",
+          "status": "approximate",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Scarlet_macaw"
+          ]
+        },
+        {
+          "en": "Macaws eat clay from riverbanks: ADW explains that it helps them digest the tannins of unripe fruit, and Spanish Wikipedia adds that it neutralises toxins such as those of sandbox-tree seeds.",
+          "es": "Las lapas comen arcilla de las orillas de los ríos: ADW explica que les ayuda a digerir los taninos de la fruta verde, y la Wikipedia en español añade que neutraliza toxinas como las de las semillas del javillo.",
+          "status": "confirmed (ADW); approximate (Spanish Wikipedia)",
+          "sources": [
+            "https://animaldiversity.org/accounts/Ara_macao/",
+            "https://es.wikipedia.org/wiki/Ara_macao"
+          ]
+        }
+      ],
+      "relatedSpecies": [],
+      "habitatFit": {
+        "coastalLowlandForestPacific": true,
+        "note": {
+          "en": "Yes — the Pacific lowland coastal forests are the species' Costa Rican stronghold. English Wikipedia places the Costa Rican populations near the Nicoya Peninsula, Carara National Park and the Osa Peninsula, and Spanish Wikipedia names Corcovado, Carara and the Área de Conservación Guanacaste as the main populations while reporting the bird almost absent from the Caribbean side. ADW's habitat (rainforest canopy below 1,000 m) and the central-Pacific beach-almond feeding fit a forest-to-beach scene; draw the birds high in the canopy or flying over it, in pairs.",
+          "es": "Sí: los bosques costeros de las tierras bajas del Pacífico son el bastión de la especie en Costa Rica. La Wikipedia en inglés ubica las poblaciones costarricenses cerca de la península de Nicoya, el Parque Nacional Carara y la península de Osa, y la Wikipedia en español nombra Corcovado, Carara y el Área de Conservación Guanacaste como las poblaciones principales, y reporta que casi no existe del lado del Caribe. El hábitat según ADW (dosel del bosque lluvioso bajo los 1.000 m) y la alimentación en almendros de playa del Pacífico central encajan con una escena de bosque y playa; conviene dibujarlas en lo alto del dosel o volando sobre él, en parejas."
+        },
+        "status": "confirmed (presence in Costa Rica, GBIF; canopy habitat, ADW); approximate (Pacific localities and Caribbean absence, Wikipedia en/es)",
+        "sources": [
+          "https://en.wikipedia.org/wiki/Scarlet_macaw",
+          "https://es.wikipedia.org/wiki/Ara_macao",
+          "https://animaldiversity.org/accounts/Ara_macao/",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=5959227&country=CR&limit=0"
+        ]
+      },
+      "nationalSymbol": {
+        "isSymbol": false,
+        "year": null,
+        "instrument": null,
+        "note": {
+          "en": "Sometimes assumed to be a Costa Rican symbol, but it is not: the Presidencia de la República's symbols page (fetched 2026-10-23) lists 15 symbols and the only bird among them is the yigüirro — 'En 1977 se decreta el Yigüirro como Ave Nacional debido a su armonioso canto'. The symbols added by law since then and compiled in this project's research/country.json (sloths 2021, morpho butterfly 2022, hummingbirds Amazilia boucardi and Microchera cupreiceps 2024, adobe house 2025, 'Duelo de la Patria' 2026) do not include the macaw either. The scarlet macaw is the national bird of Honduras.",
+          "es": "A veces se supone que es un símbolo costarricense, pero no lo es: la página de símbolos de la Presidencia de la República (consultada el 2026-10-23) enumera 15 símbolos y la única ave entre ellos es el yigüirro: 'En 1977 se decreta el Yigüirro como Ave Nacional debido a su armonioso canto'. Los símbolos añadidos por ley después y recopilados en research/country.json de este proyecto (perezosos 2021, mariposa morpho 2022, colibríes Amazilia boucardi y Microchera cupreiceps 2024, casa de adobes 2025, 'Duelo de la Patria' 2026) tampoco incluyen a la lapa. La lapa roja es el ave nacional de Honduras."
+        },
+        "status": "confirmed (Presidencia list and yigüirro quotation); approximate (national bird of Honduras, Wikipedia)",
+        "sources": [
+          "https://www.presidencia.go.cr/simbolos-nacionales/",
+          "https://en.wikipedia.org/wiki/Scarlet_macaw"
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://api.gbif.org/v1/species/match?name=Ara%20macao",
+          "title": "GBIF Backbone Taxonomy — species match: Ara macao (Linnaeus, 1758)",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "accepted scientific name and authority, order Psittaciformes, family Psittacidae, usageKey 5959227"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/5959227/iucnRedListCategory",
+          "title": "GBIF — IUCN Red List category for Ara macao",
+          "publisher": "GBIF (mirror of IUCN Red List)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "IUCN category LEAST_CONCERN (LC), iucnTaxonID 22685563, IUCN-checklist usageKey 176622827"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/176622827/distributions",
+          "title": "GBIF — IUCN distribution record for Ara macao (IUCN Red List 2022-2)",
+          "publisher": "GBIF (mirror of IUCN Red List)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "assessment by BirdLife International 2022; DOI 10.2305/IUCN.UK.2022-2.RLTS.T22685563A163778999.en"
+        },
+        {
+          "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5959227&country=CR&limit=0",
+          "title": "GBIF occurrence search — Ara macao, country=CR",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "102,348 occurrence records in Costa Rica (confirms presence)"
+        },
+        {
+          "url": "https://animaldiversity.org/accounts/Ara_macao/",
+          "title": "Ara macao (scarlet macaw) — Animal Diversity Web",
+          "publisher": "University of Michigan Museum of Zoology",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "order/family; range southern Mexico to NE Argentina; rainforest canopy below 1,000 m; 89 cm, 1,200 g; diet (fruit, nuts, nectar, clay for tannins); pairs and roosting flocks; clutch 2–4, incubation 24–25 days, maturity 3–4 yr; lifespan (captivity avg 64 yr); seed predator role; IUCN LC, CITES I; threats incl. scarce nest trees"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Scarlet_macaw",
+          "title": "Scarlet macaw — Wikipedia",
+          "publisher": "Wikimedia Foundation",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "approximate: 84 cm / ~1 kg, Central American subspecies 89 cm; subspecies A. m. macao and A. m. cyanopterus; habitats and elevations; Costa Rican populations near Nicoya, Carara and Osa; canopy >10 m; teak and beach-almond planting Tárcoles–Esterillos; diet incl. clay licks; lifelong pairs; breeding figures; lifespan 40–50 yr; LC with 2022 assessment; CITES I; USFWS endangered subspecies; national bird of Honduras"
+        },
+        {
+          "url": "https://es.wikipedia.org/wiki/Ara_macao",
+          "title": "Ara macao — Wikipedia en español",
+          "publisher": "Wikimedia Foundation",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "approximate: Spanish names incl. 'lapa roja' and 'guara roja' used in Central America; up to 90.7 cm, ~1 kg, tail ~53 cm; Costa Rica once common on both coasts, now almost absent from the Caribbean, main populations Corcovado, Carara and ACG, isolated groups Palo Verde and La Amistad; range shrank to ~20 % of the country by 1993; seeds ~3/4 of diet; clay licks vs Hura crepitans toxins; breeding Nov–May, 1–4 eggs, ~25 days; CITES I since 1985-08-01; subspecies ranges"
+        },
+        {
+          "url": "https://www.presidencia.go.cr/simbolos-nacionales/",
+          "title": "Símbolos Nacionales",
+          "publisher": "Presidencia de la República de Costa Rica",
+          "published": "2023-10-30",
+          "retrieved": "2026-10-23",
+          "supports": "15 national symbols listed (none of the five species of this file); 'En 1977 se decreta el Yigüirro como Ave Nacional debido a su armonioso canto'"
+        }
+      ]
+    },
+    {
+      "id": "red-eyed-tree-frog",
+      "commonNames": {
+        "en": "Red-eyed Tree Frog",
+        "es": "rana de ojos rojos",
+        "esAlt": [
+          "rana calzonuda",
+          "rana verde de ojos rojos",
+          "rana de ojos rojos común",
+          "rana arborícola de ojos rojos"
+        ],
+        "zh": "红眼树蛙",
+        "status": "confirmed (en: AmphibiaWeb 'red-eyed treefrog', ASW 'Red-eyed Treefrog' / 'Red-eyed Leaf frog'; es: ASW 'Rana de Ojos Rojos Común', AmphibiaWeb 'Rana Arborícola' and 'Rana Calzonudo' [sic]); approximate ('rana verde de ojos rojos', Spanish Wikipedia; no fetched source states which name is used in Costa Rica); uncertain (zh, not verified in a fetched source)",
+        "sources": [
+          "https://amphibiaweb.org/species/616",
+          "https://amphibiansoftheworld.amnh.org/Amphibia/Anura/Phyllomedusidae/Agalychnis/Agalychnis-callidryas",
+          "https://es.wikipedia.org/wiki/Agalychnis_callidryas",
+          "https://en.wikipedia.org/wiki/Agalychnis_callidryas"
+        ]
+      },
+      "scientific": "Agalychnis callidryas",
+      "authority": "(Cope, 1862)",
+      "family": "Phyllomedusidae",
+      "order": "Anura",
+      "taxonomyStatus": "confirmed (species, authority, order); approximate (family: Phyllomedusidae per GBIF, Amphibian Species of the World and Wikipedia; AmphibiaWeb still files it in Hylidae, subfamily Phyllomedusinae)",
+      "nomenclature": {
+        "en": "Described as Hyla callidryas by Cope in 1862. In 2019 McCranie, Sunyer and Martínez-Fonseca split off the populations from southern Mexico to western Honduras as Agalychnis taylori, so older literature on 'A. callidryas' must be used with caution. Amphibian Species of the World adds that the populations of eastern Honduras and northern Costa Rica might also be a distinct species, for which the name Agalychnis helenae Cope, 1885 is available, but no taxonomic action has been taken; Costa Rican frogs therefore remain A. callidryas.",
+        "es": "Descrita como Hyla callidryas por Cope en 1862. En 2019 McCranie, Sunyer y Martínez-Fonseca separaron las poblaciones del sur de México al oeste de Honduras como Agalychnis taylori, por lo que la literatura antigua sobre 'A. callidryas' debe usarse con cautela. Amphibian Species of the World añade que las poblaciones del este de Honduras y el norte de Costa Rica podrían ser también una especie distinta, para la cual está disponible el nombre Agalychnis helenae Cope, 1885, pero no se ha tomado ninguna acción taxonómica; las ranas de Costa Rica siguen siendo, por tanto, A. callidryas.",
+        "formerName": "Hyla callidryas Cope, 1862 (original combination); Phyllomedusa callidryas in mid-20th-century usage",
+        "status": "confirmed (ASW); approximate (Spanish Wikipedia on the 2019 split)",
+        "sources": [
+          "https://amphibiansoftheworld.amnh.org/Amphibia/Anura/Phyllomedusidae/Agalychnis/Agalychnis-callidryas",
+          "https://es.wikipedia.org/wiki/Agalychnis_callidryas",
+          "https://api.gbif.org/v1/species/match?name=Agalychnis%20callidryas"
+        ]
+      },
+      "iucn": {
+        "category": "LC",
+        "categoryName": "Least Concern",
+        "year": 2020,
+        "assessor": "IUCN SSC Amphibian Specialist Group",
+        "iucnTaxonId": "55290",
+        "url": "https://doi.org/10.2305/IUCN.UK.2020-1.RLTS.T55290A3028059.en",
+        "status": "confirmed",
+        "note": "Category, taxon ID, assessor, year and DOI taken from GBIF's mirror of the IUCN Red List because iucnredlist.org blocks fetching. All five Agalychnis species have been on CITES Appendix II since 21 March 2010 (AmphibiaWeb). Threats named by the fetched pages: deforestation and heavy habitat degradation, the pet trade (AmphibiaWeb: 221,960 Agalychnis frogs imported into the US in a decade; Wikipedia: capture in Costa Rica, Nicaragua and Panama), chytrid fungus and ranavirus.",
+        "sources": [
+          "https://api.gbif.org/v1/species/2428197/iucnRedListCategory",
+          "https://api.gbif.org/v1/species/176685486/distributions",
+          "https://amphibiaweb.org/species/616",
+          "https://en.wikipedia.org/wiki/Agalychnis_callidryas"
+        ]
+      },
+      "size": {
+        "length_cm": 7.7,
+        "mass_g": null,
+        "svl_mm_male_max": 59,
+        "svl_mm_female_max": 77,
+        "status": "confirmed (AmphibiaWeb, citing Savage 2002); approximate (other figures)",
+        "note": "AmphibiaWeb: females reach up to 77 mm and males up to 59 mm snout–vent length. English Wikipedia gives about 51 mm (males) and 76 mm (females); Spanish Wikipedia 56 mm and 71 mm. length_cm is the female maximum. No fetched source gives a body mass.",
+        "sources": [
+          "https://amphibiaweb.org/species/616",
+          "https://en.wikipedia.org/wiki/Agalychnis_callidryas",
+          "https://es.wikipedia.org/wiki/Agalychnis_callidryas"
+        ]
+      },
+      "habitat": {
+        "en": "Humid forest, mainly in the lowlands and occasionally on premontane slopes up to about 1,250–1,325 m. By day, and through the dry season, it roosts under broad leaves; it breeds in quiet pools — permanent, seasonal or temporary — with overhanging vegetation, and needs air humidity of at least 80 %. It tolerates selective logging but is thought unable to persist where the forest is heavily degraded.",
+        "es": "Bosque húmedo, sobre todo en tierras bajas y a veces en laderas premontanas hasta unos 1.250–1.325 m. De día, y durante la estación seca, descansa bajo hojas anchas; se reproduce en charcas tranquilas —permanentes, estacionales o temporales— con vegetación colgante, y necesita una humedad del aire de al menos 80 %. Tolera la tala selectiva, pero se cree que no persiste donde el bosque está muy degradado.",
+        "status": "confirmed (AmphibiaWeb and ASW: humid lowland forest, pools, elevations, logging tolerance); approximate (Wikipedia: 80 % humidity)",
+        "sources": [
+          "https://amphibiaweb.org/species/616",
+          "https://amphibiansoftheworld.amnh.org/Amphibia/Anura/Phyllomedusidae/Agalychnis/Agalychnis-callidryas",
+          "https://en.wikipedia.org/wiki/Agalychnis_callidryas",
+          "https://es.wikipedia.org/wiki/Agalychnis_callidryas"
+        ]
+      },
+      "distributionCR": {
+        "en": "Amphibian Species of the World gives the range as north-eastern Honduras and eastern Nicaragua south-east along the Caribbean lowlands to central Panama, and the Pacific lowlands of southern Costa Rica and eastern Panama to the Chocó of Colombia, from sea level to 1,325 m. In Costa Rica it therefore occurs on both the Caribbean side — where AmphibiaWeb notes populations that often show a yellowish side stripe — and the humid southern Pacific lowlands. Costa Rican and Panamanian populations also vary in flank colour (blue, blue-and-red, orange or purple). GBIF holds 7,493 occurrence records from Costa Rica.",
+        "es": "Amphibian Species of the World describe el área como el noreste de Honduras y el este de Nicaragua, hacia el sureste por las tierras bajas del Caribe hasta el centro de Panamá, y las tierras bajas del Pacífico del sur de Costa Rica y el este de Panamá hasta el Chocó colombiano, del nivel del mar a 1.325 m. En Costa Rica se encuentra, por tanto, en el lado caribeño —donde AmphibiaWeb anota poblaciones que suelen tener una raya lateral amarillenta— y en las tierras bajas húmedas del Pacífico sur. Las poblaciones de Costa Rica y Panamá también varían en el color de los flancos (azul, azul y rojo, anaranjado o morado). GBIF tiene 7.493 registros de presencia en Costa Rica.",
+        "slopes": "Both: Caribbean lowlands (AmphibiaWeb names Caribbean-side Costa Rican populations) and the Pacific lowlands of southern Costa Rica (ASW); the dry north-western Pacific (Guanacaste) is not mentioned by any fetched source",
+        "elevationCR_m": null,
+        "gbifOccurrencesCR": 7493,
+        "status": "confirmed (ASW range statement, AmphibiaWeb, GBIF presence); interpretation (that ASW's Caribbean band from Honduras to Panama includes Costa Rica's Caribbean lowlands); uncertain (elevation range within Costa Rica — the 1,250–1,325 m figures are range-wide)",
+        "sources": [
+          "https://amphibiansoftheworld.amnh.org/Amphibia/Anura/Phyllomedusidae/Agalychnis/Agalychnis-callidryas",
+          "https://amphibiaweb.org/species/616",
+          "https://en.wikipedia.org/wiki/Agalychnis_callidryas",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2428197&country=CR&limit=0"
+        ]
+      },
+      "diet": {
+        "en": "Insects: in laboratory trials adults preferred crickets and moths, and AmphibiaWeb notes that no field study of the adult diet has been published; Wikipedia lists moths, crickets, katydids, grasshoppers, flies and other insects, with smaller amphibians taken occasionally. Tadpoles are mainly filter feeders in the water column.",
+        "es": "Insectos: en pruebas de laboratorio los adultos prefirieron grillos y polillas, y AmphibiaWeb anota que no se ha publicado ningún estudio de campo de la dieta adulta; Wikipedia enumera polillas, grillos, esperanzas, saltamontes, moscas y otros insectos, con pequeños anfibios de forma ocasional. Los renacuajos se alimentan sobre todo filtrando la columna de agua.",
+        "status": "confirmed (AmphibiaWeb); approximate (Wikipedia list)",
+        "sources": [
+          "https://amphibiaweb.org/species/616",
+          "https://en.wikipedia.org/wiki/Agalychnis_callidryas",
+          "https://es.wikipedia.org/wiki/Agalychnis_callidryas"
+        ]
+      },
+      "ecologicalRole": {
+        "en": "A night-time insect predator and, at every life stage, food for others: its eggs are taken by snakes and polybiine wasps, its tadpoles by dragonfly larvae, fish, water beetles, shrimp and giant water bugs, and the frogs themselves by snakes, spiders, birds and bats. Spanish Wikipedia notes that its sensitivity to forest loss makes it an environmental indicator.",
+        "es": "Depredador nocturno de insectos y, en todas sus etapas, alimento de otros: sus huevos los toman serpientes y avispas polibinas; sus renacuajos, larvas de libélula, peces, escarabajos acuáticos, camarones y chinches de agua gigantes, y las ranas mismas, serpientes, arañas, aves y murciélagos. La Wikipedia en español señala que su sensibilidad a la pérdida de bosque la convierte en un indicador ambiental.",
+        "status": "confirmed (AmphibiaWeb and Wikipedia predator lists); interpretation ('insect predator' framing); approximate (indicator species, Spanish Wikipedia)",
+        "sources": [
+          "https://amphibiaweb.org/species/616",
+          "https://en.wikipedia.org/wiki/Agalychnis_callidryas",
+          "https://es.wikipedia.org/wiki/Agalychnis_callidryas"
+        ]
+      },
+      "behaviour": {
+        "en": "Nocturnal and arboreal. By day it sleeps flattened on the underside of a leaf with its eyes closed, green and almost invisible; when disturbed it springs its red eyes, orange feet and blue-and-yellow flanks into view, a startle display thought to confuse predators. Breeding runs through the wet season, from the first rains in late May to November with peaks in June and sometimes October (AmphibiaWeb; Wikipedia gives October–March). Males call and wrestle rivals and signal by shaking branches; the female carries the clasping male to a leaf over water and lays clutches of about 40 eggs, up to five in a night. Undisturbed embryos hatch after 6–10 days, usually about 7, and the tadpoles drop into the pool below.",
+        "es": "Es nocturna y arborícola. De día duerme pegada al envés de una hoja con los ojos cerrados, verde y casi invisible; al molestarla despliega de golpe los ojos rojos, las patas anaranjadas y los flancos azules y amarillos, una exhibición de sobresalto que, se cree, desconcierta a los depredadores. Se reproduce durante la estación lluviosa, desde las primeras lluvias a fines de mayo hasta noviembre, con picos en junio y a veces en octubre (AmphibiaWeb; Wikipedia indica octubre–marzo). Los machos cantan, forcejean con sus rivales y se comunican sacudiendo las ramas; la hembra carga al macho en amplexo hasta una hoja sobre el agua y pone puestas de unos 40 huevos, hasta cinco en una noche. Sin perturbaciones, los embriones eclosionan a los 6–10 días, normalmente unos 7, y los renacuajos caen a la charca.",
+        "status": "confirmed (AmphibiaWeb: nocturnal and arboreal, leaf roosting, breeding season, branch-shaking, clutch size and number, hatching time); approximate (Wikipedia: startle display, calling and wrestling, alternative breeding season)",
+        "sources": [
+          "https://amphibiaweb.org/species/616",
+          "https://en.wikipedia.org/wiki/Agalychnis_callidryas"
+        ]
+      },
+      "facts": [
+        {
+          "en": "The embryos can decide when to hatch: a clutch normally hatches at 6–10 days, but if a snake attacks, the whole clutch hatches early — as young as 5 days in Costa Rica — and drops into the water, while a wasp attack triggers only the eggs under threat. Fungal infection and floods also bring hatching forward.",
+          "es": "Los embriones pueden decidir cuándo eclosionar: una puesta normalmente eclosiona a los 6–10 días, pero si una serpiente ataca, toda la puesta eclosiona antes de tiempo —desde los 5 días en Costa Rica— y cae al agua, mientras que un ataque de avispas solo hace eclosionar los huevos amenazados. Las infecciones por hongos y las inundaciones también adelantan la eclosión.",
+          "status": "confirmed",
+          "note": "AmphibiaWeb, citing Karen Warkentin's studies; Wikipedia names the wasp Polybia rejecta and the snake Leptodeira septentrionalis.",
+          "sources": [
+            "https://amphibiaweb.org/species/616",
+            "https://en.wikipedia.org/wiki/Agalychnis_callidryas"
+          ]
+        },
+        {
+          "en": "Froglets are born with yellow eyes; the famous red develops over about two weeks after metamorphosis. A transparent nictitating membrane lets the frog keep its eyes covered yet still see.",
+          "es": "Las ranitas nacen con ojos amarillos; el famoso rojo se desarrolla en unas dos semanas tras la metamorfosis. Una membrana nictitante transparente le permite mantener los ojos cubiertos y aun así ver.",
+          "status": "confirmed (yellow eyes, AmphibiaWeb); approximate (nictitating membrane, Wikipedia)",
+          "sources": [
+            "https://amphibiaweb.org/species/616",
+            "https://en.wikipedia.org/wiki/Agalychnis_callidryas"
+          ]
+        },
+        {
+          "en": "It is one of the most heavily traded pet frogs: AmphibiaWeb reports 221,960 Agalychnis frogs imported into the United States in a decade, and all five Agalychnis species have been on CITES Appendix II since 2010. It is not toxic like the poison frogs, although its skin carries biologically active peptides.",
+          "es": "Es una de las ranas más comercializadas como mascota: AmphibiaWeb reporta 221.960 ranas Agalychnis importadas a Estados Unidos en una década, y las cinco especies de Agalychnis están en el Apéndice II de CITES desde 2010. No es tóxica como las ranas venenosas, aunque su piel contiene péptidos biológicamente activos.",
+          "status": "confirmed",
+          "sources": [
+            "https://amphibiaweb.org/species/616"
+          ]
+        },
+        {
+          "en": "In Costa Rica the frog is a commercial icon: it is the logo of Kölbi, the mobile-phone brand of the Instituto Costarricense de Electricidad (ICE).",
+          "es": "En Costa Rica la rana es un ícono comercial: es el logotipo de Kölbi, la marca de telefonía móvil del Instituto Costarricense de Electricidad (ICE).",
+          "status": "approximate",
+          "sources": [
+            "https://es.wikipedia.org/wiki/Agalychnis_callidryas"
+          ]
+        }
+      ],
+      "relatedSpecies": [
+        {
+          "scientific": "Agalychnis taylori",
+          "en": "Taylor's leaf frog (northern red-eyed tree frog)",
+          "es": "rana de ojos rojos de Taylor",
+          "note": "Split from A. callidryas in 2019 for the populations from southern Mexico to western Honduras; it does not occur in Costa Rica. The common names given here are descriptive; no fetched page states them.",
+          "status": "confirmed (split, ASW); uncertain (common names)",
+          "sources": [
+            "https://amphibiansoftheworld.amnh.org/Amphibia/Anura/Phyllomedusidae/Agalychnis/Agalychnis-callidryas",
+            "https://es.wikipedia.org/wiki/Agalychnis_callidryas"
+          ]
+        }
+      ],
+      "habitatFit": {
+        "coastalLowlandForestPacific": true,
+        "note": {
+          "en": "Yes, with a caveat. Amphibian Species of the World places the species in 'the Pacific lowlands of southern Costa Rica', i.e. the humid central and southern Pacific (Osa and the Manuel Antonio–Carara region is consistent with this), and AmphibiaWeb describes humid lowland forest with breeding pools; no fetched source documents it in the dry north-western Pacific (Guanacaste). In the scene it should sit on vegetation near a pool, stream or wet forest understory — not on the open beach — and, being nocturnal, is most plausible at dusk or asleep under a leaf by day.",
+          "es": "Sí, con una salvedad. Amphibian Species of the World ubica la especie en 'las tierras bajas del Pacífico del sur de Costa Rica', es decir, el Pacífico central y sur húmedo (Osa y la región Manuel Antonio–Carara son coherentes con ello), y AmphibiaWeb describe bosque húmedo de tierras bajas con charcas de reproducción; ninguna fuente consultada la documenta en el Pacífico noroeste seco (Guanacaste). En la escena debe estar sobre vegetación cerca de una charca, quebrada o sotobosque húmedo —no en la playa abierta— y, por ser nocturna, resulta más verosímil al anochecer o dormida bajo una hoja de día."
+        },
+        "status": "confirmed (ASW: Pacific lowlands of southern Costa Rica; AmphibiaWeb habitat); interpretation (that Manuel Antonio and Carara fall within that area)",
+        "sources": [
+          "https://amphibiansoftheworld.amnh.org/Amphibia/Anura/Phyllomedusidae/Agalychnis/Agalychnis-callidryas",
+          "https://amphibiaweb.org/species/616",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2428197&country=CR&limit=0"
+        ]
+      },
+      "nationalSymbol": {
+        "isSymbol": false,
+        "year": null,
+        "instrument": null,
+        "note": {
+          "en": "Not among the 15 national symbols listed on the Presidencia de la República's symbols page as fetched on 2026-10-23 (the animal symbols there are the yigüirro, the white-tailed deer and the manatee), and not among the symbols added by law since then that are compiled in this project's research/country.json (sloths 2021, morpho butterfly 2022, hummingbirds 2024).",
+          "es": "No figura entre los 15 símbolos nacionales de la página de símbolos de la Presidencia de la República consultada el 2026-10-23 (los símbolos de fauna allí son el yigüirro, el venado cola blanca y el manatí), ni entre los símbolos añadidos por ley después, recopilados en research/country.json de este proyecto (perezosos 2021, mariposa morpho 2022, colibríes 2024)."
+        },
+        "status": "confirmed",
+        "sources": [
+          "https://www.presidencia.go.cr/simbolos-nacionales/"
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://api.gbif.org/v1/species/match?name=Agalychnis%20callidryas",
+          "title": "GBIF Backbone Taxonomy — species match: Agalychnis callidryas (Cope, 1862)",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "accepted scientific name and authority, order Anura, family Phyllomedusidae, usageKey 2428197"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/2428197/iucnRedListCategory",
+          "title": "GBIF — IUCN Red List category for Agalychnis callidryas",
+          "publisher": "GBIF (mirror of IUCN Red List)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "IUCN category LEAST_CONCERN (LC), iucnTaxonID 55290, IUCN-checklist usageKey 176685486"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/176685486/distributions",
+          "title": "GBIF — IUCN distribution record for Agalychnis callidryas (IUCN Red List 2020-1)",
+          "publisher": "GBIF (mirror of IUCN Red List)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "assessment by the IUCN SSC Amphibian Specialist Group 2020; DOI 10.2305/IUCN.UK.2020-1.RLTS.T55290A3028059.en"
+        },
+        {
+          "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2428197&country=CR&limit=0",
+          "title": "GBIF occurrence search — Agalychnis callidryas, country=CR",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "7,493 occurrence records in Costa Rica (confirms presence)"
+        },
+        {
+          "url": "https://amphibiaweb.org/species/616",
+          "title": "AmphibiaWeb — Agalychnis callidryas: Red-eyed Treefrog",
+          "publisher": "AmphibiaWeb, University of California, Berkeley",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "family Hylidae (Phyllomedusinae) as used by AmphibiaWeb; SVL to 77 mm (females) / 59 mm (males); coloration; countries incl. Costa Rica; Caribbean-side Costa Rican populations with yellowish stripe; lowlands to 1,250 m; humid forest, breeding pools, leaf roosting; wet-season breeding late May–Nov; clutches ~40 eggs, up to 5 per night; hatching 6–10 days, early hatching at 4–5 days (snakes, wasps, fungus); vibrational signalling; diet (crickets, moths in lab); IUCN LC; CITES II since 2010-03-21; pet-trade imports 221,960; predators; Spanish names 'Rana Arborícola', 'Rana Calzonudo'; yellow eyes in froglets"
+        },
+        {
+          "url": "https://amphibiansoftheworld.amnh.org/Amphibia/Anura/Phyllomedusidae/Agalychnis/Agalychnis-callidryas",
+          "title": "Agalychnis callidryas (Cope, 1862) — Amphibian Species of the World (American Museum of Natural History)",
+          "publisher": "American Museum of Natural History",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "original name Hyla callidryas Cope, 1862; English and Spanish common names; distribution: Caribbean lowlands from NE Honduras/E Nicaragua to central Panama and 'Pacific lowlands of southern Costa Rica and eastern Panama' to Colombia, sea level to 1,325 m; 2019 recognition of A. taylori; A. helenae available for E Honduras/N Costa Rica populations"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Agalychnis_callidryas",
+          "title": "Agalychnis callidryas — Wikipedia",
+          "publisher": "Wikimedia Foundation",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "approximate: family Phyllomedusidae; ~51 mm males / ~76 mm females; countries Honduras–Colombia; flank-colour variants in Costa Rica and Panama; humid lowland forest, ≥80 % humidity; camouflage and startle display; vibration signalling; breeding Oct–Mar, ~40 eggs, hatching 6–8 (6–10) days, early hatching vs Polybia rejecta and Leptodeira septentrionalis; diet; LC (2020 assessment); pet trade in Costa Rica, Nicaragua and Panama; predators; nictitating membrane"
+        },
+        {
+          "url": "https://es.wikipedia.org/wiki/Agalychnis_callidryas",
+          "title": "Agalychnis callidryas — Wikipedia en español",
+          "publisher": "Wikimedia Foundation",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "approximate: Spanish names 'rana verde de ojos rojos' / 'rana de ojos rojos'; 56 mm males / 71 mm females; range E Honduras to NW Colombia; 2019 A. taylori split; humid lowland rainforest near water; eggs on leaves over water; mainly insects; skin toxins not potent; environmental indicator; logo of Kölbi (ICE) in Costa Rica"
+        },
+        {
+          "url": "https://www.presidencia.go.cr/simbolos-nacionales/",
+          "title": "Símbolos Nacionales",
+          "publisher": "Presidencia de la República de Costa Rica",
+          "published": "2023-10-30",
+          "retrieved": "2026-10-23",
+          "supports": "15 national symbols listed (none of the five species of this file); 'En 1977 se decreta el Yigüirro como Ave Nacional debido a su armonioso canto'"
+        }
+      ]
+    },
+    {
+      "id": "central-american-agouti",
+      "commonNames": {
+        "en": "Central American Agouti",
+        "es": "guatusa",
+        "esAlt": [
+          "agutí centroamericano",
+          "cherenga",
+          "ñeque",
+          "guatín",
+          "cotuza"
+        ],
+        "zh": "中美洲刺豚鼠",
+        "status": "confirmed (en, ADW and Wikipedia); approximate (es: 'guatusa' and the alternatives are listed by Spanish Wikipedia, which attributes 'guatusa' to Ecuador and does not mention Costa Rica; its Costa Rican usage was not confirmed by a fetched source); uncertain (zh, not verified in a fetched source)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Dasyprocta_punctata/",
+          "https://en.wikipedia.org/wiki/Central_American_agouti",
+          "https://es.wikipedia.org/wiki/Dasyprocta_punctata"
+        ]
+      },
+      "scientific": "Dasyprocta punctata",
+      "authority": "Gray, 1842",
+      "family": "Dasyproctidae",
+      "order": "Rodentia",
+      "taxonomyStatus": "confirmed (GBIF: Dasyprocta punctata Gray, 1842, Rodentia, Dasyproctidae; Wikipedia writes the authority 'J. E. Gray, 1842'); approximate (Wikipedia notes that the disjunct southern population is sometimes treated as a separate species, D. variegata, and that a review of geographic variation is needed)",
+      "iucn": {
+        "category": "LC",
+        "categoryName": "Least Concern",
+        "year": 2016,
+        "assessor": "Emmons, L.",
+        "iucnTaxonId": "89497686",
+        "url": "https://doi.org/10.2305/IUCN.UK.2016-2.RLTS.T89497686A78319610.en",
+        "status": "confirmed",
+        "note": "Category, taxon ID, assessor, year and DOI taken from GBIF's mirror of the IUCN Red List because iucnredlist.org blocks fetching. ADW lists CITES Appendix III and notes that some populations have 'greatly declined because of both hunting and habitat destruction'; Wikipedia adds that large populations remain.",
+        "sources": [
+          "https://api.gbif.org/v1/species/2437576/iucnRedListCategory",
+          "https://api.gbif.org/v1/species/176670177/distributions",
+          "https://animaldiversity.org/accounts/Dasyprocta_punctata/",
+          "https://en.wikipedia.org/wiki/Central_American_agouti"
+        ]
+      },
+      "size": {
+        "length_cm": 62,
+        "tail_cm": 3.5,
+        "mass_g": 4000,
+        "length_cm_range": [
+          41.5,
+          62
+        ],
+        "mass_g_range": [
+          1300,
+          4000
+        ],
+        "status": "approximate",
+        "note": "ADW: body length 415–620 mm, tail 10–35 mm, weight 1.3–4.0 kg (its data table says 1.0–4.0 kg). English Wikipedia gives 3–4.2 kg for the main range; Spanish Wikipedia 42–62 cm and 2–3 kg. Sources disagree on weight, so length_cm and mass_g are upper figures, not averages.",
+        "sources": [
+          "https://animaldiversity.org/accounts/Dasyprocta_punctata/",
+          "https://en.wikipedia.org/wiki/Central_American_agouti",
+          "https://es.wikipedia.org/wiki/Dasyprocta_punctata"
+        ]
+      },
+      "habitat": {
+        "en": "Forest of many kinds as well as thick brush, scrub, savanna and cultivated land, usually close to water along streams, rivers and lakes; it occurs up to about 2,000 m. It dens in hollow logs, among boulders or under tree roots (ADW), or in burrows it digs itself (Spanish Wikipedia).",
+        "es": "Bosques de muchos tipos, además de matorral denso, charrales, sabanas y terrenos cultivados, por lo general cerca del agua, a lo largo de quebradas, ríos y lagos; llega hasta unos 2.000 m. Se refugia en troncos huecos, entre rocas o bajo raíces de árboles (ADW) o en madrigueras que excava (Wikipedia en español).",
+        "status": "confirmed (ADW); approximate (self-dug burrows, Spanish Wikipedia)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Dasyprocta_punctata/",
+          "https://es.wikipedia.org/wiki/Dasyprocta_punctata"
+        ]
+      },
+      "distributionCR": {
+        "en": "The main range runs from southern Mexico (Chiapas and the Yucatán Peninsula) through Central America to north-western Ecuador, Colombia and far western Venezuela, with a disjunct population from south-eastern Peru to north-western Argentina that is sometimes treated as a separate species; it has been introduced to Cuba, the Cayman Islands and Puerto Rico. Costa Rica lies in the middle of the Central American range: Wikipedia refers to animals of the Atlantic slope of Costa Rica and Panama, and GBIF holds 18,103 occurrence records from Costa Rica, 2,897 of them in Puntarenas province on the Pacific side.",
+        "es": "El área principal va del sur de México (Chiapas y la península de Yucatán), por Centroamérica, hasta el noroeste de Ecuador, Colombia y el extremo occidental de Venezuela, con una población disyunta del sureste de Perú al noroeste de Argentina que a veces se trata como especie aparte; fue introducida en Cuba, las islas Caimán y Puerto Rico. Costa Rica queda en medio del área centroamericana: Wikipedia menciona animales de la vertiente atlántica de Costa Rica y Panamá, y GBIF tiene 18.103 registros de presencia en Costa Rica, 2.897 de ellos en la provincia de Puntarenas, en el lado del Pacífico.",
+        "slopes": "Both: Caribbean (Atlantic) slope named by Wikipedia; Pacific side evidenced by 2,897 GBIF records from Puntarenas province. No fetched page names a specific Costa Rican park for the species.",
+        "elevationCR_m": null,
+        "gbifOccurrencesCR": 18103,
+        "status": "confirmed (presence in Costa Rica and in Puntarenas province, GBIF; continental range, ADW and Wikipedia); approximate (Atlantic-slope mention, Wikipedia); uncertain (elevation within Costa Rica)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Dasyprocta_punctata/",
+          "https://en.wikipedia.org/wiki/Central_American_agouti",
+          "https://es.wikipedia.org/wiki/Dasyprocta_punctata",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2437576&country=CR&limit=0",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2437576&country=CR&stateProvince=Puntarenas&limit=0"
+        ]
+      },
+      "diet": {
+        "en": "Mainly fruit, plus seeds: agoutis search out fruiting trees, can hear fruit dropping from a long way off, and follow troops of monkeys to collect what they let fall. When food is abundant they bury surplus seeds for leaner times. Crabs, vegetables and succulent plants are eaten occasionally.",
+        "es": "Principalmente frutas, además de semillas: las guatusas buscan árboles en fruto, oyen caer la fruta desde lejos y siguen a las tropas de monos para recoger lo que dejan caer. Cuando hay abundancia entierran las semillas sobrantes para épocas de escasez. Ocasionalmente comen cangrejos, verduras y plantas suculentas.",
+        "status": "confirmed",
+        "sources": [
+          "https://animaldiversity.org/accounts/Dasyprocta_punctata/",
+          "https://en.wikipedia.org/wiki/Central_American_agouti"
+        ]
+      },
+      "ecologicalRole": {
+        "en": "A key seed disperser: by burying seeds in caches and not retrieving them all, agoutis plant the fruit-bearing trees they depend on, helping forests regenerate. They are also important prey for jaguars, eagles and other medium-to-large predators, and are hunted by people.",
+        "es": "Es un dispersor de semillas clave: al enterrar semillas en escondites y no recuperarlas todas, las guatusas siembran los árboles frutales de los que dependen y ayudan a regenerar el bosque. También son presa importante de jaguares, águilas y otros depredadores medianos y grandes, y las personas las cazan.",
+        "status": "confirmed (ADW: seed caching regenerates fruit trees, predators, hunting; Wikipedia: 'important seed disperser'); interpretation ('not retrieving them all')",
+        "sources": [
+          "https://animaldiversity.org/accounts/Dasyprocta_punctata/",
+          "https://en.wikipedia.org/wiki/Central_American_agouti"
+        ]
+      },
+      "behaviour": {
+        "en": "Active by day, though it turns nocturnal where it is hunted or disturbed. The social unit is a pair that mates for life and holds a territory of about 1–2 ha containing fruiting trees and water; the male drives off intruders, raising the long rump hairs, thumping the ground with its hind feet and giving bark-like calls. Alarmed animals freeze with one forefoot raised, and can leap at least 2 m straight up. Pairs breed year-round, most young arriving between March and July after a gestation of about 104–120 days; litters are usually two. Average wild lifespan is about 10 years.",
+        "es": "Es activa de día, aunque se vuelve nocturna donde la cazan o la molestan. La unidad social es una pareja que se aparea de por vida y defiende un territorio de 1–2 ha con árboles frutales y agua; el macho ahuyenta a los intrusos erizando los pelos largos de la grupa, golpeando el suelo con las patas traseras y emitiendo ladridos. Al alarmarse se queda inmóvil con una pata delantera levantada, y puede saltar al menos 2 m hacia arriba. Las parejas se reproducen todo el año, con la mayoría de las crías entre marzo y julio tras una gestación de unos 104–120 días; las camadas suelen ser de dos. La vida promedio en libertad es de unos 10 años.",
+        "status": "confirmed (ADW); approximate (Spanish Wikipedia differs: gestation 93–104 days, 1–3 young, lifespan just over 13 years)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Dasyprocta_punctata/",
+          "https://es.wikipedia.org/wiki/Dasyprocta_punctata"
+        ]
+      },
+      "facts": [
+        {
+          "en": "Agoutis can hear fruit hitting the ground from far away and follow monkey troops to pick up what the monkeys drop — which is why an agouti is often found beneath a tree full of capuchins.",
+          "es": "Las guatusas oyen caer la fruta desde lejos y siguen a las tropas de monos para recoger lo que estos dejan caer; por eso es común encontrar una guatusa bajo un árbol lleno de carablancas.",
+          "status": "confirmed (ADW: hearing fruit fall, following monkey bands); interpretation (the capuchin example)",
+          "sources": [
+            "https://animaldiversity.org/accounts/Dasyprocta_punctata/"
+          ]
+        },
+        {
+          "en": "When food is plentiful it buries seeds for later; the ones it never digs up sprout, which makes the agouti one of the forest's most important tree planters.",
+          "es": "Cuando hay comida de sobra entierra semillas para después; las que nunca desentierra germinan, lo que convierte a la guatusa en uno de los sembradores de árboles más importantes del bosque.",
+          "status": "confirmed",
+          "note": "ADW: buried seeds help regenerate fruit-bearing trees; Wikipedia: 'important seed disperser'.",
+          "sources": [
+            "https://animaldiversity.org/accounts/Dasyprocta_punctata/",
+            "https://en.wikipedia.org/wiki/Central_American_agouti"
+          ]
+        },
+        {
+          "en": "In a comparison of 240 species, agoutis ranked fourth for sense of smell — ahead of dogs, which came out average — thanks to snouts densely packed with olfactory receptors.",
+          "es": "En una comparación de 240 especies, las guatusas quedaron en cuarto lugar en sentido del olfato —por encima de los perros, que resultaron promedio—, gracias a hocicos densamente poblados de receptores olfativos.",
+          "status": "approximate",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Central_American_agouti"
+          ]
+        },
+        {
+          "en": "An alarmed agouti freezes with one forefoot raised, and it can jump at least 2 m straight up; when threatened it also raises the long hairs on its rump and thumps the ground with its hind feet.",
+          "es": "Una guatusa alarmada se queda inmóvil con una pata delantera levantada, y puede saltar al menos 2 m hacia arriba; cuando se siente amenazada también eriza los pelos largos de la grupa y golpea el suelo con las patas traseras.",
+          "status": "confirmed",
+          "sources": [
+            "https://animaldiversity.org/accounts/Dasyprocta_punctata/"
+          ]
+        }
+      ],
+      "relatedSpecies": [
+        {
+          "scientific": "Dasyprocta variegata",
+          "en": "Brown agouti",
+          "es": "agutí pardo",
+          "note": "The disjunct southern population (south-eastern Peru to north-western Argentina) sometimes separated from D. punctata as this species; not Costa Rican. Spanish name given here is descriptive; no fetched page states it.",
+          "status": "approximate (Wikipedia); uncertain (Spanish name)",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Central_American_agouti"
+          ]
+        }
+      ],
+      "habitatFit": {
+        "coastalLowlandForestPacific": true,
+        "note": {
+          "en": "Yes. GBIF holds 2,897 records of the species from Puntarenas province, the Pacific-coast province that contains Manuel Antonio and the Osa Peninsula, and ADW's habitat (forest and brush near streams and rivers, up to about 2,000 m) covers coastal lowland forest. No fetched page names Manuel Antonio, Carara or Corcovado specifically for the agouti. Place it on the forest floor along the path, by day.",
+          "es": "Sí. GBIF tiene 2.897 registros de la especie en la provincia de Puntarenas, la provincia de la costa pacífica que contiene Manuel Antonio y la península de Osa, y el hábitat según ADW (bosque y matorral cerca de quebradas y ríos, hasta unos 2.000 m) abarca el bosque costero de tierras bajas. Ninguna página consultada nombra Manuel Antonio, Carara o Corcovado específicamente para la guatusa. Conviene ubicarla en el suelo del bosque junto al sendero, de día."
+        },
+        "status": "confirmed (GBIF records in Puntarenas province; ADW habitat); interpretation (no fetched page names a Pacific park)",
+        "sources": [
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2437576&country=CR&stateProvince=Puntarenas&limit=0",
+          "https://animaldiversity.org/accounts/Dasyprocta_punctata/"
+        ]
+      },
+      "nationalSymbol": {
+        "isSymbol": false,
+        "year": null,
+        "instrument": null,
+        "note": {
+          "en": "Not among the 15 national symbols listed on the Presidencia de la República's symbols page as fetched on 2026-10-23 (the animal symbols there are the yigüirro, the white-tailed deer and the manatee), and not among the symbols added by law since then that are compiled in this project's research/country.json (sloths 2021, morpho butterfly 2022, hummingbirds 2024).",
+          "es": "No figura entre los 15 símbolos nacionales de la página de símbolos de la Presidencia de la República consultada el 2026-10-23 (los símbolos de fauna allí son el yigüirro, el venado cola blanca y el manatí), ni entre los símbolos añadidos por ley después, recopilados en research/country.json de este proyecto (perezosos 2021, mariposa morpho 2022, colibríes 2024)."
+        },
+        "status": "confirmed",
+        "sources": [
+          "https://www.presidencia.go.cr/simbolos-nacionales/"
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://api.gbif.org/v1/species/match?name=Dasyprocta%20punctata",
+          "title": "GBIF Backbone Taxonomy — species match: Dasyprocta punctata Gray, 1842",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "accepted scientific name and authority, order Rodentia, family Dasyproctidae, usageKey 2437576"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/2437576/iucnRedListCategory",
+          "title": "GBIF — IUCN Red List category for Dasyprocta punctata",
+          "publisher": "GBIF (mirror of IUCN Red List)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "IUCN category LEAST_CONCERN (LC), iucnTaxonID 89497686, IUCN-checklist usageKey 176670177"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/176670177/distributions",
+          "title": "GBIF — IUCN distribution record for Dasyprocta punctata (IUCN Red List 2016-2)",
+          "publisher": "GBIF (mirror of IUCN Red List)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "assessment by Emmons, L. 2016; DOI 10.2305/IUCN.UK.2016-2.RLTS.T89497686A78319610.en"
+        },
+        {
+          "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437576&country=CR&limit=0",
+          "title": "GBIF occurrence search — Dasyprocta punctata, country=CR",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "18,103 occurrence records in Costa Rica (confirms presence)"
+        },
+        {
+          "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437576&country=CR&stateProvince=Puntarenas&limit=0",
+          "title": "GBIF occurrence search — Dasyprocta punctata, country=CR, stateProvince=Puntarenas",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "2,897 occurrence records in Puntarenas province (Pacific side of Costa Rica)"
+        },
+        {
+          "url": "https://animaldiversity.org/accounts/Dasyprocta_punctata/",
+          "title": "Dasyprocta punctata (Central American agouti) — Animal Diversity Web",
+          "publisher": "University of Michigan Museum of Zoology",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "order/family; range southern Mexico to northern Argentina, introduced Cayman Islands; habitats near water, up to 2,000 m, den sites; 415–620 mm, tail 10–35 mm, 1.3–4.0 kg; diet (fruit, seed burying, following monkeys, crabs); diurnal, lifelong pairs, 1–2 ha territories, displays, freeze with forefoot raised, 2 m jump; gestation 104–120 days, litters ~2, births Mar–Jul; wild lifespan ~10 yr; seed dispersal by caching; predators; IUCN LC, CITES III; declines from hunting"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Central_American_agouti",
+          "title": "Central American agouti — Wikipedia",
+          "publisher": "Wikimedia Foundation",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "approximate: authority J. E. Gray, 1842; D. variegata note; 3–4.2 kg; range (S Mexico to NW Ecuador, Colombia, W Venezuela; disjunct SE Peru–NW Argentina; introduced Cuba, Cayman Islands); 'Atlantic slope of Costa Rica and Panama' coat note; diet and seed storing; diurnal, monogamous pairs; important seed disperser; LC; smell ranked 4th of 240 species"
+        },
+        {
+          "url": "https://es.wikipedia.org/wiki/Dasyprocta_punctata",
+          "title": "Dasyprocta punctata — Wikipedia en español",
+          "publisher": "Wikimedia Foundation",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "approximate: Spanish names (agutí centroamericano, guatusa, cherenga, ñeque, guatín, cotuza and others, with countries but not Costa Rica); 42–62 cm, 2–3 kg; introduced to Puerto Rico; forests below 2,000 m, burrows; buries seeds; gestation 93–104 days, 1–3 young; lifespan just over 13 years; LC"
+        },
+        {
+          "url": "https://www.presidencia.go.cr/simbolos-nacionales/",
+          "title": "Símbolos Nacionales",
+          "publisher": "Presidencia de la República de Costa Rica",
+          "published": "2023-10-30",
+          "retrieved": "2026-10-23",
+          "supports": "15 national symbols listed (none of the five species of this file); 'En 1977 se decreta el Yigüirro como Ave Nacional debido a su armonioso canto'"
+        }
+      ]
+    },
+    {
+      "id": "green-iguana",
+      "commonNames": {
+        "en": "Green Iguana",
+        "es": "iguana verde",
+        "esAlt": [
+          "iguana común",
+          "gallina de palo"
+        ],
+        "zh": "绿鬣蜥",
+        "status": "confirmed (en: Reptile Database 'Common Green Iguana', Wikipedia 'green iguana'); approximate (es: 'iguana verde' and 'iguana común' from Spanish Wikipedia; 'gallina de palo' is the name English Wikipedia reports for the animal as food in Central and South America; the Reptile Database lists only 'Iguana de Ribera' as a Spanish name; none of the pages names a Costa Rican usage); uncertain (zh, not verified in a fetched source)",
+        "sources": [
+          "https://reptile-database.reptarium.cz/species?genus=Iguana&species=iguana",
+          "https://en.wikipedia.org/wiki/Green_iguana",
+          "https://es.wikipedia.org/wiki/Iguana_iguana"
+        ]
+      },
+      "scientific": "Iguana iguana",
+      "authority": "(Linnaeus, 1758)",
+      "family": "Iguanidae",
+      "order": "Squamata",
+      "taxonomyStatus": "confirmed (species, authority and family per GBIF and the Reptile Database; order Squamata per the Reptile Database — the GBIF Backbone ranks Squamata as a class and gives no order); approximate (species limits under revision — see nomenclature)",
+      "nomenclature": {
+        "en": "The green iguana's species limits are being revised, and Costa Rica is caught in the middle. The GBIF Backbone Taxonomy carries both Iguana iguana (Linnaeus, 1758) and Iguana rhinolopha Wiegmann, 1834 as accepted species, and several recent works use I. rhinolopha for the Central American and Mexican populations (the Reptile Database cites Breuil et al. 2020, Alvarado et al. 2022, Peralta-García et al. 2023 and Sunyer & Martínez-Fonseca 2023; Wikipedia says late-2010s genetic studies recovered it as a distinct species). The Reptile Database itself, however, keeps rhinolopha in the synonymy of I. iguana, with the range 'Mexico (Yucatan peninsula), Nicaragua, south to Panama', and remarks that most recent authors do not seem to recognise rhinolopha any more; it lists Costa Rica under I. iguana. Other 2019–2022 changes concern Caribbean islands: Iguana insularis (Breuil et al. 2022) and Iguana melanoderma (Breuil et al. 2020) were described as species, Wikipedia and the Reptile Database treat them as subspecies of I. iguana alongside I. i. iguana and I. i. sanctaluciae, and the Reptile Database reports that melanoderma was synonymised with I. iguana by van den Burg et al. in 2026. No fetched source assigns the Costa Rican population explicitly; if the rhinolopha split is accepted, the Costa Rican animals would fall within it by geography. GBIF files 8,309 Costa Rican occurrence records under I. iguana and only 8 under I. rhinolopha, so this file uses Iguana iguana.",
+        "es": "Los límites de especie de la iguana verde están en revisión, y Costa Rica queda en medio. La taxonomía troncal de GBIF mantiene como especies aceptadas tanto a Iguana iguana (Linnaeus, 1758) como a Iguana rhinolopha Wiegmann, 1834, y varios trabajos recientes usan I. rhinolopha para las poblaciones centroamericanas y mexicanas (The Reptile Database cita a Breuil et al. 2020, Alvarado et al. 2022, Peralta-García et al. 2023 y Sunyer & Martínez-Fonseca 2023; Wikipedia indica que estudios genéticos de fines de la década de 2010 la recuperaron como especie distinta). Sin embargo, The Reptile Database mantiene a rhinolopha en la sinonimia de I. iguana, con el área 'México (península de Yucatán), Nicaragua, al sur hasta Panamá', y comenta que la mayoría de los autores recientes ya no parecen reconocerla; incluye a Costa Rica bajo I. iguana. Otros cambios de 2019–2022 atañen a islas del Caribe: Iguana insularis (Breuil et al. 2022) e Iguana melanoderma (Breuil et al. 2020) se describieron como especies, Wikipedia y The Reptile Database las tratan como subespecies de I. iguana junto con I. i. iguana e I. i. sanctaluciae, y The Reptile Database reporta que melanoderma fue sinonimizada con I. iguana por van den Burg et al. en 2026. Ninguna fuente consultada asigna explícitamente a la población costarricense; si se acepta la separación de rhinolopha, los animales de Costa Rica quedarían dentro de ella por geografía. GBIF archiva 8.309 registros costarricenses bajo I. iguana y solo 8 bajo I. rhinolopha, por lo que este archivo usa Iguana iguana.",
+        "formerName": "Iguana (Hypsilophus) rhinolophus Wiegmann, 1834 / Iguana rhinolopha — proposed name for the Central American populations; Iguana iguana rhinolopha as a subspecies in older usage",
+        "status": "confirmed (GBIF status of both names; Reptile Database synonymy, comment and distribution; GBIF record counts); approximate (Wikipedia's account of the genetic studies); interpretation (that Costa Rican animals would be I. rhinolopha under the split)",
+        "sources": [
+          "https://api.gbif.org/v1/species/match?name=Iguana%20iguana",
+          "https://api.gbif.org/v1/species/match?name=Iguana%20rhinolopha",
+          "https://reptile-database.reptarium.cz/species?genus=Iguana&species=iguana",
+          "https://en.wikipedia.org/wiki/Green_iguana",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2459658&country=CR&limit=0",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2459663&country=CR&limit=0"
+        ]
+      },
+      "iucn": {
+        "category": "LC",
+        "categoryName": "Least Concern",
+        "year": 2022,
+        "assessor": "Bock, B. et al.",
+        "iucnTaxonId": "174481",
+        "url": "https://doi.org/10.2305/IUCN.UK.2022-2.RLTS.T174481A218317281.en",
+        "status": "confirmed (category, taxon ID, year, DOI); approximate (assessor list abbreviated — the fetch summary gave only the lead author and 'about 17 co-authors')",
+        "note": "Category, taxon ID, year and DOI taken from GBIF's mirror of the IUCN Red List because iucnredlist.org blocks fetching; the assessment is for Iguana iguana in the broad sense, and GBIF's IUCN mirror was not queried for I. rhinolopha. CITES Appendix II (Wikipedia en/es). Wikipedia notes that overhunting made it rare in parts of its range (Nicaragua partly closed markets in 1976; Panama acted in the late 1960s) and that it is invasive in Florida, Puerto Rico and elsewhere.",
+        "sources": [
+          "https://api.gbif.org/v1/species/2459658/iucnRedListCategory",
+          "https://api.gbif.org/v1/species/176738894/distributions",
+          "https://en.wikipedia.org/wiki/Green_iguana",
+          "https://es.wikipedia.org/wiki/Iguana_iguana"
+        ]
+      },
+      "size": {
+        "length_cm": 170,
+        "svl_cm": 42,
+        "mass_g": 4000,
+        "length_cm_range": [
+          120,
+          170
+        ],
+        "mass_g_range": [
+          1200,
+          4000
+        ],
+        "status": "approximate",
+        "note": "English Wikipedia: total length typically 1.2–1.7 m (a few specimens exceed 2 m), snout–vent length 30–42 cm for most; typical adult male about 4 kg, adult female 1.2–3 kg, a few large males 8 kg or more (its introduction says 'upward of 9 kg'). Spanish Wikipedia: up to 2 m, males 30–40 cm SVL, and an implausible 'más de 15 kg'. The Reptile Database page gives no size. length_cm is the upper end of the typical total length (mostly tail) and mass_g the typical adult male.",
+        "sources": [
+          "https://en.wikipedia.org/wiki/Green_iguana",
+          "https://es.wikipedia.org/wiki/Iguana_iguana"
+        ]
+      },
+      "habitat": {
+        "en": "An arboreal lizard of tropical forest and mangroves, typically near water — it basks on branches over rivers, canals and lagoons and dives in when alarmed — and also of pastures, riverbanks and second growth; it is scarce in arid areas and occurs from sea level to about 1,000 m in warm, humid climates.",
+        "es": "Lagarto arborícola de bosque tropical y manglares, casi siempre cerca del agua —se asolea en ramas sobre ríos, canales y lagunas y se lanza al agua cuando se alarma—, y también de potreros, orillas de ríos y charrales; es escaso en zonas áridas y se encuentra del nivel del mar a unos 1.000 m en climas cálidos y húmedos.",
+        "status": "approximate (Wikipedia en/es only; no primary habitat source was fetched)",
+        "sources": [
+          "https://en.wikipedia.org/wiki/Green_iguana",
+          "https://es.wikipedia.org/wiki/Iguana_iguana"
+        ]
+      },
+      "distributionCR": {
+        "en": "Native from southern Mexico through Central America to central Brazil, Paraguay and Bolivia, plus Caribbean islands; introduced populations exist in Florida, Puerto Rico, Hawaii, Taiwan and elsewhere. The Reptile Database lists Costa Rica within the range of Iguana iguana. Within Costa Rica the fetched sources point to the Pacific side: Wikipedia notes that animals of western Costa Rica are red-tinged, and the Manuel Antonio National Park article names the green iguana among the park's reptiles. GBIF holds 8,309 occurrence records from Costa Rica under I. iguana and 8 under I. rhinolopha.",
+        "es": "Nativa del sur de México, por Centroamérica, hasta el centro de Brasil, Paraguay y Bolivia, más islas del Caribe; hay poblaciones introducidas en Florida, Puerto Rico, Hawái, Taiwán y otros lugares. The Reptile Database incluye a Costa Rica en el área de Iguana iguana. Dentro de Costa Rica las fuentes consultadas apuntan al lado del Pacífico: Wikipedia anota que los animales del oeste de Costa Rica tienen tonos rojizos, y el artículo del Parque Nacional Manuel Antonio nombra a la iguana verde entre los reptiles del parque. GBIF tiene 8.309 registros de presencia en Costa Rica bajo I. iguana y 8 bajo I. rhinolopha.",
+        "slopes": "Pacific side documented (Manuel Antonio; 'western Costa Rica' colour note); Caribbean slope of Costa Rica not specifically covered by fetched sources",
+        "elevationCR_m": null,
+        "gbifOccurrencesCR": 8309,
+        "status": "confirmed (presence in Costa Rica: Reptile Database and GBIF); approximate (Pacific localities and native range, Wikipedia); uncertain (Caribbean slope and elevation within Costa Rica)",
+        "sources": [
+          "https://reptile-database.reptarium.cz/species?genus=Iguana&species=iguana",
+          "https://en.wikipedia.org/wiki/Green_iguana",
+          "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2459658&country=CR&limit=0",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2459663&country=CR&limit=0"
+        ]
+      },
+      "diet": {
+        "en": "Primarily a folivore: leaves, flowers, fruit and growing shoots of more than 100 plant species, with wild plum (jobo, Spondias mombin) a favourite in Panama. Wild adults occasionally take grasshoppers, tree snails, bird eggs and chicks or carrion, and juveniles eat the faeces of adults to acquire the gut microbes that digest plant matter.",
+        "es": "Es principalmente folívora: hojas, flores, frutos y brotes de más de 100 especies de plantas, con el jobo (Spondias mombin) como favorito en Panamá. Los adultos silvestres toman de vez en cuando saltamontes, caracoles arborícolas, huevos y pichones de aves o carroña, y los juveniles comen heces de los adultos para adquirir los microbios intestinales que digieren el material vegetal.",
+        "status": "approximate (Wikipedia en/es)",
+        "sources": [
+          "https://en.wikipedia.org/wiki/Green_iguana",
+          "https://es.wikipedia.org/wiki/Iguana_iguana"
+        ]
+      },
+      "ecologicalRole": {
+        "en": "A large arboreal herbivore that crops the leaves, flowers and fruit of more than 100 plant species, and a traditional food animal — the 'gallina de palo' of Central America — whose meat and eggs have been hunted hard enough to make it rare in parts of its range. None of the fetched sources describes it as a seed disperser.",
+        "es": "Herbívoro arborícola grande que ramonea hojas, flores y frutos de más de 100 especies de plantas, y animal de caza tradicional —la 'gallina de palo' de Centroamérica— cuya carne y huevos se han cazado tanto que se volvió escaso en partes de su área. Ninguna de las fuentes consultadas lo describe como dispersor de semillas.",
+        "status": "approximate (Wikipedia); interpretation (framing as the forest's large arboreal herbivore)",
+        "sources": [
+          "https://en.wikipedia.org/wiki/Green_iguana",
+          "https://es.wikipedia.org/wiki/Iguana_iguana"
+        ]
+      },
+      "behaviour": {
+        "en": "Diurnal and arboreal; it spends the day basking and feeding in trees, where its green colour hides it among the leaves, and it survives falls of up to 15 m by catching branches with its hind claws. Frightened near water, it drops in and swims away submerged, propelled by its tail; a grabbed tail can break off and regrow. The dewlap helps regulate body temperature and is used in courtship and territorial display, and a light-sensitive parietal 'third eye' on the crown detects movement overhead. Females nest once a year, digging burrows 0.3–2.4 m deep in which they lay 20–71 eggs; hatchlings emerge after 10–15 weeks and stay in family groups through their first year.",
+        "es": "Es diurna y arborícola; pasa el día asoleándose y comiendo en los árboles, donde su color verde la esconde entre las hojas, y sobrevive a caídas de hasta 15 m agarrando ramas con las garras traseras. Si se asusta cerca del agua, se deja caer y nada sumergida impulsándose con la cola; si la agarran de la cola, esta puede desprenderse y volver a crecer. La papada ayuda a regular la temperatura y se usa en el cortejo y las exhibiciones territoriales, y un 'tercer ojo' parietal sensible a la luz en la coronilla detecta movimientos por encima. Las hembras anidan una vez al año: excavan madrigueras de 0,3–2,4 m de profundidad donde ponen 20–71 huevos; las crías salen a las 10–15 semanas y permanecen en grupos familiares durante su primer año.",
+        "status": "approximate (Wikipedia en; Spanish Wikipedia gives hatching at 70–90 days)",
+        "sources": [
+          "https://en.wikipedia.org/wiki/Green_iguana",
+          "https://es.wikipedia.org/wiki/Iguana_iguana"
+        ]
+      },
+      "facts": [
+        {
+          "en": "A pale scale on the top of its head is a parietal 'third eye': it cannot form images, but it senses changes in light and movement, warning the iguana of predators swooping from above.",
+          "es": "Una escama pálida en lo alto de la cabeza es un 'tercer ojo' parietal: no forma imágenes, pero percibe cambios de luz y movimiento, y avisa a la iguana de depredadores que se lanzan desde arriba.",
+          "status": "approximate",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Green_iguana"
+          ]
+        },
+        {
+          "en": "Iguanas bask on branches above water and, when startled, drop in and swim away under the surface using only their tails; they can also fall up to 15 m from a tree and land unhurt.",
+          "es": "Las iguanas se asolean en ramas sobre el agua y, al asustarse, se dejan caer y nadan bajo la superficie usando solo la cola; también pueden caer hasta 15 m desde un árbol sin lastimarse.",
+          "status": "approximate",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Green_iguana",
+            "https://es.wikipedia.org/wiki/Iguana_iguana"
+          ]
+        },
+        {
+          "en": "A female lays 20–71 eggs in a burrow she digs herself and then abandons; the hatchlings emerge 10–15 weeks later and spend their first year in family groups.",
+          "es": "La hembra pone 20–71 huevos en una madriguera que ella misma excava y luego abandona; las crías salen 10–15 semanas después y pasan su primer año en grupos familiares.",
+          "status": "approximate",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Green_iguana"
+          ]
+        },
+        {
+          "en": "Known as 'gallina de palo' (chicken of the tree) where it is eaten, it was hunted hard enough to become rare in parts of Central America — Nicaragua partly closed its markets in 1976 — yet introduced populations now number in the millions in Puerto Rico and are a nuisance in Florida.",
+          "es": "Conocida como 'gallina de palo' donde se come, se cazó tanto que se volvió escasa en partes de Centroamérica —Nicaragua cerró parcialmente sus mercados en 1976—, pero las poblaciones introducidas hoy se cuentan por millones en Puerto Rico y son una plaga en Florida.",
+          "status": "approximate",
+          "note": "Wikipedia: estimated 4 million iguanas in Puerto Rico; cold-stunned iguanas in Florida.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Green_iguana"
+          ]
+        }
+      ],
+      "relatedSpecies": [
+        {
+          "scientific": "Iguana rhinolopha",
+          "en": "Central American green iguana (proposed split)",
+          "es": "iguana verde centroamericana (separación propuesta)",
+          "note": "Wiegmann, 1834; accepted as a species by the GBIF Backbone (usageKey 2459663) but kept as a synonym of I. iguana by the Reptile Database. 8 GBIF records in Costa Rica are filed under this name. The common names given here are descriptive; no fetched page states them.",
+          "status": "confirmed (GBIF status; Reptile Database synonymy); uncertain (common names)",
+          "sources": [
+            "https://api.gbif.org/v1/species/match?name=Iguana%20rhinolopha",
+            "https://reptile-database.reptarium.cz/species?genus=Iguana&species=iguana",
+            "https://api.gbif.org/v1/occurrence/search?taxonKey=2459663&country=CR&limit=0"
+          ]
+        },
+        {
+          "scientific": "Ctenosaura similis",
+          "en": "Black spiny-tailed iguana",
+          "es": "garrobo",
+          "note": "Named ('black spiny-tailed iguana') alongside the green iguana among the reptiles of Manuel Antonio National Park. The scientific name and the Costa Rican name 'garrobo' were not verified on a fetched page.",
+          "status": "approximate (presence at Manuel Antonio, Wikipedia); uncertain (scientific and Spanish names)",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park"
+          ]
+        }
+      ],
+      "habitatFit": {
+        "coastalLowlandForestPacific": true,
+        "note": {
+          "en": "Yes. The Manuel Antonio National Park article names the green iguana among the park's reptiles, Wikipedia notes the red-tinged iguanas of western Costa Rica, and the species' habitat — tropical forest, mangroves, riverbanks and trees over water, from sea level to about 1,000 m — matches a coastal lowland forest. Draw it basking on a branch or trunk near water or the forest edge, by day.",
+          "es": "Sí. El artículo del Parque Nacional Manuel Antonio nombra a la iguana verde entre los reptiles del parque, Wikipedia anota las iguanas rojizas del oeste de Costa Rica, y el hábitat de la especie —bosque tropical, manglares, orillas de ríos y árboles sobre el agua, del nivel del mar a unos 1.000 m— coincide con un bosque costero de tierras bajas. Conviene dibujarla asoleándose en una rama o tronco cerca del agua o del borde del bosque, de día."
+        },
+        "status": "approximate (Wikipedia park article and habitat statements); confirmed (presence in Costa Rica, Reptile Database and GBIF)",
+        "sources": [
+          "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park",
+          "https://en.wikipedia.org/wiki/Green_iguana",
+          "https://es.wikipedia.org/wiki/Iguana_iguana",
+          "https://reptile-database.reptarium.cz/species?genus=Iguana&species=iguana",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2459658&country=CR&limit=0"
+        ]
+      },
+      "nationalSymbol": {
+        "isSymbol": false,
+        "year": null,
+        "instrument": null,
+        "note": {
+          "en": "Not among the 15 national symbols listed on the Presidencia de la República's symbols page as fetched on 2026-10-23 (the animal symbols there are the yigüirro, the white-tailed deer and the manatee), and not among the symbols added by law since then that are compiled in this project's research/country.json (sloths 2021, morpho butterfly 2022, hummingbirds 2024).",
+          "es": "No figura entre los 15 símbolos nacionales de la página de símbolos de la Presidencia de la República consultada el 2026-10-23 (los símbolos de fauna allí son el yigüirro, el venado cola blanca y el manatí), ni entre los símbolos añadidos por ley después, recopilados en research/country.json de este proyecto (perezosos 2021, mariposa morpho 2022, colibríes 2024)."
+        },
+        "status": "confirmed",
+        "sources": [
+          "https://www.presidencia.go.cr/simbolos-nacionales/"
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://api.gbif.org/v1/species/match?name=Iguana%20iguana",
+          "title": "GBIF Backbone Taxonomy — species match: Iguana iguana (Linnaeus, 1758)",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "accepted scientific name and authority, family Iguanidae, class Squamata (no order rank given), usageKey 2459658"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/match?name=Iguana%20rhinolopha",
+          "title": "GBIF Backbone Taxonomy — species match: Iguana rhinolopha Wiegmann, 1834",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Iguana rhinolopha Wiegmann, 1834 also ACCEPTED as a separate species in the GBIF Backbone; usageKey 2459663"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/2459658/iucnRedListCategory",
+          "title": "GBIF — IUCN Red List category for Iguana iguana",
+          "publisher": "GBIF (mirror of IUCN Red List)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "IUCN category LEAST_CONCERN (LC), iucnTaxonID 174481, IUCN-checklist usageKey 176738894"
+        },
+        {
+          "url": "https://api.gbif.org/v1/species/176738894/distributions",
+          "title": "GBIF — IUCN distribution record for Iguana iguana (IUCN Red List 2022-2)",
+          "publisher": "GBIF (mirror of IUCN Red List)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "assessment led by Bock, B. (with about 17 co-authors) 2022; DOI 10.2305/IUCN.UK.2022-2.RLTS.T174481A218317281.en"
+        },
+        {
+          "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2459658&country=CR&limit=0",
+          "title": "GBIF occurrence search — Iguana iguana, country=CR",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "8,309 occurrence records in Costa Rica under Iguana iguana (confirms presence)"
+        },
+        {
+          "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2459663&country=CR&limit=0",
+          "title": "GBIF occurrence search — Iguana rhinolopha, country=CR",
+          "publisher": "GBIF",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "8 occurrence records in Costa Rica filed under Iguana rhinolopha"
+        },
+        {
+          "url": "https://reptile-database.reptarium.cz/species?genus=Iguana&species=iguana",
+          "title": "Iguana iguana (Linnaeus, 1758) — The Reptile Database",
+          "publisher": "The Reptile Database (Peter Uetz et al.)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "higher taxa Iguanidae, Iguania, Sauria, Squamata; synonymy incl. Iguana (Hypsilophus) rhinolophus Wiegmann 1834 and Iguana rhinolopha; recent uses of I. rhinolopha; 'rhinolopha: Mexico (Yucatan peninsula), Nicaragua, south to Panama'; Costa Rica listed in the I. iguana distribution; comments on insularis, sanctaluciae, melanoderma (synonymised 2026) and subspecies; English/Spanish/Portuguese common names"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Green_iguana",
+          "title": "Green iguana — Wikipedia",
+          "publisher": "Wikimedia Foundation",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "approximate: authority; subspecies and 2019–2026 taxonomic proposals incl. I. rhinolopha for Central American populations; 1.2–1.7 m, SVL 30–42 cm, male ~4 kg, female 1.2–3 kg; native range and introduced populations; arboreal near water; diet (100+ plants, Spondias mombin); behaviour (15 m falls, swimming, tail autotomy, dewlap, parietal eye); 20–71 eggs, burrows 0.3–2.4 m, hatching 10–15 weeks; LC (2022), CITES II; hunting history; 'gallina de palo', 'garrobo'; red animals of western Costa Rica"
+        },
+        {
+          "url": "https://es.wikipedia.org/wiki/Iguana_iguana",
+          "title": "Iguana iguana — Wikipedia en español",
+          "publisher": "Wikimedia Foundation",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "approximate: Spanish names 'iguana verde', 'iguana común'; up to 2 m, male SVL 30–40 cm; tropical forest and mangroves, pastures, riverbanks, second growth; sea level to ~1,000 m; strictly herbivorous; nesting tunnels, hatching 70–90 days; LC, CITES II; four subspecies; meat and eggs eaten"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park",
+          "title": "Manuel Antonio National Park — Wikipedia",
+          "publisher": "Wikimedia Foundation",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Pacific-coast park south of Quepos (Puntarenas), 1,983 ha, founded 1972; names the 'Panamanian white-faced capuchin monkey', 'green iguana', 'black spiny-tailed iguana', 'Central American squirrel monkey' (IUCN Endangered); does not name the agouti, scarlet macaw or red-eyed tree frog"
+        },
+        {
+          "url": "https://www.presidencia.go.cr/simbolos-nacionales/",
+          "title": "Símbolos Nacionales",
+          "publisher": "Presidencia de la República de Costa Rica",
+          "published": "2023-10-30",
+          "retrieved": "2026-10-23",
+          "supports": "15 national symbols listed (none of the five species of this file); 'En 1977 se decreta el Yigüirro como Ave Nacional debido a su armonioso canto'"
+        }
+      ]
+    }
+  ],
+  "unverified": [
+    {
+      "claim": "Simplified Chinese common names (白面卷尾猴/巴拿马白面卷尾猴, 绯红金刚鹦鹉, 红眼树蛙, 中美洲刺豚鼠, 绿鬣蜥)",
+      "reason": "Supplied from general knowledge; no zh page was fetched within the budget. Recorded with status uncertain."
+    },
+    {
+      "claim": "Costa Rican usage of the Spanish names 'mono carablanca', 'lapa roja', 'rana calzonuda', 'guatusa' and 'gallina de palo'",
+      "reason": "The names appear on the fetched Spanish pages, but none of those pages says which name Costa Ricans use: Spanish Wikipedia attributes 'guatusa' to Ecuador, says 'lapa roja'/'guara roja' are used 'in Central America', and gives no country for the capuchin and frog names; AmphibiaWeb lists 'Rana Calzonudo' (sic). Recorded as approximate."
+    },
+    {
+      "claim": "That the Costa Rican white-faced capuchins are Cebus imitator rather than Cebus capucinus",
+      "reason": "GBIF and the IUCN treat the two as separate species and English Wikipedia gives C. imitator's range as Honduras to Panama, but no fetched page states 'the Costa Rican population is C. imitator' in those words; ADW and Spanish Wikipedia still use C. capucinus for the Costa Rican animals. Recorded as approximate in taxonomyStatus and explained in nomenclature."
+    },
+    {
+      "claim": "Capuchin presence on Costa Rica's Caribbean slope, and its elevation range within Costa Rica",
+      "reason": "The fetched pages name only Pacific-slope parks (Santa Rosa, Carara, Manuel Antonio, Corcovado); ADW's 0–2,100 m is range-wide."
+    },
+    {
+      "claim": "Capuchin body size",
+      "reason": "ADW gives mass 2–4 kg and an unlabelled maximum length of 435 mm; Wikipedia gives head-body 335–453 mm, tail to 551 mm and up to 3.9 kg; Spanish Wikipedia 1.5–4 kg. Recorded as approximate with the upper figures in length_cm/mass_g."
+    },
+    {
+      "claim": "Capuchin on the 5,000-colón banknote since 2011",
+      "reason": "Wikipedia (en and es) only; not checked against the Banco Central de Costa Rica."
+    },
+    {
+      "claim": "Which scarlet macaw subspecies occurs in Costa Rica",
+      "reason": "Spanish Wikipedia gives A. m. macao from Costa Rica southward and A. m. cyanoptera from Mexico to Honduras; English Wikipedia does not assign Costa Rica. No primary source fetched (Cornell Neotropical Birds refused the fetch)."
+    },
+    {
+      "claim": "Costa Rican scarlet macaw population sizes, the Caribbean-slope reintroductions and the 'almost absent on the Caribbean side' statement",
+      "reason": "Only Spanish Wikipedia (Caribbean status, range shrinkage to ~20 % by 1993) and English Wikipedia (Nicoya, Carara, Osa; teak and beach-almond planting) cover Costa Rica; no SINAC, Macaw Recovery Network or peer-reviewed page was fetched within the budget."
+    },
+    {
+      "claim": "Scarlet macaw wingspan",
+      "reason": "No fetched source gives one (ADW, Wikipedia en/es all omit it)."
+    },
+    {
+      "claim": "Scarlet macaw breeding and lifespan figures",
+      "reason": "Sources disagree: ADW clutch 2–4 and incubation 24–25 days vs Wikipedia 2–3 eggs and ~5 weeks vs Spanish Wikipedia 1–4 eggs and ~25 days; fledging 90 days (en) vs 65–75 days (es); ADW's wild lifespan range (up to 33 years) conflicts with its typical 40–50 years. Recorded as ranges with status approximate."
+    },
+    {
+      "claim": "Family placement of Agalychnis callidryas",
+      "reason": "GBIF, Amphibian Species of the World and Wikipedia use Phyllomedusidae; AmphibiaWeb still files it in Hylidae (Phyllomedusinae). Phyllomedusidae used, noted as approximate."
+    },
+    {
+      "claim": "Red-eyed tree frog breeding season",
+      "reason": "AmphibiaWeb: wet season, late May to November with peaks in June and sometimes October; Wikipedia: roughly October to March. AmphibiaWeb's figure is used; the conflict is noted."
+    },
+    {
+      "claim": "Red-eyed tree frog body mass, and its presence in the dry north-western Pacific (Guanacaste) and in Manuel Antonio specifically",
+      "reason": "No fetched source gives a mass. ASW documents the 'Pacific lowlands of southern Costa Rica' and AmphibiaWeb the Caribbean side; the Manuel Antonio National Park article names no amphibians. That Manuel Antonio/Carara fall within the ASW area is our interpretation."
+    },
+    {
+      "claim": "Agouti presence at Manuel Antonio, Carara or Corcovado by name",
+      "reason": "No fetched page names a Costa Rican park for Dasyprocta punctata; Pacific-side presence rests on 2,897 GBIF records from Puntarenas province, and the Caribbean side on a passing Wikipedia mention of the 'Atlantic slope of Costa Rica and Panama'."
+    },
+    {
+      "claim": "Agouti size, gestation and lifespan",
+      "reason": "ADW: 415–620 mm, 1.3–4.0 kg, gestation 104–120 days (table 90–126), litters ~2, wild lifespan ~10 years; English Wikipedia 3–4.2 kg; Spanish Wikipedia 42–62 cm, 2–3 kg, gestation 93–104 days, 1–3 young, lifespan just over 13 years. ADW figures used; recorded as approximate where they conflict."
+    },
+    {
+      "claim": "Assignment of the Costa Rican green iguana population to Iguana iguana versus Iguana rhinolopha",
+      "reason": "GBIF accepts both names and recent papers use I. rhinolopha for Central America, but the Reptile Database keeps rhinolopha as a synonym and lists Costa Rica under I. iguana; no fetched source assigns Costa Rica explicitly. I. iguana used (8,309 vs 8 GBIF records in Costa Rica)."
+    },
+    {
+      "claim": "Full IUCN assessor list for Iguana iguana (2022)",
+      "reason": "The fetch summary gave only 'Bock, B. et al.' with about 17 co-authors; the full citation string exceeded the tool's quotation limit and was not re-fetched."
+    },
+    {
+      "claim": "Green iguana habitat, diet, behaviour, reproduction and size details",
+      "reason": "All rest on Wikipedia (en/es), as the Reptile Database page gives taxonomy and distribution only and no ADW page was fetched for the species within the budget; Spanish Wikipedia's 'más de 15 kg' and its 70–90-day hatching differ from English Wikipedia (up to ~8–9 kg; 10–15 weeks). Recorded as approximate."
+    },
+    {
+      "claim": "Green iguana presence on Costa Rica's Caribbean slope and elevation within Costa Rica",
+      "reason": "Fetched sources mention only 'western Costa Rica' and Manuel Antonio; the ~1,000 m ceiling is range-wide (Spanish Wikipedia)."
+    },
+    {
+      "claim": "Common names of related species (Colombian white-faced capuchin, Taylor's leaf frog, brown agouti, 'garrobo' for Ctenosaura similis) and the scientific name Ctenosaura similis",
+      "reason": "Given as descriptive names or from general knowledge; the Manuel Antonio article names only 'black spiny-tailed iguana' and the other pages give no common names for these taxa."
+    },
+    {
+      "claim": "National-symbol status after 2023",
+      "reason": "Only the Presidencia page (15 symbols, published 2023-10-30) was fetched; the later law-declared symbols are cited from this project's research/country.json and were not re-fetched. None of the lists includes these five species."
+    },
+    {
+      "claim": "IUCN Red List pages themselves",
+      "reason": "iucnredlist.org blocks automated fetching; categories, years, assessors and DOIs were taken from GBIF's mirror of the IUCN assessments and the DOI strings are recorded as iucn.url."
+    }
+  ]
+}

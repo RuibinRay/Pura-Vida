@@ -196,7 +196,7 @@ function flatShape(rings: [number, number][][], y: number) {
   return geoms;
 }
 
-export function NeighborPlates({ data }: { data: MapData }) {
+export function NeighborPlates({ data, color = '#d3c9ad', water = '#2d7fae' }: { data: MapData; color?: string; water?: string }) {
   const plates = useMemo(() => data.neighbors.map((n) => ({ id: n.id, geoms: flatShape(n.rings, PLINTH * 0.55) })), [data]);
   const lakes = useMemo(() => data.lakes.map((r) => flatShape([r], PLINTH * 0.55 + 0.06)[0]), [data]);
   const rivers = useMemo(() => data.rivers.map((r) => r.map(([lon, lat]) => { const [x, z] = project(lon, lat); return [x, PLINTH * 0.55 + 0.1, z] as [number, number, number]; })), [data]);
@@ -206,18 +206,18 @@ export function NeighborPlates({ data }: { data: MapData }) {
         <group key={p.id}>
           {p.geoms.map((g, i) => (
             <mesh key={i} geometry={g} receiveShadow>
-              <meshStandardMaterial color="#d3c9ad" roughness={1} side={THREE.DoubleSide} />
+              <meshStandardMaterial color={color} roughness={1} side={THREE.DoubleSide} />
             </mesh>
           ))}
         </group>
       ))}
       {lakes.map((g, i) => (
         <mesh key={'l' + i} geometry={g}>
-          <meshStandardMaterial color="#2d7fae" roughness={0.5} side={THREE.DoubleSide} />
+          <meshStandardMaterial color={water} roughness={0.5} side={THREE.DoubleSide} />
         </mesh>
       ))}
       {rivers.map((pts, i) => (
-        <Line key={'r' + i} points={pts} color="#2d7fae" lineWidth={1} transparent opacity={0.7} />
+        <Line key={'r' + i} points={pts} color={water} lineWidth={1} transparent opacity={0.7} />
       ))}
     </group>
   );

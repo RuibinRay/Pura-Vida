@@ -120,8 +120,8 @@ export function MapStage({ focus, compact }: { focus?: ProvinceId; compact?: boo
         </details>
         <button type="button" className="btn btn--ghost btn--sm" onClick={() => reset()} disabled={!selected && !activeLandmark}><Icon name="globe" /> {t('explore.reset')}</button>
         {effectiveView === '3d' && (
-          <button type="button" className="btn btn--ghost btn--sm" aria-pressed={paused} onClick={() => setPaused(!paused)} title={paused ? t('home.play') : t('home.pause')}>
-            <Icon name={paused ? 'play' : 'pause'} /> <span className="visually-hidden">{paused ? t('home.play') : t('home.pause')}</span>
+          <button type="button" className="btn btn--ghost btn--sm" aria-pressed={paused} onClick={() => setPaused(!paused)} title={paused ? t('explore.play') : t('explore.pause')}>
+            <Icon name={paused ? 'play' : 'pause'} /> <span className="visually-hidden">{paused ? t('explore.play') : t('explore.pause')}</span>
           </button>
         )}
       </div>

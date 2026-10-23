@@ -10,6 +10,7 @@ const ExplorePage = lazy(() => import('./pages/ExplorePage').then((m) => ({ defa
 const ProvincesPage = lazy(() => import('./pages/ProvincesPage').then((m) => ({ default: m.ProvincesPage })));
 const ProvincePage = lazy(() => import('./pages/ProvincePage').then((m) => ({ default: m.ProvincePage })));
 const WildlifePage = lazy(() => import('./pages/WildlifePage').then((m) => ({ default: m.WildlifePage })));
+const FoodPage = lazy(() => import('./pages/FoodPage').then((m) => ({ default: m.FoodPage })));
 const MyCostaRicaPage = lazy(() => import('./pages/MyCostaRicaPage').then((m) => ({ default: m.MyCostaRicaPage })));
 const SourcesPage = lazy(() => import('./pages/SourcesPage').then((m) => ({ default: m.SourcesPage })));
 
@@ -26,6 +27,7 @@ const router = createHashRouter([
       { path: 'provinces', element: wrap(<ProvincesPage />) },
       { path: 'provinces/:id', element: wrap(<ProvincePage />) },
       { path: 'wildlife', element: wrap(<WildlifePage />) },
+      { path: 'food', element: wrap(<FoodPage />) },
       { path: 'my-costa-rica', element: wrap(<MyCostaRicaPage />) },
       { path: 'sources', element: wrap(<SourcesPage />) },
       ...SECTIONS.filter((s) => s.ready !== true).map((s) => ({ path: s.path.slice(1), element: <ComingPage section={s} /> })),

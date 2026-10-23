@@ -1,6 +1,6 @@
 # World architecture
 
-How the site is put together, for the next session. Last updated 2026-10-23 (Milestone 1).
+How the site is put together, for the next session. Last updated 2026-10-23 (Milestone 1 + the homepage journey).
 
 ## Stack and shape
 
@@ -10,13 +10,13 @@ How the site is put together, for the next session. Last updated 2026-10-23 (Mil
 
 ## Routes
 
-`/` home · `/explore` map · `/provinces` and `/provinces/:id` · `/wildlife` · `/my-costa-rica` · `/sources`. The routes `/flora /nature /history /culture /symbols /conservation /adventure` exist and show an honest "being written, milestone N" page; they are listed in the contents as *in preparation* and are not nav tabs.
+`/` home (the six-chapter journey) · `/explore` map · `/provinces` and `/provinces/:id` · `/wildlife` (`?focus=<species id>`) · `/food` (`?focus=<dish id>`) · `/my-costa-rica` · `/sources`. The routes `/flora /nature /history /culture /symbols /conservation /adventure` exist and show an honest "being written, milestone N" page; they are listed in the contents as *in preparation* and are not nav tabs.
 
 ## The three state stores
 
-- `settings` — language, motion (auto/calm/full), quality (auto/full/lite/still/text), time-of-day mode, intro seen, paused. Persisted under `puravida:settings`.
+- `settings` — language, motion (auto/calm/full), quality (auto/full/lite/still/text), paused. Persisted under `puravida:settings`.
 - `map` — selected/hovered province, active landmark, layers, 2D/3D view, camera goal (`{kind: country|province|point, seq}`); the 3D rig and the 2D SVG both react to the same goal.
-- `passport` — discoveries (province stamps). Persisted under `puravida:passport`.
+- `passport` — discoveries: province stamps (opening a chapter), species and dish stamps (opening an entry from the journey). Persisted under `puravida:passport`.
 
 All storage access goes through `src/save/storage.ts` (try/catch, never load-bearing).
 
@@ -42,15 +42,16 @@ Measured: the mesh areas match the official province areas within 3 % (total 51,
 - `CameraRig` — OrbitControls with limits, target clamped to the country, a 1.15 s eased glide to the goal, arrow keys/+/−/Home on the stage element, a zoom-level bucket (`far/mid/near`) that controls label density.
 - `Map2D` — the same topology as an SVG with the same state; viewBox animates to the goal; provinces are focusable buttons; label sizes are computed from the measured pixel width.
 
-## Home scene (src/scenes/home)
+## The homepage journey (src/journey)
 
-- `FrameDriver` keeps a shared mutable `frame` (elapsed, day state, wind) so dozens of components read one object per frame.
-- Vegetation is instanced (`CanopyTrees`, `Palms`, `Understory` planes with canvas-drawn leaf textures) with a wind vertex-shader patch (`shared/wind.ts`).
-- Creatures are procedural meshes: keel-billed toucan on a branch (hover: head turn, bill opens), three-toed sloth (hover: looks at you), morphos on Lissajous paths (two hero morphos are pointer targets → `/wildlife`), distant birds.
-- The vista: a ground mesh that drops to a valley and rises to hills on the right, three ridge silhouettes with aerial perspective, a clickable volcano (→ `/explore`) with a cloud ring, a sea plane with a sun glint, a sky dome with sun glow and stars.
-- `CameraPath` — the 13-second walk in along a Catmull-Rom curve (calm mode: 1.2 s), pointer parallax, touch drag, four tour stops. `?intro=0.3` freezes the walk for inspection.
-- `daycycle.ts` — phase 0..1 → sky/sun/ambient colours, sun direction (rises behind the viewer, sets over the Pacific), night factor (stars, fireflies).
+One scroll system. `driver.ts` keeps a mutable `journey` object (t = chapter + progress, 0…6; one progress per chapter; smoothed pointer offset) and writes `--jt`, `--p1…--p6`, `--px/--py`, `--calm` and `data-chapter` on the `.journey` root each frame the scroll position changed. Six empty spacers (`.jspace--N`, 185–260 vh each) give the scroll length; a `position: sticky` stage holds everything the visitor sees:
 
+- **Visuals** — `HeroPlate` (chapters 1–2: the opening plate as 2.5D layers: base, near-left, near-right, mist, clouds, light shafts, an SVG morpho on a motion path; hotspots on the toucans, sloth and macaws), `HomeMap` (chapter 3: the relief mesh in its own Canvas with a scroll-driven camera, a dark sea, dimmed neighbours, DOM labels through the Projector; hover and click on provinces; the dive-then-navigate on click; `Map2D` replaces it below the `lite` tier), `WildlifePlate` (chapter 4: the illustrated plate with five hotspots that open `SpeciesEntry` in a Sheet), `FlavorsTable` (chapter 5: an SVG table with landscape and portrait layouts, five SVG dishes, hotspots that open `FoodEntry`), `ClosingPlate` (chapter 6: the poster with a sunset grade).
+- **Copy** — `.jchapter--N` blocks pinned in the stage (not scrolling sections): they enter, hold and leave as pure functions of `--pN`, so they are never scrolled off mid-chapter and scrolling back replays them.
+- **CSS does the motion.** Every transform and opacity is a `calc()` of the custom properties (see `src/styles/journey.css`); `--m = 1 − --calm` multiplies every displacement, so reduced motion keeps only the crossfades. Time-based animations (mist drift, flapping, hotspot rings) are declared only under `prefers-reduced-motion: no-preference`.
+- **Loading** — the hero base is preloaded from `index.html`; the three.js chunk is imported when the visitor approaches chapter 3 (`reach > 1.2`); later plates mount as the visitor approaches them.
+
+Plates come from `tools/hero_assets.py` (responsive WebP sets, near-frame cut-outs, mist textures, the social card) and are described by `src/journey/plates.generated.json`.
 ## Content (src/content)
 
-`research/*.json` (agents' sourced output, with fetch logs) → `tools/build_content.mjs` → `src/content/generated/*.json`. The builder normalises coordinates to lon/lat, validates statuses, drops anything outside Costa Rica, merges the species' symbol status with the symbols law list, and writes one source registry with "used for" tags. The province chapter page renders only fields that exist; nothing is padded.
+`research/*.json` (agents' sourced output, with fetch logs: provinces, country, species, species-coast, foods, nature-facts) → `tools/build_content.mjs` → `src/content/generated/*.json` (provinces, landmarks, species, foods, country facts, sources). The builder normalises coordinates to lon/lat, validates statuses (a composite status such as `confirmed (en); uncertain (zh)` keeps its first word), drops anything outside Costa Rica, merges the species' symbol status with the symbols law list, carries each coastal species' habitat-fit verdict, and writes one source registry with "used for" tags. Pages render only fields that exist; nothing is padded.

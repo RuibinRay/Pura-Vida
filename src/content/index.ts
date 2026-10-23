@@ -1,7 +1,7 @@
 // Educational content lives in src/content/generated/*.json, produced by tools/build_content.mjs from the
 // sourced research in research/*.json. Rendering components only read these typed structures.
 import { useEffect, useState } from 'react';
-import type { Landmark, ProvinceContent, Species, Source, Status } from './types';
+import type { Food, Landmark, ProvinceContent, Species, Source, Status } from './types';
 import type { Localized } from '../i18n';
 
 export interface CountryFact {
@@ -38,6 +38,7 @@ export interface Content {
   provinces: ProvinceContent[];
   landmarks: Landmark[];
   species: Species[];
+  foods: Food[];
   country: CountryFact[];
   unesco: UnescoSite[];
   sources: SourceEntry[];
@@ -54,13 +55,15 @@ export function loadContent(): Promise<Content> {
       import('./generated/species.json'),
       import('./generated/country.json'),
       import('./generated/sources.json'),
-    ]).then(([p, l, s, c, src]) => {
+      import('./generated/foods.json'),
+    ]).then(([p, l, s, c, src, fd]) => {
       const prov = p.default as unknown as { provinces: ProvinceContent[] };
       const lm = l.default as unknown as { landmarks: Landmark[] };
       const sp = s.default as unknown as { species: Species[]; unesco: UnescoSite[] };
       const co = c.default as unknown as { facts: CountryFact[] };
       const so = src.default as unknown as { sources: SourceEntry[]; unverified: Content['unverified']; retrieved: string };
-      return { provinces: prov.provinces, landmarks: lm.landmarks, species: sp.species, unesco: sp.unesco, country: co.facts, sources: so.sources, unverified: so.unverified, retrieved: so.retrieved };
+      const fo = fd.default as unknown as { foods: Food[] };
+      return { provinces: prov.provinces, landmarks: lm.landmarks, species: sp.species, foods: fo.foods, unesco: sp.unesco, country: co.facts, sources: so.sources, unverified: so.unverified, retrieved: so.retrieved };
     });
   }
   return promise;

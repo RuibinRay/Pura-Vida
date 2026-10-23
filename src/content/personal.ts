@@ -13,7 +13,17 @@ export interface PersonalEntry {
   text: Localized;
 }
 
+export interface PersonalLinks {
+  /** the author's own site (public) */
+  website?: string;
+  /** the repository of this site */
+  github?: string;
+  /** a contact address; left empty until the author chooses to publish one */
+  email?: string;
+}
+
 export const PERSONAL = {
+  links: { website: 'https://ruibinray.github.io', github: 'https://github.com/RuibinRay/Pura-Vida', email: '' } as PersonalLinks,
   introduction: { en: '', es: '', zh: '' } as Localized,
   photos: [] as PersonalPhoto[],
   favourites: [] as PersonalEntry[],

@@ -32,7 +32,7 @@ function registerSource(s, usedFor) {
   return { url: key, title: entry.title, publisher: entry.publisher, published: entry.published, retrieved: entry.retrieved, supports: s.supports };
 }
 const sources = (list, usedFor) => (Array.isArray(list) ? list.map((s) => registerSource(s, usedFor)).filter(Boolean) : []);
-const status = (s, where) => { if (!STATUSES.has(s)) { warnings.push(`${where}: status "${s}" → uncertain`); return 'uncertain'; } return s; };
+const status = (s, where) => { const first = typeof s === 'string' ? s.trim().split(/[ (;,]/)[0] : s; if (!STATUSES.has(first)) { warnings.push(`${where}: status "${s}" → uncertain`); return 'uncertain'; } return first; };
 const text = (t, where) => { if (!t || typeof t.en !== 'string' || !t.en.trim()) { warnings.push(`${where}: missing English text`); return null; } return { en: t.en.trim(), es: (t.es || '').trim() || undefined, zh: (t.zh || '').trim() || undefined }; };
 const coords = (c, where, allowCoco = false) => {
   if (!Array.isArray(c) || c.length !== 2 || typeof c[0] !== 'number' || typeof c[1] !== 'number') { warnings.push(`${where}: no coordinates`); return null; }
@@ -139,7 +139,7 @@ for (const l of landmarks.sort((a, b) => (a.id.startsWith('peak-') || a.id.start
 
 // ---- species + unesco ---------------------------------------------------------------------------
 // The species research refers to sources by URL inside each block; resolve them against the species' own list.
-const sp = readJSON('species.json');
+const speciesFiles = ['species.json', 'species-coast.json'];
 const species = [];
 const unesco = [];
 function sizeText(sz) {
@@ -147,16 +147,21 @@ function sizeText(sz) {
   const range = (v, unit) => (Array.isArray(v) ? `${v[0]}–${v[1]} ${unit}` : typeof v === 'number' ? `about ${v} ${unit}` : null);
   const rangeEs = (v, unit) => (Array.isArray(v) ? `${v[0]}–${v[1]} ${unit}` : typeof v === 'number' ? `unos ${v} ${unit}` : null);
   const en = [], es = [];
-  if (sz.length_cm) { en.push(`${range(sz.length_cm, 'cm')} long`); es.push(`${rangeEs(sz.length_cm, 'cm')} de largo`); }
+  const len = Array.isArray(sz.length_cm_range) ? sz.length_cm_range : sz.length_cm;
+  const mass = Array.isArray(sz.mass_g_range) ? sz.mass_g_range : sz.mass_g;
+  if (len) { en.push(`${range(len, 'cm')} long`); es.push(`${rangeEs(len, 'cm')} de largo`); }
+  if (sz.tail_cm) { en.push(`tail ${range(sz.tail_cm, 'cm')}`); es.push(`cola de ${rangeEs(sz.tail_cm, 'cm')}`); }
   if (sz.wingspan_cm) { en.push(`wingspan ${range(sz.wingspan_cm, 'cm')}`); es.push(`envergadura de ${rangeEs(sz.wingspan_cm, 'cm')}`); }
-  if (sz.mass_g) { en.push(`${range(sz.mass_g, 'g')}`); es.push(`${rangeEs(sz.mass_g, 'g')}`); }
+  if (mass) { const kg = Array.isArray(mass) ? mass[1] >= 1000 : mass >= 1000; const v = Array.isArray(mass) ? mass : [mass, mass]; if (kg) { const a = v[0] / 1000, b = v[1] / 1000; en.push(a === b ? `about ${a} kg` : `${a}–${b} kg`); es.push(a === b ? `unos ${a} kg` : `${a}–${b} kg`); } else { en.push(`${range(mass, 'g')}`); es.push(`${rangeEs(mass, 'g')}`); } }
   if (sz.mass_kg_range) { en.push(`${sz.mass_kg_range[0]}–${sz.mass_kg_range[1]} kg`); es.push(`${sz.mass_kg_range[0]}–${sz.mass_kg_range[1]} kg`); }
   if (sz.bill_cm) { en.push(`bill ${range(sz.bill_cm, 'cm')}`); es.push(`pico de ${rangeEs(sz.bill_cm, 'cm')}`); }
   if (!en.length) return null;
   return { en: en.join(', '), es: es.join(', ') };
 }
-if (sp) {
-  for (const u of sp.unverified || []) unverified.push({ ...u, from: 'species.json' });
+for (const spFile of speciesFiles) {
+  const sp = readJSON(spFile);
+  if (!sp) { errors.push('missing ' + spFile); continue; }
+  for (const u of sp.unverified || []) unverified.push({ ...u, from: spFile });
   for (const s of sp.species || []) {
     if (!s.scientific) continue;
     const byUrl = new Map((s.sources || []).map((x) => [x.url, x]));
@@ -185,6 +190,7 @@ if (sp) {
       behaviour: loc(s.behaviour),
       facts: (s.facts || []).filter((f) => f && f.en).map((f) => ({ en: f.en, es: f.es || undefined, status: f.status ? status(f.status, 'species.' + s.id) : undefined, sources: resolve(f.sources, used) })),
       nationalSymbol: symbol,
+      habitatFit: s.habitatFit && typeof s.habitatFit.coastalLowlandForestPacific === 'boolean' ? { pacificLowland: s.habitatFit.coastalLowlandForestPacific, note: loc(s.habitatFit.note), status: s.habitatFit.status ? status(String(s.habitatFit.status).split(' ')[0], 'species.fit.' + s.id) : undefined } : undefined,
       sources: all,
     });
   }
@@ -192,7 +198,47 @@ if (sp) {
     const c = coords(u.coords, 'unesco ' + u.id, true);
     unesco.push({ id: u.id, name: u.name, inscribed: u.inscribed, criteria: u.criteria, type: u.type, provinces: u.provinces, coords: c ? [c.lat, c.lon] : undefined, text: u.text && u.text.en ? u.text : undefined, url: u.url, sources: sources(u.sources, 'UNESCO · ' + (u.name?.en || u.id)) });
   }
-} else errors.push('missing species.json');
+}
+
+// ---- foods (research/foods.json) --------------------------------------------------------------
+const foodsIn = readJSON('foods.json');
+const foods = [];
+if (foodsIn) {
+  for (const u of foodsIn.unverified || []) unverified.push({ ...u, from: 'foods.json' });
+  for (const f of foodsIn.foods || []) {
+    if (!f.id || !f.name?.en) { warnings.push('foods: record without id/name skipped'); continue; }
+    const byUrl = new Map((f.sources || []).map((x) => [x.url, x]));
+    const used = 'food · ' + f.name.en;
+    const resolve = (refs) => sources((refs || []).map((r) => (typeof r === 'string' ? byUrl.get(r) || { url: r, title: r, retrieved: '2026-10-23' } : r)), used);
+    const blk = (b, key) => { if (!b || !b.en) return undefined; return { en: b.en.trim(), es: (b.es || '').trim() || undefined, zh: (b.zh || '').trim() || undefined, status: b.status ? status(String(b.status).split(/[ (]/)[0], `food.${f.id}.${key}`) : undefined, sources: resolve(b.sources) }; };
+    foods.push({
+      id: f.id,
+      name: { en: f.name.en, es: f.name.es || undefined, zh: f.name.zh || undefined },
+      kind: f.kind && f.kind.en ? { en: f.kind.en, es: f.kind.es || undefined, zh: f.kind.zh || undefined } : undefined,
+      region: blk(f.region, 'region'),
+      description: blk(f.description, 'description'),
+      ingredients: (f.ingredients || []).filter((i) => i && i.en).map((i) => ({ en: i.en, es: i.es || undefined, optional: !!i.optional })),
+      ingredientsNote: blk(f.ingredientsNote, 'ingredientsNote'),
+      preparation: blk(f.preparation, 'preparation'),
+      culture: blk(f.culture, 'culture'),
+      history: blk(f.history, 'history'),
+      heritage: f.heritage ? { declared: typeof f.heritage.declared === 'boolean' ? f.heritage.declared : null, instrument: f.heritage.instrument || undefined, year: f.heritage.year ?? null, note: f.heritage.note && f.heritage.note.en ? f.heritage.note : undefined, status: f.heritage.status ? status(String(f.heritage.status).split(/[ (]/)[0], `food.${f.id}.heritage`) : undefined, sources: resolve(f.heritage.sources) } : undefined,
+      facts: (f.facts || []).filter((x) => x && x.en).map((x) => ({ en: x.en, es: x.es || undefined, status: x.status ? status(String(x.status).split(/[ (]/)[0], `food.${f.id}.fact`) : undefined, sources: resolve(x.sources) })),
+      sources: sources(f.sources, used),
+    });
+  }
+} else warnings.push('missing foods.json (the Flavors chapter will be empty)');
+
+// ---- nature facts (research/nature-facts.json) → merged into the country facts ---------------------
+const nature = readJSON('nature-facts.json');
+if (nature) {
+  for (const u of nature.unverified || []) unverified.push({ ...u, from: 'nature-facts.json' });
+  for (const [key, f] of Object.entries(nature.facts || {})) {
+    if (!f || f.value === undefined || f.value === null) continue;
+    if (facts.some((x) => x.key === key)) { warnings.push(`nature-facts: ${key} already in country.json — kept the country record`); continue; }
+    facts.push({ key, label: f.label || { en: key }, value: f.value, unit: f.unit || undefined, year: f.year ?? null, status: status(String(f.status).split(/[ (]/)[0], 'nature.' + key), text: f.text && f.text.en ? f.text : undefined, sources: sources(f.sources, 'nature · ' + key) });
+  }
+} else warnings.push('missing nature-facts.json (chapter 2 shows only the country facts)');
 
 // ---- write --------------------------------------------------------------------------------------
 const retrieved = '2026-10-23';
@@ -201,8 +247,9 @@ fs.writeFileSync(path.join(OUT, 'provinces.json'), JSON.stringify({ retrieved, p
 fs.writeFileSync(path.join(OUT, 'landmarks.json'), JSON.stringify({ retrieved, landmarks: dedupedLandmarks }, null, 0));
 fs.writeFileSync(path.join(OUT, 'species.json'), JSON.stringify({ retrieved, species, unesco }, null, 0));
 fs.writeFileSync(path.join(OUT, 'country.json'), JSON.stringify({ retrieved, facts, symbols: country?.symbols || [], conservationAreas: country?.conservationAreas || [] }, null, 0));
+fs.writeFileSync(path.join(OUT, 'foods.json'), JSON.stringify({ retrieved, foods }, null, 0));
 fs.writeFileSync(path.join(OUT, 'sources.json'), JSON.stringify({ retrieved, sources: registry, unverified }, null, 0));
 
-console.log(`provinces ${provinces.length}/7 · landmarks ${dedupedLandmarks.length} (peaks ${peaks.length}) · species ${species.length} · unesco ${unesco.length} · facts ${facts.length} · sources ${registry.length} · unverified ${unverified.length}`);
+console.log(`provinces ${provinces.length}/7 · landmarks ${dedupedLandmarks.length} (peaks ${peaks.length}) · species ${species.length} · foods ${foods.length} · unesco ${unesco.length} · facts ${facts.length} · sources ${registry.length} · unverified ${unverified.length}`);
 if (warnings.length) console.log('warnings:\n - ' + warnings.join('\n - '));
 if (errors.length) { console.error('errors:\n - ' + errors.join('\n - ')); process.exitCode = 1; }

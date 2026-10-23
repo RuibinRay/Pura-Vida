@@ -49,6 +49,43 @@ describe('generated content', () => {
     }
   });
 
+  it('has the nine species of the journey, the five of the coastal plate fitting its Pacific habitat', () => {
+    const ids = species.map((s) => (s as { id?: string }).id);
+    for (const id of ['keel-billed-toucan', 'brown-throated-three-toed-sloth', 'blue-morpho', 'white-faced-capuchin', 'scarlet-macaw', 'red-eyed-tree-frog', 'central-american-agouti', 'green-iguana']) expect(ids, id).toContain(id);
+    for (const s of species as { id?: string; habitatFit?: { pacificLowland: boolean } }[]) {
+      if (['white-faced-capuchin', 'scarlet-macaw', 'red-eyed-tree-frog', 'central-american-agouti', 'green-iguana', 'brown-throated-three-toed-sloth'].includes(s.id || '') && s.habitatFit) expect(s.habitatFit.pacificLowland, s.id).toBe(true);
+    }
+  });
+
+  it('has the five dishes of the table, each with a sourced description and ingredients', () => {
+    const foods = gen('foods.json').foods as { id: string; name: { en: string; es?: string }; description?: { en: string; sources: unknown[] }; ingredients?: unknown[]; sources?: unknown[]; heritage?: { declared: boolean | null } }[];
+    expect(foods.map((f) => f.id).sort()).toEqual(['casado', 'gallo-pinto', 'olla-de-carne', 'rice-and-beans', 'tamal']);
+    for (const f of foods) {
+      expect(f.name.en.length, f.id).toBeGreaterThan(2);
+      expect(f.name.es?.length, f.id).toBeGreaterThan(2);
+      expect(f.description?.en.length, f.id).toBeGreaterThan(60);
+      expect(f.description?.sources.every(isSource), f.id).toBe(true);
+      expect((f.ingredients ?? []).length, f.id).toBeGreaterThanOrEqual(5);
+      expect((f.sources ?? []).length, f.id).toBeGreaterThan(3);
+      // no dish is claimed as declared heritage unless a source says so (none does today)
+      expect(f.heritage?.declared, f.id).not.toBe(true);
+    }
+  });
+
+  it('has the chapter-2 facts with sources and plausible values', () => {
+    const facts = gen('country.json').facts as { key: string; value: unknown; status: string; sources: unknown[] }[];
+    const by = (k: string) => facts.find((f) => f.key === k);
+    expect(by('area')?.value).toBeGreaterThan(51000);
+    expect(by('biodiversityShare')?.value).toBeGreaterThanOrEqual(4);
+    expect(by('biodiversityShare')?.value).toBeLessThanOrEqual(7);
+    expect(by('biodiversityShare')?.status).not.toBe('confirmed'); // a repeated estimate, never a measurement
+    expect(by('birdSpecies')?.value).toBeGreaterThan(850);
+    expect(by('protectedTerritory')?.value).toBeGreaterThan(20);
+    expect(by('forestCover')?.value).toBeGreaterThan(50);
+    expect(by('volcanoes')?.value).toBe(5);
+    for (const k of ['area', 'biodiversityShare', 'birdSpecies', 'protectedTerritory', 'forestCover', 'coastlines', 'volcanoes']) expect((by(k)?.sources ?? []).every(isSource), k).toBe(true);
+  });
+
   it('keeps a source registry where every entry has a URL and a retrieval date', () => {
     expect(sources.length).toBeGreaterThan(50);
     for (const s of sources) { expect(isSource(s)).toBe(true); expect(s.usedFor.length).toBeGreaterThan(0); }

@@ -2,6 +2,31 @@
 
 What was reviewed, what was wrong, what changed. Newest first. Only things that were actually checked (screenshot, test, measurement) are recorded as fixed.
 
+## 2026-10-23 — Homepage journey (the "big update")
+
+### Reviewed and changed
+- **The homepage was a hero plus a table of contents** → rebuilt as a six-chapter scroll journey over one sticky stage (`docs/HOMEPAGE_REDESIGN.md` has the audit and the direction). Scroll position is the only clock, so every frame is reachable backwards.
+- **The procedural forest lost to the owner's photographs** → the opening is now the owner's plate, upscaled 2× with EDSR (crisper fronds and moss than bicubic in a side-by-side) and cut into a base plus two near-frame layers by a saturation × contrast × spatial-prior mask (a MiDaS depth map was tried first and misread the composite: it put the volcano nearest). The layers part and scale as the visitor scrolls; mist and clouds drift; the animals answer the pointer.
+- **The title baked into the poster could not be removed cleanly** (Telea and shift-map inpainting both left ghosts; frequency-selective reconstruction too) → the poster became the end card and the social image, where its title is a bookend rather than a repetition.
+- **Chapter copy as scrolling sections scrolled off mid-chapter** (a sticky panel can only hold for its parent's height minus its own) → the copy blocks are pinned in the stage and enter/hold/leave as functions of the chapter's progress.
+- **The explore page's lively ocean read as blue noise behind the dark home map** → a still dark sea, dimmed neighbour plates, fog tied to the camera distance.
+- **The map sat under the chapter copy** → the camera target shifts left on desktop and up on portrait; distance scales with the aspect ratio.
+- **The wildlife copy covered the sloth and the capuchin** → centred under the opening of the path; on phones the copy sits at the top so the animals stay reachable.
+- **The 16:9 table lost three dishes in portrait** → a 9:16 layout with the dishes stacked, chosen by `matchMedia`.
+- **Phone overflow of 42 px** → the fact tiles were wider than their column; `.journey { overflow-x: clip }` (clip, not hidden, so the sticky stage keeps working) and tighter tiles.
+- **A class clash** — the journey's `.chapter__text` restyled the provinces page's rows (axe caught the contrast; `pointer-events: none` would have killed their links) → every journey class is namespaced (`jcopy`, `jchapter`, `jspace`).
+- **axe:** `label-content-name-mismatch` on dish hotspots (aria-label without the visible kind) → the visible label is the name; index-tab contrast over the WebGL canvas → tabs fully opaque on the home; IUCN tags darkened.
+- **Content:** nine species (five new, each with a Pacific-lowland habitat verdict so the plate shows no animal out of place), five dishes, fifteen nature facts — all with status and sources; three new tests on them.
+- **Every route was downloading the three.js chunk** (251 KB gz) — Lighthouse's request list for /sources showed it, and `index.html` carried a `modulepreload` for it: the `advancedChunks` group for three was listed before the react group and had captured React's JSX runtime, so every page depended on the three chunk. The Milestone-1 claim that the chunk "loads only on the home and map pages" was therefore wrong; it is true now (react group first, three group second; the preload list no longer includes it).
+- **The hero image preload in `index.html` slowed every other route** in the throttled lab (it competed with the text fonts and moved LCP) → removed; the home's own `fetchPriority="high"` carries the hero. The two text fonts are preloaded instead and self-hosted, which took the font-swap layout shift to 0.
+
+### Known weaknesses carried forward
+- Lab-only verification: no real-GPU frame rate, no physical touch, no screen reader session.
+- The near-frame masks are heuristic; a few leaf tips at the seam belong to the wrong layer and double faintly at full parallax.
+- The plates were supplied without a stated licence or origin; the credits say so.
+- The map chapter loads the three.js chunk (256 KB gz) when the visitor approaches it; on slow connections the rise can start before the mesh is ready (the dark stage hides it, but it is a wait).
+- Chinese names of the five new species and the five dishes are transliterations or descriptive names flagged uncertain in the research.
+
 ## 2026-10-23 — Milestone 1 build session
 
 ### Fixed after review

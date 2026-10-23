@@ -4,26 +4,21 @@ import type { Lang } from '../i18n';
 
 export type MotionPref = 'auto' | 'calm' | 'full';
 export type QualityPref = 'auto' | 'full' | 'lite' | 'still' | 'text';
-export type TimeMode = 'auto' | 'morning' | 'afternoon' | 'sunset' | 'night' | 'costaRica';
 
 export interface SettingsState {
   lang: Lang;
   motion: MotionPref;
   quality: QualityPref;
   sound: boolean;
-  timeMode: TimeMode;
-  introSeen: boolean;
   paused: boolean;
   setLang: (lang: Lang) => void;
   setMotion: (m: MotionPref) => void;
   setQuality: (q: QualityPref) => void;
   setSound: (on: boolean) => void;
-  setTimeMode: (m: TimeMode) => void;
-  setIntroSeen: (seen: boolean) => void;
   setPaused: (p: boolean) => void;
 }
 
-const defaults = { lang: 'en' as Lang, motion: 'auto' as MotionPref, quality: 'auto' as QualityPref, sound: false, timeMode: 'auto' as TimeMode, introSeen: false, paused: false };
+const defaults = { lang: 'en' as Lang, motion: 'auto' as MotionPref, quality: 'auto' as QualityPref, sound: false, paused: false };
 const persisted = loadJSON('settings', defaults);
 
 export const useSettings = create<SettingsState>((set) => ({
@@ -33,13 +28,11 @@ export const useSettings = create<SettingsState>((set) => ({
   setMotion: (motion) => set({ motion }),
   setQuality: (quality) => set({ quality }),
   setSound: (sound) => set({ sound }),
-  setTimeMode: (timeMode) => set({ timeMode }),
-  setIntroSeen: (introSeen) => set({ introSeen }),
   setPaused: (paused) => set({ paused }),
 }));
 
 useSettings.subscribe((s) => {
-  saveJSON('settings', { lang: s.lang, motion: s.motion, quality: s.quality, timeMode: s.timeMode, introSeen: s.introSeen, paused: s.paused });
+  saveJSON('settings', { lang: s.lang, motion: s.motion, quality: s.quality, paused: s.paused });
   if (typeof document !== 'undefined') document.documentElement.lang = s.lang;
 });
 

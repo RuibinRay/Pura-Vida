@@ -2,19 +2,36 @@
 
 Status words: **built** = implemented and exercised in the headless browser; **built, unverified on device** = implemented, but the check this session could do is not representative (software GPU); **partial**; **planned (M2–M5)**.
 
+## Homepage journey (2026-10-23, after Milestone 1)
+
+| Brief item (homepage redesign) | Status | Notes |
+|---|---|---|
+| Audit of the live site and analysis of the reference images | done | `docs/HOMEPAGE_REDESIGN.md` |
+| Scroll-driven cinematic homepage, one coordinated system, reversible, pinned stage | built | `src/journey/driver.ts` + `journey.css`; no animation library; every frame is a function of the scroll position |
+| Ch. 1 Welcome — rainforest plate, title, tagline, intro, forest opens as you scroll | built | the owner's opening image, upscaled 2× (EDSR) and cut into 2.5D layers; animals answer the pointer with a label and lift |
+| Ch. 2 Nature — landscape, short paragraph, verified facts with visualisations | built | push-in on the volcano, clouds on the summit; six sourced tiles (area, species share, protected land, forest cover, birds, coastline) with status tags and source counts |
+| Ch. 3 Provinces — 3D map rising, hover and click, smooth transition into the chapter | built | the relief mesh in a scroll-driven camera; hover highlights, click dives then opens `/provinces/:id`; the list is the keyboard route; 2D map below the lite tier |
+| Ch. 4 Wildlife — ecosystem, animals that respond, click → scientific panel | built | the owner's illustrated plate with five hotspots (sloth, capuchin, scarlet macaw, agouti, green iguana); each opens the sourced entry; habitat fit verified for the Pacific lowlands |
+| Ch. 5 Flavors — wooden table, hover names, click → background, ingredients, region | built | five SVG dishes; entries for gallo pinto, casado, tamal, olla de carne, rice and beans from Costa Rican institutional, academic and press sources |
+| Ch. 6 The story continues — sunset, purpose, links, contact, navigation | built | the owner's poster graded toward sunset; personal site, GitHub, contact (a mailto appears when `personal.ts` has an address), the journal's sections |
+| Chapter indicators 01 / DISCOVER … 06 | built | the left rail (desktop) and the kicker in each chapter |
+| Reduced-motion and mobile fallbacks | built | `--calm` freezes every displacement; portrait layouts for the plates, the map camera and the table; still/text tiers show the plate without layers |
+| Wildlife page with nine species; food page with five dishes | built | `?focus=` scrolls to an entry; passport stamps for species and dishes |
+| Device verification (desktop + mobile, real GPU) | **not done** | lab only (headless Chromium, SwiftShader); see TEST_RESULTS.md |
+
 ## Milestone 1 — working foundation (2026-10-23)
 
 | Brief item | Status | Notes |
 |---|---|---|
 | React / TypeScript / Vite project | built | React 19, TS 7, Vite 8; typecheck + 39 tests pass |
-| Animated rainforest homepage: walk in, sunlight through leaves, toucan, sloth, morphos, birds, reveal of mountains / volcano / coast, title + personal intro | built, unverified on device | Procedural low-poly scene; 13 s walk-in (1.2 s in calm mode); light shafts and shadows in the full tier; fps on a real GPU not yet measured |
-| Cursor / touch look-around, hover animations on animals | built | Pointer parallax; touch drag; toucan turns and opens its bill, sloth looks at you |
-| Click a butterfly → biodiversity; select the volcano → geography | built | Two hero morphos → /wildlife; the volcano → /explore; DOM doorway links beside them |
-| Cultural object → traditions | planned (M3) | No culture chapter yet, so no doorway (nothing decorative) |
-| "Discover Costa Rica" guided experience | built | Four stops (toucan, sloth, morphos, vista) with sourced captions, then the map |
-| Start Exploring, skip intro, returning visitors skip the walk | built | `introSeen` persisted; `?replay=1` and a settings button replay it |
-| Sound optional, muted until activated | built | Synthesized wind / stream / rain ambience, labelled as such; no bird calls |
-| Day/night transitions affect lighting | built | Slow cycle (a day every four minutes), fixed moods, or Costa Rica's clock |
+| Animated rainforest homepage with the reveal of mountains / volcano / coast, title + personal intro | replaced | The procedural walk-in was replaced by the scroll-driven journey built on the owner's images (see above); the walk in is now the visitor's own scroll |
+| Cursor / touch look-around, hover animations on animals | built | Pointer parallax on the layers; the toucans, sloth and macaws answer the pointer with a label and a lift |
+| Click a butterfly → biodiversity; select the volcano → geography | changed | The doorways became the chapters: wildlife is chapter 4 (hotspots → entries), the map rises in chapter 3 |
+| Cultural object → traditions | partly | The table of chapter 5 is the cultural doorway; the culture chapter itself is still M3 |
+| "Discover Costa Rica" guided experience | replaced | The six chapters are the tour |
+| Start Exploring, skip intro, returning visitors skip the walk | n/a | Nothing is timed any more; the scrollbar is the only clock |
+| Sound optional, muted until activated | built | Synthesized wind / stream / rain ambience, labelled as such; the toggle sits in the chapter rail |
+| Day/night transitions affect lighting | replaced | The journey ends in the sunset of the poster plate; the day cycle went with the procedural scene |
 | 3D map: rotate, zoom, pan, select provinces, highlight borders, zoom into a province, contextual info, layers, landmarks, back, reset, search | built | Natural Earth 1:10m provinces; stylised relief ×5; layers: relief, borders, labels, cities, peaks, protected areas; search over provinces, 13 cities, 19 peaks, 27 protected areas and the chapters' 68 landmarks |
 | Accessible 2D map | built | Same data as SVG; focusable provinces; viewBox animates to the goal |
 | Seven provinces, each with overview, map, cities & landmarks, wildlife & vegetation, culture, history, food, environment, curiosities, sources | built from research | Content is whatever the agents could source; empty parts are hidden, not padded. See RESEARCH_SOURCES.md for the provenance and the unverified list |
@@ -22,8 +39,8 @@ Status words: **built** = implemented and exercised in the headless browser; **b
 | Language system EN / ES / 简体中文 | built | 190+ UI strings per language (test enforces completeness and placeholders); content EN+ES, ZH for names and overviews |
 | Responsive UI | built | 1440 and 390 px sweeps, no horizontal overflow |
 | GitHub Pages configuration | built, deployed | `RuibinRay/Pura-Vida` → https://ruibinray.github.io/Pura-Vida/ (first deploy 2026-10-23; Pages source: GitHub Actions) |
-| Discovery passport (province stamps) | partial | Stamps for provinces only; animals, plants, events, symbols, games come with their chapters |
-| Wildlife chapter | partial | The four species of the opening scene with IUCN status, habitat, diet, role, behaviour, facts, symbol status, sources |
+| Discovery passport (province stamps) | partial | Stamps for provinces, species and dishes; plants, events, symbols, games come with their chapters |
+| Wildlife chapter | partial | Nine species (the opening scene's, the coastal plate's five, the national bird) with IUCN status, habitat, diet, role, behaviour, facts, symbol status, sources |
 | Where I come from | built as placeholders | Editable slots in `src/content/personal.ts`; nothing written on the author's behalf |
 | Sources & credits | built | 256-source registry with "used for" and retrieval dates; 90 unverified claims listed; asset credits |
 | Performance tiers, pause control, reduced motion, `?why` | built | full → lite → still → text; pause remembered; calm mode |
@@ -40,6 +57,7 @@ Status words: **built** = implemented and exercised in the headless browser; **b
 
 1. ~~Create (or name) the GitHub repository and enable Pages~~ — done 2026-10-23; every push to `main` redeploys.
 2. Run the site on a laptop and a phone with `?why` and note fps and tier; the 60 fps target is unverified until then.
-3. Fill `src/content/personal.ts` (introduction, photographs, favourite places, stories, recommendations, experiences, memories).
+3. Fill `src/content/personal.ts` (introduction, photographs, favourite places, stories, recommendations, experiences, memories, and the contact address if one should be public).
+6. State the licence/origin of the three plates in `docs/ASSET_CREDITS.md` (they were supplied without one).
 4. If a licensed DEM is available (SRTM 90 m GeoTIFF for lon −86…−82.5, lat 8…11.3), supply it and the relief becomes measured instead of stylised.
 5. Review the `unverified` list in `src/content/generated/sources.json` / docs/RESEARCH_SOURCES.md and the "approximate" facts drawn from press coverage where official sites blocked fetching.

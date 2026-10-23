@@ -1,6 +1,6 @@
 # Design system — "The Field Journal"
 
-The site is a naturalist's field journal of Costa Rica: warm paper and dark forest ink, chapters with index tabs, stamps in a passport, and a stylised living world (low-poly forest, raised-relief map) that reads as deliberate illustration rather than failed realism.
+The site is a naturalist's field journal of Costa Rica: warm paper and dark forest ink, chapters with index tabs, stamps in a passport, a raised-relief map that reads as a museum model, and — since the homepage redesign — the owner's own plates as the journal's illustrations, with the homepage as a six-chapter journey (`docs/HOMEPAGE_REDESIGN.md`).
 
 ## Why this direction (the three concepts considered)
 
@@ -37,10 +37,20 @@ The site is a naturalist's field journal of Costa Rica: warm paper and dark fore
 - **Buttons**: primary (forest, gold on dark), ghost, glass (on the hero), link; all ≥ 44 px tall at default size.
 - **Map stage**: toolbar (3D/2D segment, search combobox, layers menu, whole-country, pause) → canvas with hint → side panel (selection summary, province list as a `listbox`) → footnote with data provenance.
 
+## The journey (homepage) conventions
+
+- **One stage, six chapters.** A sticky stage holds every visual and every copy block; empty spacers give the scroll length; `--jt`/`--pN` custom properties written by one driver are the only clock. Nothing on the homepage is timed except decorative drift (mist, flapping, rings), and that is declared only under `prefers-reduced-motion: no-preference`.
+- **Chapter copy** (`.jcopy`): kicker `NN / Name` in the UI face with a gold rule, display heading in Literata (opsz 48/72), one short paragraph, a links row in gold-ink on dark, a caption in faint paper; panels have a dark left-edge gradient and a 1 px paper rule, never blur. Copy enters from below (28 px, over the first 6–26 % of the chapter), holds, leaves upward over the last 14 %.
+- **Plates**: a `.plate` covers the stage like `object-fit: cover` (`width: max(100%, 100dvh × ratio)`), transforms around a focal point, and positions its cut-out layers in plate space; portrait screens shift the focal point with `--fx-shift`.
+- **Hotspots**: a 22 px ring with a gold core that breathes; a paper label (name in bold, Latin name in italic) on hover/focus; the ring is omitted on the opening plate where the animals themselves are the markers. Focus ring: 3 px gold.
+- **Fact tiles**: 44 px rings, dot grids ("1 in N") and two-bar comparisons in the country colours; small label, serif value, status tag and "n sources" link — the value never stands without its provenance.
+- **Chapter rail**: fixed left, numbers only, label on hover/focus, current one highlighted; hidden on phones.
+- **Phones**: copy anchors to the bottom (chapters 1–3, 6) or the top (4, 5) so the animals and dishes stay reachable; the table switches to a 9:16 layout; the map camera backs off with the aspect ratio.
+
 ## Motion
 
 - Default durations 160/320/700 ms with `cubic-bezier(0.22, 1, 0.36, 1)`; all collapse to 0 under `prefers-reduced-motion`.
-- Calm mode (OS preference or setting) replaces the walk-in with a 1.2 s move, slows the wind to 30 %, keeps the day cycle, and removes camera glides.
+- Calm mode (OS preference or setting) sets `--calm: 1` on the journey: every scroll-linked displacement is multiplied by `--m = 1 − --calm`, so only crossfades remain; the map camera jumps instead of gliding; decorative drift stops.
 - A pause button stops the render loop (frameloop `demand`) and is remembered.
 - Page transitions: a 420 ms fade-up of the main element; none under reduced motion.
 

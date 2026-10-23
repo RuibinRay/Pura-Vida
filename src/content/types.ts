@@ -95,5 +95,23 @@ export interface Species {
   behaviour?: Localized;
   facts?: { en: string; es?: string; status?: Status; sources?: Source[] }[];
   nationalSymbol?: { isSymbol: boolean; year?: number | null; instrument?: string; sources?: Source[] };
+  /** whether the species occurs in the Pacific lowland coastal forests shown on the wildlife plate */
+  habitatFit?: { pacificLowland: boolean; note?: Localized; status?: Status };
+  sources?: Source[];
+}
+
+export interface Food {
+  id: string;
+  name: Localized;
+  kind?: Localized;
+  region?: TextBlock;
+  description?: TextBlock;
+  ingredients?: { en: string; es?: string; optional?: boolean }[];
+  ingredientsNote?: TextBlock;
+  preparation?: TextBlock;
+  culture?: TextBlock;
+  history?: TextBlock;
+  heritage?: { declared: boolean | null; instrument?: string; year?: number | null; note?: Localized; status?: Status; sources?: Source[] };
+  facts?: { en: string; es?: string; status?: Status; sources?: Source[] }[];
   sources?: Source[];
 }
