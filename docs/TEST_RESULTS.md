@@ -39,6 +39,10 @@ Mobile emulation (412×823, DPR 1.75), bundled Chromium 153, SwiftShader, 2 CPU 
 
 Performance scores for pages with WebGL (home, explore, province) are **not computable** in this environment: Lighthouse cannot derive a Speed Index while SwiftShader renders at 1–5 fps, so the category score is null. The metrics it did measure (FCP, LCP, TBT, CLS) are listed. Treat them as a lower bound and re-run on a real GPU.
 
+## Deployment (2026-10-23)
+
+GitHub Actions run on `RuibinRay/Pura-Vida`: `npm ci` → typecheck → 39 tests → `vite build --base=/Pura-Vida/` → Pages deploy, all green. Verified live: the root document serves with the expected title and canonical URL, and `geo/places.json` resolves under the base path. The hash routes were exercised against the same build under a `/Pura-Vida/` prefix in headless Chromium before the push (six routes, no console errors, no 404s).
+
 ## Not yet tested
 
 - Real-device frame rate and the 60 fps target (`?why` prints fps; please record laptop and phone numbers in this file).

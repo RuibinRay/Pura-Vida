@@ -21,7 +21,7 @@ Status words: **built** = implemented and exercised in the headless browser; **b
 | Main navigation | built | Index tabs (desktop), contents sheet (all sizes), skip link, focus management |
 | Language system EN / ES / 简体中文 | built | 190+ UI strings per language (test enforces completeness and placeholders); content EN+ES, ZH for names and overviews |
 | Responsive UI | built | 1440 and 390 px sweeps, no horizontal overflow |
-| GitHub Pages configuration | built, not yet deployed | Workflow derives the base path from the repository name; deployment awaits a repository |
+| GitHub Pages configuration | built, deployed | `RuibinRay/Pura-Vida` → https://ruibinray.github.io/Pura-Vida/ (first deploy 2026-10-23; Pages source: GitHub Actions) |
 | Discovery passport (province stamps) | partial | Stamps for provinces only; animals, plants, events, symbols, games come with their chapters |
 | Wildlife chapter | partial | The four species of the opening scene with IUCN status, habitat, diet, role, behaviour, facts, symbol status, sources |
 | Where I come from | built as placeholders | Editable slots in `src/content/personal.ts`; nothing written on the author's behalf |
@@ -38,7 +38,7 @@ Status words: **built** = implemented and exercised in the headless browser; **b
 
 ## Open items for the owner
 
-1. Create (or name) the GitHub repository and enable Pages → Source: GitHub Actions; the workflow handles the rest.
+1. ~~Create (or name) the GitHub repository and enable Pages~~ — done 2026-10-23; every push to `main` redeploys.
 2. Run the site on a laptop and a phone with `?why` and note fps and tier; the 60 fps target is unverified until then.
 3. Fill `src/content/personal.ts` (introduction, photographs, favourite places, stories, recommendations, experiences, memories).
 4. If a licensed DEM is available (SRTM 90 m GeoTIFF for lon −86…−82.5, lat 8…11.3), supply it and the relief becomes measured instead of stylised.
