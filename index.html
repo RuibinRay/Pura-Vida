@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#1f5a3a" />
+    <title>Costa Rica — Pura Vida: The Living Country</title>
+    <meta name="description" content="An interactive field journal of Costa Rica: a 3D relief map of its seven provinces, wildlife, forests, volcanoes, history, culture and national symbols, written from official and scientific sources." />
+    <meta property="og:title" content="Costa Rica — Pura Vida: The Living Country" />
+    <meta property="og:description" content="Discover Costa Rica through an interactive 3D map, a rainforest you can walk into, and chapters on its provinces, wildlife, history and culture." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://ruibinray.github.io/Pura-Vida/og.png" />
+    <link rel="canonical" href="https://ruibinray.github.io/Pura-Vida/" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <style>
+      /* first paint: the page is a warm paper tone, never a white flash; the root keeps its final height */
+      html { background: #f4eedf; }
+      body { margin: 0; }
+      #root { min-height: 100dvh; }
+      #root:empty { background: linear-gradient(180deg, #3f80d8 0%, #9ec3e6 55%, #1f4a2a 56%, #153b22 100%); }
+      #root:empty::after { content: 'Pura vida…'; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); font: italic 500 20px Georgia, serif; color: #f4eedf; letter-spacing: 0.04em; }
+    </style>
+    <script type="module" src="/src/main.tsx"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript><p style="padding: 2rem; font-family: Georgia, serif">This site needs JavaScript. The text of every chapter is in the repository under src/content/generated.</p></noscript>
+  </body>
+</html>

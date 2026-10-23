@@ -1,0 +1,132 @@
+{
+ "provinces": {
+  "alajuela": {
+   "parts": [
+    {
+     "coco": false,
+     "areaKm2": 9590,
+     "vertices": 1360,
+     "triangles": 2494,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    }
+   ],
+   "areaKm2": 9590
+  },
+  "guanacaste": {
+   "parts": [
+    {
+     "coco": false,
+     "areaKm2": 10298.9,
+     "vertices": 1651,
+     "triangles": 2860,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    }
+   ],
+   "areaKm2": 10298.9
+  },
+  "limon": {
+   "parts": [
+    {
+     "coco": false,
+     "areaKm2": 9368.8,
+     "vertices": 1380,
+     "triangles": 2458,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    }
+   ],
+   "areaKm2": 9368.8
+  },
+  "puntarenas": {
+   "parts": [
+    {
+     "coco": false,
+     "areaKm2": 9971.1,
+     "vertices": 1845,
+     "triangles": 2917,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 1079.6,
+     "vertices": 230,
+     "triangles": 337,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 38.6,
+     "vertices": 21,
+     "triangles": 20,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": true,
+     "areaKm2": 15.6,
+     "vertices": 9,
+     "triangles": 7,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 3.4,
+     "vertices": 6,
+     "triangles": 4,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    }
+   ],
+   "areaKm2": 11108.4
+  },
+  "heredia": {
+   "parts": [
+    {
+     "coco": false,
+     "areaKm2": 2699.7,
+     "vertices": 451,
+     "triangles": 747,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    }
+   ],
+   "areaKm2": 2699.7
+  },
+  "san-jose": {
+   "parts": [
+    {
+     "coco": false,
+     "areaKm2": 5003,
+     "vertices": 962,
+     "triangles": 1516,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    }
+   ],
+   "areaKm2": 5003
+  },
+  "cartago": {
+   "parts": [
+    {
+     "coco": false,
+     "areaKm2": 3098.4,
+     "vertices": 500,
+     "triangles": 849,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    }
+   ],
+   "areaKm2": 3098.4
+  }
+ },
+ "totals": {
+  "areaKm2": 51167.1,
+  "vertices": 8415,
+  "triangles": 14209
+ }
+}

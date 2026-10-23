@@ -1,0 +1,105 @@
+/* Design tokens — "The Field Journal" (see docs/DESIGN_SYSTEM.md). */
+:root {
+  /* paper & ink */
+  --paper: #f4eedf;
+  --paper-deep: #e7dcc3;
+  --paper-edge: #d8c9a6;
+  --ink: #1d2b22;
+  --ink-muted: #5a6358;
+  --ink-faint: #616861;
+  --rule: rgba(29, 43, 34, 0.14);
+
+  /* the country */
+  --forest: #1f5a3a;
+  --forest-ink: #184a30;
+  --canopy: #3e8a52;
+  --moss: #7a8a3c;
+  --moss-ink: #5a6a22;
+  --ocean: #12456b;
+  --ocean-deep: #0b2f4b;
+  --turquoise: #2cb1a6;
+  --gold: #e0a526;
+  --gold-ink: #8a5a00;
+  --sunset: #e8893a;
+  --orchid: #8e4a9e;
+  --volcanic: #2b2a2e;
+  --stone: #a9a192;
+  --wood: #8c5a32;
+
+  /* status (never colour alone) */
+  --good: #24683a;
+  --warn: #8a5a00;
+  --bad: #9f3328;
+
+  /* province swatches — watercolour tones, one per province */
+  --p-san-jose: #c25d4b;
+  --p-alajuela: #d9933f;
+  --p-cartago: #7f5aa6;
+  --p-heredia: #3f8f7a;
+  --p-guanacaste: #d6b345;
+  --p-puntarenas: #3b78a8;
+  --p-limon: #4f9e5c;
+
+  /* type */
+  --font-display: 'Literata Variable', Georgia, 'Times New Roman', serif;
+  --font-text: 'Literata Variable', Georgia, serif;
+  --font-ui: 'Albert Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-note: 'Caveat Variable', 'Segoe Script', cursive;
+  --font-zh: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif;
+
+  --t-xs: clamp(0.75rem, 0.72rem + 0.14vw, 0.8125rem);
+  --t-sm: clamp(0.875rem, 0.85rem + 0.14vw, 0.9375rem);
+  --t-base: clamp(1rem, 0.96rem + 0.22vw, 1.125rem);
+  --t-lg: clamp(1.125rem, 1.05rem + 0.36vw, 1.375rem);
+  --t-xl: clamp(1.5rem, 1.32rem + 0.8vw, 2rem);
+  --t-2xl: clamp(2rem, 1.6rem + 1.6vw, 3rem);
+  --t-3xl: clamp(2.6rem, 1.9rem + 3vw, 4.5rem);
+  --t-display: clamp(3.2rem, 1.8rem + 6.2vw, 7.5rem);
+
+  /* spacing & shape */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --radius: 10px;
+  --radius-lg: 18px;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --measure: 64ch;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 160ms;
+  --dur: 320ms;
+  --dur-slow: 700ms;
+
+  --shadow-paper: 0 1px 2px rgba(29, 43, 34, 0.08), 0 10px 30px -12px rgba(29, 43, 34, 0.28);
+  --focus: 0 0 0 3px var(--paper), 0 0 0 6px var(--gold-ink);
+}
+
+/* Dark "night" surfaces used by the hero overlay and the map stage */
+.on-dark {
+  --paper: #2b2a2e;
+  --paper-deep: #232226;
+  --paper-edge: #3a393f;
+  --ink: #f4eedf;
+  --ink-muted: #cfc8b6;
+  --ink-faint: #a39d8e;
+  --rule: rgba(244, 238, 223, 0.18);
+  --gold-ink: #f0c25a;
+  --forest-ink: #8fd3a4;
+  --moss-ink: #c6d47a;
+  --focus: 0 0 0 3px #2b2a2e, 0 0 0 6px #f0c25a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+    --dur-slow: 0ms;
+  }
+}

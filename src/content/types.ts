@@ -1,0 +1,99 @@
+import type { Localized } from '../i18n';
+import type { ProvinceId } from '../state/map';
+
+export type Status = 'confirmed' | 'approximate' | 'interpretation' | 'folklore' | 'uncertain' | 'secondary';
+
+export interface Source {
+  url: string;
+  title: string;
+  publisher?: string;
+  published?: string | null;
+  retrieved: string;
+  supports?: string;
+}
+
+export interface Fact<T = string> {
+  value: T;
+  year?: number | null;
+  status: Status;
+  sources: Source[];
+}
+
+export interface TextBlock {
+  en: string;
+  es?: string;
+  zh?: string;
+  status?: Status;
+  sources?: Source[];
+}
+
+export type LandmarkKind = 'city' | 'town' | 'capital' | 'province-capital' | 'volcano' | 'mountain' | 'park' | 'reserve' | 'refuge' | 'monument' | 'island' | 'waterfall' | 'beach' | 'museum' | 'river' | 'building' | 'wetland';
+
+export interface Landmark {
+  id: string;
+  name: Localized | string;
+  kind: LandmarkKind;
+  lon: number;
+  lat: number;
+  province: ProvinceId | null;
+  provinces?: ProvinceId[];
+  elevationM?: number;
+  text?: Localized;
+  status?: Status;
+  coordsStatus?: 'confirmed' | 'approximate';
+  conservationArea?: string;
+  unesco?: boolean;
+  sources?: Source[];
+}
+
+export interface SpeciesRef {
+  common: Localized;
+  scientific: string;
+  note?: string;
+}
+
+export interface ProtectedArea {
+  name: string;
+  kind: string;
+  coords?: [number, number];
+  conservationArea?: string;
+  sources?: Source[];
+}
+
+export interface ProvinceContent {
+  id: ProvinceId;
+  iso: string;
+  name: Localized;
+  capital: { name: string; coords: [number, number]; coordsStatus?: string; sources?: Source[] };
+  keyFacts: {
+    areaKm2?: Fact<number>;
+    population?: Fact<number>;
+    cantons?: Fact<number>;
+  };
+  overview: TextBlock;
+  landmarks: Landmark[];
+  wildlifeVegetation?: TextBlock & { species?: SpeciesRef[] };
+  culture?: TextBlock;
+  history?: TextBlock;
+  foods?: { name: string; text: Localized; status?: Status; sources?: Source[] }[];
+  environment?: TextBlock & { protectedAreas?: ProtectedArea[] };
+  curiosities?: { text: Localized; status?: Status; sources?: Source[] }[];
+}
+
+export interface Species {
+  id: string;
+  commonNames: Localized;
+  scientific: string;
+  family?: string;
+  order?: string;
+  iucn?: { category: string; year?: number | null; url?: string } | null;
+  size?: Localized | null;
+  habitat?: Localized;
+  distributionCR?: Localized;
+  diet?: Localized;
+  ecologicalRole?: Localized;
+  behaviour?: Localized;
+  facts?: { en: string; es?: string; status?: Status; sources?: Source[] }[];
+  nationalSymbol?: { isSymbol: boolean; year?: number | null; instrument?: string; sources?: Source[] };
+  sources?: Source[];
+}

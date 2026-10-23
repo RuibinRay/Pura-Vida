@@ -1,0 +1,7 @@
+node_modules
+dist
+tools/cache/*
+!tools/cache/geo-report.json
+tools/scratch
+.DS_Store
+*.log

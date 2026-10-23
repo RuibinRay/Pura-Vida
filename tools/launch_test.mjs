@@ -1,0 +1,10 @@
+import chromium from '@sparticuz/chromium';
+import puppeteer from 'puppeteer-core';
+const exe = await chromium.executablePath();
+console.log('exe', exe);
+const browser = await puppeteer.launch({ executablePath: exe, args: [...chromium.args, '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'], headless: true });
+const page = await browser.newPage();
+await page.setContent('<canvas id=c></canvas><script>const gl=document.getElementById("c").getContext("webgl2");const dbg=gl&&gl.getExtension("WEBGL_debug_renderer_info");document.title = gl ? (gl.getParameter(gl.VERSION)+" | "+(dbg?gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL):"?")) : "no webgl2";</script>');
+console.log('title:', await page.title());
+console.log('ver:', await browser.version());
+await browser.close();

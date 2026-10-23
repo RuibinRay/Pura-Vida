@@ -1,0 +1,775 @@
+{
+  "retrieved": "2026-10-23",
+  "notes": {
+    "method": "Every fact below is supported by a page fetched with WebFetch on 2026-10-23 and listed in its 'sources' array. iucnredlist.org refused automated fetches (robots/client errors) and BirdLife DataZone rendered only empty templates, so IUCN categories, assessment years and DOIs were taken from GBIF's mirror of the IUCN Red List (api.gbif.org .../iucnRedListCategory and .../distributions), which cites the IUCN assessment and its DOI. Each iucn.url is therefore the assessment DOI string as fetched, not an iucnredlist.org page.",
+    "statusLegend": {
+      "confirmed": "stated directly by a preferred or primary source that was fetched",
+      "approximate": "stated by a secondary/tertiary source (e.g. Wikipedia, enthusiast site) or by sources that disagree in detail",
+      "interpretation": "our inference from sourced statements; not stated verbatim by a source",
+      "uncertain": "could not be settled from fetched sources; see 'unverified'"
+    },
+    "zhNamesCaveat": "Simplified Chinese common names were supplied from general knowledge and were NOT verified against a fetched source (status: uncertain)."
+  },
+  "species": [
+    {
+      "id": "keel-billed-toucan",
+      "commonNames": {
+        "en": "Keel-billed Toucan",
+        "es": "tucán pico iris",
+        "esAlt": ["tucán piquiverde", "tucán pico de canoa"],
+        "zh": "厚嘴巨嘴鸟",
+        "status": "confirmed (en, es); uncertain (zh)",
+        "sources": [
+          "https://neotropical.birds.cornell.edu/Species-Account/nb/species/kebtou1/overview",
+          "https://es.wikipedia.org/wiki/Ramphastos_sulfuratus"
+        ]
+      },
+      "scientific": "Ramphastos sulfuratus",
+      "authority": "R. Lesson, 1830",
+      "family": "Ramphastidae",
+      "order": "Piciformes",
+      "taxonomyStatus": "confirmed",
+      "iucn": {
+        "category": "NT",
+        "categoryName": "Near Threatened",
+        "year": 2021,
+        "assessor": "BirdLife International",
+        "iucnTaxonId": "22682102",
+        "url": "https://doi.org/10.2305/IUCN.UK.2021-3.RLTS.T22682102A168670038.en",
+        "status": "confirmed",
+        "note": "Category, taxon ID, assessment year and DOI taken from GBIF's mirror of the IUCN Red List because iucnredlist.org blocked fetching. Animal Diversity Web still shows 'Least Concern', which predates the 2021 reassessment to Near Threatened.",
+        "sources": [
+          "https://api.gbif.org/v1/species/2478771/iucnRedListCategory",
+          "https://api.gbif.org/v1/species/176615653/distributions"
+        ]
+      },
+      "size": {
+        "length_cm": 52,
+        "mass_g": 400,
+        "bill_cm": null,
+        "status": "approximate",
+        "note": "Animal Diversity Web: 'about 20 inches or 52 cm long', mass 400 g average; males slightly larger than females. English Wikipedia gives 42–55 cm, 380–500 g and a 12–15 cm bill; Spanish Wikipedia gives 50–59 cm, about 500 g and a 16 cm bill. Figures differ, so treat as a range around these values.",
+        "sources": [
+          "https://animaldiversity.org/accounts/Ramphastos_sulfuratus/",
+          "https://en.wikipedia.org/wiki/Keel-billed_toucan",
+          "https://es.wikipedia.org/wiki/Ramphastos_sulfuratus"
+        ]
+      },
+      "habitat": {
+        "en": "Tropical lowland evergreen forest and secondary forest, including forest edges and borders. It also moves into nearby plantations, pastures and second growth, and has been reported up to about 1,900 m elevation.",
+        "es": "Bosque tropical siempreverde de tierras bajas y bosque secundario, incluidos bordes de bosque. También usa plantaciones, potreros y vegetación secundaria cercanos, y se ha reportado hasta unos 1.900 m de elevación.",
+        "status": "confirmed (forest types); approximate (plantations/pastures and 1,900 m, from Wikipedia)",
+        "sources": [
+          "https://neotropical.birds.cornell.edu/Species-Account/nb/species/kebtou1/overview",
+          "https://animaldiversity.org/accounts/Ramphastos_sulfuratus/",
+          "https://en.wikipedia.org/wiki/Keel-billed_toucan"
+        ]
+      },
+      "distributionCR": {
+        "en": "The species ranges from southern Mexico south through Central America to northern Colombia and extreme north-western Venezuela, so Costa Rica lies within its range; GBIF holds more than 150,000 occurrence records of it in Costa Rica. None of the fetched sources described which Costa Rican slopes or elevations it occupies.",
+        "es": "La especie se distribuye desde el sur de México, a través de Centroamérica, hasta el norte de Colombia y el extremo noroeste de Venezuela, de modo que Costa Rica está dentro de su área; GBIF tiene más de 150.000 registros de presencia en Costa Rica. Ninguna de las fuentes consultadas describe qué vertientes o elevaciones ocupa en Costa Rica.",
+        "slopes": null,
+        "elevationCR_m": null,
+        "gbifOccurrencesCR": 154342,
+        "status": "confirmed (occurs in Costa Rica); uncertain (slopes and elevation within Costa Rica)",
+        "sources": [
+          "https://neotropical.birds.cornell.edu/Species-Account/nb/species/kebtou1/overview",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2478771&country=CR&limit=0",
+          "https://animaldiversity.org/accounts/Ramphastos_sulfuratus/"
+        ]
+      },
+      "diet": {
+        "en": "Mostly fruit, taken mainly in the high canopy, supplemented by arthropods and small vertebrates such as lizards and tree frogs, and by the eggs or nestlings of other birds.",
+        "es": "Principalmente frutas, tomadas sobre todo en el dosel alto, complementadas con artrópodos y pequeños vertebrados como lagartijas y ranas arborícolas, y con huevos o pichones de otras aves.",
+        "status": "confirmed",
+        "sources": [
+          "https://neotropical.birds.cornell.edu/Species-Account/nb/species/kebtou1/overview",
+          "https://animaldiversity.org/accounts/Ramphastos_sulfuratus/"
+        ]
+      },
+      "ecologicalRole": {
+        "en": "A seed disperser: large seeds are regurgitated unharmed and small seeds pass through the digestive tract intact, so both can be deposited far from the parent plant.",
+        "es": "Dispersor de semillas: regurgita intactas las semillas grandes y las pequeñas pasan sin daño por el tracto digestivo, de modo que ambas pueden quedar lejos de la planta madre.",
+        "status": "confirmed",
+        "sources": ["https://animaldiversity.org/accounts/Ramphastos_sulfuratus/"]
+      },
+      "behaviour": {
+        "en": "Travels in flocks of about 6 to 12 birds, moving from tree to tree with a flight that alternates rapid flapping and gliding. Several birds may roost together in one tree cavity, each folding its tail over its back and tucking its bill under a wing to save space.",
+        "es": "Se desplaza en bandadas de unos 6 a 12 individuos, de árbol en árbol, con un vuelo que alterna aleteos rápidos y planeos. Varias aves pueden dormir juntas en un mismo hueco de árbol, cada una con la cola doblada sobre el dorso y el pico bajo un ala para ahorrar espacio.",
+        "status": "confirmed",
+        "sources": ["https://animaldiversity.org/accounts/Ramphastos_sulfuratus/"]
+      },
+      "facts": [
+        {
+          "en": "It is the national bird of Belize.",
+          "es": "Es el ave nacional de Belice.",
+          "status": "confirmed",
+          "sources": [
+            "https://animaldiversity.org/accounts/Ramphastos_sulfuratus/",
+            "https://en.wikipedia.org/wiki/Keel-billed_toucan"
+          ]
+        },
+        {
+          "en": "It nests in natural or woodpecker-made tree cavities; both parents incubate a clutch of 2–4 glossy white eggs for roughly 16–20 days, and the nestlings stay in the nest for 8–9 weeks before they can fly.",
+          "es": "Anida en huecos naturales o abiertos por pájaros carpinteros; ambos padres incuban una puesta de 2 a 4 huevos blancos brillantes durante unos 16 a 20 días, y los pichones permanecen en el nido de 8 a 9 semanas antes de volar.",
+          "status": "approximate",
+          "note": "ADW gives 16–20 days incubation; both Wikipedias give 15–20 days.",
+          "sources": [
+            "https://animaldiversity.org/accounts/Ramphastos_sulfuratus/",
+            "https://en.wikipedia.org/wiki/Keel-billed_toucan"
+          ]
+        },
+        {
+          "en": "Across much of its range it overlaps with Costa Rica's other large toucan, the Chestnut-mandibled Toucan (Ramphastos ambiguus swainsonii), which may follow keel-billed toucans to fruiting trees and chase them away.",
+          "es": "En gran parte de su área coincide con el otro tucán grande de Costa Rica, el tucán de pico castaño (Ramphastos ambiguus swainsonii), que puede seguir a los tucanes pico iris hasta los árboles en fruto y ahuyentarlos.",
+          "status": "confirmed",
+          "note": "Cornell uses the name Chestnut-mandibled Toucan for R. ambiguus swainsonii; the alternative English name 'Yellow-throated Toucan' was not found on a fetched page.",
+          "sources": [
+            "https://neotropical.birds.cornell.edu/Species-Account/nb/species/kebtou1/overview",
+            "https://animaldiversity.org/accounts/Ramphastos_sulfuratus/"
+          ]
+        }
+      ],
+      "relatedSpecies": [
+        {
+          "scientific": "Ramphastos ambiguus (subspecies swainsonii)",
+          "en": "Chestnut-mandibled Toucan (also called Yellow-throated Toucan)",
+          "es": "tucán de pico castaño / tucán de Swainson",
+          "note": "The second large toucan of Costa Rica; its range overlaps with the keel-billed toucan over much of Central America. Only the name 'Chestnut-mandibled Toucan (Ramphastos ambiguus swainsonii)' and the overlap were verified from fetched pages.",
+          "status": "confirmed (overlap and name as used by Cornell); uncertain (alternative names)",
+          "sources": ["https://neotropical.birds.cornell.edu/Species-Account/nb/species/kebtou1/overview"]
+        }
+      ],
+      "nationalSymbol": {
+        "isSymbol": false,
+        "year": null,
+        "instrument": null,
+        "note": {
+          "en": "Not among the 15 national symbols listed on the Presidencia de la República's symbols page as fetched on 2026-10-23. It is the national bird of Belize, not of Costa Rica.",
+          "es": "No figura entre los 15 símbolos nacionales listados en la página de símbolos de la Presidencia de la República consultada el 2026-10-23. Es el ave nacional de Belice, no de Costa Rica."
+        },
+        "status": "confirmed",
+        "sources": [
+          "https://www.presidencia.go.cr/simbolos-nacionales/",
+          "https://animaldiversity.org/accounts/Ramphastos_sulfuratus/"
+        ]
+      },
+      "sources": [
+        {"url": "https://api.gbif.org/v1/species/match?name=Ramphastos%20sulfuratus", "title": "GBIF Backbone Taxonomy — species match: Ramphastos sulfuratus R.Lesson, 1830", "publisher": "GBIF", "published": null, "retrieved": "2026-10-23", "supports": "accepted scientific name, authority, order Piciformes, family Ramphastidae"},
+        {"url": "https://api.gbif.org/v1/species/2478771/iucnRedListCategory", "title": "GBIF — IUCN Red List category for Ramphastos sulfuratus", "publisher": "GBIF (mirror of IUCN Red List)", "published": null, "retrieved": "2026-10-23", "supports": "IUCN category NEAR_THREATENED (NT), iucnTaxonID 22682102"},
+        {"url": "https://api.gbif.org/v1/species/176615653/distributions", "title": "GBIF — IUCN distribution record for Ramphastos sulfuratus (IUCN Red List 2021-3)", "publisher": "GBIF (mirror of IUCN Red List)", "published": null, "retrieved": "2026-10-23", "supports": "assessment by BirdLife International 2021; DOI 10.2305/IUCN.UK.2021-3.RLTS.T22682102A168670038.en"},
+        {"url": "https://neotropical.birds.cornell.edu/Species-Account/nb/species/kebtou1/overview", "title": "Keel-billed Toucan Ramphastos sulfuratus — Neotropical Birds Online (Jones & Griffiths)", "publisher": "Cornell Lab of Ornithology", "published": null, "retrieved": "2026-10-23", "supports": "order/family, habitat (tropical lowland evergreen and secondary forest), range southern Mexico to northern Colombia and NW Venezuela, diet, 2 subspecies, overlap with Chestnut-mandibled Toucan R. ambiguus swainsonii"},
+        {"url": "https://animaldiversity.org/accounts/Ramphastos_sulfuratus/", "title": "Ramphastos sulfuratus (keel-billed toucan) — Animal Diversity Web", "publisher": "University of Michigan Museum of Zoology", "published": null, "retrieved": "2026-10-23", "supports": "size (~52 cm, 400 g), coloration, lowland forest habitat, diet, flocks of 6–12, communal cavity roosting, nesting and clutch, seed dispersal role, national bird of Belize, CITES II, older IUCN LC listing"},
+        {"url": "https://en.wikipedia.org/wiki/Keel-billed_toucan", "title": "Keel-billed toucan — Wikipedia", "publisher": "Wikimedia Foundation", "published": null, "retrieved": "2026-10-23", "supports": "approximate: 42–55 cm, 380–500 g, bill 12–15 cm, up to 1,900 m, plantations/pastures, NT per 2021 IUCN assessment, subspecies ranges, national bird of Belize"},
+        {"url": "https://es.wikipedia.org/wiki/Ramphastos_sulfuratus", "title": "Ramphastos sulfuratus — Wikipedia en español", "publisher": "Wikimedia Foundation", "published": null, "retrieved": "2026-10-23", "supports": "Spanish common names tucán piquiverde / tucán pico iris / tucán pico de canoa; approximate size figures"},
+        {"url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2478771&country=CR&limit=0", "title": "GBIF occurrence search — Ramphastos sulfuratus, country=CR", "publisher": "GBIF", "published": null, "retrieved": "2026-10-23", "supports": "154,342 occurrence records in Costa Rica (confirms presence)"}
+      ]
+    },
+    {
+      "id": "brown-throated-three-toed-sloth",
+      "commonNames": {
+        "en": "Brown-throated Three-toed Sloth",
+        "enAlt": ["Brown-throated Sloth"],
+        "es": "perezoso de tres dedos",
+        "zh": "褐喉三趾树懒",
+        "status": "confirmed (en, es); uncertain (zh)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Bradypus_variegatus/",
+          "https://revistas.una.ac.cr/index.php/ambientales/article/view/17611"
+        ]
+      },
+      "scientific": "Bradypus variegatus",
+      "authority": "Schinz, 1825",
+      "family": "Bradypodidae",
+      "order": "Pilosa",
+      "taxonomyStatus": "confirmed",
+      "iucn": {
+        "category": "LC",
+        "categoryName": "Least Concern",
+        "year": 2022,
+        "assessor": "Moraes-Barros, N., Chiarello, A., Plese, T., Santos, P., Aliaga-Rossel, E., Aguilar Borbón, A. & Turcios Casco, M.",
+        "iucnTaxonId": "3038",
+        "url": "https://doi.org/10.2305/IUCN.UK.2022-2.RLTS.T3038A210442893.en",
+        "status": "confirmed",
+        "note": "Taken from GBIF's mirror of the IUCN Red List (iucnredlist.org blocked fetching). Wikipedia cites an older 2014 LC assessment; the 2022 assessment is the current one in GBIF's mirror.",
+        "sources": [
+          "https://api.gbif.org/v1/species/2436353/iucnRedListCategory",
+          "https://api.gbif.org/v1/species/176661209/distributions"
+        ]
+      },
+      "size": {
+        "length_cm": 60,
+        "mass_kg_range": [3.49, 5.19],
+        "mass_kg_mean": 4.34,
+        "status": "approximate",
+        "note": "Animal Diversity Web: 'Average length is 60 cm'; 'Adults range in mass from 3.49 to 5.19 kg', average 4.34 kg. Wikipedia gives a wider body length of 42–80 cm and 2.25–6.3 kg.",
+        "sources": [
+          "https://animaldiversity.org/accounts/Bradypus_variegatus/",
+          "https://en.wikipedia.org/wiki/Brown-throated_sloth"
+        ]
+      },
+      "habitat": {
+        "en": "Tropical forests of many kinds, including semi-deciduous forest, subtropical lowlands and swamps; it lives mostly in the canopy and favours sun-exposed tree crowns, apparently to warm itself. Recorded from sea level to about 2,400 m, though most records are from the lowlands.",
+        "es": "Bosques tropicales de muchos tipos, incluidos bosques semideciduos, tierras bajas subtropicales y pantanos; vive sobre todo en el dosel y prefiere copas expuestas al sol, aparentemente para calentarse. Registrado desde el nivel del mar hasta unos 2.400 m, aunque la mayoría de los registros son de tierras bajas.",
+        "elevation_m": [0, 2400],
+        "status": "confirmed (habitat types, canopy use); approximate (elevation — ADW gives 0–2,400 m, Wikipedia says generally sea level to 1,200 m)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Bradypus_variegatus/",
+          "https://en.wikipedia.org/wiki/Brown-throated_sloth"
+        ]
+      },
+      "distributionCR": {
+        "en": "Present in Costa Rica: the species ranges from Honduras through Nicaragua, Costa Rica and Panama into South America, and Costa Rican research documents it in cacao landscapes and riparian forest in Limón on the Caribbean slope and near Upala (Alajuela) in the north; GBIF holds about 5,100 occurrence records for it in the country. Animal Diversity Web's country list omits Costa Rica, which appears to be an omission. Fetched sources did not discuss Pacific-slope populations.",
+        "es": "Presente en Costa Rica: la especie se distribuye desde Honduras, pasando por Nicaragua, Costa Rica y Panamá, hasta Sudamérica, y la investigación costarricense la documenta en paisajes cacaoteros y bosques ribereños de Limón, en la vertiente caribeña, y cerca de Upala (Alajuela) en el norte; GBIF tiene unos 5.100 registros de presencia en el país. La lista de países de Animal Diversity Web omite Costa Rica, lo que parece una omisión. Las fuentes consultadas no tratan poblaciones de la vertiente pacífica.",
+        "slopes": "Caribbean slope documented (Limón); Pacific slope not covered by fetched sources",
+        "elevationCR_m": null,
+        "gbifOccurrencesCR": 5133,
+        "status": "confirmed (occurs in Costa Rica; Caribbean lowlands); uncertain (Pacific slope, elevation within Costa Rica)",
+        "sources": [
+          "https://revistas.una.ac.cr/index.php/ambientales/article/view/17611",
+          "https://en.wikipedia.org/wiki/Brown-throated_sloth",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2436353&country=CR&limit=0",
+          "https://bufetedecostarica.com/wp-content/uploads/2026/10/declaratoria-del-perezoso-de-dos-dedos-choloepus-hoffmanni-y-el-perezoso-de-tres-dedos-bradypus-variegatus-como-simbolos-nacionales-de-la-fauna_10007.pdf"
+        ]
+      },
+      "diet": {
+        "en": "A strict herbivore that eats leaves, flowers and fruit, feeding mainly on trees of the genus Cecropia (guarumo). It gets most of its water from its food, although it can drink.",
+        "es": "Herbívoro estricto que come hojas, flores y frutos, alimentándose sobre todo de árboles del género Cecropia (guarumo). Obtiene la mayor parte del agua de su alimento, aunque puede beber.",
+        "status": "confirmed",
+        "note": "The Spanish name 'guarumo' for Cecropia is common usage in Costa Rica and was not itself verified from a fetched page.",
+        "sources": [
+          "https://animaldiversity.org/accounts/Bradypus_variegatus/",
+          "https://revistas.una.ac.cr/index.php/ambientales/article/view/17611"
+        ]
+      },
+      "ecologicalRole": {
+        "en": "Its fur hosts algae (green, golden, blue-green and red algae) in a mutualism that tints the animal greenish and may help camouflage it, and the fur creates habitat for other organisms; a moth, Cryptoses choloepi, also lives in the fur and lays its eggs in sloth dung. It is prey for the harpy eagle, the spectacled owl and wild cats.",
+        "es": "Su pelaje alberga algas (verdes, doradas, verdeazuladas y rojas) en un mutualismo que le da un tinte verdoso y puede ayudarle a camuflarse, y el pelaje crea hábitat para otros organismos; una polilla, Cryptoses choloepi, también vive en el pelaje y pone sus huevos en el excremento del perezoso. Es presa del águila arpía, el búho de anteojos y los felinos silvestres.",
+        "status": "confirmed (algae mutualism, predators — ADW); approximate (sloth moth — Wikipedia only)",
+        "sources": [
+          "https://animaldiversity.org/accounts/Bradypus_variegatus/",
+          "https://en.wikipedia.org/wiki/Brown-throated_sloth"
+        ]
+      },
+      "behaviour": {
+        "en": "Solitary and slow-moving, it sleeps roughly 14–16 hours a day and is active for 8–10 hours in bouts of 2–3 hours, mostly between noon and 18:00. It rarely leaves the canopy except to descend to the ground to defecate and urinate about once every 3–8 days, and it is a capable swimmer.",
+        "es": "Solitario y de movimientos lentos, duerme unas 14 a 16 horas al día y está activo de 8 a 10 horas en periodos de 2 a 3 horas, sobre todo entre el mediodía y las 18:00. Rara vez abandona el dosel salvo para bajar al suelo a defecar y orinar aproximadamente una vez cada 3 a 8 días, y es un buen nadador.",
+        "status": "confirmed",
+        "note": "Wikipedia gives 15–18 hours of sleep and 'roughly once every eight days' for descending; ADW figures are used here.",
+        "sources": [
+          "https://animaldiversity.org/accounts/Bradypus_variegatus/",
+          "https://en.wikipedia.org/wiki/Brown-throated_sloth"
+        ]
+      },
+      "facts": [
+        {
+          "en": "Its neck has about ten cervical vertebrae, which lets it rotate its head up to about 270 degrees.",
+          "es": "Su cuello tiene unas diez vértebras cervicales, lo que le permite girar la cabeza hasta unos 270 grados.",
+          "status": "confirmed",
+          "sources": ["https://animaldiversity.org/accounts/Bradypus_variegatus/"]
+        },
+        {
+          "en": "Females bear a single young per year after a gestation of 5–8 months; only the mother cares for it, and the male leaves after mating.",
+          "es": "Las hembras paren una sola cría al año tras una gestación de 5 a 8 meses; solo la madre la cuida y el macho se va después del apareamiento.",
+          "status": "confirmed",
+          "sources": ["https://animaldiversity.org/accounts/Bradypus_variegatus/"]
+        },
+        {
+          "en": "Together with the two-toed sloth Choloepus hoffmanni, it was declared a national symbol of Costa Rica's wildlife by Ley N.º 10007 in 2021, after the bill (expediente 22167) passed its second debate in July of that year.",
+          "es": "Junto con el perezoso de dos dedos Choloepus hoffmanni, fue declarado símbolo nacional de la fauna de Costa Rica mediante la Ley N.º 10007 en 2021, tras la aprobación del proyecto (expediente 22167) en segundo debate en julio de ese año.",
+          "status": "confirmed",
+          "sources": [
+            "https://bufetedecostarica.com/wp-content/uploads/2026/10/declaratoria-del-perezoso-de-dos-dedos-choloepus-hoffmanni-y-el-perezoso-de-tres-dedos-bradypus-variegatus-como-simbolos-nacionales-de-la-fauna_10007.pdf",
+            "https://delfino.cr/asamblea/proyecto/22167",
+            "https://www.teletica.com/289756_oso-perezoso-es-el-nuevo-simbolo-nacional-de-costa-rica"
+          ]
+        },
+        {
+          "en": "On naming: the fetched sources use the standard English names 'three-toed sloth' (Bradypus) and 'two-toed sloth' (Choloepus), and in Spanish 'perezoso de tres dedos' / 'de dos dedos' ('dedos' covers both fingers and toes). ADW describes B. variegatus as having long forelimbs with three clawed digits on each limb. The 'three-fingered/two-fingered' wording, which counts forelimb digits, could not be verified from a fetched source.",
+          "es": "Sobre el nombre: las fuentes consultadas usan los nombres ingleses estándar 'three-toed sloth' (Bradypus) y 'two-toed sloth' (Choloepus), y en español 'perezoso de tres dedos' / 'de dos dedos'. ADW describe a B. variegatus con antebrazos largos y tres dedos con garra en cada extremidad. La variante 'three-fingered/two-fingered', que cuenta los dedos de las extremidades anteriores, no pudo verificarse en una fuente consultada.",
+          "status": "uncertain",
+          "sources": [
+            "https://animaldiversity.org/accounts/Bradypus_variegatus/",
+            "https://revistas.una.ac.cr/index.php/ambientales/article/view/17611",
+            "https://en.wikipedia.org/wiki/Brown-throated_sloth"
+          ]
+        }
+      ],
+      "relatedSpecies": [
+        {
+          "scientific": "Choloepus hoffmanni",
+          "en": "Hoffmann's Two-toed Sloth",
+          "es": "perezoso de dos dedos",
+          "note": "Costa Rica's other sloth species; studied alongside B. variegatus in Limón cacao landscapes and declared a national symbol with it by Ley N.º 10007 (2021). Shade-grown cacao was found to support a self-sustaining population of two-toed but not three-toed sloths (Peery & Pauli 2014, as cited).",
+          "status": "confirmed",
+          "sources": [
+            "https://revistas.una.ac.cr/index.php/ambientales/article/view/17611",
+            "https://bufetedecostarica.com/wp-content/uploads/2026/10/declaratoria-del-perezoso-de-dos-dedos-choloepus-hoffmanni-y-el-perezoso-de-tres-dedos-bradypus-variegatus-como-simbolos-nacionales-de-la-fauna_10007.pdf"
+          ]
+        }
+      ],
+      "nationalSymbol": {
+        "isSymbol": true,
+        "year": 2021,
+        "instrument": "Ley N.º 10007 — Declaratoria del perezoso de dos dedos (Choloepus hoffmanni) y el perezoso de tres dedos (Bradypus variegatus) como símbolos nacionales de la fauna silvestre de Costa Rica (expediente legislativo 22167). Artículo 1: 'Se declara a los perezosos de dos dedos (Choloepus hoffmanni) y de tres dedos (Bradypus variegatus) símbolos nacionales de la fauna de Costa Rica y del compromiso del país con la protección de los bosques.'",
+        "note": {
+          "en": "The law text and bill record confirm the declaration; the bill's final text is dated 12 July 2021 and news coverage of its definitive approval is from 14 July 2021. The exact date of presidential signature and publication in La Gaceta were not in any fetched source, and the Presidencia's national-symbols page (fetched 2026-10-23) still lists only 15 symbols and omits the sloths.",
+          "es": "El texto de la ley y el expediente confirman la declaratoria; el texto final del proyecto es del 12 de julio de 2021 y la cobertura de prensa de su aprobación definitiva es del 14 de julio de 2021. La fecha exacta de la firma presidencial y de la publicación en La Gaceta no aparecen en ninguna fuente consultada, y la página de símbolos nacionales de la Presidencia (consultada el 2026-10-23) solo lista 15 símbolos y omite a los perezosos."
+        },
+        "status": "confirmed (law and species); approximate (exact 2021 date of sanction/publication)",
+        "sources": [
+          "https://bufetedecostarica.com/wp-content/uploads/2026/10/declaratoria-del-perezoso-de-dos-dedos-choloepus-hoffmanni-y-el-perezoso-de-tres-dedos-bradypus-variegatus-como-simbolos-nacionales-de-la-fauna_10007.pdf",
+          "https://delfino.cr/asamblea/proyecto/22167",
+          "https://www.teletica.com/289756_oso-perezoso-es-el-nuevo-simbolo-nacional-de-costa-rica",
+          "https://www.presidencia.go.cr/simbolos-nacionales/"
+        ]
+      },
+      "sources": [
+        {"url": "https://api.gbif.org/v1/species/match?name=Bradypus%20variegatus", "title": "GBIF Backbone Taxonomy — species match: Bradypus variegatus Schinz, 1825", "publisher": "GBIF", "published": null, "retrieved": "2026-10-23", "supports": "accepted name, authority, order Pilosa, family Bradypodidae"},
+        {"url": "https://api.gbif.org/v1/species/2436353/iucnRedListCategory", "title": "GBIF — IUCN Red List category for Bradypus variegatus", "publisher": "GBIF (mirror of IUCN Red List)", "published": null, "retrieved": "2026-10-23", "supports": "IUCN category LEAST_CONCERN (LC), iucnTaxonID 3038"},
+        {"url": "https://api.gbif.org/v1/species/176661209/distributions", "title": "GBIF — IUCN distribution record for Bradypus variegatus (IUCN Red List 2022-2)", "publisher": "GBIF (mirror of IUCN Red List)", "published": null, "retrieved": "2026-10-23", "supports": "assessment Moraes-Barros et al. 2022; DOI 10.2305/IUCN.UK.2022-2.RLTS.T3038A210442893.en"},
+        {"url": "https://animaldiversity.org/accounts/Bradypus_variegatus/", "title": "Bradypus variegatus (brown-throated three-toed sloth) — Animal Diversity Web", "publisher": "University of Michigan Museum of Zoology", "published": null, "retrieved": "2026-10-23", "supports": "taxonomy, habitat and 0–2,400 m elevation, size (60 cm; 3.49–5.19 kg), ten cervical vertebrae/270°, Cecropia diet, sleep/activity, descending every 3–8 days, swimming, reproduction, algae mutualism, predators, IUCN LC; its country list omits Costa Rica"},
+        {"url": "https://revistas.una.ac.cr/index.php/ambientales/article/view/17611", "title": "Un proyecto comprensivo para la investigación y conservación de perezosos en cacaotales de Costa Rica — Revista Ambientales", "publisher": "Universidad Nacional de Costa Rica (UNA)", "published": null, "retrieved": "2026-10-23", "supports": "both Bradypus variegatus (perezoso de tres dedos) and Choloepus hoffmanni (perezoso de dos dedos) occur in Costa Rica; studied 2004–2016 in a Limón cacao landscape; habitats (cacaotales, bosques ribereños, cercas vivas, árboles en potreros); called 'símbolos nacionales de Costa Rica'"},
+        {"url": "https://en.wikipedia.org/wiki/Brown-throated_sloth", "title": "Brown-throated sloth — Wikipedia", "publisher": "Wikimedia Foundation", "published": null, "retrieved": "2026-10-23", "supports": "approximate: range 'from Honduras in the north, through Nicaragua, Costa Rica and Panama'; sea level–1,200 m; 42–80 cm, 2.25–6.3 kg; sloth moth Cryptoses choloepi; algae species; subspecies B. v. ephippiger in Central America"},
+        {"url": "https://bufetedecostarica.com/wp-content/uploads/2026/10/declaratoria-del-perezoso-de-dos-dedos-choloepus-hoffmanni-y-el-perezoso-de-tres-dedos-bradypus-variegatus-como-simbolos-nacionales-de-la-fauna_10007.pdf", "title": "Ley N.º 10007 — Declaratoria del perezoso de dos dedos (Choloepus hoffmanni) y el perezoso de tres dedos (Bradypus variegatus) como símbolos nacionales de la fauna (texto de la ley)", "publisher": "Bufete de Costa Rica (reproduction of the law text)", "published": null, "retrieved": "2026-10-23", "supports": "law number, title and Artículo 1 wording; no sanction/publication date in the text"},
+        {"url": "https://delfino.cr/asamblea/proyecto/22167", "title": "Expediente 22167 — Declaratoria del perezoso de dos dedos y el perezoso de tres dedos como símbolos nacionales de la fauna silvestre de Costa Rica", "publisher": "Delfino.cr (legislative tracker)", "published": null, "retrieved": "2026-10-23", "supports": "bill 22167 presented 2020-08-24, final text 2021-07-12, status 'Aprobado en Segundo Debate', became Ley 10007"},
+        {"url": "https://www.teletica.com/289756_oso-perezoso-es-el-nuevo-simbolo-nacional-de-costa-rica", "title": "Oso perezoso es el nuevo símbolo nacional de Costa Rica — Teletica", "publisher": "Teletica", "published": "2021-07-14", "retrieved": "2026-10-23", "supports": "definitive, unanimous approval of expediente 22.167 by Comisión Plena Tercera; species Choloepus hoffmanni and Bradypus variegatus; proposed by diputada Yorleny León"},
+        {"url": "https://www.presidencia.go.cr/simbolos-nacionales/", "title": "Símbolos Nacionales — Presidencia de la República de Costa Rica", "publisher": "Presidencia de la República de Costa Rica", "published": null, "retrieved": "2026-10-23", "supports": "official list of 15 symbols as fetched; does not include the sloths"},
+        {"url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2436353&country=CR&limit=0", "title": "GBIF occurrence search — Bradypus variegatus, country=CR", "publisher": "GBIF", "published": null, "retrieved": "2026-10-23", "supports": "5,133 occurrence records in Costa Rica (confirms presence)"}
+      ]
+    },
+    {
+      "id": "blue-morpho",
+      "commonNames": {
+        "en": "Blue Morpho (Common Morpho)",
+        "es": "mariposa morfo azul",
+        "zh": "海伦闪蝶（蓝闪蝶）",
+        "status": "confirmed (en — 'Common Morpho' is the official BAMONA name, 'Blue Morpho' the usual one); uncertain (es and zh not verified in a fetched source)",
+        "sources": [
+          "https://www.butterfliesandmoths.org/node/1240203",
+          "https://learnbutterflies.com/common-blue-morpho/"
+        ]
+      },
+      "scientific": "Morpho helenor",
+      "authority": "Cramer, 1782 (GBIF); given as (Cramer, 1776) by Wikipedia and learnbutterflies.com",
+      "family": "Nymphalidae",
+      "subfamily": "Morphinae",
+      "order": "Lepidoptera",
+      "taxonomyStatus": "confirmed (genus/species/family/order); approximate (authority year differs between sources)",
+      "nomenclature": {
+        "en": "Naming is unsettled between authorities. The Costa Rican blue morpho was long called Morpho peleides Kollar, 1850. Lamas (2004), as cited by learnbutterflies.com, lists peleides among about 30 taxa treated as subspecies of M. helenor; Butterflies and Moths of North America notes that 'Morpho peleides' is now more often replaced by M. helenor; Wikipedia lists M. h. peleides as a subspecies. The GBIF Backbone Taxonomy, however, still carries Morpho peleides Kollar, 1850 as an accepted species separate from M. helenor Cramer, 1782. The Costa Rican subspecies Morpho helenor marinita Butler, 1872 has its type locality in Costa Rica and is documented from SW Costa Rica to Panama on the Pacific slope; a Wikipedia plate caption also names M. h. limpidus Butler, 1872 from Costa Rica. This file uses M. helenor and notes the former name.",
+        "es": "La nomenclatura no está resuelta entre autoridades. La morfo azul de Costa Rica se llamó durante mucho tiempo Morpho peleides Kollar, 1850. Lamas (2004), citado por learnbutterflies.com, incluye peleides entre unos 30 taxones tratados como subespecies de M. helenor; Butterflies and Moths of North America señala que 'Morpho peleides' hoy se reemplaza con más frecuencia por M. helenor; Wikipedia lista M. h. peleides como subespecie. Sin embargo, la taxonomía troncal de GBIF todavía mantiene Morpho peleides Kollar, 1850 como especie aceptada, separada de M. helenor Cramer, 1782. La subespecie costarricense Morpho helenor marinita Butler, 1872 tiene su localidad tipo en Costa Rica y está documentada del suroeste de Costa Rica a Panamá en la vertiente pacífica; un pie de lámina de Wikipedia también nombra a M. h. limpidus Butler, 1872 de Costa Rica. Este archivo usa M. helenor y anota el nombre anterior.",
+        "formerName": "Morpho peleides Kollar, 1850",
+        "costaRicanSubspecies": ["Morpho helenor marinita Butler, 1872 (type locality Costa Rica; SW Costa Rica to Panama, Pacific slope)", "Morpho helenor limpidus Butler, 1872 (named from Costa Rica in a Wikipedia plate caption — approximate)"],
+        "status": "approximate",
+        "sources": [
+          "https://learnbutterflies.com/common-blue-morpho/",
+          "https://www.butterfliesandmoths.org/node/1240203",
+          "https://api.gbif.org/v1/species/match?name=Morpho%20peleides",
+          "https://api.gbif.org/v1/species/match?name=Morpho%20helenor",
+          "https://www.butterfliesofamerica.com/L/morpho_helenor_marinita.htm",
+          "https://en.wikipedia.org/wiki/Morpho_helenor",
+          "https://mapress.com/zt/article/view/zootaxa.3130.1.2"
+        ]
+      },
+      "iucn": {
+        "category": "NE",
+        "categoryName": "Not Evaluated",
+        "year": null,
+        "iucnTaxonId": null,
+        "url": null,
+        "status": "confirmed",
+        "note": "GBIF's IUCN mirror returns NOT_EVALUATED for Morpho helenor; no Red List assessment exists for the species.",
+        "sources": ["https://api.gbif.org/v1/species/5133265/iucnRedListCategory"]
+      },
+      "size": {
+        "wingspan_cm": null,
+        "status": "uncertain",
+        "note": "No fetched source gave a wingspan; learnbutterflies.com describes it only as 'saucer-sized' with wings 'enormous relative to their body size'.",
+        "sources": ["https://learnbutterflies.com/common-blue-morpho/"]
+      },
+      "habitat": {
+        "en": "Breeds in a wide range of forest types, from dry deciduous woodland at sea level in Guanacaste, Costa Rica, through wet tropical forest, to Andean cloud forest at up to about 1,800 m.",
+        "es": "Se reproduce en una amplia variedad de bosques, desde el bosque seco deciduo al nivel del mar en Guanacaste, Costa Rica, pasando por el bosque tropical húmedo, hasta el bosque nuboso andino a unos 1.800 m como máximo.",
+        "elevation_m": [0, 1800],
+        "status": "approximate",
+        "sources": ["https://learnbutterflies.com/common-blue-morpho/"]
+      },
+      "distributionCR": {
+        "en": "Widespread and common from Mexico south through Central America to Bolivia. In Costa Rica it is recorded in the Guanacaste dry forest and on the southern Pacific slope (Ojochal, Osa Peninsula area), where the subspecies M. helenor marinita is documented; GBIF holds about 2,400 occurrence records of M. helenor in Costa Rica, and additional records may be filed under the older name M. peleides.",
+        "es": "Amplia y común desde México, a través de Centroamérica, hasta Bolivia. En Costa Rica está registrada en el bosque seco de Guanacaste y en la vertiente del Pacífico sur (zona de Ojochal, península de Osa), donde se documenta la subespecie M. helenor marinita; GBIF tiene unos 2.400 registros de M. helenor en Costa Rica, y puede haber registros adicionales bajo el nombre anterior M. peleides.",
+        "slopes": "Pacific slope documented (Guanacaste; SW Costa Rica for ssp. marinita); Caribbean slope not covered by fetched sources",
+        "elevationCR_m": null,
+        "gbifOccurrencesCR": 2436,
+        "status": "confirmed (occurs in Costa Rica); approximate (subspecies and slope detail); interpretation (records split across two names)",
+        "sources": [
+          "https://learnbutterflies.com/common-blue-morpho/",
+          "https://www.butterfliesofamerica.com/L/morpho_helenor_marinita.htm",
+          "https://www.butterfliesandmoths.org/node/1240203",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=5133265&country=CR&limit=0"
+        ]
+      },
+      "diet": {
+        "en": "Caterpillars feed on legumes (Fabaceae) such as Machaerium, Swartzia, Lonchocarpus, Pterocarpus and Dalbergia. Adults do not visit flowers for nectar in the usual way; they feed at rotting fruit and sap runs and take dissolved minerals by mud-puddling.",
+        "es": "Las orugas se alimentan de leguminosas (Fabaceae) como Machaerium, Swartzia, Lonchocarpus, Pterocarpus y Dalbergia. Los adultos se alimentan de fruta en descomposición y de exudados de savia, y toman minerales disueltos en el barro.",
+        "status": "approximate",
+        "note": "From learnbutterflies.com (enthusiast reference); the 'do not visit flowers' phrasing is our reading of the source listing only fruit, sap and minerals as adult food and is marked interpretation.",
+        "sources": ["https://learnbutterflies.com/common-blue-morpho/"]
+      },
+      "ecologicalRole": {
+        "en": "As a larva it is a specialist herbivore of leguminous trees and vines; as an adult it feeds on fallen, rotting fruit and sap. It is prey for birds, which tend to strike at the eyespots on the hindwing underside rather than the body, so the eyespots work as a decoy.",
+        "es": "Como larva es un herbívoro especializado en árboles y bejucos leguminosos; como adulto se alimenta de fruta caída en descomposición y de savia. Es presa de aves, que tienden a atacar los ocelos del envés del ala posterior en lugar del cuerpo, de modo que los ocelos funcionan como señuelo.",
+        "status": "interpretation",
+        "note": "Role inferred from the sourced diet and predation statements; no fetched source frames it as an 'ecological role'.",
+        "sources": ["https://learnbutterflies.com/common-blue-morpho/"]
+      },
+      "behaviour": {
+        "en": "Flies with a bouncy zigzag. Males patrol back and forth along stream courses in dappled sunlight, mostly in the morning, while females are seen less often, usually in late morning along forest trails. On landing both sexes close their wings, hiding the blue upper side, though they briefly flick them open.",
+        "es": "Vuela con un zigzag rebotante. Los machos patrullan de un lado a otro a lo largo de quebradas bajo luz moteada, sobre todo por la mañana, mientras que las hembras se ven menos, normalmente a media mañana a lo largo de senderos del bosque. Al posarse, ambos sexos cierran las alas y ocultan el azul del haz, aunque las abren brevemente.",
+        "status": "approximate",
+        "sources": ["https://learnbutterflies.com/common-blue-morpho/"]
+      },
+      "facts": [
+        {
+          "en": "The upper side of the wings is brilliant blue and seems to flash like a beacon in flight, while the underside is olive-brown with eyespots formed by concentric white, black, yellow and red rings; birds tend to aim their attacks at these ocelli.",
+          "es": "El haz de las alas es azul brillante y parece destellar como un faro en vuelo, mientras que el envés es pardo oliva con ocelos formados por anillos concéntricos blancos, negros, amarillos y rojos; las aves tienden a dirigir sus ataques a esos ocelos.",
+          "status": "approximate",
+          "sources": ["https://learnbutterflies.com/common-blue-morpho/"]
+        },
+        {
+          "en": "A 2011 Zootaxa study of M. helenor in Bolivia found its subspecies occupying habitats from Amazonian moist forest to sub-humid semi-deciduous forest at about 500–1,400 m, with intermediate forms where ranges meet — the ecological plasticity behind the species' many named subspecies.",
+          "es": "Un estudio de 2011 en Zootaxa sobre M. helenor en Bolivia halló subespecies que ocupan hábitats desde bosque húmedo amazónico hasta bosque semideciduo subhúmedo a unos 500–1.400 m, con formas intermedias donde se encuentran las áreas — la plasticidad ecológica que explica las numerosas subespecies nombradas.",
+          "status": "confirmed",
+          "sources": ["https://mapress.com/zt/article/view/zootaxa.3130.1.2"]
+        },
+        {
+          "en": "Butterflies and Moths of North America records the species under the official common name 'Common Morpho' while noting it is more commonly called the 'Blue Morpho', and lists Costa Rica among its checklist regions.",
+          "es": "Butterflies and Moths of North America registra la especie bajo el nombre común oficial 'Common Morpho', señala que se le llama más comúnmente 'Blue Morpho' e incluye a Costa Rica entre sus regiones de lista.",
+          "status": "confirmed",
+          "sources": ["https://www.butterfliesandmoths.org/node/1240203"]
+        }
+      ],
+      "nationalSymbol": {
+        "isSymbol": false,
+        "year": null,
+        "instrument": null,
+        "note": {
+          "en": "No butterfly appears among the 15 national symbols on the Presidencia de la República's symbols page (fetched 2026-10-23). The fauna symbols listed there are the yigüirro (national bird, 1977), the white-tailed deer (1995) and the manatee (marine fauna, 2014); the sloths (Ley 10007, 2021) are not yet listed on that page.",
+          "es": "Ninguna mariposa figura entre los 15 símbolos nacionales de la página de símbolos de la Presidencia de la República (consultada el 2026-10-23). Los símbolos de fauna que aparecen allí son el yigüirro (ave nacional, 1977), el venado cola blanca (1995) y el manatí (fauna marina, 2014); los perezosos (Ley 10007, 2021) aún no aparecen en esa página."
+        },
+        "status": "confirmed",
+        "sources": ["https://www.presidencia.go.cr/simbolos-nacionales/"]
+      },
+      "sources": [
+        {"url": "https://api.gbif.org/v1/species/match?name=Morpho%20helenor", "title": "GBIF Backbone Taxonomy — species match: Morpho helenor Cramer, 1782", "publisher": "GBIF", "published": null, "retrieved": "2026-10-23", "supports": "accepted name and authority (1782), order Lepidoptera, family Nymphalidae"},
+        {"url": "https://api.gbif.org/v1/species/match?name=Morpho%20peleides", "title": "GBIF Backbone Taxonomy — species match: Morpho peleides Kollar, 1850", "publisher": "GBIF", "published": null, "retrieved": "2026-10-23", "supports": "GBIF still treats Morpho peleides as an ACCEPTED species (not a synonym)"},
+        {"url": "https://api.gbif.org/v1/species/5133265/iucnRedListCategory", "title": "GBIF — IUCN Red List category for Morpho helenor", "publisher": "GBIF (mirror of IUCN Red List)", "published": null, "retrieved": "2026-10-23", "supports": "NOT_EVALUATED (NE)"},
+        {"url": "https://learnbutterflies.com/common-blue-morpho/", "title": "Common Blue Morpho — Morpho helenor (Cramer, 1776) — Learn About Butterflies", "publisher": "learnbutterflies.com (Adrian Hoskins)", "published": null, "retrieved": "2026-10-23", "supports": "Lamas (2004) treats peleides as one of ~30 subspecies of helenor; range Mexico to Bolivia; Guanacaste dry forest at sea level to cloud forest ~1,800 m; Fabaceae hosts; adult feeding; flight and patrolling behaviour; eyespot decoy"},
+        {"url": "https://www.butterfliesofamerica.com/L/morpho_helenor_marinita.htm", "title": "Morpho helenor marinita A. Butler, 1872 (Common Morpho) — Butterflies of America", "publisher": "Butterflies of America Foundation", "published": null, "retrieved": "2026-10-23", "supports": "type locality Costa Rica; distribution 'SW Costa Rica to Panama (Pacific slope)'; photos from Ojochal and Osa Peninsula, Costa Rica"},
+        {"url": "https://www.butterfliesandmoths.org/node/1240203", "title": "Sighting 1240203 — Common Morpho (Morpho helenor), Costa Rica — Butterflies and Moths of North America", "publisher": "BAMONA", "published": null, "retrieved": "2026-10-23", "supports": "official common name 'Common Morpho' vs. usual 'Blue Morpho'; coordinator note that 'Morpho peleides' is now more often replaced by M. helenor; Costa Rica checklist region"},
+        {"url": "https://mapress.com/zt/article/view/zootaxa.3130.1.2", "title": "Morpho (Morpho) helenor (Cramer) (Lepidoptera, Nymphalidae, Morphinae) in Bolivia: geographical distribution and ecological plasticity, with a description of a new subspecies — Zootaxa 3130(1): 30–56", "publisher": "Magnolia Press (Zootaxa); authors Gareca & Blandin", "published": "2011-12-14", "retrieved": "2026-10-23", "supports": "subfamily Morphinae; helenor treated as a species with multiple subspecies; habitat breadth and 500–1,400 m for ssp. prometa; intermediate phenotypes"},
+        {"url": "https://en.wikipedia.org/wiki/Morpho_helenor", "title": "Morpho helenor — Wikipedia", "publisher": "Wikimedia Foundation", "published": null, "retrieved": "2026-10-23", "supports": "approximate: authority (Cramer, 1776); range Mexico to Argentina; M. h. peleides listed as subspecies; M. h. limpidus from Costa Rica (plate caption); M. h. marinita listed"},
+        {"url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5133265&country=CR&limit=0", "title": "GBIF occurrence search — Morpho helenor, country=CR", "publisher": "GBIF", "published": null, "retrieved": "2026-10-23", "supports": "2,436 occurrence records in Costa Rica (confirms presence)"},
+        {"url": "https://www.presidencia.go.cr/simbolos-nacionales/", "title": "Símbolos Nacionales — Presidencia de la República de Costa Rica", "publisher": "Presidencia de la República de Costa Rica", "published": null, "retrieved": "2026-10-23", "supports": "no butterfly among the listed national symbols"}
+      ]
+    },
+    {
+      "id": "clay-colored-thrush",
+      "commonNames": {
+        "en": "Clay-colored Thrush",
+        "es": "yigüirro",
+        "esAlt": ["zorzal pardo"],
+        "zh": "褐背鸫",
+        "status": "confirmed (en, es); uncertain (zh)",
+        "sources": [
+          "https://www.allaboutbirds.org/guide/Clay-colored_Thrush/overview",
+          "https://www.presidencia.go.cr/simbolos-nacionales/",
+          "https://lasnubes.euc.yorku.ca/species/clay-colored-thrush/"
+        ]
+      },
+      "scientific": "Turdus grayi",
+      "authority": "Bonaparte, 1838",
+      "family": "Turdidae",
+      "order": "Passeriformes",
+      "taxonomyStatus": "confirmed",
+      "iucn": {
+        "category": "LC",
+        "categoryName": "Least Concern",
+        "year": 2021,
+        "assessor": "BirdLife International",
+        "iucnTaxonId": "22708914",
+        "url": "https://doi.org/10.2305/IUCN.UK.2021-3.RLTS.T22708914A139360239.en",
+        "status": "confirmed",
+        "note": "Taken from GBIF's mirror of the IUCN Red List (iucnredlist.org blocked fetching). All About Birds rates it 'Low Concern'; the Las Nubes (York University) species page also shows LC.",
+        "sources": [
+          "https://api.gbif.org/v1/species/2490716/iucnRedListCategory",
+          "https://api.gbif.org/v1/species/176633608/distributions",
+          "https://lasnubes.euc.yorku.ca/species/clay-colored-thrush/"
+        ]
+      },
+      "size": {
+        "length_cm": [23, 27],
+        "mass_g": [74, 76],
+        "status": "approximate",
+        "note": "From Wikipedia only (23–27 cm; about 74–76 g on average); the All About Birds overview page fetched gave no measurements.",
+        "sources": ["https://en.wikipedia.org/wiki/Clay-colored_thrush"]
+      },
+      "habitat": {
+        "en": "Open forest and lightly wooded country; it is common around yards, gardens and human settlements.",
+        "es": "Bosque abierto y zonas con arbolado disperso; es común en patios, jardines y asentamientos humanos.",
+        "status": "confirmed (open woodland — All About Birds); approximate (yards and settlements — Wikipedia)",
+        "sources": [
+          "https://www.allaboutbirds.org/guide/Clay-colored_Thrush/overview",
+          "https://en.wikipedia.org/wiki/Clay-colored_thrush"
+        ]
+      },
+      "distributionCR": {
+        "en": "Breeds from southern Texas and Mexico through Central America to northern Colombia. In Costa Rica it is the national bird and one of the most frequently recorded species, with more than 430,000 GBIF occurrence records in the country. Fetched sources did not give its Costa Rican elevation range or slope distribution.",
+        "es": "Se reproduce desde el sur de Texas y México, a través de Centroamérica, hasta el norte de Colombia. En Costa Rica es el ave nacional y una de las especies más registradas, con más de 430.000 registros de presencia en GBIF para el país. Las fuentes consultadas no indican su rango de elevación ni su distribución por vertientes en Costa Rica.",
+        "slopes": null,
+        "elevationCR_m": null,
+        "gbifOccurrencesCR": 438829,
+        "status": "confirmed (occurs in Costa Rica; range); uncertain (elevation and slopes within Costa Rica)",
+        "sources": [
+          "https://www.allaboutbirds.org/guide/Clay-colored_Thrush/overview",
+          "https://api.gbif.org/v1/occurrence/search?taxonKey=2490716&country=CR&limit=0",
+          "https://en.wikipedia.org/wiki/Clay-colored_thrush"
+        ]
+      },
+      "diet": {
+        "en": "Omnivorous: it forages on or near the ground for earthworms and other invertebrates and eats berries and fruit, and it readily visits fruit feeders. It has been recorded following army ants to catch prey they flush.",
+        "es": "Omnívoro: busca en el suelo o cerca de él lombrices y otros invertebrados y come bayas y frutos, y acude con facilidad a comederos de fruta. Se ha registrado siguiendo hormigas arrieras para atrapar las presas que estas espantan.",
+        "status": "confirmed (All About Birds); approximate (army ants — Wikipedia)",
+        "sources": [
+          "https://www.allaboutbirds.org/guide/Clay-colored_Thrush/overview",
+          "https://en.wikipedia.org/wiki/Clay-colored_thrush"
+        ]
+      },
+      "ecologicalRole": {
+        "en": "A frugivore-insectivore of gardens and open woodland; because fruit is a major part of its diet it very likely disperses seeds, although none of the fetched sources states this explicitly.",
+        "es": "Frugívoro-insectívoro de jardines y bosque abierto; como la fruta es parte importante de su dieta, muy probablemente dispersa semillas, aunque ninguna de las fuentes consultadas lo afirma explícitamente.",
+        "status": "interpretation",
+        "sources": [
+          "https://www.allaboutbirds.org/guide/Clay-colored_Thrush/overview",
+          "https://en.wikipedia.org/wiki/Clay-colored_thrush"
+        ]
+      },
+      "behaviour": {
+        "en": "A ground forager that behaves much like its relative the American Robin and builds a sturdy cup nest, usually in a tree. Its low-pitched, steady caroling song is heard mainly at the start of the rainy season, and local tradition holds that the bird 'calls the rains'.",
+        "es": "Busca alimento en el suelo de forma muy parecida a su pariente el petirrojo americano y construye un nido de copa resistente, por lo general en un árbol. Su canto, de tono bajo y ritmo constante, se oye sobre todo al inicio de la estación lluviosa, y la tradición popular dice que el ave 'llama a las lluvias'.",
+        "status": "confirmed (foraging, nest, song quality — All About Birds); approximate (rainy season and 'calls the rains' — Wikipedia citing Skutch)",
+        "sources": [
+          "https://www.allaboutbirds.org/guide/Clay-colored_Thrush/overview",
+          "https://en.wikipedia.org/wiki/Clay-colored_thrush"
+        ]
+      },
+      "facts": [
+        {
+          "en": "It became Costa Rica's national bird by Ley N.º 6031 of 3 January 1977, published in La Gaceta N.º 9 of 14 January 1977, whose text reads 'Declárase el yigüirro (Turdus grayi) ave nacional'. The Presidencia's symbols page says it was chosen for its harmonious song.",
+          "es": "Se convirtió en el ave nacional de Costa Rica mediante la Ley N.º 6031 del 3 de enero de 1977, publicada en La Gaceta N.º 9 del 14 de enero de 1977, cuyo texto dice 'Declárase el yigüirro (Turdus grayi) ave nacional'. La página de símbolos de la Presidencia señala que se escogió por su armonioso canto.",
+          "status": "confirmed",
+          "sources": [
+            "https://www.pgr.go.cr/wp-content/uploads/2025/12/RG-250322.pdf",
+            "https://www.presidencia.go.cr/simbolos-nacionales/"
+          ]
+        },
+        {
+          "en": "The 1977 law misspelled the scientific name as 'Turdus Craye'; an official erratum (fe de erratas) signed by the Legislative Assembly in October 2021 and the Presidency in December 2021, and published in La Gaceta N.º 58 of 25 March 2022, corrected it to Turdus grayi.",
+          "es": "La ley de 1977 escribió mal el nombre científico como 'Turdus Craye'; una fe de erratas firmada por la Asamblea Legislativa en octubre de 2021 y por la Presidencia en diciembre de 2021, publicada en La Gaceta N.º 58 del 25 de marzo de 2022, lo corrigió a Turdus grayi.",
+          "status": "confirmed",
+          "sources": ["https://www.pgr.go.cr/wp-content/uploads/2025/12/RG-250322.pdf"]
+        },
+        {
+          "en": "Despite its plain, uniformly warm-brown plumage, All About Birds singles out its 'virtuoso song' and notes that it regularly visits fruit feeding stations, appearing on the Cornell Lab's Panama Fruit Feeder Cam.",
+          "es": "Pese a su plumaje sencillo, de un pardo cálido uniforme, All About Birds destaca su canto virtuoso y señala que acude con regularidad a comederos de fruta, apareciendo en la cámara de comederos de Panamá del Cornell Lab.",
+          "status": "confirmed",
+          "sources": ["https://www.allaboutbirds.org/guide/Clay-colored_Thrush/overview"]
+        },
+        {
+          "en": "It lays 2–4 pale blue eggs marked with red-brown and grey, between March and July, in a heavy cup of grass, moss, leaves and mud — sometimes on window ledges — and may raise two broods.",
+          "es": "Pone de 2 a 4 huevos azul pálido con manchas pardo-rojizas y grises, entre marzo y julio, en una copa pesada de pasto, musgo, hojas y barro — a veces en repisas de ventanas — y puede criar dos nidadas.",
+          "status": "approximate",
+          "sources": ["https://en.wikipedia.org/wiki/Clay-colored_thrush"]
+        }
+      ],
+      "nationalSymbol": {
+        "isSymbol": true,
+        "year": 1977,
+        "instrument": "Ley N.º 6031 de 3 de enero de 1977 (publicada en La Gaceta N.º 9 del 14 de enero de 1977): 'Declárase el yigüirro (Turdus grayi) ave nacional.' Fe de erratas publicada en La Gaceta N.º 58 del 25 de marzo de 2022 corrigiendo 'Turdus Craye' a 'Turdus grayi'.",
+        "note": {
+          "en": "The Presidencia page states only 'En 1977 se decreta el Yigüirro como Ave Nacional debido a su armonioso canto' without a number; the Gaceta erratum published by the Procuraduría General de la República identifies the instrument as a Ley (N.º 6031), not a decreto.",
+          "es": "La página de la Presidencia solo dice 'En 1977 se decreta el Yigüirro como Ave Nacional debido a su armonioso canto', sin número; la fe de erratas de La Gaceta publicada por la Procuraduría General de la República identifica el instrumento como una Ley (N.º 6031), no un decreto."
+        },
+        "status": "confirmed",
+        "sources": [
+          "https://www.pgr.go.cr/wp-content/uploads/2025/12/RG-250322.pdf",
+          "https://www.presidencia.go.cr/simbolos-nacionales/",
+          "https://www.allaboutbirds.org/guide/Clay-colored_Thrush/overview"
+        ]
+      },
+      "sources": [
+        {"url": "https://api.gbif.org/v1/species/match?name=Turdus%20grayi", "title": "GBIF Backbone Taxonomy — species match: Turdus grayi Bonaparte, 1838", "publisher": "GBIF", "published": null, "retrieved": "2026-10-23", "supports": "accepted name, authority, order Passeriformes, family Turdidae"},
+        {"url": "https://api.gbif.org/v1/species/2490716/iucnRedListCategory", "title": "GBIF — IUCN Red List category for Turdus grayi", "publisher": "GBIF (mirror of IUCN Red List)", "published": null, "retrieved": "2026-10-23", "supports": "IUCN category LEAST_CONCERN (LC), iucnTaxonID 22708914"},
+        {"url": "https://api.gbif.org/v1/species/176633608/distributions", "title": "GBIF — IUCN distribution record for Turdus grayi (IUCN Red List 2021-3)", "publisher": "GBIF (mirror of IUCN Red List)", "published": null, "retrieved": "2026-10-23", "supports": "assessment BirdLife International 2021; DOI 10.2305/IUCN.UK.2021-3.RLTS.T22708914A139360239.en"},
+        {"url": "https://www.allaboutbirds.org/guide/Clay-colored_Thrush/overview", "title": "Clay-colored Thrush Overview — All About Birds", "publisher": "Cornell Lab of Ornithology", "published": null, "retrieved": "2026-10-23", "supports": "order/family, plumage, open-woodland habitat, range northern Colombia to southern Texas, omnivorous diet, cup nest, ground foraging, song, national bird of Costa Rica, 'Low Concern', Spanish name Zorzal Pardo"},
+        {"url": "https://lasnubes.euc.yorku.ca/species/clay-colored-thrush/", "title": "Clay-colored Thrush — Las Nubes species pages", "publisher": "York University, Faculty of Environmental & Urban Change (Las Nubes Project, Costa Rica)", "published": null, "retrieved": "2026-10-23", "supports": "Spanish name Yigüirro; family Turdidae; IUCN LC"},
+        {"url": "https://www.pgr.go.cr/wp-content/uploads/2025/12/RG-250322.pdf", "title": "Fe de erratas — Ley N.º 6031 (yigüirro ave nacional), La Gaceta N.º 58, 25 de marzo de 2022", "publisher": "Procuraduría General de la República de Costa Rica (Gaceta Digital reproduction)", "published": "2022-03-25", "retrieved": "2026-10-23", "supports": "Ley N.º 6031 of 3 January 1977, La Gaceta N.º 09 of 14 January 1977; wording 'Declárase el yigüirro (Turdus grayi) ave nacional'; correction of 'Turdus Craye'"},
+        {"url": "https://www.presidencia.go.cr/simbolos-nacionales/", "title": "Símbolos Nacionales — Presidencia de la República de Costa Rica", "publisher": "Presidencia de la República de Costa Rica", "published": null, "retrieved": "2026-10-23", "supports": "'En 1977 se decreta el Yigüirro como Ave Nacional debido a su armonioso canto'"},
+        {"url": "https://en.wikipedia.org/wiki/Clay-colored_thrush", "title": "Clay-colored thrush — Wikipedia", "publisher": "Wikimedia Foundation", "published": null, "retrieved": "2026-10-23", "supports": "approximate: 23–27 cm, 74–76 g; gardens and settlements; army-ant following; nesting and eggs; song at start of rainy season and 'call the rains' (Skutch); national symbol chosen 1977"},
+        {"url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490716&country=CR&limit=0", "title": "GBIF occurrence search — Turdus grayi, country=CR", "publisher": "GBIF", "published": null, "retrieved": "2026-10-23", "supports": "438,829 occurrence records in Costa Rica (confirms presence)"}
+      ]
+    }
+  ],
+  "unesco": [
+    {
+      "id": "talamanca-la-amistad",
+      "name": {
+        "en": "Talamanca Range-La Amistad Reserves / La Amistad National Park",
+        "es": "Reservas de la Cordillera de Talamanca–La Amistad / Parque Nacional de la Amistad"
+      },
+      "inscribed": [1983, 1990],
+      "inscriptionNote": "Inscribed 1983; boundary modification 1990 when Panama's La Amistad National Park was added as an extension.",
+      "criteria": "(vii)(viii)(ix)(x)",
+      "type": "natural",
+      "transboundary": true,
+      "statesParties": ["Costa Rica", "Panama"],
+      "provinces": ["San José", "Cartago", "Limón", "Puntarenas"],
+      "provincesNote": "Costa Rican provinces as listed by UNESCO; the Panamanian side lies in Bocas del Toro and Chiriquí.",
+      "coords": [9.4071, -82.9388],
+      "coordsNote": "Converted from UNESCO's N9 24 25.5, W82 56 19.7.",
+      "area_ha": 570045,
+      "text": {
+        "en": "A transboundary property along the Costa Rica–Panama border covering much of the highest and wildest non-volcanic mountain range in Central America, the Cordillera de Talamanca. At about 570,000 ha (roughly 221,000 ha on the Panamanian side) it is one of the region's largest conservation areas.",
+        "es": "Bien transfronterizo a lo largo de la frontera entre Costa Rica y Panamá que abarca gran parte de la cordillera no volcánica más alta y silvestre de Centroamérica, la Cordillera de Talamanca. Con unas 570.000 ha (unas 221.000 ha del lado panameño), es una de las mayores áreas de conservación de la región."
+      },
+      "status": "confirmed",
+      "url": "https://whc.unesco.org/en/list/205/",
+      "sources": [
+        {"url": "https://whc.unesco.org/en/list/205/", "title": "Talamanca Range-La Amistad Reserves / La Amistad National Park — UNESCO World Heritage Centre", "publisher": "UNESCO World Heritage Centre", "published": null, "retrieved": "2026-10-23", "supports": "name, Spanish name, 1983 inscription and 1990 extension, criteria, States Parties, provinces, coordinates, area, brief synthesis"},
+        {"url": "https://whc.unesco.org/en/statesparties/cr", "title": "Costa Rica — UNESCO World Heritage Centre (State Party page)", "publisher": "UNESCO World Heritage Centre", "published": null, "retrieved": "2026-10-23", "supports": "listed as natural property with years 1983, 1990"}
+      ]
+    },
+    {
+      "id": "cocos-island",
+      "name": {
+        "en": "Cocos Island National Park",
+        "es": "Parque Nacional Isla del Coco"
+      },
+      "inscribed": [1997, 2002],
+      "inscriptionNote": "Inscribed 1997; extended 2002 (years from the State Party page and the Spanish property page).",
+      "criteria": "(ix)(x)",
+      "type": "natural",
+      "transboundary": false,
+      "statesParties": ["Costa Rica"],
+      "provinces": [],
+      "provincesNote": "UNESCO's pages do not name a province; the island is administered as part of Puntarenas, but that was not verified from a fetched source.",
+      "coords": null,
+      "coordsNote": "Coordinates were not present in the fetched page content.",
+      "area_ha": 202100,
+      "areaNote": "English page: 202,100 ha, of which about 2,400 ha is the island itself; the Spanish page lists a core zone of 199,700 ha. The two figures differ.",
+      "text": {
+        "en": "An oceanic island park in the Eastern Tropical Pacific about 530–550 km off Costa Rica's Pacific coast. Cocos Island is the only emergent peak of the submarine Cocos Range and carries the region's only oceanic humid tropical forest, and its surrounding waters hold some of the most diverse coral reefs of the Eastern Tropical Pacific.",
+        "es": "Parque insular oceánico en el Pacífico tropical oriental, a unos 530–550 km de la costa pacífica de Costa Rica. La Isla del Coco es el único punto emergido de la cordillera submarina del Coco y alberga el único bosque tropical húmedo oceánico de la región, y sus aguas contienen algunos de los arrecifes de coral más diversos del Pacífico tropical oriental."
+      },
+      "status": "confirmed",
+      "url": "https://whc.unesco.org/en/list/820/",
+      "sources": [
+        {"url": "https://whc.unesco.org/en/list/820/", "title": "Cocos Island National Park — UNESCO World Heritage Centre", "publisher": "UNESCO World Heritage Centre", "published": null, "retrieved": "2026-10-23", "supports": "criteria (ix)(x), area 202,100 ha, distance 530–550 km, brief synthesis"},
+        {"url": "https://whc.unesco.org/es/list/820/", "title": "Parque Nacional Isla del Coco — Centro del Patrimonio Mundial de la UNESCO", "publisher": "UNESCO World Heritage Centre", "published": null, "retrieved": "2026-10-23", "supports": "Spanish name, inscription 1997, extension 2002, core zone 199,700 ha, Spanish description"},
+        {"url": "https://whc.unesco.org/en/statesparties/cr", "title": "Costa Rica — UNESCO World Heritage Centre (State Party page)", "publisher": "UNESCO World Heritage Centre", "published": null, "retrieved": "2026-10-23", "supports": "listed as natural property with years 1997, 2002"}
+      ]
+    },
+    {
+      "id": "area-de-conservacion-guanacaste",
+      "name": {
+        "en": "Area de Conservación Guanacaste",
+        "es": "Área de Conservación Guanacaste"
+      },
+      "inscribed": [1999, 2004],
+      "inscriptionNote": "Inscribed 1999; boundaries significantly modified in 2004 when the 15,000 ha Santa Elena property was added.",
+      "criteria": "(ix)(x)",
+      "type": "natural",
+      "transboundary": false,
+      "statesParties": ["Costa Rica"],
+      "provinces": ["Guanacaste", "Alajuela"],
+      "coords": [10.85, -85.6167],
+      "coordsNote": "Converted from UNESCO's N10 50 60, W85 37 0 (UNESCO's '60 seconds' is non-standard; 10.85° N is the equivalent).",
+      "area_ha": 147000,
+      "areaNote": "About 104,000 ha terrestrial and 43,000 ha marine.",
+      "text": {
+        "en": "A mosaic of contiguous protected areas in north-western Costa Rica spanning 147,000 ha of land and sea. It protects one of the largest remaining tracts of tropical dry forest in Central America together with lowland rainforest, premontane and montane humid forest, cloud forest, oak forest, savannas, wetlands and coastal-marine habitats such as mangroves, estuaries, coral reefs and beaches.",
+        "es": "Mosaico de áreas protegidas contiguas en el noroeste de Costa Rica que abarca 147.000 ha de tierra y mar. Protege uno de los mayores remanentes de bosque tropical seco de Centroamérica junto con bosque lluvioso de tierras bajas, bosque húmedo premontano y montano, bosque nuboso, robledales, sabanas, humedales y hábitats costero-marinos como manglares, estuarios, arrecifes de coral y playas."
+      },
+      "status": "confirmed",
+      "url": "https://whc.unesco.org/en/list/928/",
+      "sources": [
+        {"url": "https://whc.unesco.org/en/list/928/", "title": "Area de Conservación Guanacaste — UNESCO World Heritage Centre", "publisher": "UNESCO World Heritage Centre", "published": null, "retrieved": "2026-10-23", "supports": "1999 inscription, 2004 modification (Santa Elena), criteria, provinces, coordinates, area, ecosystems"},
+        {"url": "https://whc.unesco.org/en/statesparties/cr", "title": "Costa Rica — UNESCO World Heritage Centre (State Party page)", "publisher": "UNESCO World Heritage Centre", "published": null, "retrieved": "2026-10-23", "supports": "listed as natural property with years 1999, 2004"}
+      ]
+    },
+    {
+      "id": "diquis-stone-spheres",
+      "name": {
+        "en": "Precolumbian Chiefdom Settlements with Stone Spheres of the Diquís",
+        "es": "Asentamientos Cacicales Precolombinos con Esferas de Piedra de Diquís"
+      },
+      "inscribed": [2014],
+      "criteria": "(iii)",
+      "type": "cultural",
+      "transboundary": false,
+      "statesParties": ["Costa Rica"],
+      "provinces": [],
+      "provincesNote": "UNESCO's pages place the property in the Diquís Delta of southern Costa Rica and mention Osa County for the buffer zones, but do not name a province (Puntarenas was not verified from a fetched source).",
+      "components": ["Finca 6", "Batambal", "El Silencio", "Grijalba-2"],
+      "coords": null,
+      "coordsNote": "Coordinates were not present in the fetched page content.",
+      "area_ha": 24.73,
+      "areaNote": "Core zone 24.73 ha; buffer zone 143.423 ha (Spanish page).",
+      "text": {
+        "en": "A serial property of four archaeological sites in the Diquís Delta of southern Costa Rica that preserve chiefdom settlements of about AD 500–1500, with artificial mounds, paved areas and burial grounds. Their most distinctive feature is a set of large, almost perfectly spherical stone spheres, 0.7 to 2.57 m in diameter, whose manufacture, use and meaning remain largely a mystery.",
+        "es": "Bien en serie de cuatro sitios arqueológicos del delta del Diquís, en el sur de Costa Rica, que conservan asentamientos cacicales de aproximadamente 500–1500 d. C., con montículos artificiales, áreas empedradas y sitios funerarios. Su rasgo más distintivo es un conjunto de grandes esferas de piedra casi perfectas, de 0,7 a 2,57 m de diámetro, cuya fabricación, utilización y significación siguen siendo en gran parte un misterio."
+      },
+      "status": "confirmed",
+      "url": "https://whc.unesco.org/en/list/1453/",
+      "sources": [
+        {"url": "https://whc.unesco.org/en/list/1453/", "title": "Precolumbian Chiefdom Settlements with Stone Spheres of the Diquís — UNESCO World Heritage Centre", "publisher": "UNESCO World Heritage Centre", "published": null, "retrieved": "2026-10-23", "supports": "criterion (iii), Diquís Delta location, four component sites, AD 500–1500, description"},
+        {"url": "https://whc.unesco.org/es/list/1453/", "title": "Asentamientos Cacicales Precolombinos con Esferas de Piedra de Diquís — Centro del Patrimonio Mundial de la UNESCO", "publisher": "UNESCO World Heritage Centre", "published": null, "retrieved": "2026-10-23", "supports": "Spanish name, inscription 2014, core 24.73 ha / buffer 143.423 ha, sphere diameters 0.7–2.57 m, Spanish description"},
+        {"url": "https://whc.unesco.org/en/statesparties/cr", "title": "Costa Rica — UNESCO World Heritage Centre (State Party page)", "publisher": "UNESCO World Heritage Centre", "published": null, "retrieved": "2026-10-23", "supports": "listed as cultural property inscribed 2014"}
+      ]
+    }
+  ],
+  "unescoMeta": {
+    "stateParty": "Costa Rica",
+    "conventionRatified": "1977-08-23",
+    "counts": {"natural": 3, "cultural": 1, "total": 4},
+    "tentativeList": [
+      {"name": "Corcovado National Park and Isla del Caño Biological Reserve", "submitted": 2003, "url": "https://whc.unesco.org/en/tentativelists/1795/", "status": "confirmed (listed on the State Party page; the tentative-list page itself was not fetched)"}
+    ],
+    "sources": [
+      {"url": "https://whc.unesco.org/en/statesparties/cr", "title": "Costa Rica — UNESCO World Heritage Centre (State Party page)", "publisher": "UNESCO World Heritage Centre", "published": null, "retrieved": "2026-10-23", "supports": "four properties with years, one tentative-list entry, ratification date 23 August 1977"}
+    ]
+  },
+  "unverified": [
+    {"claim": "Keel-billed toucan occurs on both the Caribbean and Pacific slopes of Costa Rica, and its elevation range within Costa Rica", "reason": "No fetched source gave Costa Rica-specific slope or elevation data; only the continental range (southern Mexico to northern Colombia/NW Venezuela) and GBIF record counts confirm presence. Wikipedia's 'up to 1,900 m' is range-wide."},
+    {"claim": "Keel-billed toucan body size", "reason": "Sources disagree: ADW about 52 cm and 400 g; English Wikipedia 42–55 cm and 380–500 g (bill 12–15 cm); Spanish Wikipedia 50–59 cm, about 500 g, bill 16 cm. Recorded as approximate."},
+    {"claim": "'Yellow-throated Toucan' as the English name of Ramphastos ambiguus", "reason": "Cornell's page uses 'Chestnut-mandibled Toucan (Ramphastos ambiguus swainsonii)'; the name 'Yellow-throated Toucan' did not appear on any fetched page, and R. ambiguus itself was not looked up."},
+    {"claim": "'Three-fingered' / 'two-fingered' sloth terminology (forelimb digits) and the statement that both Costa Rican sloths have three toes on the hind feet", "reason": "slothconservation.org returned a client error. ADW and Wikipedia describe three clawed digits on each limb of Bradypus variegatus but no fetched source gives the hind-foot digit count of Choloepus hoffmanni. Fetched sources use 'three-toed'/'two-toed' and 'perezoso de tres/dos dedos'."},
+    {"claim": "Bradypus variegatus occurs on Costa Rica's Pacific slope", "reason": "Fetched Costa Rican research documented only Caribbean (Limón) and northern (Upala, Alajuela) sites. Pacific populations were not discussed."},
+    {"claim": "Lifespan of Bradypus variegatus 30–40 years", "reason": "ADW states it, but Wikipedia flags the same figure 'citation needed'; omitted from facts."},
+    {"claim": "Exact date of presidential signature and La Gaceta publication of Ley N.º 10007 (sloths)", "reason": "Not in the law text reproduction, the Delfino bill record or the Teletica article. Only the bill's final text (12 July 2021) and definitive approval (reported 14 July 2021) are dated. The Presidencia national-symbols page still omits the sloths."},
+    {"claim": "The morpho's blue is structural (interference) colour rather than pigment", "reason": "Not stated by any fetched source; learnbutterflies.com describes the colour but not its mechanism."},
+    {"claim": "Blue morpho wingspan", "reason": "No fetched source gave a measurement ('saucer-sized' only)."},
+    {"claim": "Spanish common name of the blue morpho ('morfo azul' / 'mariposa morfo')", "reason": "Not present on any fetched page; supplied as common usage."},
+    {"claim": "Morpho helenor authority year", "reason": "GBIF gives Cramer, 1782; Wikipedia and learnbutterflies.com give (Cramer, 1776)."},
+    {"claim": "Final taxonomic status of Morpho peleides", "reason": "Treated as a subspecies of M. helenor by Lamas (2004) as cited, and by BAMONA and Wikipedia, but still an accepted species in the GBIF Backbone Taxonomy. Recorded as 'approximate' with both names."},
+    {"claim": "Whether the blue morpho occurs on Costa Rica's Caribbean slope", "reason": "Fetched sources documented Guanacaste and the southern Pacific slope only; GBIF record counts do not break down by slope."},
+    {"claim": "Clay-colored Thrush elevation range and slope distribution in Costa Rica", "reason": "Not given by All About Birds, Las Nubes or Wikipedia pages fetched."},
+    {"claim": "Clay-colored Thrush disperses seeds", "reason": "Inferred from its fruit diet; not stated by a fetched source (recorded as interpretation)."},
+    {"claim": "Simplified Chinese common names (厚嘴巨嘴鸟, 褐喉三趾树懒, 海伦闪蝶/蓝闪蝶, 褐背鸫)", "reason": "Supplied from general knowledge; not verified against any fetched source."},
+    {"claim": "'Five animal national symbols' (observador.cr headline) and identity of the fifth animal", "reason": "observador.cr blocked fetching (robots). The Presidencia page lists three animals (yigüirro, venado cola blanca, manatí) and Ley 10007 adds two sloth species; no fetched source confirms a 'fifth animal' beyond these."},
+    {"claim": "Cocos Island National Park and the Diquís property lie in Puntarenas province", "reason": "UNESCO pages fetched do not name a province for either property."},
+    {"claim": "Cocos Island National Park area", "reason": "UNESCO English page: 202,100 ha; Spanish page: 199,700 ha (core zone). Figures differ."},
+    {"claim": "Coordinates of Cocos Island National Park and the Diquís property", "reason": "Not present in the fetched page content for either property."},
+    {"claim": "IUCN Red List pages themselves", "reason": "iucnredlist.org refused automated fetching (robots_disallowed / client_error); categories, years and DOIs were taken from GBIF's mirror of the IUCN assessments and the DOI strings are recorded as the iucn.url."}
+  ]
+}
