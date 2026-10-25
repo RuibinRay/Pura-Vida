@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { STOPS } from '../src/journey/scenes';
 
-const plates = JSON.parse(fs.readFileSync(path.resolve('src/journey/plates.generated.json'), 'utf8')) as Record<string, { animals?: { id: string; kind: string; hotspot: number[] | null }[] }>;
+const plates = JSON.parse(fs.readFileSync(path.resolve('src/journey/plates.generated.json'), 'utf8')) as Record<string, { animals?: { id: string; kind: string; hotspot: number[] | null; parts: { name: string }[] }[]; layers: { name: string }[] }>;
 
 describe('the stops of the walk', () => {
   it('each scene stop names a plate that exists, with unique keys', () => {
@@ -27,6 +27,25 @@ describe('the stops of the walk', () => {
         expect(Math.abs(dx), `${s.key} fly ${id} dx`).toBeLessThanOrEqual(34);
         expect(Math.abs(dy), `${s.key} fly ${id} dy`).toBeLessThanOrEqual(16);
       }
+    }
+  });
+
+  it('every animal that moves as a whole is cut out whole (a body part), so its head never leaves its body', () => {
+    // the kinds Scene.tsx gives a perch/stand loop to: a loop on a head-only cut-out rotates the head off a body
+    // that stays painted in the plate (the toucan of 2026-10-24)
+    const whole = ['toucan', 'thrush', 'quetzal', 'deer', 'tapir', 'heron'];
+    for (const s of STOPS) {
+      if (!s.plate) continue;
+      for (const a of plates[s.plate].animals || []) if (whole.includes(a.kind)) expect(a.parts.some((p) => p.name === 'body'), `${s.key} ${a.id} has no body part`).toBe(true);
+    }
+  });
+
+  it('every stop with wind has the two foliage frame layers that sway', () => {
+    for (const s of STOPS) {
+      if (!s.plate || !s.wind) continue;
+      const names = plates[s.plate].layers.map((l) => l.name);
+      expect(names, s.key).toContain('near-left');
+      expect(names, s.key).toContain('near-right');
     }
   });
 

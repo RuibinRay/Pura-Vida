@@ -32,7 +32,7 @@ function srcSet(plate: PlateName, name: string, widths: number[]) {
 }
 
 /** One image of a plate: the base, a frame layer, an animal part or a water region. */
-export function LayerImg({ plate, name, box, widths, sizes, className, alt = '', priority, style, draggable = false }: { plate: PlateName; name: string; box?: number[]; widths?: number[]; sizes?: string; className?: string; alt?: string; priority?: boolean; style?: React.CSSProperties; draggable?: boolean }) {
+export function LayerImg({ plate, name, box, widths, sizes, className, alt = '', priority, eager, style, draggable = false }: { plate: PlateName; name: string; box?: number[]; widths?: number[]; sizes?: string; className?: string; alt?: string; priority?: boolean; /** fetched as soon as it mounts (a stop's base: the stop mounts shortly before it is reached) */ eager?: boolean; style?: React.CSSProperties; draggable?: boolean }) {
   const m = PLATES[plate];
   const ws = widths || m.widths;
   // The plate covers the stage: it is 100vw wide in wide viewports and 100vh × ratio in viewports narrower than the
@@ -60,8 +60,8 @@ export function LayerImg({ plate, name, box, widths, sizes, className, alt = '',
       sizes={sizesAttr}
       alt={alt}
       decoding="async"
-      loading={priority ? 'eager' : 'lazy'}
-      fetchPriority={priority ? 'high' : 'auto'}
+      loading={priority || eager ? 'eager' : 'lazy'}
+      fetchPriority={priority || eager ? 'high' : 'auto'}
       draggable={draggable}
       style={style}
     />

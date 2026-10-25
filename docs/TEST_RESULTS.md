@@ -2,6 +2,32 @@
 
 All figures below were produced in this session's environment unless stated otherwise: a 2-core Linux container, headless Chromium 153 with SwiftShader (software WebGL), no real GPU, no field data. Numbers that depend on a GPU are marked as such and must be re-measured on a laptop and a phone.
 
+## Alive pass (2026-10-24 night → 10-25) — the toucan, clouds, wind, lag
+
+### Tests
+`npx vitest run`: **51 tests in 5 files, all passing** — two new ones: every animal of a kind that gets a whole-body loop (toucan, thrush, quetzal, deer, tapir, heron) has a `body` part in its plate manifest; every stop with `wind` has the two foliage frame layers. `tsc --noEmit`: clean. `npm run build`: clean (the three.js chunk warning as before).
+
+### The toucan (close-ups, `tools/scratch/toucan3.mjs`, 1440×900 at 2×)
+Each toucan frozen at the extreme of its loop (67 %) and at rest, cropped at 2×: before the rebuild, the opening pair showed a second beak on the first bird (the second bird's body part carried a copy of it) and a sliver of the first bird's body in the second; after the overlap rule and the spec's boundary polygons, each part composited alone on magenta shows one bird, and the frozen close-ups show whole birds leaning on their feet with no seam at the throat. The Tortuguero toucan, thrush, deer, tapir, heron and quetzal were checked the same way at three phases (`tools/scratch/bodies.mjs`): bodies whole, feet planted.
+
+### Far jump (`tools/scratch/jump.mjs`; now also in `tools/headless_check.mjs`)
+Stop 1 → stop 8 by an instant scroll: before the fix, stop 1 stayed `visible` at opacity 1 under stop 8 (the forest plate showed through while Tortuguero's base loaded); after, 0.6 s after the jump only stop 8 is visible (`1:h/0 … 8:v/1 9:h/0`), the base of stop 8 is loaded, and jumping back to 3 and on to 9 settles the same way. A rail click (smooth scroll) lands between stops 1 and 2 with the two in their crossfade, as designed.
+
+### Scroll cost (`tools/scratch/perf.mjs`, the same 60-step scroll pattern with pointer movement, full tier)
+| Build | Wall time | Style recalculation | Layout | Script |
+|---|---|---|---|---|
+| Before the motion pass (root-level variables, blend modes, mist by background-position) | 30 s | ~1.3 s in ~130 passes | — | — |
+| After the per-scene writer (22:00) | 10.5 s | ~1.3 s in ~266 passes | — | — |
+| This pass (no masks, baked fades, eager bases) | **5.4 s** | 1.49 s in 282 passes | 1 ms in 4 | 188 ms |
+
+Wall time here is dominated by software rasterisation and is not a frame rate; the style figure is the main-thread cost the pattern incurs (about 5 ms per pass in this slow lab, each pass now the current stop and its neighbours rather than the page). The GPU side cannot be measured here; the owner's `?why` panel reports fps on his device.
+
+### Ambient layers (`tools/scratch/motion.mjs`, first two stops of the run in progress)
+Change within 2.5 s inside each layer's box at the opening: clouds 4.7 %, the flock 3.5 %, foliage frame left 7.0 % / right 8.6 %, mist 8.9 %; animals 12.6–39.7 %; water 5.6 % and 7.2 %; 37 of 37 loops running (wind-l/wind-r, drift-strip, bird-cross/flap, perch, head-tilt, sway, bob, drift, morpho, water, spray, shafts, ring). Monteverde: clouds 4.1 %, frames 13.3 % / 6.4 %, mist 10.4 %, animals 14.3–50.5 %; 26 of 26 running. Screenshots at stops 1, 2, 3 and 9 confirm the baked mist and shaft fades read as before (no hard edges) and the flock sits in the sky boxes.
+
+### Still running at the time of this commit
+The full motion sweep (stops 3–9, fliers, eruption, sheets, reduced motion), the walk at desktop and phone widths, the site sweep with axe, and Lighthouse — each screenshot now takes 20–40 s in this software-GPU lab, so the sweeps run for over an hour; their results follow in the next commit. Nothing in this pass changes what loads before first paint.
+
 ## Motion pass (2026-10-24, evening) — "it's not moving"
 
 ### Tests

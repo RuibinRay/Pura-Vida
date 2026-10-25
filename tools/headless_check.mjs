@@ -56,9 +56,9 @@ async function visit(name, hash, { width = 1440, height = 900, wait = 2500, acti
 }
 
 // the homepage journey: the opening, then each chapter at the scroll position where it is on stage
-const scrollTo = (f) => async (p) => { await p.evaluate((ff) => { const total = document.documentElement.scrollHeight - window.innerHeight; window.scrollTo(0, Math.round(total * ff)); }, f); await sleep(3000); };
+const scrollTo = (f) => async (p) => { await p.evaluate((ff) => { const total = document.documentElement.scrollHeight - window.innerHeight; window.scrollTo({ top: Math.round(total * ff), behavior: 'instant' }); }, f); await sleep(3000); };
 // scroll to the middle of stop n (1-based) of the walk, by the spacers' positions
-const toStop = (n) => async (p) => { await p.evaluate((nn) => { const els = document.querySelectorAll('.journey [data-chapter]'); const c = els[nn - 1]; const next = els[nn]; const top = c.getBoundingClientRect().top + window.scrollY; const len = next ? next.getBoundingClientRect().top + window.scrollY - top : c.offsetHeight - window.innerHeight; window.scrollTo(0, Math.round(top + len * 0.5)); }, n); await sleep(3000); };
+const toStop = (n) => async (p) => { await p.evaluate((nn) => { const els = document.querySelectorAll('.journey [data-chapter]'); const c = els[nn - 1]; const next = els[nn]; const top = c.getBoundingClientRect().top + window.scrollY; const len = next ? next.getBoundingClientRect().top + window.scrollY - top : c.offsetHeight - window.innerHeight; window.scrollTo({ top: Math.round(top + len * 0.5), behavior: 'instant' }); }, n); await sleep(3000); };
 await visit('home-open', '/', { wait: 3000, query: '?why&tier=lite', axe: true });
 await visit('home-02-monteverde', '/', { wait: 2500, query: '?tier=lite', actions: toStop(2), axe: true });
 await visit('home-03-rio-celeste', '/', { wait: 2500, query: '?tier=lite', actions: toStop(3), axe: true });
@@ -69,6 +69,12 @@ await visit('home-06-table', '/', { wait: 2500, query: '?tier=lite', actions: to
 await visit('home-07-corcovado', '/', { wait: 2500, query: '?tier=lite', actions: toStop(7), axe: true });
 await visit('home-08-tortuguero', '/', { wait: 2500, query: '?tier=lite', actions: toStop(8), axe: true });
 await visit('home-09-close', '/', { wait: 2500, query: '?tier=lite', actions: toStop(9), axe: true });
+// a far jump (a rail click, a restored scroll position) must settle the stops it skipped: only the new stop stays visible
+await visit('home-jump-1-to-8', '/', { wait: 2500, query: '?tier=lite', actions: async (p) => {
+  await toStop(1)(p); await toStop(8)(p);
+  const visible = await p.evaluate(() => [...document.querySelectorAll('.scene')].filter((e) => e.style.visibility !== 'hidden' && getComputedStyle(e).opacity !== '0').map((e) => e.className.match(/scene--(\d+)/)[1]));
+  if (visible.join() !== '8') { console.log('   ✗ far jump: visible stops', visible.join(', '), '(expected only 8)'); await p.evaluate((v) => console.error('far jump left stops visible: ' + v), visible.join(', ')); } else console.log('   far jump 1→8: only stop 8 visible');
+} });
 await visit('home-still', '/', { wait: 2000, query: '?tier=still' });
 await visit('explore', '/explore', { wait: 6000, query: '?why&tier=lite', axe: true });
 await visit('explore-selected', '/explore', { wait: 4000, query: '?tier=lite', actions: async (p) => { await p.evaluate(() => { const li = document.querySelector('.province-list li[data-id="guanacaste"]'); li?.click(); }); await sleep(3000); } });

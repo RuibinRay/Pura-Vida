@@ -46,7 +46,15 @@ degrees without revealing the original. Parts:
   1 = tail; negative values reach beyond the head). `halfWidth` is the body's half-thickness in source px: the wing
   starts `halfWidth − overlap` from the axis so the body band stays in the body part.
 - `{ "name": "body", "anim": "none", "z": 2, "rest": true }` — everything of the mask not taken by other parts. Needed
-  whenever the whole animal moves (`anim` on the animal); omit it for an animal whose body stays in the base.
+  whenever the whole animal moves (`anim` on the animal, or the site's own perch/stand loops for perched birds, deer,
+  tapirs and herons — `bodyAnim` in `src/journey/Scene.tsx` gives those only to animals that have a body part);
+  omit it for an animal whose body stays in the base. A whole-body loop on a head-only animal moves the head off the
+  body (the toucan of 2026-10-24).
+- Overlapping animals (two toucans on one branch): each one's segmentation takes pieces of the other. The tool
+  resolves pixels both masks claim — a `poly` part wins, otherwise the pixel goes to the animal whose box it lies
+  deeper inside — but draw the line yourself where the bodies touch: an `exclude` polygon on each animal along the
+  boundary, an `include` for anything the model loses against the neighbour (a beak tip over a dark neck), and a box
+  that holds the whole animal (a beak tip outside the box stays in the base and doubles when the head turns).
 - `pivot` is the rotation centre in source px (the neck base for a head, the wing root for a wing, the hands for a
   hanging sloth). `axis` on a part (or from `half`) becomes the 3D rotation axis for flaps.
 

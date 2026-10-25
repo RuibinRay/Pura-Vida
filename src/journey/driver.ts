@@ -46,8 +46,12 @@ export const easeInOut = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(
 export const easeOut = (x: number) => 1 - Math.pow(1 - x, 3);
 
 /**
- * Attaches the driver to the journey root. Chapters are the root's descendants with `data-chapter`.
- * Writes --jt and --p1…--p6 on the root and keeps `journey` current.
+ * Attaches the driver to the journey root. Chapters are the root's descendants with `data-chapter` (the spacers that
+ * give each stop its scroll length). Everything that reads the scroll carries `data-scene="n"` (1-based): the stop's
+ * visuals, its copy block, anything else keyed to that stop. The driver writes --jt, --pn, --vel, --px and --py on
+ * those elements — and only on the ones within one stop of the current one — so a scroll frame recalculates the
+ * styles of three stops, never of the whole page. Elements with `data-fade` are also hidden outright while their
+ * stop would be fully transparent, so the compositor never carries an invisible full-screen layer.
  */
 export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: boolean) {
   useEffect(() => {
@@ -57,10 +61,24 @@ export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: b
     root.style.setProperty('--calm', calm ? '1' : '0');
     root.style.setProperty('--vel', '0');
     const chapters = Array.from(root.querySelectorAll<HTMLElement>('[data-chapter]'));
+    // scroll readers, grouped by stop; re-collected when the stage mounts or unmounts a stop
+    let byScene: HTMLElement[][] = [];
+    let cur: HTMLElement[] = [];  // the current stop only: the pointer and the velocity are written here alone
+    let dirty = true;
+    const collect = () => {
+      byScene = [];
+      for (const el of Array.from(root.querySelectorAll<HTMLElement>('[data-scene]'))) {
+        const n = Number(el.dataset.scene);
+        if (!Number.isFinite(n)) continue;
+        (byScene[n] ||= []).push(el);
+      }
+      dirty = false;
+    };
     let tops: number[] = [];
     let lens: number[] = [];
     let rootTop = 0;
     let lastY = -1;
+    let lastActive = -1;
     let raf = 0;
     let pointerRaf = 0;
     let targetPx = 0;
@@ -83,6 +101,8 @@ export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: b
     const update = () => {
       raf = 0;
       const y = window.scrollY - rootTop;
+      const recollected = dirty;
+      if (dirty) { collect(); lastY = -1; }
       if (y === lastY) return;
       journey.velocity = lastY < 0 ? 0 : y - lastY;
       lastY = y;
@@ -97,8 +117,39 @@ export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: b
       }
       journey.t = t;
       journey.chapter = active;
-      root.style.setProperty('--jt', t.toFixed(4));
-      for (let i = 0; i < chapters.length; i++) root.style.setProperty(`--p${i + 1}`, journey.p[i].toFixed(4));
+      const jt = t.toFixed(4);
+      const lo = Math.max(1, active);
+      const hi = Math.min(chapters.length, active + 2);
+      for (let n = lo; n <= hi; n++) {
+        const els = byScene[n];
+        if (!els) continue;
+        const pn = journey.p[n - 1].toFixed(4);
+        // a stop is on screen from 0.1 before its chapter to 0.22 into the next (the stylesheet's --in/--out)
+        const shown = t > n - 1.1 && t < n + 0.22;
+        for (const el of els) {
+          el.style.setProperty('--jt', jt);
+          el.style.setProperty('--pn', pn);
+          if (el.dataset.fade !== undefined) { const v = shown ? 'visible' : 'hidden'; if (el.style.visibility !== v) el.style.visibility = v; }
+        }
+      }
+      // A jump of more than one stop (a rail click, a link, a restored scroll position, a frame dropped during a
+      // fling) leaves the stops it skipped with the values of the last frame that touched them — a stop left
+      // visible under the new one. Whenever the current stop changes, every stop outside the window is settled.
+      if (active !== lastActive || recollected) {
+        lastActive = active;
+        for (let n = 1; n <= chapters.length; n++) {
+          if (n >= lo && n <= hi) continue;
+          const els = byScene[n];
+          if (!els) continue;
+          const pn = journey.p[n - 1].toFixed(4);
+          for (const el of els) {
+            el.style.setProperty('--jt', jt);
+            el.style.setProperty('--pn', pn);
+            if (el.dataset.fade !== undefined && el.style.visibility !== 'hidden') el.style.visibility = 'hidden';
+          }
+        }
+      }
+      cur = byScene[active + 1] || [];
       if (root.dataset.chapter !== String(active + 1)) root.dataset.chapter = String(active + 1);
       notify();
     };
@@ -110,7 +161,8 @@ export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: b
       velTarget *= 0.86;
       if (Math.abs(journey.vel) < 0.004 && Math.abs(velTarget) < 0.004) { journey.vel = 0; velTarget = 0; }
       else velRaf = requestAnimationFrame(tickVel);
-      root.style.setProperty('--vel', journey.vel.toFixed(3));
+      const v = journey.vel.toFixed(3);
+      for (const el of cur) el.style.setProperty('--vel', v);
     };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
     const onResize = () => measure();
@@ -123,8 +175,9 @@ export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: b
       const ny = journey.py + (targetPy - journey.py) * k;
       if (Math.abs(nx - journey.px) < 0.0005 && Math.abs(ny - journey.py) < 0.0005) { journey.px = targetPx; journey.py = targetPy; }
       else { journey.px = nx; journey.py = ny; pointerRaf = requestAnimationFrame(tickPointer); }
-      root.style.setProperty('--px', journey.px.toFixed(4));
-      root.style.setProperty('--py', journey.py.toFixed(4));
+      const px = journey.px.toFixed(4);
+      const py = journey.py.toFixed(4);
+      for (const el of cur) { el.style.setProperty('--px', px); el.style.setProperty('--py', py); }
       notify();
     };
     const onPointer = (e: PointerEvent) => {
@@ -142,6 +195,9 @@ export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: b
     root.addEventListener('pointerleave', onLeave);
     const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => measure()) : null;
     ro?.observe(root);
+    // stops mount as the visitor approaches them: pick up their elements on the next frame
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(() => { dirty = true; if (!raf) raf = requestAnimationFrame(update); }) : null;
+    mo?.observe(root, { childList: true, subtree: true });
     measure();
     // fonts and images can change the chapter heights after first paint
     const late = window.setTimeout(measure, 600);
@@ -153,6 +209,7 @@ export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: b
       root.removeEventListener('pointermove', onPointer);
       root.removeEventListener('pointerleave', onLeave);
       ro?.disconnect();
+      mo?.disconnect();
       window.clearTimeout(late);
       if (raf) cancelAnimationFrame(raf);
       if (pointerRaf) cancelAnimationFrame(pointerRaf);

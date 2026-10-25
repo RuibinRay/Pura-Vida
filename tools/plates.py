@@ -174,6 +174,42 @@ def animal_alpha(plate, a, s):
     return m * cv2.GaussianBlur(box, (0, 0), 2)
 
 
+def resolve_overlaps(alphas, animals, s, H, W):
+    """A pixel belongs to one animal. Two animals whose boxes overlap (the toucan pair) each get the other's pixels
+    from the segmentation of their own crop — the second bird's body would then travel with the first bird's body
+    part, and the first bird's beak with the second's. Where both masks claim a pixel, an explicit poly part (a head)
+    wins; otherwise the pixel goes to the animal whose box it lies deeper inside, with a soft boundary. The loser keeps
+    only what the winner leaves uncovered, so a feathered edge over a solid interior costs the interior nothing."""
+    n = len(animals)
+    if n < 2:
+        return alphas
+    ys, xs = np.mgrid[0:H, 0:W].astype(np.float32)
+    claims, depths = [], []
+    for a in animals:
+        c = np.zeros((H, W), np.float32)
+        for p in a.get('parts', []):
+            if 'poly' in p:
+                c = np.maximum(c, poly_mask(H, W, p['poly'], s, feather=1.0))
+        claims.append(c)
+        x0, y0, x1, y1 = [v * s for v in a['box']]
+        depths.append(np.clip(np.minimum(np.minimum(xs - x0, x1 - xs), np.minimum(ys - y0, y1 - ys)), 0, None))
+    for i in range(n):
+        for j in range(i + 1, n):
+            both = (alphas[i] > 0.05) & (alphas[j] > 0.05)
+            if not both.any():
+                continue
+            w = np.clip((depths[i] - depths[j]) / (4 * s) + 0.5, 0, 1)  # share of the pixel that i wins
+            w = np.where(claims[i] > 0.5, 1.0, w)
+            w = np.where(claims[j] > 0.5, 0.0, w)
+            ai, aj = alphas[i], alphas[j]
+            ni = ai * (w + (1 - w) * (1 - aj))
+            nj = aj * ((1 - w) + w * (1 - ai))
+            alphas[i] = np.where(both, ni, ai).astype(np.float32)
+            alphas[j] = np.where(both, nj, aj).astype(np.float32)
+            print(f'  overlap {animals[i]["id"]} × {animals[j]["id"]}: {int(both.sum())} px resolved')
+    return alphas
+
+
 def split_parts(alpha, a, s, H, W):
     """Returns [(part spec, alpha)] in draw order (z ascending)."""
     parts = []
@@ -368,9 +404,15 @@ def main():
     inpaint_mask = np.zeros((H, W), np.float32)
     inpaint_jobs = []  # (mask, method) per animal, so a big fill can use the slow synthesis
     exported = []
-    for a in spec.get('animals', []):
+    animals = spec.get('animals', [])
+    alphas = []
+    for a in animals:
         t = time.time()
-        alpha = animal_alpha(plate, a, s)
+        alphas.append(animal_alpha(plate, a, s))
+        print(f'  {a["id"]}: mask in {time.time() - t:.1f} s')
+    alphas = resolve_overlaps(alphas, animals, s, H, W)
+    for a, alpha in zip(animals, alphas):
+        t = time.time()
         parts = split_parts(alpha, a, s, H, W)
         entry = {'id': a['id'], 'species': a.get('species'), 'kind': a.get('kind', a['id']), 'box': frac_box([round(v * s) for v in a['box']], W, H), 'hotspot': [a['hotspot'][0] * s / W, a['hotspot'][1] * s / H] if 'hotspot' in a else None, 'parts': []}
         if a.get('static'):

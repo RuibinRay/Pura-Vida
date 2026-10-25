@@ -2,6 +2,26 @@
 
 Status words: **built** = implemented and exercised in the headless browser; **built, unverified on device** = implemented, but the check this session could do is not representative (software GPU); **partial**; **planned (M2–M5)**.
 
+## Alive pass — "the toucan is terrible", clouds, wind, lag (2026-10-24, night)
+
+The owner's third look at the walk: the toucan's motion was wrong, the plates needed wind and moving clouds, and the scroll lagged on his machine.
+
+| Change | Status | Notes |
+|---|---|---|
+| Whole-body loops only for whole-body cut-outs | done | the perch/stand loops were rotating animals whose body is still painted in the plate (only the head was a part): the head hopped off the body. Every perched or standing animal now has a `body` part (`rest: true` in the plate specs — the silhouette minus the head), the base is inpainted under it, and `bodyAnim` in `Scene.tsx` gives a whole-body loop only to an animal that has one |
+| The toucan pair cut apart properly | done | the two opening toucans overlap; each one's segmentation grabbed the other (one body carried the neighbour's body, the other carried the first one's beak: a double beak when the head turned). `tools/plates.py` now resolves overlapping masks (a poly part wins, otherwise the pixel goes to the animal whose box it lies deeper in; the loser keeps only what the winner leaves) and the forest spec adds `exclude`/`include` polygons along the line between the birds and a box that holds the whole beak |
+| Feet planted | done | perch/stand keyframes pivot at the feet (`transform-origin: 50% 100%`); the quetzal's soft perch pivots at the branch |
+| Wind in the trees | done | every plate now has two near-frame foliage layers (`frame` polygons in the specs, split 45/55 %); they sway about the frame edge (`wind-l`/`wind-r`, 7.5 and 9.2 s, out of phase) or, where one crown crosses the split (Guanacaste, Manuel Antonio), as one (`wind-s`); on the opening plate they still part and pass the camera |
+| Clouds drifting | done | a 200 %-wide cloud strip in a box of the sky per stop (`ambient.clouds`), translated one tile per 70 s on the compositor; opacity grows with the stop's progress; slides with the scroll |
+| A flock crossing the sky | done | five birds (two-stroke SVG) glide across a box of the sky and flap (opening, Guanacaste, Corcovado, the close) |
+| Mist strips loop without a jump | done | the strip holds a whole number of tiles per container width (`background-size: 25% / 16.667%`) |
+| Scroll lag: style recalculation | done | the driver writes `--jt`/`--pn` only on the elements of the current stop ±1 (`data-scene`), `--vel`/`--px`/`--py` only on the current stop, and hides stops that are off stage outright (`data-fade`); nothing is written on the root any more, so a scroll frame recalculates three stops' styles, not the page's |
+| Scroll lag: compositor | done, unverified on device | no `mix-blend-mode` anywhere; the mist, cloud and shaft layers no longer use CSS masks (the fades are baked into their textures — a masked layer is an offscreen surface the GPU fills every frame); the glass buttons on the journey drop their backdrop blur; the mist drifts by `transform` instead of `background-position` |
+| Far jumps settle the stops they skip | done | a rail click, a link or a restored scroll position from stop 1 to stop 8 used to leave the stops in between with their last values — stop 1 stayed visible under stop 8 while its plate loaded. The driver now settles every stop outside the window whenever the current stop changes; `tools/headless_check.mjs` asserts it |
+| A stop's base image fetched as soon as the stop mounts | done | `eager` + `fetchpriority=high` on the base (stops mount 0.75 of a chapter before they start); parts stay lazy |
+
+Real-device frame rate is still unmeasured here (software GPU); the owner's `?why` panel reports fps on his machine.
+
 ## Motion pass — "it's not moving" (2026-10-24, evening)
 
 The owner saw the live walk and said the animals were not moving. Two causes, both fixed, plus a stronger motion design:

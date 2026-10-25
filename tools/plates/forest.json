@@ -1,185 +1,590 @@
 {
-  "id": "forest",
-  "source": "research/plates-original/opening-forest-waterfall-volcano.jpg",
-  "upscale": 2,
-  "focal": {
-    "x": 0.47,
-    "y": 0.3,
-    "panFrom": 0.2,
-    "panTo": 0.75
-  },
-  "points": {
-    "waterfall": [0.26, 0.44],
-    "volcano": [0.5, 0.12]
-  },
-  "inpaint": "fsr",
-  "frame": {
-    "polys": [
-      [[0, 0], [0.36, 0], [0.3, 0.12], [0.2, 0.2], [0.17, 0.32], [0.13, 0.45], [0.1, 0.6], [0.12, 0.78], [0, 0.9]],
-      [[0.64, 0], [1, 0], [1, 1], [0.72, 1], [0.74, 0.86], [0.8, 0.7], [0.78, 0.55], [0.76, 0.4], [0.78, 0.25], [0.68, 0.12]],
-      [[0, 0.8], [0.15, 0.8], [0.3, 0.86], [0.45, 0.92], [0.56, 0.92], [0.7, 0.86], [1, 0.84], [1, 1], [0, 1]]
-    ],
-    "split": [0.44, 0.56]
-  },
-  "animals": [
-    {
-      "id": "toucan-a",
-      "species": "keel-billed-toucan",
-      "kind": "toucan",
-      "layer": "near-left",
-      "box": [98, 72, 242, 292],
-      "parts": [
-        {
-          "name": "head",
-          "anim": "tilt",
-          "z": 2,
-          "pivot": [160, 150],
-          "amp": 6,
-          "period": 2.6,
-          "poly": [[138, 68], [246, 94], [242, 132], [196, 162], [150, 152], [133, 106]]
-        }
-      ]
-    },
-    {
-      "id": "toucan-b",
-      "species": "keel-billed-toucan",
-      "kind": "toucan",
-      "layer": "near-left",
-      "box": [195, 66, 348, 258],
-      "hotspot": [250, 190],
-      "parts": [
-        {
-          "name": "head",
-          "anim": "tilt",
-          "z": 2,
-          "pivot": [262, 145],
-          "amp": 6,
-          "period": 3.1,
-          "poly": [[248, 62], [348, 92], [342, 126], [300, 152], [255, 146], [238, 100]]
-        }
-      ]
-    },
-    {
-      "id": "sloth",
-      "species": "brown-throated-three-toed-sloth",
-      "kind": "sloth",
-      "layer": "near-right",
-      "box": [1030, 82, 1340, 490],
-      "hotspot": [1110, 240],
-      "parts": [
-        {
-          "name": "body",
-          "anim": "sway",
-          "z": 2,
-          "rest": true,
-          "pivot": [1230, 100],
-          "amp": 2,
-          "period": 5.5
-        }
-      ]
-    },
-    {
-      "id": "macaw-a",
-      "species": "scarlet-macaw",
-      "kind": "macaw",
-      "anim": "bob",
-      "period": 2.4,
-      "box": [792, 362, 888, 448],
-      "parts": [
-        {
-          "name": "body",
-          "anim": "none",
-          "z": 2,
-          "rest": true
-        }
-      ]
-    },
-    {
-      "id": "macaw-b",
-      "species": "scarlet-macaw",
-      "kind": "macaw",
-      "anim": "bob",
-      "period": 2.0,
-      "box": [928, 328, 1058, 438],
-      "hotspot": [985, 385],
-      "parts": [
-        {
-          "name": "body",
-          "anim": "none",
-          "z": 2,
-          "rest": true
-        }
-      ]
-    },
-    {
-      "id": "morpho",
-      "species": "blue-morpho",
-      "kind": "morpho",
-      "anim": "drift",
-      "period": 5,
-      "box": [768, 606, 888, 722],
-      "hotspot": [828, 665],
-      "parts": [
-        {
-          "name": "wing-a",
-          "anim": "morpho-a",
-          "z": 1,
-          "pivot": [828, 665],
-          "half": {
-            "axis": [[828, 625], [828, 708]],
-            "side": "pos",
-            "halfWidth": 3,
-            "overlap": 2
-          }
-        },
-        {
-          "name": "wing-b",
-          "anim": "morpho-b",
-          "z": 1,
-          "pivot": [828, 665],
-          "half": {
-            "axis": [[828, 625], [828, 708]],
-            "side": "neg",
-            "halfWidth": 3,
-            "overlap": 2
-          }
-        },
-        {
-          "name": "body",
-          "anim": "none",
-          "z": 2,
-          "rest": true
-        }
-      ]
-    }
+ "id": "forest",
+ "source": "research/plates-original/opening-forest-waterfall-volcano.jpg",
+ "upscale": 2,
+ "focal": {
+  "x": 0.47,
+  "y": 0.3,
+  "panFrom": 0.2,
+  "panTo": 0.75
+ },
+ "points": {
+  "waterfall": [
+   0.26,
+   0.44
   ],
-  "water": [
+  "volcano": [
+   0.5,
+   0.12
+  ]
+ },
+ "inpaint": "fsr",
+ "frame": {
+  "polys": [
+   [
+    [
+     0,
+     0
+    ],
+    [
+     0.36,
+     0
+    ],
+    [
+     0.3,
+     0.12
+    ],
+    [
+     0.2,
+     0.2
+    ],
+    [
+     0.17,
+     0.32
+    ],
+    [
+     0.13,
+     0.45
+    ],
+    [
+     0.1,
+     0.6
+    ],
+    [
+     0.12,
+     0.78
+    ],
+    [
+     0,
+     0.9
+    ]
+   ],
+   [
+    [
+     0.64,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0.72,
+     1
+    ],
+    [
+     0.74,
+     0.86
+    ],
+    [
+     0.8,
+     0.7
+    ],
+    [
+     0.78,
+     0.55
+    ],
+    [
+     0.76,
+     0.4
+    ],
+    [
+     0.78,
+     0.25
+    ],
+    [
+     0.68,
+     0.12
+    ]
+   ],
+   [
+    [
+     0,
+     0.8
+    ],
+    [
+     0.15,
+     0.8
+    ],
+    [
+     0.3,
+     0.86
+    ],
+    [
+     0.45,
+     0.92
+    ],
+    [
+     0.56,
+     0.92
+    ],
+    [
+     0.7,
+     0.86
+    ],
+    [
+     1,
+     0.84
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     1
+    ]
+   ]
+  ],
+  "split": [
+   0.44,
+   0.56
+  ]
+ },
+ "animals": [
+  {
+   "id": "toucan-a",
+   "species": "keel-billed-toucan",
+   "kind": "toucan",
+   "layer": "near-left",
+   "box": [
+    98,
+    72,
+    252,
+    292
+   ],
+   "parts": [
     {
-      "name": "waterfall",
-      "poly": [[300, 333], [426, 333], [432, 480], [442, 620], [525, 655], [380, 660], [298, 560]],
-      "feather": 8,
-      "whiteOnly": true,
-      "vMin": 0.62,
-      "sMax": 0.35,
-      "flow": {
-        "dx": 0,
-        "dy": 1,
-        "period": 1.7,
-        "amp": 0.05
-      },
-      "mode": "flow"
+     "name": "head",
+     "anim": "tilt",
+     "z": 2,
+     "pivot": [
+      160,
+      150
+     ],
+     "amp": 6,
+     "period": 2.6,
+     "poly": [
+      [
+       138,
+       68
+      ],
+      [
+       246,
+       94
+      ],
+      [
+       248,
+       118
+      ],
+      [
+       242,
+       132
+      ],
+      [
+       196,
+       162
+      ],
+      [
+       150,
+       152
+      ],
+      [
+       133,
+       106
+      ]
+     ],
+     "edge": 3.5
     },
     {
-      "name": "river",
-      "poly": [[290, 612], [820, 600], [832, 722], [280, 732]],
-      "feather": 10,
-      "flow": {
-        "dx": 1,
-        "dy": 0.1,
-        "period": 7,
-        "amp": 0.01
-      },
-      "mode": "shimmer"
+     "name": "body",
+     "anim": "none",
+     "z": 1,
+     "rest": true
     }
-  ]
+   ],
+   "exclude": [
+    [
+     [
+      198,
+      150
+     ],
+     [
+      262,
+      150
+     ],
+     [
+      262,
+      300
+     ],
+     [
+      186,
+      300
+     ],
+     [
+      188,
+      250
+     ],
+     [
+      190,
+      220
+     ],
+     [
+      193,
+      190
+     ]
+    ]
+   ],
+   "include": [
+    [
+     [
+      212,
+      96
+     ],
+     [
+      246,
+      108
+     ],
+     [
+      248,
+      118
+     ],
+     [
+      243,
+      132
+     ],
+     [
+      212,
+      138
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "toucan-b",
+   "species": "keel-billed-toucan",
+   "kind": "toucan",
+   "layer": "near-left",
+   "box": [
+    195,
+    66,
+    348,
+    258
+   ],
+   "hotspot": [
+    250,
+    190
+   ],
+   "parts": [
+    {
+     "name": "head",
+     "anim": "tilt",
+     "z": 2,
+     "pivot": [
+      262,
+      145
+     ],
+     "amp": 6,
+     "period": 3.1,
+     "poly": [
+      [
+       250,
+       62
+      ],
+      [
+       348,
+       92
+      ],
+      [
+       342,
+       126
+      ],
+      [
+       300,
+       152
+      ],
+      [
+       255,
+       146
+      ],
+      [
+       250,
+       120
+      ],
+      [
+       249,
+       96
+      ]
+     ],
+     "edge": 3.5
+    },
+    {
+     "name": "body",
+     "anim": "none",
+     "z": 1,
+     "rest": true
+    }
+   ],
+   "exclude": [
+    [
+     [
+      150,
+      140
+     ],
+     [
+      196,
+      140
+     ],
+     [
+      193,
+      190
+     ],
+     [
+      190,
+      220
+     ],
+     [
+      188,
+      250
+     ],
+     [
+      186,
+      300
+     ],
+     [
+      150,
+      300
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "sloth",
+   "species": "brown-throated-three-toed-sloth",
+   "kind": "sloth",
+   "layer": "near-right",
+   "box": [
+    1030,
+    82,
+    1340,
+    490
+   ],
+   "hotspot": [
+    1110,
+    240
+   ],
+   "parts": [
+    {
+     "name": "body",
+     "anim": "sway",
+     "z": 2,
+     "rest": true,
+     "pivot": [
+      1230,
+      100
+     ],
+     "amp": 2,
+     "period": 5.5
+    }
+   ]
+  },
+  {
+   "id": "macaw-a",
+   "species": "scarlet-macaw",
+   "kind": "macaw",
+   "anim": "bob",
+   "period": 2.4,
+   "box": [
+    792,
+    362,
+    888,
+    448
+   ],
+   "parts": [
+    {
+     "name": "body",
+     "anim": "none",
+     "z": 2,
+     "rest": true
+    }
+   ]
+  },
+  {
+   "id": "macaw-b",
+   "species": "scarlet-macaw",
+   "kind": "macaw",
+   "anim": "bob",
+   "period": 2.0,
+   "box": [
+    928,
+    328,
+    1058,
+    438
+   ],
+   "hotspot": [
+    985,
+    385
+   ],
+   "parts": [
+    {
+     "name": "body",
+     "anim": "none",
+     "z": 2,
+     "rest": true
+    }
+   ]
+  },
+  {
+   "id": "morpho",
+   "species": "blue-morpho",
+   "kind": "morpho",
+   "anim": "drift",
+   "period": 5,
+   "box": [
+    768,
+    606,
+    888,
+    722
+   ],
+   "hotspot": [
+    828,
+    665
+   ],
+   "parts": [
+    {
+     "name": "wing-a",
+     "anim": "morpho-a",
+     "z": 1,
+     "pivot": [
+      828,
+      665
+     ],
+     "half": {
+      "axis": [
+       [
+        828,
+        625
+       ],
+       [
+        828,
+        708
+       ]
+      ],
+      "side": "pos",
+      "halfWidth": 3,
+      "overlap": 2
+     }
+    },
+    {
+     "name": "wing-b",
+     "anim": "morpho-b",
+     "z": 1,
+     "pivot": [
+      828,
+      665
+     ],
+     "half": {
+      "axis": [
+       [
+        828,
+        625
+       ],
+       [
+        828,
+        708
+       ]
+      ],
+      "side": "neg",
+      "halfWidth": 3,
+      "overlap": 2
+     }
+    },
+    {
+     "name": "body",
+     "anim": "none",
+     "z": 2,
+     "rest": true
+    }
+   ]
+  }
+ ],
+ "water": [
+  {
+   "name": "waterfall",
+   "poly": [
+    [
+     300,
+     333
+    ],
+    [
+     426,
+     333
+    ],
+    [
+     432,
+     480
+    ],
+    [
+     442,
+     620
+    ],
+    [
+     525,
+     655
+    ],
+    [
+     380,
+     660
+    ],
+    [
+     298,
+     560
+    ]
+   ],
+   "feather": 8,
+   "whiteOnly": true,
+   "vMin": 0.62,
+   "sMax": 0.35,
+   "flow": {
+    "dx": 0,
+    "dy": 1,
+    "period": 1.7,
+    "amp": 0.05
+   },
+   "mode": "flow"
+  },
+  {
+   "name": "river",
+   "poly": [
+    [
+     290,
+     612
+    ],
+    [
+     820,
+     600
+    ],
+    [
+     832,
+     722
+    ],
+    [
+     280,
+     732
+    ]
+   ],
+   "feather": 10,
+   "flow": {
+    "dx": 1,
+    "dy": 0.1,
+    "period": 7,
+    "amp": 0.01
+   },
+   "mode": "shimmer"
+  }
+ ]
 }

@@ -16,6 +16,14 @@ function rel(box: number[], container: number[]) {
   return { left: pct((box[0] - container[0]) / container[2]), top: pct((box[1] - container[1]) / container[3]), width: pct(box[2] / container[2]), height: pct(box[3] / container[3]) };
 }
 const PLATE_BOX = [0, 0, 1, 1];
+/** a small flock crossing the sky: offsets in the box, start delays and crossing times (seconds) */
+const FLOCK = [
+  { y: 22, d: 0, t: 46, s: 1 },
+  { y: 31, d: -9, t: 52, s: 0.8 },
+  { y: 18, d: -17, t: 44, s: 0.9 },
+  { y: 40, d: -26, t: 58, s: 0.7 },
+  { y: 27, d: -33, t: 49, s: 1.1 },
+];
 
 function Water({ plate, w, live }: { plate: PlateName; w: WaterInfo; live: boolean }) {
   const style = { ...rel(w.box, PLATE_BOX), ['--wdx' as string]: w.flow.dx, ['--wdy' as string]: w.flow.dy, ['--wperiod' as string]: `${w.flow.period}s`, ['--wamp' as string]: w.flow.amp } as React.CSSProperties;
@@ -31,9 +39,13 @@ function Water({ plate, w, live }: { plate: PlateName; w: WaterInfo; live: boole
   );
 }
 
-/** Whole-body motion for animals whose spec names none: perched birds hop and settle, grazers shift their weight. */
+/** Whole-body motion for animals whose spec names none: perched birds settle and flick, grazers shift their weight.
+ *  Only an animal whose whole silhouette is a part can move as a whole; one whose body stays in the plate (only a
+ *  head cut out) would otherwise move its head off its body. */
 function bodyAnim(a: AnimalInfo): string | undefined {
   if (a.anim) return a.anim;
+  const whole = a.parts.some((p) => p.name === 'body');
+  if (!whole) return undefined;
   switch (a.kind) {
     case 'toucan': case 'thrush': return 'perch';
     case 'quetzal': return 'perch-soft';
@@ -118,15 +130,27 @@ export function Scene({ index, stop, live, chapter, species, onOpenSpecies, prio
   const facing = stop.facing || {};
   const fly = stop.fly || {};
   const withHotspot = animals.filter((a) => a.hotspot && a.species && byId.get(a.species));
-  const style = { ['--i' as string]: index, ['--pn' as string]: `var(--p${index})`, visibility: near ? 'visible' : 'hidden', zIndex: index } as React.CSSProperties;
+  // --pn, --jt, --vel, --px/--py and the visibility are written by the driver (data-scene / data-fade)
+  const style = { ['--i' as string]: index, zIndex: index } as React.CSSProperties;
   return (
-    <div className={`scene scene--${index} scene--${stop.key}${current ? ' is-current' : ''}${near ? ' is-near' : ''}`} style={style}>
-      <PlateBox plate={plate} className={`plate--${plate}`}>
-        <LayerImg plate={plate} name="base" className="plate__base" priority={priority} alt="" />
+    <div className={`scene scene--${index} scene--${stop.key}${current ? ' is-current' : ''}${near ? ' is-near' : ''}`} style={style} data-scene={index} data-fade="">
+      <PlateBox plate={plate} className={`plate--${plate}${stop.wind ? ' plate--wind-' + stop.wind : ''}`}>
+        <LayerImg plate={plate} name="base" className="plate__base" priority={priority} eager alt="" />
         {(m.water || []).map((w) => (<Water key={w.name} plate={plate} w={w} live={live} />))}
-        {live && stop.ambient?.shafts && <div className="plate__shafts" />}
-        {live && stop.ambient?.mist && <div className="plate__mist plate__mist--1" style={{ backgroundImage: `url(${FX}mist-1.png)` }} />}
-        {live && stop.ambient?.clouds && <div className="plate__clouds" style={{ backgroundImage: `url(${FX}mist-2.png)` }} />}
+        {live && stop.ambient?.shafts && <div className="plate__shafts" style={{ backgroundImage: `url(${FX}shafts.png)` }} />}
+        {live && stop.ambient?.mist && <div className="plate__mist plate__mist--1"><div className="plate__drift" style={{ backgroundImage: `url(${FX}mist-1-fade.png)` }} /></div>}
+        {live && stop.ambient?.clouds && (
+          <div className="plate__clouds" style={rel(stop.ambient.clouds, PLATE_BOX)}><div className="plate__drift" style={{ backgroundImage: `url(${FX}mist-2.png)` }} /></div>
+        )}
+        {live && stop.ambient?.birds && (
+          <div className="plate__birds" style={rel(stop.ambient.birds, PLATE_BOX)} aria-hidden="true">
+            {FLOCK.map((b, i) => (
+              <span key={i} className="bird" style={{ top: `${b.y}%`, ['--d' as string]: `${b.d}s`, ['--t' as string]: `${b.t}s`, ['--s' as string]: b.s }}>
+                <svg viewBox="0 0 24 10" width="22" height="9"><path d="M1 7 Q6.5 0.5 12 6.5 Q17.5 0.5 23 7" fill="none" stroke="#1b1a12" strokeWidth="1.7" strokeLinecap="round" /></svg>
+              </span>
+            ))}
+          </div>
+        )}
         {live && stop.ambient?.sun && <div className="plate__sunglow" style={{ ['--sx' as string]: pct((m.points?.sun?.[0] ?? m.focal.x) as number), ['--sy' as string]: pct((m.points?.sun?.[1] ?? 0.4) as number) }} />}
         {m.layers.map((layer) => (
           <PlateLayer key={layer.name} plate={plate} layer={layer.name} className={`plate__near plate__near--${layer.name.replace('near-', '')}`} priority={priority}>
@@ -134,7 +158,7 @@ export function Scene({ index, stop, live, chapter, species, onOpenSpecies, prio
           </PlateLayer>
         ))}
         {free.map((a) => (<Animal key={a.id} plate={plate} a={a} container={PLATE_BOX} facing={facing[a.id]} lifted={lift === a.id} live={live} fly={fly[a.id]} firstStop={index === 1} />))}
-        {live && stop.ambient?.mist && <div className="plate__mist plate__mist--2" style={{ backgroundImage: `url(${FX}mist-2.png)` }} />}
+        {live && stop.ambient?.mist && <div className="plate__mist plate__mist--2"><div className="plate__drift" style={{ backgroundImage: `url(${FX}mist-2-fade.png)` }} /></div>}
         {children}
         {withHotspot.length > 0 && (
           <nav className="plate__hotspots plate__hotspots--scene" aria-label={t('journey.animalsIn', { place: t(`journey.stops.${stop.key}.title` as never) })}>

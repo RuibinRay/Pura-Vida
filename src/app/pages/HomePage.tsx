@@ -127,7 +127,7 @@ export function HomePage() {
           }
           if (stop.kind === 'map') {
             return mapData ? (
-              <div key={stop.key} className={`scene scene--${n} scene--map stage__map${chapter === i ? ' is-current' : ''}`} style={{ ['--i' as string]: n, ['--pn' as string]: `var(--p${n})`, zIndex: n, visibility: Math.abs(chapter - i) <= 1 ? 'visible' : 'hidden' }}>
+              <div key={stop.key} className={`scene scene--${n} scene--map stage__map${chapter === i ? ' is-current' : ''}`} style={{ ['--i' as string]: n, zIndex: n }} data-scene={n} data-fade="">
                 <Suspense fallback={null}>
                   {live ? <HomeMap data={mapData} onOpen={openProvince} index={n} stops={stopMarkers} /> : <div className="home-map home-map--2d"><Map2D data={mapData} landmarks={[]} /></div>}
                 </Suspense>
@@ -137,7 +137,7 @@ export function HomePage() {
           }
           if (stop.kind === 'table') {
             return content ? (
-              <div key={stop.key} className={`scene scene--${n} scene--table${chapter === i ? ' is-current' : ''}`} style={{ ['--i' as string]: n, ['--pn' as string]: `var(--p${n})`, zIndex: n, visibility: Math.abs(chapter - i) <= 1 ? 'visible' : 'hidden' }}>
+              <div key={stop.key} className={`scene scene--${n} scene--table${chapter === i ? ' is-current' : ''}`} style={{ ['--i' as string]: n, zIndex: n }} data-scene={n} data-fade="">
                 <FlavorsTable foods={content.foods} index={n} />
                 {stop.wash && <div className={`scene__wash scene__wash--${stop.wash}`} />}
               </div>
@@ -149,11 +149,11 @@ export function HomePage() {
         <div className="journey__copy">
           {STOPS.map((stop, i) => {
             const n = i + 1;
-            const pn = { ['--pn' as string]: `var(--p${n})` } as React.CSSProperties;
+            const pn = {} as React.CSSProperties; // --pn arrives from the driver through data-scene
             const pl = place(stop.place);
             const vis = chapter === i;
             const sec = (children: React.ReactNode) => (
-              <section key={stop.key} className={`jchapter jchapter--${n} jchapter--${stop.key}`} aria-labelledby={`ch${n}-title`} style={{ ...pn, visibility: vis ? 'visible' : 'hidden' }}>
+              <section key={stop.key} className={`jchapter jchapter--${n} jchapter--${stop.key}`} aria-labelledby={`ch${n}-title`} style={{ visibility: vis ? 'visible' : 'hidden' }} data-scene={n}>
                 {children}
               </section>
             );

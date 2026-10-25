@@ -1,5 +1,6 @@
 /* ---------- The journey: one sticky stage, nine stops, scroll as the only clock ----------
-   The driver (src/journey/driver.ts) writes --jt (0…N), --p1…--pN, --px/--py and --calm on .journey.
+   The driver (src/journey/driver.ts) writes --jt (0…N), --pn, --vel and --px/--py on each stop's elements
+   (data-scene), --calm on .journey.
    Every scroll-driven value below is a pure function of those numbers; --m (motion) is 0 under calm motion.
    Each stop is a .scene with --i (its 1-based number) and --pn (its own progress, set inline to var(--pN)).
    The 1–5 s loops of the animals, the water and the eruption are CSS animations that run only while the stop is
@@ -7,7 +8,7 @@
 
 .journey {
   position: relative;
-  --jt: 0; --p1: 0; --p2: 0; --p3: 0; --p4: 0; --p5: 0; --p6: 0; --p7: 0; --p8: 0; --p9: 0; --p10: 0; --px: 0; --py: 0; --calm: 0;
+  --jt: 0; --pn: 0; --px: 0; --py: 0; --vel: 0; --calm: 0;
   --m: calc(1 - var(--calm));
   --stage-bg: #0d1f1a;
   background: var(--stage-bg);
@@ -55,7 +56,7 @@
   opacity: calc(var(--m) * var(--in) * (1 - var(--in)) * 2.4);
 }
 .scene__wash--mist { background: radial-gradient(ellipse at 50% 60%, rgba(236, 240, 236, 0.9), rgba(220, 228, 224, 0.55) 45%, rgba(200, 212, 206, 0.2) 80%); }
-.scene__wash--warm { background: radial-gradient(ellipse at 60% 45%, rgba(255, 214, 150, 0.9), rgba(255, 170, 90, 0.5) 45%, rgba(230, 110, 50, 0.15) 80%); mix-blend-mode: screen; }
+.scene__wash--warm { background: radial-gradient(ellipse at 60% 45%, rgba(255, 214, 150, 0.85), rgba(255, 170, 90, 0.45) 45%, rgba(230, 110, 50, 0.12) 80%); }
 
 /* a plate covers the stage like object-fit: cover, centred on its focal point; children are placed in plate space.
    In portrait the focal point pans across the plate as the stop progresses (--pan-from → --pan-to); the shift is
@@ -108,23 +109,28 @@
   transform: translateY(-0.7%) scale(1.012);
   filter: brightness(1.07) saturate(1.05);
 }
-/* near-frame layers (the opening forest): they part and pass the camera as the stop progresses */
+/* near-frame layers: the foliage nearest the camera. On the opening forest they part and pass the camera as the stop
+   progresses; on the other stops they only stand a little closer than the plate (a touch of parallax) and sway. */
 .plate__near {
   z-index: 3;
-  opacity: calc(1 - var(--m) * clamp(0, (var(--pn) - 0.78) * 4.6, 1));
+  --part: 0.14;   /* how far the halves part (fraction of their width) */
+  --grow: 0.1;    /* how much they grow through the stop */
 }
+.plate--forest .plate__near { --part: 0.18; --grow: 0.42; opacity: calc(1 - var(--m) * clamp(0, (var(--pn) - 0.78) * 4.6, 1)); }
 .plate__near--left {
   transform-origin: 0% 72%;
   transform:
-    translate3d(calc(var(--m) * (var(--pn) * -18% + var(--px) * 1.3%)), calc(var(--m) * (var(--pn) * 7% + var(--py) * 0.9%)), 0)
-    scale(calc(1 + var(--m) * var(--pn) * 0.42));
+    translate3d(calc(var(--m) * (var(--pn) * var(--part) * -100% + var(--px) * 1.3%)), calc(var(--m) * (var(--pn) * var(--part) * 40% + var(--py) * 0.9%)), 0)
+    scale(calc(1 + var(--m) * var(--pn) * var(--grow)));
 }
 .plate__near--right {
   transform-origin: 100% 72%;
   transform:
-    translate3d(calc(var(--m) * (var(--pn) * 18% + var(--px) * 1.3%)), calc(var(--m) * (var(--pn) * 7% + var(--py) * 0.9%)), 0)
-    scale(calc(1 + var(--m) * var(--pn) * 0.42));
+    translate3d(calc(var(--m) * (var(--pn) * var(--part) * 100% + var(--px) * 1.3%)), calc(var(--m) * (var(--pn) * var(--part) * 40% + var(--py) * 0.9%)), 0)
+    scale(calc(1 + var(--m) * var(--pn) * var(--grow)));
 }
+/* a crown that crosses the split moves as one: no parting, origin at the foot, a gentle growth */
+.plate--wind-sync .plate__near { --part: 0; --grow: 0.06; }
 
 /* ---- ambient layers ---- */
 .plate__shafts {
@@ -132,58 +138,82 @@
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: repeating-linear-gradient(112deg, rgba(255, 238, 190, 0) 0 7%, rgba(255, 238, 190, 0.09) 9% 11%, rgba(255, 238, 190, 0) 13% 22%);
-  mix-blend-mode: screen;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 72%);
-  mask-image: linear-gradient(to bottom, #000 0%, transparent 72%);
+  /* the stripes and their vertical fade are one baked texture (tools: a mask here would cost an offscreen surface) */
+  background: center / 100% 100% no-repeat;
   opacity: calc(0.9 - 0.5 * var(--pn));
 }
 .plate__mist {
   position: absolute;
-  inset: -12% -20%;
+  inset: -8% -10%;
   z-index: 2;
   pointer-events: none;
-  background-repeat: repeat;
-  background-size: 54% auto;
-  mix-blend-mode: screen;
-  -webkit-mask-image: linear-gradient(to top, #000 10%, rgba(0, 0, 0, 0.7) 45%, transparent 85%);
-  mask-image: linear-gradient(to top, #000 10%, rgba(0, 0, 0, 0.7) 45%, transparent 85%);
+  overflow: hidden;
   opacity: calc(0.5 - 0.3 * var(--pn));
 }
+/* the drifting texture is a strip twice as wide as its box, tiled; one tile of translate loops seamlessly on the
+   compositor (a background-position animation would repaint the whole strip every frame) */
+.plate__drift {
+  position: absolute;
+  inset: 0;
+  width: 200%;
+  background-repeat: repeat;
+  /* a whole number of tiles per container width, so one container-width of translate loops without a jump */
+  background-size: 25% auto;
+  will-change: transform;
+}
+/* The mist's vertical fade is baked into its texture (mist-1-fade / mist-2-fade: one tile tall, stretched to the
+   box): a CSS mask here would give every mist a full-screen offscreen surface to composite each frame. */
+.plate__mist .plate__drift { background-size: 25% 100%; background-repeat: repeat-x; }
 .plate__mist--2 {
   z-index: 4;
-  background-size: 70% auto;
-  -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.5) 25%, transparent 50%);
-  mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.5) 25%, transparent 50%);
   opacity: calc(0.38 - 0.22 * var(--pn));
 }
+.plate__mist--2 .plate__drift { background-size: 16.6667% 100%; }
 .scene--rio-celeste .plate__mist, .scene--tortuguero .plate__mist { opacity: calc(0.3 - 0.12 * var(--pn)); }
 .scene--rio-celeste .plate__mist--2, .scene--tortuguero .plate__mist--2 { opacity: calc(0.22 - 0.1 * var(--pn)); }
 .plate__clouds {
   position: absolute;
-  left: var(--cl, 24%);
-  top: var(--ct, 0);
-  width: var(--cw, 50%);
-  height: var(--ch, 40%);
   z-index: 2;
   pointer-events: none;
-  background-repeat: repeat;
-  background-size: 90% auto;
-  mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(ellipse at 50% 60%, #000 25%, transparent 68%);
-  mask-image: radial-gradient(ellipse at 50% 60%, #000 25%, transparent 68%);
-  opacity: calc(0.55 + 0.4 * var(--pn));
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 55%, #000 30%, transparent 70%);
+  mask-image: radial-gradient(ellipse at 50% 55%, #000 30%, transparent 70%);
+  opacity: calc(0.42 + 0.25 * var(--pn));
 }
-.scene--irazu .plate__clouds { --cl: 36%; --ct: 4%; --cw: 48%; --ch: 40%; }
+.plate__clouds .plate__drift { background-size: 25% auto; }
 .plate__sunglow {
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: radial-gradient(ellipse at var(--sx, 60%) var(--sy, 40%), rgba(255, 210, 140, 0.55) 0%, rgba(255, 160, 70, 0.22) 18%, transparent 48%);
-  mix-blend-mode: screen;
+  background: radial-gradient(ellipse at var(--sx, 60%) var(--sy, 40%), rgba(255, 210, 140, 0.5) 0%, rgba(255, 160, 70, 0.18) 18%, transparent 48%);
   opacity: 0.8;
 }
+/* a small flock crossing the sky: each bird glides across its box and flaps (two cheap transforms) */
+.plate__birds { position: absolute; z-index: 2; pointer-events: none; overflow: visible; }
+.bird {
+  position: absolute;
+  left: -6%;
+  width: 22px;
+  height: 9px;
+  opacity: 0;
+  scale: var(--s, 1);
+  will-change: transform;
+}
+.bird svg { display: block; width: 100%; height: 100%; transform-origin: 50% 70%; }
+@keyframes bird-cross {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  6% { opacity: 0.55; }
+  50% { transform: translate3d(calc(var(--bw, 60vw) * 0.5), -1.5vh, 0); }
+  94% { opacity: 0.55; }
+  100% { transform: translate3d(var(--bw, 60vw), 0.5vh, 0); opacity: 0; }
+}
+@keyframes bird-flap { from { transform: scaleY(0.35); } to { transform: scaleY(1); } }
+/* wind: the foliage frame layers sway about the frame edge (free: halves out of phase; sync: one crown, one motion) */
+@keyframes wind-l { from { rotate: -0.55deg; } to { rotate: 0.55deg; } }
+@keyframes wind-r { from { rotate: 0.5deg; } to { rotate: -0.5deg; } }
+@keyframes wind-s { from { rotate: -0.35deg; scale: 1; } 50% { scale: 1.004; } to { rotate: 0.35deg; scale: 1; } }
+.plate--wind-sync .plate__near--left, .plate--wind-sync .plate__near--right { transform-origin: 50% 100%; }
 .stage__vignette {
   position: absolute;
   inset: 0;
@@ -226,8 +256,6 @@
   translate: -50% 0;
   background-size: 100% 100%;
   opacity: 0;
-  mix-blend-mode: screen;
-  filter: brightness(1.4);
   will-change: transform, opacity;
 }
 .water__spray--1 { left: 30%; width: 70%; }
@@ -239,8 +267,8 @@
   100% { translate: calc(var(--wdx) * var(--wamp) * var(--wgain) * 100%) calc(var(--wdy) * var(--wamp) * var(--wgain) * 100%); opacity: 0; }
 }
 @keyframes water-shimmer {
-  from { translate: calc(var(--wdx) * var(--wamp) * var(--wgain) * -100%) calc(var(--wdy) * var(--wamp) * var(--wgain) * -100%); opacity: 0.45; filter: brightness(1); }
-  to { translate: calc(var(--wdx) * var(--wamp) * var(--wgain) * 100%) calc(var(--wdy) * var(--wamp) * var(--wgain) * 100%); opacity: 0.85; filter: brightness(1.08); }
+  from { translate: calc(var(--wdx) * var(--wamp) * var(--wgain) * -100%) calc(var(--wdy) * var(--wamp) * var(--wgain) * -100%); opacity: 0.45; }
+  to { translate: calc(var(--wdx) * var(--wamp) * var(--wgain) * 100%) calc(var(--wdy) * var(--wamp) * var(--wgain) * 100%); opacity: 0.9; }
 }
 @keyframes spray-rise {
   0% { opacity: 0; transform: translateY(10%) scale(0.5); }
@@ -262,7 +290,8 @@
   --fdy: 0;
   --f0: 0.5;
   /* gains over the amplitudes written in the plate specs (those were tuned for a whisper) */
-  --g-head: 2.2;
+  --g-head: 2;
+  --g-tilt: 1.3;
   --g-flap: 2;
   --g-flutter: 1.5;
   --g-morpho: 1.15;
@@ -274,6 +303,9 @@
     scale(calc(1 + var(--m) * var(--pn, 0) * 0.025));
   will-change: transform;
 }
+/* body loops about the feet (the scroll transform scales about the same point, which is fine) */
+.animal--perch, .animal--stand { transform-origin: 50% 100%; }
+.animal--perch-soft { transform-origin: 50% 30%; }
 /* a flier banks into the scroll */
 .animal--fly { transform:
     translate3d(calc(var(--m) * ((var(--pn, 0) - var(--f0)) * var(--fdx) * 1vw)), calc(var(--m) * ((var(--pn, 0) - var(--f0)) * var(--fdy) * 1vw + var(--vel, 0) * -2.4vh)), 0)
@@ -284,7 +316,6 @@
 .animal.is-on .part img { filter: brightness(1.1) saturate(1.06); }
 .part {
   position: absolute;
-  will-change: transform;
   backface-visibility: hidden;
   transform-origin: 50% 50%;
 }
@@ -301,9 +332,11 @@
 @keyframes bob { 0%, 100% { translate: 0 0; rotate: 0deg; } 30% { translate: 1.5% -7%; rotate: -3deg; } 60% { translate: -1% 2%; rotate: 2deg; } }
 @keyframes hover { 0%, 100% { translate: 0 0; } 18% { translate: 6% -9%; } 36% { translate: 9% -2%; } 52% { translate: -4% -11%; } 70% { translate: -8% 3%; } 86% { translate: 2% 6%; } }
 @keyframes drift { 0%, 100% { translate: 0 0; rotate: 0deg; } 20% { translate: 18% -22%; rotate: 9deg; } 45% { translate: 6% -38%; rotate: -7deg; } 70% { translate: -20% -18%; rotate: 6deg; } 88% { translate: -8% -4%; rotate: -3deg; } }
-@keyframes perch { 0%, 70%, 100% { translate: 0 0; rotate: 0deg; scale: 1; } 74% { translate: 0 -5%; rotate: -2deg; scale: 1 0.96; } 79% { translate: 1.5% 0; rotate: 1.5deg; scale: 1 1.03; } 84% { translate: 0 0; rotate: 0deg; scale: 1; } 92% { scale: 1.01; } }
-@keyframes perch-soft { 0%, 100% { translate: 0 0; scale: 1; } 40% { translate: 0 -1.5%; scale: 1.012; } 65% { translate: 0.6% 0; scale: 1; } }
-@keyframes stand { 0%, 100% { translate: 0 0; scale: 1; } 35% { translate: -1.2% 0.6%; scale: 1.012 0.992; } 55% { translate: -0.8% 0; scale: 1 1; } 80% { translate: 0.8% -0.4%; scale: 0.995 1.008; } }
+/* perched birds keep their feet on the branch: a settle (squash), a stretch and a shake, about the feet */
+@keyframes perch { 0%, 58%, 100% { rotate: 0deg; scale: 1 1; } 62% { rotate: -1.2deg; scale: 1.03 0.965; } 67% { rotate: 1.4deg; scale: 0.98 1.035; } 72% { rotate: -0.6deg; scale: 1.01 0.99; } 78% { rotate: 0.3deg; scale: 1 1.005; } 86% { scale: 1.008 0.996; } }
+@keyframes perch-soft { 0%, 100% { rotate: 0deg; scale: 1; } 30% { rotate: 0.5deg; scale: 1.012 0.995; } 55% { rotate: -0.4deg; scale: 0.996 1.01; } 80% { rotate: 0.2deg; scale: 1.004; } }
+/* standing animals shift their weight from foot to foot, breathing, hooves planted */
+@keyframes stand { 0%, 100% { rotate: 0deg; scale: 1 1; } 30% { rotate: -0.5deg; scale: 1.014 0.99; } 55% { rotate: 0.2deg; scale: 1 1.006; } 80% { rotate: 0.5deg; scale: 0.994 1.01; } }
 /* part loops about their pivots */
 @keyframes flap-a { 0%, 100% { transform: rotate3d(var(--ax), var(--ay), 0, calc(var(--amp) * var(--g-flap) * -0.5deg)); } 50% { transform: rotate3d(var(--ax), var(--ay), 0, calc(var(--amp) * var(--g-flap) * 0.5deg)); } }
 @keyframes flap-b { 0%, 100% { transform: rotate3d(var(--ax), var(--ay), 0, calc(var(--amp) * var(--g-flap) * 0.5deg)); } 50% { transform: rotate3d(var(--ax), var(--ay), 0, calc(var(--amp) * var(--g-flap) * -0.5deg)); } }
@@ -311,8 +344,8 @@
 @keyframes flutter-b { 0%, 100% { transform: rotate3d(var(--ax), var(--ay), 0, calc(var(--amp) * var(--g-flutter) * 0.5deg)); } 50% { transform: rotate3d(var(--ax), var(--ay), 0, calc(var(--amp) * var(--g-flutter) * -0.5deg)); } }
 @keyframes morpho-a { 0%, 12%, 88%, 100% { transform: rotate3d(var(--ax), var(--ay), 0, 0deg); } 50% { transform: rotate3d(var(--ax), var(--ay), 0, calc(var(--amp) * var(--g-morpho) * 1deg)); } }
 @keyframes morpho-b { 0%, 12%, 88%, 100% { transform: rotate3d(var(--ax), var(--ay), 0, 0deg); } 50% { transform: rotate3d(var(--ax), var(--ay), 0, calc(var(--amp) * var(--g-morpho) * -1deg)); } }
-@keyframes head-turn { 0%, 100% { rotate: 0deg; } 28% { rotate: calc(var(--amp) * var(--g-head) * -1deg); } 48% { rotate: calc(var(--amp) * var(--g-head) * -0.8deg); } 76% { rotate: calc(var(--amp) * var(--g-head) * 0.9deg); } }
-@keyframes head-tilt { 0%, 100% { rotate: 0deg; } 18% { rotate: calc(var(--amp) * var(--g-head) * -1deg); } 32% { rotate: calc(var(--amp) * var(--g-head) * -0.5deg); } 58% { rotate: calc(var(--amp) * var(--g-head) * 0.7deg); } 72% { rotate: calc(var(--amp) * var(--g-head) * 0.4deg); } }
+@keyframes head-turn { 0%, 18%, 100% { rotate: 0deg; } 21%, 42% { rotate: calc(var(--amp) * var(--g-head) * -1deg); } 45%, 64% { rotate: calc(var(--amp) * var(--g-head) * -0.35deg); } 67%, 84% { rotate: calc(var(--amp) * var(--g-head) * 0.8deg); } 87% { rotate: 0deg; } }
+@keyframes head-tilt { 0%, 22%, 100% { rotate: 0deg; } 25%, 44% { rotate: calc(var(--amp) * var(--g-tilt) * -1deg); } 47%, 60% { rotate: calc(var(--amp) * var(--g-tilt) * 0.35deg); } 63%, 82% { rotate: calc(var(--amp) * var(--g-tilt) * 0.9deg); } 85% { rotate: 0deg; } }
 @keyframes head-graze { 0%, 100% { rotate: 0deg; } 35%, 62% { rotate: calc(var(--amp) * var(--g-head) * var(--sgn, 1) * 1deg); } }
 @keyframes head-watch { 0%, 100% { rotate: 0deg; } 40%, 55% { rotate: calc(var(--amp) * var(--g-head) * -1deg); } 80% { rotate: calc(var(--amp) * var(--g-head) * 0.6deg); } }
 @keyframes sway { from { rotate: calc(var(--amp) * var(--g-sway) * -1deg); } to { rotate: calc(var(--amp) * var(--g-sway) * 1deg); } }
@@ -324,8 +357,7 @@
 .erupt__haze {
   position: absolute;
   inset: -10%;
-  background: linear-gradient(to bottom, rgba(78, 70, 60, 0.95), rgba(128, 112, 92, 0.6) 45%, rgba(96, 86, 76, 0.3) 100%);
-  mix-blend-mode: multiply;
+  background: linear-gradient(to bottom, rgba(62, 54, 44, 0.75), rgba(96, 82, 64, 0.45) 45%, rgba(70, 62, 54, 0.25) 100%);
   opacity: 0;
   transition: opacity 3.5s ease;
 }
@@ -351,7 +383,6 @@
   aspect-ratio: 1;
   translate: -50% -50%;
   background: radial-gradient(circle, rgba(255, 150, 50, 0.7), rgba(255, 90, 20, 0.25) 35%, transparent 65%);
-  mix-blend-mode: screen;
   opacity: 0;
   transition: opacity 2s ease;
 }
@@ -391,7 +422,6 @@
   aspect-ratio: 1;
   translate: -50% -70%;
   background: radial-gradient(circle at 48% 55%, rgba(255, 250, 235, 0.95), rgba(220, 210, 255, 0.45) 22%, transparent 55%);
-  mix-blend-mode: screen;
   opacity: 0;
 }
 /* embers at the vent: small bright grains thrown up and falling back */
@@ -403,7 +433,6 @@
   background: #ffc46b;
   box-shadow: 0 0 6px 2px rgba(255, 150, 60, 0.8);
   opacity: 0;
-  mix-blend-mode: screen;
 }
 @keyframes puff-rise {
   0% { opacity: 0; transform: translate(0, 0) scale(0.2); }
@@ -451,9 +480,18 @@
   margin: -11px 0 0 -11px;
   border-radius: 50%;
   border: 2px solid rgba(244, 238, 223, 0.95);
-  box-shadow: 0 0 0 4px rgba(244, 238, 223, 0.22), 0 2px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   background: rgba(13, 31, 26, 0.35);
   transition: transform 300ms var(--ease-out), opacity 300ms;
+}
+/* the breathing halo (scaled on the compositor, never repainted) */
+.hotspot__ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 4px solid rgba(244, 238, 223, 0.22);
+  transform-origin: 50% 50%;
 }
 .hotspot__ring::after {
   content: '';
@@ -549,8 +587,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(to top, rgba(110, 36, 8, 0.5) 0%, rgba(230, 120, 40, 0.22) 45%, rgba(255, 200, 110, 0.12) 100%);
-  mix-blend-mode: multiply;
+  background: linear-gradient(to top, rgba(90, 28, 6, 0.55) 0%, rgba(200, 90, 20, 0.2) 45%, rgba(255, 180, 90, 0.08) 100%);
   opacity: calc(0.15 + 0.6 * var(--pn));
 }
 
@@ -672,7 +709,7 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(244, 238, 223, 0.7);
-  opacity: calc(1 - clamp(0, var(--p1) * 6, 1));
+  opacity: calc(1 - clamp(0, var(--pn, 0) * 6, 1));
 }
 .jcopy__scrollhint span {
   display: inline-block;
@@ -694,8 +731,8 @@
   bottom: 0;
   max-width: 48rem;
   padding-bottom: var(--s-7);
-  opacity: calc(1 - var(--m) * clamp(0, var(--p1) * 2.4, 1) - var(--calm) * clamp(0, (var(--p1) - 0.6) * 3, 1));
-  transform: translateY(calc(var(--m) * var(--p1) * -40px));
+  opacity: calc(1 - var(--m) * clamp(0, var(--pn, 0) * 2.4, 1) - var(--calm) * clamp(0, (var(--pn, 0) - 0.6) * 3, 1));
+  transform: translateY(calc(var(--m) * var(--pn, 0) * -40px));
 }
 /* panels: a quiet dark backdrop, no blur; enter from below, hold, leave upward */
 .jcopy--panel {
@@ -890,12 +927,17 @@
 /* ---- motion that is not scroll-driven: only on the stops on stage, and only when the visitor allows motion.
    The gate is the journey's own calm state (the OS preference unless the visitor overrides it in settings), not
    the media query alone — a visitor whose system asks for reduced motion can still switch the animals on. ---- */
-.journey--live:not(.journey--calm) .plate__mist { animation: mist-drift 90s linear infinite; }
-.journey--live:not(.journey--calm) .plate__mist--2 { animation-duration: 130s; animation-direction: reverse; }
-.journey--live:not(.journey--calm) .plate__clouds { animation: cloud-drift 70s linear infinite; }
+.journey--live:not(.journey--calm) .plate__mist .plate__drift { animation: drift-strip 90s linear infinite; }
+.journey--live:not(.journey--calm) .plate__mist--2 .plate__drift { animation-duration: 130s; animation-direction: reverse; }
+.journey--live:not(.journey--calm) .plate__clouds .plate__drift { animation: drift-strip 70s linear infinite; }
+.journey--live:not(.journey--calm) .bird { animation: bird-cross var(--t) linear infinite; animation-delay: var(--d); }
+.journey--live:not(.journey--calm) .bird svg { animation: bird-flap 0.42s ease-in-out infinite alternate; animation-delay: var(--d); }
+.journey--live:not(.journey--calm) .plate--wind-free .plate__near--left { animation: wind-l 7.5s ease-in-out infinite alternate; }
+.journey--live:not(.journey--calm) .plate--wind-free .plate__near--right { animation: wind-r 9.2s ease-in-out infinite alternate; }
+.journey--live:not(.journey--calm) .plate--wind-sync .plate__near--left, .journey--live:not(.journey--calm) .plate--wind-sync .plate__near--right { animation: wind-s 8.5s ease-in-out infinite alternate; }
 .journey--live:not(.journey--calm) .plate__shafts { animation: shafts 16s ease-in-out infinite alternate; }
 .journey--live:not(.journey--calm) .plate__sunglow { animation: sun-breathe 7s ease-in-out infinite alternate; }
-.journey--live:not(.journey--calm) .hotspot__ring { animation: ring-breathe 2.8s ease-in-out infinite; }
+.journey--live:not(.journey--calm) .hotspot__ring::before { animation: ring-breathe 2.8s ease-in-out infinite; }
 .journey--live:not(.journey--calm) .dish__steam { animation: steam 4s ease-in-out infinite; }
 .journey--live:not(.journey--calm) .jcopy__scrollhint span { animation: hint-drop 1.8s ease-in-out infinite; }
 /* water */
@@ -938,19 +980,22 @@
 .journey--live:not(.journey--calm) .erupt.is-on .erupt__flash--2 { animation-delay: -3.1s; animation-duration: 7.3s; }
 .journey--live:not(.journey--calm) .erupt.is-on .erupt__ember { animation: ember-rise var(--t) ease-out infinite; animation-delay: var(--d); }
 /* only the stops on stage animate */
-.scene:not(.is-near) .animal, .scene:not(.is-near) .part, .scene:not(.is-near) .water img, .scene:not(.is-near) .water__spray, .scene:not(.is-near) .plate__mist, .scene:not(.is-near) .plate__clouds, .scene:not(.is-near) .plate__shafts { animation-play-state: paused; }
+.scene:not(.is-near) .animal, .scene:not(.is-near) .part, .scene:not(.is-near) .water img, .scene:not(.is-near) .water__spray, .scene:not(.is-near) .plate__drift, .scene:not(.is-near) .plate__shafts, .scene:not(.is-near) .bird, .scene:not(.is-near) .bird svg, .scene:not(.is-near) .plate__near { animation-play-state: paused; }
 /* the mist and the clouds also slide with the scroll, so the air moves as you walk */
 .plate__mist--1 { transform: translate3d(calc(var(--m) * var(--pn, 0) * -5%), calc(var(--m) * var(--vel, 0) * -1vh), 0); }
 .plate__mist--2 { transform: translate3d(calc(var(--m) * var(--pn, 0) * 4%), 0, 0); }
 .plate__clouds { transform: translate3d(calc(var(--m) * var(--pn, 0) * -3%), 0, 0); }
 /* calm: no loops at all, the water stands, the fliers stay where they were drawn */
 .journey--calm .water--flow img:nth-child(2) { opacity: 0; }
+.journey--calm .plate__drift { animation: none; }
+.journey--calm .plate__birds { display: none; }
 .journey--calm .water__spray { display: none; }
-@keyframes mist-drift { from { background-position: 0 0; } to { background-position: 1200px 60px; } }
-@keyframes cloud-drift { from { background-position: 0 0; } to { background-position: 900px 30px; } }
+/* no backdrop blur over the moving stage: a blurred backdrop is re-filtered every frame the stage moves */
+.journey .btn--glass { backdrop-filter: none; background: rgba(20, 24, 22, 0.62); }
+@keyframes drift-strip { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
 @keyframes shafts { from { transform: translateX(-2%) skewX(-2deg); } to { transform: translateX(2%) skewX(2deg); } }
 @keyframes sun-breathe { from { opacity: 0.7; } to { opacity: 0.95; } }
-@keyframes ring-breathe { 0%, 100% { box-shadow: 0 0 0 4px rgba(244, 238, 223, 0.22), 0 2px 10px rgba(0, 0, 0, 0.5); } 50% { box-shadow: 0 0 0 10px rgba(244, 238, 223, 0.1), 0 2px 10px rgba(0, 0, 0, 0.5); } }
+@keyframes ring-breathe { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.45); opacity: 0.4; } }
 @keyframes steam { 0%, 100% { opacity: 0.25; transform: translateY(0); } 50% { opacity: 0.6; transform: translateY(-8px); } }
 @keyframes hint-drop { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 100% { transform: scaleY(0); transform-origin: bottom; } }
 
