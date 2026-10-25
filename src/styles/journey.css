@@ -116,7 +116,16 @@
   --part: 0.14;   /* how far the halves part (fraction of their width) */
   --grow: 0.1;    /* how much they grow through the stop */
 }
-.plate--forest .plate__near { --part: 0.18; --grow: 0.42; opacity: calc(1 - var(--m) * clamp(0, (var(--pn) - 0.78) * 4.6, 1)); }
+.plate--forest .plate__near { --part: 0.12; --grow: 0.3; opacity: calc(1 - var(--m) * clamp(0, (var(--pn) - 0.78) * 4.6, 1)); }
+/* the opening walks in: the whole plate zooms toward the waterfall through the stop (1 → 1.22, about the focal
+   point) while the near foliage parts and passes the camera; the next stop then arrives over the valley */
+.plate--forest {
+  transform:
+    translate(calc(var(--px) * var(--m) * -0.5%), calc(var(--py) * var(--m) * -0.35%))
+    scale(calc(1 + var(--m) * (0.2 * var(--pn, 0) + 0.08 * var(--out, 0))));
+}
+/* the toucan's branch keeps its place among the foliage, so the bird rides the near layer; the fliers cross the
+   valley as the camera moves in, which the stop's fly vectors provide */
 .plate__near--left {
   transform-origin: 0% 72%;
   transform:

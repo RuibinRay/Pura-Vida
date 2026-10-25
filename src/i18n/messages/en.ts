@@ -89,7 +89,7 @@ const en = {
       toucans: 'Keel-billed toucans',
       sloth: 'Three-toed sloth',
       macaws: 'Scarlet macaws',
-      plateAlt: 'Opening scene: a rainforest clearing framed by mossy branches and bromeliads, a keel-billed toucan on a mossy branch, a waterfall falling into a turquoise cove, scarlet macaws over the canopy, a three-toed sloth hanging from the vines, a blue morpho, and a volcano in the mist.',
+      plateAlt: 'Opening scene: a rainforest clearing framed by mossy branches and bromeliads, a keel-billed toucan on a mossy branch, a three-toed sloth hanging above it, two hummingbirds at the flowers, a red-eyed tree frog on a leaf, a waterfall falling into a turquoise river, two scarlet macaws flying toward the sunrise, a blue morpho, and a volcano above a lake in the mist.',
     },
     ch2: {
       kicker: 'Nature',

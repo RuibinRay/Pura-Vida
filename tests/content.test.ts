@@ -104,7 +104,7 @@ describe('generated content', () => {
 
   it('has a plate manifest for every stop, with animals in parts, water, and files for every width', () => {
     const plates = JSON.parse(fs.readFileSync(path.resolve('src/journey/plates.generated.json'), 'utf8')) as Record<string, { width: number; height: number; widths: number[]; animals?: { id: string; species: string | null; hotspot: number[] | null; parts: { name: string; widths: number[]; box: number[] }[] }[]; water?: { name: string; widths: number[] }[] }>;
-    const expected: Record<string, number> = { forest: 5, monteverde: 4, irazu: 3, guanacaste: 5, corcovado: 3, tortuguero: 5, 'rio-celeste': 2, 'manuel-antonio': 1, arenal: 1, chirripo: 1, cartago: 2, coffee: 2, 'rio-celeste-pool': 0, 'manuel-antonio-sunset': 0 };
+    const expected: Record<string, number> = { forest: 8, monteverde: 4, irazu: 3, guanacaste: 5, corcovado: 3, tortuguero: 5, 'rio-celeste': 2, 'manuel-antonio': 1, arenal: 1, chirripo: 1, cartago: 2, coffee: 2, 'rio-celeste-pool': 0, 'manuel-antonio-sunset': 0 };
     const ids = new Set((species as { id?: string }[]).map((s) => s.id));
     for (const [name, n] of Object.entries(expected)) {
       const m = plates[name];

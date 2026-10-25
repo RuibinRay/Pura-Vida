@@ -103,6 +103,24 @@ applies to them; `erase` polygons (this spec's source px) clear what the old cut
 of the first plate's sky under the toucan's bill, invisible over its own base, a grey square over the new one). A scene
 can also have its own cut animals in `animals` beside the pasted ones.
 
+### Stickers (the author's own cut-outs)
+
+When the author's tool renders the animals themselves as cut-outs (RGBA PNG on transparency, straight alpha — the
+same animals in the poses of the scene, rendered again at 1254 px), a clean plate can take them instead of segmenting
+the scene: `"stickers": [{ "id": "toucan", "species": "...", "kind": "toucan", "png": "research/plates-original/2026-10-25/cutouts/04-05b5d68d.png",
+"pick": [x0, y0, x1, y1], "fit": [x0, y0, x1, y1], "anchor": "top", "scale": 1.0, "shift": [dx, dy], "flip": false,
+"warm": 0.0, "gain": 1.0, "layer": "near-left", "hotspot": [x, y], "hop": [dx, dy], "period": 5.4, "parts": [...] }]`.
+`pick` (PNG px) keeps one animal of a file with several; `fit` (this spec's source px) is the box the silhouette is
+scaled into uniformly, `anchor` where it sits in it (`top` for claws on a branch, `bottom` for feet on a perch,
+`center` for a flier); `shift` nudges in source px. Parts are the same as for cut animals — `poly` with `pivot` and
+`overlap`, `half` with its `axis`, `band`, `rest` — but **every coordinate and length is in the PNG's own px**
+(`halfWidth`, `overlap`, `feather` included); `edge` stays in plate px. The PNG's alpha is the matte: no U²-Net, no
+polygons, no veto, no pockets. The resize is premultiplied so the black under the transparent pixels never darkens a
+rim, and the colour under alpha 0 is the nearest opaque colour. A sticker needs a `clean` base. Preview sheets:
+the scene's own animal, the clean base, the sticker composited, the parts coded. `tools/scratch/match_cutouts.py`
+registers a set of cut-outs against the originals to say which scene and which animal each one answers (these were
+re-rendered, 0.6–0.9 correlation — poses, not pixels — so they are placed by `fit`, not by the difference image).
+
 ### `diffInclude` (clean plates)
 
 A box in which every pixel that differs between the source and the clean image (5-px mean > 0.14) and connects to

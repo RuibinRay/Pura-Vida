@@ -2,6 +2,16 @@
 
 Status words: **built** = implemented and exercised in the headless browser; **built, unverified on device** = implemented, but the check this session could do is not representative (software GPU); **partial**; **planned (M2–M5)**.
 
+## The opening on the author's third pair (2026-10-25, evening)
+
+| Change | Status | Notes |
+|---|---|---|
+| New opening plate from the pair (with / without animals) | done | `tools/plates/forest.json`: clean base, eight animals cut from the full image (toucan with a hop, sloth swaying from its branch, two hummingbirds with fluttering near wings, a tree frog breathing on its leaf, two macaws with flapping wings, the morpho folding), four water regions (waterfall, rapids, pool, lake), new frame polygons |
+| Walking in | done | `.plate--forest` zooms 1 → 1.22 toward the focal point through the stop; the near foliage parts (0.18) and grows (0.42); fliers cross the valley (`fly` vectors) |
+| Habitat verdicts for the opening | done | `opening` stop verdicts on all seven species (the frog, the macaw, the two hummingbirds, the toucan, the sloth, the morpho); the composed scene is judged as a country, not a site |
+| Alt texts, tests | done | three languages; forest has 8 animals; the frog counts as a whole-body animal |
+| Device verification | **not done** | lab only |
+
 ## One toucan — the opening on the new scene, antlers, bills, a lighter tilt (2026-10-25, late afternoon)
 
 | Change | Status | Notes |

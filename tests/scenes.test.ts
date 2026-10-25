@@ -33,7 +33,7 @@ describe('the stops of the walk', () => {
   it('every animal that moves as a whole is cut out whole (a body part), so its head never leaves its body', () => {
     // the kinds Scene.tsx gives a perch/stand loop to: a loop on a head-only cut-out rotates the head off a body
     // that stays painted in the plate (the toucan of 2026-10-24)
-    const whole = ['toucan', 'thrush', 'quetzal', 'deer', 'tapir', 'heron'];
+    const whole = ['toucan', 'thrush', 'quetzal', 'deer', 'tapir', 'heron', 'frog'];
     for (const s of STOPS) {
       if (!s.plate) continue;
       for (const a of plates[s.plate].animals || []) if (whole.includes(a.kind)) expect(a.parts.some((p) => p.name === 'body'), `${s.key} ${a.id} has no body part`).toBe(true);
@@ -58,7 +58,7 @@ describe('the stops of the walk', () => {
 
   it('a plate built on the author\'s clean scene says so, and its perched birds hop along their perch', () => {
     // the specs that name a clean image (the same scene with the animals erased, 2026-10-25)
-    const clean = Object.keys(plates).filter((id) => { const p = path.resolve(`tools/plates/${id}.json`); if (!fs.existsSync(p)) return false; const sp = JSON.parse(fs.readFileSync(p, 'utf8')); return sp.clean || (sp.paste && !sp.animals); });
+    const clean = Object.keys(plates).filter((id) => { const p = path.resolve(`tools/plates/${id}.json`); if (!fs.existsSync(p)) return false; const sp = JSON.parse(fs.readFileSync(p, 'utf8')); return !!sp.clean || (!!sp.paste && !sp.animals); });
     expect(clean.sort()).toEqual(['arenal', 'cartago', 'chirripo', 'coffee', 'corcovado', 'forest', 'guanacaste', 'manuel-antonio', 'rio-celeste']);
     for (const id of clean) {
       expect(plates[id].clean, `${id} manifest`).toBe(true);

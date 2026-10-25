@@ -515,7 +515,18 @@
           "https://es.wikipedia.org/wiki/Ara_macao",
           "https://animaldiversity.org/accounts/Ara_macao/",
           "https://api.gbif.org/v1/occurrence/search?taxonKey=5959227&country=CR&limit=0"
-        ]
+        ],
+        "stops": {
+          "opening": {
+            "fit": true,
+            "note": {
+              "en": "Yes. Scarlet macaws fly in pairs over the lowland forest of the central and southern Pacific (Carara, the Osa) and, since the reintroductions, over parts of the Caribbean lowlands; two birds crossing a forest valley at sunrise is the way they are most often seen. The opening is a composed landscape, so this is a verdict about the country, not a site.",
+              "es": "Sí. Las lapas rojas vuelan en parejas sobre el bosque de tierras bajas del Pacífico central y sur (Carara, la Osa) y, desde las reintroducciones, sobre partes de las tierras bajas del Caribe; dos aves cruzando un valle boscoso al amanecer es como más se las ve. La escena inicial es un paisaje compuesto, así que es un veredicto sobre el país, no sobre un sitio.",
+              "zh": "是的。绯红金刚鹦鹉成对飞越太平洋中部和南部（卡拉拉、奥萨）的低地森林，自再引入以来也出现在加勒比低地的部分地区；两只鸟在日出时飞越林间山谷正是最常见的景象。开场画面是合成风景，因此这是关于国家而非具体地点的判断。"
+            },
+            "status": "confirmed (range per the species record); interpretation (the composed scene)"
+          }
+        }
       },
       "nationalSymbol": {
         "isSymbol": false,
@@ -778,7 +789,18 @@
           "https://amphibiansoftheworld.amnh.org/Amphibia/Anura/Phyllomedusidae/Agalychnis/Agalychnis-callidryas",
           "https://amphibiaweb.org/species/616",
           "https://api.gbif.org/v1/occurrence/search?taxonKey=2428197&country=CR&limit=0"
-        ]
+        ],
+        "stops": {
+          "opening": {
+            "fit": true,
+            "note": {
+              "en": "Yes, with the same caveat as on the beach: the frog belongs on wet vegetation in humid lowland forest, which the leaf beside the orchids is; being nocturnal, by day it would be asleep under a leaf rather than sitting out in the sun. The opening is a composed landscape, so this is a verdict about the habitat, not a site.",
+              "es": "Sí, con la misma salvedad que en la playa: la rana pertenece a la vegetación húmeda del bosque lluvioso de tierras bajas, y la hoja junto a las orquídeas lo es; por ser nocturna, de día estaría dormida bajo una hoja y no al sol. La escena inicial es un paisaje compuesto, así que es un veredicto sobre el hábitat, no sobre un sitio.",
+              "zh": "是的，但与海滩那幅一样有一点保留：这种蛙属于潮湿低地森林的湿润植被，兰花旁的叶子正是；它是夜行性的，白天应当睡在叶下而不是晒在太阳里。开场画面是合成风景，因此这是关于栖息地而非具体地点的判断。"
+            },
+            "status": "confirmed (AmphibiaWeb habitat); interpretation (daytime pose)"
+          }
+        }
       },
       "nationalSymbol": {
         "isSymbol": false,

@@ -36,7 +36,7 @@ export const STOPS: Stop[] = [
   // A route through the country: the opening forest, then north to Arenal, west over the Tilarán range to Monteverde,
   // north again to Río Celeste, down to the Guanacaste coast, the table, then the Central Valley (Heredia's coffee,
   // the old capital, Irazú), the Talamanca peaks, the Osa Peninsula, the Caribbean, and the closing Pacific beach.
-  { key: 'discover', kind: 'scene', plate: 'forest', copy: 'left', ambient: { mist: true, shafts: true, clouds: [0.2, 0, 0.62, 0.3], birds: [0.3, 0.06, 0.5, 0.22] }, wind: 'free', wash: 'mist', length: 230, facing: { toucan: 1 }, fly: { 'macaw-a': [-26, -5], 'macaw-b': [-30, -8], morpho: [9, -14] } },
+  { key: 'discover', kind: 'scene', plate: 'forest', copy: 'left', ambient: { mist: true, shafts: true, clouds: [0.2, 0, 0.62, 0.3], birds: [0.3, 0.06, 0.5, 0.22] }, wind: 'free', wash: 'mist', length: 230, facing: { toucan: 1 }, fly: { 'macaw-a': [-22, 4], 'macaw-b': [-30, 6], morpho: [-8, -12], 'hummingbird-a': [5, -3], 'hummingbird-b': [-5, -3] } },
   { key: 'arenal', kind: 'scene', plate: 'arenal', place: 'arenal', copy: 'right', ambient: { clouds: [0.26, 0.02, 0.52, 0.32], birds: [0.3, 0.1, 0.5, 0.2] }, wind: 'free', wash: 'mist', facing: { toucan: 1 } },
   { key: 'monteverde', kind: 'scene', plate: 'monteverde', place: 'monteverde', copy: 'top-center', ambient: { mist: true, shafts: true, clouds: [0.3, 0.08, 0.5, 0.3] }, wind: 'free', wash: 'mist', facing: { quetzal: 1 }, fly: { morpho: [-12, 10] } },
   { key: 'rio-celeste', kind: 'scene', plate: 'rio-celeste', place: 'rio-celeste', copy: 'bottom', ambient: { mist: true, shafts: true }, wind: 'free', wash: 'mist', fly: { hummingbird: [5, -3] } },

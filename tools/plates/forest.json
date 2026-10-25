@@ -1,219 +1,27 @@
 {
  "id": "forest",
- "note": "The opening on the author's regenerated scene (2026-10-25): the animals of the first opening plate (forest-v1, built from his first image) pasted on; one toucan, as he asked.",
- "source": "research/plates-original/2026-10-25/opening-forest-regenerated.jpg",
- "upscale": 1,
+ "note": "The opening on the author's third pair (2026-10-25, evening): the scene with its animals (source) and the same scene without them (clean), the animals as his own cut-outs (stickers, 2026-10-25 night). One toucan, as he asked.",
+ "source": "research/plates-original/2026-10-25/opening-v3-animals.png",
+ "clean": "research/plates-original/2026-10-25/empties/opening-v3-animals.png",
+ "upscale": 2,
  "focal": {
-  "x": 0.5,
-  "y": 0.42,
-  "panFrom": 0.27,
-  "panTo": 0.72
+  "x": 0.52,
+  "y": 0.45,
+  "panFrom": 0.2,
+  "panTo": 0.7
  },
  "points": {
-  "waterfall": [
-   0.395,
-   0.62
-  ],
   "volcano": [
    0.5,
-   0.08
+   0.18
+  ],
+  "waterfall": [
+   0.62,
+   0.63
   ],
   "sun": [
-   0.9,
-   0.18
-  ]
- },
- "paste": [
-  {
-   "from": "research/plates-built/forest-v1",
-   "id": "toucan-a",
-   "as": "toucan",
-   "species": "keel-billed-toucan",
-   "at": [
-    430,
-    795
-   ],
-   "scale": 0.95,
-   "warm": 0.06,
-   "layer": "near-left",
-   "hotspot": [
-    585,
-    995
-   ],
-   "hop": [
-    20,
-    -2
-   ],
-   "period": 5.4,
-   "erase": [
-    [
-     [
-      636,
-      886
-     ],
-     [
-      680,
-      886
-     ],
-     [
-      680,
-      896
-     ],
-     [
-      722,
-      896
-     ],
-     [
-      722,
-      952
-     ],
-     [
-      636,
-      952
-     ]
-    ]
-   ]
-  },
-  {
-   "from": "research/plates-built/forest-v1",
-   "id": "sloth",
-   "at": [
-    1900,
-    120
-   ],
-   "scale": 0.8,
-   "warm": 0.05,
-   "layer": "near-right"
-  },
-  {
-   "from": "research/plates-built/forest-v1",
-   "id": "macaw-a",
-   "at": [
-    1250,
-    470
-   ],
-   "scale": 0.95,
-   "warm": 0.04
-  },
-  {
-   "from": "research/plates-built/forest-v1",
-   "id": "macaw-b",
-   "at": [
-    1480,
-    390
-   ],
-   "scale": 0.95,
-   "warm": 0.04
-  },
-  {
-   "from": "research/plates-built/forest-v1",
-   "id": "morpho",
-   "at": [
-    2050,
-    1180
-   ],
-   "scale": 0.95,
-   "warm": 0.02
-  }
- ],
- "frame": {
-  "polys": [
-   [
-    [
-     0,
-     0
-    ],
-    [
-     600,
-     0
-    ],
-    [
-     470,
-     260
-    ],
-    [
-     400,
-     560
-    ],
-    [
-     420,
-     820
-    ],
-    [
-     620,
-     980
-    ],
-    [
-     900,
-     1160
-    ],
-    [
-     1020,
-     1300
-    ],
-    [
-     1060,
-     1438
-    ],
-    [
-     0,
-     1438
-    ]
-   ],
-   [
-    [
-     1320,
-     0
-    ],
-    [
-     2576,
-     0
-    ],
-    [
-     2576,
-     1438
-    ],
-    [
-     2140,
-     1438
-    ],
-    [
-     2060,
-     1200
-    ],
-    [
-     2250,
-     980
-    ],
-    [
-     2330,
-     760
-    ],
-    [
-     2200,
-     640
-    ],
-    [
-     1980,
-     560
-    ],
-    [
-     1700,
-     470
-    ],
-    [
-     1560,
-     330
-    ],
-    [
-     1480,
-     170
-    ]
-   ]
-  ],
-  "split": [
-   0.44,
-   0.56
+   0.97,
+   0.25
   ]
  },
  "water": [
@@ -221,37 +29,41 @@
    "name": "waterfall",
    "poly": [
     [
-     935,
-     790
+     985,
+     455
     ],
     [
-     1050,
-     790
+     1140,
+     455
     ],
     [
-     1075,
-     1000
+     1140,
+     540
     ],
     [
-     1080,
-     1180
+     1096,
+     546
     ],
     [
-     1180,
-     1200
+     1104,
+     700
     ],
     [
-     860,
-     1200
+     958,
+     700
     ],
     [
-     900,
-     1000
+     972,
+     640
+    ],
+    [
+     988,
+     546
     ]
    ],
-   "feather": 8,
+   "feather": 6,
    "whiteOnly": true,
-   "vMin": 0.62,
+   "vMin": 0.6,
    "sMax": 0.35,
    "flow": {
     "dx": 0,
@@ -262,27 +74,59 @@
    "mode": "flow"
   },
   {
+   "name": "rapids",
+   "poly": [
+    [
+     880,
+     690
+    ],
+    [
+     1300,
+     700
+    ],
+    [
+     1330,
+     941
+    ],
+    [
+     860,
+     941
+    ]
+   ],
+   "feather": 8,
+   "whiteOnly": true,
+   "vMin": 0.62,
+   "sMax": 0.35,
+   "flow": {
+    "dx": 0.3,
+    "dy": 0.85,
+    "period": 2.2,
+    "amp": 0.04
+   },
+   "mode": "flow"
+  },
+  {
    "name": "pool",
    "poly": [
     [
-     830,
-     1180
+     930,
+     705
     ],
     [
-     2000,
-     1180
+     1180,
+     705
     ],
     [
-     2050,
-     1438
+     1200,
+     760
     ],
     [
-     1000,
-     1438
+     1150,
+     800
     ],
     [
-     830,
-     1300
+     960,
+     790
     ]
    ],
    "feather": 10,
@@ -295,36 +139,760 @@
    "mode": "shimmer"
   },
   {
-   "name": "surf",
+   "name": "lake",
    "poly": [
     [
-     1850,
-     1190
+     860,
+     328
     ],
     [
-     2120,
-     1190
+     1500,
+     328
     ],
     [
-     2180,
-     1438
+     1550,
+     382
     ],
     [
-     1800,
-     1438
+     870,
+     382
     ]
    ],
-   "feather": 8,
-   "whiteOnly": true,
-   "vMin": 0.6,
-   "sMax": 0.35,
+   "feather": 10,
    "flow": {
-    "dx": 0.6,
-    "dy": 0.3,
-    "period": 4.5,
-    "amp": 0.02
+    "dx": 1,
+    "dy": 0.05,
+    "period": 9,
+    "amp": 0.006
    },
-   "mode": "flow"
+   "mode": "shimmer"
+  }
+ ],
+ "frame": {
+  "polys": [
+   [
+    [
+     0,
+     0
+    ],
+    [
+     620,
+     0
+    ],
+    [
+     560,
+     120
+    ],
+    [
+     420,
+     230
+    ],
+    [
+     330,
+     262
+    ],
+    [
+     300,
+     420
+    ],
+    [
+     450,
+     520
+    ],
+    [
+     700,
+     640
+    ],
+    [
+     760,
+     941
+    ],
+    [
+     0,
+     941
+    ]
+   ],
+   [
+    [
+     1250,
+     0
+    ],
+    [
+     1672,
+     0
+    ],
+    [
+     1672,
+     941
+    ],
+    [
+     1050,
+     941
+    ],
+    [
+     1080,
+     780
+    ],
+    [
+     1180,
+     640
+    ],
+    [
+     1330,
+     560
+    ],
+    [
+     1500,
+     500
+    ],
+    [
+     1620,
+     420
+    ],
+    [
+     1672,
+     300
+    ]
+   ],
+   [
+    [
+     560,
+     0
+    ],
+    [
+     1250,
+     0
+    ],
+    [
+     1250,
+     60
+    ],
+    [
+     900,
+     130
+    ],
+    [
+     620,
+     160
+    ],
+    [
+     560,
+     100
+    ]
+   ]
+  ],
+  "split": [
+   0.42,
+   0.58
+  ]
+ },
+ "stickers": [
+  {
+   "id": "toucan",
+   "species": "keel-billed-toucan",
+   "kind": "toucan",
+   "layer": "near-left",
+   "png": "research/plates-original/2026-10-25/cutouts/04-05b5d68d.png",
+   "fit": [
+    40,
+    215,
+    350,
+    445
+   ],
+   "anchor": "top",
+   "hop": [
+    16,
+    -2
+   ],
+   "period": 5.4,
+   "hotspot": [
+    150,
+    320
+   ],
+   "parts": [
+    {
+     "name": "head",
+     "anim": "tilt",
+     "amp": 6,
+     "period": 3.6,
+     "z": 2,
+     "overlap": 12,
+     "edge": 3.5,
+     "pivot": [
+      720,
+      480
+     ],
+     "poly": [
+      [
+       690,
+       310
+      ],
+      [
+       740,
+       250
+      ],
+      [
+       800,
+       236
+      ],
+      [
+       860,
+       240
+      ],
+      [
+       960,
+       248
+      ],
+      [
+       1080,
+       285
+      ],
+      [
+       1180,
+       365
+      ],
+      [
+       1236,
+       480
+      ],
+      [
+       1232,
+       562
+      ],
+      [
+       1200,
+       578
+      ],
+      [
+       1120,
+       530
+      ],
+      [
+       1000,
+       492
+      ],
+      [
+       890,
+       458
+      ],
+      [
+       862,
+       470
+      ],
+      [
+       835,
+       590
+      ],
+      [
+       795,
+       660
+      ],
+      [
+       740,
+       690
+      ],
+      [
+       680,
+       665
+      ],
+      [
+       640,
+       590
+      ],
+      [
+       630,
+       480
+      ],
+      [
+       650,
+       380
+      ]
+     ]
+    },
+    {
+     "name": "body",
+     "anim": "none",
+     "z": 1,
+     "rest": true
+    }
+   ]
+  },
+  {
+   "id": "sloth",
+   "species": "brown-throated-three-toed-sloth",
+   "kind": "sloth",
+   "layer": "near-left",
+   "png": "research/plates-original/2026-10-25/cutouts/03-35826a97.png",
+   "fit": [
+    300,
+    81,
+    480,
+    269
+   ],
+   "anchor": "top",
+   "hotspot": [
+    390,
+    170
+   ],
+   "parts": [
+    {
+     "name": "body",
+     "anim": "sway",
+     "amp": 2,
+     "period": 5.5,
+     "z": 2,
+     "rest": true,
+     "pivot": [
+      920,
+      240
+     ]
+    }
+   ]
+  },
+  {
+   "id": "macaw-a",
+   "species": "scarlet-macaw",
+   "kind": "macaw",
+   "anim": "bob",
+   "period": 2.1,
+   "png": "research/plates-original/2026-10-25/cutouts/07-50606c11.png",
+   "fit": [
+    1185,
+    185,
+    1340,
+    300
+   ],
+   "anchor": "center",
+   "parts": [
+    {
+     "name": "wings",
+     "anim": "flap-a",
+     "amp": 14,
+     "period": 1.2,
+     "z": 2,
+     "pivot": [
+      330,
+      600
+     ],
+     "half": {
+      "axis": [
+       [
+        120,
+        680
+       ],
+       [
+        1230,
+        1230
+       ]
+      ],
+      "side": "neg",
+      "span": [
+       -0.05,
+       0.64
+      ],
+      "halfWidth": 240,
+      "overlap": 40,
+      "feather": 30
+     }
+    },
+    {
+     "name": "body",
+     "anim": "none",
+     "z": 1,
+     "rest": true
+    }
+   ]
+  },
+  {
+   "id": "macaw-b",
+   "species": "scarlet-macaw",
+   "kind": "macaw",
+   "anim": "bob",
+   "period": 2.4,
+   "png": "research/plates-original/2026-10-25/cutouts/08-4c6e075e.png",
+   "fit": [
+    1250,
+    45,
+    1562,
+    322
+   ],
+   "anchor": "center",
+   "hotspot": [
+    1350,
+    230
+   ],
+   "parts": [
+    {
+     "name": "wings",
+     "anim": "flap-a",
+     "amp": 14,
+     "period": 1.3,
+     "z": 2,
+     "pivot": [
+      340,
+      620
+     ],
+     "half": {
+      "axis": [
+       [
+        140,
+        700
+       ],
+       [
+        1210,
+        1200
+       ]
+      ],
+      "side": "neg",
+      "span": [
+       -0.05,
+       0.64
+      ],
+      "halfWidth": 240,
+      "overlap": 40,
+      "feather": 30
+     }
+    },
+    {
+     "name": "body",
+     "anim": "none",
+     "z": 1,
+     "rest": true
+    }
+   ]
+  },
+  {
+   "id": "hummingbird-a",
+   "species": "ruby-throated-hummingbird",
+   "kind": "hummingbird",
+   "anim": "hover",
+   "period": 2.7,
+   "png": "research/plates-original/2026-10-25/cutouts/10-beda3c28.png",
+   "fit": [
+    400,
+    375,
+    590,
+    500
+   ],
+   "anchor": "center",
+   "hotspot": [
+    480,
+    440
+   ],
+   "parts": [
+    {
+     "name": "wing",
+     "anim": "flutter-a",
+     "z": 2,
+     "pivot": [
+      650,
+      470
+     ],
+     "axis": [
+      [
+       650,
+       470
+      ],
+      [
+       1200,
+       230
+      ]
+     ],
+     "overlap": 40,
+     "poly": [
+      [
+       640,
+       450
+      ],
+      [
+       700,
+       400
+      ],
+      [
+       800,
+       330
+      ],
+      [
+       900,
+       250
+      ],
+      [
+       1000,
+       205
+      ],
+      [
+       1120,
+       190
+      ],
+      [
+       1230,
+       195
+      ],
+      [
+       1230,
+       260
+      ],
+      [
+       1180,
+       350
+      ],
+      [
+       1080,
+       420
+      ],
+      [
+       990,
+       480
+      ],
+      [
+       920,
+       540
+      ],
+      [
+       860,
+       590
+      ],
+      [
+       800,
+       630
+      ],
+      [
+       720,
+       640
+      ],
+      [
+       660,
+       580
+      ],
+      [
+       620,
+       520
+      ]
+     ]
+    },
+    {
+     "name": "body",
+     "anim": "none",
+     "z": 1,
+     "rest": true
+    }
+   ]
+  },
+  {
+   "id": "hummingbird-b",
+   "species": "rufous-tailed-hummingbird",
+   "kind": "hummingbird",
+   "anim": "hover",
+   "period": 3.0,
+   "png": "research/plates-original/2026-10-25/cutouts/11-7e0ff25f.png",
+   "pick": [
+    740,
+    150,
+    1430,
+    850
+   ],
+   "fit": [
+    1436,
+    470,
+    1584,
+    625
+   ],
+   "anchor": "center",
+   "hotspot": [
+    1520,
+    545
+   ],
+   "parts": [
+    {
+     "name": "wing",
+     "anim": "flutter-a",
+     "z": 2,
+     "pivot": [
+      1090,
+      520
+     ],
+     "axis": [
+      [
+       1090,
+       520
+      ],
+      [
+       760,
+       200
+      ]
+     ],
+     "overlap": 40,
+     "poly": [
+      [
+       1110,
+       430
+      ],
+      [
+       1050,
+       380
+      ],
+      [
+       980,
+       330
+      ],
+      [
+       900,
+       260
+      ],
+      [
+       820,
+       190
+      ],
+      [
+       760,
+       160
+      ],
+      [
+       740,
+       220
+      ],
+      [
+       790,
+       340
+      ],
+      [
+       860,
+       440
+      ],
+      [
+       940,
+       520
+      ],
+      [
+       1020,
+       575
+      ],
+      [
+       1090,
+       560
+      ]
+     ]
+    },
+    {
+     "name": "body",
+     "anim": "none",
+     "z": 1,
+     "rest": true
+    }
+   ]
+  },
+  {
+   "id": "frog",
+   "species": "red-eyed-tree-frog",
+   "kind": "frog",
+   "layer": "near-left",
+   "png": "research/plates-original/2026-10-25/cutouts/05-92116193.png",
+   "fit": [
+    95,
+    520,
+    258,
+    635
+   ],
+   "anchor": "bottom",
+   "hotspot": [
+    185,
+    580
+   ],
+   "parts": [
+    {
+     "name": "body",
+     "anim": "breathe",
+     "amp": 0.8,
+     "period": 3.2,
+     "z": 2,
+     "rest": true
+    }
+   ]
+  },
+  {
+   "id": "morpho",
+   "species": "blue-morpho",
+   "kind": "morpho",
+   "anim": "drift",
+   "period": 5.2,
+   "png": "research/plates-original/2026-10-25/cutouts/09-26f11b1a.png",
+   "fit": [
+    1424,
+    712,
+    1650,
+    882
+   ],
+   "anchor": "center",
+   "hotspot": [
+    1530,
+    800
+   ],
+   "parts": [
+    {
+     "name": "wing-a",
+     "anim": "morpho-a",
+     "z": 1,
+     "pivot": [
+      620,
+      700
+     ],
+     "half": {
+      "axis": [
+       [
+        650,
+        500
+       ],
+       [
+        560,
+        920
+       ]
+      ],
+      "side": "pos",
+      "span": [
+       0,
+       1
+      ],
+      "halfWidth": 70,
+      "overlap": 30,
+      "feather": 24
+     }
+    },
+    {
+     "name": "wing-b",
+     "anim": "morpho-b",
+     "z": 1,
+     "pivot": [
+      620,
+      700
+     ],
+     "half": {
+      "axis": [
+       [
+        650,
+        500
+       ],
+       [
+        560,
+        920
+       ]
+      ],
+      "side": "neg",
+      "span": [
+       0,
+       1
+      ],
+      "halfWidth": 70,
+      "overlap": 30,
+      "feather": 24
+     }
+    },
+    {
+     "name": "body",
+     "anim": "none",
+     "z": 2,
+     "rest": true
+    }
+   ]
   }
  ]
 }

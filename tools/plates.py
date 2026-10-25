@@ -20,6 +20,12 @@ animals, a new picture). Each entry names the source plate directory and animal,
 spec's source px, an optional horizontal flip and a warm/cool grade; the parts are re-exported with their pivots, axes
 and loops, the base is this scene untouched, and the manifest says `clean` (nothing is inpainted under them).
 
+A spec may place "stickers": the author's own cut-outs (RGBA PNGs on transparency, straight alpha — the same animals
+rendered again by his tool, in the poses of the scene) on a clean base. Each entry names the PNG, an optional "pick"
+box (PNG px, for a file with several animals), a "fit" box in this spec's source px that the sticker's silhouette is
+scaled into, an "anchor" (bottom: feet on the perch; top: claws on the branch; center), an optional flip and grade, and
+parts whose polygons, axes and pivots are in PNG px. Nothing is segmented: the PNG's alpha is the matte.
+
 Outputs under public/plates/<id>/:
   base-{w}.webp                     the plate, inpainted under every moving part (or the clean image)
   <animal>-<part>-{w}.webp          cut-outs with alpha, cropped to their boxes
@@ -192,6 +198,12 @@ def animal_alpha(plate, a, s, diff=None):
     inc_value = 0.6 if a.get('grabcut') else 1.0
     for pts in a.get('include', []):
         m = np.maximum(m, poly_mask(H, W, pts, s) * inc_value)
+    # includeHard polygons are definite foreground even with GrabCut (a trimap's core): drawn generously inside the
+    # animal and eroded a few px, so GrabCut can only trim outside them — a red throat beside a red bromeliad, a bill
+    for pts in a.get('includeHard', []):
+        k = max(1, round(a.get('hardErode', 3) * s))
+        core = cv2.erode(poly_mask(H, W, pts, s), np.ones((2 * k + 1, 2 * k + 1), np.uint8))
+        m = np.maximum(m, core)
     # with a clean image, thin things the model drops (antlers against the sky, a bill) are exactly where the two files
     # differ: inside these boxes every differing pixel is foreground
     if diff is not None:
@@ -229,6 +241,34 @@ def animal_alpha(plate, a, s, diff=None):
             m[y0:y1, x0:x1] = cv2.GaussianBlur(fg, (0, 0), 1.0)
         except cv2.error as e:
             print('  grabcut failed:', e)
+    # with a clean image, a translucent part (a hummingbird's blurred wing over mist) is where the two files differ a
+    # little: inside these boxes the difference becomes a SOFT alpha (0.1 → 0.32 maps to 0 → 1), on the support of a
+    # cleaned difference mask connected to the animal, so re-encoding speckle stays out
+    if diff is not None:
+        for box in a.get('diffSoft', []):
+            # a box [x0, y0, x1, y1], or a polygon [[x, y], ...] (its bounding box, the soft alpha limited to the polygon)
+            poly = None
+            if len(box) and isinstance(box[0], (list, tuple)):
+                poly = box
+                xs, ys = [q[0] for q in poly], [q[1] for q in poly]
+                box = [min(xs), min(ys), max(xs), max(ys)]
+            x0, y0, x1, y1 = [round(v * s) for v in box]
+            sub = diff[y0:y1, x0:x1]
+            support = (sub > a.get('diffSoftSupport', 0.13)).astype(np.uint8)
+            support = cv2.morphologyEx(support, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+            support = cv2.morphologyEx(support, cv2.MORPH_CLOSE, np.ones((11, 11), np.uint8))
+            core = (m[y0:y1, x0:x1] > 0.5).astype(np.uint8)
+            n, lab = cv2.connectedComponents(cv2.dilate(np.maximum(support, core), np.ones((5, 5), np.uint8)))
+            good = np.unique(lab[core > 0]); good = good[good > 0]
+            keep = (np.isin(lab, good) & (support > 0)).astype(np.uint8)
+            keep = cv2.dilate(keep, np.ones((3, 3), np.uint8))
+            sup = cv2.GaussianBlur(keep.astype(np.float32), (0, 0), a.get('diffSoftBlur', 2.5) * s)  # a haze at a wing tip, not blobs
+            lo, hi = a.get('diffSoftRange', [0.1, 0.32])
+            soft = np.clip((sub - lo) / max(1e-6, hi - lo), 0, 1) * sup
+            if poly is not None:
+                soft = soft * poly_mask(H, W, poly, s, feather=1.5)[y0:y1, x0:x1]
+            m[y0:y1, x0:x1] = np.maximum(m[y0:y1, x0:x1], soft)
+            print(f'  {a["id"]}: diffSoft box {box}: {int((soft > 0.5).sum())} px above 0.5, {int((soft > 0.1).sum())} px above 0.1')
     lo, hi = a.get('threshold', [0.3, 0.7])
     m = np.clip((m - lo) / max(1e-6, hi - lo), 0, 1)
     m = cv2.GaussianBlur(m, (0, 0), a.get('feather', 0.8))
@@ -557,6 +597,189 @@ def paste_animals(spec, d, plate, widths, W, H, s, manifest, preview):
             cv2.imwrite(os.path.join(preview, f'{pid_of(spec)}-{new_id}.png'), np.hstack([plate[y0:y1, x0:x1], crop]))
 
 
+def grade(im, entry):
+    """A warm/cool and gain grade on a BGRA array (the same as the paste grade)."""
+    if entry.get('warm'):
+        g = float(entry['warm'])
+        rgb = im[:, :, :3].astype(np.float32)
+        rgb[:, :, 2] = np.clip(rgb[:, :, 2] * (1 + g), 0, 255)       # BGR: red up
+        rgb[:, :, 1] = np.clip(rgb[:, :, 1] * (1 + g * 0.35), 0, 255)
+        rgb[:, :, 0] = np.clip(rgb[:, :, 0] * (1 - g), 0, 255)       # blue down
+        im[:, :, :3] = rgb.astype(np.uint8)
+    if entry.get('gain'):
+        im[:, :, :3] = np.clip(im[:, :, :3].astype(np.float32) * float(entry['gain']), 0, 255).astype(np.uint8)
+    return im
+
+
+def load_sticker(entry):
+    """The author's RGBA cut-out, cropped to its silhouette (or to `pick`), flipped if asked.
+    Returns (bgr uint8, alpha float32 [0,1], crop origin in PNG px, flipped)."""
+    path = os.path.join(ROOT, entry['png'])
+    im = cv2.imread(path, cv2.IMREAD_UNCHANGED)
+    if im is None or im.ndim != 3 or im.shape[2] != 4:
+        raise SystemExit(f'sticker {entry["png"]} is not an RGBA image')
+    alpha = im[:, :, 3].astype(np.float32) / 255.0
+    if entry.get('pick'):
+        x0, y0, x1, y1 = entry['pick']
+        keep = np.zeros_like(alpha)
+        keep[max(0, y0):y1, max(0, x0):x1] = 1
+        alpha = alpha * keep
+    if entry.get('erasePng'):
+        # polygons in PNG px whose alpha is dropped (a second animal's tail crossing the pick box)
+        for pts in entry['erasePng']:
+            alpha = alpha * (1 - poly_mask(alpha.shape[0], alpha.shape[1], pts, 1.0, feather=1.0))
+    box = bbox_of(alpha, 0.02, pad=0)
+    if box is None:
+        raise SystemExit(f'sticker {entry["png"]} has no alpha inside its pick box')
+    bx0, by0, bx1, by1 = box
+    bgr = im[by0:by1, bx0:bx1, :3].copy()
+    a = alpha[by0:by1, bx0:bx1].copy()
+    flipped = bool(entry.get('flip'))
+    if flipped:
+        bgr = bgr[:, ::-1].copy()
+        a = a[:, ::-1].copy()
+    return bgr, a, (bx0, by0, bx1, by1), flipped
+
+
+def place_stickers(spec, d, plate, widths, W, H, s, manifest, preview, source=None):
+    """The author's cut-outs placed on the (clean) base; see the module docstring. `plate` is the clean base,
+    `source` the scene with its own animals (only for the preview: the pose the sticker replaces)."""
+    for entry in spec.get('stickers', []):
+        t = time.time()
+        bgr, a, (bx0, by0, bx1, by1), flipped = load_sticker(entry)
+        bw, bh = bx1 - bx0, by1 - by0
+        fx0, fy0, fx1, fy1 = [v * s for v in entry['fit']]
+        k = min((fx1 - fx0) / bw, (fy1 - fy0) / bh) * float(entry.get('scale', 1.0))  # plate px per PNG px
+        w, h = max(1, round(bw * k)), max(1, round(bh * k))
+        # premultiplied resize, so the black under the transparent pixels never darkens the rim
+        prem = bgr.astype(np.float32) * a[..., None]
+        prem = cv2.resize(prem, (w, h), interpolation=cv2.INTER_AREA if k < 1 else cv2.INTER_CUBIC)
+        a2 = cv2.resize(a, (w, h), interpolation=cv2.INTER_AREA if k < 1 else cv2.INTER_CUBIC)
+        a2 = np.clip(a2, 0, 1)
+        bgr2 = np.clip(prem / np.maximum(a2[..., None], 1e-3), 0, 255)
+        # where alpha is zero keep the nearest colour, so lossy encoding has nothing dark to bleed
+        if (a2 <= 1e-3).any():
+            inv = (a2 <= 1e-3).astype(np.uint8)
+            dist, lab = cv2.distanceTransformWithLabels(inv, cv2.DIST_L2, 3, labelType=cv2.DIST_LABEL_PIXEL)
+            idx = np.unique(lab[inv == 0])
+            lut = np.zeros((lab.max() + 1, 3), np.float32)
+            ys, xs = np.nonzero(inv == 0)
+            lut[lab[ys, xs]] = bgr2[ys, xs]
+            bgr2 = np.where(inv[..., None] == 1, lut[lab], bgr2)
+        bgra = np.dstack([bgr2.astype(np.uint8), (a2 * 255).astype(np.uint8)])
+        bgra = grade(bgra, entry)
+        anchor = entry.get('anchor', 'bottom')
+        px0 = fx0 + ((fx1 - fx0) - w) / 2
+        py0 = {'bottom': fy1 - h, 'top': fy0}.get(anchor, fy0 + ((fy1 - fy0) - h) / 2)
+        if entry.get('shift'):
+            px0 += entry['shift'][0] * s
+            py0 += entry['shift'][1] * s
+        ix0, iy0 = int(round(px0)), int(round(py0))
+        if ix0 < 0 or iy0 < 0 or ix0 + w > W or iy0 + h > H:
+            raise SystemExit(f'sticker {entry["id"]} falls off the plate: {ix0},{iy0} {w}x{h} on {W}x{H}')
+        # a full-size alpha and a plate with the sticker's own colours under it, so the part machinery applies as is
+        alpha = np.zeros((H, W), np.float32)
+        alpha[iy0:iy0 + h, ix0:ix0 + w] = bgra[:, :, 3].astype(np.float32) / 255
+        splate = plate.copy()
+        region = splate[iy0:iy0 + h, ix0:ix0 + w]
+        mask = bgra[:, :, 3] > 0
+        region[mask] = bgra[:, :, :3][mask]
+
+        def to_src(pt):  # PNG px → this spec's source px (what split_parts and the export expect)
+            x, y = pt
+            cx, cy = x - bx0, y - by0
+            if flipped:
+                cx = (bw - 1) - cx
+            return [(ix0 + cx * k) / s, (iy0 + cy * k) / s]
+
+        len_k = k / s  # PNG px → source px, for lengths
+        parts_spec = []
+        for p in entry.get('parts', []):
+            q = {kk: vv for kk, vv in p.items() if kk not in ('poly', 'half', 'band', 'pivot', 'axis', 'overlap')}
+            if 'poly' in p:
+                q['poly'] = [to_src(pt) for pt in p['poly']]
+            if 'half' in p:
+                hf = dict(p['half'])
+                hf['axis'] = [to_src(hf['axis'][0]), to_src(hf['axis'][1])]
+                for kk in ('halfWidth', 'overlap', 'feather'):
+                    if kk in hf:
+                        hf[kk] = hf[kk] * len_k
+                if flipped and hf.get('side', 'pos') in ('pos', 'neg'):
+                    hf['side'] = 'neg' if hf.get('side', 'pos') == 'pos' else 'pos'
+                q['half'] = hf
+            if 'band' in p:
+                bd = dict(p['band'])
+                bd['axis'] = [to_src(bd['axis'][0]), to_src(bd['axis'][1])]
+                for kk in ('halfWidth', 'feather'):
+                    if kk in bd:
+                        bd[kk] = bd[kk] * len_k
+                q['band'] = bd
+            if 'pivot' in p:
+                q['pivot'] = to_src(p['pivot'])
+            if 'axis' in p:
+                q['axis'] = [to_src(p['axis'][0]), to_src(p['axis'][1])]
+            if 'overlap' in p:
+                q['overlap'] = p['overlap'] * len_k
+            parts_spec.append(q)
+        a_spec = dict(entry, parts=parts_spec)
+        parts = split_parts(alpha, a_spec, s, H, W)
+        box_src = [ix0 / s, iy0 / s, (ix0 + w) / s, (iy0 + h) / s]
+        new_entry = {'id': entry['id'], 'species': entry.get('species'), 'kind': entry.get('kind', entry['id']), 'box': frac_box([ix0, iy0, ix0 + w, iy0 + h], W, H),
+                     'hotspot': [entry['hotspot'][0] * s / W, entry['hotspot'][1] * s / H] if 'hotspot' in entry else None, 'parts': []}
+        for key in ('layer', 'anim', 'period', 'amp', 'delay', 'static'):
+            if key in entry:
+                new_entry[key] = entry[key]
+        if entry.get('hop'):
+            new_entry['hop'] = [round(entry['hop'][0] * s / max(1, w), 4), round(entry['hop'][1] * s / max(1, h), 4)]
+        exported = []
+        for p, pa in parts:
+            name = entry['id'] + '-' + p['name']
+            r = export_layer(d, name, splate, pa, widths, W)
+            if r is None:
+                print(f'  {name}: empty, skipped')
+                continue
+            box, lw = r
+
+            bx0_, by0_, bx1_, by1_ = box
+            part = {'name': p['name'], 'anim': p.get('anim', 'none'), 'box': frac_box(box, W, H), 'widths': lw, 'z': p.get('z', 1)}
+            pv = p.get('pivot')
+            if pv:
+                part['pivot'] = [(pv[0] * s - bx0_) / max(1, bx1_ - bx0_), (pv[1] * s - by0_) / max(1, by1_ - by0_)]
+            ax = p.get('axis') or (p.get('half') or {}).get('axis') or (p.get('band') or {}).get('axis')
+            if ax:
+                dx, dy = ax[1][0] - ax[0][0], ax[1][1] - ax[0][1]
+                n = max(1e-6, (dx * dx + dy * dy) ** 0.5)
+                part['axis'] = [round(dx / n, 4), round(dy / n, 4)]
+            for kk in ('amp', 'period', 'delay', 'phase'):
+                if kk in p:
+                    part[kk] = p[kk]
+            new_entry['parts'].append(part)
+            exported.append((p, pa))
+        manifest['animals'].append(new_entry)
+        print(f"  sticker {entry['id']}: {os.path.basename(entry['png'])} {bw}x{bh} → {w}x{h} at ({ix0},{iy0}) k={k:.3f}, {len(new_entry['parts'])} parts in {time.time() - t:.1f} s")
+        if preview:
+            pad = 20
+            x0, y0 = max(0, ix0 - pad), max(0, iy0 - pad)
+            x1, y1 = min(W, ix0 + w + pad), min(H, iy0 + h + pad)
+            crop = plate[y0:y1, x0:x1]
+            af = alpha[y0:y1, x0:x1][..., None]
+            comp = (splate[y0:y1, x0:x1] * af + crop * (1 - af)).astype(np.uint8)
+            coded = comp.copy()
+            colours = [(0, 0, 255), (0, 200, 0), (255, 120, 0), (0, 220, 255), (255, 0, 200)]
+            for i, (p, pa) in enumerate(exported):
+                pf = pa[y0:y1, x0:x1][..., None]
+                col = np.array(colours[i % len(colours)], np.float32)
+                coded = (coded * (1 - 0.55 * pf) + col * 0.55 * pf).astype(np.uint8)
+                pv = p.get('pivot')
+                if pv:
+                    cv2.circle(coded, (round(pv[0] * s) - x0, round(pv[1] * s) - y0), 5, (255, 255, 255), -1)
+                    cv2.circle(coded, (round(pv[0] * s) - x0, round(pv[1] * s) - y0), 5, (0, 0, 0), 1)
+            sheets = [crop, comp, coded]
+            if source is not None:
+                sheets.insert(0, source[y0:y1, x0:x1])  # the scene's own animal, for the pose
+            cv2.imwrite(os.path.join(preview, f'{pid_of(spec)}-{entry["id"]}.png'), np.hstack(sheets))
+
+
 def pid_of(spec):
     return spec['id']
 
@@ -711,6 +934,11 @@ def main():
         paste_animals(spec, d, plate, widths, W, H, s, manifest, preview)
         if not animals:
             manifest['clean'] = True  # nothing is inpainted under a pasted animal
+    # the author's own cut-outs on the clean base
+    if spec.get('stickers'):
+        if clean is None:
+            raise SystemExit('stickers need a clean base (the scene without its animals)')
+        place_stickers(spec, d, clean, widths, W, H, s, manifest, preview, source=plate)
     # water (from the clean image when there is one, so a region never carries an animal)
     water_src = clean if clean is not None else plate
     water_layers = []

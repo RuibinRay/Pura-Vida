@@ -2,6 +2,26 @@
 
 All figures below were produced in this session's environment unless stated otherwise: a 2-core Linux container, headless Chromium 153 with SwiftShader (software WebGL), no real GPU, no field data. Numbers that depend on a GPU are marked as such and must be re-measured on a laptop and a phone.
 
+## The opening on the third pair, with the author's own cut-outs (2026-10-25, evening and night)
+
+### Tests
+`npx vitest run`: **62 tests in 5 files, all passing** (forest: 8 animals, a clean plate; the frog a whole-body animal). `tsc --noEmit`: clean. `npm run build`: clean (1.5 s).
+
+### The plate
+`forest` from `opening-v3-animals.png` + its erase (1672×941, pixel-aligned, 15.1 % of pixels differ by more than 0.16 — the animals' silhouettes). First built the clean way (animals cut from the scene: U²-Net found only the frog's eye and half the morpho, GrabCut with trimap cores and `diffSoft` wings got all eight), then rebuilt with the author's cut-outs as **stickers**: eight RGBA renders placed in the old animals' boxes (`fit`), the toucan's feet on the moss (620×459 plate px from a 1201×889 PNG, k 0.52), the sloth's claws on the branch, the frog's feet on its leaf, the fliers centred. 15 parts, 4 waters, 2 frame layers, 5,371 KB. Preview sheets (`tools/scratch/preview-stickers/`): each sticker beside the scene's own animal — the same pose family, clean edges, the parts (head, wings, halves) where drawn.
+
+### Close-ups at the loops' extremes (`opening-v3.mjs`, phases 0 / 0.28 / 0.57 / 0.78)
+The toucan's bill angle changes with the tilt and the body stays on the moss; the sloth sways from its claws; both macaws' wing parts rotate about the shoulder (two angles visible), the body and tail still; each hummingbird's near wing rotates about the shoulder with soft feather edges (no halo, no black fringe — the premultiplied resize); the morpho folds (phase 0.28 nearly closed); the frog breathes. No residue anywhere: the base is the erase.
+
+### The walk-in
+Plate scale 1.008 → 1.070 → 1.140 → 1.190 at progress 0.04 / 0.35 / 0.70 / 0.95 (CSS `scale(1 + 0.2·pn + 0.08·out)`), 53 loops running at every step. The toucan (near-left, `--part 0.12 --grow 0.3`) rides from x −66 to −322 of a 1440 viewport (467 px wide at the end: still a third in frame at 0.95; before the slower pass it had left by 0.35). Macaw-b crosses from x 1091 to 685 toward the volcano. Phone (390×844): the frog and the orchids at the lower left of the crop, the sloth behind the title, the toucan out of the crop.
+
+### Sweeps
+`ONLY_HOME=1 node tools/headless_check.mjs`: 23 page loads, 0 console errors, overflow none.
+
+### Not tested
+Frame rate on a device; the stickers' lighting against the scene on a calibrated screen (they are the author's renders under a similar warm light; no grade applied).
+
 ## One toucan — the opening on the new scene, antlers, bills, a lighter tilt (2026-10-25, late afternoon)
 
 ### Tests

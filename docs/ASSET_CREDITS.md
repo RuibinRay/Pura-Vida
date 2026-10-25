@@ -35,3 +35,9 @@ Twelve more files supplied by the author the same afternoon (`research/plates-or
 
 ## The opening on the regenerated scene (2026-10-25, late afternoon)
 `research/plates-original/2026-10-25/opening-forest-regenerated.jpg` (2576×1438) is the author's new generation of the opening scene without animals; the current opening plate (`public/plates/forest/`) is this image with the animals of the first opening plate pasted on (their cut-outs kept under `research/plates-built/forest-v1/`). Same origin and licence as the originals, to be stated by the author.
+
+## The opening's third pair (2026-10-25, evening)
+`research/plates-original/2026-10-25/opening-v3-animals.png` (with the animals) and `research/plates-original/2026-10-25/empties/opening-v3-animals.png` (the same scene without them), 1672×941, supplied by the author; the current opening plate (`public/plates/forest/`) is built from the pair. Same origin and licence as the originals, to be stated by the author.
+
+## The author's animal cut-outs (2026-10-25, night)
+Eighteen RGBA PNGs supplied by the author (`research/plates-original/2026-10-25/cutouts/`, 1254×1254 / 1448×1086 / 1672×941): the animals of the scenes rendered again by his tool on transparency — a sprite sheet of all of them (01) and single or paired animals (02–18): toucans, the sloth, the frog, the macaws, hummingbirds, morphos, the thrush, the turtle, the heron with the caiman, the quetzal with two hummingbirds, the deer with a macaw. The opening plate (`public/plates/forest/`) uses eight of them as stickers on the clean scene (`tools/plates/forest.json`); the rest are kept for the other plates. Same origin and licence as the originals, to be stated by the author.

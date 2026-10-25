@@ -50,6 +50,7 @@ function bodyAnim(a: AnimalInfo): string | undefined {
     case 'toucan': case 'thrush': return 'perch';
     case 'quetzal': return 'perch-soft';
     case 'deer': case 'tapir': case 'heron': return 'stand';
+    case 'frog': return 'perch-soft';  // a tree frog on its leaf: a slow breath, no hop
     default: return undefined;
   }
 }

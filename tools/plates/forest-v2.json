@@ -1,0 +1,330 @@
+{
+ "id": "forest-v2",
+ "note": "The second opening (2026-10-25, late afternoon): the author's regenerated scene with the first plate's animals pasted on. Superseded the same evening by forest.json (his third pair: the scene with and without animals). Kept for the record; not built into public/.",
+ "source": "research/plates-original/2026-10-25/opening-forest-regenerated.jpg",
+ "upscale": 1,
+ "focal": {
+  "x": 0.5,
+  "y": 0.42,
+  "panFrom": 0.27,
+  "panTo": 0.72
+ },
+ "points": {
+  "waterfall": [
+   0.395,
+   0.62
+  ],
+  "volcano": [
+   0.5,
+   0.08
+  ],
+  "sun": [
+   0.9,
+   0.18
+  ]
+ },
+ "paste": [
+  {
+   "from": "research/plates-built/forest-v1",
+   "id": "toucan-a",
+   "as": "toucan",
+   "species": "keel-billed-toucan",
+   "at": [
+    430,
+    795
+   ],
+   "scale": 0.95,
+   "warm": 0.06,
+   "layer": "near-left",
+   "hotspot": [
+    585,
+    995
+   ],
+   "hop": [
+    20,
+    -2
+   ],
+   "period": 5.4,
+   "erase": [
+    [
+     [
+      636,
+      886
+     ],
+     [
+      680,
+      886
+     ],
+     [
+      680,
+      896
+     ],
+     [
+      722,
+      896
+     ],
+     [
+      722,
+      952
+     ],
+     [
+      636,
+      952
+     ]
+    ]
+   ]
+  },
+  {
+   "from": "research/plates-built/forest-v1",
+   "id": "sloth",
+   "at": [
+    1900,
+    120
+   ],
+   "scale": 0.8,
+   "warm": 0.05,
+   "layer": "near-right"
+  },
+  {
+   "from": "research/plates-built/forest-v1",
+   "id": "macaw-a",
+   "at": [
+    1250,
+    470
+   ],
+   "scale": 0.95,
+   "warm": 0.04
+  },
+  {
+   "from": "research/plates-built/forest-v1",
+   "id": "macaw-b",
+   "at": [
+    1480,
+    390
+   ],
+   "scale": 0.95,
+   "warm": 0.04
+  },
+  {
+   "from": "research/plates-built/forest-v1",
+   "id": "morpho",
+   "at": [
+    2050,
+    1180
+   ],
+   "scale": 0.95,
+   "warm": 0.02
+  }
+ ],
+ "frame": {
+  "polys": [
+   [
+    [
+     0,
+     0
+    ],
+    [
+     600,
+     0
+    ],
+    [
+     470,
+     260
+    ],
+    [
+     400,
+     560
+    ],
+    [
+     420,
+     820
+    ],
+    [
+     620,
+     980
+    ],
+    [
+     900,
+     1160
+    ],
+    [
+     1020,
+     1300
+    ],
+    [
+     1060,
+     1438
+    ],
+    [
+     0,
+     1438
+    ]
+   ],
+   [
+    [
+     1320,
+     0
+    ],
+    [
+     2576,
+     0
+    ],
+    [
+     2576,
+     1438
+    ],
+    [
+     2140,
+     1438
+    ],
+    [
+     2060,
+     1200
+    ],
+    [
+     2250,
+     980
+    ],
+    [
+     2330,
+     760
+    ],
+    [
+     2200,
+     640
+    ],
+    [
+     1980,
+     560
+    ],
+    [
+     1700,
+     470
+    ],
+    [
+     1560,
+     330
+    ],
+    [
+     1480,
+     170
+    ]
+   ]
+  ],
+  "split": [
+   0.44,
+   0.56
+  ]
+ },
+ "water": [
+  {
+   "name": "waterfall",
+   "poly": [
+    [
+     935,
+     790
+    ],
+    [
+     1050,
+     790
+    ],
+    [
+     1075,
+     1000
+    ],
+    [
+     1080,
+     1180
+    ],
+    [
+     1180,
+     1200
+    ],
+    [
+     860,
+     1200
+    ],
+    [
+     900,
+     1000
+    ]
+   ],
+   "feather": 8,
+   "whiteOnly": true,
+   "vMin": 0.62,
+   "sMax": 0.35,
+   "flow": {
+    "dx": 0,
+    "dy": 1,
+    "period": 1.7,
+    "amp": 0.05
+   },
+   "mode": "flow"
+  },
+  {
+   "name": "pool",
+   "poly": [
+    [
+     830,
+     1180
+    ],
+    [
+     2000,
+     1180
+    ],
+    [
+     2050,
+     1438
+    ],
+    [
+     1000,
+     1438
+    ],
+    [
+     830,
+     1300
+    ]
+   ],
+   "feather": 10,
+   "flow": {
+    "dx": 1,
+    "dy": 0.1,
+    "period": 7,
+    "amp": 0.01
+   },
+   "mode": "shimmer"
+  },
+  {
+   "name": "surf",
+   "poly": [
+    [
+     1850,
+     1190
+    ],
+    [
+     2120,
+     1190
+    ],
+    [
+     2180,
+     1438
+    ],
+    [
+     1800,
+     1438
+    ]
+   ],
+   "feather": 8,
+   "whiteOnly": true,
+   "vMin": 0.6,
+   "sMax": 0.35,
+   "flow": {
+    "dx": 0.6,
+    "dy": 0.3,
+    "period": 4.5,
+    "amp": 0.02
+   },
+   "mode": "flow"
+  }
+ ]
+}
