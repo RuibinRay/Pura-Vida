@@ -42,6 +42,9 @@ export function HomePage() {
   const tier = useTier((s) => s.tier);
   // the walk has no WebGL any more: every tier but text gets the moving plates (the loops are CSS transforms)
   const live = tier !== 'text';
+  // the full tier carries every ambient layer; lite (a phone, or a device the watchdog stepped down) keeps the
+  // animals, the water, the wind and the clouds and drops the flock, the light shafts and the near mist veil
+  const rich = tier === 'full';
   // motion is off because the system asked for it and the visitor has not said otherwise: offer the switch
   const [motionNoticeOff, setMotionNoticeOff] = useState(false);
   const motionNotice = calm && motionPref === 'auto' && live && !motionNoticeOff;
@@ -120,7 +123,7 @@ export function HomePage() {
           if (!mounted(n)) return null;
           if (stop.kind === 'scene' || stop.kind === 'close') {
             return (
-              <Scene key={stop.key} index={n} stop={stop} live={live} chapter={chapter} species={species} onOpenSpecies={openSpecies} priority={n === 1}>
+              <Scene key={stop.key} index={n} stop={stop} live={live} rich={rich} chapter={chapter} species={species} onOpenSpecies={openSpecies} priority={n === 1}>
                 {stop.eruption && <EruptionLayers on={erupting} live={live && !calm} />}
               </Scene>
             );

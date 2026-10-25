@@ -108,7 +108,8 @@ function hash(s: string) { let h = 0; for (let i = 0; i < s.length; i++) h = (h 
 export interface SceneProps {
   index: number;              // 1-based chapter number
   stop: Stop;
-  live: boolean;              // animations and layers (full/lite tiers)
+  live: boolean;              // animations and layers (full/lite/still tiers)
+  rich?: boolean;             // the full tier: the flock, the light shafts and the near mist veil as well
   chapter: number;            // current 0-based chapter from the driver
   species: Species[];
   onOpenSpecies: (sp: Species, stopKey: string) => void;
@@ -116,7 +117,7 @@ export interface SceneProps {
   children?: React.ReactNode; // extra layers in plate space (the eruption)
 }
 
-export function Scene({ index, stop, live, chapter, species, onOpenSpecies, priority, children }: SceneProps) {
+export function Scene({ index, stop, live, rich = true, chapter, species, onOpenSpecies, priority, children }: SceneProps) {
   const { t, l } = useT();
   const plate = stop.plate as PlateName;
   const m = PLATES[plate];
@@ -137,12 +138,12 @@ export function Scene({ index, stop, live, chapter, species, onOpenSpecies, prio
       <PlateBox plate={plate} className={`plate--${plate}${stop.wind ? ' plate--wind-' + stop.wind : ''}`}>
         <LayerImg plate={plate} name="base" className="plate__base" priority={priority} eager alt="" />
         {(m.water || []).map((w) => (<Water key={w.name} plate={plate} w={w} live={live} />))}
-        {live && stop.ambient?.shafts && <div className="plate__shafts" style={{ backgroundImage: `url(${FX}shafts.png)` }} />}
+        {live && rich && stop.ambient?.shafts && <div className="plate__shafts" style={{ backgroundImage: `url(${FX}shafts.png)` }} />}
         {live && stop.ambient?.mist && <div className="plate__mist plate__mist--1"><div className="plate__drift" style={{ backgroundImage: `url(${FX}mist-1-fade.png)` }} /></div>}
         {live && stop.ambient?.clouds && (
           <div className="plate__clouds" style={rel(stop.ambient.clouds, PLATE_BOX)}><div className="plate__drift" style={{ backgroundImage: `url(${FX}mist-2.png)` }} /></div>
         )}
-        {live && stop.ambient?.birds && (
+        {live && rich && stop.ambient?.birds && (
           <div className="plate__birds" style={rel(stop.ambient.birds, PLATE_BOX)} aria-hidden="true">
             {FLOCK.map((b, i) => (
               <span key={i} className="bird" style={{ top: `${b.y}%`, ['--d' as string]: `${b.d}s`, ['--t' as string]: `${b.t}s`, ['--s' as string]: b.s }}>
@@ -158,7 +159,7 @@ export function Scene({ index, stop, live, chapter, species, onOpenSpecies, prio
           </PlateLayer>
         ))}
         {free.map((a) => (<Animal key={a.id} plate={plate} a={a} container={PLATE_BOX} facing={facing[a.id]} lifted={lift === a.id} live={live} fly={fly[a.id]} firstStop={index === 1} />))}
-        {live && stop.ambient?.mist && <div className="plate__mist plate__mist--2"><div className="plate__drift" style={{ backgroundImage: `url(${FX}mist-2-fade.png)` }} /></div>}
+        {live && rich && stop.ambient?.mist && <div className="plate__mist plate__mist--2"><div className="plate__drift" style={{ backgroundImage: `url(${FX}mist-2-fade.png)` }} /></div>}
         {children}
         {withHotspot.length > 0 && (
           <nav className="plate__hotspots plate__hotspots--scene" aria-label={t('journey.animalsIn', { place: t(`journey.stops.${stop.key}.title` as never) })}>

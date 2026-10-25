@@ -22,11 +22,35 @@ Stop 1 → stop 8 by an instant scroll: before the fix, stop 1 stayed `visible` 
 
 Wall time here is dominated by software rasterisation and is not a frame rate; the style figure is the main-thread cost the pattern incurs (about 5 ms per pass in this slow lab, each pass now the current stop and its neighbours rather than the page). The GPU side cannot be measured here; the owner's `?why` panel reports fps on his device.
 
-### Ambient layers (`tools/scratch/motion.mjs`, first two stops of the run in progress)
-Change within 2.5 s inside each layer's box at the opening: clouds 4.7 %, the flock 3.5 %, foliage frame left 7.0 % / right 8.6 %, mist 8.9 %; animals 12.6–39.7 %; water 5.6 % and 7.2 %; 37 of 37 loops running (wind-l/wind-r, drift-strip, bird-cross/flap, perch, head-tilt, sway, bob, drift, morpho, water, spray, shafts, ring). Monteverde: clouds 4.1 %, frames 13.3 % / 6.4 %, mist 10.4 %, animals 14.3–50.5 %; 26 of 26 running. Screenshots at stops 1, 2, 3 and 9 confirm the baked mist and shaft fades read as before (no hard edges) and the flock sits in the sky boxes.
+### Motion sweep (`tools/scratch/motion.mjs`, 1440×900, full tier)
+Change within 2.5 s inside each layer's box (animals: the larger of 0.9 s and 2.5 s):
 
-### Still running at the time of this commit
-The full motion sweep (stops 3–9, fliers, eruption, sheets, reduced motion), the walk at desktop and phone widths, the site sweep with axe, and Lighthouse — each screenshot now takes 20–40 s in this software-GPU lab, so the sweeps run for over an hour; their results follow in the next commit. Nothing in this pass changes what loads before first paint.
+| Stop | Loops running | Animals | Water | Wind (frame left / right) | Clouds | Flock | Mist |
+|---|---|---|---|---|---|---|---|
+| 01 Discover | 37/37 | 39.7 / 29.1 / 28.7 / 18.6 / 12.6 / 28.7 % | 5.6 / 7.2 % | 7.0 / 8.6 % | 4.7 % | 3.5 % | 8.9 % |
+| 02 Monteverde | 26/26 | 21.1 / 14.3 / 25.0 / 50.5 % | 0.1 % (the far waterfall) | 13.3 / 6.4 % | 4.1 % | — | 10.4 % |
+| 03 Río Celeste | 17/17 | — | 12.2 / 23.8 / 6.0 % | 9.5 / 10.9 % | — | — | 8.8 % |
+| 04 Irazú | 9/9 | 30.9 / 41.3 / 26.1 % | 1.3 % (still lake) | 17.0 / 2.1 % | 4.2 % | — | — |
+| 05 Guanacaste | 20+ | 4–22 % | surf | sync sway | yes | yes | — |
+| 07 Corcovado | | | | 16.6 / 8.4 % | | | 8.5 % |
+| 09 Close | 17/17 | — | 0.2 / 0.4 % | 1.3 / 2.2 % | 1.6 % | 1.3 % | — |
+
+(Stops 5 and 7's animal rows are in `tools/scratch/motion-report.txt`; the table keeps the layers this pass added.) The fliers: every macaw and morpho that has a hotspot carries its ring at 85 % of its stop (the "false" readings are the two macaws per plate that have no hotspot). The eruption: ten puffs at 0.9 opacity, 72 ash flakes, the dossier with 17 timeline items, off again on the second click. The quetzal's hotspot opens its sheet with the habitat verdict, the page stays at scrollY 2903, and the sheet's backdrop is a plain tint over the live stage (`backdrop-filter: none` — the blur made this screenshot time out in the software renderer and is a per-frame full-screen filter on a device). `--vel` 0.381 during a scroll burst, 0.000 at rest, read on the current stop. Tab order at Guanacaste: hotspots → fact sources → links → rail. Reduced motion (emulated): `--calm: 1`, 0 loops, identity transforms, no drift, no flock, the notice; "Turn the motion on" → 26 loops at Monteverde, the notice gone; the province link crosses with `startViewTransition` present. 0 console errors in both sessions.
+
+### Walk sweep (`tools/scratch/walk.mjs`)
+Desktop 1440×900 full tier: 27 positions forward and three back, **ALL CLEAN** (0 errors, no overflow). Phone 390×844 lite: nine stops, back to 6/3/1 with t = 5.50 / 2.50 / 0.50, **ALL CLEAN**. (The desktop "back to stop 3" line read the previous chapter because the software renderer had not produced a frame within the probe's 1.5 s; the next step read correctly, and the far-jump check below asserts the settled state.)
+
+### Site sweep (`node tools/headless_check.mjs`)
+**35 page loads, 0 console errors, no horizontal overflow; axe 0 violations on all 17 audited loads**; the new far-jump check: "1→8: only stop 8 visible".
+
+### Lighthouse (lab, mobile emulation)
+Home (lite): a11y 100 · BP 100 · SEO 100 · FCP 2.0 s · LCP 10.0 s · TBT 0 · CLS 0 (performance not computable here, as before); still tier 75 / 100 / 100 / 100, LCP 6.9 s (was 72, 9.8 s); wildlife 76 / 100 / 100 / 100, LCP 6.3 s.
+
+### Lite tier
+A device the watchdog steps down, or a phone, now drops the flock, the light shafts and the near mist veil (`rich` = full tier only) and keeps the animals, water, wind and clouds; verified by the phone walk (lite) running clean.
+
+### Not tested
+The frame rate on a real GPU (the owner's `?why` reading is the instrument), Safari/Firefox, the feel of the wind on a device.
 
 ## Motion pass (2026-10-24, evening) — "it's not moving"
 
