@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../../ui/Link';
 import { useT } from '../../i18n';
 import type { Section } from '../sections';
 import { usePageTitle } from '../usePageTitle';

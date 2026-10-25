@@ -1,7 +1,7 @@
 // Chapter 5: a wooden table seen from above with five traditional dishes. Hovering a dish shows its name;
 // clicking opens its journal entry (ingredients, preparation, cultural context, history, sources).
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../ui/Link';
 import { Sheet } from '../ui/Sheet';
 import { FoodEntry } from '../ui/FoodEntry';
 import { DISH_ART } from './dishes';

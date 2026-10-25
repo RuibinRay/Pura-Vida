@@ -24,9 +24,11 @@ export interface JourneyState {
   calm: boolean;
   /** scroll velocity estimate (px per frame), for subtle motion blur-free emphasis */
   velocity: number;
+  /** smoothed, normalised velocity −1 … 1 (positive = scrolling down), written as --vel for the stylesheet */
+  vel: number;
 }
 
-export const journey: JourneyState = { t: 0, p: new Array(CHAPTER_COUNT).fill(0), chapter: 0, px: 0, py: 0, vw: 1, vh: 1, calm: false, velocity: 0 };
+export const journey: JourneyState = { t: 0, p: new Array(CHAPTER_COUNT).fill(0), chapter: 0, px: 0, py: 0, vw: 1, vh: 1, calm: false, velocity: 0, vel: 0 };
 
 type Listener = (j: JourneyState) => void;
 const listeners = new Set<Listener>();
@@ -53,6 +55,7 @@ export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: b
     if (!root) return;
     journey.calm = calm;
     root.style.setProperty('--calm', calm ? '1' : '0');
+    root.style.setProperty('--vel', '0');
     const chapters = Array.from(root.querySelectorAll<HTMLElement>('[data-chapter]'));
     let tops: number[] = [];
     let lens: number[] = [];
@@ -62,6 +65,8 @@ export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: b
     let pointerRaf = 0;
     let targetPx = 0;
     let targetPy = 0;
+    let velRaf = 0;
+    let velTarget = 0;
 
     const measure = () => {
       const vh = window.innerHeight;
@@ -81,6 +86,8 @@ export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: b
       if (y === lastY) return;
       journey.velocity = lastY < 0 ? 0 : y - lastY;
       lastY = y;
+      // the stylesheet leans and lifts things with the scroll: a normalised velocity that eases back to 0 at rest
+      if (!calm) { velTarget = Math.max(-1, Math.min(1, journey.velocity / (journey.vh * 0.12))); if (!velRaf) velRaf = requestAnimationFrame(tickVel); }
       let t = 0;
       let active = 0;
       for (let i = 0; i < chapters.length; i++) {
@@ -96,6 +103,15 @@ export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: b
       notify();
     };
 
+    const tickVel = () => {
+      velRaf = 0;
+      // chase the target, then let the target itself decay so the lean releases when the scroll stops
+      journey.vel += (velTarget - journey.vel) * 0.18;
+      velTarget *= 0.86;
+      if (Math.abs(journey.vel) < 0.004 && Math.abs(velTarget) < 0.004) { journey.vel = 0; velTarget = 0; }
+      else velRaf = requestAnimationFrame(tickVel);
+      root.style.setProperty('--vel', journey.vel.toFixed(3));
+    };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
     const onResize = () => measure();
 
@@ -140,7 +156,8 @@ export function useJourneyDriver(rootRef: RefObject<HTMLElement | null>, calm: b
       window.clearTimeout(late);
       if (raf) cancelAnimationFrame(raf);
       if (pointerRaf) cancelAnimationFrame(pointerRaf);
-      journey.t = 0; journey.chapter = 0; journey.p.fill(0); journey.px = 0; journey.py = 0;
+      if (velRaf) cancelAnimationFrame(velRaf);
+      journey.t = 0; journey.chapter = 0; journey.p.fill(0); journey.px = 0; journey.py = 0; journey.vel = 0;
     };
   }, [rootRef, calm]);
 }

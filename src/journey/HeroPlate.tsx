@@ -2,7 +2,7 @@
 // camera as the visitor scrolls, the base pushes in toward the volcano, mist thins, clouds crawl across the summit.
 // All motion is driven by the --p1/--p2/--px/--py custom properties the driver writes (see journey.css).
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../ui/Link';
 import { PlateBox, PlateImage, PlateLayer } from './Plate';
 import { Morpho } from './Morpho';
 import { useT } from '../i18n';

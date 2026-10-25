@@ -2,7 +2,8 @@
 // docs/HOMEPAGE_REDESIGN.md). Empty sections give each stop its scroll length; the stage shows the plates, the map,
 // the table and the closing beach, and the copy of each stop is pinned in the stage and keyed to its progress.
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Link } from '../../ui/Link';
 import { useT, type MessageKey } from '../../i18n';
 import { useCalmMotion, useSettings } from '../../state/settings';
 import { useTier } from '../../perf/tier';
@@ -36,8 +37,14 @@ export function HomePage() {
   usePageTitle();
   const navigate = useNavigate();
   const calm = useCalmMotion();
+  const motionPref = useSettings((s) => s.motion);
+  const setMotion = useSettings((s) => s.setMotion);
   const tier = useTier((s) => s.tier);
-  const live = tier === 'full' || tier === 'lite';
+  // the walk has no WebGL any more: every tier but text gets the moving plates (the loops are CSS transforms)
+  const live = tier !== 'text';
+  // motion is off because the system asked for it and the visitor has not said otherwise: offer the switch
+  const [motionNoticeOff, setMotionNoticeOff] = useState(false);
+  const motionNotice = calm && motionPref === 'auto' && live && !motionNoticeOff;
   const content = useContent();
   const { data: mapData } = useMapData();
   const rootRef = useRef<HTMLDivElement>(null);
@@ -80,7 +87,7 @@ export function HomePage() {
     }
   };
 
-  const openProvince = useCallback((id: ProvinceId) => navigate('/provinces/' + id), [navigate]);
+  const openProvince = useCallback((id: ProvinceId) => navigate('/provinces/' + id, { viewTransition: true }), [navigate]);
   const hover = useMap((s) => s.hover);
   const select = useMap((s) => s.select);
   const hovered = useMap((s) => s.hovered);
@@ -106,7 +113,7 @@ export function HomePage() {
   const species = content?.species || [];
 
   return (
-    <div ref={rootRef} className={'journey' + (live ? ' journey--live' : ' journey--still') + (erupting ? ' is-erupting' : '')} data-chapter="1">
+    <div ref={rootRef} className={'journey' + (live ? ' journey--live' : ' journey--still') + (calm ? ' journey--calm' : '') + (erupting ? ' is-erupting' : '')} data-chapter="1">
       <div className="journey__stage" ref={stageRef}>
         {STOPS.map((stop, i) => {
           const n = i + 1;
@@ -291,6 +298,17 @@ export function HomePage() {
           </button>
         )}
       </nav>
+
+      {/* the system asked for reduced motion: say so, and offer the animals anyway */}
+      {motionNotice && (
+        <div className="motion-notice ui" role="status">
+          <p>{t('journey.motionOffNote')}</p>
+          <div className="motion-notice__actions">
+            <button type="button" className="btn btn--primary btn--sm" onClick={() => setMotion('full')}>{t('journey.motionOn')}</button>
+            <button type="button" className="btn btn--ghost btn--sm" onClick={() => setMotionNoticeOff(true)}>{t('journey.motionKeep')}</button>
+          </div>
+        </div>
+      )}
 
       {/* the species entry opened from any stop, with whether the animal belongs in that scene */}
       <Sheet open={!!openSp} onClose={() => setOpenSp(null)} title={openSp ? l(openSp.sp.commonNames) : ''}>

@@ -1,7 +1,7 @@
 // The map widget used by /explore and by each province chapter: toolbar, stage (3D, 2D or text),
 // the keyboard twin list and the contextual panel.
 import { lazy, Suspense, useEffect, useId, useMemo, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../ui/Link';
 import { useMapData } from './useMapData';
 import { Map2D } from './Map2D';
 import { PROVINCE_COLORS, PROVINCE_ORDER } from './geo';

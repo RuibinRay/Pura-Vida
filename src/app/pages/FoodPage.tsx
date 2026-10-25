@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { Link } from '../../ui/Link';
 import { useT } from '../../i18n';
 import { useContent } from '../../content';
 import { usePageTitle } from '../usePageTitle';

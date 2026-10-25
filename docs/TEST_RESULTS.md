@@ -2,6 +2,40 @@
 
 All figures below were produced in this session's environment unless stated otherwise: a 2-core Linux container, headless Chromium 153 with SwiftShader (software WebGL), no real GPU, no field data. Numbers that depend on a GPU are marked as such and must be re-measured on a laptop and a phone.
 
+## Motion pass (2026-10-24, evening) — "it's not moving"
+
+### Tests
+`npx vitest run`: **49 tests in 5 files, all passing** — three new ones on the stop list: every scene stop names an existing plate with unique keys; every `facing`/`fly` override names an animal of that plate, fliers are macaws, morphos or hummingbirds, and flights are 8–34 vw long; every macaw drawn in flight has a flight. `tsc --noEmit`: clean.
+
+### Motion probe (`node tools/scratch/motion.mjs`, 1440×900, full tier)
+Share of pixels that change inside each animal's box within 2.5 s (the larger of a 0.9 s and a 2.5 s interval), and the running loops per stop:
+
+| Stop | Running loops | Changed pixels per animal (before → after) |
+|---|---|---|
+| 01 Discover | 24 (waterfall + spray, lake shimmer, shafts, mist, toucans perch + tilt, sloth sway, macaws bob + flight, morpho) | 0.0 / 0.2 / 0.3 / 9.3 / 5.8 / 22.4 % → **11.1 / 14.3 / 23.1 / 25.8 / 16.2 / 30.8 %** |
+| 02 Monteverde | 23 | 0.6 / 9.9 / 1.3 / 24.2 % → **19.1 / 27.4 / 31.7 / 24.0 %** |
+| 03 Río Celeste | 15 (water only) | water 25.5 / 32.1 / 10.0 % |
+| 04 Irazú | 7 | 0.5 / 22.9 / 12.1 % → **10.6 / 36.8 / 22.2 %** |
+| 05 Guanacaste | 20 | 4.1 / 10.7 / 8.3 / 0.2 / 6.7 % → **4.3 / 22.4 / 12.7 / 5.8 / 11.7 %** |
+| 07 Corcovado | 13 | 0.0 / 18.3 / 40.1 % → **9.2 / 17.6 / 23.6 %** |
+| 08 Tortuguero | 19 | 12.1 / 34.1 / 4.8 / 20.6 / 1.7 % → **14.3 / 23.6 / 19.3 / 37.0 / 2.2 %** |
+
+Every animal now changes at least 2 % of its pixels (the heron, a slow watcher) and most 10–37 %; before, four animals were under 1 %. Also verified: the fliers cross their stops (the opening macaws from x = 852 → 560 px between 10 % and 85 % of the stop) with the hotspot ring riding on them; `--vel` reaches the stylesheet during a scroll burst and returns to 0 at rest; the eruption shows ten puffs, 72 ash flakes, flashes and embers, and switches off; the quetzal's hotspot opens its sheet with the habitat verdict; the tab order at Guanacaste runs hotspots → tiles → links → rail; 0 console errors.
+
+**Reduced motion (emulated `prefers-reduced-motion: reduce`):** `--calm: 1`, 0 running loops, identity transforms, water still, the eruption's puffs standing, no ash, no tremor — and the notice "The animals and the water are still because your system asks for reduced motion" with two buttons; "Turn the motion on" → `--calm: 0`, the class gone, 23 loops running at Monteverde, the notice gone. A province link then crossed to `#/provinces/puntarenas` with `document.startViewTransition` present and the `has-vt` flag set; 0 errors.
+
+### Scroll sweep (`node tools/scratch/walk.mjs`, desktop)
+Nine stops × three positions forward, three back, 0 console errors, no horizontal overflow; the frames show the macaws crossing each stop (left over the opening waterfall, right toward the Guanacaste sun) and the animals in their loops.
+
+### Site sweep (`node tools/headless_check.mjs`)
+34 page loads (the home at the opening and every stop 2–9 with the eruption on at Irazú, the still tier, Spanish and Chinese, explore, provinces, a chapter, wildlife, food, sources, personal, a milestone page, seven phone pages): **0 console errors, no overflow; axe 0 violations on all 17 audited loads** — the moved hotspots, the spray, the flashes and the motion notice introduced nothing.
+
+### Lighthouse (lab, mobile emulation)
+Home — opening (lite): a11y 100 · BP 100 · SEO 100 · FCP 2.0 s · LCP 9.8 s · TBT 0 · CLS 0 (performance null in this lab, as before); still tier 72 / 100 / 100 / 100, LCP 9.8 s; wildlife 76 / 100 / 100 / 100, LCP 6.3 s. Same floor as the previous run (5.6–9.7 s); nothing in this pass changed what loads before first paint.
+
+### Not tested
+Real-device frame rate (24 loops over large images at the first stop; the lab cannot say), the feel of the flights and the perch hops on a device, Safari's handling of `rotate3d` with custom properties in keyframes, the view transition in Safari and Firefox (Chromium only here), screen readers.
+
 ## The walk (2026-10-23 evening → 2026-10-24)
 
 ### Unit and data tests

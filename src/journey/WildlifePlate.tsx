@@ -2,7 +2,7 @@
 // hotspots; each opens the species entry with its sourced facts. The plate drifts slightly with the pointer and the
 // near frame parts a little as the chapter begins; the animals lift on hover.
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../ui/Link';
 import { PlateBox, PlateImage, PlateLayer } from './Plate';
 import { Sheet } from '../ui/Sheet';
 import { SpeciesEntry } from '../ui/SpeciesEntry';

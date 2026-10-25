@@ -1,6 +1,6 @@
 // Chapter 2's facts: a few sourced numbers with restrained visualisations (rings, bars, counts).
 // Every tile reads from the generated content; a missing fact simply does not render.
-import { Link } from 'react-router-dom';
+import { Link } from '../ui/Link';
 import { useT } from '../i18n';
 import type { CountryFact } from '../content';
 import { StatusTag } from '../ui/Sources';

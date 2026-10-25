@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { Link } from '../../ui/Link';
 import { useT, pickLang, type MessageKey } from '../../i18n';
 import { useContent } from '../../content';
 import { useMapData } from '../../map/useMapData';

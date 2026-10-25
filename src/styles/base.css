@@ -224,3 +224,20 @@ dl {
 .status.uncertain::before {
   background: var(--bad);
 }
+
+/* ---- page transitions: the old page recedes and the new one settles in (view transitions where supported;
+   a plain fade-in of the new page elsewhere); nothing moves under reduced motion ---- */
+::view-transition-old(root) { animation: vt-out 300ms var(--ease-out) both; }
+::view-transition-new(root) { animation: vt-in 460ms var(--ease-out) both; }
+@keyframes vt-out { to { opacity: 0; transform: scale(0.985); } }
+@keyframes vt-in { from { opacity: 0; transform: scale(1.012); } }
+html:not(.has-vt) .main { animation: page-in 480ms var(--ease-out) both; }
+@keyframes page-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 120ms; }
+  ::view-transition-old(root) { animation-name: vt-fade-out; }
+  ::view-transition-new(root) { animation-name: vt-fade-in; }
+  html:not(.has-vt) .main { animation: none; }
+}
+@keyframes vt-fade-out { to { opacity: 0; } }
+@keyframes vt-fade-in { from { opacity: 0; } }

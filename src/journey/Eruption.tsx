@@ -3,7 +3,7 @@
 // 1963–65 ash went), the sky hazes over and ash falls across the valley. Under reduced motion the same states appear
 // as crossfades. Nothing here claims a prediction: the panel's text is labelled as interpretation and sourced.
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../ui/Link';
 import { PLATES, LayerImg } from './Plate';
 import { useT } from '../i18n';
 import { loadIrazu } from '../content';
@@ -14,14 +14,19 @@ import { StatusTag } from '../ui/Sources';
 const FX = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'plates/fx/';
 const pct = (v: number) => `${(v * 100).toFixed(3)}%`;
 const PUFFS = [
-  { s: 1, x: -0.02, y: -0.05, sc: 0.55, d: 0 },
-  { s: 2, x: 0.03, y: -0.09, sc: 0.75, d: 1.1 },
-  { s: 3, x: -0.05, y: -0.14, sc: 0.95, d: 2.2 },
-  { s: 1, x: 0.01, y: -0.2, sc: 1.15, d: 3.3 },
-  { s: 2, x: -0.08, y: -0.26, sc: 1.4, d: 4.4 },
-  { s: 3, x: -0.14, y: -0.31, sc: 1.7, d: 5.5 },
+  { s: 1, x: -0.02, y: -0.05, sc: 0.6, d: 0 },
+  { s: 2, x: 0.03, y: -0.09, sc: 0.85, d: 0.9 },
+  { s: 3, x: -0.05, y: -0.14, sc: 1.05, d: 1.8 },
+  { s: 1, x: 0.01, y: -0.2, sc: 1.3, d: 2.7 },
+  { s: 2, x: -0.08, y: -0.26, sc: 1.55, d: 3.6 },
+  { s: 3, x: -0.14, y: -0.31, sc: 1.9, d: 4.5 },
+  { s: 1, x: 0.04, y: -0.07, sc: 0.7, d: 5.4 },
+  { s: 2, x: -0.03, y: -0.17, sc: 1.2, d: 6.3 },
+  { s: 3, x: -0.1, y: -0.24, sc: 1.6, d: 7.2 },
+  { s: 1, x: -0.18, y: -0.36, sc: 2.1, d: 8.1 },
 ];
-const ASH = Array.from({ length: 42 }, (_, i) => ({ x: (i * 37 + 11) % 100, d: (i * 7919) % 6000 / 1000, t: 7 + ((i * 131) % 50) / 10, s: 1 + (i % 3) }));
+const ASH = Array.from({ length: 72 }, (_, i) => ({ x: (i * 37 + 11) % 100, d: (i * 7919) % 6000 / 1000, t: 6 + ((i * 131) % 50) / 10, s: 1 + (i % 3) }));
+const EMBERS = Array.from({ length: 14 }, (_, i) => ({ ex: `${((i * 53) % 21) - 10}vw`, ey: `${-6 - ((i * 29) % 9)}vw`, d: ((i * 617) % 3000) / 1000, t: 2.2 + ((i * 97) % 14) / 10, s: 1 + (i % 2) }));
 
 /** The layers over the Irazú plate. `on` switches the eruption; `live` enables the animations. */
 export function EruptionLayers({ on, live }: { on: boolean; live: boolean }) {
@@ -43,6 +48,9 @@ export function EruptionLayers({ on, live }: { on: boolean; live: boolean }) {
         {PUFFS.map((p, i) => (
           <span key={i} className={`erupt__puff erupt__puff--${i}`} style={{ backgroundImage: `url(${FX}puff-${p.s}.png)`, ['--ox' as string]: `${p.x * 100}vw`, ['--oy' as string]: `${p.y * 100}vw`, ['--sc' as string]: p.sc, ['--d' as string]: `${p.d}s` }} />
         ))}
+        {live && <span className="erupt__flash" style={{ left: '-10vw', top: '-18vw' }} />}
+        {live && <span className="erupt__flash erupt__flash--2" style={{ left: '-22vw', top: '-34vw' }} />}
+        {live && EMBERS.map((e, i) => (<i key={i} className="erupt__ember" style={{ ['--ex' as string]: e.ex, ['--ey' as string]: e.ey, ['--d' as string]: `${e.d}s`, ['--t' as string]: `${e.t}s`, ['--s' as string]: e.s }} />))}
       </div>
       {live && (
         <div className="erupt__ash">

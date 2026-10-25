@@ -2,6 +2,22 @@
 
 Status words: **built** = implemented and exercised in the headless browser; **built, unverified on device** = implemented, but the check this session could do is not representative (software GPU); **partial**; **planned (M2–M5)**.
 
+## Motion pass — "it's not moving" (2026-10-24, evening)
+
+The owner saw the live walk and said the animals were not moving. Two causes, both fixed, plus a stronger motion design:
+
+| Change | Status | Notes |
+|---|---|---|
+| Loops no longer gated on the OS media query alone | done | every loop was inside `@media (prefers-reduced-motion: no-preference)`, so a system "reduce motion" setting (the owner's device has had it on since the portfolio) froze everything even when the visitor chose Full in settings; the gate is now the journey's own calm state (`.journey--calm`), which the settings override |
+| A visible notice when motion is off because of the system, with "Turn the motion on" | done | `.motion-notice` on the home; one click sets motion = full; "Keep it still" dismisses |
+| The still tier gets the moving plates | done | the walk has no WebGL, so only the text tier is static now |
+| Amplitudes ×2–2.6 and whole-body loops | done | heads turn 8–13°, wings flap ±28°, sloths sway ±5°, quetzal tail ±5.5°; perched birds hop and settle (`perch`), the quetzal breathes (`perch-soft`), the deer, tapir and heron shift their weight (`stand`); hummingbirds dart, morphos loop wider |
+| Fliers cross the frame as the stop progresses | done | `fly` vectors per stop (`scenes.ts`): the opening macaws fly 26–30 vw left, Guanacaste's four fly 20–26 vw toward the sun, Corcovado's right, Tortuguero's left, morphos drift 10–14 vw; the hotspot ring follows the bird |
+| Scroll-coupled motion | done | the driver writes a smoothed `--vel`; animals lift and fliers bank with the scroll, mist and clouds slide with the stop's progress, animals scale slightly against the plate for depth |
+| Water ×2.2, spray at the waterfalls | done | `--wgain`; four spray puffs rise where each waterfall lands |
+| Eruption | done | ten puffs (was six), a taller column, lightning flashes inside the ash, 14 embers at the vent, 72 ash flakes (was 42) |
+| Smooth page transitions | done | every router link goes through `src/ui/Link.tsx` with `viewTransition`; the old page recedes and the new one settles in (`::view-transition-*` in base.css); browsers without view transitions get a fade-in of the new page; reduced motion keeps a 120 ms fade |
+
 ## The walk — nine stops, moving animals, flowing water, the Irazú what-if (2026-10-23 evening → 2026-10-24)
 
 | Feature | Status | Notes |

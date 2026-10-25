@@ -25,6 +25,8 @@ else {
   if (q === 'en' || q === 'es' || q === 'zh') useSettings.getState().setLang(q);
 }
 document.documentElement.lang = useSettings.getState().lang;
+// pages cross with a view transition where the browser has them; elsewhere the page's own enter animation runs
+if ('startViewTransition' in document) document.documentElement.classList.add('has-vt');
 
 // warm the content and map data once the first paint is out of the way (they are needed by most routes)
 const idle = (window as Window & { requestIdleCallback?: (cb: () => void) => void }).requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 400));

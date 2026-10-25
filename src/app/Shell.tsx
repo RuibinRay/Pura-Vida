@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { Link, NavLink } from '../ui/Link';
 import { SECTIONS, READY_SECTIONS } from './sections';
 import { useT, LANGS, type Lang } from '../i18n';
 import { useSettings, type MotionPref, type QualityPref } from '../state/settings';

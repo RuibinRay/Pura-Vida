@@ -1,5 +1,5 @@
 // The pinned copy block of a scene stop: kicker, place name, the sourced overview, two fact tiles, links.
-import { Link } from 'react-router-dom';
+import { Link } from '../ui/Link';
 import { useT } from '../i18n';
 import type { Place, PlaceFact } from '../content/types';
 import type { Stop } from './scenes';
