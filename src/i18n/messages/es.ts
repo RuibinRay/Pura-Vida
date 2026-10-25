@@ -293,6 +293,9 @@ const es: Messages = {
     lede: 'Este es un proyecto personal, no institucional. Costa Rica es el país de donde vengo, y este diario es mi manera de compartirlo.',
     placeholder: 'Espacio editable',
     placeholderNote: 'Nada de esta sección se escribió en nombre del autor. Cada bloque es un espacio para sus propias palabras y fotografías; permanece oculto en el sitio público hasta que se complete.',
+    aboutAuthor: 'Sobre el autor',
+    visitSite: 'Mi página personal — ruibinray.github.io',
+    authorNote: 'Estas líneas vienen de mi página personal; el resto del sitio, y todo lo que añada abajo, habla de Costa Rica.',
     sections: {
       introduction: 'Mi presentación',
       photos: 'Mis fotografías',

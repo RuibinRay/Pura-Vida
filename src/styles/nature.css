@@ -645,3 +645,27 @@ body {
     width: 118px;
   }
 }
+
+/* ---------- about the author ---------- */
+.author-card {
+  margin: 0 0 var(--s-6);
+  padding: var(--s-5) var(--s-6);
+  border: 1px solid var(--paper-edge);
+  border-radius: var(--radius-xl);
+  background: var(--surface-solid);
+  box-shadow: var(--shadow-leaf);
+}
+.author-card__name {
+  margin-bottom: 0.1em;
+}
+.author-card__tagline {
+  font-style: italic;
+  color: var(--gold-ink);
+  font-size: var(--t-lg);
+}
+.author-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin: var(--s-4) 0 var(--s-3);
+}

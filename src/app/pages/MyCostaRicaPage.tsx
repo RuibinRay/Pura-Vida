@@ -1,5 +1,6 @@
 import { useT, pickLang } from '../../i18n';
-import { PERSONAL, type PersonalEntry } from '../../content/personal';
+import { PERSONAL, AUTHOR, type PersonalEntry } from '../../content/personal';
+import { Icon } from '../../ui/Icon';
 import { usePageTitle } from '../usePageTitle';
 
 const isDraft = () => /[?&]draft/.test(window.location.search) || /[?&]draft/.test(window.location.hash);
@@ -25,11 +26,30 @@ export function MyCostaRicaPage() {
   const nothing = !intro && PERSONAL.photos.length === 0 && PERSONAL.favourites.length === 0 && PERSONAL.stories.length === 0 && PERSONAL.recommend.length === 0 && PERSONAL.experiences.length === 0 && PERSONAL.memories.length === 0;
   return (
     <article className="page container">
-      <header className="page__head">
+      <header className="page__head page__head--nature">
         <p className="eyebrow">{t('nav.myCostaRica')}</p>
         <h1>{t('my.title')}</h1>
         <p className="lede">{t('my.lede')}</p>
       </header>
+      <section className="author-card paper" aria-labelledby="author-name">
+        <div className="author-card__body">
+          <p className="eyebrow">{t('my.aboutAuthor')}</p>
+          <h2 id="author-name" className="author-card__name">{AUTHOR.name}</h2>
+          <p className="author-card__tagline">{pickLang(AUTHOR.tagline, lang)}</p>
+          <p className="prose">{pickLang(AUTHOR.bio, lang)}</p>
+          <dl className="facts ui">
+            {AUTHOR.facts.map((f) => (<div key={f.label.en}><dt>{pickLang(f.label, lang)}</dt><dd>{pickLang(f.value, lang)}</dd></div>))}
+          </dl>
+          <div className="author-card__links ui">
+            {AUTHOR.links.map((l) => (
+              <a key={l.href} className={'btn btn--sm' + (l.kind === 'website' ? ' btn--primary' : ' btn--ghost')} href={l.href} target={l.kind === 'email' ? undefined : '_blank'} rel="noopener noreferrer">
+                <Icon name={l.kind === 'website' ? 'external' : l.kind === 'email' ? 'arrow' : 'external'} /> {l.kind === 'website' ? t('my.visitSite') : l.label}
+              </a>
+            ))}
+          </div>
+          <p className="muted"><small>{t('my.authorNote')}</small></p>
+        </div>
+      </section>
       <section className="chapter-part">
         <h2>{t('my.why')}</h2>
         <p className="prose">{t('my.whyText')}</p>

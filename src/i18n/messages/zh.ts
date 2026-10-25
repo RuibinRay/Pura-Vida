@@ -293,6 +293,9 @@ const zh: Messages = {
     lede: '这是一个个人项目，而非官方项目。哥斯达黎加是我的家乡，这本日志是我分享它的方式。',
     placeholder: '可编辑的占位区',
     placeholderNote: '本节没有任何内容是代作者写的。下面每个区块都留给他自己的文字和照片；在填写之前，公开站点上不会显示。',
+    aboutAuthor: '关于作者',
+    visitSite: '我的主页 — ruibinray.github.io',
+    authorNote: '这几行来自我的个人主页；本站的其余部分，以及我在下面添加的一切，都在讲哥斯达黎加。',
     sections: {
       introduction: '我的自我介绍',
       photos: '我的照片',

@@ -292,6 +292,9 @@ const en = {
     lede: 'This is a personal project, not an institutional one. Costa Rica is the country I come from, and this journal is my way of sharing it.',
     placeholder: 'Editable placeholder',
     placeholderNote: 'Nothing here has been written on the author’s behalf. Each block below is a slot for his own words and photographs; it is hidden on the public site until it is filled in.',
+    aboutAuthor: 'About the author',
+    visitSite: 'My home page — ruibinray.github.io',
+    authorNote: 'These lines come from my home page; the rest of the site, and everything I add below, speaks about Costa Rica.',
     sections: {
       introduction: 'My introduction',
       photos: 'My photographs',
