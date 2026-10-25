@@ -139,7 +139,7 @@ for (const l of landmarks.sort((a, b) => (a.id.startsWith('peak-') || a.id.start
 
 // ---- species + unesco ---------------------------------------------------------------------------
 // The species research refers to sources by URL inside each block; resolve them against the species' own list.
-const speciesFiles = ['species.json', 'species-coast.json', 'species-walk.json', 'species-provinces.json'];
+const speciesFiles = ['species.json', 'species-coast.json', 'species-walk.json', 'species-provinces.json', 'species-zoo-mammals.json', 'species-zoo-herps.json', 'species-zoo-sea.json'];
 const species = [];
 const unesco = [];
 function sizeText(sz) {

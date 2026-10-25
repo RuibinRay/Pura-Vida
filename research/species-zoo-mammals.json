@@ -1,0 +1,475 @@
+{
+ "retrieved": "2026-10-25",
+ "notes": "Five mammals for the wildlife trail (jaguar, mantled howler, Geoffroy's spider monkey, kinkajou, white-nosed coati). For each species the English Wikipedia page, the Spanish Wikipedia page and the Animal Diversity Web account were fetched with WebFetch on 2026-10-25, plus Costa Rican pages: the Spanish Wikipedia 'Anexo: Mamíferos de Costa Rica' (which gives the Costa Rican common names of all five), the Área de Conservación Guanacaste (ACG/SINAC) species pages for the spider monkey and the coati and its Santa Rosa primate-project page, the English Wikipedia 'List of Costa Rican monkey species', a 2025 Oryx paper on jaguars in Corcovado National Park, a Sea Turtle Conservancy symposium abstract on jaguar predation of green turtles at Tortuguero (Harrison, Troëng & Fletcher 2005), and a Finca Bellavista (near the Osa Peninsula) page on kinkajous. Could not be fetched: observador.cr (robots disallowed), repositorio.una.ac.cr (request rejected), a UNED Biocenosis article (returned binary data), the Wikipedia primate portal page (not found); GBIF and the IUCN Red List pages were not fetched, so taxonomy and IUCN categories/years come from the Wikipedia species pages and are marked approximate. Chinese names are not verified on any fetched page.",
+ "species": [
+  {
+   "id": "jaguar",
+   "commonNames": {
+    "en": "Jaguar",
+    "es": "jaguar",
+    "esAlt": ["tigre", "yaguar", "yaguareté", "otorongo"],
+    "zh": "美洲豹",
+    "status": "confirmed (en: Wikipedia; es 'jaguar' and 'tigre' as the names used in Costa Rica: Anexo Mamíferos de Costa Rica, which lists 'Jaguar' with 'Tigre, pantera, namú'; Spanish Wikipedia notes that across much of Hispanic America it is common to call the animal «tigre»; 'yaguar', 'yaguareté', 'otorongo' from Spanish Wikipedia); uncertain (zh: not verified)",
+    "sources": ["https://en.wikipedia.org/wiki/Jaguar", "https://es.wikipedia.org/wiki/Panthera_onca", "https://es.wikipedia.org/wiki/Mam%C3%ADferos_de_Costa_Rica"]
+   },
+   "scientific": "Panthera onca",
+   "authority": "(Linnaeus, 1758)",
+   "family": "Felidae",
+   "order": "Carnivora",
+   "taxonomyStatus": "approximate (Wikipedia; GBIF not fetched)",
+   "iucn": {
+    "category": "NT",
+    "categoryName": "Near Threatened",
+    "year": 2017,
+    "status": "approximate (category and year as stated on the English Wikipedia species page: Near Threatened since 2002, assessment 2017 with a 2018 errata version; ADW also gives Near Threatened; the IUCN page itself was not fetched)",
+    "note": "CITES Appendix I (ADW). Spanish Wikipedia tags the three Costa Rican subpopulations (Talamanca, Península de Osa, Indio-Maíz–Tortuguero) as critically endangered.",
+    "sources": ["https://en.wikipedia.org/wiki/Jaguar", "https://animaldiversity.org/accounts/Panthera_onca/", "https://es.wikipedia.org/wiki/Panthera_onca"]
+   },
+   "size": {
+    "length_cm_range": [112, 185],
+    "tail_cm_range": [45, 75],
+    "shoulder_height_cm_range": [57, 81],
+    "mass_kg_range": [56, 96],
+    "status": "confirmed (Wikipedia: nose to tail base 112–185 cm, tail 45–75 cm, shoulder height 57–81 cm, most regions 56–96 kg, exceptional males to 158 kg; females 10–20% smaller); approximate (ADW gives 150–180 cm body, 70–90 cm tail, 68–136 kg)",
+    "sources": ["https://en.wikipedia.org/wiki/Jaguar", "https://animaldiversity.org/accounts/Panthera_onca/"]
+   },
+   "habitat": {
+    "en": "Dense forest above all — dry deciduous, moist broadleaf, rainforest and cloud forest — but also seasonally flooded wetlands and dry grassland; it favours riverine habitat and swamps, is almost always near water and avoids arid country. Recorded up to 3,800 m, a record ADW places in Costa Rica.",
+    "es": "Sobre todo bosque denso —seco caducifolio, húmedo latifoliado, lluvioso y nuboso—, pero también humedales de inundación estacional y pastizales secos; prefiere las riberas y los pantanos, casi siempre está cerca del agua y evita las zonas áridas. Registrado hasta los 3.800 m, un récord que ADW ubica en Costa Rica.",
+    "status": "confirmed (Wikipedia, ADW)",
+    "sources": ["https://en.wikipedia.org/wiki/Jaguar", "https://animaldiversity.org/accounts/Panthera_onca/"]
+   },
+   "distributionCR": {
+    "en": "Costa Rica is within the present range, which runs from the United States and Mexico through Central America to South America; English Wikipedia singles out the Osa Peninsula and records black jaguars photographed in the Alberto Manuel Brenes Biological Reserve and Barbilla National Park. Spanish Wikipedia names three Costa Rican subpopulations: Talamanca, the Osa Peninsula and Indio-Maíz–Tortuguero. Corcovado National Park is 'central to the conservation of the Osa Peninsula jaguar subpopulation', the peninsula being one of six key jaguar conservation areas in the country (Oryx 2025); at Tortuguero jaguars hunt nesting green turtles on the Caribbean beach (Sea Turtle Conservancy). No fetched source names Santa Rosa or Guanacaste.",
+    "es": "Costa Rica está dentro del área actual, que va de Estados Unidos y México por Centroamérica hasta Sudamérica; la Wikipedia en inglés destaca la península de Osa y registra jaguares negros fotografiados en la Reserva Biológica Alberto Manuel Brenes y el Parque Nacional Barbilla. La Wikipedia en español nombra tres subpoblaciones costarricenses: Talamanca, península de Osa e Indio-Maíz–Tortuguero. El Parque Nacional Corcovado es 'central para la conservación de la subpoblación de jaguares de la península de Osa', una de las seis áreas clave para el jaguar en el país (Oryx 2025); en Tortuguero los jaguares cazan tortugas verdes que anidan en la playa caribeña (Sea Turtle Conservancy). Ninguna fuente consultada nombra Santa Rosa ni Guanacaste.",
+    "status": "confirmed (Wikipedia en/es, Oryx 2025, Sea Turtle Conservancy abstract)",
+    "sources": ["https://en.wikipedia.org/wiki/Jaguar", "https://es.wikipedia.org/wiki/Panthera_onca", "https://www.cambridge.org/core/journals/oryx/article/conservation-crisis-status-of-jaguars-panthera-onca-in-corcovado-national-park-costa-rica/DB1034CFAED2447D7E4326BD481B5768", "https://conserveturtles.org/?p=21309"]
+   },
+   "diet": {
+    "en": "A strict carnivore with more than 80 prey species (ADW: over 85), from peccaries, tapirs, deer and capybaras to caimans, turtles, snakes, fish and large birds; it prefers prey of 45–85 kg, and its bite can pierce the carapace of turtles and tortoises.",
+    "es": "Carnívoro estricto con más de 80 especies de presa (ADW: más de 85), desde saínos, dantas, venados y capibaras hasta caimanes, tortugas, serpientes, peces y aves grandes; prefiere presas de 45–85 kg y su mordida perfora el caparazón de las tortugas.",
+    "status": "confirmed (Wikipedia en/es, ADW)",
+    "sources": ["https://en.wikipedia.org/wiki/Jaguar", "https://es.wikipedia.org/wiki/Panthera_onca", "https://animaldiversity.org/accounts/Panthera_onca/"]
+   },
+   "behaviour": {
+    "en": "Largely solitary except for females with cubs; mostly nocturnal and crepuscular; a strong swimmer that hunts and plays in water; marks a territory of about 25–50 km² with scrapes, urine and faeces; roars; and kills by biting through the skull between the ears to reach the brain.",
+    "es": "Mayormente solitario, salvo las hembras con cachorros; sobre todo nocturno y crepuscular; gran nadador que caza y juega en el agua; marca un territorio de unos 25–50 km² con rasguños, orina y heces; ruge; y mata mordiendo el cráneo entre las orejas hasta llegar al cerebro.",
+    "status": "confirmed (Wikipedia en/es, ADW)",
+    "sources": ["https://en.wikipedia.org/wiki/Jaguar", "https://es.wikipedia.org/wiki/Panthera_onca", "https://animaldiversity.org/accounts/Panthera_onca/"]
+   },
+   "facts": [
+    {
+     "en": "On Tortuguero's 30 km nesting beach, jaguars killed a minimum of 28–97 green turtles a year between 2000 and 2004 — up from two documented cases in the 1980s, four in 1997 and at least 22 in 1999.",
+     "es": "En los 30 km de playa de anidación de Tortuguero, los jaguares mataron un mínimo de 28–97 tortugas verdes por año entre 2000 y 2004 —frente a dos casos documentados en los años ochenta, cuatro en 1997 y al menos 22 en 1999.",
+     "status": "confirmed (Harrison, Troëng & Fletcher 2005 abstract, Sea Turtle Conservancy)",
+     "sources": ["https://conserveturtles.org/?p=21309"]
+    },
+    {
+     "en": "Camera traps in Corcovado National Park detected 11 jaguars over seven years, and estimated density rose from 0.44 per 100 km² in 2015 to 1.21 in 2020 — the authors conclude the park's jaguars 'may not be in a state of crisis'.",
+     "es": "Las cámaras trampa del Parque Nacional Corcovado detectaron 11 jaguares en siete años, y la densidad estimada subió de 0,44 por 100 km² en 2015 a 1,21 en 2020 —los autores concluyen que los jaguares del parque 'podrían no estar en crisis'.",
+     "status": "confirmed (Oryx 2025)",
+     "sources": ["https://www.cambridge.org/core/journals/oryx/article/conservation-crisis-status-of-jaguars-panthera-onca-in-corcovado-national-park-costa-rica/DB1034CFAED2447D7E4326BD481B5768"]
+    },
+    {
+     "en": "Unlike other big cats it kills by biting through the skull between the ears, and a jaguar has been recorded dragging a 34 kg sea turtle more than 90 m through forest.",
+     "es": "A diferencia de otros grandes felinos, mata mordiendo el cráneo entre las orejas, y se ha registrado a un jaguar arrastrando una tortuga marina de 34 kg más de 90 m por el bosque.",
+     "status": "confirmed (Wikipedia en/es, ADW)",
+     "sources": ["https://en.wikipedia.org/wiki/Jaguar", "https://es.wikipedia.org/wiki/Panthera_onca", "https://animaldiversity.org/accounts/Panthera_onca/"]
+    }
+   ],
+   "sources": [
+    { "url": "https://en.wikipedia.org/wiki/Jaguar", "title": "Jaguar", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Panthera onca (Linnaeus, 1758), Felidae, Carnivora; Near Threatened (2017); 112–185 cm, tail 45–75 cm, 56–96 kg; habitat; range incl. Costa Rica, Osa Peninsula, Alberto Manuel Brenes and Barbilla; diet and prey size; skull bite; solitary, nocturnal/crepuscular, swimmer" },
+    { "url": "https://es.wikipedia.org/wiki/Panthera_onca", "title": "Panthera onca", "publisher": "Wikipedia (Spanish)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Spanish names (jaguar, yaguar, yaguareté, otorongo, tigre); three Costa Rican subpopulations Talamanca, Península Osa, Indio-Maíz–Tortuguero; more than 80 prey species; 34 kg sea turtle dragged 90 m; roar; crepuscular" },
+    { "url": "https://animaldiversity.org/accounts/Panthera_onca/", "title": "Panthera onca (jaguar)", "publisher": "Animal Diversity Web, University of Michigan", "published": null, "retrieved": "2026-10-25",
+      "supports": "over 85 prey species; territory 25–50 km²; 3,800 m record in Costa Rica; Near Threatened, CITES I; alternative size figures" },
+    { "url": "https://conserveturtles.org/?p=21309", "title": "Jaguar predation on green turtles at Tortuguero (Harrison, Troëng & Fletcher, 25th Symposium abstract)", "publisher": "Sea Turtle Conservancy (Caribbean Conservation Corporation, Costa Rica)", "published": "2005", "retrieved": "2026-10-25",
+      "supports": "28–97 green turtles killed annually 2000–2004 on ~30 km of Tortuguero beach; 2 cases 1980s, 4 in 1997, 22 in 1999; rising trend" },
+    { "url": "https://www.cambridge.org/core/journals/oryx/article/conservation-crisis-status-of-jaguars-panthera-onca-in-corcovado-national-park-costa-rica/DB1034CFAED2447D7E4326BD481B5768", "title": "Conservation crisis? Status of jaguars Panthera onca in Corcovado National Park, Costa Rica (Olson et al., Oryx 59(3): 351–362)", "publisher": "Cambridge University Press / Fauna & Flora", "published": "2025", "retrieved": "2026-10-25",
+      "supports": "density 0.44 (2015) to 1.21 (2020) per 100 km²; 11 jaguars detected 2015–2021; Corcovado central to the Osa subpopulation, one of six key areas; illegal hunting" },
+    { "url": "https://es.wikipedia.org/wiki/Mam%C3%ADferos_de_Costa_Rica", "title": "Anexo: Mamíferos de Costa Rica", "publisher": "Wikipedia (Spanish)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Costa Rican common names 'Jaguar' and 'Tigre, pantera, namú'; NT; 250 mammal species in Costa Rica" }
+   ]
+  },
+  {
+   "id": "mantled-howler-monkey",
+   "commonNames": {
+    "en": "Mantled Howler Monkey",
+    "es": "mono congo",
+    "esAlt": ["mono aullador", "aullador de manto", "saraguato de manto"],
+    "zh": "鬃毛吼猴",
+    "status": "confirmed (en: Wikipedia; es 'mono congo' and 'mono aullador' as the Costa Rican names: Anexo Mamíferos de Costa Rica, and the ACG Santa Rosa page calls them 'congos'; 'aullador de manto' and 'saraguato de manto' from Spanish Wikipedia); uncertain (zh: not verified)",
+    "sources": ["https://en.wikipedia.org/wiki/Mantled_howler", "https://es.wikipedia.org/wiki/Mam%C3%ADferos_de_Costa_Rica", "https://www.acguanacaste.ac.cr/investigacion/investigaciones-de-largo-plazo/34-proyecto-de-primates-de-santa-rosa", "https://es.wikipedia.org/wiki/Alouatta_palliata"]
+   },
+   "scientific": "Alouatta palliata",
+   "authority": "(Gray, 1849)",
+   "family": "Atelidae",
+   "order": "Primates",
+   "taxonomyStatus": "approximate (Wikipedia; GBIF not fetched)",
+   "nomenclature": {
+    "en": "Two subspecies occur in Costa Rica per both Wikipedias: A. p. palliata (the golden-mantled howler) and A. p. aequatorialis.",
+    "es": "Dos subespecies están en Costa Rica según ambas Wikipedias: A. p. palliata (aullador de manto dorado) y A. p. aequatorialis.",
+    "status": "approximate (Wikipedia en/es)",
+    "sources": ["https://en.wikipedia.org/wiki/Mantled_howler", "https://es.wikipedia.org/wiki/Alouatta_palliata"]
+   },
+   "iucn": {
+    "category": "VU",
+    "categoryName": "Vulnerable",
+    "year": 2021,
+    "status": "approximate (English Wikipedia cites a 2021 Red List assessment, Spanish Wikipedia says 2020; ADW and the English 'List of Costa Rican monkey species' text still say Least Concern, an older category; the IUCN page itself was not fetched)",
+    "note": "CITES Appendix I (Wikipedia).",
+    "sources": ["https://en.wikipedia.org/wiki/Mantled_howler", "https://es.wikipedia.org/wiki/Alouatta_palliata", "https://animaldiversity.org/accounts/Alouatta_palliata/"]
+   },
+   "size": {
+    "length_cm_range": [48, 68],
+    "tail_cm_range": [54.5, 65.5],
+    "mass_kg_range": [3.1, 9.8],
+    "status": "confirmed (Wikipedia: head-body males 50.8–67.5 cm, females 48.1–63.2 cm; tail 54.5–65.5 cm; males 4.5–9.8 kg, females 3.1–7.6 kg; Costa Rican males average 7.2 kg and females 5.4 kg per the List of Costa Rican monkey species)",
+    "sources": ["https://en.wikipedia.org/wiki/Mantled_howler", "https://en.wikipedia.org/wiki/List_of_Costa_Rican_monkey_species"]
+   },
+   "habitat": {
+    "en": "Lowland and montane rainforest, secondary and semi-deciduous forest, dry forest and mangroves, from sea level to 2,500 m; densities are highest in older evergreen forest, but it is adaptable and persists in fragmented, disturbed forest.",
+    "es": "Bosque lluvioso de bajura y de montaña, bosque secundario y semicaducifolio, bosque seco y manglares, desde el nivel del mar hasta los 2.500 m; las densidades son mayores en bosque maduro siempreverde, pero se adapta y persiste en bosques fragmentados y alterados.",
+    "status": "confirmed (Wikipedia en/es, ADW)",
+    "sources": ["https://en.wikipedia.org/wiki/Mantled_howler", "https://es.wikipedia.org/wiki/Alouatta_palliata", "https://animaldiversity.org/accounts/Alouatta_palliata/"]
+   },
+   "distributionCR": {
+    "en": "Found throughout Costa Rica — Spanish Wikipedia: 'todo el país, exceptuando la Isla del Coco' — at a density of about 90 individuals per km²; it is among the most commonly seen and heard primates in Manuel Antonio, Corcovado and Monteverde national parks (English Wikipedia), and has been studied continuously since 1983 in the regenerating dry forest of Santa Rosa, Guanacaste (ACG) and at La Pacifica and in northeastern Costa Rica (ADW).",
+    "es": "Presente en toda Costa Rica —Wikipedia en español: 'todo el país, exceptuando la Isla del Coco'— con una densidad de unos 90 individuos por km²; es uno de los primates que más se ven y se oyen en los parques nacionales Manuel Antonio, Corcovado y Monteverde (Wikipedia en inglés), y se estudia sin interrupción desde 1983 en el bosque seco en regeneración de Santa Rosa, Guanacaste (ACG) y en La Pacífica y el noreste del país (ADW).",
+    "status": "confirmed (Wikipedia en/es, ACG, ADW)",
+    "sources": ["https://en.wikipedia.org/wiki/Mantled_howler", "https://es.wikipedia.org/wiki/Alouatta_palliata", "https://www.acguanacaste.ac.cr/investigacion/investigaciones-de-largo-plazo/34-proyecto-de-primates-de-santa-rosa", "https://animaldiversity.org/accounts/Alouatta_palliata/"]
+   },
+   "diet": {
+    "en": "Leaves and fruit in roughly equal shares, with young leaves preferred for protein and flowers important in the dry season; Ficus leaves and fruit are favourites. A Costa Rican study found 49% leaves, 28% fruit and 22.5% flowers.",
+    "es": "Hojas y frutas en partes casi iguales, con preferencia por las hojas tiernas por su proteína y flores importantes en la estación seca; las hojas y los higos de Ficus son sus favoritos. Un estudio en Costa Rica halló 49% hojas, 28% frutas y 22,5% flores.",
+    "status": "confirmed (Wikipedia en/es, ADW)",
+    "sources": ["https://en.wikipedia.org/wiki/Mantled_howler", "https://es.wikipedia.org/wiki/Alouatta_palliata", "https://animaldiversity.org/accounts/Alouatta_palliata/"]
+   },
+   "behaviour": {
+    "en": "Lives in groups of 10–20 (sometimes over 40) with one to three adult males and several females; the males' dawn-and-dusk howls carry about 2 km and warn neighbouring groups off without a fight; it rests the whole night and about three quarters of the day, hangs by its prehensile tail to feed, and holds a territory of 10–60 ha.",
+    "es": "Vive en grupos de 10–20 (a veces más de 40) con uno a tres machos adultos y varias hembras; los aullidos de los machos al amanecer y al atardecer se oyen a unos 2 km y alejan a los grupos vecinos sin pelear; descansa toda la noche y unas tres cuartas partes del día, se cuelga de la cola prensil para comer y defiende un territorio de 10–60 ha.",
+    "status": "confirmed (Wikipedia en/es, ADW)",
+    "sources": ["https://en.wikipedia.org/wiki/Mantled_howler", "https://es.wikipedia.org/wiki/Alouatta_palliata", "https://animaldiversity.org/accounts/Alouatta_palliata/"]
+   },
+   "facts": [
+    {
+     "en": "Its howl is among the loudest of any New World primate — audible 2 km away — thanks to a hyoid bone that, in males, is 25 times larger than a spider monkey's of similar size.",
+     "es": "Su aullido está entre los más fuertes de los primates americanos —se oye a 2 km— gracias a un hueso hioides que, en los machos, es 25 veces más grande que el de un mono araña de tamaño similar.",
+     "status": "confirmed (Wikipedia en/es)",
+     "sources": ["https://en.wikipedia.org/wiki/Mantled_howler", "https://es.wikipedia.org/wiki/Alouatta_palliata"]
+    },
+    {
+     "en": "It is the laziest-looking monkey in the forest for good reason: it sleeps or rests the whole night and about three quarters of the day, and one study found rest took up 65.5% of daytime activity.",
+     "es": "Parece el mono más vago del bosque por una buena razón: duerme o descansa toda la noche y unas tres cuartas partes del día, y un estudio halló que el descanso ocupaba el 65,5% de la actividad diurna.",
+     "status": "confirmed (Wikipedia en/es)",
+     "sources": ["https://en.wikipedia.org/wiki/Mantled_howler", "https://es.wikipedia.org/wiki/Alouatta_palliata"]
+    },
+    {
+     "en": "In Santa Rosa, Guanacaste, a primate project running since 1983 has watched the 'congos' recolonise regenerating tropical dry forest, with the population apparently reaching carrying capacity in 1999.",
+     "es": "En Santa Rosa, Guanacaste, un proyecto de primates que corre desde 1983 ha visto a los congos recolonizar el bosque seco tropical en regeneración, con una población que aparentemente alcanzó su capacidad de carga en 1999.",
+     "status": "confirmed (ACG Santa Rosa primate project page)",
+     "sources": ["https://www.acguanacaste.ac.cr/investigacion/investigaciones-de-largo-plazo/34-proyecto-de-primates-de-santa-rosa"]
+    }
+   ],
+   "sources": [
+    { "url": "https://en.wikipedia.org/wiki/Mantled_howler", "title": "Mantled howler", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Alouatta palliata (J. E. Gray, 1849), Atelidae, Primates; Vulnerable (2021); sizes; subspecies palliata and aequatorialis in Costa Rica; Manuel Antonio, Corcovado, Monteverde; diet shares; groups 10–20; rests ¾ of day; hyoid 25× larger; CITES I" },
+    { "url": "https://es.wikipedia.org/wiki/Alouatta_palliata", "title": "Alouatta palliata", "publisher": "Wikipedia (Spanish)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Spanish names; 'todo el país, exceptuando la Isla del Coco'; ~90 individuals/km² in Costa Rica; howl audible 2 km; Costa Rican diet 49% leaves, 28% fruit, 22.5% flowers; 65.54% rest; territory 10–60 ha; habitat types" },
+    { "url": "https://animaldiversity.org/accounts/Alouatta_palliata/", "title": "Alouatta palliata (mantled howler monkey)", "publisher": "Animal Diversity Web, University of Michigan", "published": null, "retrieved": "2026-10-25",
+      "supports": "lowland and montane rain forest to 2,500 m; groups of 10–20 with 1–3 adult males and 5–10 females; studies at La Pacifica and northeastern Costa Rica; Least Concern (older category)" },
+    { "url": "https://en.wikipedia.org/wiki/List_of_Costa_Rican_monkey_species", "title": "List of Costa Rican monkey species", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "found over much of Costa Rica; Costa Rican males average 7.2 kg, females 5.4 kg; second-largest Costa Rican monkey; four native monkey species" },
+    { "url": "https://www.acguanacaste.ac.cr/investigacion/investigaciones-de-largo-plazo/34-proyecto-de-primates-de-santa-rosa", "title": "Proyecto de Primates de Santa Rosa", "publisher": "Área de Conservación Guanacaste (SINAC), Costa Rica", "published": null, "retrieved": "2026-10-25",
+      "supports": "'congos' as the local name; project since 1983 (Linda Fedigan, University of Calgary); howler population apparently reached carrying capacity in 1999 in regenerating tropical dry forest; Aureli's team studies spider monkeys" },
+    { "url": "https://es.wikipedia.org/wiki/Mam%C3%ADferos_de_Costa_Rica", "title": "Anexo: Mamíferos de Costa Rica", "publisher": "Wikipedia (Spanish)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Costa Rican common names 'Mono congo, mono aullador'" }
+   ]
+  },
+  {
+   "id": "geoffroys-spider-monkey",
+   "commonNames": {
+    "en": "Geoffroy's Spider Monkey",
+    "es": "mono araña",
+    "esAlt": ["mono colorado", "mono araña centroamericano", "mono araña de manos negras"],
+    "zh": "黑掌蜘蛛猴",
+    "status": "confirmed (en: Wikipedia; es 'mono araña' and 'mono colorado' as the Costa Rican names: Anexo Mamíferos de Costa Rica and the ACG species page; 'mono araña centroamericano' and 'mono araña de manos negras' from Spanish Wikipedia); uncertain (zh: not verified)",
+    "sources": ["https://en.wikipedia.org/wiki/Geoffroy%27s_spider_monkey", "https://es.wikipedia.org/wiki/Mam%C3%ADferos_de_Costa_Rica", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/783-atelidae/6646-i-ateles-geoffroyi-i-atelidae", "https://es.wikipedia.org/wiki/Ateles_geoffroyi"]
+   },
+   "scientific": "Ateles geoffroyi",
+   "authority": "Kuhl, 1820",
+   "family": "Atelidae",
+   "order": "Primates",
+   "taxonomyStatus": "approximate (Wikipedia; GBIF not fetched)",
+   "nomenclature": {
+    "en": "Spanish Wikipedia lists A. g. ornatus for Costa Rica and Panama (a caption places it in south-eastern Costa Rica) and A. g. geoffroyi for Nicaragua and Costa Rica; some authorities also recognise A. g. frontatus. English Wikipedia does not tie any subspecies to Costa Rica.",
+    "es": "La Wikipedia en español asigna A. g. ornatus a Costa Rica y Panamá (un pie de foto lo ubica en el sureste de Costa Rica) y A. g. geoffroyi a Nicaragua y Costa Rica; algunos autores reconocen además A. g. frontatus. La Wikipedia en inglés no vincula ninguna subespecie con Costa Rica.",
+    "status": "approximate (Spanish Wikipedia; not confirmed by the English page)",
+    "sources": ["https://es.wikipedia.org/wiki/Ateles_geoffroyi", "https://en.wikipedia.org/wiki/Geoffroy%27s_spider_monkey"]
+   },
+   "iucn": {
+    "category": "EN",
+    "categoryName": "Endangered",
+    "year": 2021,
+    "status": "approximate (category and year as stated on the English Wikipedia species page; also Endangered on Spanish Wikipedia, ADW, the List of Costa Rican monkey species and the ACG page — 'catalogada en peligro de extinción'; the IUCN page itself was not fetched)",
+    "note": "CITES Appendix I and US-ESA endangered (ADW). One subspecies is endangered and two critically endangered (Wikipedia).",
+    "sources": ["https://en.wikipedia.org/wiki/Geoffroy%27s_spider_monkey", "https://es.wikipedia.org/wiki/Ateles_geoffroyi", "https://animaldiversity.org/accounts/Ateles_geoffroyi/", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/783-atelidae/6646-i-ateles-geoffroyi-i-atelidae"]
+   },
+   "size": {
+    "length_cm_range": [30, 63],
+    "tail_cm_range": [63, 85],
+    "mass_kg_range": [6, 9],
+    "status": "confirmed (Wikipedia: length 30–63 cm, tail 63–85 cm, 6–9 kg; ADW head-body 30.5–63 cm, tail 63.5–84 cm, average 7.27 kg; Costa Rican males average 8.2 kg and females 7.7 kg per the List of Costa Rican monkey species; ACG gives about 65 cm body and 80 cm tail)",
+    "sources": ["https://en.wikipedia.org/wiki/Geoffroy%27s_spider_monkey", "https://animaldiversity.org/accounts/Ateles_geoffroyi/", "https://en.wikipedia.org/wiki/List_of_Costa_Rican_monkey_species", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/783-atelidae/6646-i-ateles-geoffroyi-i-atelidae"]
+   },
+   "habitat": {
+    "en": "Rainforest, semi-deciduous forest and mangroves, with the highest densities in evergreen forest; it needs large tracts of primary forest. In Guanacaste the ACG describes it as a species of 'bosques húmedos de tierras bajas y montañosas' that is very uncommon in dry forest.",
+    "es": "Bosque lluvioso, semicaducifolio y manglares, con las mayores densidades en bosque siempreverde; necesita grandes extensiones de bosque primario. En Guanacaste el ACG lo describe como especie de 'bosques húmedos de tierras bajas y montañosas', muy poco común en bosque seco.",
+    "status": "confirmed (Wikipedia en/es, ACG)",
+    "sources": ["https://en.wikipedia.org/wiki/Geoffroy%27s_spider_monkey", "https://es.wikipedia.org/wiki/Ateles_geoffroyi", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/783-atelidae/6646-i-ateles-geoffroyi-i-atelidae"]
+   },
+   "distributionCR": {
+    "en": "Costa Rica lies within the range, which runs from southern Mexico through Central America to Panama; it is found in forest over much of the country, and Corcovado National Park is where all four Costa Rican monkeys can be seen (List of Costa Rican monkey species). In the Área de Conservación Guanacaste it lives in the wet lowland and montane forests — the ACG's photographs come from the Sector Rincón Rain Forest — and is very rare in the dry forest, though Filippo Aureli's team studies spider monkeys within the Santa Rosa primate project. No fetched source names Tortuguero or Osa by name beyond Corcovado.",
+    "es": "Costa Rica está dentro del área, que va del sur de México por Centroamérica hasta Panamá; vive en los bosques de buena parte del país, y el Parque Nacional Corcovado es donde se pueden ver los cuatro monos costarricenses (List of Costa Rican monkey species). En el Área de Conservación Guanacaste habita los bosques húmedos de bajura y de montaña —las fotos del ACG son del Sector Rincón Rain Forest— y es muy raro en el bosque seco, aunque el equipo de Filippo Aureli estudia monos araña dentro del proyecto de primates de Santa Rosa. Ninguna fuente consultada nombra Tortuguero ni Osa aparte de Corcovado.",
+    "status": "confirmed (Wikipedia en/es, List of Costa Rican monkey species, ACG)",
+    "sources": ["https://en.wikipedia.org/wiki/Geoffroy%27s_spider_monkey", "https://es.wikipedia.org/wiki/Ateles_geoffroyi", "https://en.wikipedia.org/wiki/List_of_Costa_Rican_monkey_species", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/783-atelidae/6646-i-ateles-geoffroyi-i-atelidae", "https://www.acguanacaste.ac.cr/investigacion/investigaciones-de-largo-plazo/34-proyecto-de-primates-de-santa-rosa"]
+   },
+   "diet": {
+    "en": "Mostly ripe, fleshy fruit — 70–80% of feeding time — with young leaves for protein and smaller amounts of flowers, bark, seeds, buds, insects and honey; it drinks from tree hollows, bromeliad cups and small streams.",
+    "es": "Sobre todo fruta madura y carnosa —70–80% del tiempo de alimentación—, con hojas tiernas por su proteína y menores cantidades de flores, corteza, semillas, brotes, insectos y miel; bebe en huecos de árboles, bromelias y quebradas.",
+    "status": "confirmed (Wikipedia en/es, ACG)",
+    "sources": ["https://en.wikipedia.org/wiki/Geoffroy%27s_spider_monkey", "https://es.wikipedia.org/wiki/Ateles_geoffroyi", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/783-atelidae/6646-i-ateles-geoffroyi-i-atelidae"]
+   },
+   "behaviour": {
+    "en": "Diurnal and arboreal, moving by brachiation and hanging by its tail; it lives in fission–fusion societies of about 20–42 that split into subgroups of 2–6 to feed, ranges over more than 900 ha travelling about 2 km a day, barks and shakes branches when alarmed, and gives birth to one infant every 2–4 years.",
+    "es": "Diurno y arborícola, se mueve braqueando y colgado de la cola; vive en sociedades de fisión-fusión de unos 20–42 que se dividen en subgrupos de 2–6 para comer, recorre más de 900 ha avanzando unos 2 km al día, ladra y sacude ramas cuando se alarma, y tiene una sola cría cada 2–4 años.",
+    "status": "confirmed (Wikipedia en/es, ADW, ACG)",
+    "sources": ["https://en.wikipedia.org/wiki/Geoffroy%27s_spider_monkey", "https://es.wikipedia.org/wiki/Ateles_geoffroyi", "https://animaldiversity.org/accounts/Ateles_geoffroyi/", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/783-atelidae/6646-i-ateles-geoffroyi-i-atelidae"]
+   },
+   "facts": [
+    {
+     "en": "Its hands are hooks: four long fingers and only a vestigial thumb, while the tail — longer than the body, with a bare palm-like pad at the tip — can carry its full weight as a fifth limb.",
+     "es": "Sus manos son ganchos: cuatro dedos largos y apenas un pulgar vestigial, mientras la cola —más larga que el cuerpo, con una almohadilla desnuda en la punta— aguanta todo su peso como quinta extremidad.",
+     "status": "confirmed (Wikipedia, ADW, ACG)",
+     "sources": ["https://en.wikipedia.org/wiki/Geoffroy%27s_spider_monkey", "https://animaldiversity.org/accounts/Ateles_geoffroyi/", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/783-atelidae/6646-i-ateles-geoffroyi-i-atelidae"]
+    },
+    {
+     "en": "It is Costa Rica's largest monkey — males average 8.2 kg — and its most threatened: Endangered, with one infant every 2–4 years, so populations recover slowly from deforestation, hunting and the pet trade.",
+     "es": "Es el mono más grande de Costa Rica —los machos promedian 8,2 kg— y el más amenazado: en peligro, con una cría cada 2–4 años, por lo que las poblaciones se recuperan despacio de la deforestación, la cacería y el tráfico de mascotas.",
+     "status": "confirmed (List of Costa Rican monkey species, Wikipedia en/es, ACG)",
+     "sources": ["https://en.wikipedia.org/wiki/List_of_Costa_Rican_monkey_species", "https://en.wikipedia.org/wiki/Geoffroy%27s_spider_monkey", "https://es.wikipedia.org/wiki/Ateles_geoffroyi", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/783-atelidae/6646-i-ateles-geoffroyi-i-atelidae"]
+    },
+    {
+     "en": "A 2007 study ranked it the third most intelligent non-human primate, behind only orangutans and chimpanzees.",
+     "es": "Un estudio de 2007 lo clasificó como el tercer primate no humano más inteligente, solo detrás de orangutanes y chimpancés.",
+     "status": "confirmed (Spanish Wikipedia)",
+     "sources": ["https://es.wikipedia.org/wiki/Ateles_geoffroyi"]
+    }
+   ],
+   "sources": [
+    { "url": "https://en.wikipedia.org/wiki/Geoffroy%27s_spider_monkey", "title": "Geoffroy's spider monkey", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Ateles geoffroyi Kuhl, 1820, Atelidae, Primates; Endangered (2021); 30–63 cm, tail 63–85 cm, 6–9 kg; habitat; Costa Rica in range; fruit 70–80% of feeding time; vestigial thumb, tail pad; fission–fusion 20–42, subgroups 2–6; >900 ha, 2,000 m/day; threats" },
+    { "url": "https://es.wikipedia.org/wiki/Ateles_geoffroyi", "title": "Ateles geoffroyi", "publisher": "Wikipedia (Spanish)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Spanish names; subspecies ornatus (Costa Rica–Panamá) and geoffroyi (Nicaragua–Costa Rica); 'especie en peligro'; one infant every 2–4 years; barks and alarm calls; 2007 intelligence ranking; threats" },
+    { "url": "https://animaldiversity.org/accounts/Ateles_geoffroyi/", "title": "Ateles geoffroyi (Central American spider monkey)", "publisher": "Animal Diversity Web, University of Michigan", "published": null, "retrieved": "2026-10-25",
+      "supports": "head-body 305–630 mm, tail 635–840 mm, mean 7.27 kg; tail as fifth limb; interbirth interval 2–4 years; Endangered, CITES I" },
+    { "url": "https://en.wikipedia.org/wiki/List_of_Costa_Rican_monkey_species", "title": "List of Costa Rican monkey species", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "largest Costa Rican monkey, males 8.2 kg, females 7.7 kg; found over much of the country; all four species in Corcovado; Endangered" },
+    { "url": "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/783-atelidae/6646-i-ateles-geoffroyi-i-atelidae", "title": "Ateles geoffroyi (Atelidae) — página de especie", "publisher": "Área de Conservación Guanacaste (SINAC), Costa Rica", "published": null, "retrieved": "2026-10-25",
+      "supports": "names 'mono colorado' and 'mono araña'; wet lowland and montane forest, very uncommon in dry forest; photographed at Sector Rincón Rain Forest; ~65 cm body, ~80 cm tail; hook hands with four fingers; diet and drinking; 'en peligro de extinción'; threats" },
+    { "url": "https://www.acguanacaste.ac.cr/investigacion/investigaciones-de-largo-plazo/34-proyecto-de-primates-de-santa-rosa", "title": "Proyecto de Primates de Santa Rosa", "publisher": "Área de Conservación Guanacaste (SINAC), Costa Rica", "published": null, "retrieved": "2026-10-25",
+      "supports": "Ateles geoffroyi among the three primates of the Santa Rosa project; Filippo Aureli's team studies the spider monkeys" },
+    { "url": "https://es.wikipedia.org/wiki/Mam%C3%ADferos_de_Costa_Rica", "title": "Anexo: Mamíferos de Costa Rica", "publisher": "Wikipedia (Spanish)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Costa Rican common names 'Mono araña, mono colorado'; EN" }
+   ]
+  },
+  {
+   "id": "kinkajou",
+   "commonNames": {
+    "en": "Kinkajou",
+    "es": "martilla",
+    "esAlt": ["kinkajú", "mico de noche", "micoleón", "martucha"],
+    "zh": "蜜熊",
+    "status": "confirmed (en: Wikipedia; es 'martilla' as the Costa Rican name: Anexo Mamíferos de Costa Rica lists only 'Martilla', and the Finca Bellavista page near the Osa Peninsula gives 'Martilla' as the local name; 'mico de noche', 'micoleón' (El Salvador), 'martucha' (México) and 'kinkajú' from Spanish Wikipedia); uncertain (zh: not verified)",
+    "sources": ["https://en.wikipedia.org/wiki/Kinkajou", "https://es.wikipedia.org/wiki/Mam%C3%ADferos_de_Costa_Rica", "https://www.fincabellavistacommunity.com/?p=9215", "https://es.wikipedia.org/wiki/Potos_flavus"]
+   },
+   "scientific": "Potos flavus",
+   "authority": "(Schreber, 1774)",
+   "family": "Procyonidae",
+   "order": "Carnivora",
+   "taxonomyStatus": "approximate (Wikipedia; GBIF not fetched)",
+   "iucn": {
+    "category": "LC",
+    "categoryName": "Least Concern",
+    "year": 2016,
+    "status": "approximate (category and year as stated on the English Wikipedia species page; ADW also Least Concern; the IUCN page itself was not fetched)",
+    "note": "CITES Appendix III (ADW). Spanish Wikipedia notes forest destruction as a threat, especially in Central America.",
+    "sources": ["https://en.wikipedia.org/wiki/Kinkajou", "https://animaldiversity.org/accounts/Potos_flavus/", "https://es.wikipedia.org/wiki/Potos_flavus"]
+   },
+   "size": {
+    "length_cm_range": [42, 58],
+    "total_length_cm_range": [82, 133],
+    "tail_cm_range": [39, 57],
+    "mass_kg_range": [1.4, 4.6],
+    "status": "approximate (Spanish Wikipedia: body 42–58 cm, tail 40–50 cm, 2–5 kg; English Wikipedia: 82–133 cm given as head-and-body length 'including tail', tail 39–57 cm, 1.4–4.6 kg; ADW: total length 820–1,330 mm, 2.0–4.6 kg — the 82–133 cm figure is read here as total length)",
+    "sources": ["https://es.wikipedia.org/wiki/Potos_flavus", "https://en.wikipedia.org/wiki/Kinkajou", "https://animaldiversity.org/accounts/Potos_flavus/"]
+   },
+   "habitat": {
+    "en": "Closed-canopy tropical forest — lowland rainforest, montane forest, dry forest, gallery forest and secondary forest — from sea level to 2,500 m; rarely in cloud forest or thorn forest. It lives in the treetops and sleeps by day in tree holes.",
+    "es": "Bosque tropical de dosel cerrado —bosque lluvioso de bajura, bosque de montaña, bosque seco, bosque de galería y bosque secundario— desde el nivel del mar hasta los 2.500 m; raro en bosque nuboso o espinoso. Vive en las copas y duerme de día en huecos de árboles.",
+    "status": "confirmed (Wikipedia en/es, ADW, Finca Bellavista)",
+    "sources": ["https://en.wikipedia.org/wiki/Kinkajou", "https://es.wikipedia.org/wiki/Potos_flavus", "https://animaldiversity.org/accounts/Potos_flavus/", "https://www.fincabellavistacommunity.com/?p=9215"]
+   },
+   "distributionCR": {
+    "en": "Its range runs from eastern and southern Mexico throughout Central America to Bolivia and south-eastern Brazil, so all of Costa Rica falls within it; English Wikipedia mentions Costa Rica only as a genetic clade (specimens from Costa Rica grouped together in a 2016 mitochondrial DNA study). A Finca Bellavista page, near the Osa Peninsula, calls it 'one of the most common and widespread medium-sized mammals in Costa Rica' and describes families sleeping in hollow trees on the property. No fetched source names a Costa Rican national park.",
+    "es": "Su área va del este y sur de México por toda Centroamérica hasta Bolivia y el sureste de Brasil, así que toda Costa Rica queda dentro; la Wikipedia en inglés menciona Costa Rica solo como clado genético (ejemplares costarricenses agrupados en un estudio de ADN mitocondrial de 2016). Una página de Finca Bellavista, cerca de la península de Osa, la llama 'uno de los mamíferos medianos más comunes y extendidos de Costa Rica' y describe familias que duermen en árboles huecos de la finca. Ninguna fuente consultada nombra un parque nacional costarricense.",
+    "status": "confirmed (range, Wikipedia; Costa Rica statement, Finca Bellavista); interpretation (that the whole country lies within the range)",
+    "sources": ["https://en.wikipedia.org/wiki/Kinkajou", "https://es.wikipedia.org/wiki/Potos_flavus", "https://www.fincabellavistacommunity.com/?p=9215"]
+   },
+   "diet": {
+    "en": "About 90% fruit — figs can be half the diet — plus flowers, nectar, leaves and insects (ants above all), with the odd egg or small vertebrate; its love of honey in captivity earned it the name 'honey bear', and seeds pass through it intact and germinate faster, making it a seed disperser and possibly a pollinator.",
+    "es": "Un 90% fruta —los higos pueden ser la mitad de la dieta— más flores, néctar, hojas e insectos (sobre todo hormigas), con algún huevo o vertebrado pequeño; su gusto por la miel en cautiverio le valió el nombre de 'oso mielero', y las semillas la atraviesan intactas y germinan más rápido, así que dispersa semillas y quizá poliniza.",
+    "status": "confirmed (Wikipedia en/es, ADW)",
+    "sources": ["https://en.wikipedia.org/wiki/Kinkajou", "https://es.wikipedia.org/wiki/Potos_flavus", "https://animaldiversity.org/accounts/Potos_flavus/"]
+   },
+   "behaviour": {
+    "en": "Strictly nocturnal and arboreal, most active from about 7 pm to midnight and again before dawn; it feeds mostly alone but sleeps in small family groups — usually two males and a female — that groom one another, uses its fully prehensile tail as a fifth hand, and can live about 23 years in captivity (record 42).",
+    "es": "Estrictamente nocturna y arborícola, más activa de las 7 de la noche a medianoche y otra vez antes del amanecer; come casi siempre sola pero duerme en pequeños grupos familiares —normalmente dos machos y una hembra— que se acicalan entre sí, usa la cola totalmente prensil como quinta mano, y vive unos 23 años en cautiverio (récord 42).",
+    "status": "confirmed (Wikipedia, ADW, Finca Bellavista)",
+    "sources": ["https://en.wikipedia.org/wiki/Kinkajou", "https://animaldiversity.org/accounts/Potos_flavus/", "https://www.fincabellavistacommunity.com/?p=9215"]
+   },
+   "facts": [
+    {
+     "en": "It can rotate its ankles and feet 180°, so it runs backwards along branches and climbs down trunks head-first.",
+     "es": "Puede girar los tobillos y las patas 180°, así que corre hacia atrás por las ramas y baja los troncos de cabeza.",
+     "status": "confirmed (Wikipedia; ADW: 'fully reversible hind feet')",
+     "sources": ["https://en.wikipedia.org/wiki/Kinkajou", "https://animaldiversity.org/accounts/Potos_flavus/"]
+    },
+    {
+     "en": "A slender tongue about 13 cm long reaches nectar deep in flowers and ants out of their nests — and may leave the kinkajou's face dusted with pollen, making it a possible pollinator.",
+     "es": "Una lengua delgada de unos 13 cm alcanza el néctar en el fondo de las flores y las hormigas en sus nidos —y puede dejarle la cara empolvada de polen, lo que la hace posible polinizadora.",
+     "status": "confirmed (Wikipedia, ADW, Finca Bellavista)",
+     "sources": ["https://en.wikipedia.org/wiki/Kinkajou", "https://animaldiversity.org/accounts/Potos_flavus/", "https://www.fincabellavistacommunity.com/?p=9215"]
+    },
+    {
+     "en": "Though a procyonid — a relative of the raccoon and the coati — it is the forest's mimic of a monkey, and near the Osa Peninsula the surest way to find a 'martilla' is a headlamp catching its orange eyeshine in a fruiting tree at night.",
+     "es": "Aunque es un prociónido —pariente del mapache y del pizote—, es el mono postizo del bosque, y cerca de la península de Osa la forma más segura de hallar una martilla es un foco que capte el brillo naranja de sus ojos en un árbol frutal de noche.",
+     "status": "confirmed (family, Wikipedia; eyeshine and 'martilla', Finca Bellavista); interpretation (the monkey comparison)",
+     "sources": ["https://en.wikipedia.org/wiki/Kinkajou", "https://www.fincabellavistacommunity.com/?p=9215"]
+    }
+   ],
+   "sources": [
+    { "url": "https://en.wikipedia.org/wiki/Kinkajou", "title": "Kinkajou", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Potos flavus (Schreber, 1774), Procyonidae, Carnivora; Least Concern (2016); 82–133 cm, tail 39–57 cm, 1.4–4.6 kg; habitat to 2,500 m; range throughout Central America, Costa Rica as a genetic clade; ~90% fruit, figs; 'honey bear'; nocturnal 7 pm–midnight; prehensile tail; 180° feet; 13 cm tongue; lifespan" },
+    { "url": "https://es.wikipedia.org/wiki/Potos_flavus", "title": "Potos flavus", "publisher": "Wikipedia (Spanish)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Spanish names (martilla, mico de noche, micoleón, martucha, kinkajú…); body 42–58 cm, tail 40–50 cm, 2–5 kg; honey; nocturnal, prehensile tail, long tongue; forest destruction a threat in Central America" },
+    { "url": "https://animaldiversity.org/accounts/Potos_flavus/", "title": "Potos flavus (kinkajou)", "publisher": "Animal Diversity Web, University of Michigan", "published": null, "retrieved": "2026-10-25",
+      "supports": "2.0–4.6 kg, 820–1,330 mm total length; fully reversible hind feet; figs up to half the diet; seed dispersal and possible pollination; groups of two males and a female; Least Concern, CITES III" },
+    { "url": "https://www.fincabellavistacommunity.com/?p=9215", "title": "Introducing the Kinkajou – acrobatic carnivore of the treetops", "publisher": "Finca Bellavista community (near the Osa Peninsula, Costa Rica)", "published": null, "retrieved": "2026-10-25",
+      "supports": "local name 'Martilla'; 'one of the most common and widespread medium-sized mammals in Costa Rica'; sleeps in hollow trees in groups of two males and a female; orange eyeshine; long tongue for ants; fruit, flowers, nectar" },
+    { "url": "https://es.wikipedia.org/wiki/Mam%C3%ADferos_de_Costa_Rica", "title": "Anexo: Mamíferos de Costa Rica", "publisher": "Wikipedia (Spanish)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Costa Rican common name 'Martilla'; LC" }
+   ]
+  },
+  {
+   "id": "white-nosed-coati",
+   "commonNames": {
+    "en": "White-nosed Coati",
+    "es": "pizote",
+    "esAlt": ["coatí", "pizote solo", "antón", "tejón", "gato solo"],
+    "zh": "白鼻浣熊",
+    "status": "confirmed (en: Wikipedia; es 'pizote' as the Costa Rican name: Anexo Mamíferos de Costa Rica lists 'Pizote' with 'Coatí, pizote solo', and the ACG species page uses 'Pizote'; 'antón', 'tejón' and 'gato solo' from English and Spanish Wikipedia, 'tejón' mainly in Mexico); uncertain (zh: not verified)",
+    "sources": ["https://en.wikipedia.org/wiki/White-nosed_coati", "https://es.wikipedia.org/wiki/Mam%C3%ADferos_de_Costa_Rica", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/658-procyonidae/6319-i-nasua-narica-i-procyonidae-2", "https://es.wikipedia.org/wiki/Nasua_narica"]
+   },
+   "scientific": "Nasua narica",
+   "authority": "(Linnaeus, 1766)",
+   "family": "Procyonidae",
+   "order": "Carnivora",
+   "taxonomyStatus": "approximate (Wikipedia; GBIF not fetched)",
+   "iucn": {
+    "category": "LC",
+    "categoryName": "Least Concern",
+    "year": 2016,
+    "status": "approximate (category and year as stated on the English Wikipedia species page; ADW also Least Concern; the IUCN page itself was not fetched)",
+    "note": "Honduras has listed its population in CITES Appendix III (ADW).",
+    "sources": ["https://en.wikipedia.org/wiki/White-nosed_coati", "https://animaldiversity.org/accounts/Nasua_narica/"]
+   },
+   "size": {
+    "total_length_cm_range": [80, 130],
+    "mass_kg_range": [4, 6],
+    "status": "approximate (Wikipedia: about 110 cm nose to tail with about half of that tail, 4–6 kg, small females 3.1 kg to large males 9 kg; ADW: 80–130 cm with over half tail, 3–5 kg; ACG: about 120 cm)",
+    "sources": ["https://en.wikipedia.org/wiki/White-nosed_coati", "https://animaldiversity.org/accounts/Nasua_narica/", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/658-procyonidae/6319-i-nasua-narica-i-procyonidae-2"]
+   },
+   "habitat": {
+    "en": "Wooded country of every kind — tropical dry and moist broadleaf forest, scrub, savanna edges and farmland — from sea level to 3,000 m (Spanish Wikipedia: 3,500 m); the ACG records it in both the dry and the wet forests of Guanacaste. It forages on the ground by day and sleeps in the treetops at night.",
+    "es": "Zonas boscosas de todo tipo —bosque seco y húmedo tropical, charrales, bordes de sabana y fincas— desde el nivel del mar hasta los 3.000 m (Wikipedia en español: 3.500 m); el ACG lo registra tanto en el bosque seco como en el húmedo de Guanacaste. Busca comida en el suelo de día y duerme en las copas de noche.",
+    "status": "confirmed (Wikipedia en/es, ADW, ACG)",
+    "sources": ["https://en.wikipedia.org/wiki/White-nosed_coati", "https://es.wikipedia.org/wiki/Nasua_narica", "https://animaldiversity.org/accounts/Nasua_narica/", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/658-procyonidae/6319-i-nasua-narica-i-procyonidae-2"]
+   },
+   "distributionCR": {
+    "en": "Its range runs from Arizona and New Mexico through Mexico and Central America to north-western Colombia and Ecuador, so all of Costa Rica lies within it; English Wikipedia cites a Costa Rican population observed pollinating the balsa tree, and the Área de Conservación Guanacaste's species page (photographs from Estación Biológica Quica, Sector Pitilla, 470 m) records the 'pizote' in the dry and wet forests of Guanacaste. The Costa Rican mammal list gives it as 'Pizote (coatí, pizote solo)'. No fetched source names other Costa Rican parks.",
+    "es": "Su área va de Arizona y Nuevo México por México y Centroamérica hasta el noroeste de Colombia y Ecuador, así que toda Costa Rica queda dentro; la Wikipedia en inglés cita una población costarricense observada polinizando el árbol de balsa, y la página de especie del Área de Conservación Guanacaste (fotos de la Estación Biológica Quica, Sector Pitilla, 470 m) registra al pizote en los bosques seco y húmedo de Guanacaste. La lista de mamíferos de Costa Rica lo da como 'Pizote (coatí, pizote solo)'. Ninguna fuente consultada nombra otros parques costarricenses.",
+    "status": "confirmed (range, Wikipedia en/es and ADW; Guanacaste, ACG; Costa Rican balsa study, Wikipedia); interpretation (that the whole country lies within the range)",
+    "sources": ["https://en.wikipedia.org/wiki/White-nosed_coati", "https://es.wikipedia.org/wiki/Nasua_narica", "https://animaldiversity.org/accounts/Nasua_narica/", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/658-procyonidae/6319-i-nasua-narica-i-procyonidae-2", "https://es.wikipedia.org/wiki/Mam%C3%ADferos_de_Costa_Rica"]
+   },
+   "diet": {
+    "en": "An omnivore that noses through the leaf litter mainly for insects — beetles, ants, termites, grubs, spiders, scorpions, land crabs — plus fruit when plentiful, eggs, carrion and small vertebrates such as mice, lizards and frogs; it finds food by smell more than by sight, and near people it readily raids rubbish bins.",
+    "es": "Omnívoro que husmea la hojarasca sobre todo en busca de insectos —escarabajos, hormigas, termitas, larvas, arañas, alacranes, cangrejos de tierra— más fruta cuando abunda, huevos, carroña y vertebrados pequeños como ratones, lagartijas y ranas; halla la comida más por el olfato que por la vista, y cerca de la gente saquea sin pena los basureros.",
+    "status": "confirmed (Wikipedia en/es, ADW, ACG)",
+    "sources": ["https://en.wikipedia.org/wiki/White-nosed_coati", "https://es.wikipedia.org/wiki/Nasua_narica", "https://animaldiversity.org/accounts/Nasua_narica/", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/658-procyonidae/6319-i-nasua-narica-i-procyonidae-2"]
+   },
+   "behaviour": {
+    "en": "Diurnal; females and young travel in bands of 4–20 (ACG: up to 20) while adult males are solitary except in the mating season; it walks with its ringed tail held erect, climbs trees easily using the tail for balance, may cover up to 2,000 m a day foraging, and the band's 'nannies' guard the young while the others feed.",
+    "es": "Diurno; las hembras y las crías andan en bandas de 4–20 (ACG: hasta 20) mientras los machos adultos son solitarios salvo en la época de apareamiento; camina con la cola anillada erguida, trepa con facilidad usando la cola para equilibrarse, puede recorrer hasta 2.000 m al día buscando comida, y unas 'niñeras' de la banda cuidan a las crías mientras las demás comen.",
+    "status": "confirmed (Wikipedia en/es, ADW, ACG)",
+    "sources": ["https://en.wikipedia.org/wiki/White-nosed_coati", "https://es.wikipedia.org/wiki/Nasua_narica", "https://animaldiversity.org/accounts/Nasua_narica/", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/658-procyonidae/6319-i-nasua-narica-i-procyonidae-2"]
+   },
+   "facts": [
+    {
+     "en": "In Costa Rica, coatis have been seen pollinating the balsa tree: they push their snouts into the flowers to drink nectar and come away with pollen all over their faces.",
+     "es": "En Costa Rica se ha visto a los pizotes polinizar el árbol de balsa: meten el hocico en las flores para beber néctar y salen con la cara llena de polen.",
+     "status": "confirmed (Wikipedia)",
+     "sources": ["https://en.wikipedia.org/wiki/White-nosed_coati"]
+    },
+    {
+     "en": "The upright, black-ringed tail is a flag: bands of up to 20 females and young move through the undergrowth with tails held erect, which is why in Costa Rica a lone adult male is a 'pizote solo'.",
+     "es": "La cola erguida con anillos negros es una bandera: bandas de hasta 20 hembras y crías cruzan el sotobosque con la cola en alto, y por eso en Costa Rica al macho adulto solitario se le dice 'pizote solo'.",
+     "status": "confirmed (tail erect and bands, ADW and ACG; 'pizote solo' as a Costa Rican name, Anexo Mamíferos de Costa Rica); interpretation (that the name refers to the solitary males)",
+     "sources": ["https://animaldiversity.org/accounts/Nasua_narica/", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/658-procyonidae/6319-i-nasua-narica-i-procyonidae-2", "https://es.wikipedia.org/wiki/Mam%C3%ADferos_de_Costa_Rica"]
+    },
+    {
+     "en": "A female leaves the band to give birth to 2–7 young in a treetop nest, often in a palm, and rejoins it with the litter some three to five months later.",
+     "es": "La hembra se separa de la banda para parir de 2 a 7 crías en un nido en lo alto de un árbol, a menudo una palma, y vuelve con la camada unos tres a cinco meses después.",
+     "status": "confirmed (ADW: 2–7 young, nests most often in palms, young rejoin the band at about 5 months; ACG: 1–5 young, rejoin about three months later)",
+     "sources": ["https://animaldiversity.org/accounts/Nasua_narica/", "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/658-procyonidae/6319-i-nasua-narica-i-procyonidae-2"]
+    }
+   ],
+   "sources": [
+    { "url": "https://en.wikipedia.org/wiki/White-nosed_coati", "title": "White-nosed coati", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Nasua narica (Linnaeus, 1766), Procyonidae, Carnivora; Least Concern (2016); ~110 cm nose to tail, 4–6 kg; habitat to 3,000 m; range through Central America; omnivore; diurnal, female bands, solitary males; names antoon, gato solo, pizote, tejón; Costa Rican balsa-pollination study" },
+    { "url": "https://es.wikipedia.org/wiki/Nasua_narica", "title": "Nasua narica", "publisher": "Wikipedia (Spanish)", "published": null, "retrieved": "2026-10-25",
+      "supports": "names pizote, antón, tejón americano, coatí; dry and wet forest to 3,500 m; range Arizona to Ecuador; omnivore; diurnal, solitary males, 'niñeras' guard the young; climbs using the tail for balance" },
+    { "url": "https://animaldiversity.org/accounts/Nasua_narica/", "title": "Nasua narica (white-nosed coati)", "publisher": "Animal Diversity Web, University of Michigan", "published": null, "retrieved": "2026-10-25",
+      "supports": "80–130 cm with over half tail, 3–5 kg; tail held erect while walking; bands of 4–20; up to 2,000 m a day foraging; insect prey list; 2–7 young, palm nests, rejoin band at ~5 months; Least Concern, CITES III (Honduras)" },
+    { "url": "https://www.acguanacaste.ac.cr/paginas-de-especies/mamiferos/658-procyonidae/6319-i-nasua-narica-i-procyonidae-2", "title": "Nasua narica (Procyonidae) — página de especie", "publisher": "Área de Conservación Guanacaste (SINAC), Costa Rica", "published": null, "retrieved": "2026-10-25",
+      "supports": "'Pizote'; Estación Biológica Quica, Sector Pitilla, 470 m; 'bosque seco y húmedo'; ~120 cm; 'cola larga que a menudo lleva erguida'; mainly diurnal; bands of up to 20; males solitary from ~24 months; 1–5 young, rejoin after ~3 months; smell over sight; raids rubbish; predators boas and cats" },
+    { "url": "https://es.wikipedia.org/wiki/Mam%C3%ADferos_de_Costa_Rica", "title": "Anexo: Mamíferos de Costa Rica", "publisher": "Wikipedia (Spanish)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Costa Rican common names 'Pizote' with 'Coatí, pizote solo'; LC" }
+   ]
+  }
+ ],
+ "unverified": [
+  { "id": "jaguar", "claim": "Chinese name 美洲豹 (and 鬃毛吼猴, 黑掌蜘蛛猴, 蜜熊, 白鼻浣熊 for the other four species)", "why": "standard Chinese names to the author's knowledge; no Chinese-language page was fetched in this session" },
+  { "id": "jaguar", "claim": "Jaguars in Santa Rosa National Park / Guanacaste", "why": "no fetched source names Santa Rosa or Guanacaste for the jaguar; the Oryx paper calls Osa one of six key jaguar areas in Costa Rica without listing the others, and Spanish Wikipedia names only Talamanca, Osa and Indio-Maíz–Tortuguero" },
+  { "id": "jaguar", "claim": "IUCN assessment year 2017", "why": "taken from the English Wikipedia infobox (2017, errata 2018); the IUCN Red List page was not fetched" },
+  { "id": "mantled-howler-monkey", "claim": "IUCN Vulnerable assessed in 2021", "why": "English Wikipedia cites a 2021 assessment and Spanish Wikipedia says 2020; ADW and the Costa Rican monkey list still give Least Concern; the IUCN page was not fetched" },
+  { "id": "mantled-howler-monkey", "claim": "Density of about 90 individuals per km² in Costa Rica", "why": "stated on Spanish Wikipedia without the study being fetched; likely a local, not national, figure" },
+  { "id": "geoffroys-spider-monkey", "claim": "Subspecies present in Costa Rica (A. g. ornatus; A. g. geoffroyi; possibly frontatus)", "why": "only Spanish Wikipedia ties ornatus and geoffroyi to Costa Rica; English Wikipedia lists the subspecies without countries" },
+  { "id": "geoffroys-spider-monkey", "claim": "Presence in Tortuguero and on the Osa Peninsula beyond Corcovado", "why": "no fetched source names Tortuguero or Osa for this species; the Costa Rican monkey list says it is found over much of the country and names Corcovado" },
+  { "id": "kinkajou", "claim": "Head-body length 42–58 cm versus English Wikipedia's 82–133 cm", "why": "the English page labels 82–133 cm 'head-and-body length including tail'; ADW gives 820–1,330 mm as total length; the 42–58 cm body figure is from Spanish Wikipedia only" },
+  { "id": "kinkajou", "claim": "Any named Costa Rican park or region for the kinkajou", "why": "only the Finca Bellavista page (near the Osa Peninsula) places it in Costa Rica; Wikipedia mentions Costa Rica only as a genetic clade" },
+  { "id": "white-nosed-coati", "claim": "That 'pizote solo' refers to the solitary adult male", "why": "the Costa Rican mammal list gives 'pizote solo' as a name without explaining it; the link to solitary males is an inference from ADW/ACG behaviour" },
+  { "id": "white-nosed-coati", "claim": "Costa Rican balsa-tree pollination study details (place, year, authors)", "why": "English Wikipedia summarises the study without naming the site; the paper itself was not fetched" }
+ ]
+}

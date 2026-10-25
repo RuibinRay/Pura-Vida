@@ -2,6 +2,19 @@
 
 Status words: **built** = implemented and exercised in the headless browser; **built, unverified on device** = implemented, but the check this session could do is not representative (software GPU); **partial**; **planned (M2–M5)**.
 
+## The wildlife trail (2026-10-25, night)
+
+| Change | Status | Notes |
+|---|---|---|
+| The wildlife page as a scroll walk through nine habitats | built | `src/journey/Trail.tsx` + `trail.ts` + `styles/trail.css`: the same scroll driver as the homepage walk; a sticky stage; each zone one of the owner's new environment images (`public/zoo/env/`, upscaled ×2, five widths) that zooms and slides past as the visitor walks, with the mist, light shafts and flock of the homepage reused per zone |
+| The owner's animal cut-outs as the animals | built | 31 stickers from his 18 cut-outs and 4 sprite sheets (`tools/zoo/stickers.json`, `tools/zoo_stickers.py`; small ones upscaled ×2); each enters from the direction the walk reveals it, idles on a loop by kind (hang, perch, hover, fly, stand, prowl, crawl, swim, breathe), casts a soft shadow; swimmers fade below their water line |
+| Tap an animal → its sourced entry | built | the native-dialog sheet with the sticker, the zone, the places on the map, "see it on the walk" (`/?stop=`), "find it on the map", the full entry; the tap stamps the passport; a hover shows a wooden name tag (on touch screens the tags of the current zone show briefly) |
+| Trail signs, path rail, counter, sound | built | a wooden sign per zone (number, name, lede, species count; its corner chosen per image; bottom on phones); a path with a marker per zone that fills as you walk; "Spotted n of 31" (gold when complete); the forest ambience toggle |
+| 14 new species, sourced | built | jaguar, mantled howler, Geoffroy's spider monkey, kinkajou, white-nosed coati, strawberry poison dart frog, Fleischmann's glass frog, eyelash viper, plumed basilisk, spectacled caiman, West Indian manatee, humpback whale, bottlenose dolphin, great green macaw — `research/species-zoo-*.json` (Wikipedia en/es, ADW, AmphibiaWeb, Costa Rican sources: ICP, ACG, SINAC, Revista de Biología Tropical…), 2–3 facts each, 36 claims left in `unverified` |
+| Placement is sourced | built | a test checks every animal of every zone against the species' habitat places or the walk's habitat verdicts (`tests/trail.test.ts`) |
+| The journal below | built | every species, the stickers as the portraits where they exist (cartoons otherwise), the avatar index with the stickers |
+| Not verified | — | frame rate on a device with 6 stickers + mist + flock on one zone; the stickers' light against each backdrop (no grade applied) |
+
 ## The opening on the author's third pair (2026-10-25, evening)
 
 | Change | Status | Notes |

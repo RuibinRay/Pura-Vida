@@ -1,0 +1,331 @@
+{
+"bairds-tapir": {
+"w": 630,
+"h": 372,
+"widths": [
+630,
+400,
+240
+],
+"baseline": 0.97
+},
+"blue-morpho": {
+"w": 1184,
+"h": 990,
+"widths": [
+960,
+640,
+400,
+240
+],
+"baseline": 1
+},
+"bottlenose-dolphin": {
+"w": 418,
+"h": 506,
+"widths": [
+418,
+400,
+240
+],
+"baseline": 1
+},
+"brown-throated-three-toed-sloth": {
+"w": 1064,
+"h": 1108,
+"widths": [
+960,
+640,
+400,
+240
+],
+"baseline": 1
+},
+"clay-colored-thrush": {
+"w": 1223,
+"h": 1011,
+"widths": [
+960,
+640,
+400,
+240
+],
+"baseline": 0.97
+},
+"eyelash-viper": {
+"w": 498,
+"h": 348,
+"widths": [
+498,
+400,
+240
+],
+"baseline": 0.98
+},
+"fleischmanns-glass-frog": {
+"w": 714,
+"h": 618,
+"widths": [
+714,
+640,
+400,
+240
+],
+"baseline": 1
+},
+"geoffroys-spider-monkey": {
+"w": 820,
+"h": 1262,
+"widths": [
+820,
+640,
+400,
+240
+],
+"baseline": 1
+},
+"great-blue-heron": {
+"w": 780,
+"h": 962,
+"widths": [
+780,
+640,
+400,
+240
+],
+"baseline": 0.98
+},
+"great-green-macaw": {
+"w": 1632,
+"h": 848,
+"widths": [
+960,
+640,
+400,
+240
+],
+"baseline": 1
+},
+"green-iguana": {
+"w": 684,
+"h": 390,
+"widths": [
+684,
+640,
+400,
+240
+],
+"baseline": 0.96
+},
+"humpback-whale": {
+"w": 616,
+"h": 526,
+"widths": [
+616,
+400,
+240
+],
+"baseline": 1
+},
+"jaguar": {
+"w": 968,
+"h": 952,
+"widths": [
+960,
+640,
+400,
+240
+],
+"baseline": 0.97
+},
+"keel-billed-toucan": {
+"w": 1173,
+"h": 1174,
+"widths": [
+960,
+640,
+400,
+240
+],
+"baseline": 0.84
+},
+"kinkajou": {
+"w": 350,
+"h": 410,
+"widths": [
+350,
+240
+],
+"baseline": 0.98
+},
+"mantled-howler-monkey": {
+"w": 680,
+"h": 638,
+"widths": [
+680,
+640,
+400,
+240
+],
+"baseline": 0.98
+},
+"olive-ridley-sea-turtle": {
+"w": 1238,
+"h": 643,
+"widths": [
+960,
+640,
+400,
+240
+],
+"baseline": 0.97
+},
+"plumed-basilisk": {
+"w": 616,
+"h": 360,
+"widths": [
+616,
+400,
+240
+],
+"baseline": 0.98
+},
+"purple-throated-mountain-gem": {
+"w": 506,
+"h": 388,
+"widths": [
+506,
+400,
+240
+],
+"baseline": 1
+},
+"red-eyed-tree-frog": {
+"w": 1180,
+"h": 817,
+"widths": [
+960,
+640,
+400,
+240
+],
+"baseline": 0.98
+},
+"resplendent-quetzal": {
+"w": 710,
+"h": 1050,
+"widths": [
+710,
+640,
+400,
+240
+],
+"baseline": 1
+},
+"ruby-throated-hummingbird": {
+"w": 1175,
+"h": 999,
+"widths": [
+960,
+640,
+400,
+240
+],
+"baseline": 1
+},
+"rufous-tailed-hummingbird": {
+"w": 683,
+"h": 675,
+"widths": [
+683,
+640,
+400,
+240
+],
+"baseline": 1
+},
+"scarlet-macaw": {
+"w": 1091,
+"h": 1146,
+"widths": [
+960,
+640,
+400,
+240
+],
+"baseline": 1
+},
+"spectacled-caiman": {
+"w": 910,
+"h": 161,
+"widths": [
+910,
+640,
+400,
+240
+],
+"baseline": 0.75
+},
+"strawberry-poison-dart-frog": {
+"w": 614,
+"h": 486,
+"widths": [
+614,
+400,
+240
+],
+"baseline": 0.98
+},
+"volcano-hummingbird": {
+"w": 510,
+"h": 332,
+"widths": [
+510,
+400,
+240
+],
+"baseline": 1
+},
+"west-indian-manatee": {
+"w": 510,
+"h": 280,
+"widths": [
+510,
+400,
+240
+],
+"baseline": 1
+},
+"white-faced-capuchin": {
+"w": 516,
+"h": 618,
+"widths": [
+516,
+400,
+240
+],
+"baseline": 0.98
+},
+"white-nosed-coati": {
+"w": 704,
+"h": 1058,
+"widths": [
+704,
+640,
+400,
+240
+],
+"baseline": 0.98
+},
+"white-tailed-deer": {
+"w": 851,
+"h": 945,
+"widths": [
+851,
+640,
+400,
+240
+],
+"baseline": 0.98
+}
+}

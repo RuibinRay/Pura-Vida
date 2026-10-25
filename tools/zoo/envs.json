@@ -1,0 +1,15 @@
+{
+ "note": "The backdrops of the wildlife trail: the owner's environment images (research/plates-original/2026-10-25/environments/, 1672×941, supplied 2026-10-25 evening, none used elsewhere on the site). Upscaled ×2 with FSRCNN like the plates and written as a WebP ladder under public/zoo/env/.",
+ "widths": [3344, 2400, 1672, 1100, 700],
+ "envs": {
+  "canopy": "research/plates-original/2026-10-25/environments/e19-5b1a3242.png",
+  "cloud": "research/plates-original/2026-10-25/environments/e01-5917b935.png",
+  "waterfall": "research/plates-original/2026-10-25/environments/e03-98693f51.png",
+  "volcano": "research/plates-original/2026-10-25/environments/e17-248685a0.png",
+  "gardens": "research/plates-original/2026-10-25/environments/e06-d68e88d0.png",
+  "dry": "research/plates-original/2026-10-25/environments/e04-dadcab90.png",
+  "floor": "research/plates-original/2026-10-25/environments/e08-4a20fb54.png",
+  "rivers": "research/plates-original/2026-10-25/environments/e12-cf582f8a.png",
+  "coast": "research/plates-original/2026-10-25/environments/e07-c044ec6d.png"
+ }
+}

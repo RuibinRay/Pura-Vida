@@ -1,0 +1,430 @@
+{
+ "retrieved": "2026-10-25",
+ "notes": "Five reptiles and amphibians for the wildlife trail (part 'herps'), researched on 2026-10-25 with WebSearch to find pages and WebFetch to read them. Fetched and used: the English Wikipedia species pages of all five plus the Bothriechis and Basiliscus genus pages and the Tortuguero National Park page; AmphibiaWeb for Oophaga pumilio and Hyalinobatrachium fleischmanni; Animal Diversity Web for Bothriechis schlegelii (no ADW account surfaced for the basilisk or the caiman); and one Costa Rican page per species: the SINAC Área de Conservación Tortuguero report on Oophaga pumilio at Caño Palma and Cerro Tortuguero, the Monteverde Cloud Forest Biological Reserve amphibian list (Centro Científico Tropical) for the glass frog, the Instituto Clodomiro Picado (UCR) page for the eyelash viper, a Lewis & Grant note on Basiliscus plumifrons at Caño Palma (Tortuguero) and the Cabrera Peña et al. 2003 Revista de Biología Tropical study of Caiman crocodilus in Caño Negro. Spanish Wikipedia could not be used: direct es.wikipedia.org URLs were blocked by the fetch permission (https://es.wikipedia.org/wiki/Oophaga_pumilio) and WebSearch never surfaced an es.wikipedia page for any of the five species, so Spanish names are verified only where AmphibiaWeb, the Monteverde list, the ICP, the ACTO report or the Caño Negro paper use them; the rest are marked approximate. GBIF and the IUCN Red List pages were not fetched, so taxonomy and IUCN categories come from the Wikipedia species pages and are marked approximate. Chinese names are the standard ones from memory, all 'uncertain (zh: not verified)'. Taxonomic caution: Wikipedia reports a 2024 DNA revision that restricts Bothriechis schlegelii in the strict sense to Colombia; the Costa Rican eyelash vipers now fall under other names of the 'eyelash clade', but the ICP page still uses B. schlegelii and the entry keeps the id and name the site uses.",
+ "species": [
+  {
+   "id": "strawberry-poison-dart-frog",
+   "commonNames": {
+    "en": "Strawberry Poison Dart Frog",
+    "es": "rana roja",
+    "esAlt": ["rana venenosa", "rana venenosa roja", "rana blue jeans"],
+    "zh": "草莓箭毒蛙",
+    "status": "confirmed (en: Wikipedia, which also gives 'strawberry poison frog' and 'blue jeans poison frog'; es 'rana roja' and 'rana venenosa': used in the ACTO/Caño Palma report); approximate (es 'rana venenosa roja' and 'rana blue jeans': Costa Rican usage, not verified on a fetched page; Spanish Wikipedia blocked); uncertain (zh: not verified)",
+    "sources": ["https://en.wikipedia.org/wiki/Strawberry_poison_dart_frog", "https://www.acto.go.cr/wp-content/uploads/2020/04/esturanarojacoter2016.pdf"]
+   },
+   "scientific": "Oophaga pumilio",
+   "authority": "(Schmidt, 1857)",
+   "family": "Dendrobatidae",
+   "order": "Anura",
+   "taxonomyStatus": "approximate (Wikipedia and AmphibiaWeb agree; GBIF not fetched; formerly Dendrobates pumilio, the genus Oophaga was split off in 2011)",
+   "iucn": {
+    "category": "LC",
+    "categoryName": "Least Concern",
+    "year": 2015,
+    "url": "https://www.iucnredlist.org/species/55196/3025630",
+    "status": "approximate (category and year as cited on the Wikipedia species page; AmphibiaWeb also gives LC; the IUCN page itself was not fetched)",
+    "note": "CITES Appendix II (AmphibiaWeb).",
+    "sources": ["https://en.wikipedia.org/wiki/Strawberry_poison_dart_frog", "https://amphibiaweb.org/species/1641"]
+   },
+   "size": {
+    "length_cm_range": [1.7, 2.4],
+    "status": "approximate (Wikipedia: standard length about 17.5–22 mm; AmphibiaWeb: total body length 17–24 mm; no mass given)",
+    "sources": ["https://en.wikipedia.org/wiki/Strawberry_poison_dart_frog", "https://amphibiaweb.org/species/1641"]
+   },
+   "habitat": {
+    "en": "Humid lowland and premontane rainforest of the Caribbean slope of Central America, from sea level to about 960 m, including disturbed areas such as plantations and gardens; it lives in the leaf litter and climbs into bromeliads to breed.",
+    "es": "Bosque lluvioso húmedo de tierras bajas y premontano de la vertiente caribeña de Centroamérica, desde el nivel del mar hasta unos 960 m, incluidas zonas alteradas como plantaciones y jardines; vive en la hojarasca y sube a las bromelias para reproducirse.",
+    "status": "confirmed (Wikipedia: humid lowlands and premontane forest, plantations, leaf litter; AmphibiaWeb: Caribbean coast, sea level to 960 m, gardens, bromeliads)",
+    "sources": ["https://en.wikipedia.org/wiki/Strawberry_poison_dart_frog", "https://amphibiaweb.org/species/1641"]
+   },
+   "distributionCR": {
+    "en": "Costa Rica's Caribbean lowlands: the species ranges along the Caribbean coast from eastern Nicaragua through Costa Rica to north-western Panama. AmphibiaWeb names La Selva Biological Station in the north-east, and a 2016 field study published on the SINAC Área de Conservación Tortuguero site counted hundreds of frogs at Caño Palma Biological Station and on Cerro Tortuguero (119 m), in the Barra del Colorado wildlife refuge, Limón. The Wikipedia page of Tortuguero National Park lists poison-dart frogs (Dendrobatidae) without naming the species.",
+    "es": "Las tierras bajas del Caribe costarricense: la especie se extiende por la costa caribeña desde el oriente de Nicaragua, por Costa Rica, hasta el noroeste de Panamá. AmphibiaWeb menciona la Estación Biológica La Selva, en el noreste, y un estudio de campo de 2016 publicado en el sitio del Área de Conservación Tortuguero (SINAC) contó cientos de ranas en la Estación Biológica Caño Palma y en el Cerro Tortuguero (119 m), en el Refugio de Vida Silvestre Barra del Colorado, Limón. La página de Wikipedia del Parque Nacional Tortuguero menciona ranas venenosas (Dendrobatidae) sin nombrar la especie.",
+    "status": "confirmed (range: Wikipedia, AmphibiaWeb; La Selva: AmphibiaWeb; Caño Palma and Cerro Tortuguero: ACTO report); approximate (Tortuguero National Park: family-level mention only)",
+    "sources": ["https://en.wikipedia.org/wiki/Strawberry_poison_dart_frog", "https://amphibiaweb.org/species/1641", "https://www.acto.go.cr/wp-content/uploads/2020/04/esturanarojacoter2016.pdf", "https://en.wikipedia.org/wiki/Tortuguero_National_Park"]
+   },
+   "diet": {
+    "en": "Mostly ants, plus mites and other small arthropods such as tiny beetles; the toxins in its skin (pumiliotoxins) are taken up from the oribatid mites and Brachymyrmex ants it eats.",
+    "es": "Sobre todo hormigas, además de ácaros y otros artrópodos pequeños como escarabajos diminutos; las toxinas de su piel (pumiliotoxinas) provienen de los ácaros oribátidos y las hormigas Brachymyrmex que come.",
+    "status": "confirmed (AmphibiaWeb: primarily ants; Wikipedia: toxins from oribatid mites and Brachymyrmex ants; ACTO report: mites, ants, small beetles)",
+    "sources": ["https://amphibiaweb.org/species/1641", "https://en.wikipedia.org/wiki/Strawberry_poison_dart_frog", "https://www.acto.go.cr/wp-content/uploads/2020/04/esturanarojacoter2016.pdf"]
+   },
+   "behaviour": {
+    "en": "Diurnal and mainly terrestrial. Both parents care for the young: the male guards and moistens a clutch of 3–17 eggs in the leaf litter for about a week, the tadpoles are then carried one by one to water-filled bromeliad axils, and the female feeds each one her unfertilized eggs for about six weeks until metamorphosis; males are territorial.",
+    "es": "Diurna y principalmente terrestre. Ambos padres cuidan a las crías: el macho vigila y humedece una puesta de 3 a 17 huevos en la hojarasca durante una semana aproximadamente, luego los renacuajos se llevan uno por uno a las axilas llenas de agua de las bromelias, y la hembra alimenta a cada uno con sus huevos no fertilizados durante unas seis semanas hasta la metamorfosis; los machos son territoriales.",
+    "status": "confirmed (Wikipedia: diurnal, terrestrial, males defend and water the nests, females feed the tadpoles; AmphibiaWeb: clutch 3–17, hatching 5–15 days, metamorphosis 6–8 weeks; ACTO report: about 7 days of egg care, about 6 weeks of feeding)",
+    "sources": ["https://en.wikipedia.org/wiki/Strawberry_poison_dart_frog", "https://amphibiaweb.org/species/1641", "https://www.acto.go.cr/wp-content/uploads/2020/04/esturanarojacoter2016.pdf"]
+   },
+   "facts": [
+    {
+     "en": "The genus name Oophaga means 'egg-eater': the tadpoles are obligate egg feeders that must get a meal of their mother's unfertilized eggs within three days of being placed in a bromeliad pool, and if two tadpoles share one bromeliad only one survives.",
+     "es": "El nombre del género, Oophaga, significa 'comedor de huevos': los renacuajos se alimentan obligatoriamente de huevos y deben recibir una comida de huevos no fertilizados de su madre en los tres días siguientes a ser depositados en el charquito de una bromelia; si dos renacuajos comparten una bromelia, solo uno sobrevive.",
+     "status": "confirmed (AmphibiaWeb)",
+     "sources": ["https://amphibiaweb.org/species/1641"]
+    },
+    {
+     "en": "Its 'blue jeans' look — red body with blue-black legs — is the most common of the species' roughly 15–30 colour morphs and is the one seen throughout Costa Rica and mainland Panama, while the islands of Bocas del Toro hold green, blue and olive frogs of the very same species.",
+     "es": "Su aspecto de 'blue jeans' —cuerpo rojo con patas azul-negras— es el más común de las 15 a 30 variantes de color de la especie y es el que se ve en toda Costa Rica y Panamá continental, mientras que en las islas de Bocas del Toro hay ranas verdes, azules y oliva de la misma especie.",
+     "status": "confirmed (Wikipedia: blue jeans morph most common, observed throughout Costa Rica and mainland Panama as of 2003, Bocas del Toro polymorphism; AmphibiaWeb: red back, black to dark blue hind legs, island variants)",
+     "sources": ["https://en.wikipedia.org/wiki/Strawberry_poison_dart_frog", "https://amphibiaweb.org/species/1641"]
+    },
+    {
+     "en": "On Cerro Tortuguero and at Caño Palma, north of Tortuguero in Limón, a 2016 survey counted 828 frogs in its plots and found that frog numbers tracked the number of bromeliad breeding sites, warning that removing bromeliads would shrink the population.",
+     "es": "En el Cerro Tortuguero y en Caño Palma, al norte de Tortuguero, Limón, un muestreo de 2016 contó 828 ranas en sus parcelas y halló que el número de ranas seguía el número de sitios de cría en bromelias, con la advertencia de que quitar bromelias reduciría la población.",
+     "status": "confirmed (ACTO report)",
+     "sources": ["https://www.acto.go.cr/wp-content/uploads/2020/04/esturanarojacoter2016.pdf"]
+    }
+   ],
+   "sources": [
+    { "url": "https://en.wikipedia.org/wiki/Strawberry_poison_dart_frog", "title": "Strawberry poison dart frog", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Oophaga pumilio (Schmidt, 1857), Dendrobatidae, Anura; Least Concern (2015); 17.5–22 mm; range eastern Nicaragua through Costa Rica to NW Panama; humid lowland and premontane forest; toxins from oribatid mites and Brachymyrmex ants; dual parental care; 15–30 colour morphs, blue jeans most common; English names" },
+    { "url": "https://amphibiaweb.org/species/1641", "title": "Oophaga pumilio — AmphibiaWeb", "publisher": "AmphibiaWeb (University of California, Berkeley)", "published": null, "retrieved": "2026-10-25",
+      "supports": "17–24 mm; Caribbean coast of Central America, sea level to 960 m; La Selva, Costa Rica; diet mainly ants; clutch 3–17, hatching 5–15 days, female carries 1–2 tadpoles to bromeliads and feeds them unfertilized eggs, metamorphosis 6–8 weeks, only one tadpole survives per bromeliad; colour description; LC, CITES II" },
+    { "url": "https://www.acto.go.cr/wp-content/uploads/2020/04/esturanarojacoter2016.pdf", "title": "Crianza hábitat de las Ranas Rojas: un estudio sobre Oophaga pumilio y sus sitios de cría de renacuajos (Estación Biológica Caño Palma y Cerro Tortuguero)", "publisher": "SINAC – Área de Conservación Tortuguero (ACTO), Costa Rica (hosted report)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Spanish names 'rana roja' and 'rana venenosa'; Caño Palma and Cerro Tortuguero (119 m), Refugio Nacional de Vida Silvestre Barra del Colorado, Limón; 828 frogs counted, numbers tied to bromeliad breeding sites; male guards eggs about 7 days, female feeds tadpoles about 6 weeks; diet of mites, ants, small beetles; threats (deforestation, bromeliad removal, chytrid, ecotourism)" },
+    { "url": "https://en.wikipedia.org/wiki/Tortuguero_National_Park", "title": "Tortuguero National Park", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Limón Province; canals, lagoons, swamps and wet lowland Atlantic-slope forest; lists poison-dart frogs (Dendrobatidae), basilisk lizards and Caiman crocodilus among its fauna" }
+   ]
+  },
+  {
+   "id": "fleischmanns-glass-frog",
+   "commonNames": {
+    "en": "Fleischmann's Glass Frog",
+    "es": "rana de vidrio",
+    "esAlt": ["rana de vidrio de Fleischmann", "ranita de vidrio", "rana de cristal de Fleischmann", "rana de cristal"],
+    "zh": "弗莱施曼玻璃蛙",
+    "status": "confirmed (en: Wikipedia and AmphibiaWeb, Wikipedia also gives 'northern glass frog'; es 'rana de vidrio de Fleischmann': Monteverde Cloud Forest Biological Reserve amphibian list; 'ranita de vidrio' and 'rana de cristal de Fleischmann': AmphibiaWeb); approximate (es 'rana de vidrio' and 'rana de cristal' as the short everyday forms); uncertain (zh: not verified)",
+    "sources": ["https://en.wikipedia.org/wiki/Hyalinobatrachium_fleischmanni", "https://amphibiaweb.org/species/1813", "https://cloudforestmonteverde.com/wp-content/uploads/2025/08/Lista-anfibios.RBBNM_.pdf"]
+   },
+   "scientific": "Hyalinobatrachium fleischmanni",
+   "authority": "(Boettger, 1893)",
+   "family": "Centrolenidae",
+   "order": "Anura",
+   "taxonomyStatus": "approximate (Wikipedia and AmphibiaWeb agree; GBIF not fetched)",
+   "iucn": {
+    "category": "LC",
+    "categoryName": "Least Concern",
+    "year": 2020,
+    "url": "https://www.iucnredlist.org/species/55014/3021859",
+    "status": "approximate (category and year as cited on the Wikipedia species page; AmphibiaWeb and the Monteverde list also give LC; the IUCN page itself was not fetched)",
+    "sources": ["https://en.wikipedia.org/wiki/Hyalinobatrachium_fleischmanni", "https://amphibiaweb.org/species/1813", "https://cloudforestmonteverde.com/wp-content/uploads/2025/08/Lista-anfibios.RBBNM_.pdf"]
+   },
+   "size": {
+    "length_cm_range": [1.9, 3.2],
+    "status": "confirmed (Wikipedia: males 19–28 mm, females 23–32 mm; AmphibiaWeb: males 19.2–25.5 mm, females 23–32 mm; no mass given)",
+    "sources": ["https://en.wikipedia.org/wiki/Hyalinobatrachium_fleischmanni", "https://amphibiaweb.org/species/1813"]
+   },
+   "habitat": {
+    "en": "Arboreal, in the vegetation beside streams with moderate to fast flow, in lowland and mid-elevation wet forest up to about 2,000 m; it also turns up in pastures and cleared sites and avoids dry areas.",
+    "es": "Arborícola, en la vegetación junto a quebradas de corriente moderada a rápida, en bosque húmedo de tierras bajas y de elevaciones medias hasta unos 2 000 m; también aparece en potreros y zonas abiertas, y evita las zonas secas.",
+    "status": "confirmed (Wikipedia: near fast-flowing streams, up to 2,000 m, avoids dry areas; AmphibiaWeb: arboreal, streams with moderate to fast flow, pastures and cleared sites)",
+    "sources": ["https://en.wikipedia.org/wiki/Hyalinobatrachium_fleischmanni", "https://amphibiaweb.org/species/1813"]
+   },
+   "distributionCR": {
+    "en": "Found from southern Mexico to Ecuador and, in Costa Rica, in lowland wet forests and rain forests and up into higher elevations, avoiding dry areas (Wikipedia). AmphibiaWeb calls it probably the most abundant glass frog in Costa Rica, and it appears on the amphibian list of the Monteverde Cloud Forest Biological Reserve (Centro Científico Tropical, updated July 2023). No fetched page named the Caribbean or Pacific slope specifically.",
+    "es": "Se encuentra desde el sur de México hasta Ecuador y, en Costa Rica, en bosques húmedos y lluviosos de tierras bajas y hasta elevaciones mayores, evitando las zonas secas (Wikipedia). AmphibiaWeb la considera probablemente la rana de vidrio más abundante de Costa Rica, y figura en la lista de anfibios de la Reserva Biológica Bosque Nuboso Monteverde (Centro Científico Tropical, actualizada en julio de 2023). Ninguna página consultada nombró específicamente la vertiente del Caribe o la del Pacífico.",
+    "status": "confirmed (Wikipedia names Costa Rica and its lowland wet forests; AmphibiaWeb: most abundant glass frog in Costa Rica; Monteverde Reserve list)",
+    "sources": ["https://en.wikipedia.org/wiki/Hyalinobatrachium_fleischmanni", "https://amphibiaweb.org/species/1813", "https://cloudforestmonteverde.com/wp-content/uploads/2025/08/Lista-anfibios.RBBNM_.pdf"]
+   },
+   "diet": {
+    "en": "Small invertebrates and the odd smaller frog: crickets, moths, flies and spiders.",
+    "es": "Pequeños invertebrados y, de vez en cuando, ranas más pequeñas: grillos, polillas, moscas y arañas.",
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Hyalinobatrachium_fleischmanni"]
+   },
+   "behaviour": {
+    "en": "Nocturnal: from dusk the males call from the undersides of broad leaves 0.5–10 m above the ground, usually over water, and the female lays her eggs on a leaf overhanging the stream; the male stays with the clutch, urinating on it to keep it moist, until the tadpoles hatch after about 10–15 days and drop into the water, where they take one to two years to mature.",
+    "es": "Nocturna: desde el anochecer los machos cantan desde el envés de hojas anchas a 0,5–10 m del suelo, casi siempre sobre el agua, y la hembra pone los huevos en una hoja que cuelga sobre la quebrada; el macho se queda con la puesta y la orina para mantenerla húmeda hasta que los renacuajos eclosionan a los 10–15 días y caen al agua, donde tardan uno o dos años en madurar.",
+    "status": "confirmed (Wikipedia; the page gives hatching as 10–15 days in one place and 8–21 days in another)",
+    "sources": ["https://en.wikipedia.org/wiki/Hyalinobatrachium_fleischmanni"]
+   },
+   "facts": [
+    {
+     "en": "Its belly skin is see-through: tiny white bones show, while a sheet of guanine crystals hides the heart and the front of the liver — and a 2023 study found that resting frogs pack about 89% of their red blood cells into the liver, becoming two to three times more transparent.",
+     "es": "La piel del vientre es transparente: se ven los huesitos blancos, mientras una capa de cristales de guanina oculta el corazón y la parte delantera del hígado; un estudio de 2023 halló que, en reposo, la rana guarda cerca del 89 % de sus glóbulos rojos en el hígado y se vuelve dos a tres veces más transparente.",
+     "status": "confirmed (AmphibiaWeb: white, partly transparent belly, guanine sheet over heart and anterior liver, 2023 news item on red blood cells; Wikipedia: guanine sheet covers about half the belly)",
+     "sources": ["https://amphibiaweb.org/species/1813", "https://en.wikipedia.org/wiki/Hyalinobatrachium_fleischmanni"]
+    },
+    {
+     "en": "The male is a devoted father: he guards the eggs laid on the underside of a leaf over the stream and keeps them from drying out by urinating on them.",
+     "es": "El macho es un padre dedicado: vigila los huevos puestos bajo una hoja sobre la quebrada y evita que se sequen orinándolos.",
+     "status": "confirmed (Wikipedia)",
+     "sources": ["https://en.wikipedia.org/wiki/Hyalinobatrachium_fleischmanni"]
+    },
+    {
+     "en": "It is probably the most abundant glass frog in Costa Rica and is on the amphibian list of the Monteverde Cloud Forest Biological Reserve, where it is listed as 'rana de vidrio de Fleischmann'.",
+     "es": "Es probablemente la rana de vidrio más abundante de Costa Rica y figura en la lista de anfibios de la Reserva Biológica Bosque Nuboso Monteverde como 'rana de vidrio de Fleischmann'.",
+     "status": "confirmed (AmphibiaWeb; Monteverde Reserve list)",
+     "sources": ["https://amphibiaweb.org/species/1813", "https://cloudforestmonteverde.com/wp-content/uploads/2025/08/Lista-anfibios.RBBNM_.pdf"]
+    }
+   ],
+   "sources": [
+    { "url": "https://en.wikipedia.org/wiki/Hyalinobatrachium_fleischmanni", "title": "Hyalinobatrachium fleischmanni", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Hyalinobatrachium fleischmanni (Boettger, 1893), Centrolenidae, Anura; Least Concern (2020); males 19–28 mm, females 23–32 mm; southern Mexico to Ecuador, Costa Rica named (lowland wet forest to higher elevations, up to 2,000 m); streamside habitat; diet; nocturnal calling from leaf undersides, eggs on overhanging leaves, male guards and urinates on clutch, hatching 10–15 days; guanine sheet; English names" },
+    { "url": "https://amphibiaweb.org/species/1813", "title": "Hyalinobatrachium fleischmanni — AmphibiaWeb", "publisher": "AmphibiaWeb (University of California, Berkeley)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Spanish names 'Ranita de Vidrio' and 'Rana de Cristal de Fleischmann'; males 19.2–25.5 mm, females 23–32 mm; Costa Rica listed, probably the most abundant glass frog in Costa Rica; arboreal near moderate to fast streams, pastures and cleared sites; transparent belly, guanine sheet, 2023 red-blood-cell finding; LC" },
+    { "url": "https://cloudforestmonteverde.com/wp-content/uploads/2025/08/Lista-anfibios.RBBNM_.pdf", "title": "Lista de Anfibios / List of Amphibians — Reserva Biológica Bosque Nuboso Monteverde (updated July 2023)", "publisher": "Reserva Biológica Bosque Nuboso Monteverde / Centro Científico Tropical, Costa Rica", "published": "2023-07", "retrieved": "2026-10-25",
+      "supports": "Hyalinobatrachium fleischmanni listed for the Monteverde reserve as 'Rana de vidrio de Fleischmann' / 'Fleischmann's glass frog', IUCN LC" }
+   ]
+  },
+  {
+   "id": "eyelash-viper",
+   "commonNames": {
+    "en": "Eyelash Viper",
+    "es": "oropel",
+    "esAlt": ["bocaracá", "víbora bocaracá", "víbora de pestañas", "toboba de pestañas", "serpiente loro"],
+    "zh": "睫角棕榈蝮",
+    "status": "confirmed (en: Wikipedia, ICP-UCR, ADW; es 'oropel' for the yellow/golden form: ICP-UCR and Wikipedia; 'bocaracá', 'víbora bocaracá', 'toboba pestañas', 'víbora de pestañas' and 'serpiente loro': Wikipedia). 'Oropel' is put first because the sticker shows the yellow morph; 'bocaracá' is the general Costa Rican name for the species. uncertain (zh: not verified)",
+    "sources": ["https://en.wikipedia.org/wiki/Bothriechis_schlegelii", "https://icp.ucr.ac.cr/en/information-and-materials/venomous-snakes-costa-rica/bothriechis-schlegelii", "https://animaldiversity.org/accounts/Bothriechis_schlegelii/"]
+   },
+   "scientific": "Bothriechis schlegelii",
+   "authority": "(Berthold, 1846)",
+   "family": "Viperidae",
+   "order": "Squamata",
+   "taxonomyStatus": "approximate (Wikipedia and ICP-UCR; GBIF not fetched). Caution: Wikipedia reports a 2024 DNA revision (Arteaga et al.) that split the eyelash viper complex and restricts B. schlegelii in the strict sense to Colombia; Costa Rica's eyelash vipers now fall under other names of the 'eyelash clade' (the montane form of San José Province is B. supraciliaris), but no fetched page says which name applies to the Costa Rican lowland populations. The Instituto Clodomiro Picado still uses B. schlegelii for Costa Rica, and that name is kept here.",
+   "iucn": {
+    "category": "LC",
+    "categoryName": "Least Concern",
+    "year": 2019,
+    "status": "approximate (Wikipedia: Least Concern, evaluated 2013, with the cited Red List assessment dated 2019; ADW lists it as Not Evaluated; the IUCN page was not fetched)",
+    "note": "Removed from CITES Appendix III in 2002 (Wikipedia, ADW).",
+    "sources": ["https://en.wikipedia.org/wiki/Bothriechis_schlegelii", "https://animaldiversity.org/accounts/Bothriechis_schlegelii/"]
+   },
+   "size": {
+    "length_cm_range": [55, 82],
+    "status": "approximate (Wikipedia and ADW: adults 55–82 cm total length, females longer and more variable, males to 69 cm; ICP-UCR: typically 50–70 cm, maximum 95 cm; no mass given)",
+    "sources": ["https://en.wikipedia.org/wiki/Bothriechis_schlegelii", "https://animaldiversity.org/accounts/Bothriechis_schlegelii/", "https://icp.ucr.ac.cr/en/information-and-materials/venomous-snakes-costa-rica/bothriechis-schlegelii"]
+   },
+   "habitat": {
+    "en": "Arboreal, in dense shrub thickets, low branches, vines and palms of moist lowland forest, streamside vegetation, foothills and montane and cloud forest; it tolerates secondary forest and coffee and banana plantations.",
+    "es": "Arborícola, en matorrales densos, ramas bajas, bejucos y palmas del bosque húmedo de tierras bajas, la vegetación ribereña, los pies de monte y el bosque montano y nuboso; tolera el bosque secundario y los cafetales y bananales.",
+    "status": "confirmed (ADW: thickets, low branches, vines, palm bark, coffee plantations, lowland to montane and cloud forest; Wikipedia: arboreal, secondary forest, coffee and banana plantations; ICP-UCR: arboreal)",
+    "sources": ["https://animaldiversity.org/accounts/Bothriechis_schlegelii/", "https://en.wikipedia.org/wiki/Bothriechis_schlegelii", "https://icp.ucr.ac.cr/en/information-and-materials/venomous-snakes-costa-rica/bothriechis-schlegelii"]
+   },
+   "distributionCR": {
+    "en": "The Instituto Clodomiro Picado (Universidad de Costa Rica) gives its Costa Rican range as sea level to 1,500 m, within a wide distribution that runs down the Caribbean side from Mexico to Venezuela and down the Pacific side from south-eastern Costa Rica to Ecuador; it names no particular park or region. Wikipedia places the related B. supraciliaris in south-western Costa Rica (San José Province). ADW's elevation figure (860–2,500 m) does not match the ICP's Costa Rican range.",
+    "es": "El Instituto Clodomiro Picado (Universidad de Costa Rica) da su distribución en Costa Rica desde el nivel del mar hasta los 1 500 m, dentro de un rango amplio que baja por el lado caribeño desde México hasta Venezuela y por el lado pacífico desde el sureste de Costa Rica hasta Ecuador; no nombra ningún parque ni región en particular. Wikipedia ubica a la especie afín B. supraciliaris en el suroeste de Costa Rica (provincia de San José). La cifra de elevación de ADW (860–2 500 m) no coincide con el rango costarricense del ICP.",
+    "status": "confirmed (ICP-UCR: Costa Rica, sea level to 1,500 m, Caribbean and Pacific sides; Wikipedia species and genus pages: B. supraciliaris in south-western Costa Rica / San José Province); approximate (no park or region named by any fetched source)",
+    "sources": ["https://icp.ucr.ac.cr/en/information-and-materials/venomous-snakes-costa-rica/bothriechis-schlegelii", "https://en.wikipedia.org/wiki/Bothriechis_schlegelii", "https://en.wikipedia.org/wiki/Bothriechis", "https://animaldiversity.org/accounts/Bothriechis_schlegelii/"]
+   },
+   "diet": {
+    "en": "Small arboreal vertebrates: frogs, anoles and geckos, hummingbirds and other birds, bats, rodents and mouse opossums; juveniles sometimes wriggle the tail tip like a worm to lure prey.",
+    "es": "Pequeños vertebrados arborícolas: ranas, lagartijas (anolis y geckos), colibríes y otras aves, murciélagos, roedores y zorricíes; los juveniles a veces mueven la punta de la cola como un gusano para atraer presas.",
+    "status": "confirmed (Wikipedia: rodents, bats, mouse opossums, frogs, hummingbirds, anoles, geckos, juvenile iguanas, caudal luring; ADW: frogs, lizards, birds, bats, rodents, marsupials)",
+    "sources": ["https://en.wikipedia.org/wiki/Bothriechis_schlegelii", "https://animaldiversity.org/accounts/Bothriechis_schlegelii/"]
+   },
+   "behaviour": {
+    "en": "A nocturnal sit-and-wait ambush predator that coils tightly on a branch by day and grips with a prehensile tail; it is ovoviviparous, the female carrying the eggs for about six months and bearing 2–20 live young of 15–20 cm, and males perform a 'dance of the adders' courtship display, posturing upright against each other.",
+    "es": "Cazadora nocturna de emboscada que de día se enrosca apretada en una rama y se sujeta con la cola prensil; es ovovivípara: la hembra lleva los huevos unos seis meses y pare de 2 a 20 crías vivas de 15 a 20 cm, y los machos realizan una 'danza' de cortejo erguidos uno frente al otro.",
+    "status": "confirmed (Wikipedia; ADW: nocturnal, solitary, ambush predator, 2–20 young, about six months gestation, maturity at two years)",
+    "sources": ["https://en.wikipedia.org/wiki/Bothriechis_schlegelii", "https://animaldiversity.org/accounts/Bothriechis_schlegelii/"]
+   },
+   "facts": [
+    {
+     "en": "The golden 'oropel' is not a different snake: the Instituto Clodomiro Picado stresses that yellow is just one of the colours — grey, brown, pink, white, gold — that this single species can wear, and its patterns differ enough to tell individuals apart.",
+     "es": "El oropel dorado no es otra culebra: el Instituto Clodomiro Picado subraya que el amarillo es solo uno de los colores —gris, café, rosado, blanco, dorado— que puede lucir esta misma especie, y sus patrones varían tanto que sirven para distinguir individuos.",
+     "status": "confirmed (ICP-UCR)",
+     "sources": ["https://icp.ucr.ac.cr/en/information-and-materials/venomous-snakes-costa-rica/bothriechis-schlegelii"]
+    },
+    {
+     "en": "Its namesake 'eyelashes' are small bristly keeled scales above each eye, thought to break up the snake's outline against the foliage.",
+     "es": "Sus 'pestañas' son escamas pequeñas, quilladas y erizadas sobre cada ojo, que al parecer ayudan a disimular la silueta de la culebra entre el follaje.",
+     "status": "confirmed (ADW: small bristly keeled scales above each eye; Wikipedia: suggested to break up its outline)",
+     "sources": ["https://animaldiversity.org/accounts/Bothriechis_schlegelii/", "https://en.wikipedia.org/wiki/Bothriechis_schlegelii"]
+    },
+    {
+     "en": "A 2024 DNA study split the eyelash viper into several species and left Bothriechis schlegelii in the strict sense to Colombia, so Costa Rica's eyelash vipers now belong to other members of the 'eyelash clade' — though the Instituto Clodomiro Picado's page still lists them as B. schlegelii.",
+     "es": "Un estudio de ADN de 2024 dividió la oropel en varias especies y dejó a Bothriechis schlegelii en sentido estricto solo en Colombia, de modo que las oropeles de Costa Rica pertenecen ahora a otros miembros del 'clado de pestañas', aunque la página del Instituto Clodomiro Picado todavía las registra como B. schlegelii.",
+     "status": "approximate (Wikipedia describes the 2024 revision and the Colombian restriction; which new name applies to Costa Rica's lowland populations was not stated on any fetched page)",
+     "sources": ["https://en.wikipedia.org/wiki/Bothriechis_schlegelii", "https://en.wikipedia.org/wiki/Bothriechis", "https://icp.ucr.ac.cr/en/information-and-materials/venomous-snakes-costa-rica/bothriechis-schlegelii"]
+    }
+   ],
+   "sources": [
+    { "url": "https://en.wikipedia.org/wiki/Bothriechis_schlegelii", "title": "Bothriechis schlegelii", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Bothriechis schlegelii (Berthold, 1846), Viperidae, Squamata; Least Concern (evaluated 2013, assessment cited 2019); 55–82 cm; 2024 revision restricting B. schlegelii to Colombia, B. supraciliaris in San José Province; arboreal, secondary forest and plantations; eyelash scales break up outline; Spanish names oropel, bocaracá, toboba pestañas, víbora de pestañas, serpiente loro; diet and caudal luring; nocturnal ambush, prehensile tail, ovoviviparous, 2–20 young of 15–20 cm, dance of the adders; CITES III removal 2002" },
+    { "url": "https://icp.ucr.ac.cr/en/information-and-materials/venomous-snakes-costa-rica/bothriechis-schlegelii", "title": "Bothriechis schlegelii — Venomous snakes of Costa Rica", "publisher": "Instituto Clodomiro Picado, Universidad de Costa Rica", "published": null, "retrieved": "2026-10-25",
+      "supports": "Costa Rican range sea level to 1,500 m; Caribbean side Mexico to Venezuela, Pacific side SE Costa Rica to Ecuador; arboreal, nocturnal; 50–70 cm typical, max 95 cm, females larger; colours grey, brown, yellow, gold, pink, white; 'oropel' = yellow/golden individuals of the same species; individual patterns" },
+    { "url": "https://animaldiversity.org/accounts/Bothriechis_schlegelii/", "title": "Bothriechis schlegelii — Eyelash Viper", "publisher": "Animal Diversity Web (University of Michigan)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Costa Rica named in range; elevation 860–2,500 m; habitat thickets, low branches, vines, palm bark, coffee plantations, lowland to cloud forest; 55–82 cm, females 35–82, males 37–69; bristly keeled supraocular scales; ovoviviparous, 2–20 young, about six months gestation; lifespan about 10 years wild; nocturnal solitary ambush predator; diet; hemotoxic venom, no fatalities reported; IUCN Not Evaluated, CITES III removed 2002" },
+    { "url": "https://en.wikipedia.org/wiki/Bothriechis", "title": "Bothriechis", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "'Eyelash clade' species after the 2024 revision (B. klebbai, B. rasikusumorum, B. khwargi, B. rahimi, B. hussaini, revalidated B. nigroadspersus, B. nitidus, B. torvus, plus B. supraciliaris); B. supraciliaris found in south-western Costa Rica" }
+   ]
+  },
+  {
+   "id": "plumed-basilisk",
+   "commonNames": {
+    "en": "Plumed Basilisk",
+    "es": "basilisco verde",
+    "esAlt": ["lagartija Jesucristo", "basilisco"],
+    "zh": "双冠蜥",
+    "status": "confirmed (en: Wikipedia — plumed, green and double-crested basilisk, 'Jesus Christ lizard'); approximate (es: 'basilisco verde' and 'lagartija Jesucristo' are the usual Costa Rican names, but no fetched page gave Spanish names and Spanish Wikipedia could not be reached); uncertain (zh: not verified)",
+    "sources": ["https://en.wikipedia.org/wiki/Plumed_basilisk", "https://en.wikipedia.org/wiki/Basiliscus_(lizard)"]
+   },
+   "scientific": "Basiliscus plumifrons",
+   "authority": "Cope, 1875",
+   "family": "Corytophanidae",
+   "order": "Squamata",
+   "taxonomyStatus": "approximate (Wikipedia infobox gives Cope, 1875 while its reference list cites Cope 1865; GBIF not fetched)",
+   "iucn": {
+    "category": "LC",
+    "categoryName": "Least Concern",
+    "status": "approximate (Wikipedia lists Least Concern without an assessment year; the IUCN page was not fetched)",
+    "sources": ["https://en.wikipedia.org/wiki/Plumed_basilisk"]
+   },
+   "size": {
+    "length_cm": 91,
+    "status": "approximate (Wikipedia: snout–vent length about 25 cm, total length about 91 cm; adult mass not given, hatchlings about 2 g and 43 mm SVL)",
+    "sources": ["https://en.wikipedia.org/wiki/Plumed_basilisk"]
+   },
+   "habitat": {
+    "en": "Hot, humid lowland rainforest beside streams, rivers, ponds and lagoons, where it sits on boulders and branches over the water; it also uses secondary scrub along watercourses, gallery and riparian wet forest and swamp forest.",
+    "es": "Bosque lluvioso cálido y húmedo de tierras bajas junto a quebradas, ríos, lagunas y charcas, donde se posa sobre piedras y ramas encima del agua; también usa charrales secundarios a lo largo de los cauces, bosque húmedo ribereño y de galería, y bosque pantanoso.",
+    "status": "confirmed (Wikipedia: hot humid rainforest near streams, rivers, ponds, lakes, boulders near water; Lewis & Grant: secondary scrub along water courses, gallery and riparian tropical wet forest, Manicaria swamp)",
+    "sources": ["https://en.wikipedia.org/wiki/Plumed_basilisk", "https://uwe-repository.worktribe.com/index.php/OutputFile/10980864"]
+   },
+   "distributionCR": {
+    "en": "Ranges from eastern Honduras through Nicaragua and Costa Rica to western Panama; in Costa Rica Wikipedia reports it on both versants, including the Pacific coast of the south-west, and Tortuguero National Park (Limón) lists 'basilisk lizards' among its reptiles. A note by Lewis & Grant records the species at Caño Palma Biological Station, about 8 km north of Tortuguero on a blackwater canal, in Manicaria swamp and lowland wet forest.",
+    "es": "Va del oriente de Honduras, por Nicaragua y Costa Rica, hasta el occidente de Panamá; en Costa Rica Wikipedia la reporta en ambas vertientes, incluida la costa pacífica del suroeste, y el Parque Nacional Tortuguero (Limón) incluye 'basiliscos' entre sus reptiles. Una nota de Lewis y Grant registra la especie en la Estación Biológica Caño Palma, unos 8 km al norte de Tortuguero sobre un canal de aguas negras, en bosque pantanoso de Manicaria y bosque húmedo de tierras bajas.",
+    "status": "confirmed (Wikipedia species and genus pages; Lewis & Grant: Caño Palma); approximate (the Tortuguero National Park page names only 'basilisk lizards', not the species)",
+    "sources": ["https://en.wikipedia.org/wiki/Plumed_basilisk", "https://en.wikipedia.org/wiki/Basiliscus_(lizard)", "https://uwe-repository.worktribe.com/index.php/OutputFile/10980864", "https://en.wikipedia.org/wiki/Tortuguero_National_Park"]
+   },
+   "diet": {
+    "en": "Omnivorous but mostly insects such as crickets and locusts, with small fish, frogs, lizards, rodents, birds, shrimp, crayfish and spiders; plants are a minor part of the wild diet.",
+    "es": "Omnívoro, pero come sobre todo insectos como grillos y saltamontes, además de pececillos, ranas, lagartijas, roedores, aves, camarones, cangrejos de río y arañas; las plantas son una parte menor de su dieta silvestre.",
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Plumed_basilisk"]
+   },
+   "behaviour": {
+    "en": "Diurnal and arboreal, usually solitary; when alarmed it drops from its perch and sprints across the water on its hind legs, then swims or stays submerged for up to an hour. Males carry tall crests on head, back and tail and are territorial; females lay clutches of 5–15 eggs (another passage says 14–17) in warm damp soil, up to four or five times a season, and the eggs hatch after 8–10 weeks.",
+    "es": "Diurno y arborícola, por lo general solitario; cuando se alarma se deja caer de su percha y corre sobre el agua en las patas traseras, luego nada o se queda sumergido hasta una hora. Los machos llevan crestas altas en la cabeza, el lomo y la cola y son territoriales; las hembras ponen de 5 a 15 huevos (otro pasaje dice 14–17) en suelo tibio y húmedo, hasta cuatro o cinco veces por temporada, y los huevos eclosionan a las 8–10 semanas.",
+    "status": "confirmed (Wikipedia: diurnal, arboreal, bipedal water running, up to an hour under water, male crests, territorial males, clutch and incubation; Lewis & Grant: runs on hind legs even over water, described as solitary after Savage 2002)",
+    "sources": ["https://en.wikipedia.org/wiki/Plumed_basilisk", "https://uwe-repository.worktribe.com/index.php/OutputFile/10980864"]
+   },
+   "facts": [
+    {
+     "en": "The 'Jesus Christ lizard' really does run on water: flaps between its toes trap pockets of air, letting it sprint about 4.5 m at 1.5 m/s before it sinks and swims on — adults have been clocked at 2.14 m/s.",
+     "es": "La 'lagartija Jesucristo' de verdad corre sobre el agua: unos pliegues entre los dedos atrapan bolsas de aire que le permiten correr unos 4,5 m a 1,5 m/s antes de hundirse y seguir nadando; a los adultos se les ha medido 2,14 m/s.",
+     "status": "confirmed (Wikipedia genus page: flaps between toes, 1.5 m/s for about 4.5 m; species page: adults about 2.14 m/s)",
+     "sources": ["https://en.wikipedia.org/wiki/Basiliscus_(lizard)", "https://en.wikipedia.org/wiki/Plumed_basilisk"]
+    },
+    {
+     "en": "It is an excellent swimmer and can stay under water for up to an hour.",
+     "es": "Es un excelente nadador y puede permanecer bajo el agua hasta una hora.",
+     "status": "confirmed (Wikipedia)",
+     "sources": ["https://en.wikipedia.org/wiki/Plumed_basilisk"]
+    },
+    {
+     "en": "At Caño Palma, 8 km north of Tortuguero, a male and a female were found asleep side by side on a shrub at 1.6 m one October night in 2001 — the first published record of communal behaviour in a lizard otherwise described as solitary.",
+     "es": "En Caño Palma, 8 km al norte de Tortuguero, una noche de octubre de 2001 se encontró a un macho y una hembra dormidos uno junto al otro sobre un arbusto a 1,6 m: el primer registro publicado de comportamiento comunal en un lagarto que se describe como solitario.",
+     "status": "confirmed (Lewis & Grant)",
+     "sources": ["https://uwe-repository.worktribe.com/index.php/OutputFile/10980864"]
+    }
+   ],
+   "sources": [
+    { "url": "https://en.wikipedia.org/wiki/Plumed_basilisk", "title": "Plumed basilisk", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Basiliscus plumifrons Cope, 1875 (reference list cites 1865), Corytophanidae, Squamata; Least Concern (no year); SVL about 25 cm, total about 91 cm, hatchlings 2 g; Costa Rica on both versants including the south-western Pacific coast; habitat near water; omnivorous diet; bipedal water running at 1.6–2.14 m/s, up to an hour under water, male crests, territoriality; clutches 5–15 (or 14–17), 8–10 weeks incubation; English names" },
+    { "url": "https://en.wikipedia.org/wiki/Basiliscus_(lizard)", "title": "Basiliscus (lizard)", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "'Jesus Christ lizard' name; toe flaps trapping air; runs 1.5 m/s for about 4.5 m before sinking; B. plumifrons range eastern Honduras through Nicaragua and Costa Rica to western Panama" },
+    { "url": "https://uwe-repository.worktribe.com/index.php/OutputFile/10980864", "title": "Communal behaviour by Basiliscus plumifrons in a Manicaria swamp forest, northeast Costa Rica (Todd R. Lewis & Paul B. C. Grant)", "publisher": "UWE Bristol Research Repository", "published": null, "retrieved": "2026-10-25",
+      "supports": "Caño Palma Biological Station about 8 km north of Tortuguero on a blackwater canal; habitat preference for secondary scrub along watercourses, gallery and riparian wet forest, Manicaria swamp; runs on hind legs even over water; oviparous; species described as solitary (Savage 2002); October 2001 record of a male and female sleeping side by side at 1.6 m" },
+    { "url": "https://en.wikipedia.org/wiki/Tortuguero_National_Park", "title": "Tortuguero National Park", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Limón Province; canals, lagoons and wet lowland Atlantic-slope forest; 'basilisk lizards' among the park's reptiles" }
+   ]
+  },
+  {
+   "id": "spectacled-caiman",
+   "commonNames": {
+    "en": "Spectacled Caiman",
+    "es": "caimán",
+    "esAlt": ["lagarto", "caimán de anteojos"],
+    "zh": "眼镜凯门鳄",
+    "status": "confirmed (en: Wikipedia — also white, common and speckled caiman; es 'caimán': used throughout the Revista de Biología Tropical study at Caño Negro); approximate (es 'lagarto', the everyday Costa Rican word for caimans and crocodiles, and 'caimán de anteojos': not verified on a fetched page; Spanish Wikipedia could not be reached); uncertain (zh: not verified)",
+    "sources": ["https://en.wikipedia.org/wiki/Spectacled_caiman", "https://archivo.revistas.ucr.ac.cr/index.php/rbt/article/view/15809"]
+   },
+   "scientific": "Caiman crocodilus",
+   "authority": "(Linnaeus, 1758)",
+   "family": "Alligatoridae",
+   "order": "Crocodilia",
+   "taxonomyStatus": "approximate (Wikipedia; GBIF not fetched; the Caño Negro study's English abstract calls the local animal 'brown caiman', the English name of the subspecies C. c. fuscus, but no fetched page states the subspecies for Costa Rica)",
+   "iucn": {
+    "category": "LC",
+    "categoryName": "Least Concern",
+    "year": 2019,
+    "url": "https://www.iucnredlist.org/species/46584/3009688",
+    "status": "approximate (category and year as cited on the Wikipedia species page; the IUCN page itself was not fetched)",
+    "note": "CITES Appendix II for C. c. crocodilus and C. c. fuscus; C. c. apaporiensis in Appendix I; adult population described as in the millions and stable (Wikipedia).",
+    "sources": ["https://en.wikipedia.org/wiki/Spectacled_caiman"]
+   },
+   "size": {
+    "length_cm_range": [140, 250],
+    "mass_kg_range": [7, 40],
+    "status": "confirmed (Wikipedia: overall 1.4–2.5 m; females usually 1.08–1.4 m, males 1.5–1.8 m and large males 2.0–2.5 m, maximum 2.64 m; most adults 7–40 kg, Llanos males to 58 kg)",
+    "sources": ["https://en.wikipedia.org/wiki/Spectacled_caiman"]
+   },
+   "habitat": {
+    "en": "Freshwater wetlands, rivers, lakes and seasonally flooded forests, grasslands and savannas, preferring calm water with floating vegetation that floods and dries with the seasons; mostly in lowlands, up to about 800 m.",
+    "es": "Humedales de agua dulce, ríos, lagunas y bosques, pastizales y sabanas que se inundan por temporadas, con preferencia por aguas tranquilas con vegetación flotante que suben y bajan con las estaciones; sobre todo en tierras bajas, hasta unos 800 m.",
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Spectacled_caiman"]
+   },
+   "distributionCR": {
+    "en": "Costa Rica is among the 17 countries of its range (Wikipedia). It is listed among the reptiles of Tortuguero National Park (Limón), whose rivers are home to caimans and crocodiles, and a 1999–2000 study on the Río Frío in Caño Negro National Wildlife Refuge, in the north near Nicaragua, estimated about 2,283 caimans along 30.7 km of river. Palo Verde and the Tempisque were not named by any fetched page.",
+    "es": "Costa Rica está entre los 17 países de su distribución (Wikipedia). Figura entre los reptiles del Parque Nacional Tortuguero (Limón), cuyos ríos albergan caimanes y cocodrilos, y un estudio de 1999–2000 en el río Frío, en el Refugio Nacional de Vida Silvestre Caño Negro, en la zona norte cerca de Nicaragua, estimó unos 2 283 caimanes en 30,7 km de río. Ninguna página consultada nombró Palo Verde ni el Tempisque.",
+    "status": "confirmed (Wikipedia: Costa Rica in the country list; Tortuguero National Park page: Caiman crocodilus listed, rivers home to caimans and crocodiles; Cabrera Peña et al. 2003: Río Frío, Caño Negro)",
+    "sources": ["https://en.wikipedia.org/wiki/Spectacled_caiman", "https://en.wikipedia.org/wiki/Tortuguero_National_Park", "https://archivo.revistas.ucr.ac.cr/index.php/rbt/article/view/15809"]
+   },
+   "diet": {
+    "en": "Changes with age and season: small caimans take insects and freshwater shrimp, larger ones more fish and mammals; in the wet season mainly snails and freshwater crabs, in the dry season mainly fish.",
+    "es": "Cambia con la edad y la estación: los caimanes pequeños comen insectos y camarones de agua dulce, los grandes más peces y mamíferos; en la época lluviosa sobre todo caracoles y cangrejos de agua dulce, y en la seca sobre todo peces.",
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Spectacled_caiman"]
+   },
+   "behaviour": {
+    "en": "Hunts mostly at night and spends the day motionless on the bank or half-submerged; in cold weather the black pigment in its skin cells spreads and it darkens. Males turn aggressive and territorial in the rainy season; the female builds a mound nest of vegetation over 1 m across and up to 40 cm high, lays 14–40 eggs (average 22) in July–August and stays close to the nest during incubation.",
+    "es": "Caza sobre todo de noche y pasa el día inmóvil en la orilla o medio sumergido; con el frío el pigmento negro de sus células se expande y se oscurece. Los machos se vuelven agresivos y territoriales en la época lluviosa; la hembra construye un nido en forma de montículo de vegetación de más de 1 m de ancho y hasta 40 cm de alto, pone de 14 a 40 huevos (22 en promedio) en julio y agosto y se queda cerca del nido durante la incubación.",
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Spectacled_caiman"]
+   },
+   "facts": [
+    {
+     "en": "The 'spectacles' are a bony ridge between the eyes that looks like the bridge of a pair of glasses.",
+     "es": "Los 'anteojos' son un puente óseo entre los ojos que parece la montura de unas gafas.",
+     "status": "confirmed (Wikipedia)",
+     "sources": ["https://en.wikipedia.org/wiki/Spectacled_caiman"]
+    },
+    {
+     "en": "The nest decides the sex: at about 32 °C or above the hatchlings become female, and below that they become male.",
+     "es": "El nido decide el sexo: a unos 32 °C o más las crías nacen hembras, y por debajo nacen machos.",
+     "status": "confirmed (Wikipedia)",
+     "sources": ["https://en.wikipedia.org/wiki/Spectacled_caiman"]
+    },
+    {
+     "en": "On the Río Frío in Caño Negro, night counts of eyeshine in 1999–2000 gave about 74 caimans per kilometre of bank — the highest density reported for the species, according to the Costa Rican authors — with March the month of most caimans.",
+     "es": "En el río Frío de Caño Negro, los conteos nocturnos de ojos reflejados en 1999–2000 dieron unos 74 caimanes por kilómetro de orilla —la densidad más alta reportada para la especie, según los autores costarricenses—, con marzo como el mes de más caimanes.",
+     "status": "confirmed (Cabrera Peña et al. 2003, Revista de Biología Tropical: 74.36 individuals per km, 2283.48 ± 313.5 caimans, March highest; the 'highest density reported' claim appears in the Spanish resumen only)",
+     "sources": ["https://archivo.revistas.ucr.ac.cr/index.php/rbt/article/view/15809"]
+    }
+   ],
+   "sources": [
+    { "url": "https://en.wikipedia.org/wiki/Spectacled_caiman", "title": "Spectacled caiman", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Caiman crocodilus (Linnaeus, 1758), Alligatoridae, Crocodilia; Least Concern (2019); 1.4–2.5 m, 7–40 kg; bony ridge between the eyes; range of 17 countries including Costa Rica; habitat up to 800 m; diet by age and season; nocturnal hunting, darkening in cold; mound nests over 1 m wide and 40 cm high, 14–40 eggs (average 22) in July–August, female stays near; temperature-dependent sex at about 32 °C; CITES listings; English names" },
+    { "url": "https://archivo.revistas.ucr.ac.cr/index.php/rbt/article/view/15809", "title": "Distribución y abundancia de Caiman crocodilus en el Refugio Nacional de Vida Silvestre Caño Negro, Costa Rica (Cabrera Peña, Protti Quesada, Urriola Hernández & Cubero Murillo), Revista de Biología Tropical 51(2): 571–578", "publisher": "Revista de Biología Tropical, Universidad de Costa Rica (authors at Universidad Nacional)", "published": "2003-06-01", "retrieved": "2026-10-25",
+      "supports": "Spanish name 'caimán'; Río Frío, Caño Negro National Wildlife Refuge, northern Costa Rica; monthly night counts Feb 1999–Mar 2000 over about 30.7 km; population estimate 2283.48 ± 313.5; density 74.36 per km of bank (17.29–139.06), described as the highest reported for the species; March highest; fluctuations attributed to local movements; English abstract uses 'brown caiman'" },
+    { "url": "https://en.wikipedia.org/wiki/Tortuguero_National_Park", "title": "Tortuguero National Park", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25",
+      "supports": "Limón Province; canals, lagoons and wet lowland Atlantic-slope forest; Caiman crocodilus in the species list, photo caption of a spectacled caiman in the park, rivers home to caimans and crocodiles" }
+   ]
+  }
+ ],
+ "unverified": [
+  { "id": "strawberry-poison-dart-frog", "claim": "Spanish names 'rana venenosa roja' and 'rana blue jeans'", "why": "Not on any fetched page; only 'rana roja' and 'rana venenosa' (ACTO report) were verified. Spanish Wikipedia (https://es.wikipedia.org/wiki/Oophaga_pumilio) was blocked by the fetch permission and never surfaced in WebSearch." },
+  { "id": "strawberry-poison-dart-frog", "claim": "Which parent carries the tadpoles to the bromeliads", "why": "AmphibiaWeb says the female carries 1–2 tadpoles; the ACTO report says the male carries them after guarding the eggs. The behaviour text is written in the passive to avoid choosing." },
+  { "id": "fleischmanns-glass-frog", "claim": "Slope-level distribution in Costa Rica (Caribbean vs Pacific) and elevation range within the country", "why": "Wikipedia names Costa Rica's lowland wet forests and 'higher elevations' and AmphibiaWeb lists the country; neither names a slope or park. Only Monteverde (reserve list) is a verified locality." },
+  { "id": "eyelash-viper", "claim": "The current species name of Costa Rica's lowland eyelash vipers after the 2024 revision", "why": "Wikipedia says the revision restricts B. schlegelii in the strict sense to Colombia and lists the 'eyelash clade' species (B. nigroadspersus among them), but no fetched page says which of them occurs in Costa Rica's lowlands; only B. supraciliaris (south-western Costa Rica / San José Province) is placed in the country. The ICP page still uses B. schlegelii." },
+  { "id": "eyelash-viper", "claim": "Elevation range", "why": "ICP-UCR gives sea level to 1,500 m for Costa Rica; ADW gives 860–2,500 m for the species. The entry follows the ICP for Costa Rica and notes the conflict." },
+  { "id": "eyelash-viper", "claim": "IUCN assessment year (2013 or 2019) and status", "why": "Wikipedia says evaluated in 2013 and cites a 2019 assessment; ADW lists Not Evaluated. The IUCN page was not fetched." },
+  { "id": "plumed-basilisk", "claim": "Spanish names 'basilisco verde' and 'lagartija Jesucristo'", "why": "No fetched page gave any Spanish name; Spanish Wikipedia never surfaced in WebSearch. Marked approximate." },
+  { "id": "plumed-basilisk", "claim": "Authority year (1875 vs 1865) and clutch size (5–15 vs 14–17 eggs)", "why": "The Wikipedia species page is internally inconsistent on both; GBIF not fetched." },
+  { "id": "spectacled-caiman", "claim": "Presence at Palo Verde National Park and the Tempisque basin", "why": "Named in the task brief but not on any fetched page; only Tortuguero (Wikipedia park page) and Caño Negro (Revista de Biología Tropical) are verified." },
+  { "id": "spectacled-caiman", "claim": "'Lagarto' as the Costa Rican common name and C. c. fuscus as the Costa Rican subspecies", "why": "The Caño Negro paper uses 'caimán' only; its English abstract says 'brown caiman' but does not name the subspecies. Spanish Wikipedia could not be reached." }
+ ]
+}

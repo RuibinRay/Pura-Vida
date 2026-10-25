@@ -104,3 +104,19 @@ The opening is now his regenerated forest (the thirteenth image, which could not
 Half an hour after the one-toucan opening, the owner sent a third scene for the first page: a new picture (a bromeliad-and-orchid frame, the volcano over a lake, a waterfall into a turquoise river, the sunrise at the right) in two versions — with its animals and without — and asked that it replace the home page, that the animals move, that the scroll feel like zooming and walking into the journey, with the waterfall flowing. The pair is pixel-aligned (0.91 correlation at 320 px; the difference is the animals and the generator's re-encoding), so the plate is built the clean way: the base is his empty scene, the animals are cut from the full one — one toucan (his standing rule), the sloth above it, two hummingbirds, a red-eyed tree frog on its leaf, two scarlet macaws flying toward the sun, the morpho — with no inpainting anywhere. The waterfall, the rapids below it, the pool and the lake move. The walk-in is the scroll: the plate zooms 22 % toward the waterfall through the stop while the near foliage parts and passes the camera, the macaws and the morpho cross the valley, the hummingbirds dart at their flowers.
 
 The second opening (the regenerated scene with the first plate's cut-outs pasted on) is kept as `forest-v2.json` for the record, not built.
+
+## 11. The wildlife trail (2026-10-25, night)
+
+The owner asked for the wildlife page to feel like walking through a zoo, with the scroll walking in and the animals
+answering a tap, "using everything given before". It is the walk's own mechanism on a second page: `useJourneyDriver`
+over nine zones (`src/journey/trail.ts`), each a sticky backdrop from his environment images (none used elsewhere;
+`tools/zoo/envs.json`) that grows 8 % and slides 3 vw through its zone while the near animals move a little more
+than the far ones (`--depth`), and the mist, shafts and flock of the homepage plates drift over it. The animals are
+his own cut-outs placed by hand (`at` / `phone` in % of the stage), not segmented from any scene: 31 stickers cut from
+the 18 cut-outs and 4 sprite sheets (`tools/zoo_stickers.py`), each with an entrance direction and order, a loop by
+kind, a soft ground shadow, and, for swimmers, a water-line fade. The sign of each zone is a wooden plaque in the
+corner its image leaves free; the path at the bottom fills as the visitor walks; a tap opens the species' sourced
+entry in the sheet and stamps the passport. The order is a story — from the lowland canopy up through the cloud
+forest and a waterfall to a crater, then down through the gardens and the dry forest to the forest floor, the
+Caribbean canals and the Pacific shore — and every placement is checked against the species' sourced places
+(`tests/trail.test.ts`). Fourteen species were researched for it the same night (`research/species-zoo-*.json`).

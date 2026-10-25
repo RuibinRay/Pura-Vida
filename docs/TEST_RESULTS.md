@@ -2,6 +2,23 @@
 
 All figures below were produced in this session's environment unless stated otherwise: a 2-core Linux container, headless Chromium 153 with SwiftShader (software WebGL), no real GPU, no field data. Numbers that depend on a GPU are marked as such and must be re-measured on a laptop and a phone.
 
+## The wildlife trail (2026-10-25, night)
+
+### Tests
+`npx vitest run`: **66 tests in 6 files, all passing** — `tests/trail.test.ts` (new): nine zones with unique keys and backdrops present at every width, named in three languages; every animal a species of the journal with a sticker on disk at every width of its ladder, sources, ≥ 2 facts, an IUCN category and a "where in Costa Rica"; every animal inside the stage in both layouts, entrances within the first 30 % of the zone; swimmers' water lines; **every animal standing where its sources put it** (a habitat place or a walk verdict matching the zone). `tsc --noEmit`: clean. `npm run build`: clean.
+
+### The content
+32 species in the generated content (18 before): 14 researched this night in three files (`research/species-zoo-mammals.json`, `-herps.json`, `-sea.json`), 5–7 sources each (Wikipedia en/es, ADW, AmphibiaWeb, and a Costa Rican page per species where one could be fetched — Instituto Clodomiro Picado, Área de Conservación Guanacaste, SINAC, Sea Turtle Conservancy, Revista de Biología Tropical, Fundación Keto/Ambientico, Macaw Recovery Network, the Monteverde reserve's amphibian list), 36 claims kept in `unverified` (Chinese names, a few localities, two taxonomic revisions — the eyelash viper's 2024 split and the howler's assessment year). `node tools/build_content.mjs`: 548 sources, no errors.
+
+### The stickers and backdrops
+31 stickers (6.5 MB over four widths) from the 18 cut-outs and 4 sheets: each one reviewed on a grey contact sheet; eleven needed erase polygons for a neighbour's tail, wing or splash (the whale carried the manatee's back; the basilisk a lizard foot and a fluke; the great green macaw a jaguar's paw), fixed in three passes. Nine backdrops (18 MB over five widths, 3344 px) from the environment images; the registration against every original in the repository finds none used before (best 0.56).
+
+### Headless (1440×900 and 390×844, `tools/scratch/trail-shots.mjs`)
+Every zone at half its scroll: the animals all in frame (bounding boxes logged), 2–17 loops running per zone (the stickers' idle loops, the flock, the mist; the volcano zone's one hummingbird: 2), 0 console errors on both viewports. Desktop: the signs in their corners, the path rail, the counter; the hover tag; the popup with the sticker, the zone chip, three places, the three links and the entry. Phone: the stacked layouts, the sign at the bottom, the counter and sound in one row under the top bar, the popup. Three layout passes moved animals from under the top bar, the sign and the rail (the sloth, the quetzal, the capuchin, the glass frog, the iguana, the basilisk, the coati, the manatee, the viper).
+
+### Not tested
+Frame rate on a device (six stickers with drop shadows plus mist and a flock on the canopy); the stickers' light against each backdrop on a calibrated screen; the `hover: none` tags on a real touch screen (headless reports no hover and showed every tag).
+
 ## The opening on the third pair, with the author's own cut-outs (2026-10-25, evening and night)
 
 ### Tests

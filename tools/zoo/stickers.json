@@ -1,0 +1,734 @@
+{
+ "note": "The animals of the wildlife trail: the owner's cut-outs (research/plates-original/2026-10-25/cutouts/) and his sprite sheets (…/sheets/), one sticker per species. `pick` is a box in the file's px; `erase` polygons (file px) drop what another animal left inside the box; `upscale` runs FSRCNN ×2 on small sheet animals; `flip` mirrors; `baseline` is the fraction of the sticker's height where the animal touches the ground (for shadows and ground placement).",
+ "widths": [
+  960,
+  640,
+  400,
+  240
+ ],
+ "stickers": [
+  {
+   "id": "keel-billed-toucan",
+   "png": "research/plates-original/2026-10-25/cutouts/12-a8a8440f.png",
+   "baseline": 0.84
+  },
+  {
+   "id": "brown-throated-three-toed-sloth",
+   "png": "research/plates-original/2026-10-25/cutouts/03-35826a97.png",
+   "baseline": 1
+  },
+  {
+   "id": "scarlet-macaw",
+   "png": "research/plates-original/2026-10-25/cutouts/08-4c6e075e.png",
+   "baseline": 1
+  },
+  {
+   "id": "blue-morpho",
+   "png": "research/plates-original/2026-10-25/cutouts/09-26f11b1a.png",
+   "baseline": 1
+  },
+  {
+   "id": "clay-colored-thrush",
+   "png": "research/plates-original/2026-10-25/cutouts/17-0978e776.png",
+   "baseline": 0.97
+  },
+  {
+   "id": "resplendent-quetzal",
+   "png": "research/plates-original/2026-10-25/cutouts/15-5f9a0e16.png",
+   "pick": [
+    0,
+    0,
+    770,
+    1086
+   ],
+   "baseline": 1
+  },
+  {
+   "id": "bairds-tapir",
+   "png": "research/plates-original/2026-10-25/sheets/s3-twenty-one.png",
+   "pick": [
+    688,
+    432,
+    1008,
+    628
+   ],
+   "upscale": true,
+   "baseline": 0.97
+  },
+  {
+   "id": "white-tailed-deer",
+   "png": "research/plates-original/2026-10-25/cutouts/18-043be087.png",
+   "pick": [
+    0,
+    0,
+    905,
+    1086
+   ],
+   "baseline": 0.98
+  },
+  {
+   "id": "great-blue-heron",
+   "png": "research/plates-original/2026-10-25/cutouts/14-a3019a2e.png",
+   "pick": [
+    0,
+    0,
+    860,
+    1086
+   ],
+   "baseline": 0.98,
+   "erase": [
+    [
+     [
+      488,
+      730
+     ],
+     [
+      870,
+      730
+     ],
+     [
+      870,
+      940
+     ],
+     [
+      488,
+      940
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "white-faced-capuchin",
+   "png": "research/plates-original/2026-10-25/sheets/s4-big-bokeh.png",
+   "pick": [
+    998,
+    58,
+    1278,
+    388
+   ],
+   "upscale": true,
+   "baseline": 0.98,
+   "erase": [
+    [
+     [
+      998,
+      332
+     ],
+     [
+      1050,
+      332
+     ],
+     [
+      1050,
+      296
+     ],
+     [
+      1130,
+      296
+     ],
+     [
+      1130,
+      392
+     ],
+     [
+      998,
+      392
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "red-eyed-tree-frog",
+   "png": "research/plates-original/2026-10-25/cutouts/05-92116193.png",
+   "baseline": 0.98
+  },
+  {
+   "id": "green-iguana",
+   "png": "research/plates-original/2026-10-25/sheets/s4-big-bokeh.png",
+   "pick": [
+    1178,
+    556,
+    1536,
+    762
+   ],
+   "erase": [
+    [
+     [
+      1356,
+      540
+     ],
+     [
+      1460,
+      540
+     ],
+     [
+      1460,
+      628
+     ],
+     [
+      1356,
+      628
+     ]
+    ]
+   ],
+   "upscale": true,
+   "baseline": 0.96
+  },
+  {
+   "id": "olive-ridley-sea-turtle",
+   "png": "research/plates-original/2026-10-25/cutouts/13-ae2d1c49.png",
+   "baseline": 0.97
+  },
+  {
+   "id": "rufous-tailed-hummingbird",
+   "png": "research/plates-original/2026-10-25/cutouts/11-7e0ff25f.png",
+   "pick": [
+    740,
+    150,
+    1430,
+    850
+   ],
+   "baseline": 1
+  },
+  {
+   "id": "ruby-throated-hummingbird",
+   "png": "research/plates-original/2026-10-25/cutouts/06-91e95a55.png",
+   "baseline": 1
+  },
+  {
+   "id": "purple-throated-mountain-gem",
+   "png": "research/plates-original/2026-10-25/sheets/s3-twenty-one.png",
+   "pick": [
+    928,
+    118,
+    1202,
+    328
+   ],
+   "upscale": true,
+   "baseline": 1
+  },
+  {
+   "id": "volcano-hummingbird",
+   "png": "research/plates-original/2026-10-25/sheets/s3-twenty-one.png",
+   "pick": [
+    1208,
+    158,
+    1472,
+    338
+   ],
+   "upscale": true,
+   "baseline": 1
+  },
+  {
+   "id": "jaguar",
+   "png": "research/plates-original/2026-10-25/sheets/s1-seven-bokeh.png",
+   "pick": [
+    18,
+    78,
+    502,
+    582
+   ],
+   "upscale": true,
+   "baseline": 0.97
+  },
+  {
+   "id": "mantled-howler-monkey",
+   "png": "research/plates-original/2026-10-25/sheets/s4-big-bokeh.png",
+   "pick": [
+    348,
+    18,
+    702,
+    352
+   ],
+   "upscale": true,
+   "baseline": 0.98,
+   "erase": [
+    [
+     [
+      688,
+      18
+     ],
+     [
+      705,
+      18
+     ],
+     [
+      705,
+      200
+     ],
+     [
+      688,
+      200
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "geoffroys-spider-monkey",
+   "png": "research/plates-original/2026-10-25/sheets/s1-seven-bokeh.png",
+   "pick": [
+    758,
+    0,
+    1166,
+    642
+   ],
+   "upscale": true,
+   "baseline": 1
+  },
+  {
+   "id": "kinkajou",
+   "png": "research/plates-original/2026-10-25/sheets/s3-twenty-one.png",
+   "pick": [
+    833,
+    638,
+    1027,
+    887
+   ],
+   "upscale": true,
+   "baseline": 0.98,
+   "erase": [
+    [
+     [
+      1005,
+      745
+     ],
+     [
+      1030,
+      745
+     ],
+     [
+      1030,
+      890
+     ],
+     [
+      1005,
+      890
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "white-nosed-coati",
+   "png": "research/plates-original/2026-10-25/sheets/s1-seven-bokeh.png",
+   "pick": [
+    1168,
+    58,
+    1532,
+    602
+   ],
+   "upscale": true,
+   "baseline": 0.98
+  },
+  {
+   "id": "strawberry-poison-dart-frog",
+   "png": "research/plates-original/2026-10-25/sheets/s1-seven-bokeh.png",
+   "pick": [
+    800,
+    718,
+    1112,
+    978
+   ],
+   "upscale": true,
+   "baseline": 0.98
+  },
+  {
+   "id": "fleischmanns-glass-frog",
+   "png": "research/plates-original/2026-10-25/sheets/s1-seven-bokeh.png",
+   "pick": [
+    1148,
+    698,
+    1522,
+    1024
+   ],
+   "upscale": true,
+   "baseline": 1
+  },
+  {
+   "id": "eyelash-viper",
+   "png": "research/plates-original/2026-10-25/sheets/s4-big-bokeh.png",
+   "pick": [
+    608,
+    588,
+    858,
+    772
+   ],
+   "erase": [
+    [
+     [
+      800,
+      540
+     ],
+     [
+      1000,
+      540
+     ],
+     [
+      1000,
+      612
+     ],
+     [
+      860,
+      630
+     ],
+     [
+      800,
+      600
+     ]
+    ],
+    [
+     [
+      600,
+      690
+     ],
+     [
+      660,
+      690
+     ],
+     [
+      660,
+      780
+     ],
+     [
+      600,
+      780
+     ]
+    ],
+    [
+     [
+      840,
+      580
+     ],
+     [
+      860,
+      580
+     ],
+     [
+      860,
+      640
+     ],
+     [
+      840,
+      640
+     ]
+    ],
+    [
+     [
+      600,
+      752
+     ],
+     [
+      720,
+      752
+     ],
+     [
+      720,
+      780
+     ],
+     [
+      600,
+      780
+     ]
+    ]
+   ],
+   "upscale": true,
+   "baseline": 0.98
+  },
+  {
+   "id": "plumed-basilisk",
+   "png": "research/plates-original/2026-10-25/sheets/s4-big-bokeh.png",
+   "pick": [
+    858,
+    584,
+    1186,
+    766
+   ],
+   "erase": [
+    [
+     [
+      850,
+      540
+     ],
+     [
+      985,
+      540
+     ],
+     [
+      985,
+      648
+     ],
+     [
+      850,
+      648
+     ]
+    ],
+    [
+     [
+      985,
+      540
+     ],
+     [
+      1012,
+      540
+     ],
+     [
+      1012,
+      650
+     ],
+     [
+      985,
+      650
+     ]
+    ],
+    [
+     [
+      1060,
+      748
+     ],
+     [
+      1190,
+      748
+     ],
+     [
+      1190,
+      775
+     ],
+     [
+      1060,
+      775
+     ]
+    ],
+    [
+     [
+      1160,
+      578
+     ],
+     [
+      1192,
+      578
+     ],
+     [
+      1192,
+      640
+     ],
+     [
+      1160,
+      640
+     ]
+    ],
+    [
+     [
+      1008,
+      576
+     ],
+     [
+      1052,
+      576
+     ],
+     [
+      1052,
+      616
+     ],
+     [
+      1008,
+      616
+     ]
+    ],
+    [
+     [
+      1040,
+      728
+     ],
+     [
+      1190,
+      728
+     ],
+     [
+      1190,
+      775
+     ],
+     [
+      1040,
+      775
+     ]
+    ]
+   ],
+   "upscale": true,
+   "baseline": 0.98
+  },
+  {
+   "id": "spectacled-caiman",
+   "png": "research/plates-original/2026-10-25/cutouts/14-a3019a2e.png",
+   "pick": [
+    488,
+    738,
+    1448,
+    922
+   ],
+   "baseline": 0.75
+  },
+  {
+   "id": "west-indian-manatee",
+   "png": "research/plates-original/2026-10-25/sheets/s4-big-bokeh.png",
+   "pick": [
+    888,
+    862,
+    1182,
+    1014
+   ],
+   "erase": [
+    [
+     [
+      1000,
+      850
+     ],
+     [
+      1184,
+      850
+     ],
+     [
+      1184,
+      896
+     ],
+     [
+      1100,
+      900
+     ],
+     [
+      1060,
+      905
+     ],
+     [
+      1000,
+      880
+     ]
+    ]
+   ],
+   "upscale": true,
+   "baseline": 1
+  },
+  {
+   "id": "humpback-whale",
+   "png": "research/plates-original/2026-10-25/sheets/s4-big-bokeh.png",
+   "pick": [
+    1008,
+    738,
+    1318,
+    1014
+   ],
+   "erase": [
+    [
+     [
+      1008,
+      855
+     ],
+     [
+      1040,
+      855
+     ],
+     [
+      1040,
+      886
+     ],
+     [
+      1130,
+      880
+     ],
+     [
+      1186,
+      892
+     ],
+     [
+      1186,
+      1016
+     ],
+     [
+      1008,
+      1016
+     ]
+    ]
+   ],
+   "upscale": true,
+   "baseline": 1
+  },
+  {
+   "id": "bottlenose-dolphin",
+   "png": "research/plates-original/2026-10-25/sheets/s4-big-bokeh.png",
+   "pick": [
+    1328,
+    738,
+    1536,
+    1014
+   ],
+   "upscale": true,
+   "baseline": 1
+  },
+  {
+   "id": "great-green-macaw",
+   "png": "research/plates-original/2026-10-25/sheets/s1-seven-bokeh.png",
+   "pick": [
+    28,
+    572,
+    852,
+    1002
+   ],
+   "upscale": true,
+   "baseline": 1,
+   "erase": [
+    [
+     [
+      790,
+      840
+     ],
+     [
+      860,
+      840
+     ],
+     [
+      860,
+      1010
+     ],
+     [
+      790,
+      1010
+     ]
+    ],
+    [
+     [
+      780,
+      560
+     ],
+     [
+      860,
+      560
+     ],
+     [
+      860,
+      650
+     ],
+     [
+      780,
+      650
+     ]
+    ],
+    [
+     [
+      520,
+      560
+     ],
+     [
+      690,
+      560
+     ],
+     [
+      690,
+      642
+     ],
+     [
+      520,
+      642
+     ]
+    ]
+   ]
+  }
+ ]
+}

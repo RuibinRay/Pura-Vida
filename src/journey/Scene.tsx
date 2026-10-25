@@ -17,7 +17,7 @@ function rel(box: number[], container: number[]) {
 }
 const PLATE_BOX = [0, 0, 1, 1];
 /** a small flock crossing the sky: offsets in the box, start delays and crossing times (seconds) */
-const FLOCK = [
+export const FLOCK = [
   { y: 22, d: 0, t: 46, s: 1 },
   { y: 31, d: -9, t: 52, s: 0.8 },
   { y: 18, d: -17, t: 44, s: 0.9 },

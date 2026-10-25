@@ -148,3 +148,7 @@ flow; `mode` "flow" | "shimmer" (reflections) | "still" (exported only, for effe
    intended; nothing of the animal remains in the inpainted base (a tail outside the box is the usual cause → widen
    the box); the inpainted fill is plausible (foliage texture, not a smear).
 3. Composite check at 1672 px (base + layers at rest) must be indistinguishable from the original.
+
+## The wildlife trail's stickers and backdrops (`tools/zoo/`)
+
+`tools/zoo_stickers.py` cuts one sticker per species from the author's cut-outs and sprite sheets (`tools/zoo/stickers.json`: `png`, `pick` box and `erase` polygons in the file's px, `upscale` for small sheet animals — FSRCNN ×2 with the transparent pixels filled by their nearest opaque colour first — `flip`, `baseline` = the fraction of the height where the animal touches the ground) into `public/zoo/<id>-<w>.webp` (960 / 640 / 400 / 240, premultiplied resize) and `src/journey/zoo.generated.json`. `tools/zoo_envs.py` builds the backdrops (`tools/zoo/envs.json`) into `public/zoo/env/<key>-<w>.webp` (3344 / 2400 / 1672 / 1100 / 700) and `src/journey/envs.generated.json`. Placement lives in `src/journey/trail.ts` (percent of the stage, landscape and portrait), not in the tool.

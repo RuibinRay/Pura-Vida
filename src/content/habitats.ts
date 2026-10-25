@@ -88,6 +88,52 @@ export const HABITATS: Record<string, HabitatPlace[]> = {
     { at: 'peak-barva', note: { en: 'The Cordillera Central highlands.', es: 'Las alturas de la cordillera Central.', zh: '中央山脉高地。' } },
     { at: 'area-tenorio', note: { en: 'The Cordillera de Guanacaste.', es: 'La cordillera de Guanacaste.', zh: '瓜纳卡斯特山脉。' } },
   ],
+  jaguar: [
+    { at: 'area-corcovado', note: { en: 'Corcovado is central to the Osa subpopulation; camera traps recorded a rising density there in 2015–20.', es: 'Corcovado es central para la subpoblación de Osa; las cámaras trampa registraron allí una densidad creciente en 2015–20.', zh: '科尔科瓦多是奥萨亚种群的核心；2015–20年相机陷阱记录到那里的密度在上升。' }, status: 'approximate' },
+    { at: 'area-tortuguero', note: { en: 'On the nesting beach jaguars take green turtles — dozens a year in the 2000s.', es: 'En la playa de anidación los jaguares cazan tortugas verdes: decenas al año en los años 2000.', zh: '在产卵海滩上美洲豹捕食绿海龟——2000年代每年数十只。' }, status: 'approximate' },
+    { at: 'area-la-amistad', note: { en: 'The Talamanca forests hold one of the three Costa Rican subpopulations.', es: 'Los bosques de Talamanca albergan una de las tres subpoblaciones costarricenses.', zh: '塔拉曼卡森林是哥斯达黎加三个亚种群之一的所在。' }, status: 'approximate' },
+  ],
+  'mantled-howler-monkey': [
+    { at: 'area-santa-rosa', note: { en: 'Studied in Santa Rosa since 1983; the howlers there reached the park’s capacity by 1999.', es: 'Estudiados en Santa Rosa desde 1983; los congos alcanzaron allí la capacidad del parque en 1999.', zh: '自1983年起在圣罗莎被研究；到1999年那里的吼猴已达公园承载量。' }, status: 'approximate' },
+    { at: 'area-manuel-antonio', note: { en: 'Pacific coastal forest within a range that covers the whole country.', es: 'Bosque costero del Pacífico, dentro de una distribución que cubre todo el país.', zh: '太平洋沿海森林，属于覆盖全国的分布范围。' }, status: 'approximate' },
+  ],
+  'geoffroys-spider-monkey': [
+    { at: 'area-corcovado', note: { en: 'The largest monkey of the country, at home in the Osa rainforest.', es: 'El mono más grande del país, en casa en el bosque lluvioso de Osa.', zh: '全国体型最大的猴子，奥萨雨林是它的家。' }, status: 'approximate' },
+  ],
+  kinkajou: [
+    { at: 'area-corcovado', note: { en: 'A night animal of the canopy near the Osa Peninsula, among the commonest medium-sized mammals.', es: 'Un animal nocturno del dosel cerca de la península de Osa, entre los mamíferos medianos más comunes.', zh: '奥萨半岛一带树冠层的夜行动物，是最常见的中型哺乳动物之一。' }, status: 'approximate' },
+  ],
+  'white-nosed-coati': [
+    { at: 'area-santa-rosa', note: { en: 'Recorded by the Área de Conservación Guanacaste in dry and wet forest alike.', es: 'Registrado por el Área de Conservación Guanacaste tanto en bosque seco como húmedo.', zh: '瓜纳卡斯特保护区在干燥森林和湿润森林中都有记录。' }, status: 'approximate' },
+  ],
+  'strawberry-poison-dart-frog': [
+    { at: 'area-tortuguero', note: { en: 'The Caribbean lowlands, on the forest floor among the leaf litter.', es: 'Las tierras bajas del Caribe, en el suelo del bosque entre la hojarasca.', zh: '加勒比低地，森林地面的落叶之间。' }, status: 'approximate' },
+    { at: 'limon-barra-del-colorado-refuge', note: { en: 'Reported from Caño Palma and Cerro Tortuguero in the refuge.', es: 'Reportada en Caño Palma y Cerro Tortuguero, dentro del refugio.', zh: '在保护区内的卡尼奥帕尔马和托尔图格罗山有记录。' }, status: 'approximate' },
+  ],
+  'fleischmanns-glass-frog': [
+    { at: 'area-monteverde', note: { en: 'On the amphibian list of the Monteverde Cloud Forest Reserve.', es: 'En la lista de anfibios de la Reserva Bosque Nuboso Monteverde.', zh: '列于蒙特维德云雾林保护区的两栖动物名录。' }, status: 'approximate' },
+  ],
+  'plumed-basilisk': [
+    { at: 'area-tortuguero', note: { en: 'Along the canals and streams, where it runs across the water when alarmed.', es: 'A lo largo de los canales y quebradas, donde corre sobre el agua cuando se asusta.', zh: '沿运河与溪流分布，受惊时会在水面上奔跑。' }, status: 'approximate' },
+  ],
+  'spectacled-caiman': [
+    { at: 'area-cano-negro', note: { en: 'Studied in the Río Frío wetlands of Caño Negro.', es: 'Estudiado en los humedales del río Frío en Caño Negro.', zh: '在卡尼奥内格罗的弗里奥河湿地被研究。' }, status: 'approximate' },
+    { at: 'area-tortuguero', note: { en: 'The canals of Tortuguero, basking on the banks.', es: 'Los canales de Tortuguero, asoleándose en las orillas.', zh: '托尔图格罗的运河，在岸边晒太阳。' }, status: 'approximate' },
+  ],
+  'west-indian-manatee': [
+    { at: 'area-tortuguero', note: { en: 'The canals and lagoons of Tortuguero, one of the few Costa Rican refuges of the Antillean manatee.', es: 'Los canales y lagunas de Tortuguero, uno de los pocos refugios costarricenses del manatí antillano.', zh: '托尔图格罗的运河与潟湖，是哥斯达黎加少数几处安的列斯海牛的庇护地之一。' }, status: 'approximate' },
+    { at: 'limon-barra-del-colorado-refuge', note: { en: 'The Colorado subpopulation of the northern Caribbean.', es: 'La subpoblación del Colorado, en el Caribe norte.', zh: '加勒比北部的科罗拉多亚种群。' }, status: 'approximate' },
+  ],
+  'humpback-whale': [
+    { at: 'area-marino-ballena', note: { en: 'Named for the whales: two populations visit, one from the north (Dec–Apr) and one from the south (Jul–Nov).', es: 'Lleva el nombre de las ballenas: lo visitan dos poblaciones, una del norte (dic–abr) y otra del sur (jul–nov).', zh: '以鲸命名：两个种群来访，一个来自北方（12月至4月），一个来自南方（7月至11月）。' }, status: 'approximate' },
+  ],
+  'bottlenose-dolphin': [
+    { at: 'area-marino-ballena', note: { en: 'On the park’s fauna list; the best-studied group lives in Golfo Dulce further south.', es: 'En la lista de fauna del parque; el grupo mejor estudiado vive más al sur, en el Golfo Dulce.', zh: '列于公园的动物名录；研究最充分的群体生活在更南边的杜尔塞湾。' }, status: 'approximate' },
+  ],
+  'great-green-macaw': [
+    { at: 'heredia-puerto-viejo-de-sarapiqui', note: { en: 'The Sarapiquí lowlands, where the almendro trees it nests in still stand.', es: 'Las tierras bajas de Sarapiquí, donde aún quedan los almendros en los que anida.', zh: '萨拉皮基低地，它筑巢的杏仁树仍然矗立在那里。' }, status: 'approximate' },
+    { at: 'limon-gandoca-manzanillo-refuge', note: { en: 'Birds released on the southern Caribbean coast.', es: 'Aves liberadas en la costa del Caribe sur.', zh: '在加勒比南部海岸放归的个体。' }, status: 'approximate' },
+  ],
 };
 
 /** species ids present at a given landmark */

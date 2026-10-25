@@ -2,7 +2,7 @@
 // docs/HOMEPAGE_REDESIGN.md). Empty sections give each stop its scroll length; the stage shows the plates, the map,
 // the table and the closing beach, and the copy of each stop is pinned in the stage and keyed to its progress.
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Link } from '../../ui/Link';
 import { useT, type MessageKey } from '../../i18n';
 import { useCalmMotion, useSettings } from '../../state/settings';
@@ -100,6 +100,16 @@ export function HomePage() {
   useEffect(() => { if (!live && selected2d && journey.chapter === mapIndex - 1) openProvince(selected2d); }, [live, selected2d, openProvince, mapIndex]);
 
   const goTo = (i: number) => { if (rootRef.current) scrollToChapter(rootRef.current, i, !calm); };
+  // /?stop=<key> (the wildlife trail's "see it on the walk"): open the walk at that stop once the content is in
+  const [params] = useSearchParams();
+  const stopParam = params.get('stop');
+  useEffect(() => {
+    if (!stopParam || !content) return;
+    const i = STOPS.findIndex((s) => s.key === stopParam);
+    if (i < 0 || !rootRef.current) return;
+    const id = window.setTimeout(() => { if (rootRef.current) scrollToChapter(rootRef.current, i, false); }, 120);
+    return () => window.clearTimeout(id);
+  }, [stopParam, content]);
   const provinceLine = (id: ProvinceId) => {
     const p = content?.provinces.find((x) => x.id === id);
     if (!p) return '';
