@@ -5,9 +5,11 @@ import chromium from '@sparticuz/chromium';
 import lighthouse from 'lighthouse';
 import * as chromeLauncher from 'chrome-launcher';
 
-const urls = { home: 'http://localhost:4173/?tier=lite#/', 'home-still': 'http://localhost:4173/?tier=still#/', explore: 'http://localhost:4173/?tier=lite#/explore', provinces: 'http://localhost:4173/#/provinces', province: 'http://localhost:4173/#/provinces/guanacaste', wildlife: 'http://localhost:4173/#/wildlife', food: 'http://localhost:4173/#/food', sources: 'http://localhost:4173/#/sources' };
+const only = process.argv.slice(2);
+const urlsAll = { home: 'http://localhost:4173/?tier=lite#/', 'home-still': 'http://localhost:4173/?tier=still#/', explore: 'http://localhost:4173/?tier=lite#/explore', provinces: 'http://localhost:4173/#/provinces', province: 'http://localhost:4173/#/provinces/guanacaste', wildlife: 'http://localhost:4173/#/wildlife', food: 'http://localhost:4173/#/food', sources: 'http://localhost:4173/#/sources' };
 const chrome = await chromeLauncher.launch({ chromePath: await chromium.executablePath(), chromeFlags: [...chromium.args, '--headless=new', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
 const rows = [];
+const urls = only.length ? Object.fromEntries(Object.entries(urlsAll).filter(([k]) => only.includes(k))) : urlsAll;
 for (const [name, url] of Object.entries(urls)) {
   const result = await lighthouse(url, { port: chrome.port, output: 'json', logLevel: 'error', onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'], formFactor: 'mobile', screenEmulation: { mobile: true, width: 412, height: 823, deviceScaleFactor: 1.75, disabled: false } });
   const lhr = result.lhr;

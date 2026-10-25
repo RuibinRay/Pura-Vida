@@ -1,8 +1,8 @@
 # Costa Rica — Pura Vida: The Living Country
 
-An interactive, trilingual (EN · ES · 简体中文) field journal of Costa Rica: a homepage that is a six-chapter journey (a rainforest that opens as you scroll, the relief map rising out of the mist, the wildlife of the Pacific coast, the flavors of the everyday table, a sunset end card), a 3D relief map of the seven provinces, and chapters written from official and scientific sources. Built as a static site for GitHub Pages — no backend, no trackers, no accounts.
+An interactive, trilingual (EN · ES · 简体中文) field journal of Costa Rica: a homepage that is a walk through the country in nine stops (a rainforest that opens as you scroll, Monteverde, Río Celeste, Irazú with a sourced "what if it erupted?", Guanacaste, the flavors of the everyday table, Corcovado, Tortuguero, a Manuel Antonio sunset — every animal cut out of its plate and moving in its own 1–5 s loop, the water flowing), a 3D relief map of the seven provinces, and chapters written from official and scientific sources. Built as a static site for GitHub Pages — no backend, no trackers, no accounts.
 
-**Status: Milestone 1 (working foundation) + the homepage journey.** See `docs/FEATURE_PROGRESS.md` for what is built, what is measured, and what comes next; `docs/HOMEPAGE_REDESIGN.md` for the audit, the reference analysis and the direction.
+**Status: Milestone 1 (working foundation) + the homepage walk.** See `docs/FEATURE_PROGRESS.md` for what is built, what is measured, and what comes next; `docs/HOMEPAGE_REDESIGN.md` for the audit, the reference analysis and the direction.
 
 ## Run it
 
@@ -25,7 +25,7 @@ Push to `main`. `.github/workflows/deploy.yml` typechecks, tests, builds with a 
 | Folder | What |
 |---|---|
 | `src/app/` | router, shell (index tabs, sheets), pages |
-| `src/journey/` | the homepage journey: scroll driver, plates (2.5D layers), home map, wildlife plate, flavors table, dish illustrations, closing card |
+| `src/journey/` | the homepage walk: scroll driver, stop list (`scenes.ts`), scenes (plates with moving animals and water), the Irazú eruption, stop copy, home map (not on the walk now), flavors table, dish illustrations |
 | `public/plates/` | the owner's three images as responsive WebP plates and cut-out layers (built by `tools/hero_assets.py`) |
 | `src/map/` | 3D relief map (R3F), 2D SVG map, camera, labels overlay, stylised relief (`relief.js`) |
 | `src/content/` | typed content, the personal section (`personal.ts`), `generated/*.json` built from `research/` |
@@ -40,6 +40,6 @@ Push to `main`. `.github/workflows/deploy.yml` typechecks, tests, builds with a 
 ## Adding content
 
 - **Facts:** edit or extend `research/*.json` (every claim carries `status` and `sources` with a retrieval date), then `node tools/build_content.mjs` and `npm test`. Species go in `species*.json`, dishes in `foods.json`, the chapter-2 numbers in `nature-facts.json`.
-- **Plates:** to rebuild the homepage images from new originals, `python3 tools/hero_assets.py <opening.png> <beach.jpg> <poster.jpg>` (needs opencv-python, numpy, Pillow); it writes `public/plates/`, `public/og.jpg` and `src/journey/plates.generated.json`.
+- **Plates:** each stop's plate is built from a spec in `tools/plates/<name>.json` (animals as polygons with parts, water regions, focal point) by `python3 -I tools/plates.py tools/plates/<name>.json` (needs opencv-contrib-python, onnxruntime, numpy, Pillow and the U²-Net/FSRCNN models — see `tools/plates/README.md`); `python3 -I tools/plates.py --index-only` rebuilds `src/journey/plates.generated.json`. The older `tools/hero_assets.py` built the beach and poster plates.
 - **Your own words and photos:** `src/content/personal.ts` (photos go in `public/personal/`). Empty fields stay hidden on the public site.
 - **Geodata:** `node tools/build_geo.mjs` rebuilds `public/geo/` from the Natural Earth 1:10m shapefiles in `tools/cache/` (public domain; not committed). Download `ne_10m_admin_0_countries`, `ne_10m_admin_1_states_provinces`, `ne_10m_populated_places`, `ne_10m_lakes` and `ne_10m_rivers_lake_centerlines` from naturalearthdata.com and unzip the `.shp`/`.dbf` pairs into `tools/cache/`. The generated `public/geo/*.json` files are committed, so this step is only needed to regenerate them.

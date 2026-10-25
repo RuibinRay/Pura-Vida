@@ -1,11 +1,12 @@
-// The one scroll system of the homepage. A sticky stage shows the visuals; six chapter sections scroll past it.
+// The one scroll system of the homepage. A sticky stage shows the visuals; the chapter sections scroll past it.
 // Each frame in which the scroll position changed, the driver computes one number per chapter (its progress 0→1)
-// and a continuous "journey time" t = chapter index + progress (0→6). Everything visual is a pure function of t:
-// CSS reads it through custom properties (--jt, --p1…--p6), React Three Fiber reads it from `journey` in useFrame.
+// and a continuous "journey time" t = chapter index + progress (0→N). Everything visual is a pure function of t:
+// CSS reads it through custom properties (--jt, --p1…--pN), React Three Fiber reads it from `journey` in useFrame.
 // Because nothing is time-based, scrolling backwards replays everything in reverse.
 import { useEffect, type RefObject } from 'react';
+import { STOP_COUNT } from './scenes';
 
-export const CHAPTER_COUNT = 6;
+export const CHAPTER_COUNT = STOP_COUNT;
 
 export interface JourneyState {
   /** continuous journey time, 0 … CHAPTER_COUNT */

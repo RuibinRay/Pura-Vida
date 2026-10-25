@@ -57,12 +57,18 @@ async function visit(name, hash, { width = 1440, height = 900, wait = 2500, acti
 
 // the homepage journey: the opening, then each chapter at the scroll position where it is on stage
 const scrollTo = (f) => async (p) => { await p.evaluate((ff) => { const total = document.documentElement.scrollHeight - window.innerHeight; window.scrollTo(0, Math.round(total * ff)); }, f); await sleep(3000); };
+// scroll to the middle of stop n (1-based) of the walk, by the spacers' positions
+const toStop = (n) => async (p) => { await p.evaluate((nn) => { const els = document.querySelectorAll('.journey [data-chapter]'); const c = els[nn - 1]; const next = els[nn]; const top = c.getBoundingClientRect().top + window.scrollY; const len = next ? next.getBoundingClientRect().top + window.scrollY - top : c.offsetHeight - window.innerHeight; window.scrollTo(0, Math.round(top + len * 0.5)); }, n); await sleep(3000); };
 await visit('home-open', '/', { wait: 3000, query: '?why&tier=lite', axe: true });
-await visit('home-ch2', '/', { wait: 2000, query: '?tier=lite', actions: scrollTo(0.3), axe: true });
-await visit('home-ch3-map', '/', { wait: 2000, query: '?tier=lite', actions: scrollTo(0.47), axe: true });
-await visit('home-ch4-wildlife', '/', { wait: 2000, query: '?tier=lite', actions: scrollTo(0.68), axe: true });
-await visit('home-ch5-table', '/', { wait: 2000, query: '?tier=lite', actions: scrollTo(0.84), axe: true });
-await visit('home-ch6-close', '/', { wait: 2000, query: '?tier=lite', actions: scrollTo(1), axe: true });
+await visit('home-02-monteverde', '/', { wait: 2500, query: '?tier=lite', actions: toStop(2), axe: true });
+await visit('home-03-rio-celeste', '/', { wait: 2500, query: '?tier=lite', actions: toStop(3), axe: true });
+await visit('home-04-irazu', '/', { wait: 2500, query: '?tier=lite', actions: toStop(4), axe: true });
+await visit('home-04-irazu-erupting', '/', { wait: 2500, query: '?tier=lite', actions: async (p) => { await toStop(4)(p); await p.evaluate(() => document.querySelector('.erupt-ctl .btn--primary')?.click()); await sleep(3500); }, axe: true });
+await visit('home-05-guanacaste', '/', { wait: 2500, query: '?tier=lite', actions: toStop(5), axe: true });
+await visit('home-06-table', '/', { wait: 2500, query: '?tier=lite', actions: toStop(6), axe: true });
+await visit('home-07-corcovado', '/', { wait: 2500, query: '?tier=lite', actions: toStop(7), axe: true });
+await visit('home-08-tortuguero', '/', { wait: 2500, query: '?tier=lite', actions: toStop(8), axe: true });
+await visit('home-09-close', '/', { wait: 2500, query: '?tier=lite', actions: toStop(9), axe: true });
 await visit('home-still', '/', { wait: 2000, query: '?tier=still' });
 await visit('explore', '/explore', { wait: 6000, query: '?why&tier=lite', axe: true });
 await visit('explore-selected', '/explore', { wait: 4000, query: '?tier=lite', actions: async (p) => { await p.evaluate(() => { const li = document.querySelector('.province-list li[data-id="guanacaste"]'); li?.click(); }); await sleep(3000); } });
@@ -77,7 +83,7 @@ await visit('my', '/my-costa-rica', { wait: 1000, axe: true });
 await visit('my-draft', '/my-costa-rica', { wait: 1000, query: '?draft' });
 await visit('coming', '/history', { wait: 1000 });
 await visit('es-home', '/', { wait: 3000, query: '?lang=es&tier=lite' });
-await visit('zh-home-ch5', '/', { wait: 2000, query: '?lang=zh&tier=lite', actions: scrollTo(0.84) });
+await visit('zh-home-table', '/', { wait: 2000, query: '?lang=zh&tier=lite', actions: toStop(6) });
 await visit('zh-explore', '/explore', { wait: 5000, query: '?lang=zh' });
 // keyboard: tab into the province list on /explore and arrow down → a province gets selected
 await visit('explore-keyboard', '/explore', { wait: 5000, query: '?tier=lite', actions: async (p) => {
@@ -88,7 +94,8 @@ await visit('explore-keyboard', '/explore', { wait: 5000, query: '?tier=lite', a
 } });
 // phone
 await visit('home-open', '/', { width: 390, height: 844, wait: 3000, query: '?tier=lite' });
-await visit('home-ch4-wildlife', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: scrollTo(0.68) });
+await visit('home-08-tortuguero', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: toStop(8) });
+await visit('home-05-guanacaste', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: toStop(5) });
 await visit('food', '/food', { width: 390, height: 844, wait: 1500 });
 await visit('explore', '/explore', { width: 390, height: 844, wait: 5000 });
 await visit('provinces', '/provinces', { width: 390, height: 844, wait: 1500 });

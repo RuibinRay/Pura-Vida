@@ -22,6 +22,7 @@ const PATHS: Record<string, string> = {
   pin: 'M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11zm0-9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
   leaf: 'M4 20c0-9 5-14 16-16-1 11-6 16-15 16M4 20l8-8',
   skip: 'M5 5l9 7-9 7zM17 5v14',
+  spark: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 17l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z',
 };
 
 export function Icon({ name, label, size = 18 }: { name: keyof typeof PATHS | string; label?: string; size?: number }) {

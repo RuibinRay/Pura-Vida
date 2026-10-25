@@ -29,18 +29,18 @@ const sph = new THREE.Spherical();
 const tmp = new THREE.Vector3();
 
 /** Camera and map-group placement from the journey time; the dive toward a clicked province is layered on top. */
-function ScrollCamera({ group, dive }: { group: React.RefObject<THREE.Group | null>; dive: React.MutableRefObject<{ id: ProvinceId; t0: number } | null> }) {
+function ScrollCamera({ group, dive, base }: { group: React.RefObject<THREE.Group | null>; dive: React.MutableRefObject<{ id: ProvinceId; t0: number } | null>; base: number }) {
   const { camera, invalidate, size } = useThree();
   const data = useMapDataCtx();
   const demote = useTier((s) => s.demote);
   const watchdog = useRef(makeFpsWatchdog(() => demote('low fps')));
   useEffect(() => onJourney(() => invalidate()), [invalidate]);
   useFrame((st) => {
-    const t = journey.t;
+    const t = journey.t - base;                      // 0 at the start of the map's chapter
     // only judge the frame rate while the map is the thing on stage (continuous frames)
-    if (t > 2.3 && t < 3.0) watchdog.current();
-    const u = easeInOut(seg(t, 2.0, 2.6));          // the rise
-    const leave = easeInOut(seg(t, 3.0, 3.25));      // handing over to chapter 4
+    if (t > 0.3 && t < 1.0) watchdog.current();
+    const u = easeInOut(seg(t, 0.0, 0.6));          // the rise
+    const leave = easeInOut(seg(t, 1.0, 1.25));      // handing over to the next stop
     const calm = journey.calm;
     const aspect = size.width / Math.max(1, size.height);
     const portrait = aspect < 1.25;
@@ -80,7 +80,8 @@ import { createContext, useContext } from 'react';
 const MapDataCtx = createContext<MapData | null>(null);
 const useMapDataCtx = () => useContext(MapDataCtx);
 
-export function HomeMap({ data, onOpen }: { data: MapData; onOpen: (id: ProvinceId) => void }) {
+export function HomeMap({ data, onOpen, index = 3, stops = [] }: { data: MapData; onOpen: (id: ProvinceId) => void; index?: number; stops?: { n: number; id: string; name: string; coords: [number, number] }[] }) {
+  const base = index - 1;
   const tier = useTier((s) => s.tier);
   const dpr = useTier((s) => s.dpr);
   const lite = tier !== 'full';
@@ -94,10 +95,10 @@ export function HomeMap({ data, onOpen }: { data: MapData; onOpen: (id: Province
 
   // only render continuously while the chapter is on stage
   useEffect(() => {
-    const check = () => { const a = journey.t > 1.75 && journey.t < 3.4; setActive((prev) => (prev === a ? prev : a)); };
+    const check = () => { const a = journey.t > base - 0.25 && journey.t < base + 1.4; setActive((prev) => (prev === a ? prev : a)); };
     check();
     return onJourney(check);
-  }, []);
+  }, [base]);
 
   // a click (selection) → dive, then open the chapter
   useEffect(() => {
@@ -135,11 +136,20 @@ export function HomeMap({ data, onOpen }: { data: MapData; onOpen: (id: Province
             <Borders data={data} show />
             <SelectedOutline data={data} />
           </group>
-          <ScrollCamera group={group} dive={dive} />
+          <ScrollCamera group={group} dive={dive} base={base} />
           <Projector registry={registry} />
         </Canvas>
         <div className="map-overlay home-map__labels" aria-hidden="true">
           <RegistryContext.Provider value={registry}>
+            {stops.map((st) => {
+              const [x, z] = project(st.coords[1], st.coords[0]);
+              const y = surfaceY(st.coords[1], st.coords[0]) + 6;
+              return (
+                <Anchor key={'stop-' + st.id} id={'home-stop-' + st.id} position={[x, y, z]}>
+                  <span className="map-stop"><b className="tnum">{String(st.n).padStart(2, '0')}</b><span>{st.name}</span></span>
+                </Anchor>
+              );
+            })}
             {data.provinces.map((p) => {
               const [x, z] = project(p.centroid[0], p.centroid[1]);
               const y = surfaceY(p.centroid[0], p.centroid[1]) + 4;

@@ -97,6 +97,48 @@ export interface Species {
   nationalSymbol?: { isSymbol: boolean; year?: number | null; instrument?: string; sources?: Source[] };
   /** whether the species occurs in the Pacific lowland coastal forests shown on the wildlife plate */
   habitatFit?: { pacificLowland: boolean; note?: Localized; status?: Status };
+  /** per-stop habitat fit for the homepage walk (stop id → does the species belong in that scene?) */
+  stops?: Record<string, { fit: boolean; note?: Localized; status?: Status; sources?: Source[] }>;
+  sources?: Source[];
+}
+
+export interface PlaceFact {
+  key: string;
+  label: Localized;
+  value: number | string;
+  unit?: string;
+  year?: number | null;
+  status: Status;
+  text?: Localized;
+  sources: Source[];
+}
+/** A stop of the homepage walk: a sourced place with its province, overview and fact tiles. */
+export interface Place {
+  id: string;
+  name: Localized;
+  province?: ProvinceId;
+  provinceNote?: Localized;
+  coords?: [number, number];
+  coordsStatus: 'confirmed' | 'approximate';
+  kind?: Localized;
+  overview?: TextBlock;
+  facts: PlaceFact[];
+  protectedArea?: { name: Localized; managedBy?: string; established?: number | null; areaHa?: number | null; status?: Status; sources?: Source[] };
+  sources?: Source[];
+}
+
+/** The Irazú "what if it erupted?" dossier. */
+export interface IrazuDossier {
+  name: Localized;
+  summitM: number | null;
+  type?: string;
+  lastEruption?: { year: number | null; note?: Localized; status?: Status; sources?: Source[] };
+  craters?: TextBlock;
+  monitoring?: TextBlock;
+  park?: TextBlock;
+  timeline: { date: string; en: string; es?: string; zh?: string; status?: Status; sources?: Source[] }[];
+  whatIf?: TextBlock;
+  facts: PlaceFact[];
   sources?: Source[];
 }
 

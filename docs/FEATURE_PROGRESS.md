@@ -2,6 +2,23 @@
 
 Status words: **built** = implemented and exercised in the headless browser; **built, unverified on device** = implemented, but the check this session could do is not representative (software GPU); **partial**; **planned (M2–M5)**.
 
+## The walk — nine stops, moving animals, flowing water, the Irazú what-if (2026-10-23 evening → 2026-10-24)
+
+| Feature | Status | Notes |
+|---|---|---|
+| Nine-stop walk (Discover → Monteverde → Río Celeste → Irazú → Guanacaste → Flavors → Corcovado → Tortuguero → Manuel Antonio) | done | `src/journey/scenes.ts`, `Scene.tsx`; one driver, `--pn`/`--i` per stop. The relief map was a tenth stop (between Irazú and Guanacaste) and was taken out on 2026-10-24: a dark map screen between two photographic plates broke the walk, and the owner had said to prefer smooth transitions over the map if it was not good. It is one click away (chapter 1, every stop's province link, the closing chips, /explore) and one line to restore. |
+| Walk-through transitions (arrive large, push in, mist/warm wash at the boundary) | done | CSS only, reversible |
+| Animals cut out and animated in 1–5 s loops (heads, wings, morpho folds, hover, bob, sway) | done | `tools/plates.py` + `tools/plates/*.json`; 24 animals, 46 parts across 7 plates; loops pause off stage, off under reduced motion |
+| Flowing water (opening waterfall, Monteverde waterfall, Río Celeste rapids, Guanacaste/Corcovado/Manuel Antonio surf) + shimmer on still water | done | two-phase scroll of the water region |
+| Irazú "What if it erupted?" | done | lake darkens, ash column drifts west, haze, ash fall, tremor, rumble (sound on); sourced dossier (17 dated events, what-if labelled interpretation) |
+| Stops pinned on the relief map; three country facts on the map stop | built, not on the home | the code stays in `HomeMap.tsx` (`stops` markers) for the day the map stop returns |
+| Six new species entries (quetzal, Baird's tapir, white-tailed deer, great blue heron, volcano hummingbird, purple-throated mountain-gem) + per-stop habitat fit for all drawn animals | done | 15 species in the journal; the Tortuguero scarlet macaw is marked "not quite here" |
+| Seven sourced place records with fact tiles | done | `research/places.json` → `content.places` |
+| Portrait pan across each plate | done | focal pan clamped to the plate's slack |
+| Monteverde hanging-bridges stop | not built | no image supplied; cannot be generated here |
+| Hotspots reachable at every stop (pointer and keyboard) | done (fixed 2026-10-24) | a transparent neighbouring stop was taking the pointer; non-current stops are now `pointer-events: none` and their hotspots hidden |
+| Sheets keep the scroll position | done (fixed 2026-10-24) | `.paper { position: relative }` beat the UA's fixed position for modal dialogs, so focusing a sheet scrolled the page to the top — on every page since M1 |
+
 ## Homepage journey (2026-10-23, after Milestone 1)
 
 | Brief item (homepage redesign) | Status | Notes |

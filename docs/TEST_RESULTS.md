@@ -2,6 +2,59 @@
 
 All figures below were produced in this session's environment unless stated otherwise: a 2-core Linux container, headless Chromium 153 with SwiftShader (software WebGL), no real GPU, no field data. Numbers that depend on a GPU are marked as such and must be re-measured on a laptop and a phone.
 
+## The walk (2026-10-23 evening → 2026-10-24)
+
+### Unit and data tests
+`npx vitest run`: **46 tests in 4 files, all passing** — four new ones: the six species of the walk fit the stop they are drawn on, carry IUCN entries and sources, and the Tortuguero scarlet macaw is marked as *not* fitting with a note; the seven places have trilingual sourced overviews, ≥ 4 sourced fact tiles and a province; the Irazú what-if is labelled interpretation, says "not a forecast", and the record has ≥ 10 dated, sourced events including 1963; every plate manifest lists the expected animals, every part and water file exists at every width, and water flows at Río Celeste and under both waterfalls. `tsc --noEmit`: clean. Production build: 27 MB of which 23 MB are the plates (eight plates × five widths × base + parts + water); JS unchanged in shape (the three.js chunk now loads only on /explore and the province chapters — the map left the home).
+
+### Scroll sweep (`node tools/scratch/walk.mjs`)
+Desktop 1440×900 (full tier): nine stops × three positions (10 %, 50 %, 90 %) forward, then back to stops 6, 3 and 1, then to 0; phone 390×844 (lite) and still tier 1200×800 at every stop's midpoint. **0 console errors, 0 page errors, no horizontal overflow**; the driver reports t = n + 0.5 at every midpoint and t = 0.5 again on the way back (reversible). Screenshots in `tools/scratch/shots/` and the handoff folder.
+
+### Motion check (`node tools/scratch/motion.mjs`)
+At each scene stop, the running animations inside the current scene and the share of pixels that change between two frames 650 ms apart inside every animal's and water's box (a region of sky away from them as the baseline):
+
+| Stop | Parts | Running loops | Changed pixels per animal | Water | Baseline |
+|---|---|---|---|---|---|
+| 01 Discover | 8 | 18 (waterfall flow, lake shimmer, shafts, mist, toucan tilt, sloth sway, macaw bob, morpho drift + fold) | 0.0 %, 0.2 %, 0.3 %, 9.3 %, 5.8 %, 22.4 % | 0.8 %, 2.8 % | 0.0 % |
+| 02 Monteverde | 10 | 18 (waterfall, shafts, mist, quetzal tail sway + head turn, hummingbird hover + flap, morpho) | 0.6 %, 9.9 %, 1.3 %, 24.2 % | 0.0 %* | 0.0 % |
+| 03 Río Celeste | – | 7 (rapids flow, surface shimmer, mist) | – | 25.1 %, 30.2 %, 10.9 % | 0.0 % |
+| 04 Irazú | 3 | 6 (clouds, thrush head turn, hummingbird hover) | 0.5 %, 22.9 %, 12.1 % | 21.2 % (lake) | 0.0 % |
+| 05 Guanacaste | 13 | 19 (surf, sun, deer head turn, four macaws bob + flap) | 4.1 %, 10.7 %, 8.3 %, 0.2 %, 6.7 % | 0.0 %* | 0.0 % |
+| 07 Corcovado | 7 | 12 (surf, tapir graze, macaw bob + flap, morpho) | 0.0 %, 18.3 %, 40.1 % | 0.1 % | 0.0 % |
+| 08 Tortuguero | 9 | 17 (channel shimmer, mist, toucan tilt, morpho, macaw, sloth sway, heron watch) | 12.1 %, 34.1 %, 4.8 %, 20.6 %, 1.7 % | 0.2 % | 0.0 % |
+
+The slow, small loops (a sloth swaying 2° over 5.5 s, a tapir grazing) change fewer than 1 % of their pixels in 650 ms — they move, slowly, by design. \* The Monteverde waterfall and the surf regions sit mostly outside the 1440×900 crop at that scroll position, so their boxes measured 0 % here; their loops were running (listed) and Río Celeste shows the same water code at 25–30 %.
+
+Also exercised: the eruption toggle (class on, six puffs at 0.86–0.90 opacity after 4.5 s with the last two still rising, 42 ash flakes, the live hint "Ash falls over the valley…"), the dossier (three sections, 17 dated events), the toggle off; the quetzal's hotspot → its species sheet with the habitat verdict; the hotspots at every scene stop hit-tested at their centre (all reach the ring after the fix below); reduced motion (`--calm: 1`, 0 running animations, identity transforms on the parts, no water animation; the eruption then shows its six puffs at a fixed 0.85 opacity, no ash, no tremor).
+
+### Site sweep (`node tools/headless_check.mjs`)
+34 page loads: the home at the opening and at every stop 2–9 (1440 px, with the eruption on at Irazú), the still tier, Spanish and Chinese, explore (3D, selected, 2D, text, keyboard), provinces, a chapter, wildlife, food, sources, personal (public and draft), a milestone page, and seven phone pages (the opening, Tortuguero and Guanacaste among them). **0 console errors, no overflow.** axe-core (WCAG 2.0/2.1/2.2 A+AA) on 17 of them: **0 violations**, including every stop of the walk and the erupting Irazú.
+
+### Fixed during verification
+- A transparent neighbouring stop (mounted for the crossfade) took the pointer at every stop: hotspots at Monteverde, Guanacaste, Corcovado and Tortuguero could not be clicked, and the next stop's hotspots were in the tab order. Non-current stops are now `pointer-events: none` with their hotspots hidden.
+- Opening any sheet scrolled the page to the top (the species sheets, the dossier, the passport — on every page since M1): `.paper { position: relative }` beat the UA's fixed position for modal dialogs, so focusing the sheet scrolled to where the dialog sat in the flow. `.sheet` is now explicitly fixed; the probe shows scrollY unchanged across open and close.
+- Every plate layer was served too small: srcset descriptors were scaled by the layer's share of the plate while the files are named by plate width, and `sizes` ignored that a plate in portrait is 100vh × ratio wide (≈ 3.5 × the viewport on a phone). Descriptors are now plate widths and `sizes` is the plate's rendered width (capped at 900 CSS px in portrait to keep mobile data reasonable). Lighthouse's image-size-responsive went from failing (three files flagged) to passing.
+- On phones, the top-anchored copy of Guanacaste, Corcovado and Tortuguero clipped its own fact tiles and links; the overview is now clamped to four lines there and the block is taller.
+- The Tortuguero copy covered the macaw's hotspot; the block sits at 41 % instead of centre on desktop. The Irazú column is narrower so the crater and its ash column stay clear of the words.
+- The relief map stop was taken out of the walk (a dark map screen between two photographic plates; the owner had asked for smooth transitions over the map where it was not good). It is one click from every stop.
+
+### Lighthouse (lab, mobile emulation, `node tools/lighthouse.mjs`)
+| Page | Performance | Accessibility | Best practices | SEO | FCP | LCP | TBT | CLS |
+|---|---|---|---|---|---|---|---|---|
+| Home — opening (lite tier) | – \* | 100 | 100 | 100 | 2.0 s | 9.7 s | 0 ms | 0 |
+| Home — still tier | 74 | 100 | 100 | 100 | 2.0 s | 9.1 s | 0 ms | 0 |
+| Explore (lite tier) | 74 | 100 | 100 | 100 | 2.0 s | 7.6 s | 0 ms | 0 |
+| Provinces | 78 | 100 | 100 | 100 | 2.0 s | 5.6 s | 0 ms | 0 |
+| Province chapter (lite tier) | 74 | 100 | 100 | 100 | 2.0 s | 7.5 s | 0 ms | 0 |
+| Wildlife | 78 | 100 | 100 | 100 | 2.0 s | 5.6 s | 0 ms | 0 |
+| Food | 78 | 100 | 100 | 100 | 2.0 s | 5.6 s | 0 ms | 0 |
+| Sources | 78 | 100 | 100 | 100 | 2.0 s | 5.6 s | 0 ms | 0 |
+
+Mobile emulation (412×823, DPR 1.75, 4× CPU slowdown, simulated 3G), bundled Chromium 153 with SwiftShader, 2 CPU cores, one run per page. \* The home's performance category is null in this lab (Chrome collected no screenshots while SwiftShader rendered, so no Speed Index). The home's LCP rose from 7 s to ~10 s in the lab because the hero now downloads the file its rendered size calls for (the 1981-px base, 286 KB, instead of the 960-px one it was wrongly picking before); on simulated 3G that is +3 s, on a real phone on 4G or wifi it is a fraction of a second. LCP sits at 5.6 s even on the text-only pages here, so these are the lab's floor, not device numbers. CLS 0 and TBT 0 everywhere.
+
+### Not tested
+Real-device frame rate with ~18 concurrent CSS loops per stop over large images (the lab cannot say), physical touch and scroll feel, tablets between 760 and 1100 px, Safari and Firefox (the `min()` inside `sizes` falls back to `100vw` where unsupported), screen readers, the ambience rumble through speakers.
+
 ## Homepage journey (2026-10-23, after Milestone 1)
 
 ### Unit and data tests

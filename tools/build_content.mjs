@@ -139,7 +139,7 @@ for (const l of landmarks.sort((a, b) => (a.id.startsWith('peak-') || a.id.start
 
 // ---- species + unesco ---------------------------------------------------------------------------
 // The species research refers to sources by URL inside each block; resolve them against the species' own list.
-const speciesFiles = ['species.json', 'species-coast.json'];
+const speciesFiles = ['species.json', 'species-coast.json', 'species-walk.json'];
 const species = [];
 const unesco = [];
 function sizeText(sz) {
@@ -158,9 +158,21 @@ function sizeText(sz) {
   if (!en.length) return null;
   return { en: en.join(', '), es: es.join(', ') };
 }
+// per-stop habitat fit for the homepage walk: { stopId: { fit, note, status, sources } }
+function stopFits(stops, id, resolve) {
+  if (!stops || typeof stops !== 'object') return undefined;
+  const out = {};
+  for (const [stop, f] of Object.entries(stops)) {
+    if (!f || typeof f.fit !== 'boolean') continue;
+    out[stop] = { fit: f.fit, note: f.note && f.note.en ? { en: f.note.en, es: f.note.es || undefined, zh: f.note.zh || undefined } : undefined, status: f.status ? status(String(f.status).split(/[ (]/)[0], `species.stop.${id}.${stop}`) : undefined, sources: resolve(f.sources, 'habitat fit · ' + id + ' · ' + stop) };
+  }
+  return Object.keys(out).length ? out : undefined;
+}
+const fitChecks = [];
 for (const spFile of speciesFiles) {
   const sp = readJSON(spFile);
-  if (!sp) { errors.push('missing ' + spFile); continue; }
+  if (!sp) { if (spFile === 'species-walk.json') { warnings.push('missing species-walk.json (the walk species are absent)'); continue; } errors.push('missing ' + spFile); continue; }
+  for (const fc of sp.fitChecks || []) fitChecks.push(fc);
   for (const u of sp.unverified || []) unverified.push({ ...u, from: spFile });
   for (const s of sp.species || []) {
     if (!s.scientific) continue;
@@ -191,6 +203,7 @@ for (const spFile of speciesFiles) {
       facts: (s.facts || []).filter((f) => f && f.en).map((f) => ({ en: f.en, es: f.es || undefined, status: f.status ? status(f.status, 'species.' + s.id) : undefined, sources: resolve(f.sources, used) })),
       nationalSymbol: symbol,
       habitatFit: s.habitatFit && typeof s.habitatFit.coastalLowlandForestPacific === 'boolean' ? { pacificLowland: s.habitatFit.coastalLowlandForestPacific, note: loc(s.habitatFit.note), status: s.habitatFit.status ? status(String(s.habitatFit.status).split(' ')[0], 'species.fit.' + s.id) : undefined } : undefined,
+      stops: stopFits(s.habitatFit?.stops, s.id || slug(s.scientific), resolve),
       sources: all,
     });
   }
@@ -199,6 +212,70 @@ for (const spFile of speciesFiles) {
     unesco.push({ id: u.id, name: u.name, inscribed: u.inscribed, criteria: u.criteria, type: u.type, provinces: u.provinces, coords: c ? [c.lat, c.lon] : undefined, text: u.text && u.text.en ? u.text : undefined, url: u.url, sources: sources(u.sources, 'UNESCO · ' + (u.name?.en || u.id)) });
   }
 }
+
+// habitat-fit checks for species that already have records but appear on new plates
+for (const fc of fitChecks) {
+  const target = species.find((x) => x.id === fc.speciesId);
+  if (!target) { warnings.push(`fitChecks: unknown species ${fc.speciesId}`); continue; }
+  const byUrl = new Map((target.sources || []).map((x) => [x.url, x]));
+  const resolve = (refs, usedFor) => sources((refs || []).map((r) => (typeof r === 'string' ? byUrl.get(r) || { url: r, title: r, retrieved: '2026-10-23' } : r)), usedFor);
+  target.stops = { ...(target.stops || {}), ...(stopFits(fc.stops, fc.speciesId, resolve) || {}) };
+}
+
+// ---- places (research/places.json) — the stops of the homepage walk ----------------------------
+const placesIn = readJSON('places.json');
+const places = [];
+if (placesIn) {
+  for (const u of placesIn.unverified || []) unverified.push({ ...u, from: 'places.json' });
+  for (const pl of placesIn.places || []) {
+    if (!pl.id || !pl.name?.en) { warnings.push('places: record without id/name skipped'); continue; }
+    const byUrl = new Map((pl.sources || []).map((x) => [x.url, x]));
+    const used = 'place · ' + pl.name.en;
+    const resolve = (refs) => sources((refs || []).map((r) => (typeof r === 'string' ? byUrl.get(r) || { url: r, title: r, retrieved: '2026-10-23' } : r)), used);
+    const c = coords(pl.coords, 'place ' + pl.id, true);
+    const blk = (b, key) => { if (!b || !b.en) return undefined; return { en: b.en.trim(), es: (b.es || '').trim() || undefined, zh: (b.zh || '').trim() || undefined, status: b.status ? status(String(b.status).split(/[ (]/)[0], `place.${pl.id}.${key}`) : undefined, sources: resolve(b.sources) }; };
+    places.push({
+      id: pl.id,
+      name: { en: pl.name.en, es: pl.name.es || undefined, zh: pl.name.zh || undefined },
+      province: PROVINCE_IDS.includes(pl.province) ? pl.province : undefined,
+      provinceNote: pl.provinceNote && pl.provinceNote.en ? pl.provinceNote : undefined,
+      coords: c ? [c.lat, c.lon] : undefined,
+      coordsStatus: pl.coordsStatus === 'confirmed' ? 'confirmed' : 'approximate',
+      kind: pl.kind && pl.kind.en ? pl.kind : undefined,
+      overview: blk(pl.overview, 'overview'),
+      facts: (pl.facts || []).filter((f) => f && f.key && f.value !== undefined && f.value !== null).map((f) => ({ key: f.key, label: f.label || { en: f.key }, value: f.value, unit: f.unit || undefined, year: f.year ?? null, status: status(String(f.status).split(/[ (]/)[0], `place.${pl.id}.${f.key}`), text: f.text && f.text.en ? f.text : undefined, sources: resolve(f.sources) })),
+      protectedArea: pl.protectedArea && pl.protectedArea.name?.en ? { name: pl.protectedArea.name, managedBy: pl.protectedArea.managedBy || undefined, established: pl.protectedArea.established ?? null, areaHa: pl.protectedArea.areaHa ?? null, status: pl.protectedArea.status ? status(String(pl.protectedArea.status).split(/[ (]/)[0], `place.${pl.id}.protectedArea`) : undefined, sources: resolve(pl.protectedArea.sources) } : undefined,
+      sources: sources(pl.sources, used),
+    });
+    if (!places[places.length - 1].overview) errors.push(`place ${pl.id}: no overview`);
+  }
+} else warnings.push('missing places.json (the walk stops have no copy)');
+
+// ---- Irazú (research/irazu.json) — the "what if it erupted?" dossier ---------------------------
+const irazuIn = readJSON('irazu.json');
+let irazu = null;
+if (irazuIn) {
+  for (const u of irazuIn.unverified || []) unverified.push({ ...u, from: 'irazu.json' });
+  const byUrl = new Map((irazuIn.sources || []).map((x) => [x.url, x]));
+  const used = 'Irazú · what if';
+  const resolve = (refs) => sources((refs || []).map((r) => (typeof r === 'string' ? byUrl.get(r) || { url: r, title: r, retrieved: '2026-10-23' } : r)), used);
+  const blk = (b, key) => { if (!b || !b.en) return undefined; return { en: b.en.trim(), es: (b.es || '').trim() || undefined, zh: (b.zh || '').trim() || undefined, status: b.status ? status(String(b.status).split(/[ (]/)[0], `irazu.${key}`) : undefined, sources: resolve(b.sources) }; };
+  const v = irazuIn.volcano || {};
+  irazu = {
+    name: v.name || { en: 'Irazú' },
+    summitM: typeof v.summitM === 'number' ? v.summitM : null,
+    type: v.type || undefined,
+    lastEruption: v.lastEruption ? { year: v.lastEruption.year ?? null, note: v.lastEruption.note && v.lastEruption.note.en ? v.lastEruption.note : undefined, status: v.lastEruption.status ? status(String(v.lastEruption.status).split(/[ (]/)[0], 'irazu.lastEruption') : undefined, sources: resolve(v.lastEruption.sources) } : undefined,
+    craters: blk(v.craters, 'craters'),
+    monitoring: blk(v.monitoring, 'monitoring'),
+    park: blk(v.park, 'park'),
+    timeline: (irazuIn.timeline || []).filter((e) => e && e.en).map((e) => ({ date: String(e.date), en: e.en, es: e.es || undefined, zh: e.zh || undefined, status: e.status ? status(String(e.status).split(/[ (]/)[0], 'irazu.timeline') : undefined, sources: resolve(e.sources) })),
+    whatIf: blk(irazuIn.whatIf, 'whatIf'),
+    facts: (irazuIn.facts || []).filter((f) => f && f.key && f.value !== undefined && f.value !== null).map((f) => ({ key: f.key, label: f.label || { en: f.key }, value: f.value, unit: f.unit || undefined, year: f.year ?? null, status: status(String(f.status).split(/[ (]/)[0], `irazu.${f.key}`), text: f.text && f.text.en ? f.text : undefined, sources: resolve(f.sources) })),
+    sources: sources(irazuIn.sources, used),
+  };
+  if (!irazu.whatIf) errors.push('irazu: no whatIf text');
+} else warnings.push('missing irazu.json (the eruption panel is empty)');
 
 // ---- foods (research/foods.json) --------------------------------------------------------------
 const foodsIn = readJSON('foods.json');
@@ -248,8 +325,10 @@ fs.writeFileSync(path.join(OUT, 'landmarks.json'), JSON.stringify({ retrieved, l
 fs.writeFileSync(path.join(OUT, 'species.json'), JSON.stringify({ retrieved, species, unesco }, null, 0));
 fs.writeFileSync(path.join(OUT, 'country.json'), JSON.stringify({ retrieved, facts, symbols: country?.symbols || [], conservationAreas: country?.conservationAreas || [] }, null, 0));
 fs.writeFileSync(path.join(OUT, 'foods.json'), JSON.stringify({ retrieved, foods }, null, 0));
+fs.writeFileSync(path.join(OUT, 'places.json'), JSON.stringify({ retrieved, places }, null, 0));
+fs.writeFileSync(path.join(OUT, 'irazu.json'), JSON.stringify({ retrieved, irazu }, null, 0));
 fs.writeFileSync(path.join(OUT, 'sources.json'), JSON.stringify({ retrieved, sources: registry, unverified }, null, 0));
 
-console.log(`provinces ${provinces.length}/7 · landmarks ${dedupedLandmarks.length} (peaks ${peaks.length}) · species ${species.length} · foods ${foods.length} · unesco ${unesco.length} · facts ${facts.length} · sources ${registry.length} · unverified ${unverified.length}`);
+console.log(`provinces ${provinces.length}/7 · landmarks ${dedupedLandmarks.length} (peaks ${peaks.length}) · species ${species.length} · foods ${foods.length} · places ${places.length} · irazu ${irazu ? irazu.timeline.length + ' events' : 'none'} · unesco ${unesco.length} · facts ${facts.length} · sources ${registry.length} · unverified ${unverified.length}`);
 if (warnings.length) console.log('warnings:\n - ' + warnings.join('\n - '));
 if (errors.length) { console.error('errors:\n - ' + errors.join('\n - ')); process.exitCode = 1; }

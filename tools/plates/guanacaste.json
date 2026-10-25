@@ -1,0 +1,231 @@
+{
+  "id": "guanacaste",
+  "source": "research/plates-original/guanacaste-deer-macaws-oxcart.png",
+  "upscale": 2,
+  "focal": {
+    "x": 0.46,
+    "y": 0.5,
+    "panFrom": 0.22,
+    "panTo": 0.72
+  },
+  "points": {
+    "oxcart": [0.27, 0.78],
+    "sun": [0.88, 0.47]
+  },
+  "inpaint": "fsr",
+  "animals": [
+    {
+      "id": "deer",
+      "species": "white-tailed-deer",
+      "kind": "deer",
+      "box": [150, 355, 495, 700],
+      "u2net": [[150, 355, 495, 700], [300, 345, 500, 560]],
+      "grabcut": [[345, 345, 500, 450]],
+      "hotspot": [330, 520],
+      "parts": [
+        {
+          "name": "head",
+          "anim": "turn",
+          "z": 2,
+          "pivot": [405, 548],
+          "amp": 3.5,
+          "period": 4.2,
+          "poly": [[352, 345], [500, 345], [500, 430], [480, 525], [447, 568], [395, 568], [372, 505], [350, 440]]
+        }
+      ],
+      "include": [
+        [[476, 372], [498, 366], [500, 384], [484, 402], [470, 396]]
+      ]
+    },
+    {
+      "id": "macaw-a",
+      "species": "scarlet-macaw",
+      "kind": "macaw",
+      "anim": "bob",
+      "period": 2.4,
+      "box": [905, 345, 1015, 425],
+      "parts": [
+        {
+          "name": "wing-upper",
+          "anim": "flap-a",
+          "z": 1,
+          "pivot": [975, 388],
+          "half": {
+            "axis": [[1002, 386], [912, 410]],
+            "side": "pos",
+            "span": [0.25, 0.75],
+            "overlap": 5,
+            "halfWidth": 12
+          }
+        },
+        {
+          "name": "wing-lower",
+          "anim": "flap-b",
+          "z": 1,
+          "pivot": [985, 396],
+          "half": {
+            "axis": [[1002, 386], [912, 410]],
+            "side": "neg",
+            "span": [-0.2, 0.5],
+            "overlap": 5,
+            "halfWidth": 12
+          }
+        },
+        {
+          "name": "body",
+          "anim": "none",
+          "z": 2,
+          "rest": true
+        }
+      ]
+    },
+    {
+      "id": "macaw-b",
+      "species": "scarlet-macaw",
+      "kind": "macaw",
+      "anim": "bob",
+      "period": 2.1,
+      "box": [988, 278, 1135, 405],
+      "hotspot": [1085, 345],
+      "parts": [
+        {
+          "name": "wing-upper",
+          "anim": "flap-a",
+          "z": 1,
+          "pivot": [1070, 352],
+          "half": {
+            "axis": [[1122, 340], [1018, 392]],
+            "side": "pos",
+            "span": [0.28, 0.6],
+            "overlap": 5,
+            "halfWidth": 12
+          }
+        },
+        {
+          "name": "wing-lower",
+          "anim": "flap-b",
+          "z": 1,
+          "pivot": [1082, 362],
+          "half": {
+            "axis": [[1122, 340], [1018, 392]],
+            "side": "neg",
+            "span": [0.1, 0.55],
+            "overlap": 5,
+            "halfWidth": 12
+          }
+        },
+        {
+          "name": "body",
+          "anim": "none",
+          "z": 2,
+          "rest": true
+        }
+      ]
+    },
+    {
+      "id": "macaw-c",
+      "species": "scarlet-macaw",
+      "kind": "macaw",
+      "anim": "bob",
+      "period": 2.7,
+      "box": [1160, 355, 1330, 448],
+      "parts": [
+        {
+          "name": "wing-upper",
+          "anim": "flap-a",
+          "z": 1,
+          "pivot": [1270, 395],
+          "half": {
+            "axis": [[1316, 384], [1200, 428]],
+            "side": "pos",
+            "span": [0.28, 0.62],
+            "overlap": 5,
+            "halfWidth": 12
+          }
+        },
+        {
+          "name": "wing-lower",
+          "anim": "flap-b",
+          "z": 1,
+          "pivot": [1280, 402],
+          "half": {
+            "axis": [[1316, 384], [1200, 428]],
+            "side": "neg",
+            "span": [0.12, 0.6],
+            "overlap": 5,
+            "halfWidth": 12
+          }
+        },
+        {
+          "name": "body",
+          "anim": "none",
+          "z": 2,
+          "rest": true
+        }
+      ]
+    },
+    {
+      "id": "macaw-d",
+      "species": "scarlet-macaw",
+      "kind": "macaw",
+      "anim": "bob",
+      "period": 2.3,
+      "box": [1305, 235, 1470, 385],
+      "hotspot": [1410, 320],
+      "parts": [
+        {
+          "name": "wing-upper",
+          "anim": "flap-a",
+          "z": 1,
+          "pivot": [1397, 306],
+          "half": {
+            "axis": [[1430, 318], [1341, 350]],
+            "side": "pos",
+            "span": [0.15, 0.6],
+            "overlap": 5,
+            "halfWidth": 12
+          }
+        },
+        {
+          "name": "wing-lower",
+          "anim": "flap-b",
+          "z": 1,
+          "pivot": [1424, 328],
+          "half": {
+            "axis": [[1430, 318], [1341, 350]],
+            "side": "neg",
+            "span": [-0.4, 0.35],
+            "overlap": 5,
+            "halfWidth": 12
+          }
+        },
+        {
+          "name": "body",
+          "anim": "none",
+          "z": 2,
+          "rest": true
+        }
+      ],
+      "include": [
+        [[1418, 326], [1440, 325], [1448, 331], [1446, 337], [1430, 338], [1416, 334]]
+      ],
+      "grabcut": [[1405, 315, 1470, 345]]
+    }
+  ],
+  "water": [
+    {
+      "name": "surf",
+      "poly": [[770, 575], [1000, 560], [1120, 605], [1250, 640], [1210, 700], [1060, 690], [950, 670], [870, 640]],
+      "feather": 10,
+      "whiteOnly": true,
+      "vMin": 0.7,
+      "sMax": 0.35,
+      "flow": {
+        "dx": -0.5,
+        "dy": 0.5,
+        "period": 5.5,
+        "amp": 0.03
+      }
+    }
+  ]
+}

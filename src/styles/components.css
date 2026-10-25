@@ -414,6 +414,10 @@ legend {
 
 /* sheets */
 .sheet {
+  /* explicit: `.paper { position: relative }` would otherwise beat the UA's fixed position for modal dialogs,
+     and focusing the sheet would then scroll the page to the top */
+  position: fixed;
+  inset: 0;
   border: 0;
   padding: 0;
   margin: auto;

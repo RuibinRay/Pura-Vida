@@ -1,7 +1,7 @@
 // Educational content lives in src/content/generated/*.json, produced by tools/build_content.mjs from the
 // sourced research in research/*.json. Rendering components only read these typed structures.
 import { useEffect, useState } from 'react';
-import type { Food, Landmark, ProvinceContent, Species, Source, Status } from './types';
+import type { Food, IrazuDossier, Landmark, Place, ProvinceContent, Species, Source, Status } from './types';
 import type { Localized } from '../i18n';
 
 export interface CountryFact {
@@ -39,6 +39,7 @@ export interface Content {
   landmarks: Landmark[];
   species: Species[];
   foods: Food[];
+  places: Place[];
   country: CountryFact[];
   unesco: UnescoSite[];
   sources: SourceEntry[];
@@ -56,14 +57,16 @@ export function loadContent(): Promise<Content> {
       import('./generated/country.json'),
       import('./generated/sources.json'),
       import('./generated/foods.json'),
-    ]).then(([p, l, s, c, src, fd]) => {
+      import('./generated/places.json'),
+    ]).then(([p, l, s, c, src, fd, pls]) => {
       const prov = p.default as unknown as { provinces: ProvinceContent[] };
       const lm = l.default as unknown as { landmarks: Landmark[] };
       const sp = s.default as unknown as { species: Species[]; unesco: UnescoSite[] };
       const co = c.default as unknown as { facts: CountryFact[] };
       const so = src.default as unknown as { sources: SourceEntry[]; unverified: Content['unverified']; retrieved: string };
       const fo = fd.default as unknown as { foods: Food[] };
-      return { provinces: prov.provinces, landmarks: lm.landmarks, species: sp.species, foods: fo.foods, unesco: sp.unesco, country: co.facts, sources: so.sources, unverified: so.unverified, retrieved: so.retrieved };
+      const pc = pls.default as unknown as { places: Place[] };
+      return { provinces: prov.provinces, landmarks: lm.landmarks, species: sp.species, foods: fo.foods, places: pc.places, unesco: sp.unesco, country: co.facts, sources: so.sources, unverified: so.unverified, retrieved: so.retrieved };
     });
   }
   return promise;
@@ -79,4 +82,11 @@ export function useContent(): Content | null {
     return () => { alive = false; };
   }, []);
   return content;
+}
+
+/** The Irazú dossier loads with the eruption panel only. */
+let irazuPromise: Promise<IrazuDossier | null> | null = null;
+export function loadIrazu(): Promise<IrazuDossier | null> {
+  if (!irazuPromise) irazuPromise = import('./generated/irazu.json').then((m) => (m.default as unknown as { irazu: IrazuDossier | null }).irazu);
+  return irazuPromise;
 }

@@ -1,0 +1,1270 @@
+{
+  "retrieved": "2026-10-23",
+  "notes": {
+    "method": "Seven illustrated places for the scroll-driven homepage. Every fact rests on a page fetched with WebFetch in this task (45 fetch attempts, 43 with content; 18 WebSearch calls used only to find URLs; see research/log-places.md). Status vocabulary follows research/nature-facts.json: confirmed (an official, peer-reviewed or first-party page states it, or two independent reliable pages agree), approximate (sourced but only from secondary pages such as Wikipedia or press, or sources disagree on the exact figure), interpretation (the assistant's reading of sourced facts), folklore (a belief or saying, labelled as such), uncertain (sources conflict and none is authoritative). Official Costa Rican pages read directly: sinac.go.cr (Irazú and ACG pages worked; the Tenorio page is robots-blocked), visitcostarica.com (ICT), acto.go.cr (SINAC/ACTo brochure), archivonacional.go.cr, acguanacaste.ac.cr, the Centro Científico Tropical's reserve site and 2025 management plan, UCR journals and repository; international: UNESCO WHC and ICH, Smithsonian GVP, IUCN, PLOS ONE/PMC, Sea Turtle Conservancy. Wikipedia and press are always marked approximate. Coordinates are decimal degrees; most come from Wikipedia infoboxes (approximate) except Irazú (Smithsonian) and the ACG (UNESCO). routeFacts was skipped: no fetched page gave the width of the country or road distances between the coasts (see unverified).",
+    "translations": "es and zh text are the assistant's translations of the sourced English, not separate sources"
+  },
+  "places": [
+    {
+      "id": "monteverde",
+      "name": {
+        "en": "Monteverde Cloud Forest Reserve",
+        "es": "Reserva Biológica Bosque Nuboso Monteverde",
+        "zh": "蒙特维德云雾森林生物保护区"
+      },
+      "province": "puntarenas",
+      "provinceNote": {
+        "en": "Monteverde has been a canton of Puntarenas since the 2021 law (seat: Santa Elena). The reserve sits on the crest of the Cordillera de Tilarán and its rivers drain to both sides: the Guacimal to the Pacific, the Chiquito, Caño Negro and Peñas Blancas to the Caribbean (CCT management plan, 2025). No fetched page states which provinces the reserve's own boundary crosses.",
+        "es": "Monteverde es cantón de Puntarenas desde la ley de 2021 (cabecera: Santa Elena). La reserva ocupa la cresta de la cordillera de Tilarán y sus ríos drenan hacia ambas vertientes: el Guacimal al Pacífico; el Chiquito, el Caño Negro y el Peñas Blancas al Caribe (plan de manejo del CCT, 2025). Ninguna página consultada indica qué provincias cruza el límite de la propia reserva."
+      },
+      "coords": [10.3025, -84.7956],
+      "coordsStatus": "approximate",
+      "coordsSources": ["https://en.wikipedia.org/wiki/Monteverde_Cloud_Forest_Reserve"],
+      "kind": {
+        "en": "private cloud forest reserve (Tropical Science Center)",
+        "es": "reserva privada de bosque nuboso (Centro Científico Tropical)"
+      },
+      "overview": {
+        "en": "High in the Cordillera de Tilarán, where clouds drift through the canopy, the Tropical Science Center has protected the Monteverde reserve since 1972: about 4,125 hectares that grew from a 328-hectare donation, home to some 450 bird species including the resplendent quetzal, and the cloud forest that Quaker settlers from Alabama began guarding in the early 1950s.",
+        "es": "En lo alto de la cordillera de Tilarán, donde las nubes cruzan el dosel, el Centro Científico Tropical protege la reserva de Monteverde desde 1972: unas 4 125 hectáreas nacidas de una donación de 328, hogar de unas 450 especies de aves, incluido el quetzal, y del bosque nuboso que los cuáqueros llegados de Alabama cuidan desde los años cincuenta.",
+        "zh": "在云雾穿过林冠的蒂拉兰山脉高处，热带科学中心自1972年起守护着蒙特维德保护区：从328公顷的捐赠地扩展到约4,125公顷，栖息着约450种鸟类（包括凤尾绿咬鹃），也是来自阿拉巴马的贵格会移民自1950年代初开始守护的云雾森林。",
+        "status": "confirmed",
+        "sources": [
+          "https://cloudforestmonteverde.com/wp-content/uploads/2025/07/Plan-de-Contol-y-Proteccion-PCP_RBBNM_CCT2025_FINAL.pdf",
+          "https://www.ambientico.una.ac.cr/wp-content/uploads/tainacan-items/5/27721/263_26-32.pdf",
+          "https://iucn.org/es/noticias/202607/reserva-biologica-bosque-nuboso-monteverde-ingresa-la-lista-verde-de-la-uicn-como",
+          "https://www.friendsjournal.org/the-quaker-stewards-of-costa-ricas-monteverde-cloud-forest/"
+        ]
+      },
+      "facts": [
+        {
+          "key": "areaHa",
+          "label": {"en": "Hectares of cloud forest", "es": "Hectáreas de bosque nuboso", "zh": "云雾森林面积（公顷）"},
+          "value": 4125,
+          "unit": "ha (10,193 acres); started with 328 ha in 1972",
+          "year": 2025,
+          "status": "confirmed",
+          "text": {
+            "en": "The reserve's own 2025 management plan says it 'cubre aproximadamente 4,125 hectáreas', IUCN's July 2026 Green List announcement repeats '4.125 hectáreas de bosque nuboso', the reserve's website states '10,193 acres protected' (10,193 acres = 4,125 ha) and the CCT's general manager wrote in 2017 that it grew 'de 328 hectáreas iniciales, a 4 100 hoy día'. English Wikipedia's 'over 10,500 hectares (26,000 acres)' contradicts all four and is almost certainly the acre figure mislabelled as hectares; the site should use about 4,100 ha.",
+            "es": "El plan de manejo 2025 de la propia reserva dice que 'cubre aproximadamente 4,125 hectáreas', el anuncio de la Lista Verde de la UICN (julio de 2026) repite '4.125 hectáreas de bosque nuboso', el sitio web de la reserva indica '10,193 acres protected' (10 193 acres = 4 125 ha) y el gerente general del CCT escribió en 2017 que pasó 'de 328 hectáreas iniciales, a 4 100 hoy día'. Las 'más de 10 500 hectáreas (26 000 acres)' de la Wikipedia en inglés contradicen a las cuatro fuentes y casi con seguridad son la cifra en acres mal etiquetada; el sitio debe usar unas 4 100 ha."
+          },
+          "sources": [
+            "https://cloudforestmonteverde.com/wp-content/uploads/2025/07/Plan-de-Contol-y-Proteccion-PCP_RBBNM_CCT2025_FINAL.pdf",
+            "https://iucn.org/es/noticias/202607/reserva-biologica-bosque-nuboso-monteverde-ingresa-la-lista-verde-de-la-uicn-como",
+            "https://cloudforestmonteverde.com/",
+            "https://www.ambientico.una.ac.cr/wp-content/uploads/tainacan-items/5/27721/263_26-32.pdf",
+            "https://en.wikipedia.org/wiki/Monteverde_Cloud_Forest_Reserve"
+          ]
+        },
+        {
+          "key": "founded",
+          "label": {"en": "Reserve founded", "es": "Fundación de la reserva", "zh": "保护区成立年份"},
+          "value": 1972,
+          "unit": "year (donation accepted 6 October 1972)",
+          "year": 1972,
+          "status": "confirmed",
+          "text": {
+            "en": "The Tropical Science Center (Centro Científico Tropical, CCT) accepted the Guacimal Land Company's donation on 6 October 1972 — 'el 6 de octubre de 1972 se acepta la donación y con ello nace la Reserva Biológica Bosque Nuboso Monteverde' (Hernández, Ambientico 2017) — after resident scientist George Powell, worried by deforestation, hunting and land speculation, arranged it; the management plan says 'Fundada en 1972' and that the reserve is 'gestionada por el Centro Científico Tropical'. IUCN calls it 'una de las primeras reservas privadas del mundo' and, in July 2026, the first protected area in Costa Rica to enter the IUCN Green List. Wikipedia's infobox gives 1973 (the land purchase in April 1973) while its text says 1972.",
+            "es": "El Centro Científico Tropical (CCT) aceptó la donación de la Guacimal Land Company el 6 de octubre de 1972 —'el 6 de octubre de 1972 se acepta la donación y con ello nace la Reserva Biológica Bosque Nuboso Monteverde' (Hernández, Ambientico 2017)—, gestionada por el científico residente George Powell, preocupado por la deforestación, la cacería y la especulación de tierras; el plan de manejo dice 'Fundada en 1972' y que la reserva es 'gestionada por el Centro Científico Tropical'. La UICN la llama 'una de las primeras reservas privadas del mundo' y, en julio de 2026, la primera área protegida de Costa Rica en ingresar a su Lista Verde. La ficha de Wikipedia da 1973 (la compra de tierras de abril de 1973) mientras su texto dice 1972."
+          },
+          "sources": [
+            "https://www.ambientico.una.ac.cr/wp-content/uploads/tainacan-items/5/27721/263_26-32.pdf",
+            "https://cloudforestmonteverde.com/wp-content/uploads/2025/07/Plan-de-Contol-y-Proteccion-PCP_RBBNM_CCT2025_FINAL.pdf",
+            "https://iucn.org/es/noticias/202607/reserva-biologica-bosque-nuboso-monteverde-ingresa-la-lista-verde-de-la-uicn-como",
+            "https://en.wikipedia.org/wiki/Monteverde_Cloud_Forest_Reserve"
+          ]
+        },
+        {
+          "key": "birdSpecies",
+          "label": {"en": "Bird species in the reserve", "es": "Especies de aves en la reserva", "zh": "保护区鸟类物种数"},
+          "value": 450,
+          "unit": "species (approx.)",
+          "year": 2025,
+          "status": "confirmed",
+          "text": {
+            "en": "The CCT's 2025 management plan records 'cerca de 450 especies de aves' in the reserve, naming the quetzal among its emblematic species. Wikipedia's older figure is '400 bird species' (from a tourism site), with 'over 2,500 plant species' and '100 species of mammals' that no first-party page fetched in this task confirms.",
+            "es": "El plan de manejo 2025 del CCT registra 'cerca de 450 especies de aves' en la reserva y nombra al quetzal entre sus especies emblemáticas. La cifra más antigua de Wikipedia es '400 bird species' (tomada de un sitio turístico), junto con 'over 2,500 plant species' y '100 species of mammals' que ninguna página de primera mano consultada en esta tarea confirma."
+          },
+          "sources": [
+            "https://cloudforestmonteverde.com/wp-content/uploads/2025/07/Plan-de-Contol-y-Proteccion-PCP_RBBNM_CCT2025_FINAL.pdf",
+            "https://en.wikipedia.org/wiki/Monteverde_Cloud_Forest_Reserve"
+          ]
+        },
+        {
+          "key": "quakers",
+          "label": {"en": "Quaker settlers arrived", "es": "Llegada de los colonos cuáqueros", "zh": "贵格会移民抵达年份"},
+          "value": 1951,
+          "unit": "year (families from Fairhope, Alabama; 1950–51)",
+          "year": 1951,
+          "status": "approximate",
+          "text": {
+            "en": "Friends Journal (2023) tells how four young Quakers of the Fairhope, Alabama meeting — Wilford 'Wolf' Guindon and the Rockwell brothers — were jailed for refusing draft registration, and with 'a few dozen other Quakers from Fairhope' emigrated to Costa Rica, which had abolished its army after the 1948 civil war, 'in 1950 and 1951'; they paid $50,000 for 3,500 acres, set up a dairy and cheese factory and in 1951 set aside a section of cloud forest with the springs that fed their water and power. The CCT's own account says the community 'se estableció en los primeros años de la década de 1950' and that Guindon, 'líder de la comunidad cuáquera', walked the forest with the scientists Holdridge and Tosi; Wikipedia gives 1951 and 11 families citing the CCT. Treat '1951' as the arrival year and 'from Alabama' as confirmed by two sources.",
+            "es": "Friends Journal (2023) cuenta cómo cuatro jóvenes cuáqueros de la congregación de Fairhope, Alabama —Wilford 'Wolf' Guindon y los hermanos Rockwell— fueron encarcelados por negarse al registro militar y, con 'a few dozen other Quakers from Fairhope', emigraron 'in 1950 and 1951' a Costa Rica, que había abolido su ejército tras la guerra civil de 1948; pagaron 50 000 dólares por 3 500 acres, montaron una lechería y una fábrica de queso y en 1951 reservaron una sección de bosque nuboso con los manantiales que les daban agua y electricidad. El relato del propio CCT dice que la comunidad 'se estableció en los primeros años de la década de 1950' y que Guindon, 'líder de la comunidad cuáquera', recorría el bosque con los científicos Holdridge y Tosi; Wikipedia da 1951 y 11 familias citando al CCT. Tómese '1951' como año de llegada y 'de Alabama' como confirmado por dos fuentes."
+          },
+          "sources": [
+            "https://www.friendsjournal.org/the-quaker-stewards-of-costa-ricas-monteverde-cloud-forest/",
+            "https://www.ambientico.una.ac.cr/wp-content/uploads/tainacan-items/5/27721/263_26-32.pdf",
+            "https://en.wikipedia.org/wiki/Monteverde_Cloud_Forest_Reserve",
+            "https://en.wikipedia.org/wiki/Monteverde"
+          ]
+        },
+        {
+          "key": "childrensRainforest",
+          "label": {"en": "Children's Eternal Rainforest", "es": "Bosque Eterno de los Niños", "zh": "儿童永恒雨林（公顷）"},
+          "value": 22600,
+          "unit": "ha; largest private reserve in Costa Rica",
+          "year": null,
+          "status": "confirmed",
+          "text": {
+            "en": "Next to the CCT reserve lies the Bosque Eterno de los Niños, which its owner, the Monteverde Conservation League, describes as 'At 22,600 hectares, the Children's Eternal Rainforest' — 'the largest private reserve in Costa Rica' — born from 'a campaign by a small group of Swedish students in the late 1980s' that 'quickly inspired schools, individuals and organizations in 44 countries'. Friends Journal rounds it to 23,000 ha; Méndez & Pounds (2017) note the Monteverde reserve is part of a protected forest complex of 'más de 50 000 hectáreas'. The exact start year (often given as 1987) was not stated by any fetched page.",
+            "es": "Junto a la reserva del CCT está el Bosque Eterno de los Niños, que su propietaria, la Asociación Conservacionista de Monteverde, describe como 'At 22,600 hectares, the Children's Eternal Rainforest', 'the largest private reserve in Costa Rica', nacido de 'a campaign by a small group of Swedish students in the late 1980s' que 'quickly inspired schools, individuals and organizations in 44 countries'. Friends Journal lo redondea a 23 000 ha; Méndez y Pounds (2017) señalan que la reserva de Monteverde forma parte de un complejo de bosques protegidos de 'más de 50 000 hectáreas'. Ninguna página consultada indica el año exacto de inicio (a menudo citado como 1987)."
+          },
+          "sources": [
+            "https://acmcr.org/en/who-we-are/",
+            "https://www.friendsjournal.org/the-quaker-stewards-of-costa-ricas-monteverde-cloud-forest/",
+            "https://www.ambientico.una.ac.cr/wp-content/uploads/tainacan-items/5/27821/263_45-50.pdf"
+          ]
+        },
+        {
+          "key": "visitors",
+          "label": {"en": "Visitors a year", "es": "Visitantes al año", "zh": "年访客量"},
+          "value": 120000,
+          "unit": "visitors/year (reserve website); 471 in 1975, 49,793 in 1994",
+          "year": 2025,
+          "status": "approximate",
+          "text": {
+            "en": "The reserve's website states 'Around 120,000 visitors annually'; the CCT's manager traced the rise from 471 visitors in 1975 and 49,793 in 1994 to 'más de 200 mil personas al año a la región' (Ambientico 2017), while Wikipedia still says 'more than 70,000 people each year'. Figures differ by date and by whether they count the reserve or the whole Monteverde area, so present '100,000-plus a year'.",
+            "es": "El sitio web de la reserva indica 'Around 120,000 visitors annually'; el gerente del CCT describió el aumento desde 471 visitantes en 1975 y 49 793 en 1994 hasta 'más de 200 mil personas al año a la región' (Ambientico 2017), mientras Wikipedia aún dice 'more than 70,000 people each year'. Las cifras cambian según la fecha y según si cuentan la reserva o toda la zona de Monteverde, así que conviene decir 'más de 100 000 al año'."
+          },
+          "sources": [
+            "https://cloudforestmonteverde.com/",
+            "https://www.ambientico.una.ac.cr/wp-content/uploads/tainacan-items/5/27721/263_26-32.pdf",
+            "https://en.wikipedia.org/wiki/Monteverde_Cloud_Forest_Reserve",
+            "https://en.wikipedia.org/wiki/Monteverde"
+          ]
+        },
+        {
+          "key": "cantonCreated",
+          "label": {"en": "Monteverde became a canton", "es": "Monteverde se convirtió en cantón", "zh": "蒙特维德设县年份"},
+          "value": 2021,
+          "unit": "year (approved 4 August 2021; canton 83 of Costa Rica, 12th of Puntarenas)",
+          "year": 2021,
+          "status": "confirmed",
+          "text": {
+            "en": "On 4 August 2021 the Legislative Assembly approved in second debate bill 21.618 making Monteverde 'el cantón 12° de la Provincia de Puntarenas y el 83° del país', with a single district and its seat in Santa Elena (Delfino.cr, 5 Aug 2021); Wikipedia adds that the law (No. 10019) was signed on 29 September 2021 and took effect after the April 2022 elections.",
+            "es": "El 4 de agosto de 2021 la Asamblea Legislativa aprobó en segundo debate el expediente 21.618 que convierte a Monteverde en 'el cantón 12° de la Provincia de Puntarenas y el 83° del país', con distrito único y cabecera en Santa Elena (Delfino.cr, 5 ago 2021); Wikipedia añade que la ley (N.º 10019) se firmó el 29 de septiembre de 2021 y rigió tras las elecciones de abril de 2022."
+          },
+          "sources": [
+            "https://delfino.cr/2021/08/aprobado-el-cantonato-de-monteverde-y-la-exigencia-a-partidos-de-dar-informacion-sobre-sus-aspirantes-en-elecciones",
+            "https://en.wikipedia.org/wiki/Monteverde"
+          ]
+        },
+        {
+          "key": "elevation",
+          "label": {"en": "Elevation of Monteverde", "es": "Altitud de Monteverde", "zh": "蒙特维德海拔（米）"},
+          "value": 1400,
+          "unit": "m (town; infobox 1,330 m); ~3,000 mm rain, 18 °C mean",
+          "year": null,
+          "status": "approximate",
+          "text": {
+            "en": "Only Wikipedia gives heights: the Monteverde district averages '1,330 m' and the climate section says 'At an elevation of roughly 1,400 m', with mean temperature 18 °C and about 3,000 mm of rain a year (citing Nadkarni 2000). No fetched CCT page gives the reserve's altitude range, so the site should say 'about 1,400 m' for the town and avoid a range for the reserve.",
+            "es": "Solo Wikipedia da alturas: el distrito de Monteverde promedia '1,330 m' y la sección de clima dice 'At an elevation of roughly 1,400 m', con temperatura media de 18 °C y unos 3 000 mm de lluvia al año (citando a Nadkarni 2000). Ninguna página del CCT consultada da el rango altitudinal de la reserva, así que el sitio debe decir 'unos 1 400 m' para el pueblo y evitar un rango para la reserva."
+          },
+          "sources": [
+            "https://en.wikipedia.org/wiki/Monteverde"
+          ]
+        }
+      ],
+      "protectedArea": {
+        "name": {"en": "Monteverde Cloud Forest Biological Reserve", "es": "Reserva Biológica Bosque Nuboso Monteverde"},
+        "managedBy": "Centro Científico Tropical (Tropical Science Center), a private Costa Rican non-profit; IUCN Green List since 2026 (first protected area in Costa Rica)",
+        "established": 1972,
+        "areaHa": 4125,
+        "status": "confirmed",
+        "sources": [
+          "https://cloudforestmonteverde.com/wp-content/uploads/2025/07/Plan-de-Contol-y-Proteccion-PCP_RBBNM_CCT2025_FINAL.pdf",
+          "https://iucn.org/es/noticias/202607/reserva-biologica-bosque-nuboso-monteverde-ingresa-la-lista-verde-de-la-uicn-como",
+          "https://www.ambientico.una.ac.cr/wp-content/uploads/tainacan-items/5/27721/263_26-32.pdf"
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://cloudforestmonteverde.com/wp-content/uploads/2025/07/Plan-de-Contol-y-Proteccion-PCP_RBBNM_CCT2025_FINAL.pdf",
+          "title": "Plan de Control y Protección, Reserva Biológica Bosque Nuboso Monteverde (PCP RBBNM CCT 2025)",
+          "publisher": "Centro Científico Tropical (CCT)",
+          "published": "2025-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "p. 8: 'Cubre aproximadamente 4,125 hectáreas'; 'Fundada en 1972'; 'gestionada por el Centro Científico Tropical (CCT)'; 'se encuentra en la Cordillera de Tilarán'; four cloud-forest life zones; p. 9: rivers Guacimal (Pacific) and Chiquito, Caño Negro, Peñas Blancas (Caribbean); p. 12: 'cerca de 450 especies de aves'; quetzal named; p. 7: Guacimal Land Company donation"
+        },
+        {
+          "url": "https://iucn.org/es/noticias/202607/reserva-biologica-bosque-nuboso-monteverde-ingresa-la-lista-verde-de-la-uicn-como",
+          "title": "Reserva Biológica Bosque Nuboso Monteverde ingresa a la Lista Verde de la UICN como la primera área protegida de Costa Rica",
+          "publisher": "IUCN (UICN), news",
+          "published": "2026-07-06",
+          "retrieved": "2026-10-23",
+          "supports": "CCT manages the reserve; founded 1972; '4.125 hectáreas de bosque nuboso'; Cordillera de Tilarán; 'una de las primeras reservas privadas del mundo'; first protected area in Costa Rica on the IUCN Green List; >1,200 students/year in environmental education"
+        },
+        {
+          "url": "https://cloudforestmonteverde.com/",
+          "title": "Monteverde Cloud Forest Preserve – Official Site",
+          "publisher": "Centro Científico Tropical / Monteverde Cloud Forest Preserve",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'Protecting nature through science and education since 1972'; '10,193 acres protected' (= 4,125 ha); 'Around 120,000 visitors annually'; '22 active research projects in 2024'; Tropical Science Center outreach; page says 'Included in the IUCN Green List (2025)'"
+        },
+        {
+          "url": "https://www.ambientico.una.ac.cr/wp-content/uploads/tainacan-items/5/27721/263_26-32.pdf",
+          "title": "Reserva Biológica Bosque Nuboso Monteverde: modelo de gestión económicamente sostenible (Ambientico 263, pp. 26–32)",
+          "publisher": "Universidad Nacional (UNA), Ambientico — author Carlos Hernández H., general manager of the CCT",
+          "published": "2017-07-01",
+          "retrieved": "2026-10-23",
+          "supports": "'el 6 de octubre de 1972 se acepta la donación y con ello nace la Reserva'; Guacimal Land Company donation; George Powell; 'de 328 hectáreas iniciales, a 4 100 hoy día'; Quaker community established in the early 1950s; Wilford 'Wolf' Guindon 'líder de la comunidad cuáquera' walked with Holdridge and Tosi; visitors 471 (1975), 49,793 (1994), 'más de 200 mil personas al año a la región'"
+        },
+        {
+          "url": "https://www.ambientico.una.ac.cr/wp-content/uploads/tainacan-items/5/27821/263_45-50.pdf",
+          "title": "Generando conocimiento sobre el bosque nuboso por medio de la investigación científica (Ambientico 263, pp. 45–50)",
+          "publisher": "Universidad Nacional (UNA), Ambientico — Yoryineth Méndez & J. Alan Pounds",
+          "published": "2017-07-01",
+          "retrieved": "2026-10-23",
+          "supports": "'Las 4 100 hectáreas que constituyen la reserva' within a protected complex of 'más de 50 000 hectáreas'; research in Monteverde since the 1960s; golden toad (Incilius periglenes) described in 1966, endemic to Monteverde, local population extinct; tourism boom from the late 1980s; cloud and drizzle inputs declining"
+        },
+        {
+          "url": "https://www.friendsjournal.org/the-quaker-stewards-of-costa-ricas-monteverde-cloud-forest/",
+          "title": "The Quaker Stewards of Costa Rica's Monteverde Cloud Forest",
+          "publisher": "Friends Journal — Sharlee DiMenichi",
+          "published": "2023-12-01",
+          "retrieved": "2026-10-23",
+          "supports": "Fairhope (Alabama) Quakers jailed for refusing draft registration; 'a few dozen other Quakers from Fairhope' emigrated 'in 1950 and 1951'; Costa Rica had abolished its army after the 1948 civil war; $50,000 for 3,500 acres; cheese factory; 1951 cloud-forest set-aside; reserve 'established in 1972 by the Tropical Science Center and Quakers'; 23,000 ha Children's Eternal Rainforest. Caution: its '26,000 hectares' for the reserve conflicts with the CCT's 4,125 ha and is not used"
+        },
+        {
+          "url": "https://acmcr.org/en/who-we-are/",
+          "title": "Who we are — Monteverde Conservation League",
+          "publisher": "Asociación Conservacionista de Monteverde (Monteverde Conservation League)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'At 22,600 hectares, the Children's Eternal Rainforest' is 'the largest private reserve in Costa Rica'; started by 'a campaign by a small group of Swedish students in the late 1980s'; supporters in 44 countries; environmental education since 1986"
+        },
+        {
+          "url": "https://delfino.cr/2021/08/aprobado-el-cantonato-de-monteverde-y-la-exigencia-a-partidos-de-dar-informacion-sobre-sus-aspirantes-en-elecciones",
+          "title": "Aprobado el cantonato de Monteverde y la exigencia a partidos de dar información sobre sus aspirantes en elecciones",
+          "publisher": "Delfino.cr — Luis Manuel Madrigal",
+          "published": "2021-08-05",
+          "retrieved": "2026-10-23",
+          "supports": "Second-debate approval of expediente 21.618 (Wednesday 4 Aug 2021); Monteverde 'el cantón 12° de la Provincia de Puntarenas y el 83° del país'; single district; seat Santa Elena"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Monteverde",
+          "title": "Monteverde",
+          "publisher": "Wikipedia (en)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Elevation 1,330 m (infobox) / 'roughly 1,400 m'; Cordillera de Tilarán, Puntarenas; Law 10019 signed 29 Sep 2021, 12th canton of Puntarenas, seat Santa Elena; settlers mostly from Fairhope, Alabama, avoiding the draft; mean 18 °C, ~3,000 mm rain (Nadkarni 2000); ~250,000 tourists/year to the area, ~70,000 to the reserve (uncited); repeats the '10,500-hectare' error"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Monteverde_Cloud_Forest_Reserve",
+          "title": "Monteverde Cloud Forest Reserve",
+          "publisher": "Wikipedia (en)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Coordinates 10°18′09″N 84°47′44″W; 'founded in 1972' (infobox 1973); George Powell and the Tropical Science Center; 328 ha bought April 1973; 'over 10,500 hectares (26,000 acres)' (uncited, contradicted by CCT); 'six life zones' (tourism site); 400 birds, 100 mammals, 2,500 plants (tourism site); Quakers 1951, 11 families from Alabama (citing CCT); golden toad disappeared 1989 (uncited); 70,000 visitors/year (uncited)"
+        }
+      ]
+    },
+    {
+      "id": "rio-celeste",
+      "name": {
+        "en": "Río Celeste, Tenorio Volcano National Park",
+        "es": "Río Celeste, Parque Nacional Volcán Tenorio",
+        "zh": "天蓝河（特诺里奥火山国家公园）"
+      },
+      "province": "alajuela",
+      "provinceNote": {
+        "en": "The park straddles Alajuela and Guanacaste (cantons Upala, Guatuso, Bagaces, Cañas and Tilarán, per Spanish Wikipedia); English Wikipedia files it under Guanacaste. The Río Celeste trail entrance (Bijagua, Upala) is on the Alajuela side.",
+        "es": "El parque se reparte entre Alajuela y Guanacaste (cantones de Upala, Guatuso, Bagaces, Cañas y Tilarán, según la Wikipedia en español); la Wikipedia en inglés lo sitúa en Guanacaste. La entrada del sendero al río Celeste (Bijagua, Upala) queda del lado de Alajuela."
+      },
+      "coords": [10.6731, -85.015],
+      "coordsStatus": "approximate",
+      "coordsSources": ["https://en.wikipedia.org/wiki/Tenorio_Volcano_National_Park"],
+      "kind": {
+        "en": "sky-blue river in a volcanic national park",
+        "es": "río celeste en un parque nacional volcánico"
+      },
+      "overview": {
+        "en": "In Tenorio Volcano National Park two streams, the Río Buenavista and the Quebrada Agria, meet at the Teñidero and turn sky-blue. In 2013 scientists from the University of Costa Rica and the Universidad Nacional showed the colour is physics, not pigment: sunlight scattered by suspended aluminosilicate particles that clump to about 566 nanometres where the acid stream lowers the pH.",
+        "es": "En el Parque Nacional Volcán Tenorio, el río Buenavista y la quebrada Agria se juntan en el Teñidero y se vuelven celestes. En 2013 científicos de la Universidad de Costa Rica y la Universidad Nacional mostraron que es física, no pigmento: luz solar dispersada por partículas de aluminosilicato que crecen a 566 nanómetros donde la quebrada ácida baja el pH.",
+        "zh": "在特诺里奥火山国家公园，布埃纳维斯塔河与阿格里亚溪在“染色点”（Teñidero）交汇后变成天蓝色。2013年，哥斯达黎加大学和国立大学的科学家证明这种颜色源于物理现象而非色素：酸性溪流降低pH值后，悬浮的铝硅酸盐颗粒聚集到约566纳米，散射阳光而呈蓝色。",
+        "status": "confirmed",
+        "sources": [
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC3776737",
+          "https://www.nacion.com/ciencia/medio-ambiente/por-que-el-rio-celeste-se-ve-de-ese-color/LJMJKEC47JHU3NTVSZVJIPUXNA/story/",
+          "https://es.wikipedia.org/wiki/Parque_nacional_Volc%C3%A1n_Tenorio"
+        ]
+      },
+      "facts": [
+        {
+          "key": "particleSize",
+          "label": {"en": "Size of the particles that make the river blue", "es": "Tamaño de las partículas que tiñen el río", "zh": "使河水变蓝的颗粒尺寸（纳米）"},
+          "value": 566,
+          "unit": "nm (average hydrodynamic diameter in the blue stream; 184 nm upstream in the Buenavista)",
+          "year": 2013,
+          "status": "confirmed",
+          "text": {
+            "en": "Castellón, Martínez, Madrigal-Carballo, Arias, Vargas and Chavarría (Universidad de Costa Rica and Universidad Nacional/OVSICORI; PLoS ONE 8(9): e75165, 18 September 2013) found that 'the origin of this coloration phenomenon is physical, due to suspended aluminosilicate particles': the Río Buenavista (pH 6.8) carries tiny particles that aggregate when it meets the acidic Quebrada Agria (pH 3.1) at the 'Teñidero' (dye point), growing to a mean of about 566 nm and scattering sunlight — 'Mie scattering of sunlight by aqueous colloidal aluminosilicate particles'. No copper, iron or cobalt pigment was involved; the mixed river has pH 5.0 and the blue fades after some 14 km as the particles settle. La Nación (27 Aug 2013) reported the study with the same numbers (566 nm vs 184 nm in the Buenavista).",
+            "es": "Castellón, Martínez, Madrigal-Carballo, Arias, Vargas y Chavarría (Universidad de Costa Rica y Universidad Nacional/OVSICORI; PLoS ONE 8(9): e75165, 18 de septiembre de 2013) hallaron que 'the origin of this coloration phenomenon is physical, due to suspended aluminosilicate particles': el río Buenavista (pH 6,8) arrastra partículas diminutas que se agregan al encontrarse con la ácida quebrada Agria (pH 3,1) en el 'Teñidero', creciendo hasta una media de unos 566 nm y dispersando la luz solar —'Mie scattering of sunlight by aqueous colloidal aluminosilicate particles'—. No interviene ningún pigmento de cobre, hierro o cobalto; el río mezclado tiene pH 5,0 y el azul se desvanece tras unos 14 km cuando las partículas sedimentan. La Nación (27 ago 2013) informó del estudio con las mismas cifras (566 nm frente a 184 nm en el Buenavista)."
+          },
+          "sources": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC3776737",
+            "https://www.nacion.com/ciencia/medio-ambiente/por-que-el-rio-celeste-se-ve-de-ese-color/LJMJKEC47JHU3NTVSZVJIPUXNA/story/"
+          ]
+        },
+        {
+          "key": "pH",
+          "label": {"en": "pH of the acid stream at the Teñidero", "es": "pH de la quebrada ácida en el Teñidero", "zh": "染色点酸性溪流的pH值"},
+          "value": 3.1,
+          "unit": "pH (Quebrada Agria); Río Buenavista 6.8; Río Celeste 5.0",
+          "year": 2013,
+          "status": "confirmed",
+          "text": {
+            "en": "Table 1 of the PLoS ONE study gives pH 3.1 for the Quebrada Agria, 6.8 for the Río Buenavista and 5.0 for the Río Celeste about 5 m below the mixing point; the drop in pH cuts the particles' surface charge (zeta potential from about −27 mV to −1.3 mV) so they clump. The Quebrada Agria itself carries almost no suspended material — the particles come from the Buenavista.",
+            "es": "La tabla 1 del estudio en PLoS ONE da pH 3,1 para la quebrada Agria, 6,8 para el río Buenavista y 5,0 para el río Celeste unos 5 m aguas abajo del punto de mezcla; la caída del pH reduce la carga superficial de las partículas (potencial zeta de unos −27 mV a −1,3 mV) y por eso se agregan. La propia quebrada Agria casi no arrastra material en suspensión: las partículas vienen del Buenavista."
+          },
+          "sources": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC3776737"
+          ]
+        },
+        {
+          "key": "parkCreated",
+          "label": {"en": "National park created", "es": "Creación del parque nacional", "zh": "国家公园设立年份"},
+          "value": 1995,
+          "unit": "year (decreto ejecutivo 24240-MIRENEM)",
+          "year": 1995,
+          "status": "approximate",
+          "text": {
+            "en": "Spanish Wikipedia says the park was created in 1995 'mediante decreto ejecutivo N.º 24240-MIRENEM' and belongs to the Área de Conservación Arenal-Tempisque; English Wikipedia instead gives 1976 as the establishment year with the volcano 'made part of the park in 1995'. SINAC's own Tenorio page is robots-blocked, so the 1995 decree (the figure SINAC-derived sources use) is recorded as approximate. The park's area is uncertain: 129 km² (English Wikipedia, uncited) versus a garbled '18.402.51 hectáreas' on the Spanish page.",
+            "es": "La Wikipedia en español dice que el parque se creó en 1995 'mediante decreto ejecutivo N.º 24240-MIRENEM' y pertenece al Área de Conservación Arenal-Tempisque; la Wikipedia en inglés da 1976 como año de creación y dice que el volcán se incorporó al parque en 1995. La página del SINAC sobre el Tenorio bloquea las consultas automáticas, así que el decreto de 1995 (la cifra que usan las fuentes derivadas del SINAC) se registra como aproximado. La superficie es incierta: 129 km² (Wikipedia en inglés, sin cita) frente a un ilegible '18.402.51 hectáreas' en la página en español."
+          },
+          "sources": [
+            "https://es.wikipedia.org/wiki/Parque_nacional_Volc%C3%A1n_Tenorio",
+            "https://en.wikipedia.org/wiki/Tenorio_Volcano_National_Park"
+          ]
+        },
+        {
+          "key": "waterfall",
+          "label": {"en": "Height of the Río Celeste waterfall", "es": "Altura de la catarata del río Celeste", "zh": "天蓝河瀑布高度（米）"},
+          "value": 20,
+          "unit": "m (approx.)",
+          "year": null,
+          "status": "approximate",
+          "text": {
+            "en": "Spanish Wikipedia describes the waterfall as 'de unos 20 metros de alto', the Laguna Azul downstream, hot springs at Los Hervideros and the Tenorio volcano at 1,916 m (an inactive stratovolcano, citing Alvarado 2009). No official page with the waterfall's height was fetched.",
+            "es": "La Wikipedia en español describe la catarata 'de unos 20 metros de alto', la Laguna Azul aguas abajo, las aguas termales de Los Hervideros y el volcán Tenorio de 1 916 m (estratovolcán inactivo, citando a Alvarado 2009). No se obtuvo ninguna página oficial con la altura de la catarata."
+          },
+          "sources": [
+            "https://es.wikipedia.org/wiki/Parque_nacional_Volc%C3%A1n_Tenorio"
+          ]
+        }
+      ],
+      "protectedArea": {
+        "name": {"en": "Tenorio Volcano National Park", "es": "Parque Nacional Volcán Tenorio"},
+        "managedBy": "SINAC – Área de Conservación Arenal Tempisque (ACAT)",
+        "established": 1995,
+        "areaHa": null,
+        "status": "approximate",
+        "sources": [
+          "https://es.wikipedia.org/wiki/Parque_nacional_Volc%C3%A1n_Tenorio",
+          "https://en.wikipedia.org/wiki/Tenorio_Volcano_National_Park"
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3776737",
+          "title": "Scattering of Light by Colloidal Aluminosilicate Particles Produces the Unusual Sky-Blue Color of Río Celeste (Tenorio Volcano Complex, Costa Rica)",
+          "publisher": "PLoS ONE 8(9): e75165 (PubMed Central copy); E. Castellón, M. Martínez, S. Madrigal-Carballo, M. L. Arias, W. E. Vargas, M. Chavarría — Universidad de Costa Rica (Escuela de Química, Física, Microbiología, CIPRONA) and Universidad Nacional (OVSICORI, Laboratorio de Polímeros); DOI 10.1371/journal.pone.0075165",
+          "published": "2013-09-18",
+          "retrieved": "2026-10-23",
+          "supports": "'the origin of this coloration phenomenon is physical, due to suspended aluminosilicate particles'; Mie scattering; mean particle size ~566 nm after aggregation; 'Teñidero' (dye point) where Río Buenavista and Quebrada Agria meet; pH 3.1 / 6.8 / 5.0; zeta potential −27 mV → −1.3 mV; no Cu, Fe, Co pigments; colour fades after ~14 km"
+        },
+        {
+          "url": "https://www.nacion.com/ciencia/medio-ambiente/por-que-el-rio-celeste-se-ve-de-ese-color/LJMJKEC47JHU3NTVSZVJIPUXNA/story/",
+          "title": "¿Por qué el río Celeste se ve de ese color?",
+          "publisher": "La Nación — Carolina Ruiz Vega",
+          "published": "2013-08-27",
+          "retrieved": "2026-10-23",
+          "supports": "UCR and UNA scientists led by Max Chavarría; the colour 'no es producido por una sustancia química que colorea el agua'; whitish aluminosilicate mineral; particles ~566 nm in the Celeste vs 184 nm in the Buenavista; Quebrada Agria highly acidic; river formed by the Quebrada Agria and the Buena Vista"
+        },
+        {
+          "url": "https://es.wikipedia.org/wiki/Parque_nacional_Volc%C3%A1n_Tenorio",
+          "title": "Parque nacional Volcán Tenorio",
+          "publisher": "Wikipedia (es)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Created 1995 by 'decreto ejecutivo N.º 24240-MIRENEM'; Área de Conservación Arenal-Tempisque; between Alajuela and Guanacaste, cantons Upala, Guatuso, Bagaces, Cañas, Tilarán; Tenorio 1,916 m inactive stratovolcano; Río Celeste forms at Los Teñideros 'en la confluencia de los ríos Buena Vista y Quebrada Agria'; waterfall 'de unos 20 metros de alto'; Laguna Azul; Los Hervideros; colour 'un efecto óptico producido por la dispersión de la luz solar' (citing La Nación 2013); area given as a garbled '18.402.51 hectáreas'"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Tenorio_Volcano_National_Park",
+          "title": "Tenorio Volcano National Park",
+          "publisher": "Wikipedia (en)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Coordinates 10°40′23″N 85°0′54″W; 129 km² (uncited); 'established 1976', volcano added 1995; Arenal Tempisque Conservation Area (SINAC); Guanacaste Province; colour 'results from Mie scattering of light by colloidal aluminosilicate particles' citing Castellón et al. 2013"
+        }
+      ]
+    },
+    {
+      "id": "irazu",
+      "name": {
+        "en": "Irazú Volcano National Park",
+        "es": "Parque Nacional Volcán Irazú",
+        "zh": "伊拉苏火山国家公园"
+      },
+      "province": "cartago",
+      "coords": [9.979, -83.852],
+      "coordsStatus": "confirmed",
+      "coordsSources": ["https://volcano.si.edu/volcano.cfm?vn=345060"],
+      "kind": {
+        "en": "stratovolcano and national park",
+        "es": "estratovolcán y parque nacional"
+      },
+      "overview": {
+        "en": "Irazú rises to 3,432 metres above Cartago, the highest volcano in Costa Rica. Its summit holds five craters; the main one cradles a small lake whose colour shifts from green to turquoise to yellow and which has drained dry and refilled many times since 1965. On clear days, the park service says, both the Pacific and the Atlantic are visible.",
+        "es": "El Irazú se alza a 3 432 metros sobre Cartago, el volcán más alto de Costa Rica. Su cima tiene cinco cráteres; el principal guarda una laguna que pasa del verde al turquesa y al amarillo y que se ha secado y rellenado muchas veces desde 1965. En días despejados, dice el SINAC, se ven el Pacífico y el Atlántico.",
+        "zh": "伊拉苏火山在卡塔戈上方耸立至3,432米，是哥斯达黎加最高的火山。山顶有五个火山口；主火山口中有一座小湖，湖水颜色在绿、蓝绿与黄之间变换，自1965年以来多次干涸又重新蓄满。公园管理局称，晴朗的日子里从山顶可同时望见太平洋与大西洋。",
+        "status": "confirmed",
+        "sources": [
+          "https://www.sinac.go.cr/ES/ac/accvc/pnvi/Paginas/default.aspx",
+          "https://volcano.si.edu/volcano.cfm?vn=345060",
+          "https://www.kerwa.ucr.ac.cr/items/283b0174-e35d-4f6b-816b-d712a21c0d38/full"
+        ]
+      },
+      "facts": [
+        {
+          "key": "summit",
+          "label": {"en": "Summit elevation", "es": "Altitud de la cima", "zh": "山顶海拔（米）"},
+          "value": 3432,
+          "unit": "m above sea level (SINAC; Smithsonian GVP gives 3,436 m)",
+          "year": null,
+          "status": "confirmed",
+          "text": {
+            "en": "SINAC's park page states 'Su elevación máxima es de 3432 m s.n.m., siendo el volcán más alto de Costa Rica'; the Smithsonian Global Volcanism Program lists Irazú as a composite stratovolcano of 3,436 m at 9.979°N 83.852°W, with a summit crater complex whose focus 'has migrated to the W towards the main crater'. Use 3,432 m (the official figure) and note the four-metre difference.",
+            "es": "La página del SINAC indica: 'Su elevación máxima es de 3432 m s.n.m., siendo el volcán más alto de Costa Rica'; el Global Volcanism Program del Smithsonian registra al Irazú como un estratovolcán compuesto de 3 436 m en 9,979°N 83,852°O, con un complejo de cráteres cuyo foco 'has migrated to the W towards the main crater'. Úsese 3 432 m (la cifra oficial) y anótese la diferencia de cuatro metros."
+          },
+          "sources": [
+            "https://www.sinac.go.cr/ES/ac/accvc/pnvi/Paginas/default.aspx",
+            "https://volcano.si.edu/volcano.cfm?vn=345060"
+          ]
+        },
+        {
+          "key": "parkCreated",
+          "label": {"en": "National park created", "es": "Creación del parque nacional", "zh": "国家公园设立年份"},
+          "value": 1955,
+          "unit": "year (Ley 1917 of 30 July 1955); about 2,000 ha today",
+          "year": 1955,
+          "status": "confirmed",
+          "text": {
+            "en": "'El Parque Nacional Volcán Irazú fue creado mediante la Ley No. 1917 del 30 de julio de 1955' (La Gaceta 175, August 1955), making it one of the country's oldest protected areas; a later MINAE decree (no. 26945, as read on the page) enlarged it 'para contar actualmente con una extensión de 2000 ha'. The park, 31 km from Cartago, 'cuenta con cinco cráteres bien diferenciados'; since the 1994 explosion on the north wall of the main crater it has shown only fumarolic activity.",
+            "es": "'El Parque Nacional Volcán Irazú fue creado mediante la Ley No. 1917 del 30 de julio de 1955' (La Gaceta 175, agosto de 1955), lo que lo convierte en una de las áreas protegidas más antiguas del país; un decreto posterior del MINAE (n.º 26945, según se lee en la página) lo amplió 'para contar actualmente con una extensión de 2000 ha'. El parque, a 31 km de Cartago, 'cuenta con cinco cráteres bien diferenciados'; desde la explosión de 1994 en la pared norte del cráter principal solo ha mostrado actividad fumarólica."
+          },
+          "sources": [
+            "https://www.sinac.go.cr/ES/ac/accvc/pnvi/Paginas/default.aspx"
+          ]
+        },
+        {
+          "key": "craterLakeDepth",
+          "label": {"en": "Deepest recorded crater lake", "es": "Profundidad máxima registrada de la laguna", "zh": "火口湖最大记录水深（米）"},
+          "value": 31,
+          "unit": "m (1995 and 2001); completely dry in 1977, 1979, 1982–83, 1987, 1990; ~3 m and draining in January 2020",
+          "year": 2001,
+          "status": "confirmed",
+          "text": {
+            "en": "Ramírez, Cordero and Alvarado (Revista Geológica de América Central 48, 2011) tracked the main crater's lake from 1965 to 2012: its colour ranged 'verde, turquesa azulado a amarillo' depending on depth, underwater fumaroles, algae and iron-rich sediment from wall collapses; 'El nivel ha variado desde los 31 m en 1995 y 2001' down to a completely dry floor in 1977, 1979, 1982–83, 1987 and 1990, because cracks in the impermeable bed 'permiten drenar relativamente rápido' and later reseal so the lake 'se vuelva a formar' — not simply a matter of rainfall. Teletica (29 Jan 2020) reported the lake at about three metres and expected to vanish again within weeks, recalling it was 30 m deep in 2001; the Smithsonian describes the main crater as containing 'a small lake'. The Diego de la Haya crater lies just south-east of the main one and is named after the governor of Cartago who documented the 1723 eruption.",
+            "es": "Ramírez, Cordero y Alvarado (Revista Geológica de América Central 48, 2011) siguieron la laguna del cráter principal de 1965 a 2012: su color varió 'verde, turquesa azulado a amarillo' según la profundidad, las fumarolas sumergidas, las algas y los sedimentos ricos en hierro de los derrumbes de las paredes; 'El nivel ha variado desde los 31 m en 1995 y 2001' hasta un fondo totalmente seco en 1977, 1979, 1982–83, 1987 y 1990, porque las grietas del lecho impermeable 'permiten drenar relativamente rápido' y luego se sellan para que la laguna 'se vuelva a formar', no por simple efecto de la lluvia. Teletica (29 ene 2020) informó que la laguna tenía unos tres metros y se esperaba que desapareciera de nuevo en semanas, recordando que en 2001 medía 30 m; el Smithsonian describe el cráter principal con 'a small lake'. El cráter Diego de la Haya queda justo al sureste del principal y lleva el nombre del gobernador de Cartago que documentó la erupción de 1723."
+          },
+          "sources": [
+            "https://www.kerwa.ucr.ac.cr/items/283b0174-e35d-4f6b-816b-d712a21c0d38/full",
+            "https://www.teletica.com/nacional/lago-del-volcan-irazu-se-esta-secando-nuevamente_247141",
+            "https://volcano.si.edu/volcano.cfm?vn=345060",
+            "https://www.sinac.go.cr/ES/ac/accvc/pnvi/Paginas/default.aspx"
+          ]
+        },
+        {
+          "key": "twoOceans",
+          "label": {"en": "Oceans visible from the summit on a clear day", "es": "Océanos visibles desde la cima en un día despejado", "zh": "晴日山顶可见的海洋数量"},
+          "value": 2,
+          "unit": "oceans (Pacific and Atlantic/Caribbean), per SINAC",
+          "year": null,
+          "status": "confirmed",
+          "text": {
+            "en": "The claim is official, not just folklore: SINAC's park page says 'En días despejados se pueden apreciar desde su cima tanto el océano Pacífico como el Atlántico', while warning that the summit is often fogged in and the view is not guaranteed. Present it as 'on a rare clear morning'.",
+            "es": "La afirmación es oficial, no solo folclor: la página del SINAC dice 'En días despejados se pueden apreciar desde su cima tanto el océano Pacífico como el Atlántico', aunque advierte que la cima suele estar cubierta de niebla y la vista no está garantizada. Conviene presentarlo como 'en una rara mañana despejada'."
+          },
+          "sources": [
+            "https://www.sinac.go.cr/ES/ac/accvc/pnvi/Paginas/default.aspx"
+          ]
+        }
+      ],
+      "protectedArea": {
+        "name": {"en": "Irazú Volcano National Park", "es": "Parque Nacional Volcán Irazú"},
+        "managedBy": "SINAC – Área de Conservación Central (ACCVC; inferred from the SINAC page path, not stated on the page)",
+        "established": 1955,
+        "areaHa": 2000,
+        "status": "confirmed",
+        "sources": [
+          "https://www.sinac.go.cr/ES/ac/accvc/pnvi/Paginas/default.aspx"
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://www.sinac.go.cr/ES/ac/accvc/pnvi/Paginas/default.aspx",
+          "title": "Parque Nacional Volcán Irazú",
+          "publisher": "SINAC (Sistema Nacional de Áreas de Conservación, MINAE)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'Su elevación máxima es de 3432 m s.n.m., siendo el volcán más alto de Costa Rica'; 'creado mediante la Ley No. 1917 del 30 de julio de 1955' (La Gaceta 175); decree 26945-MINAE enlarged it 'para contar actualmente con una extensión de 2000 ha'; 'cuenta con cinco cráteres bien diferenciados'; 'En días despejados se pueden apreciar desde su cima tanto el océano Pacífico como el Atlántico'; 1723 eruption documented by governor Diego de la Haya Fernández; 1963 avalanche destroyed ~300 houses in Taras de Cartago; 1994 explosion on the north wall; 31 km from Cartago; hours and fees"
+        },
+        {
+          "url": "https://volcano.si.edu/volcano.cfm?vn=345060",
+          "title": "Irazú — Global Volcanism Program",
+          "publisher": "Smithsonian Institution, Global Volcanism Program",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Elevation 3,436 m; 9.979°N 83.852°W; composite stratovolcano; main crater 'contains a small lake'; Diego de la Haya crater 'just to the SE'; 'Ashfall from the last major eruption during 1963-65 caused significant disruption to San José'; 1994 phreatic activity possibly a landslide; last known eruption 1977 CE"
+        },
+        {
+          "url": "https://www.kerwa.ucr.ac.cr/items/283b0174-e35d-4f6b-816b-d712a21c0d38/full",
+          "title": "Variaciones y características en los cambios de nivel de la laguna cratérica del volcán Irazú (1965-2012), Costa Rica",
+          "publisher": "Revista Geológica de América Central 48, Universidad de Costa Rica (Kérwa repository record); R. Ramírez, M. C. Cordero Oviedo, G. E. Alvarado Induni; DOI 10.15517/rgac.v0i48.12240",
+          "published": "2011-04-01",
+          "retrieved": "2026-10-23",
+          "supports": "Lake colour 'verde, turquesa azulado a amarillo'; level 'desde los 31 m en 1995 y 2001' to completely dry in 1977, 1979, 1982-83, 1987, 1990; cracks 'permiten drenar relativamente rápido', lake later 'se vuelva a formar'; levels 'no siempre se encuentran relacionados en forma directa con el grado de precipitación pluvial'"
+        },
+        {
+          "url": "https://www.teletica.com/nacional/lago-del-volcan-irazu-se-esta-secando-nuevamente_247141",
+          "title": "Lago del volcán Irazú se está secando nuevamente",
+          "publisher": "Teletica — Dagoberto Alfaro",
+          "published": "2020-01-29",
+          "retrieved": "2026-10-23",
+          "supports": "Lake 'una altura cercana a los tres metros', expected to disappear 'en unas tres semanas'; 'en 2001 la laguna tenía una altura de 30 metros'; drying attributed to 'el movimiento interno dentro del volcán Irazú y las grietas que presenta'; park rangers quoted"
+        }
+      ]
+    },
+    {
+      "id": "guanacaste",
+      "name": {
+        "en": "Guanacaste dry forest and savanna",
+        "es": "Bosque seco y sabana de Guanacaste",
+        "zh": "瓜纳卡斯特干旱森林与草原"
+      },
+      "province": "guanacaste",
+      "provinceNote": {
+        "en": "The Área de Conservación Guanacaste World Heritage property lies in 'Guanacaste and Alajuela provinces' (UNESCO): its Caribbean-slope rainforest reaches into Alajuela.",
+        "es": "El sitio de Patrimonio Mundial Área de Conservación Guanacaste está en las 'provincias de Guanacaste y Alajuela' (UNESCO): su bosque lluvioso de la vertiente caribeña entra en Alajuela."
+      },
+      "coords": [10.85, -85.6167],
+      "coordsStatus": "confirmed",
+      "coordsSources": ["https://whc.unesco.org/en/list/928/"],
+      "kind": {
+        "en": "tropical dry forest conservation area (Santa Rosa National Park, ACG) and ranching province",
+        "es": "área de conservación de bosque seco tropical (Parque Nacional Santa Rosa, ACG) y provincia ganadera"
+      },
+      "overview": {
+        "en": "Guanacaste is Costa Rica's dry country: savanna, cattle haciendas and the sabanero, a province that chose to join Costa Rica in 1824. In the Área de Conservación Guanacaste, a World Heritage Site since 1999, decades of fire control and land purchases have turned old pastures back into tropical dry forest, which Daniel Janzen called the most endangered major tropical ecosystem.",
+        "es": "Guanacaste es la tierra seca de Costa Rica: sabana, haciendas ganaderas y el sabanero, una provincia que decidió unirse a Costa Rica en 1824. En el Área de Conservación Guanacaste, Patrimonio Mundial desde 1999, décadas de control del fuego y compra de tierras devolvieron los potreros al bosque seco tropical, que Daniel Janzen llamó el ecosistema tropical mayor más amenazado.",
+        "zh": "瓜纳卡斯特是哥斯达黎加的干旱之乡：草原、牧牛庄园和“萨瓦内罗”牛仔，这个省在1824年自愿加入哥斯达黎加。在1999年列入世界遗产的瓜纳卡斯特保护区，数十年的防火与购地让旧牧场重新长回热带干旱森林——丹尼尔·詹曾称之为最濒危的主要热带生态系统。",
+        "status": "confirmed",
+        "sources": [
+          "https://whc.unesco.org/en/list/928/",
+          "https://www.gdfcf.org/sites/default/files/publications/Janzen%2CD.H.%202000.%20Long%20march%20to%20survival%20of%20ACG.pdf",
+          "https://www.archivonacional.go.cr/web/educativo/ANCR_25jul_AnexionNicoya.pdf",
+          "https://www.teletica.com/nacional/asi-es-un-dia-en-la-vida-del-verdadero-sabanero-guanacasteco_389227"
+        ]
+      },
+      "facts": [
+        {
+          "key": "worldHeritage",
+          "label": {"en": "UNESCO World Heritage since", "es": "Patrimonio Mundial de la UNESCO desde", "zh": "列入世界遗产年份"},
+          "value": 1999,
+          "unit": "year (extended 2004); 147,000 ha: 104,000 land + 43,000 marine",
+          "year": 1999,
+          "status": "confirmed",
+          "text": {
+            "en": "UNESCO inscribed the 'Area de Conservación Guanacaste' in 1999 under criteria (ix) and (x) and extended it in 2004 with the 15,000 ha Santa Elena property; the property covers 147,000 ha (104,000 ha of land and 43,000 ha of sea) in Guanacaste and Alajuela provinces, 'contains the best dry forest habitats from Central America to northern Mexico', runs as 'an uninterrupted gradient from the Pacific Ocean across the highest peaks to the lowlands on the Caribbean side', and holds about 7,000 plant species, over 900 vertebrates, about 500 birds and roughly 20,000 beetle species, plus 'a massive breeding population of the vulnerable Olive Ridley' turtle. UNESCO adds that 'most dry forests elsewhere in the region are fragmented remnants only'.",
+            "es": "La UNESCO inscribió el 'Area de Conservación Guanacaste' en 1999 bajo los criterios (ix) y (x) y lo amplió en 2004 con la finca Santa Elena de 15 000 ha; el sitio cubre 147 000 ha (104 000 terrestres y 43 000 marinas) en las provincias de Guanacaste y Alajuela, 'contains the best dry forest habitats from Central America to northern Mexico', forma 'an uninterrupted gradient from the Pacific Ocean across the highest peaks to the lowlands on the Caribbean side' y alberga unas 7 000 especies de plantas, más de 900 vertebrados, unas 500 aves y unas 20 000 especies de escarabajos, además de 'a massive breeding population of the vulnerable Olive Ridley'. La UNESCO añade que 'most dry forests elsewhere in the region are fragmented remnants only'."
+          },
+          "sources": [
+            "https://whc.unesco.org/en/list/928/"
+          ]
+        },
+        {
+          "key": "santaRosaCreated",
+          "label": {"en": "Santa Rosa National Park created", "es": "Creación del Parque Nacional Santa Rosa", "zh": "圣罗莎国家公园设立年份"},
+          "value": 1971,
+          "unit": "year (Executive Decree 1562-A; national monument of 1,000 ha around La Casona since 1966)",
+          "year": 1971,
+          "status": "confirmed",
+          "text": {
+            "en": "Janzen (2000) records 'Parque Nacional Santa Rosa (Executive Decree 1562-A in 1971)', which replaced the 1966 national monument (Law 3694) of '1000 ha surrounding the Casona'; the Guanacaste Dry Forest Conservation Fund's history page dates the park's inauguration to 1971 with first director Álvaro Ugalde, when it covered about 30,000 ha, and UNESCO likewise says Santa Rosa dates to 1971. SINAC's ACG page lists the parks Santa Rosa, Guanacaste and Rincón de la Vieja, the Horizontes forestry station and the Bahía Junquillal refuge as the ACG's components and estimates 'aproximadamente 235,000 especies (65% del estimado de las especies en Costa Rica)'; the ACG's own 1997 page gives 120,000 land + 70,000 marine ha and about 230,000 species, and GDFCF says the ACG is now about 169,000 ha, so quote the ACG's size as 'more than 160,000 hectares'.",
+            "es": "Janzen (2000) registra 'Parque Nacional Santa Rosa (Executive Decree 1562-A in 1971)', que sustituyó al monumento nacional de 1966 (Ley 3694) de '1000 ha surrounding the Casona'; la página histórica del Guanacaste Dry Forest Conservation Fund fecha la inauguración del parque en 1971 con Álvaro Ugalde como primer director, cuando cubría unas 30 000 ha, y la UNESCO también dice que Santa Rosa data de 1971. La página del ACG en el SINAC enumera como componentes los parques Santa Rosa, Guanacaste y Rincón de la Vieja, la estación forestal Horizontes y el refugio Bahía Junquillal, y estima 'aproximadamente 235,000 especies (65% del estimado de las especies en Costa Rica)'; la propia página del ACG de 1997 da 120 000 ha terrestres + 70 000 marinas y unas 230 000 especies, y el GDFCF dice que el ACG tiene hoy unas 169 000 ha, así que cítese su tamaño como 'más de 160 000 hectáreas'."
+          },
+          "sources": [
+            "https://www.gdfcf.org/sites/default/files/publications/Janzen%2CD.H.%202000.%20Long%20march%20to%20survival%20of%20ACG.pdf",
+            "https://www.gdfcf.org/content/history-how-acg-came-be-acg",
+            "https://whc.unesco.org/en/list/928/",
+            "https://www.sinac.go.cr/ES/ac/acg/Paginas/default.aspx",
+            "https://acguanacaste.ac.cr/1997/acging.html"
+          ]
+        },
+        {
+          "key": "pasturesRegrown",
+          "label": {"en": "Hectares of old pasture returned to forest", "es": "Hectáreas de potrero devueltas al bosque", "zh": "恢复为森林的旧牧场面积（公顷）"},
+          "value": 40000,
+          "unit": "ha of former pasture regenerating (Janzen 2000); at least 20,000 ha purchased",
+          "year": 2000,
+          "status": "confirmed",
+          "text": {
+            "en": "Daniel Janzen and Winnie Hallwachs drafted the unsolicited strategic plan in September 1985 that became the Guanacaste National Park project, whose mission was to 'Use existing dry forest fragments as seed to restore about 700 km2'; restoration relied on halting the annual fires rather than planting — 'Fire control required a break from classical national park management tradition' — and on buying 'at least 20,000 ha of ancient pasturelands'. By 2000 the ACG 'has flipped 40,000 ha of old pastures to young regenerating forest' and 'manages and develops 2% of the country at almost no cost to the Costa Rican taxpayer'. The ACG's 1997 page says it was created 'with the express purpose of restoring an entire ecosystem of dry forest'; UNESCO notes that 'Conservation has permitted the natural restoration of the previously degraded forest ecosystem'. The phrase 'Tropical dry forests: the most endangered major tropical ecosystem' is the title of Janzen's 1988 paper as cited in his 2000 essay.",
+            "es": "Daniel Janzen y Winnie Hallwachs redactaron en septiembre de 1985 el plan estratégico no solicitado que se convirtió en el proyecto Parque Nacional Guanacaste, cuya misión era 'Use existing dry forest fragments as seed to restore about 700 km2'; la restauración se basó en detener los incendios anuales en lugar de plantar —'Fire control required a break from classical national park management tradition'— y en comprar 'at least 20,000 ha of ancient pasturelands'. Para 2000 el ACG 'has flipped 40,000 ha of old pastures to young regenerating forest' y 'manages and develops 2% of the country at almost no cost to the Costa Rican taxpayer'. La página del ACG de 1997 dice que se creó 'with the express purpose of restoring an entire ecosystem of dry forest'; la UNESCO anota que 'Conservation has permitted the natural restoration of the previously degraded forest ecosystem'. La frase 'Tropical dry forests: the most endangered major tropical ecosystem' es el título del artículo de Janzen de 1988 tal como lo cita su ensayo de 2000."
+          },
+          "sources": [
+            "https://www.gdfcf.org/sites/default/files/publications/Janzen%2CD.H.%202000.%20Long%20march%20to%20survival%20of%20ACG.pdf",
+            "https://acguanacaste.ac.cr/1997/acging.html",
+            "https://whc.unesco.org/en/list/928/"
+          ]
+        },
+        {
+          "key": "nationalTree",
+          "label": {"en": "Guanacaste tree declared national tree", "es": "Árbol de Guanacaste declarado árbol nacional", "zh": "瓜纳卡斯特树成为国树年份"},
+          "value": 1959,
+          "unit": "year (Decreto Ejecutivo N.º 7, 24 August 1959)",
+          "year": 1959,
+          "status": "confirmed",
+          "text": {
+            "en": "The guanacaste tree (Enterolobium cyclocarpum) was declared a national symbol by 'Decreto Ejecutivo N°7 del 24 de agosto de 1959' at the suggestion of the Ministry of Agriculture; journalist José María Pinaud proposed it because he 'quería que los costarricenses hicieran un reconocimiento a los guanacastecos por la Anexión del Partido de Nicoya' (CR Hoy, 25 July 2024). The same article notes the marimba was declared a symbol of culture and tradition on 3 September 1996 (Decreto 25114-C).",
+            "es": "El árbol de guanacaste (Enterolobium cyclocarpum) fue declarado símbolo nacional por 'Decreto Ejecutivo N°7 del 24 de agosto de 1959' a propuesta del Ministerio de Agricultura; el periodista José María Pinaud lo propuso porque 'quería que los costarricenses hicieran un reconocimiento a los guanacastecos por la Anexión del Partido de Nicoya' (CR Hoy, 25 jul 2024). El mismo artículo señala que la marimba fue declarada símbolo de la cultura y la tradición el 3 de septiembre de 1996 (Decreto 25114-C)."
+          },
+          "sources": [
+            "https://www.crhoy.com/estos-son-los-3-simbolos-nacionales-que-representan-a-guanacaste/"
+          ]
+        },
+        {
+          "key": "oxcartHeritage",
+          "label": {"en": "Oxcart tradition proclaimed by UNESCO", "es": "Tradición del boyeo y la carreta proclamada por la UNESCO", "zh": "牛车传统获联合国教科文组织宣布年份"},
+          "value": 2005,
+          "unit": "year proclaimed a Masterpiece; inscribed on the Representative List in 2008",
+          "year": 2005,
+          "status": "confirmed",
+          "text": {
+            "en": "UNESCO's intangible-heritage page for 'Oxherding and oxcart traditions in Costa Rica' says the element was 'originally proclaimed in 2005' and inscribed in 2008 (3.COM) on the Representative List of the Intangible Cultural Heritage of Humanity; La Nación (28 Nov 2005) reported that UNESCO 'declaró a la carreta de Costa Rica como Obra Maestra del Patrimonio Oral e Inmaterial de la Humanidad' and that 'Unos 350 boyeros provenientes de diversas partes del país recorrieron hoy las principales calles de San José' with their ox teams. UNESCO describes the mid-19th-century carts that carried coffee from the Central Valley to Puntarenas in ten to fifteen days on spokeless wheels built to cross mud, the painting that began in the early 20th century with designs so regional that a driver's origin could be read from his wheels, and the 'unique chime produced by a metal ring striking the hubnut of the wheel'. La Nación calls Sarchí 'la cuna de la artesanía en madera de las carretas'; the carts, painted mainly red, now appear in parades and religious festivals.",
+            "es": "La página de patrimonio inmaterial de la UNESCO para 'Oxherding and oxcart traditions in Costa Rica' dice que el elemento fue 'originally proclaimed in 2005' e inscrito en 2008 (3.COM) en la Lista Representativa del Patrimonio Cultural Inmaterial de la Humanidad; La Nación (28 nov 2005) informó que la UNESCO 'declaró a la carreta de Costa Rica como Obra Maestra del Patrimonio Oral e Inmaterial de la Humanidad' y que 'Unos 350 boyeros provenientes de diversas partes del país recorrieron hoy las principales calles de San José' con sus yuntas. La UNESCO describe las carretas de mediados del siglo XIX que llevaban café del Valle Central a Puntarenas en diez a quince días sobre ruedas sin rayos hechas para cruzar el barro, la pintura iniciada a comienzos del siglo XX con diseños tan regionales que el origen del boyero se leía en sus ruedas, y el 'unique chime produced by a metal ring striking the hubnut of the wheel'. La Nación llama a Sarchí 'la cuna de la artesanía en madera de las carretas'; las carretas, pintadas sobre todo de rojo, desfilan hoy en fiestas religiosas y cívicas."
+          },
+          "sources": [
+            "https://ich.unesco.org/en/RL/oxherding-and-oxcart-traditions-in-costa-rica-00103",
+            "https://www.nacion.com/archivo/desfile-de-boyeros-y-carretas-brillo-tras-declaratoria-de-unesco/I2ENUPO47JGVTFD5TXEQ73QSDM/story/"
+          ]
+        },
+        {
+          "key": "annexation",
+          "label": {"en": "Partido de Nicoya joined Costa Rica", "es": "Anexión del Partido de Nicoya", "zh": "尼科亚地区并入哥斯达黎加年份"},
+          "value": 1824,
+          "unit": "year (act signed in Nicoya on 25 July 1824)",
+          "year": 1824,
+          "status": "confirmed",
+          "text": {
+            "en": "The National Archive's transcription of the 'Acta de la anexión del partido de Nicoya a Costa Rica' (ANCR, Gobernación 8445) is dated 25 July 1824 in the town of Nicoya: its authorities, joined by the municipality of Santa Cruz after consulting its people, declared the towns of the partido 'desde esta fecha (a ecepción del Guanacaste) como parte yntegrante del Estado de Costa Rica' — the town of Guanacaste (today Liberia) was excepted at first — asked for schools and tobacco warehouses, and for troops, having only 'veintiséis fusiles inútiles' amid the 'conjuraciones y dicenciones' of Nicaragua. 25 July is Guanacaste's provincial holiday; the sabanero, says Teletica (25 July 2025), is the 'personaje emblemático de la cultura guanacasteca', never without his hat, 'símbolo de su envestidura', his horse and his leaf-wrapped lunch, the 'burra'.",
+            "es": "La transcripción del Archivo Nacional del 'Acta de la anexión del partido de Nicoya a Costa Rica' (ANCR, Gobernación 8445) está fechada el 25 de julio de 1824 en el pueblo de Nicoya: sus autoridades, con la municipalidad de Santa Cruz tras consultar a su vecindario, declararon a los pueblos del partido 'desde esta fecha (a ecepción del Guanacaste) como parte yntegrante del Estado de Costa Rica' —la villa de Guanacaste (hoy Liberia) quedó al principio exceptuada—, pidieron escuelas y tercenas de tabaco, y tropas, pues solo tenían 'veintiséis fusiles inútiles' ante las 'conjuraciones y dicenciones' de Nicaragua. El 25 de julio es la fiesta provincial de Guanacaste; el sabanero, dice Teletica (25 jul 2025), es el 'personaje emblemático de la cultura guanacasteca', nunca sin su sombrero, 'símbolo de su envestidura', su caballo y su almuerzo envuelto en hojas, la 'burra'."
+          },
+          "sources": [
+            "https://www.archivonacional.go.cr/web/educativo/ANCR_25jul_AnexionNicoya.pdf",
+            "https://www.teletica.com/nacional/asi-es-un-dia-en-la-vida-del-verdadero-sabanero-guanacasteco_389227"
+          ]
+        }
+      ],
+      "protectedArea": {
+        "name": {"en": "Área de Conservación Guanacaste (Santa Rosa National Park)", "es": "Área de Conservación Guanacaste (Parque Nacional Santa Rosa)"},
+        "managedBy": "SINAC – Área de Conservación Guanacaste (ACG), MINAE; UNESCO World Heritage property 147,000 ha; whole ACG about 120,000 land + 70,000 marine ha (1997) or ~169,000 ha (GDFCF)",
+        "established": 1971,
+        "areaHa": 147000,
+        "status": "confirmed",
+        "sources": [
+          "https://whc.unesco.org/en/list/928/",
+          "https://www.gdfcf.org/sites/default/files/publications/Janzen%2CD.H.%202000.%20Long%20march%20to%20survival%20of%20ACG.pdf",
+          "https://www.sinac.go.cr/ES/ac/acg/Paginas/default.aspx",
+          "https://acguanacaste.ac.cr/1997/acging.html",
+          "https://www.gdfcf.org/content/history-how-acg-came-be-acg"
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://whc.unesco.org/en/list/928/",
+          "title": "Area de Conservación Guanacaste — UNESCO World Heritage List",
+          "publisher": "UNESCO World Heritage Centre",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Inscribed 1999, boundary modification 2004 (St Elena 15,000 ha); criteria (ix)(x); 147,000 ha = 104,000 land + 43,000 marine; coordinates 'N10 50 60 W85 37 0'; 'Guanacaste and Alajuela provinces'; Santa Rosa National Park 1971; 'the best dry forest habitats from Central America to northern Mexico'; 'most dry forests elsewhere in the region are fragmented remnants only'; Pacific-to-Caribbean gradient; ~7,000 plants, >900 vertebrates, ~500 birds, ~20,000 beetles, ~13,000 ants/bees/wasps, ~8,000 butterflies and moths; Olive Ridley breeding population; natural restoration of degraded forest"
+        },
+        {
+          "url": "https://www.gdfcf.org/sites/default/files/publications/Janzen%2CD.H.%202000.%20Long%20march%20to%20survival%20of%20ACG.pdf",
+          "title": "Costa Rica's Área de Conservación Guanacaste: a long march to survival through non-damaging biodevelopment",
+          "publisher": "Daniel H. Janzen (2000), hosted by the Guanacaste Dry Forest Conservation Fund",
+          "published": "2000-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "p. 2–3: 1966 national monument (Law 3694) '1000 ha surrounding the Casona'; 'Parque Nacional Santa Rosa (Executive Decree 1562-A in 1971)'; p. 4: Janzen & Hallwachs' September 1985 plan (GNP), 'restore about 700 km2', ACG 'ten times as large' as Santa Rosa; p. 5: 'Fire control required a break from classical national park management tradition'; p. 6: 'flipped 40,000 ha of old pastures to young regenerating forest'; p. 7: 'at least 20,000 ha of ancient pasturelands', 'manages and develops 2% of the country'; p. 11: parataxonomists; p. 14: citation 'Tropical dry forests: the most endangered major tropical ecosystem' (Janzen 1988b)"
+        },
+        {
+          "url": "https://www.gdfcf.org/content/history-how-acg-came-be-acg",
+          "title": "History: how ACG came to be ACG",
+          "publisher": "Guanacaste Dry Forest Conservation Fund (GDFCF)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Photo caption: inauguration of Parque Nacional Santa Rosa in 1971 with first director Álvaro Ugalde; early park ~30,000 ha; ACG now ~169,000 ha; Janzen & Hallwachs' BioTropica history; 1985 conversion of the park into ACG"
+        },
+        {
+          "url": "https://www.sinac.go.cr/ES/ac/acg/Paginas/default.aspx",
+          "title": "Área de Conservación Guanacaste",
+          "publisher": "SINAC (MINAE)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'se encuentra ubicada al noroeste de Costa Rica, en la provincia de Guanacaste'; components Santa Rosa, Guanacaste, Rincón de la Vieja national parks, Estación Experimental Forestal Horizontes, Refugio de Vida Silvestre Bahía Junquillal; one of eleven conservation areas; continuous block of marine-coastal, dry, rain and cloud forest; 'aproximadamente 235,000 especies (65% del estimado de las especies en Costa Rica)'; 2.6 % of world biodiversity; 'Biodesarrollo'"
+        },
+        {
+          "url": "https://acguanacaste.ac.cr/1997/acging.html",
+          "title": "Área de Conservación Guanacaste (English page, last modified 5 August 1997)",
+          "publisher": "Área de Conservación Guanacaste (ACG)",
+          "published": "1997-08-05",
+          "retrieved": "2026-10-23",
+          "supports": "'120,000 terrestrial hectares and 70,000 marine hectares'; created 'with the express purpose of restoring an entire ecosystem of dry forest' plus adjacent rain forest, cloud forest and marine environments; 'approximately 230,000 species (65% of the estimated number of species in Costa Rica)'; formed from Santa Rosa, Guanacaste, Rincón de la Vieja, Horizontes, Bahía Junquillal"
+        },
+        {
+          "url": "https://ich.unesco.org/en/RL/oxherding-and-oxcart-traditions-in-costa-rica-00103",
+          "title": "Oxherding and oxcart traditions in Costa Rica (nomination file 00103)",
+          "publisher": "UNESCO Intangible Cultural Heritage",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Inscribed 2008 (3.COM) on the Representative List; 'originally proclaimed in 2005'; carts carried coffee from the Central Valley to Puntarenas in 10–15 days; spokeless wheels (Aztec disc + Spanish spoked wheel hybrid) for mud; painting began in the early twentieth century, regional designs; flowers, faces, miniature landscapes; annual contests; 'a unique chime produced by a metal ring striking the hubnut of the wheel'; now 'strong symbols of Costa Rica's rural past' in parades and celebrations; artisans declining"
+        },
+        {
+          "url": "https://www.nacion.com/archivo/desfile-de-boyeros-y-carretas-brillo-tras-declaratoria-de-unesco/I2ENUPO47JGVTFD5TXEQ73QSDM/story/",
+          "title": "Desfile de boyeros y carretas brilló tras declaratoria de Unesco",
+          "publisher": "La Nación (ACAN-EFE)",
+          "published": "2005-11-28",
+          "retrieved": "2026-10-23",
+          "supports": "UNESCO 'declaró a la carreta de Costa Rica como Obra Maestra del Patrimonio Oral e Inmaterial de la Humanidad' (the previous Friday); 'Unos 350 boyeros provenientes de diversas partes del país recorrieron hoy las principales calles de San José'; carts 'se utilizan desde mediados del siglo XIX'; Sarchí 'es considerada la cuna de la artesanía en madera de las carretas'; multicoloured, mainly red designs; Aztec and Hispanic wheel symbols"
+        },
+        {
+          "url": "https://www.crhoy.com/estos-son-los-3-simbolos-nacionales-que-representan-a-guanacaste/",
+          "title": "Estos son los 3 símbolos nacionales que representan a Guanacaste",
+          "publisher": "CR Hoy — Greivin Granados",
+          "published": "2024-07-25",
+          "retrieved": "2026-10-23",
+          "supports": "Guanacaste tree declared national symbol by 'Decreto Ejecutivo N°7 del 24 de agosto de 1959'; proposed by José María Pinaud as recognition for the Anexión; marimba declared 3 Sep 1996 (Decreto 25114-C); white-tailed deer 8 Jun 1995 (Decreto Legislativo 7497)"
+        },
+        {
+          "url": "https://www.archivonacional.go.cr/web/educativo/ANCR_25jul_AnexionNicoya.pdf",
+          "title": "Acta de la anexión del partido de Nicoya a Costa Rica (transcription by Franklin José Alvarado Quesada)",
+          "publisher": "Archivo Nacional de Costa Rica, Departamento de Archivo Histórico (ANCR, Gobernación 8445, ff. 10v–12)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Act dated 25 July 1824 in Nicoya; Santa Cruz joined after consulting its people; towns considered 'desde esta fecha (a ecepción del Guanacaste) como parte yntegrante del Estado de Costa Rica'; schools and tobacco warehouses requested; 'veintiséis fusiles inútiles'; fear of Nicaragua's 'conjuraciones y dicenciones'"
+        },
+        {
+          "url": "https://www.teletica.com/nacional/asi-es-un-dia-en-la-vida-del-verdadero-sabanero-guanacasteco_389227",
+          "title": "Así es un día en la vida del verdadero sabanero guanacasteco",
+          "publisher": "Teletica",
+          "published": "2025-07-25",
+          "retrieved": "2026-10-23",
+          "supports": "Sabanero as 'personaje emblemático de la cultura guanacasteca y ejemplo fiel del trabajo en el campo'; works from before dawn with the cattle on the hacienda; 'experto lazador'; hat 'símbolo de su envestidura'; horse as inseparable companion; leaf-wrapped lunch 'burra'; 'la sabana'"
+        }
+      ]
+    },
+    {
+      "id": "manuel-antonio",
+      "name": {
+        "en": "Manuel Antonio National Park",
+        "es": "Parque Nacional Manuel Antonio",
+        "zh": "曼努埃尔·安东尼奥国家公园"
+      },
+      "province": "puntarenas",
+      "coords": [9.3756, -84.1358],
+      "coordsStatus": "approximate",
+      "coordsSources": ["https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park"],
+      "kind": {
+        "en": "coastal national park (Central Pacific)",
+        "es": "parque nacional costero (Pacífico Central)"
+      },
+      "overview": {
+        "en": "Where the rainforest runs down to the Pacific near Quepos, Manuel Antonio is one of Costa Rica's smallest national parks and one of its most visited: about 2,000 hectares of land, 25,634 hectares of sea, beaches linked by the Punta Catedral headland, and the last 1,500 or so Central American squirrel monkeys. Entry is capped at 3,000 visitors a day.",
+        "es": "Donde la selva baja hasta el Pacífico cerca de Quepos, Manuel Antonio es uno de los parques nacionales más pequeños de Costa Rica y uno de los más visitados: unas 2 000 hectáreas de tierra, 25 634 de mar, playas unidas por punta Catedral y los últimos 1 500 monos tití centroamericanos. Cupo: 3 000 visitantes al día.",
+        "zh": "在克波斯附近、雨林一直延伸到太平洋的地方，曼努埃尔·安东尼奥是哥斯达黎加面积最小、却最受欢迎的国家公园之一：约2,000公顷陆地、25,634公顷海域、由卡特德拉尔岬连接的海滩，以及仅存约1,500只的中美洲松鼠猴。每天入园人数上限为3,000人。",
+        "status": "approximate",
+        "sources": [
+          "https://www.visitcostarica.com/where-to-go/protected-areas/manuel-antonio-national-park",
+          "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park",
+          "https://www.larepublica.net/noticia/parque-manuel-antonio-podra-recibir-hasta-tres-mil-turistas-diariamente"
+        ]
+      },
+      "facts": [
+        {
+          "key": "dailyCap",
+          "label": {"en": "Daily visitor limit", "es": "Límite diario de visitantes", "zh": "每日游客上限"},
+          "value": 3000,
+          "unit": "visitors/day since March 2023 (previously 2,000)",
+          "year": 2023,
+          "status": "confirmed",
+          "text": {
+            "en": "In March 2023 the daily carrying capacity 'pasó de 2 mil a 3 mil por día, acordaron las autoridades del Sistema Nacional de Áreas de Conservación (Sinac)', justified because 'la planta de tratamiento del Parque está habilitada para esa cantidad de visitantes'; La República calls it 'uno de los Parques Nacionales más visitados del país', with visits rising from 329,000 (2021) to 366,000 (2022). Tickets are sold only online through SICORE (ICT); Wikipedia cites El Financiero for 4,388,460 visitors between 2012 and 2022. The weekly closing day is contradictory — ICT says open 'Tuesday to Sunday', Wikipedia says closed Tuesdays — so do not state it.",
+            "es": "En marzo de 2023 la capacidad de carga diaria 'pasó de 2 mil a 3 mil por día, acordaron las autoridades del Sistema Nacional de Áreas de Conservación (Sinac)', con el argumento de que 'la planta de tratamiento del Parque está habilitada para esa cantidad de visitantes'; La República lo llama 'uno de los Parques Nacionales más visitados del país', con visitas que pasaron de 329 000 (2021) a 366 000 (2022). Las entradas se venden solo en línea por SICORE (ICT); Wikipedia cita a El Financiero con 4 388 460 visitantes entre 2012 y 2022. El día de cierre semanal es contradictorio —el ICT dice abierto 'Tuesday to Sunday' y Wikipedia dice cerrado los martes—, así que no debe afirmarse."
+          },
+          "sources": [
+            "https://www.larepublica.net/noticia/parque-manuel-antonio-podra-recibir-hasta-tres-mil-turistas-diariamente",
+            "https://www.visitcostarica.com/where-to-go/protected-areas/manuel-antonio-national-park",
+            "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park"
+          ]
+        },
+        {
+          "key": "areaHa",
+          "label": {"en": "Land area", "es": "Superficie terrestre", "zh": "陆地面积（公顷）"},
+          "value": 1983,
+          "unit": "ha of land (Wikipedia; ICT page gives 1,953 and, elsewhere, 683) + 25,634 ha of sea",
+          "year": null,
+          "status": "approximate",
+          "text": {
+            "en": "Wikipedia's infobox gives 1,983 ha of land and 25,634 ha of water (27,587 ha in all) and calls the park 'one of the smaller Costa Rican parks in terms of land area'; the ICT page contradicts itself, saying 'Manuel Antonio Park has 683 hectares' in the body and '1953 land hectares surface area' plus '25634 marine hectares' in its directions block (the 683 ha figure matches the original 1972 extent cited by several guides but was not confirmed by an official page). Write 'about 2,000 hectares of land and more than 25,000 of sea' and avoid 'the smallest national park', which no fetched source states.",
+            "es": "La ficha de Wikipedia da 1 983 ha de tierra y 25 634 ha de agua (27 587 ha en total) y llama al parque 'one of the smaller Costa Rican parks in terms of land area'; la página del ICT se contradice: dice 'Manuel Antonio Park has 683 hectares' en el cuerpo y '1953 land hectares surface area' más '25634 marine hectares' en su bloque de indicaciones (la cifra de 683 ha coincide con la extensión original de 1972 que citan varias guías, pero ninguna página oficial la confirmó). Escríbase 'unas 2 000 hectáreas de tierra y más de 25 000 de mar' y evítese 'el parque nacional más pequeño', que ninguna fuente consultada afirma."
+          },
+          "sources": [
+            "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park",
+            "https://www.visitcostarica.com/where-to-go/protected-areas/manuel-antonio-national-park"
+          ]
+        },
+        {
+          "key": "founded",
+          "label": {"en": "National park created", "es": "Creación del parque nacional", "zh": "国家公园设立年份"},
+          "value": 1972,
+          "unit": "year",
+          "year": 1972,
+          "status": "approximate",
+          "text": {
+            "en": "Wikipedia states 'It was established in 1972', citing SINAC's park page (which could not be fetched directly), and places the park in the Central Pacific Conservation Area (ACOPAC) under SINAC; the ICT page does not give the founding year. Forbes listed it in 2011 among 'the world's 12 most beautiful national parks' (Wikipedia citing Forbes).",
+            "es": "Wikipedia afirma 'It was established in 1972', citando la página del parque en el SINAC (que no pudo consultarse directamente), y sitúa el parque en el Área de Conservación Pacífico Central (ACOPAC) del SINAC; la página del ICT no da el año de creación. Forbes lo incluyó en 2011 entre 'the world's 12 most beautiful national parks' (Wikipedia citando a Forbes)."
+          },
+          "sources": [
+            "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park"
+          ]
+        },
+        {
+          "key": "squirrelMonkeys",
+          "label": {"en": "Central American squirrel monkeys left", "es": "Monos ardilla centroamericanos que quedan", "zh": "仅存的中美洲松鼠猴数量"},
+          "value": 1500,
+          "unit": "individuals (ICT, 'most recent census'); IUCN Endangered",
+          "year": null,
+          "status": "approximate",
+          "text": {
+            "en": "The ICT page says the squirrel monkey (mono tití, Saimiri oerstedii) has 'left only 1,500 individuals according to the most recent census', without naming the census; Wikipedia records the species as Endangered on the IUCN Red List (Solano-Rojas 2021) with a decreasing population, and gives 109 mammal and 184 bird species for the park (from an archived park site). The ICT names the beaches Espadilla Sur, Manuel Antonio and Puerto Escondido, 'Cathedral point connecting Manuel Antonio and Espadilla Sur beaches', 12 islands, a 14-hectare lagoon and mangroves, and says the park is about 104 km from the Route 27 junction to Quepos and 7 km beyond Manuel Antonio village; Wikipedia describes the sand bridge between the two beaches as a tombolo.",
+            "es": "La página del ICT dice que al mono tití (Saimiri oerstedii) le quedan 'only 1,500 individuals according to the most recent census', sin nombrar el censo; Wikipedia registra la especie como En Peligro en la Lista Roja de la UICN (Solano-Rojas 2021) con población decreciente, y da 109 especies de mamíferos y 184 de aves para el parque (de un sitio archivado del parque). El ICT nombra las playas Espadilla Sur, Manuel Antonio y Puerto Escondido, la 'Cathedral point connecting Manuel Antonio and Espadilla Sur beaches', 12 islas, una laguna de 14 hectáreas y manglares, y dice que el parque está a unos 104 km desde el empalme de la Ruta 27 hasta Quepos y a 7 km pasando el pueblo de Manuel Antonio; Wikipedia describe el puente de arena entre las dos playas como un tómbolo."
+          },
+          "sources": [
+            "https://www.visitcostarica.com/where-to-go/protected-areas/manuel-antonio-national-park",
+            "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park"
+          ]
+        }
+      ],
+      "protectedArea": {
+        "name": {"en": "Manuel Antonio National Park", "es": "Parque Nacional Manuel Antonio"},
+        "managedBy": "SINAC – Área de Conservación Pacífico Central (ACOPAC)",
+        "established": 1972,
+        "areaHa": 1983,
+        "status": "approximate",
+        "sources": [
+          "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park",
+          "https://www.visitcostarica.com/where-to-go/protected-areas/manuel-antonio-national-park"
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://www.visitcostarica.com/where-to-go/protected-areas/manuel-antonio-national-park",
+          "title": "Manuel Antonio National Park",
+          "publisher": "Instituto Costarricense de Turismo (ICT), visitcostarica.com",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'Manuel Antonio Park has 683 hectares' (body) vs '1953 land hectares surface area' and '25634 marine hectares surface area' (directions block); beaches Espadilla Sur, Manuel Antonio, Puerto Escondido; 'Cathedral point connecting Manuel Antonio and Espadilla Sur beaches'; squirrel monkey 'left only 1,500 individuals according to the most recent census'; 12 islands, 14-ha lagoon, mangroves; tickets only through SICORE; open 7 a.m.–4 p.m. 'Tuesday to Sunday'; ~104 km to Quepos from Route 27, park 7 km beyond Manuel Antonio village. Caution: the page's meta description describes Tortuguero"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Manuel_Antonio_National_Park",
+          "title": "Manuel Antonio National Park",
+          "publisher": "Wikipedia (en)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'It was established in 1972' (citing SINAC); 1,983 ha land + 25,634 ha water = 27,587 ha (uncited); coordinates 9°22′32″N 84°08′09″W; 'one of the smaller Costa Rican parks in terms of land area'; closed Tuesdays, online tickets; 4,388,460 visitors 2012–2022 (El Financiero); beaches Manuel Antonio, Espadilla Sur, Tesoro, Playita; tombolo; Punta Catedral 100 m; 109 mammals, 184 birds; squirrel monkey Endangered (IUCN 2021); Forbes 2011 '12 most beautiful national parks'; Central Pacific Conservation Area"
+        },
+        {
+          "url": "https://www.larepublica.net/noticia/parque-manuel-antonio-podra-recibir-hasta-tres-mil-turistas-diariamente",
+          "title": "Parque Manuel Antonio podrá recibir hasta tres mil turistas diariamente",
+          "publisher": "La República — Allan Madriz",
+          "published": "2023-03-02",
+          "retrieved": "2026-10-23",
+          "supports": "Daily capacity 'pasó de 2 mil a 3 mil por día, acordaron las autoridades del Sistema Nacional de Áreas de Conservación (Sinac)'; 'la planta de tratamiento del Parque está habilitada para esa cantidad de visitantes'; visits 329,000 (2021) → 366,000 (2022); 'uno de los Parques Nacionales más visitados del país'"
+        }
+      ]
+    },
+    {
+      "id": "corcovado",
+      "name": {
+        "en": "Corcovado National Park",
+        "es": "Parque Nacional Corcovado",
+        "zh": "科尔科瓦多国家公园"
+      },
+      "province": "puntarenas",
+      "coords": [8.55, -83.5833],
+      "coordsStatus": "approximate",
+      "coordsSources": ["https://en.wikipedia.org/wiki/Corcovado_National_Park"],
+      "kind": {
+        "en": "lowland rainforest national park, Osa Peninsula",
+        "es": "parque nacional de bosque lluvioso de bajura, península de Osa"
+      },
+      "overview": {
+        "en": "On the Osa Peninsula in southern Puntarenas, Corcovado protects 41,788 hectares of wet forest, swamp, mangrove and 46 kilometres of beach, a place National Geographic is credited with calling the most biologically intense on Earth. Here live Costa Rica's largest population of scarlet macaws, jaguars and all the country's monkey species; visitors must enter with a guide.",
+        "es": "En la península de Osa, al sur de Puntarenas, Corcovado protege 41 788 hectáreas de bosque húmedo, pantano, manglar y 46 kilómetros de playa, que National Geographic habría llamado el lugar más intenso biológicamente de la Tierra. Aquí viven la mayor población de lapas rojas del país, jaguares y todas sus especies de monos; se entra solo con guía.",
+        "zh": "在蓬塔雷纳斯南部的奥萨半岛，科尔科瓦多保护着41,788公顷的湿润森林、沼泽、红树林和46公里海滩，据称《国家地理》曾称之为地球上生物最密集的地方。这里有哥斯达黎加数量最多的绯红金刚鹦鹉、美洲豹和全国所有猴类；游客必须由向导陪同入园。",
+        "status": "approximate",
+        "sources": [
+          "https://www.visitcostarica.com/where-to-go/protected-areas/corcovado-national-park",
+          "https://www.teletica.com/masqn/lo-llevamos-a-recorrer-corcovado-el-parque-nacional-mas-importante-del-planeta_330020",
+          "https://www.meteored.com.ar/noticias/actualidad/el-lugar-mas-intenso-biologicamente-del-planeta-national-geographic.html"
+        ]
+      },
+      "facts": [
+        {
+          "key": "areaHa",
+          "label": {"en": "Hectares protected", "es": "Hectáreas protegidas", "zh": "保护面积（公顷）"},
+          "value": 41788,
+          "unit": "ha of land (ICT); Wikipedia 424 km²; Teletica 'más de 42,000' + 3,354 ha of sea",
+          "year": null,
+          "status": "confirmed",
+          "text": {
+            "en": "The ICT page gives 41,788 hectares, with 46 km of sandy beach and habitats of 'shallow lagoons, marsh, mangrove swamps, rivers, wet forest, and low-altitude cloud forest'; Wikipedia gives 424 km² (41,800 ha in its biodiversity sentence) and Teletica 'more than 42,000 hectares of land and 3,354 hectares of sea'. Meteored repeats 41,788 ha. Species counts on the ICT page: about 6,000 insects, 500 trees, 367 birds, 140 mammals, 117 amphibians and reptiles and 40 freshwater fish; 'It is mandatory to enter with an authorized guide'.",
+            "es": "La página del ICT da 41 788 hectáreas, con 46 km de playa arenosa y hábitats de 'shallow lagoons, marsh, mangrove swamps, rivers, wet forest, and low-altitude cloud forest'; Wikipedia da 424 km² (41 800 ha en su frase sobre biodiversidad) y Teletica 'más de 42 000 hectáreas de tierra y 3 354 de mar'. Meteored repite 41 788 ha. Recuentos de especies en la página del ICT: unos 6 000 insectos, 500 árboles, 367 aves, 140 mamíferos, 117 anfibios y reptiles y 40 peces de agua dulce; 'It is mandatory to enter with an authorized guide'."
+          },
+          "sources": [
+            "https://www.visitcostarica.com/where-to-go/protected-areas/corcovado-national-park",
+            "https://en.wikipedia.org/wiki/Corcovado_National_Park",
+            "https://www.teletica.com/masqn/lo-llevamos-a-recorrer-corcovado-el-parque-nacional-mas-importante-del-planeta_330020",
+            "https://www.meteored.com.ar/noticias/actualidad/el-lugar-mas-intenso-biologicamente-del-planeta-national-geographic.html"
+          ]
+        },
+        {
+          "key": "founded",
+          "label": {"en": "National park created", "es": "Creación del parque nacional", "zh": "国家公园设立年份"},
+          "value": 1975,
+          "unit": "year (24 October 1975 per Wikipedia)",
+          "year": 1975,
+          "status": "approximate",
+          "text": {
+            "en": "Wikipedia states 'Corcovado National Park was established on October 24, 1975' (uncited) and Teletica (2023) also dates the declaration to 1975; both place the park in the Osa Conservation Area (ACOSA). The ICT page gives no founding year and SINAC's Corcovado page was not found. Wikipedia adds that since 1 February 2014 all visitors must be accompanied by certified guides.",
+            "es": "Wikipedia afirma 'Corcovado National Park was established on October 24, 1975' (sin cita) y Teletica (2023) también fecha la declaratoria en 1975; ambos sitúan el parque en el Área de Conservación Osa (ACOSA). La página del ICT no da el año de creación y no se encontró la página del SINAC sobre Corcovado. Wikipedia añade que desde el 1 de febrero de 2014 todos los visitantes deben ir con guías certificados."
+          },
+          "sources": [
+            "https://en.wikipedia.org/wiki/Corcovado_National_Park",
+            "https://www.teletica.com/masqn/lo-llevamos-a-recorrer-corcovado-el-parque-nacional-mas-importante-del-planeta_330020"
+          ]
+        },
+        {
+          "key": "worldBiodiversityShare",
+          "label": {"en": "Share of the world's biodiversity (claimed)", "es": "Porcentaje de la biodiversidad mundial (según se afirma)", "zh": "占全球生物多样性比例（宣称）"},
+          "value": 2.5,
+          "unit": "% (SINAC claim repeated by BBC and press)",
+          "year": null,
+          "status": "approximate",
+          "text": {
+            "en": "Wikipedia writes 'In 41,800 hectares, Corcovado houses 2.5% of the world's biodiversity', citing a 2025 BBC article and SINAC; Meteored (2024) repeats 'el 2,5 % de la biodiversidad del planeta' and that the park holds 50 % of Costa Rica's species. The figure is a promotional estimate with no stated method, so present it as 'said to hold about 2.5 % of the world's biodiversity'. The 'most biologically intense place on Earth' line is attributed to National Geographic by Teletica ('el lugar más intenso del mundo, biológicamente hablando, según la revista National Geographic') and Meteored ('el lugar biológicamente más intenso de la Tierra en términos de biodiversidad'), but neither names the original article, which was not found.",
+            "es": "Wikipedia escribe 'In 41,800 hectares, Corcovado houses 2.5% of the world's biodiversity', citando un artículo de la BBC de 2025 y al SINAC; Meteored (2024) repite 'el 2,5 % de la biodiversidad del planeta' y que el parque alberga el 50 % de las especies de Costa Rica. La cifra es una estimación promocional sin método declarado, así que conviene presentarla como 'se dice que alberga cerca del 2,5 % de la biodiversidad mundial'. La frase 'el lugar más intenso biológicamente del planeta' la atribuyen a National Geographic Teletica ('el lugar más intenso del mundo, biológicamente hablando, según la revista National Geographic') y Meteored ('el lugar biológicamente más intenso de la Tierra en términos de biodiversidad'), pero ninguno nombra el artículo original, que no se encontró."
+          },
+          "sources": [
+            "https://en.wikipedia.org/wiki/Corcovado_National_Park",
+            "https://www.meteored.com.ar/noticias/actualidad/el-lugar-mas-intenso-biologicamente-del-planeta-national-geographic.html",
+            "https://www.teletica.com/masqn/lo-llevamos-a-recorrer-corcovado-el-parque-nacional-mas-importante-del-planeta_330020"
+          ]
+        },
+        {
+          "key": "scarletMacaws",
+          "label": {"en": "Scarlet macaws and big mammals", "es": "Lapas rojas y grandes mamíferos", "zh": "绯红金刚鹦鹉与大型哺乳动物"},
+          "value": 367,
+          "unit": "bird species (ICT); largest scarlet macaw population in Costa Rica (press, Wikipedia)",
+          "year": null,
+          "status": "approximate",
+          "text": {
+            "en": "Teletica (2023) says Corcovado has 'la población más alta de lapas rojas de Costa Rica' and 'una de las mayores poblaciones de jaguares', that all the country's monkey species live there and that its insects form the most complete tropical insect community from Mexico to Panama; Wikipedia likewise credits the park with the country's largest scarlet macaw population (uncited), lists Baird's tapir as an endangered resident (IUCN) and says the park 'has the largest primary forest on the American Pacific coastline' (uncited). Treat the macaw and jaguar superlatives as approximate and the 'largest Pacific lowland rainforest in Central America' claim as unverified. Sirena, the main station, can be reached by plane; access points are Drake Bay, Puerto Jiménez, Carate and El Tigre (ICT), with the sectors La Leona, Los Patos and San Pedrillo (Teletica).",
+            "es": "Teletica (2023) dice que Corcovado tiene 'la población más alta de lapas rojas de Costa Rica' y 'una de las mayores poblaciones de jaguares', que allí viven todas las especies de monos del país y que sus insectos forman la comunidad tropical más completa de México a Panamá; Wikipedia también atribuye al parque la mayor población de lapas rojas del país (sin cita), incluye a la danta (tapir de Baird) como residente en peligro (UICN) y dice que el parque 'has the largest primary forest on the American Pacific coastline' (sin cita). Trátense los superlativos de lapas y jaguares como aproximados y la afirmación de 'mayor bosque lluvioso de bajura del Pacífico centroamericano' como no verificada. Sirena, la estación principal, es accesible en avioneta; los accesos son bahía Drake, Puerto Jiménez, Carate y El Tigre (ICT), con los sectores La Leona, Los Patos y San Pedrillo (Teletica)."
+          },
+          "sources": [
+            "https://www.teletica.com/masqn/lo-llevamos-a-recorrer-corcovado-el-parque-nacional-mas-importante-del-planeta_330020",
+            "https://en.wikipedia.org/wiki/Corcovado_National_Park",
+            "https://www.visitcostarica.com/where-to-go/protected-areas/corcovado-national-park"
+          ]
+        }
+      ],
+      "protectedArea": {
+        "name": {"en": "Corcovado National Park", "es": "Parque Nacional Corcovado"},
+        "managedBy": "SINAC – Área de Conservación Osa (ACOSA)",
+        "established": 1975,
+        "areaHa": 41788,
+        "status": "approximate",
+        "sources": [
+          "https://www.visitcostarica.com/where-to-go/protected-areas/corcovado-national-park",
+          "https://en.wikipedia.org/wiki/Corcovado_National_Park",
+          "https://www.teletica.com/masqn/lo-llevamos-a-recorrer-corcovado-el-parque-nacional-mas-importante-del-planeta_330020"
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://www.visitcostarica.com/where-to-go/protected-areas/corcovado-national-park",
+          "title": "Corcovado National Park",
+          "publisher": "Instituto Costarricense de Turismo (ICT), visitcostarica.com",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "41,788 hectares; 46 km of sandy beach; habitats; ~6,000 insects, 500 trees, 367 birds, 140 mammals, 117 amphibians and reptiles, 40 freshwater fish; 'It is mandatory to enter with an authorized guide'; Sirena reachable by plane; access via Drake Bay, Puerto Jiménez, Carate, El Tigre; 'one of Central America's most unique ecosystems'; Puerto Jiménez, Puntarenas. Caution: meta description describes Tortuguero"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Corcovado_National_Park",
+          "title": "Corcovado National Park",
+          "publisher": "Wikipedia (en)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'established on October 24, 1975' (uncited); 424 km²; coordinates 8°33′0″N 83°35′0″W; Osa Conservation Area (ACOSA); 'largest primary forest on the American Pacific coastline' (uncited); Baird's tapir endangered (IUCN 2016); scarlet macaw 'largest population in the country' (uncited); '2.5% of the world's biodiversity' (BBC 2025, SINAC); guides mandatory since 1 Feb 2014; stations Sirena, Los Patos; no 'most biologically intense' phrase"
+        },
+        {
+          "url": "https://www.teletica.com/masqn/lo-llevamos-a-recorrer-corcovado-el-parque-nacional-mas-importante-del-planeta_330020",
+          "title": "Lo llevamos a recorrer Corcovado, el parque nacional más importante del planeta",
+          "publisher": "Teletica (MasQN) — Juan Carlos Zumbado",
+          "published": "2023-03-02",
+          "retrieved": "2026-10-23",
+          "supports": "Declared a national park in 1975; 'more than 42,000 hectares of land and 3,354 hectares of sea'; 'el lugar más intenso del mundo, biológicamente hablando, según la revista National Geographic'; >1,500 plant species, 367 birds, 140 mammals, 117 amphibians, 40 freshwater fish, 13 ecosystems; 'la población más alta de lapas rojas de Costa Rica'; 'una de las mayores poblaciones de jaguares'; all monkey species; sectors Sirena, La Leona, Los Patos, San Pedrillo; 10 park rangers; gold mining and poaching threats"
+        },
+        {
+          "url": "https://www.meteored.com.ar/noticias/actualidad/el-lugar-mas-intenso-biologicamente-del-planeta-national-geographic.html",
+          "title": "Este es el lugar 'más intenso biológicamente' del planeta, según National Geographic",
+          "publisher": "Meteored (Argentina) — Agustina Fontirroig",
+          "published": "2024-10-07",
+          "retrieved": "2026-10-23",
+          "supports": "'el lugar biológicamente más intenso de la Tierra en términos de biodiversidad' attributed to National Geographic without naming the article; '41.788 hectáreas'; '2,5 % de la biodiversidad del planeta'; 50 % of Costa Rica's species; six sectors"
+        }
+      ]
+    },
+    {
+      "id": "tortuguero",
+      "name": {
+        "en": "Tortuguero National Park",
+        "es": "Parque Nacional Tortuguero",
+        "zh": "托尔图格罗国家公园"
+      },
+      "province": "limon",
+      "coords": [10.5411, -83.5022],
+      "coordsStatus": "approximate",
+      "coordsSources": ["https://en.wikipedia.org/wiki/Tortuguero_National_Park"],
+      "kind": {
+        "en": "Caribbean canal and turtle-beach national park",
+        "es": "parque nacional de canales y playa de tortugas en el Caribe"
+      },
+      "overview": {
+        "en": "No road reaches Tortuguero. Boats thread the canals and lagoons of this Caribbean lowland, where rain can exceed six metres a year, to the beach the Costa Rican tourist board calls the largest green-turtle nesting beach in the Western Hemisphere. Archie Carr began tagging turtles in 1955; his Caribbean Conservation Corporation (1959) helped make it a national park in 1970.",
+        "es": "Ninguna carretera llega a Tortuguero. Las lanchas recorren los canales y lagunas de esta llanura caribeña, donde puede llover seis metros al año, hasta la playa que el ICT llama la mayor de anidación de tortuga verde del hemisferio occidental. Archie Carr marcó tortugas aquí desde 1955; su Caribbean Conservation Corporation (1959) ayudó a crear el parque nacional en 1970.",
+        "zh": "没有公路通往托尔图格罗。船只穿行于这片加勒比低地的运河与潟湖之间——这里年降雨量可超过六米——抵达被哥斯达黎加旅游局称为西半球最大的绿海龟产卵海滩。阿奇·卡尔自1955年起在此为海龟做标记；他创立的加勒比保护公司（1959年）推动它在1970年成为国家公园。",
+        "status": "confirmed",
+        "sources": [
+          "https://www.visitcostarica.com/where-to-go/protected-areas/tortuguero-national-park",
+          "https://conserveturtles.org/?p=237",
+          "https://en.wikipedia.org/wiki/Tortuguero_National_Park"
+        ]
+      },
+      "facts": [
+        {
+          "key": "greenTurtleSeason",
+          "label": {"en": "Green turtle nesting season", "es": "Temporada de anidación de la tortuga verde", "zh": "绿海龟产卵季"},
+          "value": 4,
+          "unit": "months, July to October (hatchlings September–December; leatherback March–May)",
+          "year": null,
+          "status": "confirmed",
+          "text": {
+            "en": "The SINAC/ACTo park brochure lists 'Tortuga verde: julio a octubre', 'Tortuga baula' (leatherback) March to May and 'Nacimientos' (hatchlings) September to December, with guided turtle walks at 8 and 10 p.m. from March to October, and describes the park as 'Bosque tropical muy húmedo, con una de las principales playas para el desove de tortugas marinas a nivel mundial'; ICT says Tortuguero is 'internationally recognized for its protection of the largest green turtle nesting beach in the Western Hemisphere', the Sea Turtle Conservancy calls it 'the hemisphere's most important green turtle rookery' and Wikipedia 'the once isolated second-largest green sea turtle nesting beach in the world'. The brochure also gives 442 bird, 138 mammal and 118 reptile species and Ramsar status since 1996.",
+            "es": "El folleto del SINAC/ACTo del parque indica 'Tortuga verde: julio a octubre', 'Tortuga baula' de marzo a mayo y 'Nacimientos' de septiembre a diciembre, con caminatas guiadas a las 8 y 10 p. m. de marzo a octubre, y describe el parque como 'Bosque tropical muy húmedo, con una de las principales playas para el desove de tortugas marinas a nivel mundial'; el ICT dice que Tortuguero es 'internationally recognized for its protection of the largest green turtle nesting beach in the Western Hemisphere', la Sea Turtle Conservancy lo llama 'the hemisphere's most important green turtle rookery' y Wikipedia 'the once isolated second-largest green sea turtle nesting beach in the world'. El folleto también da 442 especies de aves, 138 de mamíferos y 118 de reptiles, y la condición de sitio Ramsar desde 1996."
+          },
+          "sources": [
+            "https://www.acto.go.cr/wp-content/uploads/2023/01/BrochPNTEsp.pdf",
+            "https://www.visitcostarica.com/where-to-go/protected-areas/tortuguero-national-park",
+            "https://conserveturtles.org/?p=237",
+            "https://en.wikipedia.org/wiki/Tortuguero_National_Park"
+          ]
+        },
+        {
+          "key": "founded",
+          "label": {"en": "Declared a national park", "es": "Declarado parque nacional", "zh": "宣布为国家公园年份"},
+          "value": 1970,
+          "unit": "year (24 September 1970); extended 1980, 1995, 1998",
+          "year": 1970,
+          "status": "confirmed",
+          "text": {
+            "en": "ICT states Tortuguero 'was declared a national park on Sept. 24, 1970', with boundary extensions in 1980, 1995 and 1998 that took it from 64,701.45 to 76,937 hectares — 26,653 ha of land and 50,284 ha of sea, 99 % of the land under absolute protection; the SINAC/ACTo brochure gives the same 26,653 / 50,284 ha. The Sea Turtle Conservancy's history says 'CCC works with Costa Rica to establish the Tortuguero National Park' (1970). Wikipedia's infobox gives 1975 and 312 km², presumably the later ratifying law and the land area; the 1970 decree is the official date.",
+            "es": "El ICT afirma que Tortuguero 'was declared a national park on Sept. 24, 1970', con ampliaciones de límites en 1980, 1995 y 1998 que lo llevaron de 64 701,45 a 76 937 hectáreas —26 653 ha de tierra y 50 284 ha de mar, con el 99 % de la tierra bajo protección absoluta—; el folleto del SINAC/ACTo da las mismas 26 653 / 50 284 ha. La historia de la Sea Turtle Conservancy dice 'CCC works with Costa Rica to establish the Tortuguero National Park' (1970). La ficha de Wikipedia da 1975 y 312 km², presumiblemente la ley ratificadora posterior y la superficie terrestre; la fecha oficial es el decreto de 1970."
+          },
+          "sources": [
+            "https://www.visitcostarica.com/where-to-go/protected-areas/tortuguero-national-park",
+            "https://www.acto.go.cr/wp-content/uploads/2023/01/BrochPNTEsp.pdf",
+            "https://conserveturtles.org/?p=237",
+            "https://en.wikipedia.org/wiki/Tortuguero_National_Park"
+          ]
+        },
+        {
+          "key": "archieCarr",
+          "label": {"en": "Turtle tagging programme began", "es": "Inicio del programa de marcaje de tortugas", "zh": "海龟标记项目开始年份"},
+          "value": 1955,
+          "unit": "year (Archie Carr); Caribbean Conservation Corporation incorporated 1959",
+          "year": 1955,
+          "status": "confirmed",
+          "text": {
+            "en": "The Sea Turtle Conservancy's timeline records that in 1955 the 'Green turtle tagging and monitoring program begins in Tortuguero, Costa Rica under the direction of Dr. Carr', that in 1959 'The Brotherhood of the Green Turtle is incorporated as the nonprofit Caribbean Conservation Corporation (CCC)' with Archie Carr as scientific director until his death in 1987, and that in 1994 'CCC opens the John H. Phipps Biological Field Station in Tortuguero'. The CCC is today's Sea Turtle Conservancy (Wikipedia).",
+            "es": "La cronología de la Sea Turtle Conservancy registra que en 1955 el 'Green turtle tagging and monitoring program begins in Tortuguero, Costa Rica under the direction of Dr. Carr', que en 1959 'The Brotherhood of the Green Turtle is incorporated as the nonprofit Caribbean Conservation Corporation (CCC)' con Archie Carr como director científico hasta su muerte en 1987, y que en 1994 'CCC opens the John H. Phipps Biological Field Station in Tortuguero'. La CCC es la actual Sea Turtle Conservancy (Wikipedia)."
+          },
+          "sources": [
+            "https://conserveturtles.org/?p=237",
+            "https://en.wikipedia.org/wiki/Tortuguero_National_Park"
+          ]
+        },
+        {
+          "key": "rainfall",
+          "label": {"en": "Rain a year", "es": "Lluvia al año", "zh": "年降雨量（毫米）"},
+          "value": 6400,
+          "unit": "mm/year maximum ('up to 250 inches'); access by boat (ICT) or plane (Wikipedia)",
+          "year": null,
+          "status": "approximate",
+          "text": {
+            "en": "Wikipedia says the park 'receives up to 250 inches (6,400 mm) of rain a year' and is 'reachable only by airplane or boat', with 'a large number of interlinked canals, waterways, navigable lagoons, and lakes'; ICT says 'access is possible only on small boats', reached through Guápiles, Cariari and La Pavona or through Siquirres and Caño Blanco, and that in the villages of Barra del Tortuguero and San Francisco residents 'move around on bicycles as the only means of transportation'. The brochure names the canals Caño Aguas Negras, Caño California, Caño Chiquero-Mora, Caño Harold, Caño Negro and Caño Palma. No fetched page says which canals are natural and which were dug, or gives a measured rainfall average, so say 'five to six metres of rain a year'.",
+            "es": "Wikipedia dice que el parque 'receives up to 250 inches (6,400 mm) of rain a year' y es 'reachable only by airplane or boat', con 'a large number of interlinked canals, waterways, navigable lagoons, and lakes'; el ICT dice que 'access is possible only on small boats', por Guápiles, Cariari y La Pavona o por Siquirres y Caño Blanco, y que en los pueblos de Barra del Tortuguero y San Francisco los vecinos 'move around on bicycles as the only means of transportation'. El folleto nombra los canales Caño Aguas Negras, Caño California, Caño Chiquero-Mora, Caño Harold, Caño Negro y Caño Palma. Ninguna página consultada dice qué canales son naturales y cuáles excavados, ni da un promedio de lluvia medido, así que dígase 'cinco a seis metros de lluvia al año'."
+          },
+          "sources": [
+            "https://en.wikipedia.org/wiki/Tortuguero_National_Park",
+            "https://www.visitcostarica.com/where-to-go/protected-areas/tortuguero-national-park",
+            "https://www.acto.go.cr/wp-content/uploads/2023/01/BrochPNTEsp.pdf"
+          ]
+        }
+      ],
+      "protectedArea": {
+        "name": {"en": "Tortuguero National Park", "es": "Parque Nacional Tortuguero"},
+        "managedBy": "SINAC – Área de Conservación Tortuguero (ACTo); Ramsar site since 1996",
+        "established": 1970,
+        "areaHa": 26653,
+        "status": "confirmed",
+        "sources": [
+          "https://www.visitcostarica.com/where-to-go/protected-areas/tortuguero-national-park",
+          "https://www.acto.go.cr/wp-content/uploads/2023/01/BrochPNTEsp.pdf",
+          "https://en.wikipedia.org/wiki/Tortuguero_National_Park"
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://www.visitcostarica.com/where-to-go/protected-areas/tortuguero-national-park",
+          "title": "Tortuguero National Park",
+          "publisher": "Instituto Costarricense de Turismo (ICT), visitcostarica.com",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "'declared a national park on Sept. 24, 1970'; extensions 1980, 1995, 1998; 64,701.45 → 76,937 ha; 26,653 ha land + 50,284 ha marine; 99 % absolute protection; 'internationally recognized for its protection of the largest green turtle nesting beach in the Western Hemisphere'; 'access is possible only on small boats'; villages Barra del Tortuguero and San Francisco, bicycles; access via Guápiles–Cariari–La Pavona and Siquirres–Caño Blanco; hours 6 a.m.–4 p.m."
+        },
+        {
+          "url": "https://www.acto.go.cr/wp-content/uploads/2023/01/BrochPNTEsp.pdf",
+          "title": "Parque Nacional Tortuguero (brochure, Spanish)",
+          "publisher": "SINAC – Área de Conservación Tortuguero (ACTo)",
+          "published": "2023-01-01",
+          "retrieved": "2026-10-23",
+          "supports": "Terrestrial 26,653 ha, marine 50,284 ha; 'Bosque tropical muy húmedo, con una de las principales playas para el desove de tortugas marinas a nivel mundial'; Ramsar 1996; 442 birds, 138 mammals, 118 reptiles; 'Tortuga verde: julio a octubre'; 'Tortuga baula': March–May; hatchlings September–December; turtle walks 8 and 10 p.m. March–October; canals Caño Aguas Negras, California, Chiquero-Mora, Harold, Negro, Palma; rules (no campfires, no swimming)"
+        },
+        {
+          "url": "https://conserveturtles.org/?p=237",
+          "title": "History — Sea Turtle Conservancy",
+          "publisher": "Sea Turtle Conservancy (formerly Caribbean Conservation Corporation)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "1955: 'Green turtle tagging and monitoring program begins in Tortuguero, Costa Rica under the direction of Dr. Carr'; 1959: 'The Brotherhood of the Green Turtle is incorporated as the nonprofit Caribbean Conservation Corporation (CCC)'; Carr scientific director 1959–1987; 1970: 'CCC works with Costa Rica to establish the Tortuguero National Park', 'the hemisphere's most important green turtle rookery'; 1994: John H. Phipps Biological Field Station"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Tortuguero_National_Park",
+          "title": "Tortuguero National Park",
+          "publisher": "Wikipedia (en)",
+          "published": null,
+          "retrieved": "2026-10-23",
+          "supports": "Infobox 'Established: 1975', 312 km² (31,174 ha); coordinates 10°32′28″N 83°30′08″W; 'up to 250 inches (6,400 mm) of rain a year'; 'reachable only by airplane or boat'; interlinked canals, lagoons and lakes; 'second-largest green sea turtle nesting beach in the world'; 442 birds, 54 amphibians, 110 reptiles, 779 plants; CCC = Sea Turtle Conservancy; ACTo under SINAC/MINAE; nesting 'February to July' for several species (contradicts the SINAC brochure for the green turtle)"
+        }
+      ]
+    }
+  ],
+  "unverified": [
+    {
+      "claim": "Monteverde reserve altitude range (often given as roughly 1,400–1,800 m) and its exact position astride the continental divide.",
+      "reason": "The CCT management plan and the two Ambientico articles give no altitude range; they only place the reserve in the Cordillera de Tilarán with rivers draining to both the Pacific (Guacimal) and the Caribbean (Peñas Blancas, Chiquito, Caño Negro). Spanish Wikipedia's reserve page returned url_not_found. Only the town's elevation (~1,330–1,400 m, English Wikipedia) is sourced."
+    },
+    {
+      "claim": "Monteverde reserve has six life zones.",
+      "reason": "English Wikipedia says six (citing a tourism site); the CCT's 2025 management plan says the reserve protects four cloud-forest life zones. Sources conflict, so no count is given in the facts."
+    },
+    {
+      "claim": "Hanging bridges / Sky Walk / Selvatura at Monteverde.",
+      "reason": "No fetched page (CCT, IUCN, Ambientico, Wikipedia Monteverde) describes them; private attractions outside the reserve were not researched."
+    },
+    {
+      "claim": "Children's Eternal Rainforest founded in 1987.",
+      "reason": "The Monteverde Conservation League's page says only 'a campaign by a small group of Swedish students in the late 1980s'; no fetched page gives 1987."
+    },
+    {
+      "claim": "Golden toad last seen in 1989.",
+      "reason": "Only English Wikipedia (uncited) gives 1989; Méndez & Pounds (2017) confirm the species was described in 1966, is endemic to Monteverde and its local population went extinct, without a date."
+    },
+    {
+      "claim": "Tenorio Volcano National Park area (12,900 ha / 129 km² vs '18,402.51 ha') and founding year (1976 vs 1995).",
+      "reason": "sinac.go.cr's Tenorio page is robots-blocked; English and Spanish Wikipedia disagree and neither cites an official source for the area."
+    },
+    {
+      "claim": "Río Celeste daily visitor cap.",
+      "reason": "No fetched page states a numerical cap for Tenorio Volcano National Park."
+    },
+    {
+      "claim": "Irazú is 'the highest active volcano' in Costa Rica and the lake's disappearance in a specific recent year (2010 or 2012).",
+      "reason": "SINAC says 'el volcán más alto de Costa Rica' (highest, without 'active'); the GVP lists the last known eruption as 1977 and treats the 1994 event as possibly a landslide. The 2011 UCR paper lists dry years up to 1990 and Teletica (Jan 2020) says the lake was drying 'again' without giving the previous date. The decree number enlarging the park was read as '26945-MINAE of 22 August 1988' and may contain a transcription error."
+    },
+    {
+      "claim": "Painted oxcarts of Sarchí: specific history (Joaquín Chaverri's 1903 workshop, the giant oxcart, Eloy Alfaro factory).",
+      "reason": "Only La Nación 2005 ('Sarchí es considerada la cuna de la artesanía en madera de las carretas') and the UNESCO description of the painting tradition were fetched; no page on Sarchí's workshops was read."
+    },
+    {
+      "claim": "The ACG's current total area as a single figure (147,000 ha UNESCO property; 120,000 + 70,000 ha per the ACG's 1997 page; ~169,000 ha per GDFCF).",
+      "reason": "Figures refer to different dates and boundaries (World Heritage property vs the whole conservation area); SINAC's ACG page gives no area."
+    },
+    {
+      "claim": "Manuel Antonio is 'the smallest national park in Costa Rica' and its original 1972 area of 682–683 ha.",
+      "reason": "Wikipedia says only 'one of the smaller'; the ICT page gives both 683 ha and 1,953 ha without explanation. SINAC's Manuel Antonio page was not fetched."
+    },
+    {
+      "claim": "Manuel Antonio's weekly closing day (Monday vs Tuesday).",
+      "reason": "ICT says open 'Tuesday to Sunday'; Wikipedia says closed Tuesdays."
+    },
+    {
+      "claim": "Original National Geographic article calling Corcovado 'the most biologically intense place on Earth'.",
+      "reason": "Teletica (2023) and Meteored (2024) attribute the phrase to National Geographic without citing an article; the English Wikipedia article does not contain the phrase; no nationalgeographic.com page with it was found by search."
+    },
+    {
+      "claim": "Corcovado holds 'the largest remaining Pacific lowland rainforest in Central America' and is a tapir 'stronghold'.",
+      "reason": "Wikipedia's version ('the largest primary forest on the American Pacific coastline') is uncited; Baird's tapir is listed only as an endangered resident; no population figures were fetched."
+    },
+    {
+      "claim": "Tortuguero's canals were partly dug by hand or dredged (1960s–70s) to link natural lagoons.",
+      "reason": "Neither the SINAC/ACTo brochure, ICT nor Wikipedia says which canals are artificial or when they were built; the brochure only names six caños."
+    },
+    {
+      "claim": "Tortuguero rainfall as a measured average (5,000–6,000 mm).",
+      "reason": "Only Wikipedia's 'up to 250 inches (6,400 mm)' (secondary sources) was fetched; no IMN or SINAC rainfall figure."
+    },
+    {
+      "claim": "Tortuguero established 1975 (Wikipedia infobox) vs declared 24 September 1970 (ICT, STC).",
+      "reason": "The 1975 date is probably the ratifying law, but no fetched page explains the two dates; the JSON uses 1970."
+    },
+    {
+      "claim": "routeFacts: width of Costa Rica between the oceans (narrowest/widest) and road distances San José–Puntarenas / San José–Limón.",
+      "reason": "Neither the English nor the Spanish Wikipedia geography article gives the width or the road distances (both were fetched and checked); the fetch budget did not allow further searches, so the array was omitted."
+    }
+  ]
+}

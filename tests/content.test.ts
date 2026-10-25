@@ -57,6 +57,74 @@ describe('generated content', () => {
     }
   });
 
+  it('has the six species of the walk, each fitting the stop it is drawn on, with IUCN entries and sources', () => {
+    const byId = new Map((species as { id?: string }[]).map((s) => [s.id, s]));
+    const want: Record<string, string> = { 'resplendent-quetzal': 'monteverde', 'bairds-tapir': 'corcovado', 'white-tailed-deer': 'guanacaste', 'great-blue-heron': 'tortuguero', 'volcano-hummingbird': 'irazu', 'purple-throated-mountain-gem': 'monteverde' };
+    for (const [id, stop] of Object.entries(want)) {
+      const sp = byId.get(id) as { iucn?: { category: string }; stops?: Record<string, { fit: boolean; sources?: unknown[] }>; sources?: unknown[] } | undefined;
+      expect(sp, id).toBeTruthy();
+      expect(sp?.iucn?.category, id + ' iucn').toMatch(/^(LC|NT|VU|EN|CR)$/);
+      expect(sp?.stops?.[stop]?.fit, id + ' fits ' + stop).toBe(true);
+      expect((sp?.sources || []).length, id + ' sources').toBeGreaterThan(0);
+    }
+    // the Tortuguero macaw is drawn where the great green macaw lives: the entry must say so rather than hide it
+    const macaw = byId.get('scarlet-macaw') as { stops?: Record<string, { fit: boolean; note?: unknown }> } | undefined;
+    expect(macaw?.stops?.tortuguero?.fit, 'scarlet macaw at Tortuguero').toBe(false);
+    expect(macaw?.stops?.tortuguero?.note, 'scarlet macaw note').toBeTruthy();
+  });
+
+  it('has the seven places of the walk with sourced overviews, fact tiles and a province', () => {
+    const places = gen('places.json').places as { id: string; province: string; coords?: number[]; overview: { en: string; es: string; zh: string; status: string; sources: unknown[] }; facts: { key: string; value: number | string; status: string; sources: unknown[] }[] }[];
+    const ids = places.map((p) => p.id);
+    for (const id of ['monteverde', 'rio-celeste', 'irazu', 'guanacaste', 'manuel-antonio', 'corcovado', 'tortuguero']) expect(ids, id).toContain(id);
+    for (const p of places) {
+      expect(['san-jose', 'alajuela', 'cartago', 'heredia', 'guanacaste', 'puntarenas', 'limon'], p.id + ' province').toContain(p.province);
+      for (const l of ['en', 'es', 'zh'] as const) expect(p.overview[l].length, p.id + ' overview ' + l).toBeGreaterThan(80);
+      expect(['confirmed', 'approximate', 'interpretation'], p.id + ' status').toContain(p.overview.status);
+      expect(p.overview.sources.every(isSource), p.id + ' overview sources').toBe(true);
+      expect(p.facts.length, p.id + ' facts').toBeGreaterThanOrEqual(4);
+      for (const f of p.facts) { expect(f.sources.length, p.id + ' ' + f.key).toBeGreaterThan(0); expect(f.sources.every(isSource), p.id + ' ' + f.key + ' sources').toBe(true); }
+      if (p.coords) expect(inCR(p.coords[0], p.coords[1]), p.id + ' coords').toBe(true);
+    }
+  });
+
+  it('keeps the Irazú what-if labelled as interpretation, with a dated, sourced record', () => {
+    const d = gen('irazu.json').irazu as { timeline: { date: string; en: string; status?: string; sources?: unknown[] }[]; whatIf: { status: string; sources: unknown[]; en: string }; facts: { key: string; sources: unknown[] }[]; monitoring: { en: string } };
+    expect(d.whatIf.status).toBe('interpretation');
+    expect(d.whatIf.sources.length).toBeGreaterThanOrEqual(3);
+    expect(d.whatIf.en).toMatch(/not a forecast/i);
+    expect(d.timeline.length).toBeGreaterThanOrEqual(10);
+    for (const e of d.timeline) expect(e.date, e.en).toMatch(/^\d{4}(-\d{2})?(-\d{2})?$/);
+    expect(d.timeline.some((e) => e.date.startsWith('1963')), 'the 1963 eruption').toBe(true);
+    for (const f of d.facts) expect(f.sources.length, f.key).toBeGreaterThan(0);
+    expect(d.monitoring.en).toMatch(/OVSICORI|RSN/);
+  });
+
+  it('has a plate manifest for every stop, with animals in parts, water, and files for every width', () => {
+    const plates = JSON.parse(fs.readFileSync(path.resolve('src/journey/plates.generated.json'), 'utf8')) as Record<string, { width: number; height: number; widths: number[]; animals?: { id: string; species: string | null; hotspot: number[] | null; parts: { name: string; widths: number[]; box: number[] }[] }[]; water?: { name: string; widths: number[] }[] }>;
+    const expected: Record<string, number> = { forest: 6, monteverde: 4, irazu: 3, guanacaste: 5, corcovado: 3, tortuguero: 5, 'rio-celeste': 0, 'manuel-antonio': 0 };
+    const ids = new Set((species as { id?: string }[]).map((s) => s.id));
+    for (const [name, n] of Object.entries(expected)) {
+      const m = plates[name];
+      expect(m, name).toBeTruthy();
+      expect((m.animals || []).length, name + ' animals').toBe(n);
+      expect(fs.existsSync(path.resolve('public/plates', name, `base-${m.widths[0]}.webp`)), name + ' base').toBe(true);
+      for (const a of m.animals || []) {
+        expect(a.parts.length, a.id).toBeGreaterThan(0);
+        if (a.species) expect(ids.has(a.species), `${name}/${a.id} → ${a.species}`).toBe(true);
+        for (const p of a.parts) {
+          expect(p.box.every((v) => v >= -0.01 && v <= 1.01), `${name}/${a.id}/${p.name} box`).toBe(true);
+          for (const w of p.widths) expect(fs.existsSync(path.resolve('public/plates', name, `${a.id}-${p.name}-${w}.webp`)), `${name}/${a.id}-${p.name}-${w}`).toBe(true);
+        }
+      }
+      for (const w of m.water || []) for (const ww of w.widths) expect(fs.existsSync(path.resolve('public/plates', name, `water-${w.name}-${ww}.webp`)), `${name}/water-${w.name}-${ww}`).toBe(true);
+    }
+    // water flows at Río Celeste and under both waterfalls
+    expect((plates['rio-celeste'].water || []).length).toBeGreaterThan(0);
+    expect((plates.forest.water || []).some((w) => w.name === 'waterfall')).toBe(true);
+    expect((plates.monteverde.water || []).some((w) => w.name === 'waterfall')).toBe(true);
+  });
+
   it('has the five dishes of the table, each with a sourced description and ingredients', () => {
     const foods = gen('foods.json').foods as { id: string; name: { en: string; es?: string }; description?: { en: string; sources: unknown[] }; ingredients?: unknown[]; sources?: unknown[]; heritage?: { declared: boolean | null } }[];
     expect(foods.map((f) => f.id).sort()).toEqual(['casado', 'gallo-pinto', 'olla-de-carne', 'rice-and-beans', 'tamal']);

@@ -45,7 +45,7 @@ function Dots({ of, color }: { of: number; color: string }) {
 
 const fmt = (v: number | string, lang: string, digits = 0) => (typeof v === 'number' ? v.toLocaleString(lang === 'zh' ? 'zh-CN' : lang === 'es' ? 'es-CR' : 'en', { maximumFractionDigits: digits }) : v);
 
-export function NatureFacts({ facts }: { facts: CountryFact[] }) {
+export function NatureFacts({ facts, limit = 6 }: { facts: CountryFact[]; limit?: number }) {
   const { t, l, lang } = useT();
   const by = (k: string) => facts.find((f) => f.key === k);
   const area = by('area');
@@ -101,7 +101,7 @@ export function NatureFacts({ facts }: { facts: CountryFact[] }) {
   if (!tiles.length) return null;
   return (
     <ul className="facts-grid">
-      {tiles.slice(0, 6).map((tile) => (
+      {tiles.slice(0, limit).map((tile) => (
         <li key={tile.key} className="fact">
           {tile.viz}
           <div className="fact__body">

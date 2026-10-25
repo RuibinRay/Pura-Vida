@@ -71,3 +71,20 @@ export function stopAmbience() {
 export function ambienceAvailable() {
   return typeof window !== 'undefined' && !!(window.AudioContext || (window as unknown as { webkitAudioContext?: unknown }).webkitAudioContext);
 }
+
+/** A low rumble for the eruption (only while the ambience is playing, so it respects the sound toggle). */
+export function rumble(seconds = 6) {
+  if (!ctx || !master || master.gain.value < 0.01) return;
+  try {
+    const ac = ctx;
+    const src = ac.createBufferSource(); src.buffer = noiseBuffer(ac, 3); src.loop = true; src.playbackRate.value = 0.35;
+    const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 70; lp.Q.value = 1.2;
+    const g = ac.createGain(); g.gain.value = 0;
+    src.connect(lp).connect(g).connect(master);
+    const t0 = ac.currentTime;
+    g.gain.setTargetAtTime(1.6, t0, 0.4);
+    g.gain.setTargetAtTime(0, t0 + seconds, 1.0);
+    src.start(t0);
+    src.stop(t0 + seconds + 4);
+  } catch { /* audio is optional */ }
+}

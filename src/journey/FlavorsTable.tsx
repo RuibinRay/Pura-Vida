@@ -45,7 +45,7 @@ function useOrientation(): 'landscape' | 'portrait' {
   return o;
 }
 
-export function FlavorsTable({ foods }: { foods: Food[] }) {
+export function FlavorsTable({ foods, index = 5 }: { foods: Food[]; index?: number }) {
   const { t, l } = useT();
   const [open, setOpen] = useState<Food | null>(null);
   const [hover, setHover] = useState<string | null>(null);
@@ -57,7 +57,7 @@ export function FlavorsTable({ foods }: { foods: Food[] }) {
   const DISHES = layout.dishes;
   const rows = Math.ceil(layout.h / 150);
   return (
-    <div className="stage__table">
+    <div className="stage__table" style={{ ['--pn' as string]: `var(--p${index})` }}>
       <div className="plate plate--table" style={{ aspectRatio: `${layout.w} / ${layout.h}`, ['--ratio' as string]: (layout.w / layout.h).toFixed(4) }}>
         <svg className="table" viewBox={`0 0 ${layout.w} ${layout.h}`} preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
           <defs>

@@ -1,0 +1,83 @@
+{
+  "id": "irazu",
+  "source": "research/plates-original/irazu-crater-thrush-hummingbirds.png",
+  "upscale": 2,
+  "focal": {
+    "x": 0.55,
+    "y": 0.42,
+    "panFrom": 0.2,
+    "panTo": 0.75
+  },
+  "points": {
+    "crater": [0.635, 0.35],
+    "craterRim": [0.6, 0.41]
+  },
+  "inpaint": "fsr",
+  "animals": [
+    {
+      "id": "thrush",
+      "species": "clay-colored-thrush",
+      "kind": "thrush",
+      "box": [215, 175, 445, 455],
+      "hotspot": [300, 330],
+      "parts": [
+        {
+          "name": "head",
+          "anim": "turn",
+          "z": 2,
+          "pivot": [335, 285],
+          "amp": 6,
+          "period": 2.9,
+          "poly": [[288, 176], [437, 176], [442, 250], [402, 282], [330, 292], [284, 246]]
+        }
+      ]
+    },
+    {
+      "id": "hummingbird-a",
+      "species": "volcano-hummingbird",
+      "kind": "hummingbird",
+      "anim": "hover",
+      "period": 2.6,
+      "box": [515, 555, 725, 745],
+      "parts": [
+        {
+          "name": "body",
+          "anim": "none",
+          "z": 2,
+          "rest": true
+        }
+      ]
+    },
+    {
+      "id": "hummingbird-b",
+      "species": "volcano-hummingbird",
+      "kind": "hummingbird",
+      "anim": "hover",
+      "period": 3.1,
+      "box": [925, 695, 1125, 885],
+      "hotspot": [1030, 790],
+      "parts": [
+        {
+          "name": "body",
+          "anim": "none",
+          "z": 2,
+          "rest": true
+        }
+      ]
+    }
+  ],
+  "water": [
+    {
+      "name": "lake",
+      "poly": [[925, 300], [1000, 290], [1100, 288], [1200, 300], [1235, 330], [1200, 365], [1080, 372], [960, 360], [920, 335]],
+      "feather": 4,
+      "mode": "still",
+      "flow": {
+        "dx": 0,
+        "dy": 0,
+        "period": 0,
+        "amp": 0
+      }
+    }
+  ]
+}
