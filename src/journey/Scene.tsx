@@ -55,7 +55,7 @@ function bodyAnim(a: AnimalInfo): string | undefined {
 }
 function bodyPeriod(a: AnimalInfo, anim?: string) {
   if (a.period) return a.period;
-  switch (anim) { case 'perch': return 4.2; case 'perch-soft': return 5; case 'stand': return 4.8; default: return 2.4; }
+  switch (anim) { case 'perch': return 4.2; case 'perch-soft': return 5; case 'stand': return 4.8; case 'crawl': return 3.6; default: return 2.4; }
 }
 /** The scroll-driven flight of an animal: CSS variables read by the animal and by its hotspot, so the ring follows. */
 export function flyVars(fly: [number, number] | undefined, firstStop: boolean): Record<string, string | number> {
@@ -64,12 +64,13 @@ export function flyVars(fly: [number, number] | undefined, firstStop: boolean): 
   return { '--fdx': fly[0], '--fdy': fly[1], '--f0': firstStop ? 0 : 0.5 };
 }
 
-function Animal({ plate, a, container, facing = 1, lifted, live, fly, firstStop }: { plate: PlateName; a: AnimalInfo; container: number[]; facing?: 1 | -1; lifted: boolean; live: boolean; fly?: [number, number]; firstStop: boolean }) {
+function Animal({ plate, a, container, facing = 1, lifted, live, fly, walk, firstStop }: { plate: PlateName; a: AnimalInfo; container: number[]; facing?: 1 | -1; lifted: boolean; live: boolean; fly?: [number, number]; walk?: [number, number]; firstStop: boolean }) {
   const anim = bodyAnim(a);
-  const style = { ...rel(a.box, container), ['--period' as string]: `${bodyPeriod(a, anim)}s`, ['--amp' as string]: a.amp ?? 1, ['--delay' as string]: `${a.delay ?? -(hash(a.id) % 2000) / 1000}s`, ['--sgn' as string]: facing, ...flyVars(fly, firstStop) } as React.CSSProperties;
+  const style = { ...rel(a.box, container), ['--period' as string]: `${bodyPeriod(a, anim)}s`, ['--amp' as string]: a.amp ?? 1, ['--delay' as string]: `${a.delay ?? -(hash(a.id) % 2000) / 1000}s`, ['--sgn' as string]: facing, ...flyVars(fly ?? walk, firstStop) } as React.CSSProperties;
+  if (a.hop) { (style as Record<string, unknown>)['--hdx'] = a.hop[0]; (style as Record<string, unknown>)['--hdy'] = a.hop[1]; }
   const parts = [...a.parts].sort((x, y) => x.z - y.z);
   return (
-    <div className={`animal animal--${a.kind}${anim && live ? ' animal--' + anim : ''}${fly ? ' animal--fly' : ''}${lifted ? ' is-on' : ''}`} style={style} aria-hidden="true">
+    <div className={`animal animal--${a.kind}${anim && live ? ' animal--' + anim : ''}${fly ? ' animal--fly' : ''}${walk ? ' animal--walk' : ''}${lifted ? ' is-on' : ''}`} style={style} aria-hidden="true">
       {parts.map((p) => {
         const vars: Record<string, string | number> = { '--period': `${p.period ?? defaultPeriod(p.anim)}s`, '--amp': p.amp ?? defaultAmp(p.anim), '--delay': `${p.delay ?? -(hash(a.id + p.name) % 1700) / 1000}s` };
         if (p.axis) { vars['--ax'] = p.axis[0]; vars['--ay'] = p.axis[1]; }
@@ -130,12 +131,13 @@ export function Scene({ index, stop, live, rich = true, chapter, species, onOpen
   const onLayer = (name: string) => animals.filter((a) => a.layer === name);
   const facing = stop.facing || {};
   const fly = stop.fly || {};
+  const walk = stop.walk || {};
   const withHotspot = animals.filter((a) => a.hotspot && a.species && byId.get(a.species));
   // --pn, --jt, --vel, --px/--py and the visibility are written by the driver (data-scene / data-fade)
   const style = { ['--i' as string]: index, zIndex: index } as React.CSSProperties;
   return (
     <div className={`scene scene--${index} scene--${stop.key}${current ? ' is-current' : ''}${near ? ' is-near' : ''}`} style={style} data-scene={index} data-fade="">
-      <PlateBox plate={plate} className={`plate--${plate}${stop.wind ? ' plate--wind-' + stop.wind : ''}`}>
+      <PlateBox plate={plate} className={`plate--${plate}${stop.wind ? ' plate--wind-' + stop.wind : ''}${m.clean ? ' plate--clean' : ''}`}>
         <LayerImg plate={plate} name="base" className="plate__base" priority={priority} eager alt="" />
         {(m.water || []).map((w) => (<Water key={w.name} plate={plate} w={w} live={live} />))}
         {live && rich && stop.ambient?.shafts && <div className="plate__shafts" style={{ backgroundImage: `url(${FX}shafts.png)` }} />}
@@ -155,10 +157,10 @@ export function Scene({ index, stop, live, rich = true, chapter, species, onOpen
         {live && stop.ambient?.sun && <div className="plate__sunglow" style={{ ['--sx' as string]: pct((m.points?.sun?.[0] ?? m.focal.x) as number), ['--sy' as string]: pct((m.points?.sun?.[1] ?? 0.4) as number) }} />}
         {m.layers.map((layer) => (
           <PlateLayer key={layer.name} plate={plate} layer={layer.name} className={`plate__near plate__near--${layer.name.replace('near-', '')}`} priority={priority}>
-            {onLayer(layer.name).map((a) => (<Animal key={a.id} plate={plate} a={a} container={layer.box} facing={facing[a.id]} lifted={lift === a.id} live={live} fly={fly[a.id]} firstStop={index === 1} />))}
+            {onLayer(layer.name).map((a) => (<Animal key={a.id} plate={plate} a={a} container={layer.box} facing={facing[a.id]} lifted={lift === a.id} live={live} fly={fly[a.id]} walk={walk[a.id]} firstStop={index === 1} />))}
           </PlateLayer>
         ))}
-        {free.map((a) => (<Animal key={a.id} plate={plate} a={a} container={PLATE_BOX} facing={facing[a.id]} lifted={lift === a.id} live={live} fly={fly[a.id]} firstStop={index === 1} />))}
+        {free.map((a) => (<Animal key={a.id} plate={plate} a={a} container={PLATE_BOX} facing={facing[a.id]} lifted={lift === a.id} live={live} fly={fly[a.id]} walk={walk[a.id]} firstStop={index === 1} />))}
         {live && rich && stop.ambient?.mist && <div className="plate__mist plate__mist--2"><div className="plate__drift" style={{ backgroundImage: `url(${FX}mist-2-fade.png)` }} /></div>}
         {children}
         {withHotspot.length > 0 && (
@@ -171,8 +173,8 @@ export function Scene({ index, stop, live, rich = true, chapter, species, onOpen
                 <button
                   key={a.id}
                   type="button"
-                  className={'hotspot hotspot--scene' + (lift === a.id ? ' is-on' : '') + (fit && !fit.fit ? ' hotspot--misfit' : '') + (fly[a.id] ? ' hotspot--fly' : '')}
-                  style={{ left: pct(hx), top: pct(hy), ['--i' as string]: i, ...flyVars(fly[a.id], index === 1) } as React.CSSProperties}
+                  className={'hotspot hotspot--scene' + (lift === a.id ? ' is-on' : '') + (fit && !fit.fit ? ' hotspot--misfit' : '') + (fly[a.id] || walk[a.id] ? ' hotspot--fly' : '')}
+                  style={{ left: pct(hx), top: pct(hy), ['--i' as string]: i, ...flyVars(fly[a.id] ?? walk[a.id], index === 1) } as React.CSSProperties}
                   onClick={() => onOpenSpecies(sp, stop.key)}
                   onPointerEnter={() => setLift(a.id)}
                   onPointerLeave={() => setLift(null)}

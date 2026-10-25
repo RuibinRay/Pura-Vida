@@ -1,6 +1,7 @@
 {
   "id": "corcovado",
   "source": "research/plates-original/corcovado-tapir-macaw-morpho.png",
+  "clean": "research/plates-original/2026-10-25/empties/corcovado-tapir-macaw-morpho.png",
   "upscale": 2,
   "focal": {
     "x": 0.5,
@@ -20,6 +21,7 @@
       "parts": [
         {
           "name": "head",
+          "overlap": 3,
           "anim": "graze",
           "z": 2,
           "pivot": [320, 548],

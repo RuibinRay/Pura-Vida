@@ -10,7 +10,8 @@ All coordinates are **source-image pixels** (before the 2× upscale); the tool s
   "upscale": 2,                                        // FSRCNN x2 (cached in ~/models/plates-cache)
   "focal": { "x": 0.46, "y": 0.5, "panFrom": 0.22, "panTo": 0.72 },   // fractions; portrait pans from→to across the chapter
   "points": { "oxcart": [0.27, 0.78] },               // named points (fractions) the site can use for labels/effects
-  "inpaint": "fsr",                                    // "fsr" (texture synthesis, default) or "telea" (smooth, fine for sky)
+  "clean": "research/plates-original/.../empties/....png",   // optional: the same scene with the animals erased (pixel-aligned) → no inpainting
+  "inpaint": "fsr",                                    // "fsr" (texture synthesis, default) or "telea" (smooth, fine for sky); ignored with "clean"
   "animals": [ ... ],
   "water": [ ... ],
   "frame": { "polys": [[[x,y],...]], "split": [0.42, 0.58] }   // optional near-frame layers (heuristic, see tools/plates.py)
@@ -22,7 +23,8 @@ All coordinates are **source-image pixels** (before the 2× upscale); the tool s
 ```jsonc
 {
   "id": "macaw-b", "species": "scarlet-macaw", "kind": "macaw",   // species = id in src/content/generated/species.json
-  "anim": "bob", "period": 2.1,                                   // optional whole-animal loop (the group moves)
+  "anim": "bob", "period": 2.1,                                   // optional whole-animal loop (the group moves); "crawl" for a turtle
+  "hop": [22, -2],                                                // optional: a hop along the perch (source px) for the site's perch loop on a clean plate
   "box": [x0, y0, x1, y1],                                        // generous box around the WHOLE animal incl. tail/wing tips
   "u2net": [[x0,y0,x1,y1], ...],                                  // crops to run U²-Net on (default: the box); add a tight crop for small parts
   "include": [[[x,y],...]],                                       // polygons forced into the mask (thin antlers, dark wings the model misses)
@@ -37,8 +39,10 @@ All coordinates are **source-image pixels** (before the 2× upscale); the tool s
 Only moving pieces become layers. The base image is inpainted under every exported part, so a part may move a few
 degrees without revealing the original. Parts:
 
-- `{ "name": "head", "anim": "turn", "poly": [[x,y],...], "pivot": [x,y], "z": 2, "amp": 3.5, "period": 4.2 }` — polygon part
-  (cut = animal mask ∩ polygon). The polygon should include a little of the neck so the joint never opens.
+- `{ "name": "head", "anim": "turn", "poly": [[x,y],...], "pivot": [x,y], "z": 2, "amp": 3.5, "period": 4.2, "overlap": 3 }` — polygon part
+  (cut = animal mask ∩ polygon). The polygon should include a little of the neck so the joint never opens. `overlap`
+  (source px) keeps a band inside the polygon's outline in the body part as well, under the head: a turn then opens
+  onto neck rather than onto the base. Use it on clean plates, where the heads turn further.
 - `{ "name": "wing-upper", "anim": "flap-a", "half": { "axis": [[headX,headY],[tailX,tailY]], "side": "pos"|"neg", "span": [a0,a1], "halfWidth": 12, "overlap": 5 }, "pivot": [x,y] }`
   — half-plane part for wings. `axis` runs head → tail through the body. `side` "pos" is the side where
   cross(axis, point − head) > 0 — in image coordinates (y down) with the axis pointing LEFT that is ABOVE the line; with
@@ -62,6 +66,27 @@ Animation names the site understands: `turn` (head rotates ±amp°), `tilt` (tou
 rises), `watch` (slow heron neck), `sway` (hanging sloth), `tail` (quetzal tail), `flap-a` / `flap-b` (wings, opposite
 phase, 3D rotation about the axis), `morpho-a` / `morpho-b` (butterfly wings folding), `flutter` (hummingbird wings, fast,
 small), `bob` (whole flying bird), `hover` (whole hummingbird), `drift` (whole butterfly), `breathe` (body), `none`.
+
+### Clean plates (the scene without its animals)
+
+When the author can erase the animals from an image with his tool's generative fill and send the result, name it as
+`clean`. The tool checks the size, upscales it the same way, and uses it as the base, the frame layers and the water,
+so nothing is inpainted and a loop may travel (the site's `plate--clean` rules: heads turn further, perched birds hop,
+grazers shift, hummingbirds and morphos roam wider, the turtle crawls with the scroll). The animals are still cut from
+the source by U²-Net and the polygons; the difference between the two files is used only as a veto — a 5-px mean of
+the channel-mean difference above 0.1, closed, hole-filled and dilated by 4 px, always keeping the interior of the
+confident mask — so a halo of untouched background can never travel with a cut-out, and an animal whose colour matches
+the fill (a black back over a shadowed fill) is never cut into. The generator re-encodes the whole image (per-pixel
+differences above 0.2 on 6 % of untouched pixels, 15 % in foliage), which is why the difference is averaged first.
+The preview sheet gains two panels: the clean base under the animal, and the crop with the vetoed pixels in red (there
+should be almost none) together with any *pocket*: a region of the cut-out that the fill never touched and that is open
+to the cut-out's edge — background the segmentation (or an `include` polygon drawn a half-cell low) swallowed. The
+inpainted base used to hide such a pocket; the clean base shows it moving with the animal. Pockets are reported and
+drawn, not removed: a leg or a bill tip whose colour matches the fill looks the same to the test, and a dark animal over a
+dark fill (the Corcovado tapir) reports tens of thousands of pixels that are in fact repainted. Fix one with an
+`exclude` polygon, as for the coffee hummingbird's bill. Read a grid's labels as sitting *above* their line. A regenerated scene (same prompt, new picture) is not a clean image: the animals would sit on
+branches that are not there — check alignment first (`tools/scratch/match_empties.py`: correlation above 0.95 and
+more than 85 % of pixels unchanged at 320 px).
 
 ## Water
 

@@ -1,6 +1,7 @@
 {
  "id": "manuel-antonio",
  "source": "research/plates-original/2026-10-25/manuel-antonio-turtle-puntarenas.png",
+ "clean": "research/plates-original/2026-10-25/empties/manuel-antonio-turtle-puntarenas.png",
  "upscale": 2,
  "focal": {
   "x": 0.5,
@@ -20,6 +21,8 @@
    "id": "turtle",
    "species": "olive-ridley-sea-turtle",
    "kind": "turtle",
+   "anim": "crawl",
+   "period": 3.6,
    "box": [
     418,
     684,
@@ -79,7 +82,8 @@
        726
       ]
      ],
-     "edge": 3.5
+     "edge": 3.5,
+     "overlap": 3
     },
     {
      "name": "body",

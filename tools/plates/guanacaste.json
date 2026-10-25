@@ -1,6 +1,7 @@
 {
   "id": "guanacaste",
   "source": "research/plates-original/guanacaste-deer-macaws-oxcart.png",
+  "clean": "research/plates-original/2026-10-25/empties/guanacaste-deer-macaws-oxcart.png",
   "upscale": 2,
   "focal": {
     "x": 0.46,
@@ -25,6 +26,7 @@
       "parts": [
         {
           "name": "head",
+          "overlap": 3,
           "anim": "turn",
           "z": 2,
           "pivot": [405, 548],

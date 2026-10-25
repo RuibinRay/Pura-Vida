@@ -2,6 +2,34 @@
 
 All figures below were produced in this session's environment unless stated otherwise: a 2-core Linux container, headless Chromium 153 with SwiftShader (software WebGL), no real GPU, no field data. Numbers that depend on a GPU are marked as such and must be re-measured on a laptop and a phone.
 
+## Clean plates (2026-10-25, afternoon) — the owner's scenes without their animals
+
+### The images
+`tools/scratch/match_empties.py` against `research/plates-original/`: the twelve files are pixel-aligned erase-fills of their originals — correlation 0.95–0.99 at 320 px, 86–95 % of pixels unchanged (the rest: the filled silhouettes and the generator's re-encoding noise, which is per pixel: max-channel differences above 0.2 on 6 % of untouched pixels, 15 % in foliage, and averages away over 5 px). The thirteenth (the opening) correlates 0.43 with its original — a new picture, not used.
+
+### Tests
+`npx vitest run`: **62 tests in 5 files, all passing** — two new: the eight plates whose spec names a clean image carry `clean: true` in their manifest and no other plate does, and every toucan or thrush on them has a `hop` of a few percent of its box; a `walk` names a ground animal of its plate and moves 0.5–8 vw. `tsc --noEmit`: clean. `npm run build`: clean.
+
+### The plates
+Eight rebuilt with `clean` bases (`tools/plates.py`): the diff veto trimmed 0–1.6 % of a mask (the Río Celeste hummingbird the most; the toucan, the turtle, the Chirripó thrush and two macaws nothing). Pockets reported and read, none removed: the thrushes' legs and bill tips and the wing tips of the hummingbirds (real bird, same colour as the fill), the tapir's dark hide over a dark fill (27,903 px, repainted in fact), the deer's hooves on the rock — and three real ones, fixed with polygons: the bill includes of the coffee hummingbird and both Cartago hummingbirds from the province pass had sat a half-cell low and swallowed a square of sky or orchid while missing the bill itself; each bill is now a thin include on the measured pixel rows with an exclude beneath. Preview sheets reviewed for every animal (cut-out on magenta, coded parts, the clean base, the red panel).
+
+### Close-ups at the loops' extremes (`tools/scratch/bodies.mjs`, PHASES 0.28 / 0.57 / 0.78 — landed after the hop out, the hop back in the air, the shake; the head loops' two extremes fall at the same phases)
+Every animal on the eight clean plates runs its travelling loop (`perch-free` + `head-tilt` on the Arenal toucan, `perch-free` + `head-turn` on both thrushes, `stand-free` + `head-turn` / `head-graze` on the deer and the tapir, `hover-free` + `flutter-a` on the four hummingbirds, `drift-free` + `morpho-a/b` on the Río Celeste morpho, `crawl` + `breathe` + `head-watch` on the turtle). At 2×: the toucan sits further along its branch after the hop with its feet on the moss and nothing where it was; mid-air on the hop back it is one whole bird, slightly rotated; at the shake it is back at rest with its head tilted and no seam at the throat (the body's band under the head covers the 11° turn). The thrushes the same; the deer and the tapir whole at every phase with their heads at three different angles; the turtle whole with its head turned, the wet sand under it clean; the hummingbirds whole with their bills (the three bills that the province pass had missed are there now) and no square of sky travelling with them. The lab renders a frame every 20–40 s with these layers; the page was stripped of mist, shafts, clouds, flock and spray for the close-ups (they do not touch the animals).
+
+### Motion sweep (`tools/scratch/motion.mjs`, the clean stops, 1440×900, full tier)
+| Stop | Loops | Animals (px changed in ≤ 2.5 s) | Water | Wind L / R | Clouds | Flock | Mist |
+|---|---|---|---|---|---|---|---|
+| 02 Arenal | 17/17 (`perch-free`, `head-tilt`) | 44.3 % (was 27.3 %) | 8.5 % (lake) | 19.9 / 0.6 % | 7.1 % | 9.9 % | — |
+| 04 Río Celeste | 25/25 (`hover-free`, `flutter-a`, `drift-free`, `morpho-a/b`) | 35.0 / 31.8 % (was 28.8 / 37.7 %) | 18.1 / 12.0 / 4.8 % | 17.5 / 8.4 % | — | — | 7.5 % |
+
+The sweep timed out at the fifth stop's screenshot (the software renderer; every probe now launches with a 15-minute protocol timeout) and was restarted for stops 5, 7, 8, 10, 11 and 13 — their rows are added in the follow-up commit. 0 console errors.
+
+### Walk and site sweeps
+Desktop screenshots of the eight clean stops and phone screenshots of Arenal and the close (`tools/scratch/stops-shots.mjs`), reviewed by eye: every animal on its base with no residue; the turtle under the end card's gradient, the words right of it; at Guanacaste one macaw's ring sits under the copy panel's kicker at mid-stop (the macaws fly 20–26 vw across the stop, so it leaves; pre-existing, not changed here). Phone walk (390×844, lite): 13 chapters, back to 6/3/1 at t = 5.50 / 2.50 / 0.50, **ALL CLEAN**. Home sweep (`ONLY_HOME=1 node tools/headless_check.mjs`): **23 page loads, 0 console errors, no horizontal overflow; axe 0 violations on all 13 audited loads** (every stop, the eruption); the far-jump assertion "1→12: only stop 12 visible". The content pages were not re-swept (nothing on them changed).
+
+### Not tested
+The frame rate on a real device; Safari/Firefox; the feel of a hop or a crawl at 60 fps (the lab renders a frame every 20–40 s).
+
 ## Province pass (2026-10-25) — ten new plates, thirteen stops, every province
 
 ### Tests

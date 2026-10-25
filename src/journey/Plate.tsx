@@ -6,7 +6,7 @@ import manifests from './plates.generated.json';
 export type PlateName = string;
 export interface LayerInfo { name: string; box: number[]; widths: number[] }
 export interface PartInfo extends LayerInfo { anim: string; z: number; pivot?: number[]; axis?: number[]; amp?: number; period?: number; delay?: number }
-export interface AnimalInfo { id: string; species: string | null; kind: string; box: number[]; hotspot: number[] | null; parts: PartInfo[]; layer?: string; anim?: string; period?: number; amp?: number; delay?: number; static?: boolean }
+export interface AnimalInfo { id: string; species: string | null; kind: string; box: number[]; hotspot: number[] | null; parts: PartInfo[]; layer?: string; anim?: string; period?: number; amp?: number; delay?: number; static?: boolean; /** a hop along the perch, as fractions of the animal's box */ hop?: [number, number] }
 export interface WaterInfo extends LayerInfo { flow: { dx: number; dy: number; period: number; amp: number }; mode: 'flow' | 'shimmer' | 'still' }
 export interface Manifest {
   width: number;
@@ -17,6 +17,9 @@ export interface Manifest {
   animals?: AnimalInfo[];
   water?: WaterInfo[];
   points?: Record<string, number[]>;
+  /** the base is the author's own version of the scene without its animals: nothing is inpainted under them, so
+   *  their loops may travel (tools/plates.py "clean") */
+  clean?: boolean;
 }
 
 export const PLATES = manifests as unknown as Record<PlateName, Manifest>;

@@ -9,8 +9,14 @@ site animates — a head that turns, wings that flap, a tail that sways), the wa
 optional near-frame layers (the heuristic from the first journey build). Coordinates in the spec are SOURCE
 pixels; the tool scales them by the upscale factor.
 
+A spec may also name a "clean" image: the same scene with the animals erased by the author's tool (pixel-aligned
+with the source). Then nothing is inpainted — the base, the frame layers and the water come from the clean image —
+and each animal's alpha is vetoed outside the silhouette the two files differ in, so no halo of old background travels
+with a cut-out. Poly parts (heads) may carry an "overlap" (source px): the body keeps that band under the head, so a
+turn opens onto neck rather than onto the base. An animal may carry a "hop" vector (source px) for its perch loop.
+
 Outputs under public/plates/<id>/:
-  base-{w}.webp                     the plate, inpainted under every moving part
+  base-{w}.webp                     the plate, inpainted under every moving part (or the clean image)
   <animal>-<part>-{w}.webp          cut-outs with alpha, cropped to their boxes
   water-<name>-{w}.webp             water regions with soft alpha (the site makes them flow)
   near-left-{w}.webp / near-right   near-frame layers when the spec has a "frame"
@@ -128,7 +134,42 @@ def bbox_of(alpha, thresh=0.01, pad=2):
     return [max(0, xs.min() - pad), max(0, ys.min() - pad), min(w, xs.max() + 1 + pad), min(h, ys.max() + 1 + pad)]
 
 
-def animal_alpha(plate, a, s):
+def touched_mask(diff, box, s, threshold=0.1, pad=4, core=None):
+    """Where the clean image differs from the source inside an animal's box: the erased silhouette plus the thin
+    margin the generator repainted, closed and hole-filled (an animal whose colour happens to match the new
+    background still lies inside the silhouette). Pixels outside it were never touched, so they are background.
+    `diff` is the 5-px mean of the channel-mean difference: the generator's re-encoding speckle is per pixel
+    (max-channel differences above 0.2 on 6 % of untouched pixels, 15 % in foliage) and averages away, the
+    silhouette does not. Where the animal's own colour matches what the generator painted (a black back over a
+    shadowed fill) the difference is low inside the animal too, so the interior of the segmentation (`core`, the
+    confident mask eroded) is always kept: the veto only ever trims the uncertain rim."""
+    from scipy import ndimage
+    H, W = diff.shape
+    x0, y0, x1, y1 = [round(v * s) for v in box]
+    m = np.zeros((H, W), np.uint8)
+    r = 16
+    cx0, cy0, cx1, cy1 = max(0, x0 - r), max(0, y0 - r), min(W, x1 + r), min(H, y1 + r)
+    sub = (diff[cy0:cy1, cx0:cx1] > threshold).astype(np.uint8)
+    sub = cv2.morphologyEx(sub, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+    sub = cv2.morphologyEx(sub, cv2.MORPH_CLOSE, np.ones((15, 15), np.uint8))
+    sub = ndimage.binary_fill_holes(sub).astype(np.uint8)
+    # keep only components that reach into the box (the speckle elsewhere is not the animal)
+    n, lab = cv2.connectedComponents(sub)
+    keep = np.zeros_like(sub)
+    inner = lab[y0 - cy0:y1 - cy0, x0 - cx0:x1 - cx0]
+    for k in range(1, n):
+        if (inner == k).sum() >= 40:
+            keep[lab == k] = 1
+    k = max(1, round(pad * s))
+    keep = cv2.dilate(keep, np.ones((2 * k + 1, 2 * k + 1), np.uint8))
+    m[cy0:cy1, cx0:cx1] = keep
+    out = cv2.GaussianBlur(m.astype(np.float32), (0, 0), max(0.6, 0.5 * s))
+    if core is not None:
+        out = np.maximum(out, core)
+    return out
+
+
+def animal_alpha(plate, a, s, diff=None):
     """Full alpha of an animal at plate resolution from its spec ops."""
     H, W = plate.shape[:2]
     m = np.zeros((H, W), np.float32)
@@ -171,7 +212,48 @@ def animal_alpha(plate, a, s):
     x0, y0, x1, y1 = [round(v * s) for v in a['box']]
     box = np.zeros((H, W), np.float32)
     box[max(0, y0 - 4):y1 + 4, max(0, x0 - 4):x1 + 4] = 1
-    return m * cv2.GaussianBlur(box, (0, 0), 2)
+    m = m * cv2.GaussianBlur(box, (0, 0), 2)
+    if diff is not None and not a.get('noDiffVeto'):
+        k = max(1, round(a.get('cleanCore', 3) * s))
+        core = cv2.erode((m > 0.9).astype(np.uint8), np.ones((2 * k + 1, 2 * k + 1), np.uint8)).astype(np.float32)
+        touched = touched_mask(diff, a['box'], s, a.get('cleanThreshold', 0.1), a.get('cleanPad', 4), core)
+        before = float((m > 0.5).sum())
+        m = m * touched
+        after = float((m > 0.5).sum())
+        print(f'  {a["id"]}: diff veto trimmed {(before - after) / max(1, before) * 100:.2f} % of the mask ({int(before)} → {int(after)} px)')
+        # pockets: background the segmentation swallowed (the sky an include polygon drawn a half-cell low took in
+        # under a hummingbird's bill) is untouched by the fill (difference ≈ 0) and open to the mask's edge. Reported,
+        # and drawn in red on the preview, but never removed by default: a leg, a bill tip or a tail tip whose colour
+        # matches the fill looks the same to this test (the coffee thrush lost a leg and its bill tip to it). Fix
+        # a real pocket with an `exclude` polygon; `pockets: true` removes them anyway.
+        pockets = find_pockets(m, diff, a.get('pocketThreshold', 0.06), s)
+        n_pockets = int((pockets > 0.5).sum())
+        if n_pockets:
+            print(f'  {a["id"]}: {n_pockets} px of the cut-out are untouched background open to its edge — look at the red panel' + (' (removed)' if a.get('pockets') else ''))
+            if a.get('pockets'):
+                m = m * (1 - pockets)
+    return m
+
+
+def find_pockets(m, diff, threshold, s):
+    """Soft mask of the connected low-difference regions inside the alpha that touch its edge."""
+    inside = m > 0.5
+    low = (inside & (diff < threshold)).astype(np.uint8)
+    low = cv2.morphologyEx(low, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+    out = np.zeros(m.shape, np.float32)
+    if low.max() == 0:
+        return out
+    n, lab = cv2.connectedComponents(low)
+    rim = cv2.dilate((~inside).astype(np.uint8), np.ones((3, 3), np.uint8)) > 0  # pixels next to the mask's edge
+    drop = np.zeros_like(low)
+    for k in range(1, n):
+        comp = lab == k
+        if comp.sum() >= 12 * s * s and (comp & rim).any():
+            drop[comp] = 1
+    if drop.max() == 0:
+        return out
+    drop = cv2.dilate(drop, np.ones((3, 3), np.uint8))
+    return cv2.GaussianBlur(drop.astype(np.float32), (0, 0), 0.8)
 
 
 def resolve_overlaps(alphas, animals, s, H, W):
@@ -219,8 +301,14 @@ def split_parts(alpha, a, s, H, W):
         if p.get('rest'):
             rest = p
             continue
+        hold = None  # what the rest part gives up (defaults to the part's own weight)
         if 'poly' in p:
             wgt = poly_mask(H, W, p['poly'], s, feather=p.get('edge', 1.5))
+            if p.get('overlap'):
+                # the body keeps a band inside the head's outline: a turned head then opens onto neck, not onto the base
+                k = max(1, round(p['overlap'] * s))
+                core = cv2.erode(poly_mask(H, W, p['poly'], s), np.ones((2 * k + 1, 2 * k + 1), np.uint8))
+                hold = cv2.GaussianBlur(core, (0, 0), p.get('edge', 1.5))
         elif 'half' in p:
             hf = p['half']
             p0 = [v * s for v in hf['axis'][0]]
@@ -247,7 +335,7 @@ def split_parts(alpha, a, s, H, W):
             raise SystemExit(f'part {p["name"]} needs poly, half, band or rest')
         pa = alpha * wgt
         parts.append((p, pa))
-        taken = np.maximum(taken, wgt)
+        taken = np.maximum(taken, wgt if hold is None else hold)
     if rest is not None:
         parts.append((rest, alpha * np.clip(1 - taken, 0, 1)))
     parts.sort(key=lambda t: t[0].get('z', 1))
@@ -388,6 +476,19 @@ def main():
         plate = upscale2(src, key)
         s = 2.0
     H, W = plate.shape[:2]
+    # the same scene without its animals (pixel-aligned): the base needs no inpainting, the silhouettes are known
+    clean, diff = None, None
+    if spec.get('clean'):
+        clean_path = os.path.join(ROOT, spec['clean'])
+        c = cv2.imread(clean_path)
+        if c is None:
+            raise SystemExit('cannot read ' + clean_path)
+        if c.shape[:2] != src.shape[:2]:
+            raise SystemExit(f'clean image is {c.shape[1]}x{c.shape[0]}, the source {src.shape[1]}x{src.shape[0]}')
+        clean = upscale2(c, hashlib.md5(open(clean_path, 'rb').read()).hexdigest()[:12]) if s == 2.0 else c
+        raw = np.abs(plate.astype(np.float32) - clean.astype(np.float32)).mean(axis=2) / 255.0
+        diff = cv2.blur(raw, (5, 5)).astype(np.float32)
+        print(f'  clean base: {(diff > 0.16).mean() * 100:.1f} % of pixels differ from the source by more than 0.16 (5-px mean)')
     widths = [W] + [round(W * f) for f in (0.72, 0.5, 0.33, 0.215)]
     widths = [w for w in widths if w <= W]
     d = os.path.join(OUT, pid)
@@ -396,6 +497,8 @@ def main():
         if fn.endswith('.webp') or fn == 'manifest.json':
             os.remove(os.path.join(d, fn))
     manifest = {'width': W, 'height': H, 'widths': widths, 'focal': spec.get('focal', {'x': 0.5, 'y': 0.5}), 'layers': [], 'animals': [], 'water': [], 'points': spec.get('points', {})}
+    if clean is not None:
+        manifest['clean'] = True
     preview = args.preview
     if preview:
         os.makedirs(preview, exist_ok=True)
@@ -408,7 +511,7 @@ def main():
     alphas = []
     for a in animals:
         t = time.time()
-        alphas.append(animal_alpha(plate, a, s))
+        alphas.append(animal_alpha(plate, a, s, diff))
         print(f'  {a["id"]}: mask in {time.time() - t:.1f} s')
     alphas = resolve_overlaps(alphas, animals, s, H, W)
     for a, alpha in zip(animals, alphas):
@@ -419,11 +522,15 @@ def main():
             entry['static'] = True
         if a.get('layer'):
             entry['layer'] = a['layer']
+        if a.get('hop'):
+            # a hop along the perch, as fractions of the animal's own box (the CSS translates in % of the element)
+            bx0, by0, bx1, by1 = [v * s for v in a['box']]
+            entry['hop'] = [round(a['hop'][0] * s / max(1, bx1 - bx0), 4), round(a['hop'][1] * s / max(1, by1 - by0), 4)]
         if a.get('anim'):
             entry['anim'] = a['anim']
-            for k in ('period', 'amp', 'delay'):
-                if k in a:
-                    entry[k] = a[k]
+        for k in ('period', 'amp', 'delay'):  # also for the site's own whole-body loops (perch/stand by kind)
+            if k in a:
+                entry[k] = a[k]
         amask = np.zeros((H, W), np.float32)
         for p, pa in parts:
             inpaint_mask = np.maximum(inpaint_mask, pa)
@@ -470,22 +577,33 @@ def main():
                     cv2.circle(coded, (round(pv[0] * s) - x0, round(pv[1] * s) - y0), 5, (255, 255, 255), -1)
                     cv2.circle(coded, (round(pv[0] * s) - x0, round(pv[1] * s) - y0), 5, (0, 0, 0), 1)
             sheets = [crop, comp, coded]
+            if clean is not None:
+                # the clean base under the animal, and (in red) what the veto trimmed from the segmentation
+                sheets.append(clean[y0:y1, x0:x1])
+                raw_m = animal_alpha(plate, dict(a, noDiffVeto=True), s)[y0:y1, x0:x1]
+                removed = np.clip(raw_m - alpha[y0:y1, x0:x1], 0, 1)
+                removed = np.maximum(removed, find_pockets(alpha, diff, a.get('pocketThreshold', 0.06), s)[y0:y1, x0:x1])[..., None]
+                sheets.append((crop * (1 - 0.8 * removed) + np.array([0, 0, 255], np.float32) * 0.8 * removed).astype(np.uint8))
             cv2.imwrite(os.path.join(preview, f'{pid}-{a["id"]}.png'), np.hstack(sheets))
 
-    # water
+    # water (from the clean image when there is one, so a region never carries an animal)
+    water_src = clean if clean is not None else plate
     water_layers = []
     for wsp in spec.get('water', []):
-        wa = water_alpha(plate, wsp, s)
-        r = export_layer(d, 'water-' + wsp['name'], plate, wa, widths, W, quality=80)
+        wa = water_alpha(water_src, wsp, s)
+        r = export_layer(d, 'water-' + wsp['name'], water_src, wa, widths, W, quality=80)
         if r is None:
             continue
         box, lw = r
         water_layers.append({'name': wsp['name'], 'box': frac_box(box, W, H), 'widths': lw, 'flow': wsp.get('flow', {'dx': 0, 'dy': 1, 'period': 1.8, 'amp': 0.05}), 'mode': wsp.get('mode', 'flow')})
     manifest['water'] = water_layers
 
-    # base, inpainted under the moving parts
+    # base: the clean image, or the plate inpainted under the moving parts
     base = plate
-    if inpaint_mask.max() > 0:
+    if clean is not None:
+        base = clean
+        print('  base is the clean image (no inpainting)')
+    elif inpaint_mask.max() > 0:
         t = time.time()
         base = plate.copy()
         for amask, method, source in inpaint_jobs:

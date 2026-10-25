@@ -28,6 +28,8 @@ export interface Stop {
   facing?: Record<string, 1 | -1>;
   /** flying animals cross the frame as the stop progresses: [dx, dy] in vw over the whole stop (+x = right, +y = down) */
   fly?: Record<string, [number, number]>;
+  /** animals on the ground move the same way, without the flier's bank and lift (the turtle crawling toward the surf) */
+  walk?: Record<string, [number, number]>;
 }
 
 export const STOPS: Stop[] = [
@@ -49,7 +51,7 @@ export const STOPS: Stop[] = [
   // Restoring it is one line: { key: 'provinces', kind: 'map', copy: 'right', length: 240, wash: 'mist' }.
   { key: 'corcovado', kind: 'scene', plate: 'corcovado', place: 'corcovado', copy: 'right', ambient: { clouds: [0.3, 0, 0.6, 0.32], birds: [0.35, 0.08, 0.45, 0.2] }, wind: 'free', wash: 'mist', facing: { tapir: 1 }, fly: { macaw: [24, 4], morpho: [10, -12] } },
   { key: 'tortuguero', kind: 'scene', plate: 'tortuguero', place: 'tortuguero', copy: 'bottom', ambient: { mist: true }, wind: 'free', wash: 'mist', facing: { toucan: 1, heron: -1 }, fly: { macaw: [-28, 6], morpho: [12, -10] } },
-  { key: 'close', kind: 'close', plate: 'manuel-antonio', place: 'manuel-antonio', copy: 'bottom', ambient: { sun: true, clouds: [0, 0, 0.72, 0.42], birds: [0.02, 0.1, 0.5, 0.25] }, wind: 'sync', wash: 'warm', length: 170, facing: { turtle: 1 } },
+  { key: 'close', kind: 'close', plate: 'manuel-antonio', place: 'manuel-antonio', copy: 'bottom', ambient: { sun: true, clouds: [0, 0, 0.72, 0.42], birds: [0.02, 0.1, 0.5, 0.25] }, wind: 'sync', wash: 'warm', length: 170, facing: { turtle: 1 }, walk: { turtle: [2.6, -0.5] } },
 ];
 
 export const STOP_COUNT = STOPS.length;

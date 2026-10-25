@@ -1,6 +1,7 @@
 {
  "id": "rio-celeste",
  "source": "research/plates-original/2026-10-25/rio-celeste-waterfall-v2.png",
+ "clean": "research/plates-original/2026-10-25/empties/rio-celeste-waterfall-v2.png",
  "upscale": 2,
  "focal": {
   "x": 0.62,

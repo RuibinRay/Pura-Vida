@@ -1,6 +1,7 @@
 {
  "id": "chirripo",
  "source": "research/plates-original/2026-10-25/cerro-chirripo-san-jose.png",
+ "clean": "research/plates-original/2026-10-25/empties/cerro-chirripo-san-jose.png",
  "upscale": 2,
  "focal": {
   "x": 0.5,
@@ -100,7 +101,8 @@
        416
       ]
      ],
-     "edge": 3.5
+     "edge": 3.5,
+     "overlap": 3
     },
     {
      "name": "body",
@@ -115,7 +117,12 @@
     372,
     772,
     642
-   ]
+   ],
+   "hop": [
+    16,
+    -3
+   ],
+   "period": 5.0
   }
  ],
  "water": [],

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { STOPS } from '../src/journey/scenes';
 
-const plates = JSON.parse(fs.readFileSync(path.resolve('src/journey/plates.generated.json'), 'utf8')) as Record<string, { animals?: { id: string; kind: string; hotspot: number[] | null; parts: { name: string }[] }[]; layers: { name: string }[] }>;
+const plates = JSON.parse(fs.readFileSync(path.resolve('src/journey/plates.generated.json'), 'utf8')) as Record<string, { clean?: boolean; animals?: { id: string; kind: string; hotspot: number[] | null; parts: { name: string }[]; hop?: number[]; anim?: string }[]; layers: { name: string }[] }>;
 
 describe('the stops of the walk', () => {
   it('each scene stop names a plate that exists, with unique keys', () => {
@@ -53,6 +53,38 @@ describe('the stops of the walk', () => {
     for (const s of STOPS) {
       if (!s.plate) continue;
       for (const a of plates[s.plate].animals || []) if (a.kind === 'macaw') expect(s.fly?.[a.id], `${s.key} ${a.id}`).toBeTruthy();
+    }
+  });
+
+  it('a plate built on the author\'s clean scene says so, and its perched birds hop along their perch', () => {
+    // the specs that name a clean image (the same scene with the animals erased, 2026-10-25)
+    const clean = Object.keys(plates).filter((id) => fs.existsSync(path.resolve(`tools/plates/${id}.json`)) && JSON.parse(fs.readFileSync(path.resolve(`tools/plates/${id}.json`), 'utf8')).clean);
+    expect(clean.sort()).toEqual(['arenal', 'cartago', 'chirripo', 'coffee', 'corcovado', 'guanacaste', 'manuel-antonio', 'rio-celeste']);
+    for (const id of clean) {
+      expect(plates[id].clean, `${id} manifest`).toBe(true);
+      for (const a of plates[id].animals || []) {
+        if (a.kind === 'toucan' || a.kind === 'thrush') {
+          expect(a.hop, `${id} ${a.id} hop`).toBeTruthy();
+          const [dx, dy] = a.hop as number[];
+          // a hop is a few percent of the bird's own box, never a leap
+          expect(Math.abs(dx) + Math.abs(dy), `${id} ${a.id} hop length`).toBeGreaterThan(0.02);
+          expect(Math.abs(dx), `${id} ${a.id} hop dx`).toBeLessThan(0.2);
+        }
+      }
+    }
+    // a plate whose base still has the animals inpainted away never claims a clean base
+    for (const id of Object.keys(plates)) if (!clean.includes(id)) expect(plates[id].clean, id).toBeFalsy();
+  });
+
+  it('walking animals name a ground animal of their plate and move a short way', () => {
+    for (const s of STOPS) {
+      for (const [id, [dx, dy]] of Object.entries(s.walk || {})) {
+        const a = (plates[s.plate as string].animals || []).find((x) => x.id === id);
+        expect(a, `${s.key} walk ${id}`).toBeTruthy();
+        expect(['turtle', 'deer', 'tapir', 'sloth', 'iguana', 'agouti'], `${s.key} walk ${id} is a ${a?.kind}`).toContain(a?.kind);
+        expect(Math.abs(dx) + Math.abs(dy), `${s.key} walk ${id} length`).toBeGreaterThan(0.5);
+        expect(Math.abs(dx) + Math.abs(dy), `${s.key} walk ${id} length`).toBeLessThan(8);
+      }
     }
   });
 });

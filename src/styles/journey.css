@@ -352,6 +352,33 @@
 @keyframes tail-sway { from { rotate: calc(var(--amp) * var(--g-tail) * -1deg); } to { rotate: calc(var(--amp) * var(--g-tail) * 1deg); } }
 @keyframes breathe { from { scale: 1; } to { scale: calc(1 + var(--amp) * var(--g-breathe) * 0.012); } }
 
+/* ---- plates with a clean base (the author's own version of the scene without its animals; nothing inpainted
+   under them): the loops may travel. Heads turn further (the body keeps a band under the head, so a turn opens
+   onto neck), perched birds hop along their perch (--hdx/--hdy, fractions of their box, from the plate spec),
+   standing animals shift their weight more, hummingbirds and morphos roam wider, and a walking animal (the turtle)
+   crawls with the scroll. ---- */
+.plate--clean .animal { --g-head: 2.6; --g-tilt: 1.9; --hdx: 0; --hdy: 0; }
+.animal--walk, .animal--crawl { transform-origin: 50% 100%; }
+/* a hop out along the perch (a short arc, a squash on landing), a rest, a hop back, then the old settle and shake */
+@keyframes perch-free {
+  0%, 23%, 100% { translate: 0 0; rotate: 0deg; scale: 1 1; }
+  25% { translate: calc(var(--hdx) * 40%) calc(var(--hdy) * 40% - 7%); rotate: -2.5deg; scale: 1 1; }
+  28% { translate: calc(var(--hdx) * 100%) calc(var(--hdy) * 100%); rotate: 0deg; scale: 1.025 0.97; }
+  31%, 55% { translate: calc(var(--hdx) * 100%) calc(var(--hdy) * 100%); rotate: 0deg; scale: 1 1; }
+  57% { translate: calc(var(--hdx) * 55%) calc(var(--hdy) * 55% - 7%); rotate: 2.5deg; scale: 1 1; }
+  60% { translate: 0 0; rotate: 0deg; scale: 1.025 0.97; }
+  63%, 70% { translate: 0 0; rotate: 0deg; scale: 1 1; }
+  74% { rotate: -1.4deg; scale: 1.03 0.965; }
+  78% { rotate: 1.6deg; scale: 0.98 1.035; }
+  83% { rotate: -0.6deg; scale: 1.01 0.99; }
+  88% { rotate: 0.3deg; scale: 1 1.005; }
+}
+@keyframes stand-free { 0%, 100% { rotate: 0deg; scale: 1 1; translate: 0 0; } 22% { rotate: -0.9deg; scale: 1.02 0.985; translate: 0.6% 0; } 48% { rotate: 0.3deg; scale: 1 1.008; translate: 0 0; } 74% { rotate: 0.9deg; scale: 0.99 1.015; translate: -0.6% 0; } }
+@keyframes hover-free { 0%, 100% { translate: 0 0; } 18% { translate: 9% -13%; } 36% { translate: 14% -3%; } 52% { translate: -6% -16%; } 70% { translate: -12% 4%; } 86% { translate: 3% 9%; } }
+@keyframes drift-free { 0%, 100% { translate: 0 0; rotate: 0deg; } 20% { translate: 26% -30%; rotate: 10deg; } 45% { translate: 10% -52%; rotate: -8deg; } 70% { translate: -28% -26%; rotate: 7deg; } 88% { translate: -12% -6%; rotate: -3deg; } }
+/* the turtle: a push with the flippers, a rock, a rest */
+@keyframes crawl { 0%, 100% { translate: 0 0; rotate: 0deg; } 18% { translate: 0.9% -0.6%; rotate: -0.7deg; } 34% { translate: 1.3% 0; rotate: 0.5deg; } 55%, 100% { translate: 0 0; rotate: 0deg; } }
+
 /* ---- the eruption (Irazú): the lake darkens and steams, an ash column rises and drifts west, ash falls ---- */
 .erupt { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
 .erupt__haze {
@@ -963,6 +990,12 @@
 .journey--live:not(.journey--calm) .animal--perch { animation: perch var(--period) ease-in-out infinite; animation-delay: var(--delay); }
 .journey--live:not(.journey--calm) .animal--perch-soft { animation: perch-soft var(--period) ease-in-out infinite; animation-delay: var(--delay); }
 .journey--live:not(.journey--calm) .animal--stand { animation: stand var(--period) ease-in-out infinite; animation-delay: var(--delay); }
+.journey--live:not(.journey--calm) .animal--crawl { animation: crawl var(--period) ease-in-out infinite; animation-delay: var(--delay); }
+/* on a clean plate the same loops travel */
+.journey--live:not(.journey--calm) .plate--clean .animal--perch { animation-name: perch-free; }
+.journey--live:not(.journey--calm) .plate--clean .animal--stand { animation-name: stand-free; }
+.journey--live:not(.journey--calm) .plate--clean .animal--hover { animation-name: hover-free; }
+.journey--live:not(.journey--calm) .plate--clean .animal--drift { animation-name: drift-free; }
 /* animals — parts */
 .journey--live:not(.journey--calm) .part--flap-a { animation: flap-a var(--period) ease-in-out infinite; animation-delay: var(--delay); }
 .journey--live:not(.journey--calm) .part--flap-b { animation: flap-b var(--period) ease-in-out infinite; animation-delay: var(--delay); }

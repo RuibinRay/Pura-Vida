@@ -2,6 +2,21 @@
 
 Status words: **built** = implemented and exercised in the headless browser; **built, unverified on device** = implemented, but the check this session could do is not representative (software GPU); **partial**; **planned (M2–M5)**.
 
+## Clean plates — the owner's scenes without their animals (2026-10-25, afternoon)
+
+The owner asked whether images without the animals would make the animation better, then sent twelve of them (the scenes with the animals erased by his tool's generative fill) and a thirteenth that turned out to be a new generation of the opening scene rather than an erase.
+
+| Change | Status | Notes |
+|---|---|---|
+| Alignment check of the twelve | done | `tools/scratch/match_empties.py`: every one pixel-aligned with its original (correlation 0.95–0.99 at 320 px, 86–95 % of pixels unchanged); the opening image he sent afterwards is a different picture (0.43) and was not used |
+| `clean` source in `tools/plates.py` | done | the base, frame layers and water come from the clean image (upscaled the same way); the animals are cut from the original; the difference between the files vetoes the rim of a cut-out only (never the core); preview sheet gains the clean-base and vetoed-pixels panels |
+| Eight plates rebuilt on clean bases | done | arenal, rio-celeste, manuel-antonio, coffee, cartago, chirripo, guanacaste, corcovado — no inpainting on any of them; the veto trimmed 0–1.6 % of a mask |
+| Heads keep a band of body under them | done | `overlap` on poly parts (3 source px): a turned head opens onto neck, not onto the base |
+| Loops that travel on clean plates | done | `plate--clean`: head gains 2.6 / 1.9 (was 2 / 1.3), `perch-free` (a hop along the perch and back, `hop` vectors in the specs for the Arenal toucan and both thrushes), `stand-free`, `hover-free`, `drift-free` |
+| The turtle crawls | done | `walk` vectors in `scenes.ts` (the close stop: 2.6 vw right, 0.5 vw up over the stop, the ring following) + a `crawl` loop (a push with the flippers, 3.6 s) |
+| Four plates still inpainted | **waiting on images** | the opening forest, Monteverde, Irazú and Tortuguero have no clean scene yet; they keep the earlier loops |
+| Device verification | **not done** | lab only |
+
 ## Map page, pictures and cartoons — "nature edition" (2026-10-24, night)
 
 The owner asked for: a better map page with interactive features, an image for every location, a cartoon for every animal, food images, and the pages redesigned in nature colours. Photographs cannot be generated or fetched from this environment, so every picture is drawn in code (see `docs/ART_STYLE.md`) and labelled as an illustration.

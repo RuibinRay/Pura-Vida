@@ -23,7 +23,7 @@ if (!(await serverUp())) {
   for (let i = 0; i < 40 && !(await serverUp()); i++) await new Promise((r) => setTimeout(r, 250));
 }
 
-const browser = await puppeteer.launch({ executablePath: await chromium.executablePath(), args: [...chromium.args, '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'], headless: true });
+const browser = await puppeteer.launch({ executablePath: await chromium.executablePath(), args: [...chromium.args, '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'], headless: true, protocolTimeout: 900000 });
 const report = { pages: [] };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -61,6 +61,8 @@ const scrollTo = (f) => async (p) => { await p.evaluate((ff) => { const total = 
 // scroll to the middle of the stop with this key (scenes.ts), by its chapter section's class
 const toStopKey = (key) => async (p) => { const n = await p.evaluate((k) => [...document.querySelectorAll('.journey [data-chapter]')].findIndex((e) => e.classList.contains('jspace--' + k)) + 1, key); if (!n) throw new Error('no stop ' + key); await toStop(n)(p); };
 const toStop = (n) => async (p) => { await p.evaluate((nn) => { const els = document.querySelectorAll('.journey [data-chapter]'); const c = els[nn - 1]; const next = els[nn]; const top = c.getBoundingClientRect().top + window.scrollY; const len = next ? next.getBoundingClientRect().top + window.scrollY - top : c.offsetHeight - window.innerHeight; window.scrollTo({ top: Math.round(top + len * 0.5), behavior: 'instant' }); }, n); await sleep(3000); };
+// ONLY_HOME=1 limits the sweep to the walk (the content pages are unchanged in a plate pass)
+const FULL = !process.env.ONLY_HOME;
 await visit('home-open', '/', { wait: 3000, query: '?why&tier=lite', axe: true });
 // every stop of the walk, by key (the order of scenes.ts), each audited with axe
 const WALK = ['arenal', 'monteverde', 'rio-celeste', 'guanacaste', 'flavors', 'coffee', 'cartago', 'irazu', 'chirripo', 'corcovado', 'tortuguero', 'close'];
@@ -73,31 +75,31 @@ await visit('home-jump-1-to-12', '/', { wait: 2500, query: '?tier=lite', actions
   if (visible.join() !== '12') { console.log('   ✗ far jump: visible stops', visible.join(', '), '(expected only 12)'); await p.evaluate((v) => console.error('far jump left stops visible: ' + v), visible.join(', ')); } else console.log('   far jump 1→12: only stop 12 visible');
 } });
 await visit('home-still', '/', { wait: 2000, query: '?tier=still' });
-await visit('explore', '/explore', { wait: 6000, query: '?why&tier=lite', axe: true });
-await visit('explore-selected', '/explore', { wait: 4000, query: '?tier=lite', actions: async (p) => { await p.evaluate(() => { const li = document.querySelector('.province-list li[data-id="guanacaste"]'); li?.click(); }); await sleep(3000); } });
-await visit('explore-2d', '/explore', { wait: 2000, actions: async (p) => { await p.evaluate(() => { const b = [...document.querySelectorAll('.seg__btn')].find((x) => x.textContent?.trim() === '2D'); b?.click(); }); await sleep(1200); await p.evaluate(() => { const li = document.querySelector('.province-list li[data-id="limon"]'); li?.click(); }); await sleep(1500); } });
-await visit('explore-text', '/explore', { wait: 1500, query: '?tier=text' });
-await visit('explore-place', '/explore?place=peak-poas', { wait: 5000, query: '?tier=lite', axe: true });
-await visit('explore-animal', '/explore?animal=resplendent-quetzal', { wait: 5000, query: '?tier=lite' });
-await visit('explore-tour', '/explore', { wait: 4000, query: '?tier=lite', actions: async (p) => { await p.evaluate(() => { const b = [...document.querySelectorAll('.chip--tour')][0]; b?.click(); }); await sleep(3500); }, axe: true });
-await visit('explore-gallery', '/explore', { wait: 3000, query: '?tier=lite', actions: async (p) => { await p.evaluate(() => document.querySelector('.gallery')?.scrollIntoView()); await sleep(1500); } });
-await visit('explore-2d-layers', '/explore', { wait: 2500, actions: async (p) => { await p.evaluate(() => { const b = [...document.querySelectorAll('.seg__btn')].find((x) => x.textContent?.trim() === '2D'); b?.click(); }); await sleep(800); await p.evaluate(() => { const f = document.querySelector('.chip--food'); if (f && f.getAttribute('aria-pressed') !== 'true') f.click(); }); await sleep(1500); } });
-await visit('explore-phone', '/explore', { width: 390, height: 844, wait: 5000, query: '?tier=lite', axe: true });
-await visit('provinces', '/provinces', { wait: 2000, axe: true });
-await visit('province-puntarenas', '/provinces/puntarenas', { wait: 6000, query: '?tier=lite', axe: true });
-await visit('wildlife', '/wildlife', { wait: 1500, axe: true });
-await visit('wildlife-phone', '/wildlife', { width: 390, height: 844, wait: 1500, axe: true });
-await visit('food', '/food', { wait: 1500, axe: true });
-await visit('food-phone', '/food', { width: 390, height: 844, wait: 1500, axe: true });
-await visit('sources', '/sources', { wait: 1500, axe: true });
-await visit('my', '/my-costa-rica', { wait: 1000, axe: true });
-await visit('my-draft', '/my-costa-rica', { wait: 1000, query: '?draft' });
-await visit('coming', '/history', { wait: 1000 });
+if (FULL) await visit('explore', '/explore', { wait: 6000, query: '?why&tier=lite', axe: true });
+if (FULL) await visit('explore-selected', '/explore', { wait: 4000, query: '?tier=lite', actions: async (p) => { await p.evaluate(() => { const li = document.querySelector('.province-list li[data-id="guanacaste"]'); li?.click(); }); await sleep(3000); } });
+if (FULL) await visit('explore-2d', '/explore', { wait: 2000, actions: async (p) => { await p.evaluate(() => { const b = [...document.querySelectorAll('.seg__btn')].find((x) => x.textContent?.trim() === '2D'); b?.click(); }); await sleep(1200); await p.evaluate(() => { const li = document.querySelector('.province-list li[data-id="limon"]'); li?.click(); }); await sleep(1500); } });
+if (FULL) await visit('explore-text', '/explore', { wait: 1500, query: '?tier=text' });
+if (FULL) await visit('explore-place', '/explore?place=peak-poas', { wait: 5000, query: '?tier=lite', axe: true });
+if (FULL) await visit('explore-animal', '/explore?animal=resplendent-quetzal', { wait: 5000, query: '?tier=lite' });
+if (FULL) await visit('explore-tour', '/explore', { wait: 4000, query: '?tier=lite', actions: async (p) => { await p.evaluate(() => { const b = [...document.querySelectorAll('.chip--tour')][0]; b?.click(); }); await sleep(3500); }, axe: true });
+if (FULL) await visit('explore-gallery', '/explore', { wait: 3000, query: '?tier=lite', actions: async (p) => { await p.evaluate(() => document.querySelector('.gallery')?.scrollIntoView()); await sleep(1500); } });
+if (FULL) await visit('explore-2d-layers', '/explore', { wait: 2500, actions: async (p) => { await p.evaluate(() => { const b = [...document.querySelectorAll('.seg__btn')].find((x) => x.textContent?.trim() === '2D'); b?.click(); }); await sleep(800); await p.evaluate(() => { const f = document.querySelector('.chip--food'); if (f && f.getAttribute('aria-pressed') !== 'true') f.click(); }); await sleep(1500); } });
+if (FULL) await visit('explore-phone', '/explore', { width: 390, height: 844, wait: 5000, query: '?tier=lite', axe: true });
+if (FULL) await visit('provinces', '/provinces', { wait: 2000, axe: true });
+if (FULL) await visit('province-puntarenas', '/provinces/puntarenas', { wait: 6000, query: '?tier=lite', axe: true });
+if (FULL) await visit('wildlife', '/wildlife', { wait: 1500, axe: true });
+if (FULL) await visit('wildlife-phone', '/wildlife', { width: 390, height: 844, wait: 1500, axe: true });
+if (FULL) await visit('food', '/food', { wait: 1500, axe: true });
+if (FULL) await visit('food-phone', '/food', { width: 390, height: 844, wait: 1500, axe: true });
+if (FULL) await visit('sources', '/sources', { wait: 1500, axe: true });
+if (FULL) await visit('my', '/my-costa-rica', { wait: 1000, axe: true });
+if (FULL) await visit('my-draft', '/my-costa-rica', { wait: 1000, query: '?draft' });
+if (FULL) await visit('coming', '/history', { wait: 1000 });
 await visit('es-home', '/', { wait: 3000, query: '?lang=es&tier=lite' });
 await visit('zh-home-table', '/', { wait: 2000, query: '?lang=zh&tier=lite', actions: toStopKey('flavors') });
-await visit('zh-explore', '/explore', { wait: 5000, query: '?lang=zh' });
+if (FULL) await visit('zh-explore', '/explore', { wait: 5000, query: '?lang=zh' });
 // keyboard: tab into the province list on /explore and arrow down → a province gets selected
-await visit('explore-keyboard', '/explore', { wait: 5000, query: '?tier=lite', actions: async (p) => {
+if (FULL) await visit('explore-keyboard', '/explore', { wait: 5000, query: '?tier=lite', actions: async (p) => {
   await p.evaluate(() => (document.querySelector('.province-list li[tabindex="0"]')).focus());
   await p.keyboard.press('ArrowDown'); await sleep(300); await p.keyboard.press('ArrowDown'); await sleep(2500);
   const sel = await p.evaluate(() => document.querySelector('.province-list li[aria-selected="true"]')?.textContent?.trim());
@@ -109,10 +111,10 @@ await visit('home-tortuguero', '/', { width: 390, height: 844, wait: 2000, query
 await visit('home-close', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: toStopKey('close') });
 await visit('home-rio-celeste', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: toStopKey('rio-celeste') });
 await visit('home-guanacaste', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: toStopKey('guanacaste') });
-await visit('food', '/food', { width: 390, height: 844, wait: 1500 });
-await visit('explore', '/explore', { width: 390, height: 844, wait: 5000 });
-await visit('provinces', '/provinces', { width: 390, height: 844, wait: 1500 });
-await visit('province-limon', '/provinces/limon', { width: 390, height: 844, wait: 5000 });
+if (FULL) await visit('food', '/food', { width: 390, height: 844, wait: 1500 });
+if (FULL) await visit('explore', '/explore', { width: 390, height: 844, wait: 5000 });
+if (FULL) await visit('provinces', '/provinces', { width: 390, height: 844, wait: 1500 });
+if (FULL) await visit('province-limon', '/provinces/limon', { width: 390, height: 844, wait: 5000 });
 
 fs.writeFileSync('tools/scratch/check-report.json', JSON.stringify(report, null, 1));
 await browser.close();
