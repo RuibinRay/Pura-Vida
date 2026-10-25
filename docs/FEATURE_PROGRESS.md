@@ -25,6 +25,23 @@ The owner asked for: a better map page with interactive features, an image for e
 | Food page | done | dish index, a plated hero per dish with "Where it is eaten"; ingredient stickers |
 | Province chapters | done | landmark list with a picture per place (click → shown on the map); species list with the cartoon when the journal has the species |
 | Device verification (desktop + mobile, real GPU) | **not done** | lab only (headless Chromium, SwiftShader); see TEST_RESULTS.md |
+## Province pass — every province on the walk, ten new plates (2026-10-25)
+
+The owner supplied ten images with a brief: keep the stops that already have animals, replace the two plates without animals, put a stop for every province on the home page, link them with smooth transitions, give the animals moving heads, use the old Río Celeste on the map part, and give the closing "Why this journey exists" stop an animal.
+
+| Change | Status | Notes |
+|---|---|---|
+| Thirteen stops, all seven provinces | built | Discover → Arenal (Alajuela) → Monteverde → Río Celeste → Guanacaste → Flavors → Coffee highlands (Heredia) → Basílica de los Ángeles (Cartago) → Irazú → Cerro Chirripó (San José) → Corcovado → Tortuguero → Manuel Antonio (Puntarenas, closing); a route that makes geographic sense, the same mist/warm washes at every boundary |
+| Two plates replaced | built | Río Celeste (hummingbird, morpho, waterfall + pool + rapids), Manuel Antonio (a sea turtle on the beach, surf, wet sand); the old plates kept as `rio-celeste-pool` (Tenorio's picture on the map page) and `manuel-antonio-sunset` (the Quepos pin) |
+| Four new plates | built | Arenal (toucan, lake), Chirripó (thrush over the cloud sea), Cartago (two hummingbirds, the basilica), coffee highlands (thrush, hummingbird); each with foliage frame layers that sway, clouds and, where the sky allows, a flock |
+| Moving heads on every new animal | built | head parts with pivots at the neck (tilt/turn/watch) and whole-body cut-outs beneath them; the turtle breathes and turns its head slowly; hummingbirds hover with a fluttering near wing |
+| Sourced places | built | `research/places.json`: Arenal (29 July 1968, 78 dead by the CNE's count with the other figures recorded, activity ceased October 2010, Lake Arenal 85 km², the park of 1991), Chirripó (3,820 m, Law 5773 of 1975, 43,700 → ~50,150 ha, −9 °C, 14 km + 5 km), the basilica (2 August 1635, patroness 1824, the 1910 earthquake and Llach's 1912 design, the 22 km romería with no official count), the coffee highlands (coffee since 1779, Le Lacheur 1843, 1,200–1,700 m, Barva 2,906 m, Heredia at 1,137 m) — every figure with its source and status |
+| Sourced species | built | `research/species-provinces.json`: olive ridley sea turtle (ICT lists Manuel Antonio among its Pacific nesting beaches; the drawing looks more like a green turtle, and the sheet says so), rufous-tailed hummingbird, ruby-throated hummingbird (a winter migrant, marked as an inference); habitat verdicts for the toucan at Arenal, the thrush at Chirripó (*not quite here* — the páramo's thrush is the sooty thrush) and in the coffee, the mountain-gem and the morpho at Río Celeste |
+| The map page | built | `PLATE_FOR` maps Arenal, Chirripó, the basilica/Cartago, Heredia/Barva to the new plates; Tenorio to the old pool plate |
+| The composite | built | the tenth image is a still figure on the "Where I come from" page |
+| Copy placement per stop | built | Río Celeste's words right of centre (the morpho rests lower left), a narrower Cartago column (the basilica's right wing), the end card starting right of the turtle and fading toward it; on phones the new stops and the end card anchor at the top with clamped text |
+| Not done | — | the three second versions (Monteverde, Tortuguero with its caiman, Guanacaste) are kept in the repository and unused; a province-page figure for each would be a natural next use |
+
 ## Alive pass — "the toucan is terrible", clouds, wind, lag (2026-10-24, night)
 
 The owner's third look at the walk: the toucan's motion was wrong, the plates needed wind and moving clouds, and the scroll lagged on his machine.

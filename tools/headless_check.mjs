@@ -58,22 +58,19 @@ async function visit(name, hash, { width = 1440, height = 900, wait = 2500, acti
 // the homepage journey: the opening, then each chapter at the scroll position where it is on stage
 const scrollTo = (f) => async (p) => { await p.evaluate((ff) => { const total = document.documentElement.scrollHeight - window.innerHeight; window.scrollTo({ top: Math.round(total * ff), behavior: 'instant' }); }, f); await sleep(3000); };
 // scroll to the middle of stop n (1-based) of the walk, by the spacers' positions
+// scroll to the middle of the stop with this key (scenes.ts), by its chapter section's class
+const toStopKey = (key) => async (p) => { const n = await p.evaluate((k) => [...document.querySelectorAll('.journey [data-chapter]')].findIndex((e) => e.classList.contains('jspace--' + k)) + 1, key); if (!n) throw new Error('no stop ' + key); await toStop(n)(p); };
 const toStop = (n) => async (p) => { await p.evaluate((nn) => { const els = document.querySelectorAll('.journey [data-chapter]'); const c = els[nn - 1]; const next = els[nn]; const top = c.getBoundingClientRect().top + window.scrollY; const len = next ? next.getBoundingClientRect().top + window.scrollY - top : c.offsetHeight - window.innerHeight; window.scrollTo({ top: Math.round(top + len * 0.5), behavior: 'instant' }); }, n); await sleep(3000); };
 await visit('home-open', '/', { wait: 3000, query: '?why&tier=lite', axe: true });
-await visit('home-02-monteverde', '/', { wait: 2500, query: '?tier=lite', actions: toStop(2), axe: true });
-await visit('home-03-rio-celeste', '/', { wait: 2500, query: '?tier=lite', actions: toStop(3), axe: true });
-await visit('home-04-irazu', '/', { wait: 2500, query: '?tier=lite', actions: toStop(4), axe: true });
-await visit('home-04-irazu-erupting', '/', { wait: 2500, query: '?tier=lite', actions: async (p) => { await toStop(4)(p); await p.evaluate(() => document.querySelector('.erupt-ctl .btn--primary')?.click()); await sleep(3500); }, axe: true });
-await visit('home-05-guanacaste', '/', { wait: 2500, query: '?tier=lite', actions: toStop(5), axe: true });
-await visit('home-06-table', '/', { wait: 2500, query: '?tier=lite', actions: toStop(6), axe: true });
-await visit('home-07-corcovado', '/', { wait: 2500, query: '?tier=lite', actions: toStop(7), axe: true });
-await visit('home-08-tortuguero', '/', { wait: 2500, query: '?tier=lite', actions: toStop(8), axe: true });
-await visit('home-09-close', '/', { wait: 2500, query: '?tier=lite', actions: toStop(9), axe: true });
+// every stop of the walk, by key (the order of scenes.ts), each audited with axe
+const WALK = ['arenal', 'monteverde', 'rio-celeste', 'guanacaste', 'flavors', 'coffee', 'cartago', 'irazu', 'chirripo', 'corcovado', 'tortuguero', 'close'];
+for (const key of WALK) await visit(`home-${key}`, '/', { wait: 2500, query: '?tier=lite', actions: toStopKey(key), axe: true });
+await visit('home-irazu-erupting', '/', { wait: 2500, query: '?tier=lite', actions: async (p) => { await toStopKey('irazu')(p); await p.evaluate(() => document.querySelector('.erupt-ctl .btn--primary')?.click()); await sleep(3000); }, axe: true });
 // a far jump (a rail click, a restored scroll position) must settle the stops it skipped: only the new stop stays visible
-await visit('home-jump-1-to-8', '/', { wait: 2500, query: '?tier=lite', actions: async (p) => {
-  await toStop(1)(p); await toStop(8)(p);
+await visit('home-jump-1-to-12', '/', { wait: 2500, query: '?tier=lite', actions: async (p) => {
+  await toStop(1)(p); await toStop(12)(p);
   const visible = await p.evaluate(() => [...document.querySelectorAll('.scene')].filter((e) => e.style.visibility !== 'hidden' && getComputedStyle(e).opacity !== '0').map((e) => e.className.match(/scene--(\d+)/)[1]));
-  if (visible.join() !== '8') { console.log('   ✗ far jump: visible stops', visible.join(', '), '(expected only 8)'); await p.evaluate((v) => console.error('far jump left stops visible: ' + v), visible.join(', ')); } else console.log('   far jump 1→8: only stop 8 visible');
+  if (visible.join() !== '12') { console.log('   ✗ far jump: visible stops', visible.join(', '), '(expected only 12)'); await p.evaluate((v) => console.error('far jump left stops visible: ' + v), visible.join(', ')); } else console.log('   far jump 1→12: only stop 12 visible');
 } });
 await visit('home-still', '/', { wait: 2000, query: '?tier=still' });
 await visit('explore', '/explore', { wait: 6000, query: '?why&tier=lite', axe: true });
@@ -97,7 +94,7 @@ await visit('my', '/my-costa-rica', { wait: 1000, axe: true });
 await visit('my-draft', '/my-costa-rica', { wait: 1000, query: '?draft' });
 await visit('coming', '/history', { wait: 1000 });
 await visit('es-home', '/', { wait: 3000, query: '?lang=es&tier=lite' });
-await visit('zh-home-table', '/', { wait: 2000, query: '?lang=zh&tier=lite', actions: toStop(6) });
+await visit('zh-home-table', '/', { wait: 2000, query: '?lang=zh&tier=lite', actions: toStopKey('flavors') });
 await visit('zh-explore', '/explore', { wait: 5000, query: '?lang=zh' });
 // keyboard: tab into the province list on /explore and arrow down → a province gets selected
 await visit('explore-keyboard', '/explore', { wait: 5000, query: '?tier=lite', actions: async (p) => {
@@ -108,8 +105,10 @@ await visit('explore-keyboard', '/explore', { wait: 5000, query: '?tier=lite', a
 } });
 // phone
 await visit('home-open', '/', { width: 390, height: 844, wait: 3000, query: '?tier=lite' });
-await visit('home-08-tortuguero', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: toStop(8) });
-await visit('home-05-guanacaste', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: toStop(5) });
+await visit('home-tortuguero', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: toStopKey('tortuguero') });
+await visit('home-close', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: toStopKey('close') });
+await visit('home-rio-celeste', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: toStopKey('rio-celeste') });
+await visit('home-guanacaste', '/', { width: 390, height: 844, wait: 2000, query: '?tier=lite', actions: toStopKey('guanacaste') });
 await visit('food', '/food', { width: 390, height: 844, wait: 1500 });
 await visit('explore', '/explore', { width: 390, height: 844, wait: 5000 });
 await visit('provinces', '/provinces', { width: 390, height: 844, wait: 1500 });

@@ -1,6 +1,7 @@
 import { useT, pickLang } from '../../i18n';
 import { PERSONAL, AUTHOR, type PersonalEntry } from '../../content/personal';
 import { Icon } from '../../ui/Icon';
+import { PlateImage } from '../../journey/Plate';
 import { usePageTitle } from '../usePageTitle';
 
 const isDraft = () => /[?&]draft/.test(window.location.search) || /[?&]draft/.test(window.location.hash);
@@ -31,6 +32,11 @@ export function MyCostaRicaPage() {
         <h1>{t('my.title')}</h1>
         <p className="lede">{t('my.lede')}</p>
       </header>
+      {/* the author's composite of the country — sloth, toucan, macaw and morpho over a volcano, a lake and a waterfall */}
+      <figure className="plate-figure plate-figure--my">
+        <PlateImage plate="composite" sizes="(min-width: 1100px) 1100px, 100vw" alt={t('my.plateAlt')} />
+        <figcaption className="muted ui"><small>{t('journey.ch4.plateCredit')}</small></figcaption>
+      </figure>
       <section className="author-card paper" aria-labelledby="author-name">
         <div className="author-card__body">
           <p className="eyebrow">{t('my.aboutAuthor')}</p>

@@ -73,10 +73,12 @@ describe('generated content', () => {
     expect(macaw?.stops?.tortuguero?.note, 'scarlet macaw note').toBeTruthy();
   });
 
-  it('has the seven places of the walk with sourced overviews, fact tiles and a province', () => {
+  it('has the places of the walk — one or more per province — with sourced overviews, fact tiles and a province', () => {
     const places = gen('places.json').places as { id: string; province: string; coords?: number[]; overview: { en: string; es: string; zh: string; status: string; sources: unknown[] }; facts: { key: string; value: number | string; status: string; sources: unknown[] }[] }[];
     const ids = places.map((p) => p.id);
-    for (const id of ['monteverde', 'rio-celeste', 'irazu', 'guanacaste', 'manuel-antonio', 'corcovado', 'tortuguero']) expect(ids, id).toContain(id);
+    for (const id of ['monteverde', 'rio-celeste', 'irazu', 'guanacaste', 'manuel-antonio', 'corcovado', 'tortuguero', 'arenal', 'chirripo', 'cartago-basilica', 'heredia-coffee']) expect(ids, id).toContain(id);
+    // every province has at least one place on the walk
+    for (const prov of ['san-jose', 'alajuela', 'cartago', 'heredia', 'guanacaste', 'puntarenas', 'limon']) expect(places.some((p) => p.province === prov), prov + ' has a stop').toBe(true);
     for (const p of places) {
       expect(['san-jose', 'alajuela', 'cartago', 'heredia', 'guanacaste', 'puntarenas', 'limon'], p.id + ' province').toContain(p.province);
       for (const l of ['en', 'es', 'zh'] as const) expect(p.overview[l].length, p.id + ' overview ' + l).toBeGreaterThan(80);
@@ -102,7 +104,7 @@ describe('generated content', () => {
 
   it('has a plate manifest for every stop, with animals in parts, water, and files for every width', () => {
     const plates = JSON.parse(fs.readFileSync(path.resolve('src/journey/plates.generated.json'), 'utf8')) as Record<string, { width: number; height: number; widths: number[]; animals?: { id: string; species: string | null; hotspot: number[] | null; parts: { name: string; widths: number[]; box: number[] }[] }[]; water?: { name: string; widths: number[] }[] }>;
-    const expected: Record<string, number> = { forest: 6, monteverde: 4, irazu: 3, guanacaste: 5, corcovado: 3, tortuguero: 5, 'rio-celeste': 0, 'manuel-antonio': 0 };
+    const expected: Record<string, number> = { forest: 6, monteverde: 4, irazu: 3, guanacaste: 5, corcovado: 3, tortuguero: 5, 'rio-celeste': 2, 'manuel-antonio': 1, arenal: 1, chirripo: 1, cartago: 2, coffee: 2, 'rio-celeste-pool': 0, 'manuel-antonio-sunset': 0 };
     const ids = new Set((species as { id?: string }[]).map((s) => s.id));
     for (const [name, n] of Object.entries(expected)) {
       const m = plates[name];

@@ -13,6 +13,10 @@ const TILES: Record<string, string[]> = {
   'manuel-antonio': ['dailyCap', 'areaHa'],
   corcovado: ['areaHa', 'worldBiodiversityShare'],
   tortuguero: ['greenTurtleSeason', 'rainfall'],
+  arenal: ['activeYears', 'lakeArea'],
+  chirripo: ['summit', 'lowestTemp'],
+  'cartago-basilica': ['found', 'romeriaKm'],
+  'heredia-coffee': ['coffeeSince', 'barva'],
 };
 
 function unitOf(f: PlaceFact) {

@@ -47,9 +47,13 @@ const zh: Messages = {
     chaptersCount: '共 {n} 章的旅程',
     stops: {
       discover: { kicker: '探索', title: '哥斯达黎加' },
+      arenal: { kicker: '阿雷纳尔 · 阿拉胡埃拉', title: '阿雷纳尔火山' },
       monteverde: { kicker: '蒙特维德 · 蓬塔雷纳斯', title: '蒙特维德云雾森林' },
       'rio-celeste': { kicker: '天蓝河 · 阿拉胡埃拉', title: '天蓝河（Río Celeste）' },
       irazu: { kicker: '伊拉苏 · 卡塔戈', title: '伊拉苏火山' },
+      cartago: { kicker: '卡塔戈 · 天使圣母大教堂', title: '卡塔戈，旧都' },
+      chirripo: { kicker: '奇里波 · 圣何塞', title: '奇里波山' },
+      coffee: { kicker: '埃雷迪亚 · 咖啡高地', title: '咖啡高地' },
       provinces: { kicker: '七省', title: '七个省，七个故事' },
       guanacaste: { kicker: '瓜纳卡斯特 · 干旱森林', title: '瓜纳卡斯特' },
       flavors: { kicker: '文化', title: '哥斯达黎加的味道' },
@@ -294,6 +298,7 @@ const zh: Messages = {
     placeholder: '可编辑的占位区',
     placeholderNote: '本节没有任何内容是代作者写的。下面每个区块都留给他自己的文字和照片；在填写之前，公开站点上不会显示。',
     aboutAuthor: '关于作者',
+    plateAlt: '作者的插画：一只三趾树懒挂在长满苔藓的树枝上，其下停着一只彩嘴巨嘴鸟；一只绯红金刚鹦鹉飞越湖泊与锥形火山；一道瀑布落入森林，一只蓝闪蝶停在叶上。',
     visitSite: '我的主页 — ruibinray.github.io',
     authorNote: '这几行来自我的个人主页；本站的其余部分，以及我在下面添加的一切，都在讲哥斯达黎加。',
     sections: {

@@ -1,0 +1,9 @@
+{
+ "id": "composite",
+ "source": "research/plates-original/2026-10-25/composite-sloth-toucan-macaw.png",
+ "upscale": 2,
+ "focal": { "x": 0.5, "y": 0.45 },
+ "animals": [],
+ "water": [],
+ "notes": "The author's untitled composite (sloth, toucan, macaw, morpho over a volcano, lake and waterfall), used as a still figure on the wildlife chapter; no cut-outs."
+}

@@ -46,9 +46,13 @@ const en = {
     chaptersCount: 'A journey in {n} chapters',
     stops: {
       discover: { kicker: 'Discover', title: 'Costa Rica' },
+      arenal: { kicker: 'Arenal · Alajuela', title: 'Arenal Volcano' },
       monteverde: { kicker: 'Monteverde · Puntarenas', title: 'Monteverde Cloud Forest' },
       'rio-celeste': { kicker: 'Río Celeste · Alajuela', title: 'Río Celeste' },
       irazu: { kicker: 'Irazú · Cartago', title: 'Irazú Volcano' },
+      cartago: { kicker: 'Cartago · Basílica de los Ángeles', title: 'Cartago, the old capital' },
+      chirripo: { kicker: 'Chirripó · San José', title: 'Cerro Chirripó' },
+      coffee: { kicker: 'Heredia · Coffee highlands', title: 'The coffee highlands' },
       provinces: { kicker: 'Provinces', title: 'Seven provinces, seven stories' },
       guanacaste: { kicker: 'Guanacaste · Dry forest', title: 'Guanacaste' },
       flavors: { kicker: 'Culture', title: 'The flavors of Costa Rica' },
@@ -293,6 +297,7 @@ const en = {
     placeholder: 'Editable placeholder',
     placeholderNote: 'Nothing here has been written on the author’s behalf. Each block below is a slot for his own words and photographs; it is hidden on the public site until it is filled in.',
     aboutAuthor: 'About the author',
+    plateAlt: 'An illustrated plate by the author: a three-toed sloth hangs from a mossy branch with a keel-billed toucan below it, a scarlet macaw flies in over a lake and a conical volcano, a waterfall drops into the forest, and a blue morpho rests on a leaf.',
     visitSite: 'My home page — ruibinray.github.io',
     authorNote: 'These lines come from my home page; the rest of the site, and everything I add below, speaks about Costa Rica.',
     sections: {

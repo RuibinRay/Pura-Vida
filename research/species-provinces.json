@@ -1,0 +1,329 @@
+{
+ "retrieved": "2026-10-25",
+ "notes": "Species drawn on the four province plates and the two replacement plates supplied by the author on 2026-10-25 (Río Celeste v2, Manuel Antonio with the turtle, Arenal, Cerro Chirripó, the Cartago basilica, the Heredia coffee highlands). Every fact rests on a page fetched with WebFetch on 2026-10-25; GBIF's API could not be fetched in this session, so taxonomy and IUCN categories come from the Wikipedia species pages and are marked approximate where GBIF would have confirmed them. Identifications are from illustrations: where the drawn bird does not match any species cleanly, the record says so and the habitat verdict is honest about it.",
+ "species": [
+  {
+   "id": "olive-ridley-sea-turtle",
+   "commonNames": {
+    "en": "Olive Ridley Sea Turtle",
+    "es": "tortuga lora",
+    "esAlt": ["tortuga olivácea", "tortuga golfina"],
+    "zh": "太平洋丽龟",
+    "status": "confirmed (en: Wikipedia); approximate (es: 'tortuga lora' is the name used in Costa Rica for the Ostional arribadas, not verified on a fetched page in this session; zh: not verified)",
+    "sources": ["https://en.wikipedia.org/wiki/Olive_ridley_sea_turtle"]
+   },
+   "scientific": "Lepidochelys olivacea",
+   "authority": "(Eschscholtz, 1829)",
+   "family": "Cheloniidae",
+   "order": "Testudines",
+   "taxonomyStatus": "approximate (Wikipedia; GBIF not fetched)",
+   "iucn": {
+    "category": "VU",
+    "categoryName": "Vulnerable",
+    "year": 2008,
+    "status": "approximate (category and year as stated on the Wikipedia species page; the IUCN assessment itself was not fetched)",
+    "note": "Also listed in CITES Appendix I.",
+    "sources": ["https://en.wikipedia.org/wiki/Olive_ridley_sea_turtle"]
+   },
+   "size": {
+    "length_cm": 61,
+    "mass_g": 50000,
+    "mass_g_range": [35000, 50000],
+    "status": "approximate (Wikipedia: carapace about 61 cm along the curve; adults rarely over 50 kg, females at Oaxaca averaged 35.45 kg)",
+    "sources": ["https://en.wikipedia.org/wiki/Olive_ridley_sea_turtle"]
+   },
+   "habitat": {
+    "en": "Warm tropical seas, mainly the Pacific and Indian Oceans with some presence in the Atlantic; it comes ashore only to nest, on sandy beaches, and in the eastern Pacific nests year-round with mass nestings — arribadas — peaking between September and December.",
+    "es": "Mares tropicales cálidos, sobre todo el Pacífico y el Índico, con alguna presencia en el Atlántico; solo sale a tierra para anidar, en playas de arena, y en el Pacífico oriental anida todo el año con anidaciones masivas —arribadas— que alcanzan su pico entre setiembre y diciembre.",
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Olive_ridley_sea_turtle"]
+   },
+   "distributionCR": {
+    "en": "Costa Rica's Pacific coast holds two of the world's great arribada beaches, Ostional and Nancite: at Ostional villagers have legally harvested about three million eggs a year since 1987 while more than 27 million are left, and one Nancite arribada laid 11.5 million eggs of which only 0.2 % hatched. The tourism board's turtle guide lists Manuel Antonio among the Pacific beaches where the species nests, with a May-to-January season, alongside El Jobo, Nancite, Barú, Platanares, San Josecito and Santa Teresa; solitary nesting occurs year-round.",
+    "es": "La costa pacífica de Costa Rica tiene dos de las grandes playas de arribada del mundo, Ostional y Nancite: en Ostional la comunidad ha recolectado legalmente unos tres millones de huevos al año desde 1987 mientras quedan más de 27 millones, y una arribada en Nancite puso 11,5 millones de huevos de los que solo eclosionó el 0,2 %. La guía de tortugas del ICT incluye Manuel Antonio entre las playas del Pacífico donde anida la especie, con temporada de mayo a enero, junto a El Jobo, Nancite, Barú, Platanares, San Josecito y Santa Teresa; la anidación solitaria ocurre todo el año.",
+    "status": "confirmed (Ostional and Nancite figures, Wikipedia; the beach list and season, ICT infographic); approximate (the infographic's layout makes the attribution of some beaches to the olive ridley rather than the hawksbill unclear)",
+    "sources": ["https://en.wikipedia.org/wiki/Olive_ridley_sea_turtle", "https://fr.visitcostarica.com/sites/default/files/legacy/pdf/Turtles%20infographic.pdf"]
+   },
+   "diet": {
+    "en": "Mainly carnivorous: tunicates, starfish, sea urchins, squid, bivalves, crabs and shrimp, with jellyfish, fish and filamentous algae also taken.",
+    "es": "Sobre todo carnívora: tunicados, estrellas de mar, erizos, calamares, bivalvos, cangrejos y camarones; también medusas, peces y algas filamentosas.",
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Olive_ridley_sea_turtle"]
+   },
+   "behaviour": {
+    "en": "The arribada: females gather offshore and come up the same beach to nest at once, in their thousands, so that later nesters dig up earlier nests. Males have longer, thicker tails and hooked front claws to grip the female; hatchlings are dark grey. Nesting females at Nancite averaged 63.3 cm of carapace, the smallest 54 cm; the species may live up to 50 years, and its age at maturity is unknown. The leading threat is people — egg collection, the killing of nesting females, meat and hides — followed by trawls, gill nets and longlines, boat strikes, marine debris, beach lights that mislead hatchlings, erosion and coastal development.",
+    "es": "La arribada: las hembras se reúnen frente a la costa y suben a la misma playa a anidar a la vez, por millares, de modo que las últimas desentierran los nidos de las primeras. Los machos tienen cola más larga y gruesa y uñas delanteras en gancho para sujetar a la hembra; las crías son gris oscuro. Las hembras que anidan en Nancite promediaron 63,3 cm de caparazón, la menor 54 cm; la especie puede vivir hasta 50 años y se desconoce la edad de madurez. La principal amenaza es el ser humano —recolección de huevos, matanza de hembras, carne y pieles—, seguida de redes de arrastre, trasmallos y palangres, golpes de embarcaciones, basura marina, luces de playa que desorientan a las crías, erosión y desarrollo costero.",
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Olive_ridley_sea_turtle"]
+   },
+   "facts": [
+    {"en": "It is the second-smallest sea turtle — about 61 cm of olive, heart-shaped shell and rarely over 50 kg — yet it nests in the largest crowds on Earth: a single arribada at Nancite laid 11.5 million eggs.", "es": "Es la segunda tortuga marina más pequeña —unos 61 cm de caparazón oliváceo en forma de corazón y rara vez más de 50 kg—, y sin embargo anida en las mayores multitudes del planeta: una sola arribada en Nancite puso 11,5 millones de huevos.", "status": "confirmed", "sources": ["https://en.wikipedia.org/wiki/Olive_ridley_sea_turtle"]},
+    {"en": "At Ostional the community has harvested about three million eggs a year legally since 1987 — eggs that the next wave of nesters would have dug up anyway — while more than 27 million are left to hatch.", "es": "En Ostional la comunidad recolecta legalmente unos tres millones de huevos al año desde 1987 —huevos que la siguiente oleada de hembras habría desenterrado— mientras más de 27 millones quedan para eclosionar.", "status": "confirmed", "sources": ["https://en.wikipedia.org/wiki/Olive_ridley_sea_turtle"]}
+   ],
+   "habitatFit": {
+    "stops": {
+     "close": {
+      "fit": true,
+      "note": {
+       "en": "Plausible, with one honesty about the drawing. The tourism board's sea-turtle guide lists Manuel Antonio among the Pacific beaches where the olive ridley nests (May to January), and solitary nesting on the Pacific happens year-round. The drawn turtle's domed, boldly patterned shell looks more like a green turtle's than the olive ridley's low, olive, heart-shaped carapace; the green turtle nests on the Pacific too, but the fetched guide names other beaches for it, not Manuel Antonio — so the record stands for the species the sources put on this beach, and the picture should be read as 'a sea turtle at dusk'.",
+       "es": "Plausible, con una honestidad sobre el dibujo. La guía de tortugas marinas del ICT incluye Manuel Antonio entre las playas del Pacífico donde anida la tortuga lora (de mayo a enero), y la anidación solitaria en el Pacífico ocurre todo el año. El caparazón abombado y muy dibujado de la tortuga ilustrada se parece más al de la tortuga verde que al bajo, oliváceo y acorazonado de la lora; la verde también anida en el Pacífico, pero la guía consultada nombra otras playas para ella, no Manuel Antonio —así que la ficha corresponde a la especie que las fuentes sitúan en esta playa, y la imagen debe leerse como 'una tortuga marina al atardecer'.",
+       "zh": "合理，但对画作要说明一点。旅游局的海龟指南把曼努埃尔安东尼奥列为太平洋丽龟筑巢的太平洋海滩之一（5月至1月），零散筑巢全年皆有。画中海龟隆起、花纹鲜明的背甲更像绿海龟，而非丽龟低平的橄榄色心形甲壳；绿海龟也在太平洋筑巢，但指南为它列出的是其他海滩——因此本条目对应的是资料记载出现在这片海滩的物种，画面应理解为“黄昏中的一只海龟”。"
+      },
+      "status": "approximate",
+      "sources": ["https://fr.visitcostarica.com/sites/default/files/legacy/pdf/Turtles%20infographic.pdf", "https://en.wikipedia.org/wiki/Olive_ridley_sea_turtle"]
+     }
+    }
+   },
+   "sources": [
+    {"url": "https://en.wikipedia.org/wiki/Olive_ridley_sea_turtle", "title": "Olive ridley sea turtle", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25", "supports": "Lepidochelys olivacea (Eschscholtz, 1829), Cheloniidae, Testudines; IUCN Vulnerable (2008), CITES I; about 61 cm, rarely over 50 kg, second-smallest sea turtle; olive heart-shaped carapace; arribadas at Ostional (3 million eggs harvested a year since 1987, 27 million left) and Nancite (11.5 million eggs, 0.2 % hatched); eastern Pacific nesting year-round, peak September–December; diet; threats; up to 50 years"},
+    {"url": "https://fr.visitcostarica.com/sites/default/files/legacy/pdf/Turtles%20infographic.pdf", "title": "Sea turtles of Costa Rica — nesting beaches and seasons (infographic)", "publisher": "Instituto Costarricense de Turismo (ICT)", "published": null, "retrieved": "2026-10-25", "supports": "the five species nesting in Costa Rica; Pacific olive ridley beaches including Manuel Antonio with a May–January season; arribadas at Ostional, Nancite and Corozalito; green turtle Pacific beaches (which do not include Manuel Antonio)"}
+   ]
+  },
+  {
+   "id": "rufous-tailed-hummingbird",
+   "commonNames": {
+    "en": "Rufous-tailed Hummingbird",
+    "es": "amazilia rabirrufa",
+    "esAlt": ["colibrí cola rojiza", "colibrí de cola rufa"],
+    "zh": "棕尾蜂鸟",
+    "status": "confirmed (en: Wikipedia); approximate (es and zh: not verified on a fetched page in this session)",
+    "sources": ["https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird"]
+   },
+   "scientific": "Amazilia tzacatl",
+   "authority": "(de la Llave, 1833)",
+   "family": "Trochilidae",
+   "order": "Apodiformes",
+   "taxonomyStatus": "approximate (Wikipedia; GBIF not fetched)",
+   "nomenclature": {
+    "en": "Five subspecies per Wikipedia; the nominate A. t. tzacatl ranges from eastern Mexico through Central America to most of Panama, so it is the one in Costa Rica.",
+    "es": "Cinco subespecies según Wikipedia; la nominal A. t. tzacatl va del este de México por Centroamérica hasta casi todo Panamá, así que es la de Costa Rica.",
+    "status": "approximate (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird"]
+   },
+   "iucn": {
+    "category": "LC",
+    "categoryName": "Least Concern",
+    "year": null,
+    "status": "approximate (category as stated on the Wikipedia species page, which cites a population of more than five million mature individuals, possibly decreasing)",
+    "sources": ["https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird"]
+   },
+   "size": {
+    "length_cm_range": [9, 11],
+    "mass_g": 5,
+    "status": "confirmed (Wikipedia: 9–11 cm, about 5 g)",
+    "sources": ["https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird"]
+   },
+   "habitat": {
+    "en": "Open, non-forested country: clearings, gardens and forest edges, low brushy second growth — and, in Wikipedia's words, it 'is often seen in coffee and banana plantations and frequently visits feeders'. From sea level to 1,850 m in Costa Rica.",
+    "es": "Terreno abierto, no boscoso: claros, jardines y bordes de bosque, charrales bajos —y, en palabras de Wikipedia, 'se ve a menudo en cafetales y bananales y visita con frecuencia los bebederos'. Desde el nivel del mar hasta los 1.850 m en Costa Rica.",
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird"]
+   },
+   "distributionCR": {
+    "en": "From east-central Mexico through Central America to Colombia, Ecuador and Venezuela; the whole of Costa Rica lies within its range, where it reaches 1,850 m — which takes in the Central Valley's gardens and coffee farms around Heredia (1,137 m) and Cartago. No fetched source gives Costa Rican record counts.",
+    "es": "Del centro-este de México por Centroamérica hasta Colombia, Ecuador y Venezuela; toda Costa Rica está dentro de su área, donde alcanza los 1.850 m —lo que incluye los jardines y cafetales del Valle Central alrededor de Heredia (1.137 m) y Cartago. Ninguna fuente consultada da conteos de registros en Costa Rica.",
+    "status": "confirmed (range and the 1,850 m limit, Wikipedia); interpretation (that the Central Valley falls within it)",
+    "sources": ["https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird", "https://www.britannica.com/place/Heredia"]
+   },
+   "diet": {
+    "en": "Nectar and small insects; a frequent visitor to sugar-water feeders.",
+    "es": "Néctar e insectos pequeños; visitante frecuente de bebederos de agua azucarada.",
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird"]
+   },
+   "behaviour": {
+    "en": "Extremely territorial at flower patches and feeders, chasing off other hummingbirds and even large insects. Polygynous; breeds between February and November depending on the place. The female alone builds the compact cup of plant fibres, leaves and spiderwebs dressed with lichens and moss, usually up to 6 m up on a thin horizontal twig, lays two white eggs, incubates them 15–19 days and raises the young, which fledge at 18–22 days.",
+    "es": "Sumamente territorial en parches de flores y bebederos: expulsa a otros colibríes e incluso a insectos grandes. Polígino; cría entre febrero y noviembre según el lugar. La hembra sola construye la taza compacta de fibras vegetales, hojas y telarañas vestida de líquenes y musgo, por lo general hasta 6 m de altura en una ramita horizontal, pone dos huevos blancos, los incuba 15–19 días y cría a los polluelos, que vuelan a los 18–22 días.",
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird"]
+   },
+   "facts": [
+    {"en": "Its bill is two-toned: red with a black tip below, red at the base and black on the outer half above — and the tail that names it is chestnut, with bronze-green edges.", "es": "Su pico es bicolor: rojo con punta negra abajo, rojo en la base y negro en la mitad exterior arriba —y la cola que le da nombre es castaña, con bordes verde bronce.", "status": "confirmed", "sources": ["https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird"]},
+    {"en": "It weighs about 5 g — a coffee cherry's worth of bird — and defends a flower patch as if it owned the farm.", "es": "Pesa unos 5 g —una cereza de café de pájaro— y defiende un parche de flores como si fuera dueño de la finca.", "status": "confirmed (mass); interpretation (the comparison)", "sources": ["https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird"]}
+   ],
+   "habitatFit": {
+    "stops": {
+     "coffee": {
+      "fit": true,
+      "note": {
+       "en": "Yes. Wikipedia says the species 'is often seen in coffee and banana plantations', lives in gardens, clearings and forest edges, and reaches 1,850 m in Costa Rica — the Heredia coffee slopes (about 1,100–1,700 m) are squarely inside that. The drawn bird — green above with a pale belly — is a fair likeness; the real bird's rufous tail is its tell.",
+       "es": "Sí. Wikipedia dice que la especie 'se ve a menudo en cafetales y bananales', vive en jardines, claros y bordes de bosque, y llega a los 1.850 m en Costa Rica —las laderas cafetaleras de Heredia (unos 1.100–1.700 m) están de lleno dentro. El ave dibujada —verde arriba con vientre claro— es un parecido razonable; la cola rojiza del ave real es su seña.",
+       "zh": "是的。维基百科称该种“常见于咖啡园和香蕉园”，栖息于花园、林间空地和林缘，在哥斯达黎加可达海拔1,850米——埃雷迪亚的咖啡坡地（约1,100–1,700米）完全在其范围内。画中的鸟上体绿色、腹部浅色，形似度尚可；真鸟的棕红色尾羽是其标志。"
+      },
+      "status": "confirmed",
+      "sources": ["https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird"]
+     },
+     "cartago": {
+      "fit": true,
+      "note": {
+       "en": "Yes. Gardens and flowering trees are this hummingbird's country, and Cartago (about 1,435 m) lies well below the species' 1,850 m ceiling in Costa Rica. The blue-green bird at the white orchid is drawn as this species; its throat is bluer than the real bird's green.",
+       "es": "Sí. Los jardines y los árboles en flor son el territorio de este colibrí, y Cartago (unos 1.435 m) queda muy por debajo del techo de 1.850 m de la especie en Costa Rica. El ave verdeazul junto a la orquídea blanca se dibuja como esta especie; su garganta es más azul que el verde del ave real.",
+       "zh": "是的。花园和开花的树木正是这种蜂鸟的领地，卡塔戈（约海拔1,435米）远低于该种在哥斯达黎加1,850米的上限。白兰花旁的蓝绿色小鸟即按此种绘制；其喉部比真鸟的绿色更偏蓝。"
+      },
+      "status": "confirmed",
+      "sources": ["https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird"]
+     }
+    }
+   },
+   "sources": [
+    {"url": "https://en.wikipedia.org/wiki/Rufous-tailed_hummingbird", "title": "Rufous-tailed hummingbird", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25", "supports": "Amazilia tzacatl (de la Llave, 1833), Trochilidae, Apodiformes; Least Concern; 9–11 cm, about 5 g; description; range from east-central Mexico to Ecuador and Venezuela, to 1,850 m in Costa Rica; gardens, clearings, forest edges, coffee and banana plantations, feeders; territorial; nesting; five subspecies"},
+    {"url": "https://www.britannica.com/place/Heredia", "title": "Heredia", "publisher": "Encyclopaedia Britannica", "published": null, "retrieved": "2026-10-25", "supports": "Heredia at 1,137 m; the richest coffee-producing area of Costa Rica"}
+   ]
+  },
+  {
+   "id": "ruby-throated-hummingbird",
+   "commonNames": {
+    "en": "Ruby-throated Hummingbird",
+    "es": "colibrí garganta de rubí",
+    "esAlt": ["colibrí gorjirrubí"],
+    "zh": "红喉北蜂鸟",
+    "status": "confirmed (en: Wikipedia); approximate (es and zh: not verified on a fetched page in this session)",
+    "sources": ["https://en.wikipedia.org/wiki/Ruby-throated_hummingbird"]
+   },
+   "scientific": "Archilochus colubris",
+   "authority": "(Linnaeus, 1758)",
+   "family": "Trochilidae",
+   "order": "Apodiformes",
+   "taxonomyStatus": "approximate (Wikipedia; GBIF not fetched)",
+   "iucn": {
+    "category": "LC",
+    "categoryName": "Least Concern",
+    "year": 2023,
+    "status": "approximate (category and year as stated on the Wikipedia species page)",
+    "sources": ["https://en.wikipedia.org/wiki/Ruby-throated_hummingbird"]
+   },
+   "size": {
+    "length_cm_range": [7, 9],
+    "wingspan_cm_range": [8, 11],
+    "mass_g_range": [2, 6],
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Ruby-throated_hummingbird"]
+   },
+   "habitat": {
+    "en": "A breeding bird of the eastern United States and south-central and south-eastern Canada that spends the northern winter in Florida, southern Mexico and Central America as far south as extreme western Panama, in gardens, flowering edges and open woodland. Costa Rica lies inside that winter range; no fetched source names its Costa Rican elevations.",
+    "es": "Ave que cría en el este de Estados Unidos y el centro-sur y sureste de Canadá y pasa el invierno boreal en Florida, el sur de México y Centroamérica hasta el extremo occidental de Panamá, en jardines, bordes floridos y bosque abierto. Costa Rica queda dentro de esa área de invernada; ninguna fuente consultada indica sus altitudes costarricenses.",
+    "status": "confirmed (range, Wikipedia); interpretation (that Costa Rica lies within the winter range stated)",
+    "sources": ["https://en.wikipedia.org/wiki/Ruby-throated_hummingbird"]
+   },
+   "distributionCR": {
+    "en": "A northern migrant, not a resident: present in Central America during the northern winter. Wikipedia's winter range — 'southern Mexico and Central America' to 'extreme western Panama' — encloses Costa Rica, but the page does not name the country or say where in it the bird winters, so its presence in the Cartago gardens is an inference, not a record.",
+    "es": "Migratorio del norte, no residente: presente en Centroamérica durante el invierno boreal. El área de invernada de Wikipedia —'el sur de México y Centroamérica' hasta 'el extremo occidental de Panamá'— encierra a Costa Rica, pero la página no nombra al país ni dice dónde inverna dentro de él, así que su presencia en los jardines de Cartago es una inferencia, no un registro.",
+    "status": "interpretation",
+    "sources": ["https://en.wikipedia.org/wiki/Ruby-throated_hummingbird"]
+   },
+   "diet": {
+    "en": "Nectar from flowers, supplemented by small insects and spiders for protein.",
+    "es": "Néctar de flores, complementado con insectos pequeños y arañas por la proteína.",
+    "status": "confirmed (Wikipedia)",
+    "sources": ["https://en.wikipedia.org/wiki/Ruby-throated_hummingbird"]
+   },
+   "behaviour": {
+    "en": "Some birds cross the Gulf of Mexico non-stop on migration — Wikipedia gives both 900 miles and 800 km for the crossing, about 20 hours of flight on fat reserves. In hovering flight the wings beat up to 80 times a second and the heart can reach 1,260 beats a minute. The female alone builds the nest, usually on a small downward-sloping limb 3–12 m up, and raises the young.",
+    "es": "Algunas aves cruzan el golfo de México sin parar en la migración —Wikipedia da tanto 900 millas como 800 km para el cruce, unas 20 horas de vuelo con reservas de grasa. En vuelo estacionario las alas baten hasta 80 veces por segundo y el corazón puede alcanzar 1.260 latidos por minuto. La hembra sola construye el nido, por lo general en una ramita inclinada a 3–12 m de altura, y cría a los polluelos.",
+    "status": "confirmed (Wikipedia; the crossing distance is given inconsistently by the source)",
+    "sources": ["https://en.wikipedia.org/wiki/Ruby-throated_hummingbird"]
+   },
+   "facts": [
+    {"en": "The male's gorget is 'iridescent ruby red' over greyish-white underparts and a metallic-green back — the three colours of the bird at the pink orchids.", "es": "La gola del macho es 'rojo rubí iridiscente' sobre partes inferiores blanco grisáceo y dorso verde metálico —los tres colores del ave junto a las orquídeas rosadas.", "status": "confirmed (Wikipedia)", "sources": ["https://en.wikipedia.org/wiki/Ruby-throated_hummingbird"]},
+    {"en": "A bird of 2–6 g that flies some 800 km across open water in a night, then winters among Central American flowers.", "es": "Un ave de 2–6 g que vuela unos 800 km sobre mar abierto en una noche y luego inverna entre las flores centroamericanas.", "status": "confirmed (Wikipedia)", "sources": ["https://en.wikipedia.org/wiki/Ruby-throated_hummingbird"]}
+   ],
+   "habitatFit": {
+    "stops": {
+     "cartago": {
+      "fit": true,
+      "note": {
+       "en": "Plausible, as a winter guest. The red-throated bird at the pink orchids is drawn as a male ruby-throated hummingbird, and Wikipedia's winter range — southern Mexico and Central America to extreme western Panama — includes Costa Rica; it would be here roughly from October to March, not in the breeding months. The fetched page names neither Costa Rica nor Cartago, so this is an inference from the range, marked as such. A resident with a similar look, the volcano hummingbird of the Irazú slopes, lives higher up (1,850 m and above).",
+       "es": "Plausible, como visitante de invierno. El ave de garganta roja junto a las orquídeas rosadas se dibuja como un macho de colibrí garganta de rubí, y el área de invernada de Wikipedia —el sur de México y Centroamérica hasta el extremo occidental de Panamá— incluye a Costa Rica; estaría aquí más o menos de octubre a marzo, no en los meses de cría. La página consultada no nombra ni a Costa Rica ni a Cartago, así que es una inferencia del área de distribución, marcada como tal. Un residente de aspecto parecido, el colibrí volcanero de las faldas del Irazú, vive más arriba (desde 1.850 m).",
+       "zh": "合理，作为越冬访客。粉色兰花旁的红喉小鸟按雄性红喉北蜂鸟绘制，维基百科给出的越冬范围——墨西哥南部和中美洲直至巴拿马最西端——包含哥斯达黎加；它大约在10月至3月在此，而非繁殖季。所查页面既未提及哥斯达黎加也未提及卡塔戈，因此这是依据分布范围的推断，并已如实标注。外形相近的留鸟——伊拉苏火山坡地的火山蜂鸟——栖息在更高处（1,850米以上）。"
+      },
+      "status": "interpretation",
+      "sources": ["https://en.wikipedia.org/wiki/Ruby-throated_hummingbird"]
+     }
+    }
+   },
+   "sources": [
+    {"url": "https://en.wikipedia.org/wiki/Ruby-throated_hummingbird", "title": "Ruby-throated hummingbird", "publisher": "Wikipedia (English)", "published": null, "retrieved": "2026-10-25", "supports": "Archilochus colubris (Linnaeus, 1758), Trochilidae, Apodiformes; Least Concern (2023); 7–9 cm, wingspan 8–11 cm, 2–6 g; male's iridescent ruby-red gorget, greyish-white underparts, metallic green above; breeding range; winter in Florida, southern Mexico and Central America as far south as extreme western Panama; Gulf crossing of 900 miles / 800 km in about 20 hours; wingbeats up to 80 per second; heart rate up to 1,260; diet; nesting"}
+   ]
+  }
+ ],
+ "fitChecks": [
+  {
+   "speciesId": "keel-billed-toucan",
+   "scientific": "Ramphastos sulfuratus",
+   "stops": {
+    "arenal": {
+     "fit": true,
+     "note": {
+      "en": "Yes. The species lives in tropical lowland evergreen forest, forest edges and nearby second growth up to about 1,900 m, and GBIF holds more than 150,000 records of it in Costa Rica; the forests around La Fortuna and the volcano's foot lie at a few hundred metres, and the park article says most of Costa Rica's bird species have been found within the park's borders. A toucan on a mossy branch over the lake is as plausible a sight as the plate offers.",
+      "es": "Sí. La especie vive en bosque siempreverde de tierras bajas, bordes de bosque y charrales cercanos hasta unos 1.900 m, y GBIF tiene más de 150.000 registros suyos en Costa Rica; los bosques alrededor de La Fortuna y del pie del volcán están a pocos cientos de metros, y el artículo del parque dice que la mayoría de las especies de aves de Costa Rica se han encontrado dentro de sus límites. Un tucán en una rama musgosa sobre el lago es tan plausible como lo que ofrece la lámina.",
+      "zh": "是的。该种栖息于热带低地常绿林、林缘及邻近次生林，海拔可达约1,900米，GBIF在哥斯达黎加有超过15万条记录；拉福图纳和火山脚下的森林海拔只有几百米，公园条目称哥斯达黎加的大多数鸟种都曾在园内被发现。一只巨嘴鸟停在湖上方长满苔藓的树枝上，是这幅画中最合理的景象。"
+     },
+     "status": "confirmed",
+     "sources": ["https://en.wikipedia.org/wiki/Arenal_Volcano_National_Park", "https://en.wikipedia.org/wiki/Keel-billed_toucan"]
+    }
+   }
+  },
+  {
+   "speciesId": "clay-colored-thrush",
+   "scientific": "Turdus grayi",
+   "stops": {
+    "chirripo": {
+     "fit": false,
+     "note": {
+      "en": "Not quite here. The clay-colored thrush — the yigüirro, Costa Rica's national bird — is a bird of gardens, open woodland and lightly wooded country; the páramo of Chirripó, at 3,400–3,800 m above the cloud sea, is the home of a different thrush, the sooty thrush (Turdus nigrescens), which lives from 2,150 to 3,500 m and is most common above 2,400 m in páramo, bogs and pastures. The sooty thrush is brownish-black with a white iris, an orange eye-ring and a yellow-orange bill — not the warm brown bird drawn here. The illustration's bird is kept as the yigüirro it resembles, and this verdict says plainly that the real thrush of these heights is its dark highland cousin.",
+      "es": "No exactamente aquí. El yigüirro —ave nacional de Costa Rica— es un ave de jardines, bosque abierto y campo arbolado; el páramo del Chirripó, a 3.400–3.800 m sobre el mar de nubes, es el hogar de otro zorzal, el escarchero (Turdus nigrescens), que vive entre 2.150 y 3.500 m y es más común sobre los 2.400 m en páramo, turberas y potreros. El escarchero es pardo negruzco con iris blanco, anillo ocular anaranjado y pico amarillo anaranjado —no el ave de pardo cálido dibujada aquí. El ave de la ilustración se conserva como el yigüirro al que se parece, y este veredicto dice sin rodeos que el verdadero zorzal de estas alturas es su primo oscuro de montaña.",
+      "zh": "并不完全在此。褐背鸫——哥斯达黎加的国鸟“伊圭罗”——栖息于花园、疏林和林木稀疏的乡野；奇里波海拔3,400–3,800米、云海之上的帕拉莫草甸则是另一种鸫——烟色鸫（Turdus nigrescens）的家园，它分布于海拔2,150至3,500米，在2,400米以上的草甸、沼泽和牧场最为常见。烟色鸫通体褐黑，眼白色，眼圈橙色，喙黄橙色——并非画中这只暖棕色的鸟。插图中的鸟仍按其形似的伊圭罗记录，而本判定坦言：这些高处真正的鸫是它那深色的高山表亲。"
+     },
+     "status": "confirmed",
+     "sources": ["https://en.wikipedia.org/wiki/Sooty_thrush", "https://en.wikipedia.org/wiki/Clay-colored_thrush"]
+    },
+    "coffee": {
+     "fit": true,
+     "note": {
+      "en": "Yes — this is its country. The yigüirro is common around yards, gardens and settlements and is one of the most frequently recorded birds in Costa Rica (more than 430,000 GBIF records); the coffee farms of the Central Valley, with their shade trees and ripening cherries, are exactly the lightly wooded, lived-in country it favours, and its song in the dry-to-wet transition is the sound of the Valley's April.",
+      "es": "Sí —este es su país. El yigüirro es común en patios, jardines y poblados y es una de las aves más registradas de Costa Rica (más de 430.000 registros en GBIF); los cafetales del Valle Central, con sus árboles de sombra y sus cerezas madurando, son justamente el campo arbolado y habitado que prefiere, y su canto en la transición de la seca a las lluvias es el sonido del abril del Valle.",
+      "zh": "是的——这里就是它的家园。伊圭罗常见于庭院、花园和村落，是哥斯达黎加记录最多的鸟类之一（GBIF记录超过43万条）；中央谷地的咖啡园有遮荫树和渐熟的咖啡果，正是它偏爱的林木稀疏、有人居住的乡野，而它在旱雨季交替时的鸣唱，正是谷地四月的声音。"
+     },
+     "status": "confirmed (habitat and records); interpretation (the April song)",
+     "sources": ["https://en.wikipedia.org/wiki/Clay-colored_thrush"]
+    }
+   }
+  },
+  {
+   "speciesId": "purple-throated-mountain-gem",
+   "scientific": "Lampornis calolaemus",
+   "stops": {
+    "rio-celeste": {
+     "fit": true,
+     "note": {
+      "en": "Plausible. The mountain-gem is a highland hummingbird of the Costa Rican cordilleras — including the Cordillera de Guanacaste, whose southern end is Tenorio — that lives at 1,200–2,500 m in the centre of the country but 'in the north as low as 800 m', and descends to about 300 m after breeding. The Río Celeste trail sits at roughly 700 m on the flank of Tenorio volcano (1,916 m), so a bird at the waterfall is within reach of the species, especially outside the breeding season. The drawn bird's violet breast is bolder than the real male's purple throat.",
+      "es": "Plausible. El colibrí montañés gorgimorado es un colibrí de las cordilleras costarricenses —incluida la de Guanacaste, cuyo extremo sur es el Tenorio— que vive entre 1.200 y 2.500 m en el centro del país pero 'en el norte hasta los 800 m', y desciende a unos 300 m después de criar. El sendero del río Celeste está a unos 700 m en la falda del volcán Tenorio (1.916 m), así que un ave en la catarata está al alcance de la especie, sobre todo fuera de la época de cría. El pecho violeta del ave dibujada es más llamativo que la garganta morada del macho real.",
+      "zh": "合理。紫喉宝石蜂鸟是哥斯达黎加各山脉的高地蜂鸟——包括南端为特诺里奥火山的瓜纳卡斯特山脉——在国家中部栖息于海拔1,200–2,500米，但“在北部可低至800米”，繁殖后可下降至约300米。天蓝河步道位于特诺里奥火山（1,916米）山坡约700米处，因此瀑布旁的一只蜂鸟在该种的活动范围之内，尤其是在繁殖季之外。画中小鸟的紫色胸部比真实雄鸟的紫喉更为醒目。"
+     },
+     "status": "approximate",
+     "sources": ["https://en.wikipedia.org/wiki/Purple-throated_mountaingem", "https://en.wikipedia.org/wiki/Tenorio_Volcano_National_Park"]
+    }
+   }
+  },
+  {
+   "speciesId": "blue-morpho",
+   "scientific": "Morpho helenor",
+   "stops": {
+    "rio-celeste": {
+     "fit": true,
+     "note": {
+      "en": "Yes. The morpho breeds in forest of every kind from Guanacaste's dry woodland to cloud forest at 1,800 m, and the wet foothill forest of Tenorio, with its streams and sunlit gaps, is classic morpho country; a male resting with open wings on a sunlit leaf, as drawn, is how the blue is usually seen.",
+      "es": "Sí. El morfo cría en bosques de todo tipo, del bosque seco de Guanacaste al bosque nuboso a 1.800 m, y el bosque húmedo de piedemonte del Tenorio, con sus quebradas y claros soleados, es territorio clásico de morfos; un macho posado con las alas abiertas sobre una hoja al sol, como está dibujado, es la manera habitual de ver el azul.",
+      "zh": "是的。闪蝶在从瓜纳卡斯特干林到海拔1,800米云雾林的各类森林中繁殖，特诺里奥山麓湿润的森林有溪流和阳光照亮的林隙，是典型的闪蝶栖息地；如画中那样一只雄蝶张开翅膀停在阳光下的叶片上，正是人们通常看到那抹蓝色的方式。"
+     },
+     "status": "confirmed",
+     "sources": ["https://en.wikipedia.org/wiki/Morpho_helenor"]
+    }
+   }
+  }
+ ],
+ "unverified": [
+  {"claim": "Spanish and Chinese common names of the olive ridley, the rufous-tailed hummingbird and the ruby-throated hummingbird", "note": "not verified on a fetched page in this session; the Spanish names are the ones in common Costa Rican use to the author's knowledge"},
+  {"claim": "GBIF taxonomy keys and IUCN assessment pages for the three new species", "note": "the GBIF and IUCN sites could not be fetched in this session; categories are taken from the Wikipedia species pages"}
+ ]
+}

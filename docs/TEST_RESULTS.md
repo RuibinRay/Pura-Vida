@@ -2,6 +2,41 @@
 
 All figures below were produced in this session's environment unless stated otherwise: a 2-core Linux container, headless Chromium 153 with SwiftShader (software WebGL), no real GPU, no field data. Numbers that depend on a GPU are marked as such and must be re-measured on a laptop and a phone.
 
+## Province pass (2026-10-25) — ten new plates, thirteen stops, every province
+
+### Tests
+`npx vitest run`: **60 tests in 5 files, all passing** — the content test now requires a place on the walk for each of the seven provinces and checks the plate manifests of all fourteen plates (the six new ones, the two retired ones kept for the map page, the six unchanged); the stop tests cover the new animals' body parts and wind layers. `tsc --noEmit`: clean. `node tools/build_content.mjs`: 11 places, 18 species, 490 sources, 183 unverified items (the pre-existing warnings only). `npm run build`: clean.
+
+### The new animals (`tools/scratch/bodies.mjs`, three phases each)
+Arenal toucan (perch + head tilt), the coffee thrush (perch + head turn) and hummingbird (hover + flutter), the Chirripó thrush (perch + head turn), the turtle (breathe + a slow head turn): whole bodies at every phase, heads on their necks, no seams; the preview sheets of all six plates showed each part alone (one animal per part after the morpho's axis was corrected) and an inpainted base with no residue of the animal.
+
+### Motion sweep (`tools/scratch/motion.mjs`, the new stops, 1440×900, full tier)
+| Stop | Loops | Animals (px changed in ≤ 2.5 s) | Water | Wind L / R | Clouds | Flock | Mist |
+|---|---|---|---|---|---|---|---|
+| 02 Arenal | 17/17 | 27.3 % | 9.5 % (lake) | 14.9 / 3.9 % | 7.7 % | 10.3 % | — |
+| 04 Río Celeste | 25/25 | 28.8 / 37.7 % | 20.1 / 8.8 / 3.0 % (falls, pool, rapids) | 17.0 / 12.1 % | — | — | 9.3 % |
+| 07 Coffee | 10/10 | 20.7 / 31.1 % | — | 9.3 / 2.9 % | 4.3 % | — | — |
+| 08 Cartago | 19/19 | 35.2 / 37.1 % | — | 15.7 / 2.9 % | 9.9 % | 10.2 % | — |
+| 10 Chirripó | 7/7 | 34.4 % | — | 14.6 / 5.4 % | 10.0 % | — | — |
+| 13 Close | 21/21 | 2.9 % (the turtle, by design slow) | 1.1 / 1.7 / 2.4 % | 7.9 / 1.6 % | 9.8 % | 14.5 % | — |
+
+Unchanged checks still pass at their new indices: the fliers carry their rings at the opening, Guanacaste and Tortuguero; `--vel` 0.443 in a burst, 0 at rest; the eruption at Irazú (stop 9) with ten puffs, 72 flakes, the dossier's 17 events, off again; the quetzal's sheet with its verdict; the Guanacaste tab order; reduced motion → 0 loops, the puffs standing at 0.85, no ash, the notice; the override → 26 loops; the province link with a view transition. 0 console errors.
+
+### Far jump (`tools/scratch/jump.mjs`)
+1 → 12 settles in 0.6 s (only stop 12 visible, its base loaded), back to 3 and on to 13 the same; the rail click lands in the 1→2 crossfade as designed.
+
+### Walk and site sweeps
+Phone walk (390×844, lite): 13 chapters, 18,568 px, back to 6/3/1 at t = 5.50 / 2.50 / 0.50, **ALL CLEAN**. Desktop and phone screenshots of all 13 stops (`tools/scratch/stops-shots.mjs`) reviewed by eye: no animal under the words at mid-stop on desktop; on phones the new stops anchor their words at the top and the end card scrolls inside its panel above the turtle. Site sweep (`node tools/headless_check.mjs`): **49 page loads, 0 console errors, no horizontal overflow; axe 0 violations on all 26 audited loads** (every stop of the walk, the eruption, the still tier, the opening in three languages, the content pages); the far-jump assertion "1→12: only stop 12 visible".
+
+### Scroll cost (`tools/scratch/perf.mjs`)
+3.9 s wall for the 60-step pattern · style recalculation 1.52 s in 297 passes · layout 3 ms · script 282 ms (the alive pass: 5.4 s / 1.49 s / 282 passes) — the thirteen-stop walk costs the scroll no more than the nine-stop one, because only the current stop and its neighbours are ever recomputed.
+
+### Lighthouse (lab, mobile emulation)
+Home (lite): a11y 100 · BP 100 · SEO 100 · FCP 2.1 s · LCP 9.9 s · TBT 0 · CLS 0; still tier 76 / 100 / 100 / 100, LCP 6.7 s. Same floor as before: the first plate loads before anything else and nothing in this pass changed it.
+
+### Not tested
+The frame rate on a real device; Safari/Firefox; the feel of a 13-stop walk (about 24 screens of scroll) on a phone.
+
 ## Alive pass (2026-10-24 night → 10-25) — the toucan, clouds, wind, lag
 
 ### Tests

@@ -776,6 +776,12 @@
 @media (min-width: 761px) {
   .jchapter--tortuguero .jcopy--bottom { left: 41%; }
   .jchapter--irazu .jcopy--right { max-width: 25rem; }
+  /* Río Celeste: the morpho rests at the lower left, so the words sit right of centre and narrower;
+     Cartago: a narrower column so the basilica's right wing stays clear of the words */
+  .jchapter--rio-celeste .jcopy--bottom { left: 46%; max-width: 30rem; }
+  .jchapter--cartago .jcopy--right { max-width: 24rem; }
+  /* the closing beach: the turtle rests at the lower left, so the end card starts right of it and fades toward it */
+  .jchapter--close .jcopy--close { left: 30%; padding-left: var(--s-6); background: linear-gradient(to right, rgba(8, 18, 14, 0) 0%, rgba(8, 18, 14, 0.72) 12%, rgba(8, 18, 14, 0.82) 100%); }
 }
 .jcopy--bottom .jcopy__text, .jcopy--bottom .jcopy__caption { margin-left: auto; margin-right: auto; }
 .jcopy--bottom .jcopy__links, .jcopy--bottom .facts-grid { justify-content: center; }
@@ -898,6 +904,9 @@
 .food-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); align-items: start; }
 .page__head--plate .plate-figure { margin: 0 0 var(--s-5); }
 .page__head--plate .plate-figure img { width: 100%; height: auto; border-radius: var(--radius-lg); display: block; }
+.plate-figure--my { margin: 0 0 var(--s-6); }
+.plate-figure--my img { width: 100%; height: auto; border-radius: var(--radius-lg); display: block; }
+.plate-figure--my figcaption { margin-top: var(--s-2); }
 .page__head--plate figcaption { margin-top: var(--s-2); }
 .tag--iucn-vu, .tag--iucn-en, .tag--iucn-cr { background: color-mix(in srgb, var(--bad) 12%, transparent); color: #8a2a20; }
 .tag--iucn-nt { background: color-mix(in srgb, var(--warn) 12%, transparent); color: #6b4600; }
@@ -1046,7 +1055,8 @@
   /* portrait: the focal point pans across each plate as its stop progresses, so every animal passes through the frame */
   .plate { --fx-now: calc(var(--pan-from, var(--fx, 0.5)) + (var(--pan-to, var(--fx, 0.5)) - var(--pan-from, var(--fx, 0.5))) * var(--pn, 0) * var(--m)); }
   /* the table and the scenes with animals near the bottom keep their words at the top so the hotspots stay reachable */
-  .jchapter--flavors .jcopy, .jchapter--tortuguero .jcopy, .jchapter--guanacaste .jcopy, .jchapter--corcovado .jcopy {
+  .jchapter--flavors .jcopy, .jchapter--tortuguero .jcopy, .jchapter--guanacaste .jcopy, .jchapter--corcovado .jcopy,
+  .jchapter--arenal .jcopy, .jchapter--rio-celeste .jcopy, .jchapter--coffee .jcopy, .jchapter--cartago .jcopy, .jchapter--chirripo .jcopy, .jchapter--close .jcopy--close {
     top: 3.4rem;
     bottom: auto;
     max-height: 46dvh;
@@ -1055,13 +1065,15 @@
     padding-top: var(--s-4);
   }
   /* …and keep their overview short enough that the fact tiles and links stay inside the block */
-  .jchapter--tortuguero .jcopy__text, .jchapter--guanacaste .jcopy__text, .jchapter--corcovado .jcopy__text {
+  .jchapter--tortuguero .jcopy__text, .jchapter--guanacaste .jcopy__text, .jchapter--corcovado .jcopy__text,
+  .jchapter--arenal .jcopy__text, .jchapter--rio-celeste .jcopy__text, .jchapter--coffee .jcopy__text, .jchapter--cartago .jcopy__text, .jchapter--chirripo .jcopy__text, .jchapter--close .jcopy__text {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
     overflow: hidden;
   }
-  .jchapter--tortuguero .fact__label, .jchapter--guanacaste .fact__label, .jchapter--corcovado .fact__label {
+  .jchapter--tortuguero .fact__label, .jchapter--guanacaste .fact__label, .jchapter--corcovado .fact__label,
+  .jchapter--arenal .fact__label, .jchapter--rio-celeste .fact__label, .jchapter--coffee .fact__label, .jchapter--cartago .fact__label, .jchapter--chirripo .fact__label {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
@@ -1069,7 +1081,9 @@
   }
   .jcopy--panel .jcopy__caption, .jchapter--flavors .jcopy__links small, .jchapter--provinces .jcopy__caption { display: none; }
   .jchapter--provinces .facts-grid { display: none; }
-  .jchapter--close .jcopy { max-height: 58dvh; }
+  /* the closing beach on a phone: the words at the top in a scrollable block that ends above the turtle */
+  .jchapter--close .jcopy { max-height: 56dvh; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; background: linear-gradient(to bottom, rgba(8, 18, 14, 0.9), rgba(8, 18, 14, 0.8) 85%, rgba(8, 18, 14, 0.55)); }
+  .jchapter--close .jcopy--close .chips-row, .jchapter--close .jcopy--close .jcopy__caption { display: none; }
   .home-map__labels .map-label--province { font-size: 11px; }
   .facts-grid--place { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

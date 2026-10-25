@@ -280,7 +280,7 @@ export function HomePage() {
       </div>
 
       {/* scroll length for each stop; the copy and the visuals live in the stage and read --p1…--pN */}
-      {STOPS.map((stop, i) => (<div key={stop.key} className={`jspace jspace--${i + 1} jspace--${stop.kind}`} style={stop.length ? { minHeight: `${stop.length}vh` } : undefined} data-chapter={i + 1} aria-hidden="true" />))}
+      {STOPS.map((stop, i) => (<div key={stop.key} className={`jspace jspace--${i + 1} jspace--${stop.kind} jspace--${stop.key}`} style={stop.length ? { minHeight: `${stop.length}vh` } : undefined} data-chapter={i + 1} aria-hidden="true" />))}
       <span className="visually-hidden">{t('journey.chaptersCount', { n: CHAPTER_COUNT })}</span>
 
       {/* chapter rail: where you are in the walk */}

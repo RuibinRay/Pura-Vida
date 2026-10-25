@@ -47,9 +47,13 @@ const es: Messages = {
     chaptersCount: 'Un recorrido en {n} capítulos',
     stops: {
       discover: { kicker: 'Descubrir', title: 'Costa Rica' },
+      arenal: { kicker: 'Arenal · Alajuela', title: 'Volcán Arenal' },
       monteverde: { kicker: 'Monteverde · Puntarenas', title: 'Bosque nuboso de Monteverde' },
       'rio-celeste': { kicker: 'Río Celeste · Alajuela', title: 'Río Celeste' },
       irazu: { kicker: 'Irazú · Cartago', title: 'Volcán Irazú' },
+      cartago: { kicker: 'Cartago · Basílica de los Ángeles', title: 'Cartago, la vieja capital' },
+      chirripo: { kicker: 'Chirripó · San José', title: 'Cerro Chirripó' },
+      coffee: { kicker: 'Heredia · Tierras del café', title: 'Las tierras del café' },
       provinces: { kicker: 'Provincias', title: 'Siete provincias, siete historias' },
       guanacaste: { kicker: 'Guanacaste · Bosque seco', title: 'Guanacaste' },
       flavors: { kicker: 'Cultura', title: 'Los sabores de Costa Rica' },
@@ -294,6 +298,7 @@ const es: Messages = {
     placeholder: 'Espacio editable',
     placeholderNote: 'Nada de esta sección se escribió en nombre del autor. Cada bloque es un espacio para sus propias palabras y fotografías; permanece oculto en el sitio público hasta que se complete.',
     aboutAuthor: 'Sobre el autor',
+    plateAlt: 'Lámina ilustrada del autor: un perezoso de tres dedos cuelga de una rama musgosa con un tucán pico iris debajo, una lapa roja entra volando sobre un lago y un volcán cónico, una catarata cae en el bosque y un morfo azul descansa sobre una hoja.',
     visitSite: 'Mi página personal — ruibinray.github.io',
     authorNote: 'Estas líneas vienen de mi página personal; el resto del sitio, y todo lo que añada abajo, habla de Costa Rica.',
     sections: {
