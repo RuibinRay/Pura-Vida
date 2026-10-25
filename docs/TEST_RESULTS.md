@@ -16,6 +16,9 @@ All figures below were produced in this session's environment unless stated othe
 ### Headless (1440×900 and 390×844, `tools/scratch/trail-shots.mjs`)
 Every zone at half its scroll: the animals all in frame (bounding boxes logged), 2–17 loops running per zone (the stickers' idle loops, the flock, the mist; the volcano zone's one hummingbird: 2), 0 console errors on both viewports. Desktop: the signs in their corners, the path rail, the counter; the hover tag; the popup with the sticker, the zone chip, three places, the three links and the entry. Phone: the stacked layouts, the sign at the bottom, the counter and sound in one row under the top bar, the popup. Three layout passes moved animals from under the top bar, the sign and the rail (the sloth, the quetzal, the capuchin, the glass frog, the iguana, the basilisk, the coati, the manatee, the viper).
 
+### Site sweep (`node tools/headless_check.mjs`, the build with the trail)
+Every page at 1440 and 390, every home stop, the three languages: 0 console errors on all loads, no horizontal overflow; axe 0 violations everywhere except one — the trail's path rail on phones hid the zone names (`display: none`) and left eight buttons without a name (`button-name`, critical). Fixed with an `aria-label` per marker; re-run on the wildlife page at 390 and 1440: 0 violations.
+
 ### Not tested
 Frame rate on a device (six stickers with drop shadows plus mist and a flock on the canopy); the stickers' light against each backdrop on a calibrated screen; the `hover: none` tags on a real touch screen (headless reports no hover and showed every tag).
 

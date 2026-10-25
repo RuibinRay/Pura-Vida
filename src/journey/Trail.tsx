@@ -159,7 +159,7 @@ export function Trail({ species, onOpen }: { species: Species[]; onOpen: (sp: Sp
           <ol>
             {ZONES.map((z, i) => (
               <li key={z.key} className={i === chapter ? 'is-current' : i < chapter ? 'is-walked' : ''}>
-                <button type="button" onClick={() => goTo(i)} aria-current={i === chapter ? 'step' : undefined}>
+                <button type="button" onClick={() => goTo(i)} aria-current={i === chapter ? 'step' : undefined} aria-label={t(`trail.zones.${z.key}.name` as MessageKey)}>
                   <span className="trail__dot" aria-hidden="true" />
                   <span className="trail__label">{t(`trail.zones.${z.key}.name` as MessageKey)}</span>
                 </button>
