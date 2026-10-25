@@ -127,6 +127,7 @@ def main():
             cv2.imwrite(os.path.join(args.preview, entry['id'] + '.png'), comp)
     manifest = {k: manifest[k] for k in sorted(manifest)}
     json.dump(manifest, open(gen_path, 'w'), indent=0)
+    json.dump(manifest, open(os.path.join(OUT, 'manifest.json'), 'w'))  # a copy the live site serves (deployment checks)
     print(f'{len(manifest)} stickers in the manifest; {total // 1024} KB written')
 
 

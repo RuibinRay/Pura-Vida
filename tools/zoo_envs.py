@@ -39,7 +39,9 @@ def main():
             total += os.path.getsize(p)
         manifest[key] = {'w': int(W), 'h': int(up.shape[0]), 'widths': widths, 'source': os.path.basename(rel)}
         print(f'  {key}: {os.path.basename(rel)} → {W}x{up.shape[0]} {widths}')
-    json.dump({k: manifest[k] for k in sorted(manifest)}, open(gen, 'w'), indent=0)
+    manifest = {k: manifest[k] for k in sorted(manifest)}
+    json.dump(manifest, open(gen, 'w'), indent=0)
+    json.dump(manifest, open(os.path.join(OUT, 'manifest.json'), 'w'))  # a copy the live site serves (deployment checks)
     print(f'{len(manifest)} backdrops; {total // 1024} KB written')
 
 
