@@ -1,30 +1,46 @@
-/* Design tokens — "The Field Journal" (see docs/DESIGN_SYSTEM.md). */
+/* Design tokens — "The Field Journal", nature edition (see docs/DESIGN_SYSTEM.md).
+   The page surfaces are leaf light rather than cream: pale leaf, fern shade, deep forest ink; the country colours
+   carry the greens, waters, earths and sunsets of the plates. Token names are kept so every component reads the same. */
 :root {
-  /* paper & ink */
-  --paper: #f4eedf;
-  --paper-deep: #e7dcc3;
-  --paper-edge: #d8c9a6;
-  --ink: #1d2b22;
-  --ink-muted: #5a6358;
-  --ink-faint: #616861;
-  --rule: rgba(29, 43, 34, 0.14);
+  /* leaf & light — surfaces and ink */
+  --paper: #eef4e3; /* pale leaf light */
+  --paper-deep: #dde9cc; /* fern shade */
+  --paper-edge: #c8d9ad; /* new-leaf edge */
+  --ink: #16321f; /* deep forest */
+  --ink-muted: #44583f; /* moss ink (6.9:1 on paper) */
+  --ink-faint: #566552; /* 5.5:1 on paper */
+  --rule: rgba(22, 50, 31, 0.16);
+  --surface: rgba(255, 255, 255, 0.55); /* dew: a lighter card over the leaf light */
+  --surface-solid: #f7faf1;
 
   /* the country */
   --forest: #1f5a3a;
-  --forest-ink: #184a30;
+  --forest-ink: #1d5a35;
   --canopy: #3e8a52;
+  --leaf: #4f9a4a;
+  --leaf-new: #8cc04b;
+  --leaf-pale: #cfe3a0;
   --moss: #7a8a3c;
   --moss-ink: #5a6a22;
   --ocean: #12456b;
   --ocean-deep: #0b2f4b;
+  --river: #2a7fa1;
+  --river-ink: #1f6b86;
+  --lagoon: #8fd3cf;
   --turquoise: #2cb1a6;
+  --sky: #bfe0ee;
+  --sky-pale: #e3eff2;
   --gold: #e0a526;
   --gold-ink: #8a5a00;
   --sunset: #e8893a;
+  --sunset-ink: #a04e10;
+  --hibiscus: #d9484f;
   --orchid: #8e4a9e;
   --volcanic: #2b2a2e;
   --stone: #a9a192;
+  --sand: #e8d6a8;
   --wood: #8c5a32;
+  --bark: #6b4a2d;
 
   /* status (never colour alone) */
   --good: #24683a;
@@ -67,6 +83,7 @@
   --s-8: 4.5rem;
   --radius: 10px;
   --radius-lg: 18px;
+  --radius-xl: 26px;
   --gutter: clamp(1rem, 4vw, 3rem);
   --measure: 64ch;
 
@@ -77,7 +94,8 @@
   --dur: 320ms;
   --dur-slow: 700ms;
 
-  --shadow-paper: 0 1px 2px rgba(29, 43, 34, 0.08), 0 10px 30px -12px rgba(29, 43, 34, 0.28);
+  --shadow-paper: 0 1px 2px rgba(22, 50, 31, 0.08), 0 10px 30px -12px rgba(22, 50, 31, 0.28);
+  --shadow-leaf: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 14px 34px -18px rgba(22, 50, 31, 0.35);
   --focus: 0 0 0 3px var(--paper), 0 0 0 6px var(--gold-ink);
 }
 
@@ -90,9 +108,13 @@
   --ink-muted: #cfc8b6;
   --ink-faint: #a39d8e;
   --rule: rgba(244, 238, 223, 0.18);
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-solid: #34333a;
   --gold-ink: #f0c25a;
   --forest-ink: #8fd3a4;
   --moss-ink: #c6d47a;
+  --river-ink: #7fc7e3;
+  --sunset-ink: #f3a85f;
   --focus: 0 0 0 3px #2b2a2e, 0 0 0 6px #f0c25a;
 }
 

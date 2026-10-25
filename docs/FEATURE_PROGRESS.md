@@ -2,6 +2,29 @@
 
 Status words: **built** = implemented and exercised in the headless browser; **built, unverified on device** = implemented, but the check this session could do is not representative (software GPU); **partial**; **planned (M2–M5)**.
 
+## Map page, pictures and cartoons — "nature edition" (2026-10-24, night)
+
+The owner asked for: a better map page with interactive features, an image for every location, a cartoon for every animal, food images, and the pages redesigned in nature colours. Photographs cannot be generated or fetched from this environment, so every picture is drawn in code (see `docs/ART_STYLE.md`) and labelled as an illustration.
+
+| Change | Status | Notes |
+|---|---|---|
+| Nature palette on every page | done | `tokens.css`: pale leaf surfaces, deep forest ink, river/sunset/bark inks, dew cards; a sky-to-leaf page gradient and a leaf in the margin (`nature.css`); contrast test extended; the home keeps its dark stage |
+| A picture for all 113 places | done | `src/art/places`: a drawn postcard per landmark (hand-tuned scenes for the well-known places, generated from kind + province + id for the rest); the author's plates where a place is on the walk (`PLATE_FOR`); shown on the map's place card and popover, in the postcard gallery under the map, in the province strips and in every province chapter's landmark list |
+| A cartoon for all 15 animals | done | `src/art/animals`: original characters in one sticker style; wildlife page index and heroes, the map's wildlife layer, place cards, province species lists |
+| Food images | done | the five dishes redrawn richer; `DishCard` plates them on a wood or banana-leaf table (food page heroes, the map's food layer and dish cards); ingredient stickers in the ingredient lists |
+| Map: filter chips | done | everything / volcanoes & peaks / parks & reserves / beaches & water / cities & culture; a chosen kind shows all of its places at every zoom, "everything" thins out at the whole-country view |
+| Map: wildlife layer | done | the species' cartoons pinned to the places of their sourced range (`src/content/habitats.ts`, every placement with a note); click → animal card with "Where to see it" (flies the camera) and a link to the journal; 3D sprites and 2D markers share the positions |
+| Map: food layer | done | the dishes pinned where the sources place them (`src/content/foodPlaces.ts`); dish card with "Where it is eaten" |
+| Map: place cards | done | picture, note, "Animals you can meet here", "On the table here", province chapter button; the 3D popover shows the picture too; every opened place is stamped in the passport |
+| Map: guided tour | done | 15 stops around the country (`TOUR_STOPS`), tour bar with previous/next, auto-play every 7 s, end; "Surprise me" flies to a random place |
+| Map: search finds animals and dishes | done | opens the card on its layer and flies to the first place |
+| Map: Isla del Coco in both views | done | its two places are pinned in the ×7 inset in 3D; the 2D map now draws the inset too |
+| Postcard gallery under the map | done | all places as cards with filter chips and a text filter; a click opens the place on the map above |
+| Deep links | done | `/explore?place=<id>`, `?animal=<species>`, `?dish=<id>` from the wildlife, food and province pages |
+| Wildlife page | done | cartoon index, a hero per species with "Where to see it" links into the map; the journal entries unchanged |
+| Food page | done | dish index, a plated hero per dish with "Where it is eaten"; ingredient stickers |
+| Province chapters | done | landmark list with a picture per place (click → shown on the map); species list with the cartoon when the journal has the species |
+| Device verification (desktop + mobile, real GPU) | **not done** | lab only (headless Chromium, SwiftShader); see TEST_RESULTS.md |
 ## Alive pass — "the toucan is terrible", clouds, wind, lag (2026-10-24, night)
 
 The owner's third look at the walk: the toucan's motion was wrong, the plates needed wind and moving clouds, and the scroll lagged on his machine.

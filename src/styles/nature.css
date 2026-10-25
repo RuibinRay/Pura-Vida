@@ -1,0 +1,647 @@
+/* ---------- Nature edition: page atmosphere, picture cards, cartoon avatars, the map's chips, tour and
+   sprites, the postcard gallery, and the wildlife / food / province page layouts ---------- */
+
+/* the pages sit under a sky that settles into leaf light; the homepage keeps its own dark stage */
+body {
+  background: linear-gradient(180deg, var(--sky-pale) 0, var(--paper) 28rem) fixed;
+}
+.shell--home {
+  background: var(--paper);
+}
+.page__head--nature {
+  position: relative;
+}
+.page__head--nature::before {
+  /* a monstera leaf in the margin — decoration only, never under text (hidden on narrow screens) */
+  content: '';
+  position: absolute;
+  right: -2rem;
+  top: -1.5rem;
+  width: 220px;
+  height: 220px;
+  pointer-events: none;
+  opacity: 0.16;
+  background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%231f5a3a' d='M100 192C48 160 14 110 20 62 26 22 64 4 100 6c36-2 74 16 80 56 6 48-28 98-80 130z'/%3E%3Cpath fill='none' stroke='%23eef4e3' stroke-width='5' stroke-linecap='round' d='M100 186V30M100 70c-18-6-36-22-48-42M100 70c18-6 36-22 48-42M100 112c-20-4-44-20-58-44M100 112c20-4 44-20 58-44M100 154c-16-4-34-18-46-40M100 154c16-4 34-18 46-40'/%3E%3C/svg%3E");
+}
+.footer {
+  background: color-mix(in srgb, var(--paper-deep) 60%, transparent);
+}
+
+/* ---------- picture of a place ---------- */
+.place-pic {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--paper-deep);
+  isolation: isolate;
+}
+.place-pic img,
+.place-pic svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.place-pic--hero {
+  border-radius: var(--radius-lg);
+}
+.place-pic__chip {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  padding: 0.2em 0.6em;
+  border-radius: 999px;
+  background: rgba(22, 50, 31, 0.62);
+  color: #f4eedf;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+/* ---------- avatars (cartoon animals, dish stickers) ---------- */
+.avatar {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.35em 0.4em 0.45em;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  line-height: 1.15;
+  text-align: center;
+  text-decoration: none;
+  max-width: 7.5em;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out), background var(--dur-fast);
+}
+.avatar svg {
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 42%, #ffffff, var(--leaf-pale) 72%, var(--paper-deep));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 6px 14px -8px rgba(22, 50, 31, 0.45);
+  padding: 4px;
+}
+.avatar--dish svg {
+  background: radial-gradient(circle at 50% 45%, #fff7e8, var(--sand) 70%, #d8c28e);
+  border-radius: 50%;
+  object-fit: cover;
+}
+.avatar:hover,
+.avatar:focus-visible {
+  transform: translateY(-2px);
+  background: var(--surface);
+  color: var(--ink);
+}
+.avatar-row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+}
+.avatar-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-2);
+  margin: var(--s-4) 0 var(--s-3);
+}
+.avatar--index {
+  width: 7.4em;
+}
+.animal-hero {
+  display: grid;
+  place-items: center;
+  margin: 0 auto var(--s-3);
+  aspect-ratio: 1;
+  width: min(100%, 230px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, #ffffff 0, var(--leaf-pale) 60%, var(--leaf-new) 100%);
+  box-shadow: var(--shadow-leaf);
+}
+.animal-hero svg {
+  width: 82%;
+  height: 82%;
+}
+.animal-hero--big {
+  width: 100%;
+  max-width: 300px;
+}
+.dish-hero {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-leaf);
+  margin-bottom: var(--s-3);
+}
+.dish-hero svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- map: chips, canvas, tour, panel cards, sprites ---------- */
+.map-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+}
+.map-chips__sep {
+  width: 1px;
+  height: 22px;
+  background: var(--rule);
+  margin: 0 var(--s-1);
+}
+.chip.is-on {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.chip--volcanoes.is-on { background: #b23a2f; border-color: #b23a2f; color: #fff; }
+.chip--parks.is-on { background: var(--forest); border-color: var(--forest); color: #fff; }
+.chip--water.is-on { background: var(--river-ink); border-color: var(--river-ink); color: #fff; }
+.chip--culture.is-on { background: var(--bark); border-color: var(--bark); color: #fff; }
+.chip--wildlife.is-on { background: var(--leaf-new); border-color: var(--leaf); color: var(--ink); }
+.chip--food.is-on { background: var(--sunset); border-color: var(--sunset); color: var(--ink); }
+.chip--tour.is-on { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.map-body > * {
+  min-width: 0;
+}
+.map-canvas {
+  width: 100%;
+  min-width: 0;
+  background: linear-gradient(180deg, #d9ebf3 0, #bcd8e8 100%);
+  border-color: var(--paper-edge);
+  border-radius: var(--radius-xl);
+}
+.tour-bar {
+  position: absolute;
+  left: 50%;
+  bottom: var(--s-3);
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+  padding: 4px 6px;
+  border-radius: 999px;
+  background: rgba(22, 30, 26, 0.86);
+  color: #f4eedf;
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-paper);
+  max-width: calc(100% - 2 * var(--s-3));
+}
+.tour-bar .btn {
+  color: #f4eedf;
+  border-color: transparent;
+  min-height: 34px;
+}
+.tour-bar .btn.is-on {
+  background: var(--gold);
+  color: var(--ink);
+}
+.tour-bar__label {
+  padding: 0 0.6em;
+  font-size: var(--t-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 40vw;
+}
+.tour-bar__label b {
+  margin-right: 0.4em;
+  color: var(--gold);
+}
+.map-panel {
+  background: var(--surface-solid);
+  border-color: var(--paper-edge);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-leaf);
+}
+.map-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.map-card .eyebrow {
+  margin-bottom: var(--s-1);
+}
+.map-card .map-panel__title {
+  margin-bottom: 0;
+}
+.map-card__row {
+  padding-top: var(--s-2);
+  border-top: 1px dashed var(--rule);
+}
+.map-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  padding-top: var(--s-2);
+}
+.map-card__actions .btn {
+  margin: 0;
+}
+.where-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+.where-list button,
+.where-list a {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+  width: 100%;
+  padding: 0.45em 0.6em;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  text-align: left;
+  text-decoration: none;
+  font-size: var(--t-sm);
+  line-height: 1.3;
+  cursor: pointer;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+.where-list button:hover,
+.where-list a:hover {
+  border-color: var(--forest);
+  background: #fff;
+  color: var(--ink);
+}
+.where-list .icon {
+  margin-top: 0.15em;
+  color: var(--forest-ink);
+}
+.where-list b {
+  display: block;
+  font-weight: 600;
+}
+.where-list small {
+  display: block;
+  color: var(--ink-muted);
+  font-size: var(--t-xs);
+}
+.where .btn {
+  margin-top: var(--s-3);
+}
+.postcards__strip {
+  list-style: none;
+  margin: 0 calc(-1 * var(--s-4));
+  padding: 0 var(--s-4) var(--s-2);
+  display: flex;
+  gap: var(--s-2);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+}
+.postcards__strip li {
+  flex: none;
+  width: 132px;
+  scroll-snap-align: start;
+}
+.map-anchor--sprite {
+  z-index: 2;
+}
+.map-sprite {
+  display: grid;
+  place-items: center;
+  width: var(--px, 48px);
+  height: var(--px, 48px);
+  padding: 0;
+  border: 2px solid #2a1d14;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 6px 14px -6px rgba(22, 50, 31, 0.6);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast);
+}
+.map-sprite svg {
+  width: calc(var(--px, 48px) - 8px);
+  height: calc(var(--px, 48px) - 8px);
+}
+.map-sprite--food svg {
+  width: calc(var(--px, 48px) - 2px);
+  height: calc(var(--px, 48px) * 0.75);
+}
+.map-sprite:hover,
+.map-sprite.is-on {
+  transform: scale(1.22);
+  z-index: 3;
+}
+.map-sprite.is-on {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(224, 165, 38, 0.45), 0 8px 18px -6px rgba(22, 50, 31, 0.6);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .map-sprite--animal:hover svg {
+    animation: sprite-bounce 0.6s var(--ease-out);
+  }
+}
+@keyframes sprite-bounce {
+  30% { transform: translateY(-4px) rotate(-4deg); }
+  60% { transform: translateY(0) rotate(3deg); }
+}
+.map-popover__pic {
+  margin: 0 0 var(--s-2);
+  border-radius: 6px;
+}
+.map-popover__text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.map2d__sprite {
+  cursor: pointer;
+}
+.map2d__sprite:hover circle,
+.map2d__sprite:focus-visible circle {
+  stroke: #f0c25a;
+}
+.map2d__sprite:focus-visible {
+  outline: none;
+}
+.map2d__landmark.is-active {
+  filter: drop-shadow(0 0 3px rgba(240, 194, 90, 0.9));
+}
+
+/* ---------- the postcard gallery ---------- */
+.gallery {
+  margin-top: var(--s-8);
+}
+.gallery__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--s-4);
+  margin-bottom: var(--s-5);
+}
+.gallery__tools {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--s-2);
+}
+.gallery__tools .map-search {
+  flex: none;
+  width: min(100%, 360px);
+  height: 42px;
+}
+.gallery__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: var(--s-4);
+}
+.postcard {
+  --accent: var(--forest);
+  content-visibility: auto;
+  contain-intrinsic-size: 230px 260px;
+}
+.postcard--volcanoes { --accent: #b23a2f; }
+.postcard--parks { --accent: var(--forest); }
+.postcard--water { --accent: var(--river-ink); }
+.postcard--culture { --accent: var(--bark); }
+.postcard__btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--paper-edge);
+  border-radius: var(--radius-lg);
+  background: var(--surface-solid);
+  color: var(--ink);
+  text-align: left;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-leaf);
+  transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out), border-color var(--dur-fast);
+}
+.postcard__btn .place-pic {
+  border-radius: 0;
+}
+.postcard__btn:hover,
+.postcard__btn:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 22px 40px -20px rgba(22, 50, 31, 0.5);
+}
+.postcard__body {
+  display: block;
+  padding: var(--s-3) var(--s-4) var(--s-4);
+}
+.postcard__kind {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.postcard__name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--t-lg);
+  line-height: 1.15;
+  margin-top: 0.2em;
+  font-variation-settings: 'opsz' 36;
+}
+.postcard__prov {
+  display: block;
+  margin-top: 0.3em;
+  font-size: var(--t-xs);
+  color: var(--ink-muted);
+}
+.postcard--mini {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--paper-edge);
+  border-radius: var(--radius);
+  background: var(--surface-solid);
+  color: var(--ink);
+  overflow: hidden;
+  text-align: left;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out), border-color var(--dur-fast);
+}
+.postcard--mini:hover,
+.postcard--mini:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--forest);
+}
+.postcard--mini .place-pic {
+  border-radius: 0;
+}
+.postcard--mini .postcard__name {
+  font-family: var(--font-ui);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  padding: 0.45em 0.6em 0.55em;
+  margin: 0;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- wildlife page ---------- */
+.species-row {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: var(--s-6);
+  align-items: start;
+  margin-top: var(--s-7);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+}
+.species-row .species.chapter-part {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.species-row__side {
+  position: sticky;
+  top: 84px;
+}
+.species-row__side .where {
+  margin-top: var(--s-2);
+}
+
+/* ---------- food page ---------- */
+.page--food .food-row {
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: var(--s-6);
+  margin-top: var(--s-7);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+}
+.page--food .food.chapter-part {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.food-row__side {
+  position: sticky;
+  top: 84px;
+}
+.ingredients--icons {
+  padding-left: 0;
+  list-style: none;
+  columns: 1;
+}
+.ingredients--icons li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+  padding: 0.15em 0;
+}
+.ingredient__icon {
+  flex: none;
+  margin-top: 0.05em;
+}
+
+/* ---------- province page ---------- */
+.landmark--pic {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: var(--s-4);
+  align-items: start;
+}
+.landmark__pic {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--paper-edge);
+  border-radius: var(--radius);
+  background: var(--paper-deep);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.landmark__pic:hover {
+  transform: translateY(-2px);
+}
+.landmark__pic .place-pic {
+  border-radius: 0;
+}
+.species-list--avatars {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  gap: var(--s-2);
+}
+.species-list--avatars li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.species-list--avatars li:not(.has-avatar) {
+  padding-left: calc(56px + var(--s-3));
+}
+.species-list__avatar svg {
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 42%, #ffffff, var(--leaf-pale) 72%, var(--paper-deep));
+  padding: 3px;
+  box-shadow: 0 6px 14px -8px rgba(22, 50, 31, 0.45);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1100px) {
+  .gallery__tools {
+    align-items: flex-start;
+  }
+}
+@media (max-width: 760px) {
+  .page__head--nature::before {
+    display: none;
+  }
+  .species-row,
+  .page--food .food-row,
+  .landmark--pic {
+    grid-template-columns: 1fr;
+  }
+  .species-row__side,
+  .food-row__side {
+    position: static;
+  }
+  .animal-hero--big {
+    max-width: 200px;
+  }
+  .dish-hero--big {
+    max-width: 360px;
+  }
+  .tour-bar__label {
+    max-width: 34vw;
+  }
+  .map-stage .map-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    margin: 0 calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    scrollbar-width: thin;
+  }
+  .map-stage .map-chips .chip {
+    flex: none;
+  }
+  .postcards__strip li {
+    width: 118px;
+  }
+}

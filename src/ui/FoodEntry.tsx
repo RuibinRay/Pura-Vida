@@ -3,6 +3,7 @@
 import { useT } from '../i18n';
 import type { Food, Source } from '../content/types';
 import { SourceList, StatusTag, dedupeSources } from './Sources';
+import { IngredientIcon, ingredientIconFor } from '../art/food/ingredients';
 
 export function FoodEntry({ food, heading = 'h2', compact }: { food: Food; heading?: 'h2' | 'h3'; compact?: boolean }) {
   const { t, l } = useT();
@@ -44,10 +45,13 @@ export function FoodEntry({ food, heading = 'h2', compact }: { food: Food; headi
           <div>
             <dt>{t('food.ingredients')}</dt>
             <dd>
-              <ul className="ingredients">
-                {food.ingredients.map((ing, i) => (
-                  <li key={i}>{l(ing)}{ing.optional ? <small className="muted"> · {t('food.optional')}</small> : null}</li>
-                ))}
+              <ul className="ingredients ingredients--icons">
+                {food.ingredients.map((ing, i) => {
+                  const icon = ingredientIconFor(ing.en);
+                  return (
+                    <li key={i}>{icon && <IngredientIcon name={icon} size={26} className="ingredient__icon" />}<span>{l(ing)}{ing.optional ? <small className="muted"> · {t('food.optional')}</small> : null}</span></li>
+                  );
+                })}
               </ul>
               {food.ingredientsNote?.en && <p className="muted"><small>{l(food.ingredientsNote)}</small></p>}
             </dd>

@@ -80,10 +80,18 @@ await visit('explore', '/explore', { wait: 6000, query: '?why&tier=lite', axe: t
 await visit('explore-selected', '/explore', { wait: 4000, query: '?tier=lite', actions: async (p) => { await p.evaluate(() => { const li = document.querySelector('.province-list li[data-id="guanacaste"]'); li?.click(); }); await sleep(3000); } });
 await visit('explore-2d', '/explore', { wait: 2000, actions: async (p) => { await p.evaluate(() => { const b = [...document.querySelectorAll('.seg__btn')].find((x) => x.textContent?.trim() === '2D'); b?.click(); }); await sleep(1200); await p.evaluate(() => { const li = document.querySelector('.province-list li[data-id="limon"]'); li?.click(); }); await sleep(1500); } });
 await visit('explore-text', '/explore', { wait: 1500, query: '?tier=text' });
+await visit('explore-place', '/explore?place=peak-poas', { wait: 5000, query: '?tier=lite', axe: true });
+await visit('explore-animal', '/explore?animal=resplendent-quetzal', { wait: 5000, query: '?tier=lite' });
+await visit('explore-tour', '/explore', { wait: 4000, query: '?tier=lite', actions: async (p) => { await p.evaluate(() => { const b = [...document.querySelectorAll('.chip--tour')][0]; b?.click(); }); await sleep(3500); }, axe: true });
+await visit('explore-gallery', '/explore', { wait: 3000, query: '?tier=lite', actions: async (p) => { await p.evaluate(() => document.querySelector('.gallery')?.scrollIntoView()); await sleep(1500); } });
+await visit('explore-2d-layers', '/explore', { wait: 2500, actions: async (p) => { await p.evaluate(() => { const b = [...document.querySelectorAll('.seg__btn')].find((x) => x.textContent?.trim() === '2D'); b?.click(); }); await sleep(800); await p.evaluate(() => { const f = document.querySelector('.chip--food'); if (f && f.getAttribute('aria-pressed') !== 'true') f.click(); }); await sleep(1500); } });
+await visit('explore-phone', '/explore', { width: 390, height: 844, wait: 5000, query: '?tier=lite', axe: true });
 await visit('provinces', '/provinces', { wait: 2000, axe: true });
 await visit('province-puntarenas', '/provinces/puntarenas', { wait: 6000, query: '?tier=lite', axe: true });
 await visit('wildlife', '/wildlife', { wait: 1500, axe: true });
+await visit('wildlife-phone', '/wildlife', { width: 390, height: 844, wait: 1500, axe: true });
 await visit('food', '/food', { wait: 1500, axe: true });
+await visit('food-phone', '/food', { width: 390, height: 844, wait: 1500, axe: true });
 await visit('sources', '/sources', { wait: 1500, axe: true });
 await visit('my', '/my-costa-rica', { wait: 1000, axe: true });
 await visit('my-draft', '/my-costa-rica', { wait: 1000, query: '?draft' });

@@ -8,6 +8,7 @@ import { PROVINCE_COLORS, type MapData, type MeshPart, type MeshProvince } from 
 import { useMap, type ProvinceId } from '../state/map';
 import { useZoomLevel } from './camera';
 import type { Landmark } from '../content/types';
+import { COCO_INSET, MARKER_COLORS, displayLonLat, isCocoPlace, showAtLevel, type KindFilter } from './explore';
 import { pickLang, type Lang } from '../i18n';
 
 const tmpColor = new THREE.Color();
@@ -223,35 +224,36 @@ export function NeighborPlates({ data, color = '#d3c9ad', water = '#2d7fae' }: {
   );
 }
 
-const KIND_SHAPES: Record<string, { color: string; shape: 'cone' | 'dot' | 'tree' | 'square' }> = {
-  volcano: { color: '#b23a2f', shape: 'cone' },
-  mountain: { color: '#6b5b4a', shape: 'cone' },
-  park: { color: '#1f5a3a', shape: 'tree' },
-  reserve: { color: '#3e8a52', shape: 'tree' },
-  refuge: { color: '#3e8a52', shape: 'tree' },
-  wetland: { color: '#2cb1a6', shape: 'tree' },
-  monument: { color: '#8e4a9e', shape: 'square' },
-  island: { color: '#2cb1a6', shape: 'square' },
-  capital: { color: '#1d2b22', shape: 'dot' },
-  'province-capital': { color: '#1d2b22', shape: 'dot' },
-  city: { color: '#1d2b22', shape: 'dot' },
-  town: { color: '#5a6358', shape: 'dot' },
+const KIND_SHAPES: Record<string, { color: string; shape: 'cone' | 'dot' | 'tree' | 'square' | 'drop' | 'shell' }> = {
+  volcano: { color: MARKER_COLORS.volcano, shape: 'cone' },
+  mountain: { color: MARKER_COLORS.mountain, shape: 'cone' },
+  park: { color: MARKER_COLORS.park, shape: 'tree' },
+  reserve: { color: MARKER_COLORS.reserve, shape: 'tree' },
+  refuge: { color: MARKER_COLORS.refuge, shape: 'tree' },
+  wetland: { color: MARKER_COLORS.wetland, shape: 'drop' },
+  monument: { color: MARKER_COLORS.monument, shape: 'square' },
+  island: { color: MARKER_COLORS.island, shape: 'shell' },
+  beach: { color: MARKER_COLORS.beach, shape: 'shell' },
+  waterfall: { color: MARKER_COLORS.waterfall, shape: 'drop' },
+  river: { color: MARKER_COLORS.river, shape: 'drop' },
+  museum: { color: MARKER_COLORS.museum, shape: 'square' },
+  building: { color: MARKER_COLORS.building, shape: 'square' },
+  capital: { color: MARKER_COLORS.capital, shape: 'dot' },
+  'province-capital': { color: MARKER_COLORS['province-capital'], shape: 'dot' },
+  city: { color: MARKER_COLORS.city, shape: 'dot' },
+  town: { color: MARKER_COLORS.town, shape: 'dot' },
 };
 
-export function visibleLandmarks(landmarks: Landmark[], layers: { cities: boolean; peaks: boolean; parks: boolean }, level: 'far' | 'mid' | 'near') {
-  return landmarks.filter((l) => {
-    const isCity = l.kind === 'city' || l.kind === 'town' || l.kind === 'capital' || l.kind === 'province-capital';
-    if (isCity) return layers.cities && (level !== 'far' || l.kind === 'capital');
-    if (l.kind === 'volcano' || l.kind === 'mountain') return layers.peaks;
-    return layers.parks;
-  });
+export function visibleLandmarks(landmarks: Landmark[], filter: KindFilter, level: 'far' | 'mid' | 'near', active?: string | null) {
+  return landmarks.filter((l) => l.id === active || showAtLevel(l, filter, level));
 }
 
 export function LandmarkMarkers({ landmarks }: { landmarks: Landmark[] }) {
   const level = useZoomLevel((s) => s.level);
   const active = useMap((s) => s.activeLandmark);
   const setLandmark = useMap((s) => s.setLandmark);
-  const layers = useMap((s) => s.layers);
+  const select = useMap((s) => s.select);
+  const filter = useMap((s) => s.filter);
   const groupRef = useRef<THREE.Group>(null);
   const scaleRef = useRef(1);
   useFrame((st) => {
@@ -262,18 +264,20 @@ export function LandmarkMarkers({ landmarks }: { landmarks: Landmark[] }) {
       groupRef.current.children.forEach((c) => c.scale.setScalar(s));
     }
   });
-  const visible = visibleLandmarks(landmarks, layers, level);
+  const visible = visibleLandmarks(landmarks, filter, level, active);
   return (
     <group ref={groupRef}>
       {visible.map((l) => {
-        const [x, z] = project(l.lon, l.lat);
-        const y = surfaceY(l.lon, l.lat) + (l.kind === 'volcano' || l.kind === 'mountain' ? 0.4 : 0.2);
+        const [lon, lat] = displayLonLat(l);
+        const [x, z] = project(lon, lat);
+        const y = surfaceY(lon, lat) + (l.kind === 'volcano' || l.kind === 'mountain' ? 0.4 : 0.2) + (isCocoPlace(l.id) ? 1.8 : 0);
         const spec = KIND_SHAPES[l.kind] || KIND_SHAPES.town;
         const isActive = active === l.id;
+        const open = () => { if (l.province) select(l.province, false); setLandmark(isActive ? null : l.id); };
         return (
           <group key={l.id} position={[x, y, z]}>
             <mesh
-              onClick={(e) => { e.stopPropagation(); setLandmark(isActive ? null : l.id); }}
+              onClick={(e) => { e.stopPropagation(); open(); }}
               onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer'; }}
               onPointerOut={() => { document.body.style.cursor = ''; }}
             >
@@ -281,8 +285,16 @@ export function LandmarkMarkers({ landmarks }: { landmarks: Landmark[] }) {
               {spec.shape === 'dot' && <sphereGeometry args={[1.5, 12, 10]} />}
               {spec.shape === 'tree' && <sphereGeometry args={[1.9, 10, 8]} />}
               {spec.shape === 'square' && <boxGeometry args={[2.6, 2.6, 2.6]} />}
+              {spec.shape === 'drop' && <octahedronGeometry args={[1.9, 0]} />}
+              {spec.shape === 'shell' && <cylinderGeometry args={[2.2, 2.2, 0.9, 12]} />}
               <meshStandardMaterial color={spec.color} emissive={spec.color} emissiveIntensity={isActive ? 0.6 : 0.12} roughness={0.6} />
             </mesh>
+            {isActive && (
+              <mesh position={[0, -0.2, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+                <ringGeometry args={[3.2, 4.2, 32]} />
+                <meshBasicMaterial color="#f0c25a" transparent opacity={0.9} side={THREE.DoubleSide} />
+              </mesh>
+            )}
             {spec.shape === 'tree' && (
               <mesh position={[0, -1.4, 0]}>
                 <cylinderGeometry args={[0.35, 0.35, 2.2, 6]} />
@@ -302,7 +314,7 @@ export function LandmarkMarkers({ landmarks }: { landmarks: Landmark[] }) {
   );
 }
 
-export const COCO_INSET = { scale: 7, cx: -205, cz: 165, half: 30 };
+export { COCO_INSET };
 
 export function CocoInset({ data }: { data: MapData }) {
   const puntarenas = data.provinces.find((p) => p.id === 'puntarenas');

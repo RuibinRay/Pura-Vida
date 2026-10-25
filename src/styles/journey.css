@@ -896,7 +896,6 @@
 .ingredients { margin: 0; padding-left: 1.1em; columns: 2; column-gap: var(--s-5); }
 .ingredients li { break-inside: avoid; }
 .food-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); align-items: start; }
-.food-row__art { width: min(100%, 360px); height: auto; justify-self: start; filter: drop-shadow(0 12px 18px rgba(29, 43, 34, 0.25)); }
 .page__head--plate .plate-figure { margin: 0 0 var(--s-5); }
 .page__head--plate .plate-figure img { width: 100%; height: auto; border-radius: var(--radius-lg); display: block; }
 .page__head--plate figcaption { margin-top: var(--s-2); }

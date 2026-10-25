@@ -15,7 +15,8 @@ const tokens = Object.fromEntries([...root.matchAll(/--([a-z0-9-]+):\s*(#[0-9a-f
 describe('text contrast (WCAG AA)', () => {
   const pairs: [string, string, number][] = [
     ['ink', 'paper', 4.5], ['ink-muted', 'paper', 4.5], ['ink-faint', 'paper', 4.5], ['forest-ink', 'paper', 4.5], ['gold-ink', 'paper', 4.5], ['moss-ink', 'paper', 4.5],
-    ['good', 'paper', 4.5], ['warn', 'paper', 4.5], ['bad', 'paper', 4.5],
+    ['good', 'paper', 4.5], ['warn', 'paper', 4.5], ['bad', 'paper', 4.5], ['river-ink', 'paper', 4.5], ['sunset-ink', 'paper', 4.5], ['bark', 'paper', 4.5],
+    ['ink', 'sand', 4.5], ['ink', 'leaf-new', 4.5], ['ink', 'surface-solid', 4.5], ['ink-muted', 'surface-solid', 4.5], ['ink', 'paper-deep', 4.5], ['ink-muted', 'paper-deep', 4.5],
     ['paper', 'volcanic', 4.5], ['paper', 'forest', 4.5], ['paper', 'ocean', 4.5], ['paper', 'moss-ink', 4.5], ['paper', 'forest-ink', 4.5], ['paper', 'orchid', 4.5], ['paper', 'wood', 4.5], ['ink', 'gold', 4.5], ['ink', 'stone', 4.5], ['ink', 'paper-edge', 4.5], ['ink', 'turquoise', 4.5], ['ink', 'sunset', 4.5],
   ];
   for (const [fg, bg, min] of pairs) {

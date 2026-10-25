@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { loadJSON, saveJSON } from '../save/storage';
 
-export type DiscoveryKind = 'province' | 'species' | 'food' | 'plant' | 'event' | 'symbol' | 'game';
+export type DiscoveryKind = 'province' | 'place' | 'species' | 'food' | 'plant' | 'event' | 'symbol' | 'game';
 export interface Discovery {
   kind: DiscoveryKind;
   id: string;

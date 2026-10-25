@@ -13,6 +13,9 @@ import { SourceList, StatusTag, dedupeSources } from '../../ui/Sources';
 import { Icon } from '../../ui/Icon';
 import type { Source, TextBlock } from '../../content/types';
 import { usePageTitle } from '../usePageTitle';
+import { PlacePicture } from '../../ui/PlacePicture';
+import { AnimalSvg } from '../../art/animals';
+import { displayLonLat } from '../../map/explore';
 
 export function ProvincePage() {
   const { id } = useParams();
@@ -105,18 +108,23 @@ export function ProvincePage() {
                 {p.landmarks.map((lm) => {
                   const lname = typeof lm.name === 'string' ? lm.name : pickLang(lm.name, lang);
                   return (
-                    <li key={lm.id} className="landmark">
+                    <li key={lm.id} className="landmark landmark--pic">
+                      <button type="button" className="landmark__pic" onClick={() => { setLandmark(lm.id); const [lon, lat] = displayLonLat(lm); flyTo({ kind: 'point', lon, lat, distance: 80 }); document.getElementById('main')?.querySelector('.map-stage')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }} aria-label={t('provinces.showOnMap') + ': ' + lname}>
+                        <PlacePicture landmark={lm} size="thumb" />
+                      </button>
+                      <div className="landmark__body">
                       <div className="landmark__head">
                         <h3 className="landmark__name">{lname}</h3>
                         <span className="landmark__kind ui">{t(('explore.kinds.' + lm.kind) as MessageKey)}{lm.elevationM ? ` · ${lm.elevationM.toLocaleString(lang)} m` : ''}</span>
                       </div>
                       {lm.text && <p>{l(lm.text)}</p>}
                       <div className="landmark__foot ui">
-                        <button type="button" className="btn btn--ghost btn--sm" onClick={() => { setLandmark(lm.id); flyTo({ kind: 'point', lon: lm.lon, lat: lm.lat, distance: 80 }); document.getElementById('main')?.querySelector('.map-stage')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}>
+                        <button type="button" className="btn btn--ghost btn--sm" onClick={() => { setLandmark(lm.id); const [lon, lat] = displayLonLat(lm); flyTo({ kind: 'point', lon, lat, distance: 80 }); document.getElementById('main')?.querySelector('.map-stage')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}>
                           <Icon name="pin" /> {t('provinces.showOnMap')}
                         </button>
                         {lm.status && <StatusTag status={lm.status} />}
                         {lm.sources && lm.sources.length > 0 && <SourceList sources={lm.sources} compact />}
+                      </div>
                       </div>
                     </li>
                   );
@@ -127,10 +135,16 @@ export function ProvincePage() {
             {block(p.wildlifeVegetation, 'provinces.wildlife', p.wildlifeVegetation?.species && p.wildlifeVegetation.species.length > 0 && (
               <>
                 <h3 className="h-small">{t('provinces.species')}</h3>
-                <ul className="species-list">
-                  {p.wildlifeVegetation.species.map((s) => (
-                    <li key={s.scientific}><b>{l(s.common)}</b> <i className="muted">{s.scientific}</i>{s.note ? <span className="muted"> — {s.note}</span> : null}</li>
-                  ))}
+                <ul className="species-list species-list--avatars">
+                  {p.wildlifeVegetation.species.map((s) => {
+                    const known = content?.species.find((x) => x.scientific.toLowerCase() === s.scientific.toLowerCase());
+                    return (
+                      <li key={s.scientific} className={known ? 'has-avatar' : undefined}>
+                        {known && <Link to={'/wildlife?focus=' + known.id} className="species-list__avatar" aria-label={l(s.common)}><AnimalSvg species={known.id} size={56} /></Link>}
+                        <span><b>{l(s.common)}</b> <i className="muted">{s.scientific}</i>{s.note ? <span className="muted"> — {s.note}</span> : null}</span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </>
             ))}

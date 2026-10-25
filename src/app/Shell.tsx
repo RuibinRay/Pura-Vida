@@ -137,10 +137,11 @@ function PassportSheet() {
   const done = PROVINCE_ORDER.filter((id) => discoveries.some((d) => d.kind === 'province' && d.id === id));
   const speciesDone = discoveries.filter((d) => d.kind === 'species');
   const foodDone = discoveries.filter((d) => d.kind === 'food');
+  const placesDone = discoveries.filter((d) => d.kind === 'place').length;
   return (
     <div className="passport">
       <p>{t('passport.lede')}</p>
-      <p className="eyebrow">{t('passport.progress', { done: done.length, total: 7 })}</p>
+      <p className="eyebrow">{t('passport.progress', { done: done.length, total: 7 })}{placesDone > 0 ? ` · ${t('passport.places', { n: placesDone })}` : ''}</p>
       <ul className="passport__grid">
         {PROVINCE_ORDER.map((id) => {
           const d = discoveries.find((x) => x.kind === 'province' && x.id === id);

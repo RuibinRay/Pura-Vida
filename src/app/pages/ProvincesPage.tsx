@@ -16,7 +16,7 @@ export function ProvincesPage() {
   const has = usePassport((s) => s.has);
   return (
     <article className="page container">
-      <header className="page__head">
+      <header className="page__head page__head--nature">
         <p className="eyebrow">{t('nav.provinces')}</p>
         <h1>{t('provinces.title')}</h1>
         <p className="lede">{t('provinces.lede')}</p>

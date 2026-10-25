@@ -8,14 +8,24 @@ The site is a naturalist's field journal of Costa Rica: warm paper and dark fore
 2. **The Living Diorama** — a museum tabletop model under warm light, placards as UI. Rejected as the whole identity (static, toy-like) but kept for the map: the relief model *is* a diorama.
 3. **Documentary Cinema** — dark, full-bleed, misty, scroll-driven. Rejected: the most generic "premium dark site" look, the heaviest on effects, and the brief explicitly wants the interface to complement the environment, not compete.
 
-## Tokens (src/styles/tokens.css)
+## Tokens (src/styles/tokens.css) — nature edition (2026-10-24)
 
-- Paper `#f4eedf`, deep paper `#e7dcc3`, ink `#1d2b22`, muted ink `#5a6358`, faint ink `#616861` (4.8:1 on paper).
-- The country: forest `#1f5a3a`, canopy `#3e8a52`, moss `#7a8a3c`, ocean `#12456b`, turquoise `#2cb1a6`, gold `#e0a526` (text form gold-ink `#8a5a00`), sunset `#e8893a`, orchid `#8e4a9e` (fills only), volcanic `#2b2a2e`, stone `#a9a192`, wood `#8c5a32`.
+The journal's paper turned into leaf light on the owner's request for "nature colours". Token names are unchanged so every component reads the same; the values are:
+
+- Surfaces: pale leaf `#eef4e3` (`--paper`), fern shade `#dde9cc`, new-leaf edge `#c8d9ad`, dew card `rgba(255,255,255,.55)` / `#f7faf1` (`--surface`, `--surface-solid`). The pages sit under a gradient from pale sky `#e3eff2` into the leaf light (`body` in `nature.css`); the home keeps its dark stage.
+- Ink: deep forest `#16321f` (12.4:1 on paper), moss ink `#44583f` (6.9:1), faint `#566552` (5.5:1).
+- The country: forest `#1f5a3a`, canopy `#3e8a52`, leaf `#4f9a4a`, new leaf `#8cc04b`, pale leaf `#cfe3a0`, moss `#7a8a3c`, ocean `#12456b`, river `#2a7fa1` (text form `#1f6b86`), lagoon `#8fd3cf`, turquoise `#2cb1a6`, sky `#bfe0ee`, gold `#e0a526` (text `#8a5a00`), sunset `#e8893a` (text `#a04e10`), hibiscus `#d9484f` (fills only), orchid `#8e4a9e` (fills only), volcanic `#2b2a2e`, stone `#a9a192`, sand `#e8d6a8`, wood `#8c5a32`, bark `#6b4a2d`.
 - Status (never colour alone): good `#24683a`, warn `#8a5a00`, bad `#9f3328`.
 - Province swatches (watercolour tones): San José `#c25d4b`, Alajuela `#d9933f`, Cartago `#7f5aa6`, Heredia `#3f8f7a`, Guanacaste `#d6b345`, Puntarenas `#3b78a8`, Limón `#4f9e5c`. The same hex values are used by the 3D map, the 2D map, silhouettes, chapter rules and stamps.
-- `.on-dark` swaps paper/ink for the hero overlay and map popovers.
-- A contrast test (`tests/contrast.test.ts`) checks every text pair at ≥ 4.5:1.
+- Marker colours of the map by kind (`src/map/explore.ts`): volcano `#b23a2f`, mountain `#6b5b4a`, park `#1f5a3a`, reserve/refuge `#3e8a52`, wetland/waterfall `#2cb1a6`, river/island `#2a7fa1`, beach `#e0a526`, museum/monument `#8e4a9e`, building `#8c5a32`, cities ink. The filter chips take the same colours when on.
+- `.on-dark` swaps paper/ink for the hero overlay, the map popovers and the tour bar.
+- A contrast test (`tests/contrast.test.ts`) checks every text pair at ≥ 4.5:1, including the new river, sunset and bark inks and ink on sand, new leaf and the dew card.
+
+## Illustrations (src/art, docs/ART_STYLE.md)
+
+- **Cartoon animals** (`src/art/animals`): one original character per species of the journal, drawn as SVG in the sticker style (ink outline `#2a1d14`, flat fills, big eyes). `AnimalSvg` wraps one in an `<svg role="img">`; `ANIMAL_ART` gives the bare `<g>` for the 2D map. Used on the wildlife page (index and entry heroes), the map's wildlife layer (sprites and cards), the province chapters' species lists, and the place cards ("Animals you can meet here").
+- **Place postcards** (`src/art/places`): a scene per landmark, composed from parts (volcano cone, crater lake, cloud-forest ridge, waterfall, church, theatre, oxcart…), hand-tuned for the well-known places and generated from kind + province + a hash of the id for the rest. `PlacePicture` prefers one of the author's plates when the place is on the walk (`PLATE_FOR`). The chip on each picture says "illustration" or "illustrated plate"; nothing is presented as a photograph.
+- **Dishes** (`src/journey/dishes.tsx`, `src/art/food`): the five plates in the sticker style; `DishCard` sets a plate on a wood or banana-leaf table; `IngredientIcon` gives each ingredient a 32-unit sticker.
 
 ## Type
 
@@ -35,7 +45,12 @@ The site is a naturalist's field journal of Costa Rica: warm paper and dark fore
 - **Status tag** (`.status`): dot + word (confirmed / approximate / interpretation / folklore / uncertain).
 - **Source list**: compact "n sources" disclosure inline, full list on the chapter's end and on /sources, each with publisher, published and read-on dates.
 - **Buttons**: primary (forest, gold on dark), ghost, glass (on the hero), link; all ≥ 44 px tall at default size.
-- **Map stage**: toolbar (3D/2D segment, search combobox, layers menu, whole-country, pause) → canvas with hint → side panel (selection summary, province list as a `listbox`) → footnote with data provenance.
+- **Map stage**: toolbar (3D/2D segment, search combobox over provinces, places, animals and dishes, display menu, whole-country, pause) → a chip row (what to show: everything / volcanoes & peaks / parks & reserves / beaches & water / cities & culture; the wildlife and food layers; the tour; surprise me) → canvas with hint or the tour bar → side panel (a picture card for the place, animal or dish that is open; a province card with its postcards; the highlights strip; the province list as a `listbox`) → footnote with data provenance.
+- **Place card** (`.map-card--place`): the picture (16:10), kind · elevation · tour position, name, the sourced note, "Animals you can meet here" and "On the table here" avatar rows, the province chapter button.
+- **Animal / dish cards**: the cartoon or the plated dish as a hero, the sourced habitat or region line, "Where to see it" / "Where it is eaten" as buttons that fly the camera, a link into the journal.
+- **Sprites** (`.map-sprite`): 48 px white discs with the cartoon inside, pinned to the places of the species' sourced range (`src/content/habitats.ts`) and fanned around a place when several share it (`src/map/sprites.ts`); the same positions in 3D and 2D.
+- **Postcards** (`.postcard`): the gallery card (picture, kind in the group's colour, name, province) and the mini version in strips; `content-visibility: auto` keeps the 113-card gallery cheap.
+- **Avatars** (`.avatar`): a cartoon or dish sticker on a leaf-light disc with a label; used as index tabs, in rows on cards and in the province species lists.
 
 ## The journey (homepage) conventions
 
