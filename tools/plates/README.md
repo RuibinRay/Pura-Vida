@@ -88,6 +88,28 @@ dark fill (the Corcovado tapir) reports tens of thousands of pixels that are in 
 branches that are not there — check alignment first (`tools/scratch/match_empties.py`: correlation above 0.95 and
 more than 85 % of pixels unchanged at 320 px).
 
+### Pasted animals (a new scene, the old cut-outs)
+
+When the author regenerates a scene instead of erasing its animals (a different picture), the old plate's cut-outs can
+be placed on it: `"paste": [{ "from": "research/plates-built/forest-v1", "id": "toucan-a", "as": "toucan", "at": [x, y],
+"scale": 0.95, "flip": false, "warm": 0.06, "gain": 1.0, "layer": "near-left", "hotspot": [x, y], "hop": [dx, dy],
+"species": "...", "period": 5.4 }]`. `from` is a built plate directory (under `public/plates/` by name, or any path
+under the repository); `at` is the top-left of the animal's box in this spec's source px; `scale` is relative to the
+source plate's px (0.95 of a 2× plate's parts on a 1× scene ≈ 1.9× the old source). Parts keep their names, loops,
+pivots and axes (mirrored on `flip`); the base is the scene untouched, and the manifest says `clean`. Mock positions
+first with `tools/scratch/compose_mock.py`, then build with `--preview` and read the `<plate>-<animal>.png` sheets
+(the scene crop, then the animal composited on it). Pasted animals are not cut from this scene, so no `include`/`exclude`
+applies to them; `erase` polygons (this spec's source px) clear what the old cut-out carried of its old scene (a patch
+of the first plate's sky under the toucan's bill, invisible over its own base, a grey square over the new one). A scene
+can also have its own cut animals in `animals` beside the pasted ones.
+
+### `diffInclude` (clean plates)
+
+A box in which every pixel that differs between the source and the clean image (5-px mean > 0.14) and connects to
+the animal already found (through a 3-px bridge) is foreground — for thin things the model loses against a bright
+sky (the deer's antlers): `"diffInclude": [[x0, y0, x1, y1]]`. A repainted leaf floating above the antlers does not
+connect and stays out.
+
 ## Water
 
 ```jsonc

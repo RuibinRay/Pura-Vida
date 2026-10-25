@@ -2,6 +2,16 @@
 
 Status words: **built** = implemented and exercised in the headless browser; **built, unverified on device** = implemented, but the check this session could do is not representative (software GPU); **partial**; **planned (M2–M5)**.
 
+## One toucan — the opening on the new scene, antlers, bills, a lighter tilt (2026-10-25, late afternoon)
+
+| Change | Status | Notes |
+|---|---|---|
+| Opening plate on the regenerated forest image | done | `tools/plates.py` `paste`: the animals built for `forest-v1` (kept under `research/plates-built/`) placed on the new scene at a position, scale and warm grade; one toucan (the owner's ask), the sloth, two macaws, the morpho; new frame polygons and three water regions (waterfall, cove, surf); `clean: true` |
+| Deer antlers turn with the head | done | `diffInclude` box in the spec: inside it, every pixel that differs between the clean and the original image is foreground (antlers against the sky that U²-Net dropped) |
+| Hummingbird bills | done | Irazú hummingbird-a: box widened over the bill and a thin include on its pixel rows (the coffee and Cartago bills were fixed in the clean pass; Monteverde's, Río Celeste's and Irazú-b's were already in their cut-outs) |
+| Lighter toucan head move | done | `--g-tilt` 1.3 → 1 (clean plates 1.9 → 1.2), the tilt's secondary moves 0.35/0.9 → 0.25/0.7, period 2.6–2.9 s → 3.6 s |
+| Monteverde / Tortuguero on their v2 images | **offered, not done** | the v2 pairs (with and without animals) exist; Tortuguero v2 has a heron and a caiman only |
+
 ## Clean plates — the owner's scenes without their animals (2026-10-25, afternoon)
 
 The owner asked whether images without the animals would make the animation better, then sent twelve of them (the scenes with the animals erased by his tool's generative fill) and a thirteenth that turned out to be a new generation of the opening scene rather than an erase.

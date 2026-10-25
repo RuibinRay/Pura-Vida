@@ -15,6 +15,11 @@ and each animal's alpha is vetoed outside the silhouette the two files differ in
 with a cut-out. Poly parts (heads) may carry an "overlap" (source px): the body keeps that band under the head, so a
 turn opens onto neck rather than onto the base. An animal may carry a "hop" vector (source px) for its perch loop.
 
+A spec may instead "paste" animals built for another plate onto this scene (the author's regenerated opening: the same
+animals, a new picture). Each entry names the source plate directory and animal, a position and a scale in this
+spec's source px, an optional horizontal flip and a warm/cool grade; the parts are re-exported with their pivots, axes
+and loops, the base is this scene untouched, and the manifest says `clean` (nothing is inpainted under them).
+
 Outputs under public/plates/<id>/:
   base-{w}.webp                     the plate, inpainted under every moving part (or the clean image)
   <animal>-<part>-{w}.webp          cut-outs with alpha, cropped to their boxes
@@ -187,6 +192,25 @@ def animal_alpha(plate, a, s, diff=None):
     inc_value = 0.6 if a.get('grabcut') else 1.0
     for pts in a.get('include', []):
         m = np.maximum(m, poly_mask(H, W, pts, s) * inc_value)
+    # with a clean image, thin things the model drops (antlers against the sky, a bill) are exactly where the two files
+    # differ: inside these boxes every differing pixel is foreground
+    if diff is not None:
+        for box in a.get('diffInclude', []):
+            x0, y0, x1, y1 = [round(v * s) for v in box]
+            sub = (diff[y0:y1, x0:x1] > a.get('diffIncludeThreshold', 0.14)).astype(np.uint8)
+            sub = cv2.morphologyEx(sub, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+            sub = cv2.morphologyEx(sub, cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
+            # keep only what connects to the animal already found (antlers grow from the head; a repainted leaf
+            # floating above it does not), through a 3-px bridge
+            core = (m[y0:y1, x0:x1] > 0.5).astype(np.uint8)
+            union = np.maximum(sub, core)
+            n, lab = cv2.connectedComponents(cv2.dilate(union, np.ones((3, 3), np.uint8)))
+            good = np.unique(lab[core > 0])
+            keep = np.isin(lab, good[good > 0]) & (sub > 0)
+            soft = cv2.GaussianBlur(keep.astype(np.float32), (0, 0), 0.8)
+            m[y0:y1, x0:x1] = np.maximum(m[y0:y1, x0:x1], soft)
+            sub = keep.astype(np.uint8)
+            print(f'  {a["id"]}: diffInclude box {box} added {int(sub.sum())} px')
     for pts in a.get('exclude', []):
         m = m * (1 - poly_mask(H, W, pts, s))
     # GrabCut refinement inside boxes (thin structures such as antlers, or where the model's edge is soft)
@@ -441,6 +465,102 @@ def frac_box(box, W, H):
     return [x0 / W, y0 / H, (x1 - x0) / W, (y1 - y0) / H]
 
 
+def paste_animals(spec, d, plate, widths, W, H, s, manifest, preview):
+    """Parts of animals built for another plate, placed on this one (see the module docstring)."""
+    for entry in spec.get('paste', []):
+        src_dir = os.path.join(ROOT, entry['from']) if '/' in entry['from'] else os.path.join(OUT, entry['from'])
+        sm = json.load(open(os.path.join(src_dir, 'manifest.json')))
+        sa = [x for x in sm['animals'] if x['id'] == entry['id']][0]
+        SW, SH, sw0 = sm['width'], sm['height'], sm['widths'][0]
+        new_id = entry.get('as', entry['id'])
+        # the animal's old box in its own plate's px → its new box here (scale is relative to the old PLATE px)
+        k = entry.get('scale', 1.0) * s
+        ox, oy = entry['at'][0] * s, entry['at'][1] * s
+        bx0, by0, bw, bh = sa['box'][0] * SW, sa['box'][1] * SH, sa['box'][2] * SW, sa['box'][3] * SH
+        nbw, nbh = bw * k, bh * k
+        flip = bool(entry.get('flip'))
+        new_entry = {'id': new_id, 'species': entry.get('species', sa.get('species')), 'kind': sa.get('kind', new_id), 'box': [ox / W, oy / H, nbw / W, nbh / H], 'hotspot': None, 'parts': []}
+        if 'hotspot' in entry:
+            new_entry['hotspot'] = [entry['hotspot'][0] * s / W, entry['hotspot'][1] * s / H]
+        elif sa.get('hotspot'):
+            hx, hy = sa['hotspot'][0] * SW, sa['hotspot'][1] * SH
+            rx = (hx - bx0) / bw
+            if flip:
+                rx = 1 - rx
+            new_entry['hotspot'] = [(ox + rx * nbw) / W, (oy + (hy - by0) / bh * nbh) / H]
+        for key in ('layer', 'anim', 'period', 'amp', 'delay', 'static'):
+            if key in entry:
+                new_entry[key] = entry[key]
+            elif key in sa:
+                new_entry[key] = sa[key]
+        if entry.get('hop'):
+            new_entry['hop'] = [round(entry['hop'][0] * s / max(1, nbw), 4), round(entry['hop'][1] * s / max(1, nbh), 4)]
+        comp_preview = []
+        for p in sorted(sa['parts'], key=lambda q: q['z']):
+            im = cv2.imread(os.path.join(src_dir, f"{sa['id']}-{p['name']}-{sw0}.webp"), cv2.IMREAD_UNCHANGED)
+            if im is None or im.shape[2] != 4:
+                raise SystemExit(f"cannot read part {sa['id']}-{p['name']} of {entry['from']}")
+            px0, py0, pw, ph = p['box'][0] * SW, p['box'][1] * SH, p['box'][2] * SW, p['box'][3] * SH
+            # position relative to the animal's box, then scaled and placed
+            rx, ry = (px0 - bx0) / bw, (py0 - by0) / bh
+            npw, nph = max(1, round(pw * k)), max(1, round(ph * k))
+            im = cv2.resize(im, (npw, nph), interpolation=cv2.INTER_AREA if k < 1 else cv2.INTER_CUBIC)
+            if flip:
+                im = im[:, ::-1]
+                rx = 1 - rx - pw / bw
+            if entry.get('warm'):
+                g = float(entry['warm'])
+                rgb = im[:, :, :3].astype(np.float32)
+                rgb[:, :, 2] = np.clip(rgb[:, :, 2] * (1 + g), 0, 255)       # BGR: red up
+                rgb[:, :, 1] = np.clip(rgb[:, :, 1] * (1 + g * 0.35), 0, 255)
+                rgb[:, :, 0] = np.clip(rgb[:, :, 0] * (1 - g), 0, 255)       # blue down
+                im[:, :, :3] = rgb.astype(np.uint8)
+            if entry.get('gain'):
+                im[:, :, :3] = np.clip(im[:, :, :3].astype(np.float32) * float(entry['gain']), 0, 255).astype(np.uint8)
+            nx0, ny0 = ox + rx * nbw, oy + ry * nbh
+            ix0, iy0 = int(round(nx0)), int(round(ny0))
+            # erase polygons (this spec's source px): what the old cut-out carried of its old scene (a patch of the
+            # first plate's sky under the toucan's bill, invisible over its own base, a grey square over another)
+            for pts in entry.get('erase', []):
+                em = poly_mask(H, W, pts, s, feather=1.0)[iy0:iy0 + im.shape[0], ix0:ix0 + im.shape[1]]
+                im[:em.shape[0], :em.shape[1], 3] = (im[:em.shape[0], :em.shape[1], 3].astype(np.float32) * (1 - em)).astype(np.uint8)
+            box = [ix0, iy0, ix0 + npw, iy0 + nph]
+            for width in widths:
+                lw = max(1, round(npw * width / W))
+                save_webp(os.path.join(d, f'{new_id}-{p["name"]}-{width}.webp'), resize_to_width(im, lw), 84)
+            part = {'name': p['name'], 'anim': p.get('anim', 'none'), 'box': frac_box(box, W, H), 'widths': list(widths), 'z': p.get('z', 1)}
+            for key in ('pivot', 'axis', 'amp', 'period', 'delay', 'phase'):
+                if key in p:
+                    part[key] = p[key]
+            if flip and 'pivot' in p:
+                part['pivot'] = [1 - p['pivot'][0], p['pivot'][1]]
+            if flip and 'axis' in p:
+                part['axis'] = [-p['axis'][0], p['axis'][1]]
+            new_entry['parts'].append(part)
+            comp_preview.append((im, ix0, iy0))
+        manifest['animals'].append(new_entry)
+        print(f"  pasted {entry['from']}/{sa['id']} as {new_id}: {len(new_entry['parts'])} parts at {entry['at']} × {entry.get('scale', 1.0)}{' flipped' if flip else ''}")
+        if preview:
+            x0, y0 = max(0, int(ox) - 20), max(0, int(oy) - 20)
+            x1, y1 = min(W, int(ox + nbw) + 20), min(H, int(oy + nbh) + 20)
+            crop = plate[y0:y1, x0:x1].copy()
+            for im, ix0, iy0 in comp_preview:
+                a = im[:, :, 3:4].astype(np.float32) / 255
+                sx0, sy0 = ix0 - x0, iy0 - y0
+                sx1, sy1 = sx0 + im.shape[1], sy0 + im.shape[0]
+                cx0, cy0, cx1, cy1 = max(0, sx0), max(0, sy0), min(crop.shape[1], sx1), min(crop.shape[0], sy1)
+                if cx1 <= cx0 or cy1 <= cy0:
+                    continue
+                sub = im[cy0 - sy0:cy1 - sy0, cx0 - sx0:cx1 - sx0]
+                aa = a[cy0 - sy0:cy1 - sy0, cx0 - sx0:cx1 - sx0]
+                crop[cy0:cy1, cx0:cx1] = (sub[:, :, :3] * aa + crop[cy0:cy1, cx0:cx1] * (1 - aa)).astype(np.uint8)
+            cv2.imwrite(os.path.join(preview, f'{pid_of(spec)}-{new_id}.png'), np.hstack([plate[y0:y1, x0:x1], crop]))
+
+
+def pid_of(spec):
+    return spec['id']
+
+
 def write_index():
     """Merges every public/plates/*/manifest.json into the importable index the app reads."""
     idx = {}
@@ -586,6 +706,11 @@ def main():
                 sheets.append((crop * (1 - 0.8 * removed) + np.array([0, 0, 255], np.float32) * 0.8 * removed).astype(np.uint8))
             cv2.imwrite(os.path.join(preview, f'{pid}-{a["id"]}.png'), np.hstack(sheets))
 
+    # animals built for another plate, placed on this scene
+    if spec.get('paste'):
+        paste_animals(spec, d, plate, widths, W, H, s, manifest, preview)
+        if not animals:
+            manifest['clean'] = True  # nothing is inpainted under a pasted animal
     # water (from the clean image when there is one, so a region never carries an animal)
     water_src = clean if clean is not None else plate
     water_layers = []

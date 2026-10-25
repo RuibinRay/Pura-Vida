@@ -291,7 +291,7 @@
   --f0: 0.5;
   /* gains over the amplitudes written in the plate specs (those were tuned for a whisper) */
   --g-head: 2;
-  --g-tilt: 1.3;
+  --g-tilt: 1;      /* toucans: the owner found 1.3 (7.8°) too much — "cracking his head open" */
   --g-flap: 2;
   --g-flutter: 1.5;
   --g-morpho: 1.15;
@@ -345,7 +345,7 @@
 @keyframes morpho-a { 0%, 12%, 88%, 100% { transform: rotate3d(var(--ax), var(--ay), 0, 0deg); } 50% { transform: rotate3d(var(--ax), var(--ay), 0, calc(var(--amp) * var(--g-morpho) * 1deg)); } }
 @keyframes morpho-b { 0%, 12%, 88%, 100% { transform: rotate3d(var(--ax), var(--ay), 0, 0deg); } 50% { transform: rotate3d(var(--ax), var(--ay), 0, calc(var(--amp) * var(--g-morpho) * -1deg)); } }
 @keyframes head-turn { 0%, 18%, 100% { rotate: 0deg; } 21%, 42% { rotate: calc(var(--amp) * var(--g-head) * -1deg); } 45%, 64% { rotate: calc(var(--amp) * var(--g-head) * -0.35deg); } 67%, 84% { rotate: calc(var(--amp) * var(--g-head) * 0.8deg); } 87% { rotate: 0deg; } }
-@keyframes head-tilt { 0%, 22%, 100% { rotate: 0deg; } 25%, 44% { rotate: calc(var(--amp) * var(--g-tilt) * -1deg); } 47%, 60% { rotate: calc(var(--amp) * var(--g-tilt) * 0.35deg); } 63%, 82% { rotate: calc(var(--amp) * var(--g-tilt) * 0.9deg); } 85% { rotate: 0deg; } }
+@keyframes head-tilt { 0%, 22%, 100% { rotate: 0deg; } 27%, 44% { rotate: calc(var(--amp) * var(--g-tilt) * -1deg); } 49%, 60% { rotate: calc(var(--amp) * var(--g-tilt) * 0.25deg); } 66%, 82% { rotate: calc(var(--amp) * var(--g-tilt) * 0.7deg); } 88% { rotate: 0deg; } }
 @keyframes head-graze { 0%, 100% { rotate: 0deg; } 35%, 62% { rotate: calc(var(--amp) * var(--g-head) * var(--sgn, 1) * 1deg); } }
 @keyframes head-watch { 0%, 100% { rotate: 0deg; } 40%, 55% { rotate: calc(var(--amp) * var(--g-head) * -1deg); } 80% { rotate: calc(var(--amp) * var(--g-head) * 0.6deg); } }
 @keyframes sway { from { rotate: calc(var(--amp) * var(--g-sway) * -1deg); } to { rotate: calc(var(--amp) * var(--g-sway) * 1deg); } }
@@ -357,7 +357,7 @@
    onto neck), perched birds hop along their perch (--hdx/--hdy, fractions of their box, from the plate spec),
    standing animals shift their weight more, hummingbirds and morphos roam wider, and a walking animal (the turtle)
    crawls with the scroll. ---- */
-.plate--clean .animal { --g-head: 2.6; --g-tilt: 1.9; --hdx: 0; --hdy: 0; }
+.plate--clean .animal { --g-head: 2.6; --g-tilt: 1.2; --hdx: 0; --hdy: 0; }
 .animal--walk, .animal--crawl { transform-origin: 50% 100%; }
 /* a hop out along the perch (a short arc, a squash on landing), a rest, a hop back, then the old settle and shake */
 @keyframes perch-free {
@@ -752,15 +752,22 @@
 .jcopy__caption .tag { vertical-align: middle; }
 
 /* 01: the opening words at the bottom left; they rise and fade as the forest opens */
+/* the opening's words: since the toucan moved to the mossy branch at the lower left (2026-10-25), the hero sits
+   centred over the cove, under the volcano, with the macaws above it and the morpho to its right */
 .jcopy--hero {
-  left: calc(var(--gutter) + 2.2rem);
+  left: 50%;
   right: auto;
   bottom: 0;
-  max-width: 48rem;
+  width: max-content;
+  max-width: min(46rem, calc(100vw - 2 * var(--gutter) - 4rem));
   padding-bottom: var(--s-7);
+  text-align: center;
   opacity: calc(1 - var(--m) * clamp(0, var(--pn, 0) * 2.4, 1) - var(--calm) * clamp(0, (var(--pn, 0) - 0.6) * 3, 1));
-  transform: translateY(calc(var(--m) * var(--pn, 0) * -40px));
+  transform: translate(-50%, calc(var(--m) * var(--pn, 0) * -40px));
 }
+.jcopy--hero .jcopy__intro { margin-left: auto; margin-right: auto; }
+.jcopy--hero .jcopy__actions, .jcopy--hero .jcopy__scrollhint { justify-content: center; }
+.jcopy--hero .jcopy__kicker::before { display: none; }
 /* panels: a quiet dark backdrop, no blur; enter from below, hold, leave upward */
 .jcopy--panel {
   left: calc(var(--gutter) + 2.2rem);
@@ -1042,7 +1049,7 @@
 
 /* ---- responsive ---- */
 @media (max-width: 1100px) {
-  .jcopy--hero, .jcopy--panel { left: calc(var(--gutter) + 1.2rem); }
+  .jcopy--panel { left: calc(var(--gutter) + 1.2rem); }
   .jcopy--right { left: auto; right: calc(var(--gutter) + 1.2rem); }
   .jcopy--bottom, .jcopy--topcenter { left: 50%; }
   .jcopy--close { padding-left: calc(var(--gutter) + 1.2rem); }
@@ -1069,8 +1076,13 @@
   .jcopy--bottom .jcopy__links, .jcopy--topcenter .jcopy__links, .jcopy--bottom .facts-grid, .jcopy--topcenter .facts-grid { justify-content: start; }
   .jcopy--close { display: block; }
   .jcopy--close .jcopy__h2 { display: none; }
-  .jcopy--hero { padding-bottom: var(--s-6); max-height: none; }
-  .jcopy__h1 { font-size: clamp(2.8rem, 15vw, 4.4rem); }
+  /* phones: the words at the top (the volcano behind them), the toucan on its branch below */
+  .jcopy--hero { left: var(--gutter); right: var(--gutter); top: 3.4rem; bottom: auto; width: auto; max-width: none; padding-bottom: 0; max-height: none; text-align: left; transform: translateY(calc(var(--m) * var(--pn, 0) * -40px)); }
+  .jcopy--hero .jcopy__intro { margin-left: 0; }
+  .jcopy--hero .jcopy__actions { justify-content: flex-start; flex-wrap: nowrap; gap: var(--s-2); }
+  .jcopy--hero .jcopy__actions .btn--lg { padding: 0.8em 0.9em; font-size: 0.92rem; white-space: nowrap; flex: 0 0 auto; }
+  .jcopy--hero .jcopy__scrollhint { display: none; }
+  .jcopy__h1 { font-size: clamp(2.6rem, 13vw, 4.4rem); }
   .facts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); }
   .fact { gap: var(--s-2); }
   .fact__viz { width: 44px; height: 44px; }

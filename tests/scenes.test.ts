@@ -58,8 +58,8 @@ describe('the stops of the walk', () => {
 
   it('a plate built on the author\'s clean scene says so, and its perched birds hop along their perch', () => {
     // the specs that name a clean image (the same scene with the animals erased, 2026-10-25)
-    const clean = Object.keys(plates).filter((id) => fs.existsSync(path.resolve(`tools/plates/${id}.json`)) && JSON.parse(fs.readFileSync(path.resolve(`tools/plates/${id}.json`), 'utf8')).clean);
-    expect(clean.sort()).toEqual(['arenal', 'cartago', 'chirripo', 'coffee', 'corcovado', 'guanacaste', 'manuel-antonio', 'rio-celeste']);
+    const clean = Object.keys(plates).filter((id) => { const p = path.resolve(`tools/plates/${id}.json`); if (!fs.existsSync(p)) return false; const sp = JSON.parse(fs.readFileSync(p, 'utf8')); return sp.clean || (sp.paste && !sp.animals); });
+    expect(clean.sort()).toEqual(['arenal', 'cartago', 'chirripo', 'coffee', 'corcovado', 'forest', 'guanacaste', 'manuel-antonio', 'rio-celeste']);
     for (const id of clean) {
       expect(plates[id].clean, `${id} manifest`).toBe(true);
       for (const a of plates[id].animals || []) {

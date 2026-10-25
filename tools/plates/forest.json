@@ -1,24 +1,121 @@
 {
  "id": "forest",
- "source": "research/plates-original/opening-forest-waterfall-volcano.jpg",
- "upscale": 2,
+ "note": "The opening on the author's regenerated scene (2026-10-25): the animals of the first opening plate (forest-v1, built from his first image) pasted on; one toucan, as he asked.",
+ "source": "research/plates-original/2026-10-25/opening-forest-regenerated.jpg",
+ "upscale": 1,
  "focal": {
-  "x": 0.47,
-  "y": 0.3,
-  "panFrom": 0.2,
-  "panTo": 0.75
+  "x": 0.5,
+  "y": 0.42,
+  "panFrom": 0.27,
+  "panTo": 0.72
  },
  "points": {
   "waterfall": [
-   0.26,
-   0.44
+   0.395,
+   0.62
   ],
   "volcano": [
    0.5,
-   0.12
+   0.08
+  ],
+  "sun": [
+   0.9,
+   0.18
   ]
  },
- "inpaint": "fsr",
+ "paste": [
+  {
+   "from": "research/plates-built/forest-v1",
+   "id": "toucan-a",
+   "as": "toucan",
+   "species": "keel-billed-toucan",
+   "at": [
+    430,
+    795
+   ],
+   "scale": 0.95,
+   "warm": 0.06,
+   "layer": "near-left",
+   "hotspot": [
+    585,
+    995
+   ],
+   "hop": [
+    20,
+    -2
+   ],
+   "period": 5.4,
+   "erase": [
+    [
+     [
+      636,
+      886
+     ],
+     [
+      680,
+      886
+     ],
+     [
+      680,
+      896
+     ],
+     [
+      722,
+      896
+     ],
+     [
+      722,
+      952
+     ],
+     [
+      636,
+      952
+     ]
+    ]
+   ]
+  },
+  {
+   "from": "research/plates-built/forest-v1",
+   "id": "sloth",
+   "at": [
+    1900,
+    120
+   ],
+   "scale": 0.8,
+   "warm": 0.05,
+   "layer": "near-right"
+  },
+  {
+   "from": "research/plates-built/forest-v1",
+   "id": "macaw-a",
+   "at": [
+    1250,
+    470
+   ],
+   "scale": 0.95,
+   "warm": 0.04
+  },
+  {
+   "from": "research/plates-built/forest-v1",
+   "id": "macaw-b",
+   "at": [
+    1480,
+    390
+   ],
+   "scale": 0.95,
+   "warm": 0.04
+  },
+  {
+   "from": "research/plates-built/forest-v1",
+   "id": "morpho",
+   "at": [
+    2050,
+    1180
+   ],
+   "scale": 0.95,
+   "warm": 0.02
+  }
+ ],
  "frame": {
   "polys": [
    [
@@ -27,116 +124,90 @@
      0
     ],
     [
-     0.36,
+     600,
      0
     ],
     [
-     0.3,
-     0.12
+     470,
+     260
     ],
     [
-     0.2,
-     0.2
+     400,
+     560
     ],
     [
-     0.17,
-     0.32
+     420,
+     820
     ],
     [
-     0.13,
-     0.45
+     620,
+     980
     ],
     [
-     0.1,
-     0.6
+     900,
+     1160
     ],
     [
-     0.12,
-     0.78
+     1020,
+     1300
+    ],
+    [
+     1060,
+     1438
     ],
     [
      0,
-     0.9
+     1438
     ]
    ],
    [
     [
-     0.64,
+     1320,
      0
     ],
     [
-     1,
+     2576,
      0
     ],
     [
-     1,
-     1
+     2576,
+     1438
     ],
     [
-     0.72,
-     1
+     2140,
+     1438
     ],
     [
-     0.74,
-     0.86
+     2060,
+     1200
     ],
     [
-     0.8,
-     0.7
+     2250,
+     980
     ],
     [
-     0.78,
-     0.55
+     2330,
+     760
     ],
     [
-     0.76,
-     0.4
+     2200,
+     640
     ],
     [
-     0.78,
-     0.25
+     1980,
+     560
     ],
     [
-     0.68,
-     0.12
-    ]
-   ],
-   [
-    [
-     0,
-     0.8
+     1700,
+     470
     ],
     [
-     0.15,
-     0.8
+     1560,
+     330
     ],
     [
-     0.3,
-     0.86
-    ],
-    [
-     0.45,
-     0.92
-    ],
-    [
-     0.56,
-     0.92
-    ],
-    [
-     0.7,
-     0.86
-    ],
-    [
-     1,
-     0.84
-    ],
-    [
-     1,
-     1
-    ],
-    [
-     0,
-     1
+     1480,
+     170
     ]
    ]
   ],
@@ -145,404 +216,37 @@
    0.56
   ]
  },
- "animals": [
-  {
-   "id": "toucan-a",
-   "species": "keel-billed-toucan",
-   "kind": "toucan",
-   "layer": "near-left",
-   "box": [
-    98,
-    72,
-    252,
-    292
-   ],
-   "parts": [
-    {
-     "name": "head",
-     "anim": "tilt",
-     "z": 2,
-     "pivot": [
-      160,
-      150
-     ],
-     "amp": 6,
-     "period": 2.6,
-     "poly": [
-      [
-       138,
-       68
-      ],
-      [
-       246,
-       94
-      ],
-      [
-       248,
-       118
-      ],
-      [
-       242,
-       132
-      ],
-      [
-       196,
-       162
-      ],
-      [
-       150,
-       152
-      ],
-      [
-       133,
-       106
-      ]
-     ],
-     "edge": 3.5
-    },
-    {
-     "name": "body",
-     "anim": "none",
-     "z": 1,
-     "rest": true
-    }
-   ],
-   "exclude": [
-    [
-     [
-      198,
-      150
-     ],
-     [
-      262,
-      150
-     ],
-     [
-      262,
-      300
-     ],
-     [
-      186,
-      300
-     ],
-     [
-      188,
-      250
-     ],
-     [
-      190,
-      220
-     ],
-     [
-      193,
-      190
-     ]
-    ]
-   ],
-   "include": [
-    [
-     [
-      212,
-      96
-     ],
-     [
-      246,
-      108
-     ],
-     [
-      248,
-      118
-     ],
-     [
-      243,
-      132
-     ],
-     [
-      212,
-      138
-     ]
-    ]
-   ]
-  },
-  {
-   "id": "toucan-b",
-   "species": "keel-billed-toucan",
-   "kind": "toucan",
-   "layer": "near-left",
-   "box": [
-    195,
-    66,
-    348,
-    258
-   ],
-   "hotspot": [
-    250,
-    190
-   ],
-   "parts": [
-    {
-     "name": "head",
-     "anim": "tilt",
-     "z": 2,
-     "pivot": [
-      262,
-      145
-     ],
-     "amp": 6,
-     "period": 3.1,
-     "poly": [
-      [
-       250,
-       62
-      ],
-      [
-       348,
-       92
-      ],
-      [
-       342,
-       126
-      ],
-      [
-       300,
-       152
-      ],
-      [
-       255,
-       146
-      ],
-      [
-       250,
-       120
-      ],
-      [
-       249,
-       96
-      ]
-     ],
-     "edge": 3.5
-    },
-    {
-     "name": "body",
-     "anim": "none",
-     "z": 1,
-     "rest": true
-    }
-   ],
-   "exclude": [
-    [
-     [
-      150,
-      140
-     ],
-     [
-      196,
-      140
-     ],
-     [
-      193,
-      190
-     ],
-     [
-      190,
-      220
-     ],
-     [
-      188,
-      250
-     ],
-     [
-      186,
-      300
-     ],
-     [
-      150,
-      300
-     ]
-    ]
-   ]
-  },
-  {
-   "id": "sloth",
-   "species": "brown-throated-three-toed-sloth",
-   "kind": "sloth",
-   "layer": "near-right",
-   "box": [
-    1030,
-    82,
-    1340,
-    490
-   ],
-   "hotspot": [
-    1110,
-    240
-   ],
-   "parts": [
-    {
-     "name": "body",
-     "anim": "sway",
-     "z": 2,
-     "rest": true,
-     "pivot": [
-      1230,
-      100
-     ],
-     "amp": 2,
-     "period": 5.5
-    }
-   ]
-  },
-  {
-   "id": "macaw-a",
-   "species": "scarlet-macaw",
-   "kind": "macaw",
-   "anim": "bob",
-   "period": 2.4,
-   "box": [
-    792,
-    362,
-    888,
-    448
-   ],
-   "parts": [
-    {
-     "name": "body",
-     "anim": "none",
-     "z": 2,
-     "rest": true
-    }
-   ]
-  },
-  {
-   "id": "macaw-b",
-   "species": "scarlet-macaw",
-   "kind": "macaw",
-   "anim": "bob",
-   "period": 2.0,
-   "box": [
-    928,
-    328,
-    1058,
-    438
-   ],
-   "hotspot": [
-    985,
-    385
-   ],
-   "parts": [
-    {
-     "name": "body",
-     "anim": "none",
-     "z": 2,
-     "rest": true
-    }
-   ]
-  },
-  {
-   "id": "morpho",
-   "species": "blue-morpho",
-   "kind": "morpho",
-   "anim": "drift",
-   "period": 5,
-   "box": [
-    768,
-    606,
-    888,
-    722
-   ],
-   "hotspot": [
-    828,
-    665
-   ],
-   "parts": [
-    {
-     "name": "wing-a",
-     "anim": "morpho-a",
-     "z": 1,
-     "pivot": [
-      828,
-      665
-     ],
-     "half": {
-      "axis": [
-       [
-        828,
-        625
-       ],
-       [
-        828,
-        708
-       ]
-      ],
-      "side": "pos",
-      "halfWidth": 3,
-      "overlap": 2
-     }
-    },
-    {
-     "name": "wing-b",
-     "anim": "morpho-b",
-     "z": 1,
-     "pivot": [
-      828,
-      665
-     ],
-     "half": {
-      "axis": [
-       [
-        828,
-        625
-       ],
-       [
-        828,
-        708
-       ]
-      ],
-      "side": "neg",
-      "halfWidth": 3,
-      "overlap": 2
-     }
-    },
-    {
-     "name": "body",
-     "anim": "none",
-     "z": 2,
-     "rest": true
-    }
-   ]
-  }
- ],
  "water": [
   {
    "name": "waterfall",
    "poly": [
     [
-     300,
-     333
+     935,
+     790
     ],
     [
-     426,
-     333
+     1050,
+     790
     ],
     [
-     432,
-     480
+     1075,
+     1000
     ],
     [
-     442,
-     620
+     1080,
+     1180
     ],
     [
-     525,
-     655
+     1180,
+     1200
     ],
     [
-     380,
-     660
+     860,
+     1200
     ],
     [
-     298,
-     560
+     900,
+     1000
     ]
    ],
    "feather": 8,
@@ -558,23 +262,27 @@
    "mode": "flow"
   },
   {
-   "name": "river",
+   "name": "pool",
    "poly": [
     [
-     290,
-     612
+     830,
+     1180
     ],
     [
-     820,
-     600
+     2000,
+     1180
     ],
     [
-     832,
-     722
+     2050,
+     1438
     ],
     [
-     280,
-     732
+     1000,
+     1438
+    ],
+    [
+     830,
+     1300
     ]
    ],
    "feather": 10,
@@ -585,6 +293,38 @@
     "amp": 0.01
    },
    "mode": "shimmer"
+  },
+  {
+   "name": "surf",
+   "poly": [
+    [
+     1850,
+     1190
+    ],
+    [
+     2120,
+     1190
+    ],
+    [
+     2180,
+     1438
+    ],
+    [
+     1800,
+     1438
+    ]
+   ],
+   "feather": 8,
+   "whiteOnly": true,
+   "vMin": 0.6,
+   "sMax": 0.35,
+   "flow": {
+    "dx": 0.6,
+    "dy": 0.3,
+    "period": 4.5,
+    "amp": 0.02
+   },
+   "mode": "flow"
   }
  ]
 }

@@ -32,3 +32,6 @@ Ten more images supplied by the author on 2026-10-25 (originals in `research/pla
 
 ## The clean scenes (2026-10-25, afternoon)
 Twelve more files supplied by the author the same afternoon (`research/plates-original/2026-10-25/empties/`): the scenes above with their animals erased by his own tool's generative fill, pixel-aligned with the originals. Eight are the bases of the plates `arenal`, `rio-celeste`, `manuel-antonio`, `coffee`, `cartago`, `chirripo`, `guanacaste` and `corcovado` (the animals are still cut from the originals); the other four (the three second versions and the composite) are kept unused. Same origin and licence as the originals, to be stated by the author.
+
+## The opening on the regenerated scene (2026-10-25, late afternoon)
+`research/plates-original/2026-10-25/opening-forest-regenerated.jpg` (2576×1438) is the author's new generation of the opening scene without animals; the current opening plate (`public/plates/forest/`) is this image with the animals of the first opening plate pasted on (their cut-outs kept under `research/plates-built/forest-v1/`). Same origin and licence as the originals, to be stated by the author.

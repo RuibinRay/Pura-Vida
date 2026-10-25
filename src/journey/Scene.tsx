@@ -91,7 +91,7 @@ function defaultPeriod(anim: string) {
     case 'flap-a': case 'flap-b': return 1.2;
     case 'flutter-a': case 'flutter-b': return 0.16;
     case 'morpho-a': case 'morpho-b': return 1.6;
-    case 'turn': return 3.8; case 'tilt': return 2.8; case 'graze': return 4.6; case 'watch': return 5; case 'sway': return 5.5; case 'tail': return 4.5; case 'breathe': return 3.5;
+    case 'turn': return 3.8; case 'tilt': return 3.6; case 'graze': return 4.6; case 'watch': return 5; case 'sway': return 5.5; case 'tail': return 4.5; case 'breathe': return 3.5;
     default: return 3;
   }
 }

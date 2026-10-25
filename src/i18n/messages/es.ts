@@ -90,7 +90,7 @@ const es: Messages = {
       toucans: 'Tucanes pico iris',
       sloth: 'Perezoso de tres dedos',
       macaws: 'Lapas rojas',
-      plateAlt: 'Escena inicial: un claro de bosque lluvioso enmarcado por ramas con musgo y bromelias, dos tucanes pico iris en una rama, una catarata que cae en una poza turquesa, lapas rojas sobre el dosel, un perezoso de tres dedos en un bejuco, una morfo azul y un volcán entre la bruma.',
+      plateAlt: 'Escena inicial: un claro de bosque lluvioso enmarcado por ramas con musgo y bromelias, un tucán pico iris en una rama cubierta de musgo, una catarata que cae en una ensenada turquesa, lapas rojas sobre el dosel, un perezoso de tres dedos colgado de los bejucos, una morfo azul y un volcán entre la bruma.',
     },
     ch2: {
       kicker: 'Naturaleza',

@@ -2,6 +2,29 @@
 
 All figures below were produced in this session's environment unless stated otherwise: a 2-core Linux container, headless Chromium 153 with SwiftShader (software WebGL), no real GPU, no field data. Numbers that depend on a GPU are marked as such and must be re-measured on a laptop and a phone.
 
+## One toucan — the opening on the new scene, antlers, bills, a lighter tilt (2026-10-25, late afternoon)
+
+### Tests
+`npx vitest run`: **62 tests in 5 files, all passing** — the opening now has five animals (one toucan) and counts as a clean plate (pasted animals, nothing inpainted). `tsc --noEmit`: clean. `npm run build`: clean.
+
+### The plates
+- `forest` (the opening): the regenerated scene (2576×1438) with the first plate's cut-outs pasted on — the toucan (scale 0.95 of the first plate's parts, warmed 6 %), the sloth (0.8), two macaws, the morpho; composite at rest checked at 1400 px: the toucan's feet on the moss, the sloth's hands on the vine, the macaws over the valley below the volcano's flank, the morpho over the ferns. Water: waterfall (flow), the cove (shimmer), the surf (flow).
+- `guanacaste`: the deer's antlers in the head part (`diffInclude`, 3,273 px at source scale, connected to the head; the three repainted leaves above the antlers stayed out once connectivity was required). Preview: the whole rack on magenta, green in the coded panel.
+- `irazu`: hummingbird-a's bill in its cut-out (box widened to 452, a thin include from 456 to 556 on its measured rows); the base inpainted under it.
+
+### Close-ups (`tools/scratch/opening-toucans.mjs`, `bodies.mjs`)
+The opening at 2×: the toucan at rest, at the tilt's extreme and mid-hop — one whole bird on the moss, the base under it clean (the fourth panel, animals hidden, is branch and foliage only); the sloth on its vine the same. The hero copy at the start of the walk (`hero-shots.mjs`, progress 0.04): on desktop centred over the cove (352–1088 × 302–898 px at 1440×900) with the toucan clear at 191–381 × 499–768 and the macaws above the title; on phones top-anchored (16–374 × 53–387 px at 390×844), one line of title at 13vw, both buttons on one row, the toucan below it at 8–186 × 466–719.
+At 2× (`bodies.mjs`, phases 0 / 0.35 / 0.78): the deer's whole rack turns with its head, three angles, nothing left behind on the rock; both Irazú hummingbirds whole with their bills at three phases of the hover.
+
+### Motion (`tools/scratch/motion.mjs [1,5,9]`)
+The opening: 37/37 loops running (`perch-free`, `head-tilt`, `sway`, `bob`, `drift-free`, `morpho-a/b`, three waters, the shafts, mist, clouds, flock, wind); the five animals change 16.4 / 22.1 / 24.3 / 34.4 / 28.2 % of their pixels within 2.5 s, the three waters 5.7–7.1 %. Guanacaste: 33/33 running, the deer 23.2 % (was 34.1 % — a smaller head move now that the antlers ride with it; `stand-free` + `head-turn`), the macaws 9–40 %. Irazú: as before. 0 console errors.
+
+### Walk and site sweeps
+Home sweep on the build with the pasted opening (`ONLY_HOME=1 node tools/headless_check.mjs`): 23 page loads, 0 console errors, no horizontal overflow, axe 0 violations on all 13 audited loads, the far-jump assertion passing — and again on the exact build committed (with the toucan's erased patch): 23 page loads, 0 console errors, overflow none.
+
+### Not tested
+The frame rate on a real device; Safari/Firefox; the opening on a phone with the single toucan at the left of the crop.
+
 ## Clean plates (2026-10-25, afternoon) — the owner's scenes without their animals
 
 ### The images
@@ -22,7 +45,14 @@ Every animal on the eight clean plates runs its travelling loop (`perch-free` + 
 | 02 Arenal | 17/17 (`perch-free`, `head-tilt`) | 44.3 % (was 27.3 %) | 8.5 % (lake) | 19.9 / 0.6 % | 7.1 % | 9.9 % | — |
 | 04 Río Celeste | 25/25 (`hover-free`, `flutter-a`, `drift-free`, `morpho-a/b`) | 35.0 / 31.8 % (was 28.8 / 37.7 %) | 18.1 / 12.0 / 4.8 % | 17.5 / 8.4 % | — | — | 7.5 % |
 
-The sweep timed out at the fifth stop's screenshot (the software renderer; every probe now launches with a 15-minute protocol timeout) and was restarted for stops 5, 7, 8, 10, 11 and 13 — their rows are added in the follow-up commit. 0 console errors.
+| 05 Guanacaste | 33/33 (`stand-free`, `head-turn`, four macaws) | 34.1 / 21.5 / 44.4 / 19.1 / 16.2 % | surf 0.0 % (the sun-breathe wash moved the baseline, 44 %) | 2.2 / 6.4 % | 11.9 % | 22.8 % | — |
+| 07 Coffee | 10/10 (`perch-free`, `head-turn`, `hover-free`) | 42.9 / 31.1 % (was 20.7 / 31.1 %) | — | 12.9 / 4.4 % | 2.2 % | — | — |
+| 08 Cartago | 19/19 (two `hover-free`) | 38.4 / 36.7 % | — | 18.7 / 4.7 % | 11.3 % | 11.3 % | — |
+| 10 Chirripó | 7/7 (`perch-free`, `head-turn`) | 48.3 % (was 34.4 %) | — | 19.5 / 1.0 % | 4.2 % | — | — |
+| 11 Corcovado | 26/26 (`stand-free`, `head-graze`, `drift-free`) | 10.5 / 25.2 / 21.6 % | 1.5 % | 14.7 / 8.3 % | 9.1 % | 3.5 % | — |
+| 13 Close | 22/22 (`crawl`, `breathe`, `head-watch`) | 6.5 % (the turtle; was 2.9 %) | 2.6 / 1.9 / 1.5 % | 18.7 / 4.4 % | 25.4 % | 42.4 % | — |
+
+The first run timed out at the fifth stop's screenshot (the software renderer; every probe now launches with a 15-minute protocol timeout) and was restarted for stops 5–13. The rings sit on every flier that has a hotspot at 85 % of its stop, and on the turtle after its crawl (315, 644); the eruption's ten puffs and 72 flakes; `--vel` 0.475 in a burst — the "at rest" read 1.5 s later gave 0.461 in this run because the lab had not rendered a frame yet (the decay runs per animation frame; the earlier passes read 0.000 after a frame). 0 console errors.
 
 ### Walk and site sweeps
 Desktop screenshots of the eight clean stops and phone screenshots of Arenal and the close (`tools/scratch/stops-shots.mjs`), reviewed by eye: every animal on its base with no residue; the turtle under the end card's gradient, the words right of it; at Guanacaste one macaw's ring sits under the copy panel's kicker at mid-stop (the macaws fly 20–26 vw across the stop, so it leaves; pre-existing, not changed here). Phone walk (390×844, lite): 13 chapters, back to 6/3/1 at t = 5.50 / 2.50 / 0.50, **ALL CLEAN**. Home sweep (`ONLY_HOME=1 node tools/headless_check.mjs`): **23 page loads, 0 console errors, no horizontal overflow; axe 0 violations on all 13 audited loads** (every stop, the eruption); the far-jump assertion "1→12: only stop 12 visible". The content pages were not re-swept (nothing on them changed).
