@@ -116,7 +116,7 @@ scaled into uniformly, `anchor` where it sits in it (`top` for claws on a branch
 `overlap`, `half` with its `axis`, `band`, `rest` — but **every coordinate and length is in the PNG's own px**
 (`halfWidth`, `overlap`, `feather` included); `edge` stays in plate px. The PNG's alpha is the matte: no U²-Net, no
 polygons, no veto, no pockets. The resize is premultiplied so the black under the transparent pixels never darkens a
-rim, and the colour under alpha 0 is the nearest opaque colour. A sticker needs a `clean` base. Preview sheets:
+rim, and the colour under alpha 0 is the nearest opaque colour. A `half` part's `span` covers the axis's length only, so a fold axis must run over the whole animal (the morpho's over the wing tips, not just the body), or what lies beyond it stays in the rest part and does not move. A sticker needs a `clean` base. Preview sheets:
 the scene's own animal, the clean base, the sticker composited, the parts coded. `tools/scratch/match_cutouts.py`
 registers a set of cut-outs against the originals to say which scene and which animal each one answers (these were
 re-rendered, 0.6–0.9 correlation — poses, not pixels — so they are placed by `fit`, not by the difference image).

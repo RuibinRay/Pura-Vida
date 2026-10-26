@@ -2,6 +2,10 @@
 
 All figures below were produced in this session's environment unless stated otherwise: a 2-core Linux container, headless Chromium 153 with SwiftShader (software WebGL), no real GPU, no field data. Numbers that depend on a GPU are marked as such and must be re-measured on a laptop and a phone.
 
+## The opening morpho (2026-10-26, after midnight)
+
+"1st page fix the butterfly wing." Close-ups of the opening morpho at the loop's phases (`opening-v3.mjs`, 2×) showed the fault: at the fold (phase 0.28) the wings came apart — the middle folded, the wing tips stayed flat and detached. Cause: the sticker's split axis ran only along the body (PNG y 500–920) and a half's `span` covers only the axis's length, so the wing tips above and below it fell into the body (rest) part and never rotated. Fix in `tools/plates/forest.json`: the axis extended along the body line over the whole butterfly ([736, 100] → [500, 1200]), pivot on the line; the body part is now a 1.6 %-wide strip (4 KB), each wing its full half. Re-shot: the fold closes as one butterfly at 0.28, open and whole at 0 / 0.57 / 0.78. Also moved 80 source px in from the right edge (its right wing sat under the section tabs at 1440×900); at rest it now spans x 1096–1347. Tests 66 passing; 53 loops running on the opening.
+
 ## The wildlife trail (2026-10-25, night)
 
 ### Tests
