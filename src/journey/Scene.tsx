@@ -8,6 +8,8 @@ import type { Stop } from './scenes';
 import type { Species } from '../content/types';
 import { useT } from '../i18n';
 import { AERIAL_SHARE } from './Aerial';
+import { CINE } from './cine';
+import { CineLayer } from './CineLayer';
 
 const FX = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'plates/';
 
@@ -129,6 +131,8 @@ export function Scene({ index, stop, live, rich = true, chapter, species, onOpen
   const byId = useMemo(() => new Map(species.map((s) => [s.id, s])), [species]);
   const current = chapter === index - 1;
   const near = Math.abs(chapter - (index - 1)) <= 1;
+  // a film clip of the plate, where one has been made (cine.ts): shown when motion is allowed, over the still base
+  const clip = live ? CINE[plate] : undefined;
   const animals = m.animals || [];
   const free = animals.filter((a) => !a.layer);
   const onLayer = (name: string) => animals.filter((a) => a.layer === name);
@@ -139,9 +143,10 @@ export function Scene({ index, stop, live, rich = true, chapter, species, onOpen
   // --pn, --jt, --vel, --px/--py and the visibility are written by the driver (data-scene / data-fade)
   const style = { ['--i' as string]: index, zIndex: index } as React.CSSProperties;
   return (
-    <div className={`scene scene--${index} scene--${stop.key}${current ? ' is-current' : ''}${near ? ' is-near' : ''}`} style={style} data-scene={index} data-fade="">
+    <div className={`scene scene--${index} scene--${stop.key}${current ? ' is-current' : ''}${near ? ' is-near' : ''}${clip?.replacesAnimals ? ' scene--filmed' : ''}`} style={style} data-scene={index} data-fade="">
       <PlateBox plate={plate} className={`plate--${plate}${stop.wind ? ' plate--wind-' + stop.wind : ''}${m.clean ? ' plate--clean' : ''}`}>
         <LayerImg plate={plate} name="base" className="plate__base" priority={priority} eager alt="" />
+        {clip && <CineLayer clip={clip} index={index} near={near} current={current} />}
         {(m.water || []).map((w) => (<Water key={w.name} plate={plate} w={w} live={live} />))}
         {live && rich && stop.ambient?.shafts && <div className="plate__shafts" style={{ backgroundImage: `url(${FX}shafts.png)` }} />}
         {live && stop.ambient?.mist && <div className="plate__mist plate__mist--1"><div className="plate__drift" style={{ backgroundImage: `url(${FX}mist-1-fade.png)` }} /></div>}

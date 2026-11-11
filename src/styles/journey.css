@@ -1271,3 +1271,20 @@
 @media (prefers-reduced-motion: reduce) {
   .jmap, .jmap__prov { transition: none; }
 }
+
+
+/* ---- a film clip over a plate (src/journey/cine.ts) ---- */
+.plate__cine {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;            /* the clip is the plate's own frame */
+  opacity: 0;
+  transition: opacity 500ms ease;
+  pointer-events: none;
+}
+.plate__cine.is-ready { opacity: 1; }
+/* the film carries the animals: the cut-outs step aside (their hotspots stay) */
+.scene--filmed .animal, .scene--filmed .water { visibility: hidden; }
+.journey--calm .plate__cine { display: none; }

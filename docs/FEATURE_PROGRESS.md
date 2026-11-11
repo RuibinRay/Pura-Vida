@@ -2,6 +2,23 @@
 
 Status words: **built** = implemented and exercised in the headless browser; **built, unverified on device** = implemented, but the check this session could do is not representative (software GPU); **partial**; **planned (M2–M5)**.
 
+## The cinematic 3D upgrade — stage 1 and 2 of the 2026-11-11 brief
+
+The brief asked for nine things; this is where each stands. "Verified" means photographed in headless Chrome on an Apple M2 (`tools/map_shots.mjs`, `tools/journey_shots.mjs`), 73 tests passing, production build clean.
+
+| Brief item | Status | Notes |
+|---|---|---|
+| 1. The 3D map on accurate geography | **built, verified on one machine** | measured relief (DEM), OpenStreetMap-derived provinces (areas within 2 % of the official ones), 209 rivers, 15 lakes, 99 protected areas, real bathymetry; styles: satellite (Sentinel-2) / terrain / provinces; layer toggles for relief, borders, rivers, protected areas, landmarks, labels, wildlife, food; day–night light with NASA night lights, clouds, rain; province lift on its exact outline with the camera flying in; 59–60 fps |
+| 1. Animated volcanoes, waterfalls, forests on the map | **not built** | volcano plumes were left out because current activity could not be read from an authoritative source in the session; forests are the imagery itself, not 3D trees |
+| 2. Realistic wildlife animation | **system built, clips not made** | the film layer (`CineLayer`) plays generated clips over a plate and was tested end to end; the clips themselves must be generated in Higgsfield (`docs/HIGGSFIELD_SHOTS.md`) — the connector available here is read-only. No skeletal 3D animals. The map's blank sprites for the trail's fourteen species were fixed |
+| 3. Scroll-driven camera storytelling | **partly built** | the opening now starts above the country and descends through cloud into the forest (two plates rendered from the site's own map); the other transitions are as they were (crossfades with a wash). The river-to-waterfall, macaw-follow and coffee-to-table moves are shots 8–10 of the shot list, not built |
+| 4. The food experience | **not started** | `FlavorsTable.tsx` and `FoodPage.tsx` are unchanged; needs licensed photographs or generated cut-outs |
+| 5. Assets and Higgsfield | **partly** | open-licensed geodata fetched, optimised and credited (`docs/ASSET_CREDITS.md`); shot list written; nothing generated |
+| 6. Additional features | **partly** | built: day/night switching, weather atmosphere, the journey minimap with the route and a progress marker, the map's guided tour and free exploration (existing). Not built: passport expansion, user-chosen travel route, wildlife by habitat/category, before/after landscapes, a cultural experience, spatial sound |
+| 7. Design and animation quality | **partly** | the map and the opening; the rest of the site is as it was |
+| 8. Audit and testing | **done for what changed** | audit of `src/map`, `src/journey`, `src/perf`, `docs`; fixes logged in `IMPROVEMENT_LOG.md`; desktop 1440 px, phone 390 px and reduced motion photographed. Not done: a physical phone, touch gestures on the 3D map, Safari, Windows |
+| Three languages | **kept** | every new string in en / es / zh (the test enforces it) |
+
 ## The wildlife trail (2026-10-25, night)
 
 | Change | Status | Notes |

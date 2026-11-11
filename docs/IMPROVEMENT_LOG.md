@@ -2,6 +2,19 @@
 
 What was reviewed, what was wrong, what changed. Newest first. Only things that were actually checked (screenshot, test, measurement) are recorded as fixed.
 
+## 2026-11-11 — The opening from above, the minimap, the film layer
+
+- **The walk began inside the forest** → it begins above the country: two plates rendered from the 3D map (`tools/aerial_plates.mjs`), pushed into, handed over and dropped through cloud by the first stop's scroll (`Aerial.tsx`, CSS only). The title rides the high view and leaves before the hand-over; the opening's animals can be met once the descent has landed.
+- **First attempt crashed the tab**: two tiled cloud layers 140 % of the screen, scaled up to 3.4× with a brightness filter, exhausted the GPU's tile memory in Chrome. The clouds are now screen-sized gradients that only fade and slide.
+- **Rendering the plates at 2560 px showed three faults of the map that small screenshots hid**: a moiré grid on the distant sea (ripples aliasing — they now exist only near the camera, in four unaligned directions), dark seams along shared province borders (each wall's top edge fought the land — the walls now start 60 m under it), and clouds that were flat discs from above (now four noise-built cumulus shapes).
+- **No sense of where a stop is** → `JourneyMap.tsx`: the provinces, the route through the stops that are places, a marker that travels with the scroll and lights the province it is in.
+- **Generated film had nowhere to go** → `cine.ts` + `CineLayer.tsx` (loop or scroll-scrubbed), `tools/cine_encode.sh`, a test that every listed clip exists; `docs/HIGGSFIELD_SHOTS.md` is the shot list.
+
+### Known weaknesses carried forward
+- The aerial plates are stills: a visitor who reaches for the country cannot turn it there (the map is one button away).
+- In a tall frame the high plate cannot hold the whole country; it opens on the Central Valley.
+- The LCP image of the home page is now the high aerial plate (63–124 KB) with the forest base loading behind it; not re-measured with Lighthouse.
+
 ## 2026-11-11 — The map on measured terrain
 
 ### Reviewed and changed
