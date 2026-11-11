@@ -31,6 +31,7 @@ import { usePageTitle } from '../usePageTitle';
 
 import { Aerial } from '../../journey/Aerial';
 import { JourneyMap, type RouteStop } from '../../journey/JourneyMap';
+const TABLE_STOPS = STOPS.map((s, i) => (s.kind === 'table' ? i : -1)).filter((i) => i >= 0);
 const HomeMap = lazy(() => import('../../journey/HomeMap').then((m) => ({ default: m.HomeMap })));
 const Map2D = lazy(() => import('../../map/Map2D').then((m) => ({ default: m.Map2D })));
 
@@ -308,7 +309,7 @@ export function HomePage() {
       <span className="visually-hidden">{t('journey.chaptersCount', { n: CHAPTER_COUNT })}</span>
 
       {/* where the walk is in the country */}
-      {mapData && live && <JourneyMap data={mapData} route={route} total={CHAPTER_COUNT} label={t('journey.mapLabel')} stopLabel={stopLabel} />}
+      {mapData && live && <JourneyMap data={mapData} route={route} total={CHAPTER_COUNT} label={t('journey.mapLabel')} stopLabel={stopLabel} hideAt={TABLE_STOPS} />}
 
       {/* chapter rail: where you are in the walk */}
       <nav className="rail ui" aria-label={t('journey.railLabel')}>

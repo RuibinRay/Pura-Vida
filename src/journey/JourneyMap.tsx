@@ -20,7 +20,7 @@ export interface RouteStop {
   coords: [number, number];
 }
 
-export function JourneyMap({ data, route, total, label, stopLabel }: { data: MapData; route: RouteStop[]; total: number; label: string; stopLabel: (n: number, total: number) => string }) {
+export function JourneyMap({ data, route, total, label, stopLabel, hideAt = [] }: { data: MapData; route: RouteStop[]; total: number; label: string; stopLabel: (n: number, total: number) => string; /** stops (0-based) that are not places and need the corner: the table */ hideAt?: number[] }) {
   const dot = useRef<SVGGElement>(null);
   const trail = useRef<SVGPathElement>(null);
   const nameEl = useRef<HTMLSpanElement>(null);
@@ -61,7 +61,7 @@ export function JourneyMap({ data, route, total, label, stopLabel }: { data: Map
       const x = pts[a][0] + (pts[b][0] - pts[a][0]) * e, z = pts[a][1] + (pts[b][1] - pts[a][1]) * e;
       dot.current?.setAttribute('transform', `translate(${x.toFixed(1)} ${z.toFixed(1)})`);
       if (trail.current) trail.current.style.strokeDasharray = `${(lengths[a] + (lengths[b] - lengths[a]) * e).toFixed(1)} ${(routeKm + 10).toFixed(1)}`;
-      if (root.current) root.current.dataset.before = t < route[0].index - 0.3 ? '1' : '0';
+      if (root.current) root.current.dataset.before = t < route[0].index - 0.3 || hideAt.some((i) => t > i - 0.12 && t < i + 1.02) ? '1' : '0';
       const cur = e > 0.5 ? b : a;
       if (cur !== lastStop) {
         lastStop = cur;
@@ -74,7 +74,7 @@ export function JourneyMap({ data, route, total, label, stopLabel }: { data: Map
     };
     update();
     return onJourney(update);
-  }, [route, pts, stopLabel, total]);
+  }, [route, pts, stopLabel, total, hideAt]);
 
   if (!route.length) return null;
   return (

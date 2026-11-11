@@ -14,7 +14,9 @@
     "check": "node tools/headless_check.mjs",
     "geo:fetch": "python3 tools/fetch_geo.py",
     "geo:terrain": "python3 tools/build_terrain.py",
-    "shots": "node tools/map_shots.mjs"
+    "shots": "node tools/map_shots.mjs",
+    "food:fetch": "python3 tools/fetch_food.py",
+    "food": "python3 tools/food_plates.py"
   },
   "dependencies": {
     "@fontsource-variable/albert-sans": "^5.3.0",

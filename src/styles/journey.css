@@ -608,14 +608,115 @@
   transform: translate(calc(var(--px) * var(--m) * -0.3%), calc(var(--py) * var(--m) * -0.3%)) scale(calc(1.04 - var(--m) * 0.04 * clamp(0, var(--pn) * 2.5, 1)));
 }
 .table { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.dish {
-  transform-box: fill-box;
-  transform-origin: center;
-  transition: transform 350ms var(--ease-out), filter 350ms var(--ease-out);
-  opacity: calc(clamp(0, (var(--pn) - 0.05 - var(--i) * 0.07) * 6, 1));
-  translate: 0 calc(var(--m) * (1 - clamp(0, (var(--pn) - 0.05 - var(--i) * 0.07) * 6, 1)) * 40px);
+/* the plates: each one is set on the table by the scroll — in from its side, turning, settling — then it is the
+   visitor's: it lifts under the pointer and opens on a click */
+.tdishes { position: absolute; inset: 0; }
+.tdish {
+  /* this plate's own progress through the setting of the table, eased out */
+  --e: clamp(0, (var(--pn, 1) - 0.08 - var(--i) * 0.075) * 4.6, 1);
+  --k: calc(1 - (1 - var(--e)) * (1 - var(--e)));
+  --away: calc((1 - var(--k)) * var(--m));
+  position: absolute;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) translate(calc(var(--away) * var(--fx) * 100vw), calc(var(--away) * var(--fy) * 100vw)) rotate(calc(var(--rest) + var(--away) * var(--turn))) scale(calc(1 + var(--away) * 0.22));
+  opacity: clamp(0, var(--e) * 4 + var(--calm), 1);
+  -webkit-tap-highlight-color: transparent;
 }
-.dish.is-on { transform: translateY(-8px) scale(1.035); filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.45)); }
+.tdish:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+.tdish__shadow {
+  position: absolute;
+  inset: 4% 2% -2% 2%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.34) 62%, rgba(0, 0, 0, 0) 100%);
+  /* high above the table the shadow is wide and faint; it tightens as the plate lands */
+  transform: translate(calc(2% + var(--away) * 10%), calc(5% + var(--away) * 16%)) scale(calc(1.02 + var(--away) * 0.3));
+  opacity: calc(0.9 - var(--away) * 0.55);
+  transition: transform 320ms var(--ease-out), opacity 320ms var(--ease-out);
+}
+.tdish--tamal .tdish__shadow { inset: 16% 4% 8% 4%; border-radius: 38%; }
+.tdish__lift {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 320ms cubic-bezier(0.2, 0.9, 0.25, 1.15);
+  will-change: transform;
+}
+.tdish .dishphoto { display: block; width: 100%; height: 100%; }
+.tdish:hover .tdish__lift, .tdish:focus-visible .tdish__lift { transform: translateY(-3.5%) rotate(-2.5deg) scale(1.045); }
+.tdish:hover .tdish__shadow, .tdish:focus-visible .tdish__shadow { transform: translate(5%, 12%) scale(1.1); opacity: 0.6; }
+.tdish:active .tdish__lift { transform: translateY(-1%) scale(1.01); transition-duration: 90ms; }
+.tdish__label {
+  position: absolute;
+  left: 50%;
+  bottom: -3%;
+  transform: translate(-50%, 6px) rotate(calc(var(--rest) * -1));
+  display: grid;
+  justify-items: center;
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  background: rgba(16, 10, 6, 0.86);
+  color: #f4eedf;
+  font-family: var(--font-ui);
+  font-size: var(--t-sm);
+  line-height: 1.2;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 200ms ease, transform 200ms ease;
+  pointer-events: none;
+}
+.tdish__label i { font-style: normal; font-size: 0.74em; opacity: 0.75; }
+.tdish:hover .tdish__label, .tdish:focus-visible .tdish__label { opacity: 1; transform: translate(-50%, 0) rotate(calc(var(--rest) * -1)); }
+/* on a touch screen there is no hover: the names stay under the plates once the table is set */
+@media (hover: none) { .tdish__label { opacity: clamp(0, (var(--e) - 0.9) * 10, 1); transform: translate(-50%, 0) rotate(calc(var(--rest) * -1)); font-size: var(--t-xs); } }
+/* steam: two slow wisps over each hot dish, only while the stop is on stage and motion is allowed */
+.tdish__steam { position: absolute; left: 22%; right: 22%; top: -8%; height: 62%; pointer-events: none; opacity: clamp(0, (var(--e) - 0.95) * 20, 1); }
+.tdish__steam i { position: absolute; inset: 0; background-size: contain; background-repeat: no-repeat; background-position: 50% 100%; opacity: 0; }
+.scene.is-current .tdish__steam i { animation: tdish-steam 5.2s ease-in-out infinite; }
+.scene.is-current .tdish__steam i + i { animation-delay: -2.6s; left: 18%; }
+.tdish--gallo-pinto .tdish__steam i { animation-duration: 6.4s; }
+.tdish--rice-and-beans .tdish__steam i { animation-duration: 5.8s; animation-delay: -1.2s; }
+.journey--calm .tdish__steam, .journey--still .tdish__steam { display: none; }
+@keyframes tdish-steam {
+  0% { opacity: 0; transform: translateY(18%) scale(0.7); }
+  30% { opacity: 0.34; }
+  100% { opacity: 0; transform: translateY(-34%) translateX(6%) scale(1.25); }
+}
+@media (prefers-reduced-motion: reduce) { .tdish__lift, .tdish__shadow, .tdish__label { transition: none; } }
+
+/* ---- a dish photograph (src/ui/DishPhoto.tsx) ---- */
+.dishphoto { position: relative; display: inline-block; aspect-ratio: 1; vertical-align: middle; }
+.dishphoto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+/* a drawn ceramic rim for the photographs that crop their plate: the food is the photograph, the plate is not */
+.dishphoto__rim {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 36%, #ffffff 0, #f3efe6 48%, #e2dccd 70%, #cfc8b6 86%, #f4f0e6 93%, #bdb5a2 100%);
+  box-shadow: inset 0 0 0 1px rgba(90, 76, 54, 0.25);
+}
+.dishphoto--drawn img { inset: 10%; width: 80%; height: 80%; }
+.dishphoto--drawn-bowl img { inset: 7%; width: 86%; height: 86%; }
+.dishphoto--drawn-bowl .dishphoto__rim { background: radial-gradient(circle at 42% 36%, #e9e4d8 0, #d9d2c2 70%, #f6f3ea 84%, #fffdf7 91%, #c4bca9 100%); }
+
+/* ---- the dish, presented (the sheet that opens from a plate) ---- */
+.dish-present { display: grid; grid-template-columns: minmax(140px, 220px) minmax(0, 1fr); gap: var(--s-4); align-items: center; margin-bottom: var(--s-2); }
+.dish-present__plate { animation: dish-arrive 620ms cubic-bezier(0.2, 0.9, 0.25, 1.1) both; filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.28)); }
+.dish-present__plate .dishphoto { display: block; width: 100%; }
+.dish-present__chips { list-style: none; margin: 0 0 var(--s-3); padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.dish-present__chips li { display: inline-flex; align-items: center; gap: 0.35em; padding: 0.2em 0.65em 0.2em 0.35em; border-radius: 999px; background: var(--surface-solid, #fff); border: 1px solid var(--rule); font-size: var(--t-xs); animation: chip-in 420ms var(--ease-out) both; animation-delay: calc(140ms + var(--i) * 55ms); }
+.dish-present__links { display: flex; flex-wrap: wrap; gap: var(--s-2); margin: 0; }
+@keyframes dish-arrive { from { opacity: 0; transform: translateY(18px) rotate(-14deg) scale(0.86); } to { opacity: 1; transform: none; } }
+@keyframes chip-in { from { opacity: 0; transform: translateY(8px) scale(0.92); } to { opacity: 1; transform: none; } }
+@media (max-width: 560px) { .dish-present { grid-template-columns: 1fr; justify-items: center; } .dish-present__plate { width: min(60vw, 220px); } }
+@media (prefers-reduced-motion: reduce) { .dish-present__plate, .dish-present__chips li { animation: none; } }
+.photo-credit { margin: var(--s-1) 0 var(--s-3); color: var(--ink-muted); }
+.photo-credit a { color: inherit; }
 .stage__vignette--table { opacity: 0.7; }
 
 /* ---- the closing beach: the light goes gold as the stop progresses ---- */

@@ -2,6 +2,22 @@
 
 What was reviewed, what was wrong, what changed. Newest first. Only things that were actually checked (screenshot, test, measurement) are recorded as fixed.
 
+## 2026-11-11 — The table, photographed
+
+- **The dishes were drawings** → photographs of real plates from Wikimedia Commons, each credited where it is shown and in `ASSET_CREDITS.md`. `tools/fetch_food.py` downloads them and records title, author, licence and page; `tools/food_plates.py` cuts the plate out along an outline given by hand (an ellipse, a polygon for the tamal's leaf, a "union" for bread standing above a rim). Nothing is segmented by a model and nothing is generated.
+- **A photograph first chosen for gallo pinto was a Nicaraguan one** (its author's description says so; the file name did not). Caught when the credits were regenerated; replaced by a breakfast photographed in Costa Rica, and a test now fails if a source's title or description names another country.
+- **A credit can drift from its picture**: the record of sources was written by one tool and the cut-out by another, and an interrupted download left the old author on the new picture. A test now checks that the credit shown is the credit of the file that was cut.
+- **Two photographs crop their plate** (olla de carne, rice and beans) → the food is the photograph and the rim round it is drawn in CSS; the note on each says so. One plate photographed at a steep angle (gallo pinto) is evened part of the way toward the round, not all the way, so the food is not stretched.
+- **The table** is set by the scroll: each plate comes in from its own side, turning, on a shadow that tightens as it lands; then steam, a lift under the pointer, and a sheet that presents the dish. Under reduced motion the table is simply set.
+- **The minimap sat on a plate** → it steps aside on the table stop.
+- **On a phone the outer plates were cut by the screen** (the portrait table covers the screen by its height and is wider than it) → the portrait layout keeps to the middle four fifths; a test holds it there.
+- **The food page**: the dish on a board with its ingredient icons gathering round it, the preparation as steps that settle in as they scroll into view (CSS scroll-driven animation where the browser has it, plain otherwise), the olla's raw ingredients as a second photograph.
+
+### Known weaknesses carried forward
+- The five photographs are by four different people in four different lights; a light grade evens them, it does not make them a set.
+- The ingredient icons round the plate are still the drawn stickers: photographs of single ingredients, cut out, would be the next step, and "ingredients falling into the plate" needs them.
+- Steam is a texture rising, not a simulation; it does not know which dishes are hot.
+
 ## 2026-11-11 — The opening from above, the minimap, the film layer
 
 - **The walk began inside the forest** → it begins above the country: two plates rendered from the 3D map (`tools/aerial_plates.mjs`), pushed into, handed over and dropped through cloud by the first stop's scroll (`Aerial.tsx`, CSS only). The title rides the high view and leaves before the hand-over; the opening's animals can be met once the descent has landed.

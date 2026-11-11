@@ -1,0 +1,204 @@
+{
+ "gallo-pinto": {
+  "ellipse": [
+   0.467,
+   0.573,
+   0.461,
+   0.2365
+  ],
+  "union": [
+   [
+    [
+     0.4,
+     0.345
+    ],
+    [
+     0.405,
+     0.3
+    ],
+    [
+     0.45,
+     0.262
+    ],
+    [
+     0.56,
+     0.268
+    ],
+    [
+     0.66,
+     0.288
+    ],
+    [
+     0.705,
+     0.31
+    ],
+    [
+     0.7,
+     0.36
+    ],
+    [
+     0.55,
+     0.4
+    ]
+   ]
+  ],
+  "flatten": 0.84,
+  "plate": "own",
+  "grade": {
+   "brightness": 1.04,
+   "contrast": 1.06,
+   "saturation": 1.1
+  },
+  "note": "The whole plate as photographed, at an angle; evened out a little toward the round so it sits on a table seen from above."
+ },
+ "casado": {
+  "ellipse": [
+   0.5,
+   0.505,
+   0.49,
+   0.4905
+  ],
+  "plate": "own",
+  "grade": {
+   "contrast": 1.0,
+   "saturation": 0.96
+  },
+  "note": "The whole plate as photographed, seen from above."
+ },
+ "tamal": {
+  "poly": [
+   [
+    0.05,
+    0.21
+   ],
+   [
+    0.17,
+    0.18
+   ],
+   [
+    0.3,
+    0.178
+   ],
+   [
+    0.44,
+    0.165
+   ],
+   [
+    0.6,
+    0.142
+   ],
+   [
+    0.665,
+    0.17
+   ],
+   [
+    0.73,
+    0.21
+   ],
+   [
+    0.8,
+    0.258
+   ],
+   [
+    0.9,
+    0.315
+   ],
+   [
+    0.985,
+    0.37
+   ],
+   [
+    0.99,
+    0.5
+   ],
+   [
+    0.99,
+    0.62
+   ],
+   [
+    0.93,
+    0.66
+   ],
+   [
+    0.84,
+    0.735
+   ],
+   [
+    0.7,
+    0.83
+   ],
+   [
+    0.62,
+    0.81
+   ],
+   [
+    0.53,
+    0.79
+   ],
+   [
+    0.4,
+    0.78
+   ],
+   [
+    0.29,
+    0.74
+   ],
+   [
+    0.225,
+    0.715
+   ],
+   [
+    0.165,
+    0.635
+   ],
+   [
+    0.115,
+    0.5
+   ],
+   [
+    0.075,
+    0.36
+   ]
+  ],
+  "plate": "none",
+  "feather": 0.003,
+  "grade": {
+   "brightness": 1.05,
+   "contrast": 1.06,
+   "saturation": 1.1
+  },
+  "note": "The tamal on its banana leaf; the plate and the tablecloth under it are left out."
+ },
+ "olla-de-carne": {
+  "ellipse": [
+   0.5,
+   0.52,
+   0.482,
+   0.395
+  ],
+  "flatten": true,
+  "plate": "drawn-bowl",
+  "feather": 0.012,
+  "grade": {
+   "contrast": 1.04,
+   "saturation": 1.05
+  },
+  "note": "The soup as photographed; the photograph crops its bowl, so the rim around it is drawn."
+ },
+ "rice-and-beans": {
+  "ellipse": [
+   0.5,
+   0.44,
+   0.455,
+   0.3728
+  ],
+  "plate": "drawn",
+  "feather": 0.01,
+  "grade": {
+   "brightness": 1.03,
+   "contrast": 1.05,
+   "saturation": 1.08
+  },
+  "note": "The food as photographed; the photograph crops its plate, so the rim around it is drawn."
+ }
+}
