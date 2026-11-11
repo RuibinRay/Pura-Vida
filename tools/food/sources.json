@@ -1,0 +1,92 @@
+{
+ "gallo-pinto": {
+  "file": "gallo-pinto.jpg",
+  "title": "File:Desayuno tradicional de Costa Rica.jpg",
+  "author": "Aherver",
+  "licence": "CC BY 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Desayuno_tradicional_de_Costa_Rica.jpg",
+  "original": {
+   "width": 1200,
+   "height": 1600,
+   "sha1": "3f78b48acb7d3a53b4eae3be309d63f7680f3fe9"
+  },
+  "description": "Traditional Costa Rican breakfast: gallo pinto, scrambled eggs, sausage, avocado, Turrialba cheese, natilla, banana, and toast",
+  "retrieved": "2026-11-11"
+ },
+ "casado": {
+  "file": "casado.jpg",
+  "title": "File:Casado tipico Costa Rica.jpg",
+  "author": "Jmillan325",
+  "licence": "CC BY-SA 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Casado_tipico_Costa_Rica.jpg",
+  "original": {
+   "width": 1080,
+   "height": 1079,
+   "sha1": "f1f5329a3f60e435e0625378e561204f4c05f58f"
+  },
+  "description": "Representación del plato típico de Costa Rica: El Casado",
+  "retrieved": "2026-11-11"
+ },
+ "tamal": {
+  "file": "tamal.jpg",
+  "title": "File:Tamaldecostarica.jpg",
+  "author": "Pamawieki",
+  "licence": "CC0",
+  "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "page": "https://commons.wikimedia.org/wiki/File:Tamaldecostarica.jpg",
+  "original": {
+   "width": 3024,
+   "height": 4032,
+   "sha1": "fe3d65dca9d39269d6752bc3a50f1b449307534f"
+  },
+  "description": "Un tamal cuisiné par une famille locale du Costa Rica, fraîchement déballé de sa feuille de banane",
+  "retrieved": "2026-11-11"
+ },
+ "olla-de-carne": {
+  "file": "olla-de-carne.jpg",
+  "title": "File:Olla de carne 2.jpg",
+  "author": "Aleat88",
+  "licence": "CC BY-SA 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Olla_de_carne_2.jpg",
+  "original": {
+   "width": 1080,
+   "height": 1025,
+   "sha1": "5959bc51c78326adc85faa7b77aba5ad6be918bd"
+  },
+  "description": "Versión jpg del archivo Archivo:Olla de carne 2.png",
+  "retrieved": "2026-11-11"
+ },
+ "olla-de-carne-ingredients": {
+  "file": "olla-de-carne-ingredients.png",
+  "title": "File:Olla de carne 1.png",
+  "author": "Aleat88",
+  "licence": "CC BY-SA 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Olla_de_carne_1.png",
+  "original": {
+   "width": 1080,
+   "height": 770,
+   "sha1": "fb54294ca03d963d2bcd52ef4522eb684a9917c4"
+  },
+  "description": "Olla de carne, sopa costarricense",
+  "retrieved": "2026-11-11"
+ },
+ "rice-and-beans": {
+  "file": "rice-and-beans.png",
+  "title": "File:Casado de rice and beans.png",
+  "author": "Aleat88",
+  "licence": "CC BY-SA 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Casado_de_rice_and_beans.png",
+  "original": {
+   "width": 1080,
+   "height": 1318,
+   "sha1": "5e85ccee26006ddd42c6b8ff105936e7f32fb954"
+  },
+  "description": "Plato de casado con rice and beans servido en Puerto Viejo, Costa Rica",
+  "retrieved": "2026-11-11"
+ }
+}

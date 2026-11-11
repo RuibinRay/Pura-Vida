@@ -5,7 +5,7 @@ import type { Food, Source } from '../content/types';
 import { SourceList, StatusTag, dedupeSources } from './Sources';
 import { IngredientIcon, ingredientIconFor } from '../art/food/ingredients';
 
-export function FoodEntry({ food, heading = 'h2', compact }: { food: Food; heading?: 'h2' | 'h3'; compact?: boolean }) {
+export function FoodEntry({ food, heading = 'h2', compact, hidePreparation }: { food: Food; heading?: 'h2' | 'h3'; compact?: boolean; /** the page shows the preparation itself, as steps */ hidePreparation?: boolean }) {
   const { t, l } = useT();
   const H = heading;
   const blocks: { key: 'description' | 'region' | 'preparation' | 'culture' | 'history'; label: string }[] = [
@@ -33,7 +33,7 @@ export function FoodEntry({ food, heading = 'h2', compact }: { food: Food; headi
       <dl className="species__facts">
         {blocks.map((b) => {
           const v = food[b.key];
-          if (!v || !v.en) return null;
+          if (!v || !v.en || (hidePreparation && b.key === 'preparation')) return null;
           return (
             <div key={b.key}>
               <dt>{b.label}</dt>

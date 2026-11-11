@@ -20,7 +20,7 @@ import { FILTERS, TOUR_STOPS, displayLonLat, landmarkName, type KindFilter } fro
 import { Icon } from '../ui/Icon';
 import { PlacePicture } from '../ui/PlacePicture';
 import { AnimalPicture } from '../ui/AnimalPicture';
-import { DishCard } from '../art/food/DishCard';
+import { DishPhoto, PhotoCredit } from '../ui/DishPhoto';
 import { StatusTag } from '../ui/Sources';
 
 const Map3D = lazy(() => import('./Map3D').then((m) => ({ default: m.Map3D })));
@@ -375,7 +375,7 @@ function LandmarkCard({ lm, species, foods, provinces, tourIndex, tourTotal, onC
             {dishes.map((f) => (
               <li key={f.id}>
                 <button type="button" className="avatar avatar--dish" onClick={() => onFood(f.id)} title={l(f.name)}>
-                  <DishCard id={f.id} size={54} backdrop="none" />
+                  <DishPhoto id={f.id} size={54} />
                   <span>{l(f.name)}</span>
                 </button>
               </li>
@@ -427,7 +427,8 @@ function FoodCard({ food, byId, onClose, onPlace }: { food: Food; byId: Map<stri
   const places = (FOOD_PLACES[food.id] ?? []).map((h) => ({ h, lm: byId.get(h.at) })).filter((x): x is { h: (typeof FOOD_PLACES)[string][number]; lm: Landmark } => !!x.lm);
   return (
     <div className="map-panel__food map-card map-card--food">
-      <div className="dish-hero"><DishCard id={food.id} size="100%" title={l(food.name)} backdrop="leaf" /></div>
+      <div className="dish-hero dish-hero--photo"><DishPhoto id={food.id} size="100%" sizes="220px" title={l(food.name)} /></div>
+      <PhotoCredit id={food.id} />
       <p className="eyebrow">{t('nav.food')}{food.kind ? ` · ${l(food.kind)}` : ''}</p>
       <h2 className="map-panel__title">{l(food.name)}</h2>
       {food.description && <p className="map-panel__text">{l(food.description)}</p>}

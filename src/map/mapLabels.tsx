@@ -12,7 +12,7 @@ import type { Landmark } from '../content/types';
 import { pickLang, type Lang, type MessageKey } from '../i18n';
 import { useT } from '../i18n';
 import { AnimalPicture } from '../ui/AnimalPicture';
-import { DishCard } from '../art/food/DishCard';
+import { DishPhoto } from '../ui/DishPhoto';
 import { PlacePicture } from '../ui/PlacePicture';
 import { useContent } from '../content';
 import { spritePositions, SPRITE_PX } from './sprites';
@@ -90,7 +90,7 @@ export function MapOverlay({ data, landmarks, lang, surfaceKey }: { data: MapDat
         return (
           <Anchor key={s.key} id={'sprite-' + s.key} position={[x, y, z]} interactive className={'map-anchor--sprite' + (isOn ? ' map-anchor--top' : '')}>
             <button type="button" tabIndex={-1} className={'map-sprite map-sprite--' + s.kind + (isOn ? ' is-on' : '')} style={{ ['--px' as string]: px + 'px' }} onClick={(e) => { e.stopPropagation(); if (s.kind === 'animal') { if (s.lm.province) useMap.getState().select(s.lm.province, false); setAnimal(isOn ? null : s.id); } else setFood(isOn ? null : s.id); }} aria-label={name + ' · ' + landmarkName(s.lm, lang)} title={name}>
-              {s.kind === 'animal' ? <AnimalPicture species={s.id} size={40} /> : <DishCard id={s.id} size={44} backdrop="none" />}
+              {s.kind === 'animal' ? <AnimalPicture species={s.id} size={40} /> : <DishPhoto id={s.id} size={44} eager />}
             </button>
           </Anchor>
         );

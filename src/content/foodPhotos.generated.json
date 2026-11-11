@@ -1,0 +1,86 @@
+{
+ "gallo-pinto": {
+  "widths": [
+   360,
+   720,
+   1080
+  ],
+  "title": "Desayuno tradicional de Costa Rica.jpg",
+  "author": "Aherver",
+  "licence": "CC BY 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Desayuno_tradicional_de_Costa_Rica.jpg",
+  "plate": "own",
+  "note": "The whole plate as photographed, at an angle; evened out a little toward the round so it sits on a table seen from above."
+ },
+ "casado": {
+  "widths": [
+   360,
+   720,
+   1080
+  ],
+  "title": "Casado tipico Costa Rica.jpg",
+  "author": "Jmillan325",
+  "licence": "CC BY-SA 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Casado_tipico_Costa_Rica.jpg",
+  "plate": "own",
+  "note": "The whole plate as photographed, seen from above."
+ },
+ "tamal": {
+  "widths": [
+   360,
+   720,
+   1080
+  ],
+  "title": "Tamaldecostarica.jpg",
+  "author": "Pamawieki",
+  "licence": "CC0",
+  "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "page": "https://commons.wikimedia.org/wiki/File:Tamaldecostarica.jpg",
+  "plate": "none",
+  "note": "The tamal on its banana leaf; the plate and the tablecloth under it are left out."
+ },
+ "olla-de-carne": {
+  "widths": [
+   360,
+   720,
+   1080
+  ],
+  "title": "Olla de carne 2.jpg",
+  "author": "Aleat88",
+  "licence": "CC BY-SA 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Olla_de_carne_2.jpg",
+  "plate": "drawn-bowl",
+  "note": "The soup as photographed; the photograph crops its bowl, so the rim around it is drawn."
+ },
+ "rice-and-beans": {
+  "widths": [
+   360,
+   720,
+   1080
+  ],
+  "title": "Casado de rice and beans.png",
+  "author": "Aleat88",
+  "licence": "CC BY-SA 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Casado_de_rice_and_beans.png",
+  "plate": "drawn",
+  "note": "The food as photographed; the photograph crops its plate, so the rim around it is drawn."
+ },
+ "olla-de-carne-ingredients": {
+  "widths": [
+   640,
+   1080
+  ],
+  "aspect": 1.4026,
+  "title": "Olla de carne 1.png",
+  "author": "Aleat88",
+  "licence": "CC BY-SA 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Olla_de_carne_1.png",
+  "plate": "photo",
+  "note": ""
+ }
+}
