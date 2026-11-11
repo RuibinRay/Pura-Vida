@@ -6,18 +6,19 @@ import { project, surfaceY, PLINTH } from './relief.js';
 import { PROVINCE_COLORS, type MapData } from './geo';
 import { useMap } from '../state/map';
 import { useZoomLevel } from './camera';
-import { visibleLandmarks } from './mapParts';
-import { COCO_INSET, displayLonLat, isCocoPlace, landmarkName } from './explore';
+import { visibleLandmarks, placeY, SELECT_LIFT } from './mapParts';
+import { COCO_INSET, displayLonLat, landmarkName } from './explore';
 import type { Landmark } from '../content/types';
 import { pickLang, type Lang, type MessageKey } from '../i18n';
 import { useT } from '../i18n';
-import { AnimalSvg } from '../art/animals';
+import { AnimalPicture } from '../ui/AnimalPicture';
 import { DishCard } from '../art/food/DishCard';
 import { PlacePicture } from '../ui/PlacePicture';
 import { useContent } from '../content';
 import { spritePositions, SPRITE_PX } from './sprites';
 
-export function MapOverlay({ data, landmarks, lang }: { data: MapData; landmarks: Landmark[]; lang: Lang }) {
+export function MapOverlay({ data, landmarks, lang, surfaceKey }: { data: MapData; landmarks: Landmark[]; lang: Lang; surfaceKey?: unknown }) {
+  void surfaceKey; // heights are read from the installed surface: a new mesh re-renders the labels
   const { t, l } = useT();
   const level = useZoomLevel((s) => s.level);
   const hovered = useMap((s) => s.hovered);
@@ -35,7 +36,7 @@ export function MapOverlay({ data, landmarks, lang }: { data: MapData; landmarks
   const content = useContent();
   const kindLabel = (k: string) => t(('explore.kinds.' + k) as MessageKey);
   const countryLabels: { id: string; lon: number; lat: number; name: string }[] = data.neighbors.map((n) => ({ id: n.id, lon: n.id === 'nic' ? -85.3 : -82.0, lat: n.id === 'nic' ? 11.55 : 8.45, name: pickLang(n.name, lang).toUpperCase() }));
-  const visible = visibleLandmarks(landmarks, filter, level, active);
+  const visible = layers.markers ? visibleLandmarks(landmarks, filter, level, active) : landmarks.filter((lm) => lm.id === active);
   const sprites = spritePositions(landmarks, { wildlife: showWildlife, food: showFood }, level === 'far' ? 1 : Infinity);
   const px = SPRITE_PX[level];
   const speciesName = (id: string) => { const sp = content?.species.find((s) => s.id === id); return sp ? l(sp.commonNames) : id; };
@@ -47,7 +48,7 @@ export function MapOverlay({ data, landmarks, lang }: { data: MapData; landmarks
       ); })}
       {layers.labels && data.provinces.map((p) => {
         const [x, z] = project(p.centroid[0], p.centroid[1]);
-        const y = surfaceY(p.centroid[0], p.centroid[1]) + 4;
+        const y = (layers.relief ? surfaceY(p.centroid[0], p.centroid[1]) : PLINTH) + 4 + (selected === p.id ? SELECT_LIFT : 0);
         const isActive = hovered === p.id || selected === p.id;
         return (
           <Anchor key={p.id} id={'prov-' + p.id} position={[x, y, z]}>
@@ -58,7 +59,7 @@ export function MapOverlay({ data, landmarks, lang }: { data: MapData; landmarks
       {visible.map((lm) => {
         const [lon, lat] = displayLonLat(lm);
         const [x, z] = project(lon, lat);
-        const y = surfaceY(lon, lat) + 3.8 + (isCocoPlace(lm.id) ? 1.8 : 0);
+        const y = placeY(lm, selected, layers.relief) + 3.8;
         const isActive = active === lm.id;
         const name = landmarkName(lm, lang);
         const showLabel = layers.labels && (isActive || level === 'near' || filter !== 'all' || (level === 'mid' && (lm.kind === 'volcano' || lm.kind === 'capital' || lm.kind === 'province-capital')));
@@ -83,13 +84,13 @@ export function MapOverlay({ data, landmarks, lang }: { data: MapData; landmarks
         const [lon, lat] = displayLonLat(s.lm);
         const [x0, z0] = project(lon, lat);
         const x = x0 + s.dx, z = z0 + s.dz;
-        const y = surfaceY(lon, lat) + 2.2 + (isCocoPlace(s.lm.id) ? 1.8 : 0);
+        const y = placeY(s.lm, selected, layers.relief) + 2.2;
         const isOn = s.kind === 'animal' ? activeAnimal === s.id : activeFood === s.id;
         const name = s.kind === 'animal' ? speciesName(s.id) : dishName(s.id);
         return (
           <Anchor key={s.key} id={'sprite-' + s.key} position={[x, y, z]} interactive className={'map-anchor--sprite' + (isOn ? ' map-anchor--top' : '')}>
             <button type="button" tabIndex={-1} className={'map-sprite map-sprite--' + s.kind + (isOn ? ' is-on' : '')} style={{ ['--px' as string]: px + 'px' }} onClick={(e) => { e.stopPropagation(); if (s.kind === 'animal') { if (s.lm.province) useMap.getState().select(s.lm.province, false); setAnimal(isOn ? null : s.id); } else setFood(isOn ? null : s.id); }} aria-label={name + ' · ' + landmarkName(s.lm, lang)} title={name}>
-              {s.kind === 'animal' ? <AnimalSvg species={s.id} size={40} /> : <DishCard id={s.id} size={44} backdrop="none" />}
+              {s.kind === 'animal' ? <AnimalPicture species={s.id} size={40} /> : <DishCard id={s.id} size={44} backdrop="none" />}
             </button>
           </Anchor>
         );

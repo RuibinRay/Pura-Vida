@@ -669,3 +669,81 @@ body {
   gap: var(--s-2);
   margin: var(--s-4) 0 var(--s-3);
 }
+
+/* ---- the map's light and weather bar (3D view) ------------------------------------------------------------- */
+.sky-bar {
+  position: absolute;
+  right: var(--s-3);
+  top: var(--s-3);
+  z-index: 5;
+  display: grid;
+  gap: 6px;
+  padding: 8px 10px;
+  width: min(280px, calc(100% - 2 * var(--s-3)));
+  border-radius: var(--radius-lg);
+  background: rgba(16, 24, 22, 0.78);
+  color: #f4eedf;
+  box-shadow: var(--shadow-paper);
+  font-size: var(--t-xs);
+}
+.sky-bar__hour {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+.sky-bar__hour input[type='range'] {
+  width: 100%;
+  min-height: 24px;
+  accent-color: var(--gold);
+}
+.sky-bar__hour output {
+  min-width: 3.2em;
+  text-align: right;
+  font-weight: 600;
+}
+.sky-bar__presets,
+.sky-bar__weather {
+  display: flex;
+  gap: 4px;
+}
+.sky-bar__btn {
+  flex: 1 1 0;
+  min-height: 30px;
+  padding: 2px 6px;
+  border: 1px solid rgba(244, 238, 223, 0.28);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+.sky-bar__btn:hover {
+  border-color: rgba(244, 238, 223, 0.7);
+}
+.sky-bar__btn.is-on {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #1d2b22;
+}
+.sky-bar__btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+@media (max-width: 640px) {
+  .sky-bar {
+    left: var(--s-2);
+    right: var(--s-2);
+    top: var(--s-2);
+    width: auto;
+    padding: 6px 8px;
+  }
+  .sky-bar__presets {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sky-bar__btn { transition: none; }
+}

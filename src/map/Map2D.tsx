@@ -11,6 +11,7 @@ import type { Landmark } from '../content/types';
 import { COCO_INSET, MARKER_COLORS, displayLonLat, landmarkName, showAtLevel } from './explore';
 import { spritePositions, SPRITE_PX } from './sprites';
 import { ANIMAL_ART } from '../art/animals';
+import { stickerFor } from '../ui/AnimalPicture';
 import { DISH_ART } from '../journey/dishes';
 
 type Box = [number, number, number, number];
@@ -176,7 +177,8 @@ export function Map2D({ data, landmarks }: { data: MapData; landmarks: Landmark[
         const [x0, z0] = project(lon, lat);
         const x = x0 + s.dx, z = z0 + s.dz;
         const Art = s.kind === 'animal' ? ANIMAL_ART[s.id] : DISH_ART[s.id];
-        if (!Art) return null;
+        const sticker = !Art && s.kind === 'animal' ? stickerFor(s.id, 48) : null; // the trail's species have the author's cut-outs instead of a cartoon
+        if (!Art && !sticker) return null;
         const isOn = s.kind === 'animal' ? activeAnimal === s.id : activeFood === s.id;
         const name = s.kind === 'animal' ? speciesName(s.id) : dishName(s.id);
         // animals are drawn in a 200-unit box, dishes in a 520×400 box centred on 0,0
@@ -185,7 +187,7 @@ export function Map2D({ data, landmarks }: { data: MapData; landmarks: Landmark[
         return (
           <g key={s.key} className={'map2d__sprite map2d__sprite--' + s.kind + (isOn ? ' is-on' : '')} tabIndex={0} role="button" aria-label={name + ' · ' + landmarkName(s.lm, lang)} onClick={(e) => { e.stopPropagation(); if (s.kind === 'animal') { if (s.lm.province) select(s.lm.province, false); setAnimal(isOn ? null : s.id); } else setFood(isOn ? null : s.id); }} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (s.kind === 'animal') setAnimal(isOn ? null : s.id); else setFood(isOn ? null : s.id); } }}>
             <circle cx={x} cy={z - spritePx * 0.45} r={spritePx * 0.56} fill="#ffffff" fillOpacity={isOn ? 1 : 0.85} stroke={isOn ? '#f0c25a' : '#2a1d14'} strokeWidth={unit * (isOn ? 2 : 0.8)} />
-            <g transform={tf}><Art /></g>
+            {Art ? <g transform={tf}><Art /></g> : <image href={sticker as string} x={x - spritePx * 0.42} y={z - spritePx * 0.87} width={spritePx * 0.84} height={spritePx * 0.84} preserveAspectRatio="xMidYMid meet" />}
           </g>
         );
       })}

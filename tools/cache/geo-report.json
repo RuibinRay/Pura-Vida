@@ -1,132 +1,218 @@
 {
  "provinces": {
-  "alajuela": {
+  "heredia": {
    "parts": [
     {
      "coco": false,
-     "areaKm2": 9590,
-     "vertices": 1360,
-     "triangles": 2494,
+     "areaKm2": 2675.5,
+     "vertices": 1926,
+     "triangles": 3194,
      "droppedInHoles": 0,
      "centroidOutsidePolygon": 0
     }
    ],
-   "areaKm2": 9590
+   "areaKm2": 2675.5
   },
   "guanacaste": {
    "parts": [
     {
      "coco": false,
-     "areaKm2": 10298.9,
-     "vertices": 1651,
-     "triangles": 2860,
+     "areaKm2": 6.9,
+     "vertices": 42,
+     "triangles": 40,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 10149.8,
+     "vertices": 7265,
+     "triangles": 12196,
      "droppedInHoles": 0,
      "centroidOutsidePolygon": 0
     }
    ],
-   "areaKm2": 10298.9
+   "areaKm2": 10156.7
   },
-  "limon": {
+  "alajuela": {
    "parts": [
     {
      "coco": false,
-     "areaKm2": 9368.8,
-     "vertices": 1380,
-     "triangles": 2458,
+     "areaKm2": 9758.3,
+     "vertices": 5438,
+     "triangles": 10237,
      "droppedInHoles": 0,
      "centroidOutsidePolygon": 0
     }
    ],
-   "areaKm2": 9368.8
-  },
-  "puntarenas": {
-   "parts": [
-    {
-     "coco": false,
-     "areaKm2": 9971.1,
-     "vertices": 1845,
-     "triangles": 2917,
-     "droppedInHoles": 0,
-     "centroidOutsidePolygon": 0
-    },
-    {
-     "coco": false,
-     "areaKm2": 1079.6,
-     "vertices": 230,
-     "triangles": 337,
-     "droppedInHoles": 0,
-     "centroidOutsidePolygon": 0
-    },
-    {
-     "coco": false,
-     "areaKm2": 38.6,
-     "vertices": 21,
-     "triangles": 20,
-     "droppedInHoles": 0,
-     "centroidOutsidePolygon": 0
-    },
-    {
-     "coco": true,
-     "areaKm2": 15.6,
-     "vertices": 9,
-     "triangles": 7,
-     "droppedInHoles": 0,
-     "centroidOutsidePolygon": 0
-    },
-    {
-     "coco": false,
-     "areaKm2": 3.4,
-     "vertices": 6,
-     "triangles": 4,
-     "droppedInHoles": 0,
-     "centroidOutsidePolygon": 0
-    }
-   ],
-   "areaKm2": 11108.4
-  },
-  "heredia": {
-   "parts": [
-    {
-     "coco": false,
-     "areaKm2": 2699.7,
-     "vertices": 451,
-     "triangles": 747,
-     "droppedInHoles": 0,
-     "centroidOutsidePolygon": 0
-    }
-   ],
-   "areaKm2": 2699.7
+   "areaKm2": 9758.3
   },
   "san-jose": {
    "parts": [
     {
      "coco": false,
-     "areaKm2": 5003,
-     "vertices": 962,
-     "triangles": 1516,
+     "areaKm2": 4955.6,
+     "vertices": 3468,
+     "triangles": 5824,
      "droppedInHoles": 0,
      "centroidOutsidePolygon": 0
     }
    ],
-   "areaKm2": 5003
+   "areaKm2": 4955.6
+  },
+  "puntarenas": {
+   "parts": [
+    {
+     "coco": true,
+     "areaKm2": 23.1,
+     "vertices": 155,
+     "triangles": 178,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 3,
+     "vertices": 31,
+     "triangles": 29,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 6.1,
+     "vertices": 93,
+     "triangles": 91,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 1.4,
+     "vertices": 47,
+     "triangles": 45,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 1.2,
+     "vertices": 27,
+     "triangles": 25,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 10153.7,
+     "vertices": 8213,
+     "triangles": 12949,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 1082.5,
+     "vertices": 1243,
+     "triangles": 1729,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 4.4,
+     "vertices": 50,
+     "triangles": 48,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 1.5,
+     "vertices": 24,
+     "triangles": 22,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 4.3,
+     "vertices": 62,
+     "triangles": 60,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 3.7,
+     "vertices": 56,
+     "triangles": 54,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 41.4,
+     "vertices": 165,
+     "triangles": 170,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    },
+    {
+     "coco": false,
+     "areaKm2": 2.5,
+     "vertices": 20,
+     "triangles": 18,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    }
+   ],
+   "areaKm2": 11328.6
   },
   "cartago": {
    "parts": [
     {
      "coco": false,
-     "areaKm2": 3098.4,
-     "vertices": 500,
-     "triangles": 849,
+     "areaKm2": 3066.8,
+     "vertices": 1874,
+     "triangles": 3346,
      "droppedInHoles": 0,
      "centroidOutsidePolygon": 0
     }
    ],
-   "areaKm2": 3098.4
+   "areaKm2": 3066.8
+  },
+  "limon": {
+   "parts": [
+    {
+     "coco": false,
+     "areaKm2": 9162.2,
+     "vertices": 5617,
+     "triangles": 10094,
+     "droppedInHoles": 0,
+     "centroidOutsidePolygon": 0
+    }
+   ],
+   "areaKm2": 9162.2
   }
  },
  "totals": {
-  "areaKm2": 51167.1,
-  "vertices": 8415,
-  "triangles": 14209
+  "areaKm2": 51103.7,
+  "vertices": 35816,
+  "triangles": 60349
+ },
+ "lite": {
+  "areaKm2": 51103.7,
+  "vertices": 17038,
+  "triangles": 22793
+ },
+ "protected": {
+  "total": 99,
+  "parks": 29,
+  "points": 8223
+ },
+ "water": {
+  "rivers": 1948,
+  "lakes": 15
  }
 }

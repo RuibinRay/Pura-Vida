@@ -4,19 +4,23 @@
 // PROJECTION — a local planar frame centred on Costa Rica. One scene unit = 1 km.
 //   x grows east, z grows south (so north is "away from the viewer" in Three.js), y is up.
 //
-// RELIEF — STYLISED, NOT MEASURED. Costa Rica's four cordilleras and its named peaks are placed
-// at real coordinates with real summit elevations (see src/content/peaks.ts for the sourced
-// list), and the land between them is interpolated with smooth ridges and bumps. It reads like
-// a museum raised-relief model, not a digital elevation model. Swap `reliefKm` for a DEM
-// sampler when a licensed heightmap is available (see docs/WORLD_ARCHITECTURE.md).
+// RELIEF — MEASURED. Heights come from a digital elevation model (Terrain Tiles on AWS, zoom 10: SRTM and others)
+// resampled into this frame by tools/build_terrain.py as public/geo/dem.png: a 1024 px grid of 500 m cells, 8 bits,
+// square-root encoded (finer than a metre at the coast, about 30 m at the summits). `installDem` hands the grid to
+// this module — the builder and the tests read the PNG with pngjs, the app decodes it on a canvas — and from then on
+// `reliefKm` is a bilinear sample of it. Until a grid is installed the functions fall back to the STYLISED relief the
+// first milestone drew (ridge lines and Gaussian peaks at the real summits), so nothing depends on load order.
+//
+// The 3D map drapes its markers and lines on the mesh it actually draws: `setSurfaceSampler` lets the app replace
+// the height lookup behind `surfaceY` with a barycentric sample of that mesh (src/map/terrain.ts).
 
 export const LON0 = -84.2;
 export const LAT0 = 9.75;
 const KM_PER_DEG_LAT = 110.57;
 const KM_PER_DEG_LON = 111.32 * Math.cos((LAT0 * Math.PI) / 180);
 
-/** Vertical exaggeration applied to the stylised relief (×). */
-export const VERTICAL_EXAGGERATION = 5;
+/** Vertical exaggeration applied to the relief (×). Baked into the normal maps: rebuild them if it changes. */
+export const VERTICAL_EXAGGERATION = 4;
 /** Height of the land plate above the ocean surface (km, scene units). */
 export const PLINTH = 0.35;
 /** Depth of the plate's side wall below the ocean surface (km, scene units). */
@@ -37,7 +41,45 @@ export function elevationToY(elevKm) {
   return PLINTH + elevKm * VERTICAL_EXAGGERATION;
 }
 
-// ---- stylised relief definition -------------------------------------------------------------
+// ---- measured relief: the elevation grid -------------------------------------------------------------------------
+/** The square every raster of the map covers, in scene km (tools/build_terrain.py writes the same numbers). */
+export const EXTENT = { cx: -5, cz: 14, half: 256 };
+
+/** @type {{ size: number, data: Uint8Array, x0: number, z0: number, cell: number, maxKm: number } | null} */
+let dem = null;
+
+/**
+ * Installs the elevation grid (public/geo/dem.png decoded to one byte per cell, row 0 = north).
+ * @param {{ size: number, data: Uint8Array, maxMetres?: number, extent?: { cx: number, cz: number, half: number } } | null} grid
+ */
+export function installDem(grid) {
+  if (!grid) { dem = null; return; }
+  const e = grid.extent || EXTENT;
+  dem = { size: grid.size, data: grid.data, x0: e.cx - e.half, z0: e.cz - e.half, cell: (2 * e.half) / grid.size, maxKm: (grid.maxMetres ?? 3900) / 1000 };
+}
+export function hasDem() { return dem !== null; }
+
+function demKmAtXZ(x, z) {
+  const d = /** @type {NonNullable<typeof dem>} */ (dem);
+  const n = d.size;
+  // cell centres sit at +0.5
+  let fx = (x - d.x0) / d.cell - 0.5, fz = (z - d.z0) / d.cell - 0.5;
+  if (fx < 0) fx = 0; else if (fx > n - 1.001) fx = n - 1.001;
+  if (fz < 0) fz = 0; else if (fz > n - 1.001) fz = n - 1.001;
+  const ix = fx | 0, iz = fz | 0;
+  const tx = fx - ix, tz = fz - iz;
+  const i = iz * n + ix;
+  const a = d.data[i], b = d.data[i + 1], c = d.data[i + n], e = d.data[i + n + 1];
+  const k = d.maxKm / 65025; // (v/255)² × max
+  return (a * a * (1 - tx) + b * b * tx) * (1 - tz) * k + (c * c * (1 - tx) + e * e * tx) * tz * k;
+}
+
+/** @type {((x: number, z: number) => number | null) | null} */
+let surfaceSampler = null;
+/** The 3D map's own mesh as the height source of `surfaceY` (returns scene y, or null off the land). */
+export function setSurfaceSampler(fn) { surfaceSampler = fn; }
+
+// ---- stylised relief definition (the fallback) -------------------------------------------------------------
 // Ridges: polylines of [lon, lat, crestKm]; `sigma` = half-width of the ridge in km.
 // Peaks: [lon, lat, summitKm, sigmaKm]. Plateaus: elliptical Gaussians.
 
@@ -104,8 +146,14 @@ const RIDGES_XZ = RIDGES.map((r) => ({ sigma2: 2 * r.sigma * r.sigma, pts: r.pts
 const PEAKS_XZ = PEAKS.map(([lon, lat, h, s]) => [...project(lon, lat), h, 2 * s * s]);
 const PLATEAUS_XZ = PLATEAUS.map((p) => ({ xz: project(p.lon, p.lat), h: p.h, sx2: 2 * p.sx * p.sx, sz2: 2 * p.sz * p.sz }));
 
-/** Stylised elevation in kilometres at a scene point (x, z). Always ≥ 0. */
+/** Elevation in kilometres at a scene point (x, z): the measured grid when installed, the stylised model otherwise. Always ≥ 0. */
 export function reliefKmAtXZ(x, z) {
+  if (dem) return demKmAtXZ(x, z);
+  return stylisedKmAtXZ(x, z);
+}
+
+/** The stylised relief of the first milestone (ridges and peaks placed by hand at real coordinates). */
+export function stylisedKmAtXZ(x, z) {
   let h = 0;
   for (const r of RIDGES_XZ) {
     const p = r.pts;
@@ -130,13 +178,20 @@ export function reliefKmAtXZ(x, z) {
   return Math.max(0, h);
 }
 
-/** Stylised elevation in kilometres at a geographic point. */
+/** Elevation in kilometres at a geographic point. */
 export function reliefKm(lon, lat) {
   const [x, z] = project(lon, lat);
   return reliefKmAtXZ(x, z);
 }
 
-/** Scene y for a geographic point on the land surface. */
+/** Scene y for a geographic point on the land surface (on the drawn mesh when the 3D map has installed it). */
 export function surfaceY(lon, lat) {
-  return elevationToY(reliefKm(lon, lat));
+  const [x, z] = project(lon, lat);
+  return surfaceYAtXZ(x, z);
+}
+
+/** Scene y for a scene point on the land surface. */
+export function surfaceYAtXZ(x, z) {
+  if (surfaceSampler) { const y = surfaceSampler(x, z); if (y !== null) return y; }
+  return elevationToY(reliefKmAtXZ(x, z));
 }

@@ -87,4 +87,14 @@ describe('the stops of the walk', () => {
       }
     }
   });
+  it('lists only film clips that exist, for plates that exist', async () => {
+    const { CINE } = await import('../src/journey/cine');
+    const fs = await import('node:fs');
+    for (const [plate, clip] of Object.entries(CINE)) {
+      expect(plates[plate], plate).toBeTruthy();
+      for (const ext of ['webm', 'mp4']) expect(fs.existsSync(`public/cine/${clip!.file}.${ext}`), `${clip!.file}.${ext}`).toBe(true);
+      if (clip!.mode === 'scrub') expect(clip!.duration, plate).toBeGreaterThan(0);
+      expect(clip!.credit.length).toBeGreaterThan(8);
+    }
+  });
 });

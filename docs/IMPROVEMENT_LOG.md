@@ -2,6 +2,44 @@
 
 What was reviewed, what was wrong, what changed. Newest first. Only things that were actually checked (screenshot, test, measurement) are recorded as fixed.
 
+## 2026-11-11 — The opening from above, the minimap, the film layer
+
+- **The walk began inside the forest** → it begins above the country: two plates rendered from the 3D map (`tools/aerial_plates.mjs`), pushed into, handed over and dropped through cloud by the first stop's scroll (`Aerial.tsx`, CSS only). The title rides the high view and leaves before the hand-over; the opening's animals can be met once the descent has landed.
+- **First attempt crashed the tab**: two tiled cloud layers 140 % of the screen, scaled up to 3.4× with a brightness filter, exhausted the GPU's tile memory in Chrome. The clouds are now screen-sized gradients that only fade and slide.
+- **Rendering the plates at 2560 px showed three faults of the map that small screenshots hid**: a moiré grid on the distant sea (ripples aliasing — they now exist only near the camera, in four unaligned directions), dark seams along shared province borders (each wall's top edge fought the land — the walls now start 60 m under it), and clouds that were flat discs from above (now four noise-built cumulus shapes).
+- **No sense of where a stop is** → `JourneyMap.tsx`: the provinces, the route through the stops that are places, a marker that travels with the scroll and lights the province it is in.
+- **Generated film had nowhere to go** → `cine.ts` + `CineLayer.tsx` (loop or scroll-scrubbed), `tools/cine_encode.sh`, a test that every listed clip exists; `docs/HIGGSFIELD_SHOTS.md` is the shot list.
+
+### Known weaknesses carried forward
+- The aerial plates are stills: a visitor who reaches for the country cannot turn it there (the map is one button away).
+- In a tall frame the high plate cannot hold the whole country; it opens on the Central Valley.
+- The LCP image of the home page is now the high aerial plate (63–124 KB) with the forest base loading behind it; not re-measured with Lighthouse.
+
+## 2026-11-11 — The map on measured terrain
+
+### Reviewed and changed
+- **The relief was drawn, not measured** (ridge lines and Gaussian peaks; the docs called a DEM swap "the single biggest realism win") → a digital elevation model resampled into the map's frame; the mesh, the markers, the labels and the lines all read the same grid. Vertical exaggeration ×5 → ×4 (real slopes are rougher than the drawn ones).
+- **Province outlines were Natural Earth 1:10m**, up to a few kilometres off and within 3 % of the official areas → the OpenStreetMap-derived outlines of geoBoundaries (the official division; within 2 %), with the Gulf of Nicoya's islands and the southern tip of Nicoya as their own parts of Puntarenas.
+- **Flat-shaded province colours** → satellite imagery (Sentinel-2 cloudless), elevation tints, or the province colours as a tint over the relief; lighting through a normal map of the real slopes, so the day/night control models them.
+- **Three rivers and two lakes** → 209 rivers and 15 lakes from OpenStreetMap, draped on the mesh; **protected areas were pins** → 99 polygons as outlines and a wash.
+- **A flat blue sea** → the real bathymetry: the shelf, the slope and the Middle America Trench read from the colour.
+- **No sky** → a sun that follows the hour, a sky gradient, haze, clouds that gather over the cordilleras, rain, NASA's night lights after dark.
+- **The camera cut straight lines** → flights in orbit terms with a rise and a swing; a narrow stage backs off so the whole country fits.
+- **A hidden or covered page stepped a capable device down to the 2D map**: the frame-rate watchdog counted the frames a browser does not draw for a background page as a slow GPU. Gaps of most of a second now reset the sample (`src/perf/tier.ts`).
+- **`Trail.tsx` and `trail.ts` in one folder** broke the type check and import resolution on a case-insensitive disk (macOS, Windows): `trail.ts` → `trailZones.ts`.
+- **Blank white discs on the map** for the fourteen species that arrived with the wildlife trail (they have no cartoon) → `AnimalPicture` falls back to the author's cut-out.
+- **R3F copies a `uniforms` prop**: the sea, the sky and the clouds did not follow the light until their materials were built once with the shared uniform objects.
+
+### Measured
+- `node tools/map_shots.mjs` (headless Chrome on an Apple M2, 1440×900, DPR 1): 59–60 fps in every state photographed — country view in the three styles, dawn, dusk, night, rain, a selected province, two close views, the lite tier at 390 px. No console errors. 73 tests pass.
+
+### Known weaknesses carried forward
+- One machine, one browser: no phone, no Windows GPU, no Safari. The lite tier was photographed, not felt.
+- Every page now warms `mesh-lite.json` (643 KB), `water.json` (355 KB) and `dem.png` (179 KB) at idle — more than the old 355 KB mesh. The dense mesh (1.5 MB) and the textures load only with the 3D map.
+- Smoke on the active volcanoes was left out: their current state could not be read from an authoritative source in this session (the Smithsonian GVP refuses automated requests), and a plume in the wrong place would be decoration, not geography.
+- The clouds are billboards without shadows on the land; the rain is streaks, not weather data.
+- The home page's old map stop (`HomeMap.tsx`, not on the walk) compiles against the new parts but was not re-photographed.
+
 ## 2026-10-23 — Homepage journey (the "big update")
 
 ### Reviewed and changed
