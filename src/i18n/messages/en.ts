@@ -34,7 +34,10 @@ const en = {
   },
   journey: {
     railLabel: 'Chapters of the journey',
-    scrollHint: 'Scroll to walk in',
+    mapLabel: 'Where the walk is in Costa Rica. Open the full map.',
+    mapStop: 'Stop {n} of {total}',
+    aerialCredit: 'From above: the site’s own 3D map — measured relief under Sentinel-2 imagery.',
+    scrollHint: 'Scroll to descend',
     stillNote: 'This device shows the still version of the journey; the layers do not move.',
     motionOffNote: 'The animals and the water are still because your system asks for reduced motion.',
     motionOn: 'Turn the motion on',
@@ -82,7 +85,7 @@ const en = {
     ch1: {
       kicker: 'Discover',
       tagline: 'Pura Vida — Discover the country I call home.',
-      intro: 'A journey through Costa Rica’s forests, wildlife, culture and history — the country where I come from. Scroll, and the forest opens.',
+      intro: 'A journey through Costa Rica’s forests, wildlife, culture and history — the country where I come from. Scroll, and come down out of the sky into the forest.',
       begin: 'Begin the journey',
       openMap: 'Open the map',
       animals: 'Animals in the opening scene',

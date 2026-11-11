@@ -7,6 +7,7 @@ import { PLATES, LayerImg, PlateBox, PlateLayer, type AnimalInfo, type PlateName
 import type { Stop } from './scenes';
 import type { Species } from '../content/types';
 import { useT } from '../i18n';
+import { AERIAL_SHARE } from './Aerial';
 
 const FX = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'plates/';
 
@@ -62,7 +63,8 @@ function bodyPeriod(a: AnimalInfo, anim?: string) {
 export function flyVars(fly: [number, number] | undefined, firstStop: boolean): Record<string, string | number> {
   if (!fly) return {};
   // the first stop opens at progress 0 as the picture was drawn; later stops centre the path on their midpoint
-  return { '--fdx': fly[0], '--fdy': fly[1], '--f0': firstStop ? 0 : 0.5 };
+  // (the first stop spends its first third above the country — see Aerial.tsx — so "as drawn" is where the forest appears)
+  return { '--fdx': fly[0], '--fdy': fly[1], '--f0': firstStop ? AERIAL_SHARE : 0.5 };
 }
 
 function Animal({ plate, a, container, facing = 1, lifted, live, fly, walk, firstStop }: { plate: PlateName; a: AnimalInfo; container: number[]; facing?: 1 | -1; lifted: boolean; live: boolean; fly?: [number, number]; walk?: [number, number]; firstStop: boolean }) {

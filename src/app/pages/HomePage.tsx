@@ -1,7 +1,7 @@
 // The homepage is one scroll journey — a walk through the country in nine stops over a sticky stage (see
 // docs/HOMEPAGE_REDESIGN.md). Empty sections give each stop its scroll length; the stage shows the plates, the map,
 // the table and the closing beach, and the copy of each stop is pinned in the stage and keyed to its progress.
-import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Link } from '../../ui/Link';
 import { useT, type MessageKey } from '../../i18n';
@@ -29,6 +29,8 @@ import { usePassport } from '../../state/passport';
 import { SECTIONS } from '../sections';
 import { usePageTitle } from '../usePageTitle';
 
+import { Aerial } from '../../journey/Aerial';
+import { JourneyMap, type RouteStop } from '../../journey/JourneyMap';
 const HomeMap = lazy(() => import('../../journey/HomeMap').then((m) => ({ default: m.HomeMap })));
 const Map2D = lazy(() => import('../../map/Map2D').then((m) => ({ default: m.Map2D })));
 
@@ -122,6 +124,14 @@ export function HomePage() {
   const email = PERSONAL.links?.email;
   const place = (id?: string) => (id ? content?.places.find((p) => p.id === id) : undefined);
   const stopMarkers = STOPS.map((s, i) => ({ s, n: i + 1 })).filter((x) => x.s.place).map((x) => { const p = place(x.s.place); return p?.coords ? { n: x.n, id: p.id, name: l(p.name).replace(/ (National Park|Cloud Forest Reserve|dry forest and savanna|Parque Nacional.*|Reserva.*|国家公园|云雾森林.*)$/i, '').split(/,|，/)[0], coords: p.coords } : null; }).filter((x): x is { n: number; id: string; name: string; coords: [number, number] } => !!x);
+  // the stops that are places, in walking order: the minimap's route
+  const route = useMemo<RouteStop[]>(() => STOPS.map((s, i) => ({ s, i })).flatMap(({ s, i }) => {
+    const p = s.place ? content?.places.find((x) => x.id === s.place) : undefined;
+    if (!p?.coords) return [];
+    const prov = p.province ? mapData?.provinces.find((q) => q.id === p.province) : undefined;
+    return [{ index: i, key: s.key, name: t(`journey.stops.${s.key}.kicker` as MessageKey), province: p.province, provinceName: prov ? prov.name[lang] || prov.name.en : undefined, coords: p.coords }];
+  }), [content, mapData, t, lang]);
+  const stopLabel = useCallback((n: number, total: number) => t('journey.mapStop', { n, total }), [t]);
   const fit = openSp ? openSp.sp.stops?.[openSp.stop === 'discover' ? 'opening' : openSp.stop] : undefined;
   const species = content?.species || [];
 
@@ -159,6 +169,9 @@ export function HomePage() {
           return null;
         })}
 
+        {/* the descent from above the country into the first stop's clearing (not on the text tier) */}
+        {tier !== 'text' && chapter <= 1 && <Aerial live={live} />}
+
         <div className="journey__copy">
           {STOPS.map((stop, i) => {
             const n = i + 1;
@@ -184,6 +197,7 @@ export function HomePage() {
                     </div>
                     {!live && <p className="jcopy__note ui">{t('journey.stillNote')}</p>}
                     <p className="jcopy__scrollhint ui" aria-hidden="true"><span /> {t('journey.scrollHint')}</p>
+                    {tier !== 'text' && <p className="jcopy__credit ui"><small>{t('journey.aerialCredit')}</small></p>}
                   </div>
                   <p className="visually-hidden">{t('journey.ch1.plateAlt')}</p>
                 </>,
@@ -292,6 +306,9 @@ export function HomePage() {
       {/* scroll length for each stop; the copy and the visuals live in the stage and read --p1…--pN */}
       {STOPS.map((stop, i) => (<div key={stop.key} className={`jspace jspace--${i + 1} jspace--${stop.kind} jspace--${stop.key}`} style={stop.length ? { minHeight: `${stop.length}vh` } : undefined} data-chapter={i + 1} aria-hidden="true" />))}
       <span className="visually-hidden">{t('journey.chaptersCount', { n: CHAPTER_COUNT })}</span>
+
+      {/* where the walk is in the country */}
+      {mapData && live && <JourneyMap data={mapData} route={route} total={CHAPTER_COUNT} label={t('journey.mapLabel')} stopLabel={stopLabel} />}
 
       {/* chapter rail: where you are in the walk */}
       <nav className="rail ui" aria-label={t('journey.railLabel')}>

@@ -570,7 +570,8 @@
 .hotspot:focus-visible .hotspot__label--right,
 .hotspot.is-on .hotspot__label--right { transform: translate(0, 0); }
 .plate__hotspots--scene .hotspot { opacity: calc(clamp(0, (var(--pn) - 0.06 - var(--i) * 0.05) * 7, 1) * (1 - clamp(0, (var(--pn) - 0.9) * 10, 1))); }
-.scene--1 .plate__hotspots--scene .hotspot { opacity: calc(1 - clamp(0, var(--pn) * 2.5, 1)); }
+/* the opening's animals can be met once the descent has landed, until the walk-in carries the camera past them */
+.scene--1 .plate__hotspots--scene .hotspot { opacity: calc(clamp(0, (var(--pn) - 0.36) * 12, 1) * (1 - clamp(0, (var(--pn) - 0.62) * 3.2, 1))); }
 .plate__hotspots--table .hotspot { opacity: calc(clamp(0, (var(--pn) - 0.12 - var(--i) * 0.07) * 7, 1)); }
 
 /* ---- the map stop ---- */
@@ -771,8 +772,9 @@
   max-width: min(46rem, calc(100vw - 2 * var(--gutter) - 4rem));
   padding-bottom: var(--s-7);
   text-align: center;
-  opacity: calc(1 - var(--m) * clamp(0, var(--pn, 0) * 2.4, 1) - var(--calm) * clamp(0, (var(--pn, 0) - 0.6) * 3, 1));
-  transform: translate(-50%, calc(var(--m) * var(--pn, 0) * -40px));
+  /* the title rides the view from above and leaves as the descent enters the cloud */
+  opacity: calc(1 - clamp(0, (var(--pn, 0) - 0.035) * 11, 1));
+  transform: translate(-50%, calc(var(--m) * var(--pn, 0) * -110px));
 }
 .jcopy--hero .jcopy__intro { margin-left: auto; margin-right: auto; }
 .jcopy--hero .jcopy__actions, .jcopy--hero .jcopy__scrollhint { justify-content: center; }
@@ -1165,3 +1167,107 @@
 .motion-notice p { margin: 0; flex: 1 1 16rem; font-size: var(--t-sm); line-height: 1.4; }
 .motion-notice__actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 @media (max-width: 760px) { .motion-notice { bottom: 0.6rem; } }
+
+
+/* ---- the opening's descent: above the country, across the Central Valley, through cloud, into the clearing ---- */
+.aerial {
+  --aerial: 0.36;                                             /* the share of stop 1 the descent takes (Aerial.tsx) */
+  --a: clamp(0, var(--pn, 0) / var(--aerial), 1);             /* 0 above the country … 1 landed */
+  --lo: clamp(0, (var(--a) - 0.34) / 0.66, 1);                /* the lower plate's own progress */
+  position: absolute;
+  inset: 0;
+  z-index: 1;                                                 /* over the first stop, under the second */
+  overflow: hidden;
+  pointer-events: none;
+  background: #0a2f55;
+  opacity: calc(1 - clamp(0, (var(--a) - 0.88) * 8.4, 1));
+}
+.aerial__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* push in toward the Central Valley (it sits a little right of the middle of the high plate) */
+.aerial__img--high {
+  transform-origin: 53% 43%;
+  transform: scale(calc(1 + var(--m) * var(--a) * 2.4));
+  opacity: calc(1 - clamp(0, (var(--a) - 0.3) * 4.2, 1));
+}
+/* then lower, drifting toward the volcanoes, the horizon rising */
+.aerial__img--low {
+  transform-origin: 56% 62%;
+  transform: scale(calc(1.07 + var(--m) * var(--lo) * 0.9)) translateY(calc(var(--m) * var(--lo) * -1.5%));
+}
+/* cloud: a far bank that thickens, then a veil that takes the whole frame as the camera drops through it. Drawn as
+   gradients (no texture, so no tile seam), each one a screen-sized layer that only fades and slides */
+.aerial__clouds { position: absolute; inset: 0; }
+.aerial__clouds--far {
+  background:
+    radial-gradient(46% 30% at 24% 62%, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0) 72%),
+    radial-gradient(40% 26% at 76% 34%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 72%),
+    radial-gradient(34% 24% at 58% 88%, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0) 72%),
+    radial-gradient(30% 20% at 8% 18%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 72%);
+  opacity: clamp(0, (var(--a) - 0.48) * 2.6, 1);
+  transform: translate3d(calc(var(--m) * (0.5 - var(--a)) * 8%), calc(var(--m) * (0.5 - var(--a)) * 14%), 0);
+}
+.aerial__clouds--near {
+  background: radial-gradient(130% 100% at 50% 62%, rgba(255, 255, 255, 0.97), rgba(246, 249, 252, 0.9) 55%, rgba(236, 242, 248, 0.6) 100%);
+  opacity: clamp(0, (var(--a) - 0.7) * 5.2, 1);
+}
+/* the title's ground: a soft shade at the foot of the frame while the words are there */
+.aerial__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(4, 18, 30, 0.72), rgba(4, 18, 30, 0.2) 38%, rgba(4, 18, 30, 0) 60%);
+  opacity: calc(1 - clamp(0, var(--a) * 2.2, 1));
+}
+.jcopy__credit { margin: var(--s-2) 0 0; opacity: 0.72; font-size: var(--t-xs); }
+
+/* ---- where the walk is in the country ---- */
+.jmap {
+  position: fixed;
+  left: var(--s-3);
+  bottom: var(--s-3);
+  z-index: 30;
+  width: 168px;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+.jmap[data-before='1'] { opacity: 0; transform: translateY(8px); pointer-events: none; }
+.jmap__link {
+  display: grid;
+  gap: 4px;
+  padding: 8px 10px 9px;
+  border-radius: var(--radius-lg);
+  background: rgba(10, 20, 17, 0.74);
+  border: 1px solid rgba(244, 238, 223, 0.16);
+  color: #f4eedf;
+  text-decoration: none;
+}
+.jmap__link:hover { border-color: rgba(244, 238, 223, 0.5); }
+.jmap__link:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.jmap__svg { display: block; width: 100%; height: auto; overflow: visible; }
+.jmap__prov { fill: rgba(244, 238, 223, 0.16); stroke: rgba(244, 238, 223, 0.5); stroke-width: 1.2; vector-effect: non-scaling-stroke; transition: fill 400ms ease; }
+.jmap__prov[data-on='1'] { fill: var(--c); fill-opacity: 0.85; }
+.jmap__route { fill: none; stroke: rgba(244, 238, 223, 0.34); stroke-width: 1.4; stroke-dasharray: 3 4; vector-effect: non-scaling-stroke; }
+.jmap__route--done { stroke: var(--gold); stroke-width: 2; stroke-dasharray: 0 9999; }
+.jmap__stop { fill: #f4eedf; opacity: 0.75; }
+.jmap__dot circle { fill: var(--gold); stroke: #1d2b22; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.jmap__dot .jmap__halo { fill: var(--gold); opacity: 0.28; stroke: none; }
+.jmap__text { display: grid; gap: 1px; font-size: var(--t-xs); line-height: 1.25; }
+.jmap__count { opacity: 0.7; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.68rem; }
+.jmap__name { font-weight: 600; }
+@media (max-width: 760px), (orientation: portrait) {
+  /* a tall frame cannot hold the whole country: it opens on the Central Valley and the Nicoya gulf */
+  .aerial__img--high { object-position: 50% 42%; transform-origin: 50% 43%; }
+  .aerial__img--low { object-position: 58% 50%; }
+}
+@media (max-width: 760px) {
+  .jmap { width: 96px; left: var(--s-2); bottom: var(--s-2); }
+  .jmap__text { display: none; }
+  .jmap__link { padding: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jmap, .jmap__prov { transition: none; }
+}

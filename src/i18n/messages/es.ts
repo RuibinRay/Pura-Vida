@@ -35,7 +35,10 @@ const es: Messages = {
   },
   journey: {
     railLabel: 'Capítulos del recorrido',
-    scrollHint: 'Desplázate para entrar',
+    mapLabel: 'Dónde va el recorrido en Costa Rica. Abrir el mapa completo.',
+    mapStop: 'Parada {n} de {total}',
+    aerialCredit: 'Desde arriba: el mapa 3D del propio sitio — relieve medido bajo imágenes de Sentinel-2.',
+    scrollHint: 'Desplázate para descender',
     stillNote: 'Este dispositivo muestra la versión fija del recorrido; las capas no se mueven.',
     motionOffNote: 'Los animales y el agua están quietos porque tu sistema pide reducir el movimiento.',
     motionOn: 'Activar el movimiento',
@@ -83,7 +86,7 @@ const es: Messages = {
     ch1: {
       kicker: 'Descubrir',
       tagline: 'Pura Vida — Descubre el país que llamo mi hogar.',
-      intro: 'Un recorrido por los bosques, la fauna, la cultura y la historia de Costa Rica, el país de donde vengo. Desplázate y el bosque se abre.',
+      intro: 'Un recorrido por los bosques, la fauna, la cultura y la historia de Costa Rica, el país de donde vengo. Desplázate y baja del cielo al bosque.',
       begin: 'Comenzar el recorrido',
       openMap: 'Abrir el mapa',
       animals: 'Animales de la escena inicial',

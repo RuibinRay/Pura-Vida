@@ -59,7 +59,8 @@ function wallGeometry(part: MeshPart) {
   const col = new Float32Array(n * 2 * 3);
   for (let i = 0; i < n; i++) {
     const x = P[i * 3], y = P[i * 3 + 1], z = P[i * 3 + 2];
-    pos.set([x, y, z], i * 6);
+    // the top sits 60 m (scene) under the land's edge: seen from above, a wall can never show through a shared border
+    pos.set([x, y - 0.06, z], i * 6);
     pos.set([x, -PLINTH_DEPTH, z], i * 6 + 3);
     col.set([STONE_TOP.r, STONE_TOP.g, STONE_TOP.b], i * 6);
     col.set([STONE_DARK.r, STONE_DARK.g, STONE_DARK.b], i * 6 + 3);
@@ -277,12 +278,15 @@ const OCEAN_FS = `uniform float uTime; uniform sampler2D uBathy; uniform vec3 uE
             col = mix(col, vec3(0.008, 0.055, 0.16), smoothstep(1100.0, 3800.0, depth));
             vec3 view = normalize(cameraPosition - vWorld);
             float dist = length(cameraPosition - vWorld);
-            float amp = uWaves * (1.0 - smoothstep(250.0, 900.0, dist));
+            // ripples only where the camera is close enough to resolve them (farther off they would alias into a grid)
+            float amp = uWaves * (1.0 - smoothstep(45.0, 190.0, dist));
             vec2 p = vWorld.xz;
-            vec3 n = normalize(vec3(
-              (cos(p.x * 0.42 + uTime * 0.7) * 0.05 + cos((p.x + p.y) * 0.9 + uTime * 1.1) * 0.03 + cos(p.x * 2.3 - uTime * 1.6) * 0.02) * amp,
-              1.0,
-              (cos(p.y * 0.37 - uTime * 0.55) * 0.05 + cos((p.y - p.x) * 0.8 - uTime * 0.9) * 0.03 + cos(p.y * 2.1 + uTime * 1.4) * 0.02) * amp));
+            vec2 g = vec2(0.0);
+            g += vec2(0.83, 0.56) * cos(dot(p, vec2(0.83, 0.56)) * 0.61 + uTime * 0.9) * 0.040;
+            g += vec2(-0.37, 0.93) * cos(dot(p, vec2(-0.37, 0.93)) * 0.97 - uTime * 1.2) * 0.030;
+            g += vec2(0.98, -0.21) * cos(dot(p, vec2(0.98, -0.21)) * 1.43 + uTime * 1.5) * 0.022;
+            g += vec2(0.29, 0.96) * cos(dot(p, vec2(0.29, 0.96)) * 2.31 - uTime * 2.0) * 0.014;
+            vec3 n = normalize(vec3(g.x * amp, 1.0, g.y * amp));
             float lit = mix(0.14, 1.0, uDay) * (0.72 + 0.28 * max(dot(n, uSunDir), 0.0)) * (1.0 - 0.3 * uOvercast);
             float spec = pow(max(dot(n, normalize(uSunDir + view)), 0.0), 120.0) * uDay * (1.0 - uOvercast);
             float fres = pow(1.0 - max(dot(n, view), 0.0), 4.0);
@@ -314,18 +318,21 @@ const CLOUDS_VS = `attribute vec3 aPos; attribute float aSize; attribute float a
             vec2 e = min((c.xz - uBox.xy) / 30.0, (uBox.xy + uBox.zw - c.xz) / 30.0);
             vec4 mv = viewMatrix * vec4(c, 1.0);
             mv.xy += position.xy * aSize * vec2(1.25, 0.8);
-            vUv = uv; vSeed = aSeed;
+            // one of the four shapes of the atlas, mirrored for half of them
+            float pick = floor(aSeed * 4.0);
+            vec2 q = vec2(aSeed > 0.5 ? 1.0 - uv.x : uv.x, uv.y);
+            vUv = (q + vec2(mod(pick, 2.0), floor(pick / 2.0))) * 0.5; vSeed = aSeed;
             vFade = clamp(min(e.x, e.y), 0.0, 1.0) * smoothstep(40.0, 130.0, -mv.z);
             gl_Position = projectionMatrix * mv;
           }`;
 const CLOUDS_FS = `uniform sampler2D uPuff; uniform vec3 uSunColor; uniform vec3 uZenith; uniform float uDay; uniform float uOvercast; uniform float uOpacity; varying vec2 vUv; varying float vFade; varying float vSeed;
           void main(){
             vec4 t = texture2D(uPuff, vUv);
-            float a = smoothstep(0.02, 0.85, t.a) * uOpacity * vFade * (0.6 + 0.3 * vSeed);
+            float a = t.a * uOpacity * vFade * (0.72 + 0.28 * vSeed);
             if (a < 0.012) discard;
             vec3 lit = mix(vec3(1.0), uSunColor, 0.55) * mix(0.16, 1.0, uDay);
             vec3 shade = mix(uZenith * 0.35 + 0.6, vec3(0.42, 0.44, 0.48), uOvercast) * mix(0.3, 1.0, uDay);
-            vec3 col = mix(shade, lit, smoothstep(0.75, 1.0, t.r) * (1.0 - 0.55 * uOvercast));
+            vec3 col = mix(shade, lit, smoothstep(0.45, 0.95, t.r) * (1.0 - 0.55 * uOvercast));
             gl_FragColor = vec4(col, a);${SHADER_TAIL}
           }`;
 const RAIN_VS = `attribute float aEnd; uniform float uTime; uniform vec3 uCenter; uniform float uScale; varying float vA;
@@ -554,7 +561,7 @@ export function CocoInset({ data }: { data: MapData }) {
   if (!geom || !puntarenas) return null;
   const frame: [number, number, number][] = [[CX - half, 0.5, CZ - half], [CX + half, 0.5, CZ - half], [CX + half, 0.5, CZ + half], [CX - half, 0.5, CZ + half], [CX - half, 0.5, CZ - half]];
   return (
-    <group>
+    <group name="coco-inset">
       <mesh position={[CX, 0.4, CZ]} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[half * 2, half * 2]} />
         <meshStandardMaterial color="#0d3657" roughness={0.7} transparent opacity={0.9} />
@@ -680,25 +687,37 @@ export function SkyDome() {
   );
 }
 
+/** Four cumulus shapes in a 2×2 atlas, built from fractal noise inside a soft dome: lumpy edges, no outline. */
 function puffTexture(): THREE.Texture {
+  const cell = 128, size = cell * 2;
   const c = document.createElement('canvas');
-  c.width = c.height = 128;
+  c.width = c.height = size;
   const ctx = c.getContext('2d')!;
-  // overlapping soft discs: a cumulus seen from the side; the red channel carries the light (bright top, grey base)
-  const rnd = mulberry(5);
-  // many small soft discs heaped on a flat base: no outline, no hard edge
-  for (let i = 0; i < 46; i++) {
-    const a = rnd() * Math.PI * 2, d = Math.pow(rnd(), 0.7) * 34;
-    const x = 64 + Math.cos(a) * d * 1.25, y = 70 - Math.abs(Math.sin(a)) * d * 0.75, r = 10 + rnd() * 16;
-    const g = ctx.createRadialGradient(x, y - r * 0.2, 0, x, y, r);
-    g.addColorStop(0, 'rgba(255,255,255,0.30)');
-    g.addColorStop(0.6, 'rgba(235,235,235,0.12)');
-    g.addColorStop(1, 'rgba(200,200,200,0)');
-    ctx.fillStyle = g;
-    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+  const img = ctx.createImageData(size, size);
+  const hash = (x: number, y: number, s: number) => { const h = Math.sin(x * 127.1 + y * 311.7 + s * 74.7) * 43758.5453; return h - Math.floor(h); };
+  const noise = (x: number, y: number, s: number) => {
+    const ix = Math.floor(x), iy = Math.floor(y), fx = x - ix, fy = y - iy;
+    const ux = fx * fx * (3 - 2 * fx), uy = fy * fy * (3 - 2 * fy);
+    return (hash(ix, iy, s) * (1 - ux) + hash(ix + 1, iy, s) * ux) * (1 - uy) + (hash(ix, iy + 1, s) * (1 - ux) + hash(ix + 1, iy + 1, s) * ux) * uy;
+  };
+  for (let v = 0; v < 4; v++) {
+    const ox = (v % 2) * cell, oy = Math.floor(v / 2) * cell;
+    for (let y = 0; y < cell; y++) for (let x = 0; x < cell; x++) {
+      const u = (x + 0.5) / cell - 0.5, w = (y + 0.5) / cell - 0.5;
+      const f = noise(x / 22, y / 22, v) * 0.5 + noise(x / 11, y / 11, v + 9) * 0.3 + noise(x / 5.5, y / 5.5, v + 21) * 0.2;
+      // a dome that the noise eats into: dense in the middle, ragged at the rim
+      const dome = 1 - Math.hypot(u * 2.05, w * 2.6);
+      const a = Math.max(0, Math.min(1, (dome + (f - 0.5) * 0.95) * 2.4));
+      const light = Math.max(0, Math.min(1, 0.62 + f * 0.5 - w * 0.35));
+      const i = ((oy + y) * size + ox + x) * 4;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = Math.round(light * 255);
+      img.data[i + 3] = Math.round(a * a * (3 - 2 * a) * 235);
+    }
   }
+  ctx.putImageData(img, 0, 0);
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.NoColorSpace;
+  tex.premultiplyAlpha = false;
   return tex;
 }
 
@@ -712,7 +731,7 @@ function mulberry(seed: number) { return () => { seed |= 0; seed = (seed + 0x6d2
  */
 export function Clouds({ data, weather, still = false }: { data: MapData; weather: Weather; still?: boolean }) {
   const mesh = useRef<THREE.Mesh>(null);
-  const count = weather === 'rain' ? 320 : 150;
+  const count = weather === 'rain' ? 520 : 300;
   const { geometry, uniforms } = useMemo(() => {
     const rnd = mulberry(20261111);
     const [x0, z0, x1, z1] = data.bbox;
@@ -725,11 +744,11 @@ export function Clouds({ data, weather, still = false }: { data: MapData; weathe
       const km = land ? reliefKmAtXZ(x, z) : 0;
       const odds = weather === 'rain' ? (land ? 0.8 : 0.3) : land ? 0.08 + km * 0.45 : 0.02;
       if (rnd() > odds) continue;
-      const puffs = 2 + Math.floor(rnd() * 3);
+      const puffs = 3 + Math.floor(rnd() * 5);
       const y = 9 + km * 2.6 + rnd() * 5;
       for (let k = 0; k < puffs && seed.length < count; k++) {
-        pos.push(x + (rnd() - 0.5) * 16, y + (rnd() - 0.5) * 2.4, z + (rnd() - 0.5) * 12);
-        size.push(7 + rnd() * 10);
+        pos.push(x + (rnd() - 0.5) * 13, y + (rnd() - 0.5) * 2, z + (rnd() - 0.5) * 10);
+        size.push(5 + rnd() * 8);
         seed.push(rnd());
       }
     }

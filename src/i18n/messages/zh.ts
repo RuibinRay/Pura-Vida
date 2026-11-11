@@ -35,7 +35,10 @@ const zh: Messages = {
   },
   journey: {
     railLabel: '旅程章节',
-    scrollHint: '滚动页面，走进森林',
+    mapLabel: '旅程在哥斯达黎加的位置。打开完整地图。',
+    mapStop: '第 {n} 站，共 {total} 站',
+    aerialCredit: '俯瞰画面：本站自己的三维地图——实测地形与 Sentinel-2 影像。',
+    scrollHint: '向下滚动，开始下降',
     stillNote: '此设备显示旅程的静态版本，图层不会移动。',
     motionOffNote: '你的系统设置了“减少动态效果”，所以动物和流水暂时静止。',
     motionOn: '开启动态效果',
@@ -83,7 +86,7 @@ const zh: Messages = {
     ch1: {
       kicker: '发现',
       tagline: 'Pura Vida — 发现我称之为家的国度。',
-      intro: '一段穿越哥斯达黎加森林、野生动物、文化与历史的旅程——这是我来自的国家。向下滚动，森林便会打开。',
+      intro: '一段穿越哥斯达黎加森林、野生动物、文化与历史的旅程——这是我来自的国家。向下滚动，从空中降入森林。',
       begin: '开始旅程',
       openMap: '打开地图',
       animals: '开场画面中的动物',
