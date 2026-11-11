@@ -38,6 +38,8 @@ export interface Tour {
   active: boolean;
   step: number;
   auto: boolean;
+  /** the site's guided tour, or the visitor's own route (state/route.ts) */
+  kind: 'guided' | 'route';
 }
 
 interface MapState {
@@ -99,7 +101,7 @@ export const useMap = create<MapState>((set, get) => ({
   filter: 'all',
   showWildlife: persistedOverlays.wildlife,
   showFood: persistedOverlays.food,
-  tour: { active: false, step: 0, auto: false },
+  tour: { active: false, step: 0, auto: false, kind: 'guided' },
   view: persistedView,
   style: persistedLook.style,
   hour: persistedLook.hour,
@@ -123,7 +125,7 @@ export const useMap = create<MapState>((set, get) => ({
   setHour: (hour) => set({ hour: Math.min(24, Math.max(0, hour)) }),
   setWeather: (weather) => set({ weather }),
   flyTo: (goal) => set({ goal: { ...goal, seq: get().goal.seq + 1 } as CameraGoal }),
-  reset: () => set({ selected: null, activeLandmark: null, activeAnimal: null, activeFood: null, tour: { active: false, step: 0, auto: false }, goal: { kind: 'country', seq: get().goal.seq + 1 } }),
+  reset: () => set({ selected: null, activeLandmark: null, activeAnimal: null, activeFood: null, tour: { active: false, step: 0, auto: false, kind: 'guided' }, goal: { kind: 'country', seq: get().goal.seq + 1 } }),
 }));
 
 useMap.subscribe((s, prev) => {

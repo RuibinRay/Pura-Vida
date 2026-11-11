@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useT, type MessageKey } from '../../i18n';
 import { MapStage } from '../../map/MapStage';
 import { useMapData } from '../../map/useMapData';
+import { useRoute, routeFromParam } from '../../state/route';
 import { useContent } from '../../content';
 import { useMap } from '../../state/map';
 import { FILTERS, displayLonLat, groupOf, landmarkName, matchesFilter, type KindFilter } from '../../map/explore';
@@ -43,6 +44,15 @@ export function ExplorePage() {
     flyTo({ kind: 'point', lon, lat, distance: 110 });
     setParams((p) => { p.delete('place'); return p; }, { replace: true });
   }, [place, content, data, select, setLandmark, flyTo, setParams]);
+
+  // ?route=a,b,c loads a shared route (the visitor's own is replaced) and frames the country
+  const routeParam = params.get('route');
+  useEffect(() => {
+    if (!routeParam || !content) return;
+    const known = new Set(content.landmarks.map((x) => x.id));
+    useRoute.getState().set(routeFromParam(routeParam).filter((id) => known.has(id)));
+    setParams((p) => { p.delete('route'); return p; }, { replace: true });
+  }, [routeParam, content, setParams]);
 
   // ?animal=<species id> / ?dish=<dish id> open that card on its layer and fly to its first place
   useEffect(() => {

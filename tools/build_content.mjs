@@ -2,6 +2,7 @@
 // (src/content/generated/*.json). It validates the shape, normalises coordinates to lon/lat,
 // collects every source into one registry, and refuses to emit a province without a sourced overview.
 //   node tools/build_content.mjs
+import { provinceLocatorFromFile } from './province_at.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -321,6 +322,22 @@ if (nature) {
 const retrieved = '2026-10-23';
 const registry = [...sourceRegistry.values()].map((s) => ({ ...s, usedFor: [...s.usedFor] })).sort((a, b) => a.publisher.localeCompare(b.publisher) || a.title.localeCompare(b.title));
 fs.writeFileSync(path.join(OUT, 'provinces.json'), JSON.stringify({ retrieved, provinces }, null, 0));
+// A place the research gave no province (the parks and the peaks: many span several) takes the province its
+// coordinates lie in, read from the province outlines of the map. `provinceFrom` says so: it is a reading of the
+// point, not a statement that the whole park is in one province.
+{
+  const topoPath = path.join(ROOT, 'public', 'geo', 'costa-rica.topo.json');
+  if (fs.existsSync(topoPath)) {
+    const at = provinceLocatorFromFile(topoPath, 12);
+    let filled = 0;
+    for (const lm of dedupedLandmarks) {
+      if (lm.province || !Number.isFinite(lm.lon) || !Number.isFinite(lm.lat)) continue;
+      const p = at(lm.lon, lm.lat);
+      if (p) { lm.province = p; lm.provinceFrom = 'coordinates'; filled++; }
+    }
+    console.log(`provinces from coordinates: ${filled} landmarks; still without: ${dedupedLandmarks.filter((l) => !l.province).map((l) => l.id).join(', ') || 'none'}`);
+  }
+}
 fs.writeFileSync(path.join(OUT, 'landmarks.json'), JSON.stringify({ retrieved, landmarks: dedupedLandmarks }, null, 0));
 fs.writeFileSync(path.join(OUT, 'species.json'), JSON.stringify({ retrieved, species, unesco }, null, 0));
 fs.writeFileSync(path.join(OUT, 'country.json'), JSON.stringify({ retrieved, facts, symbols: country?.symbols || [], conservationAreas: country?.conservationAreas || [] }, null, 0));

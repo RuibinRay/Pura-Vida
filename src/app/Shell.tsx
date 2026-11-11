@@ -8,10 +8,7 @@ import { usePassport } from '../state/passport';
 import { useTier, whyStatus } from '../perf/tier';
 import { Icon } from '../ui/Icon';
 import { Sheet } from '../ui/Sheet';
-import { Stamp } from '../ui/Stamp';
-import { PROVINCE_ORDER, PROVINCE_COLORS } from '../map/geo';
-import { useMapData } from '../map/useMapData';
-import { useContent } from '../content';
+import { Passport } from '../ui/Passport';
 
 export function Shell() {
   const { t, lang } = useT();
@@ -85,7 +82,7 @@ export function Shell() {
         <ContentsList onNavigate={() => setOpen(null)} />
       </Sheet>
       <Sheet open={open === 'passport'} onClose={() => setOpen(null)} title={t('passport.title')}>
-        <PassportSheet />
+        <Passport onNavigate={() => setOpen(null)} />
       </Sheet>
       <Sheet open={open === 'settings'} onClose={() => setOpen(null)} title={t('settings.title')}>
         <SettingsSheet />
@@ -125,51 +122,6 @@ function ContentsList({ onNavigate }: { onNavigate: () => void }) {
         </li>
       ))}
     </ol>
-  );
-}
-
-function PassportSheet() {
-  const { t, l, lang } = useT();
-  const discoveries = usePassport((s) => s.discoveries);
-  const clear = usePassport((s) => s.clear);
-  const { data } = useMapData();
-  const content = useContent();
-  const done = PROVINCE_ORDER.filter((id) => discoveries.some((d) => d.kind === 'province' && d.id === id));
-  const speciesDone = discoveries.filter((d) => d.kind === 'species');
-  const foodDone = discoveries.filter((d) => d.kind === 'food');
-  const placesDone = discoveries.filter((d) => d.kind === 'place').length;
-  return (
-    <div className="passport">
-      <p>{t('passport.lede')}</p>
-      <p className="eyebrow">{t('passport.progress', { done: done.length, total: 7 })}{placesDone > 0 ? ` · ${t('passport.places', { n: placesDone })}` : ''}</p>
-      <ul className="passport__grid">
-        {PROVINCE_ORDER.map((id) => {
-          const d = discoveries.find((x) => x.kind === 'province' && x.id === id);
-          const geo = data?.provinces.find((p) => p.id === id);
-          const name = geo ? (geo.name[lang] || geo.name.en) : id;
-          return (
-            <li key={id}>
-              <Stamp label={name} date={d?.at} color={PROVINCE_COLORS[id]} stamped={!!d} />
-              <Link to={'/provinces/' + id} className="passport__name">{name}</Link>
-            </li>
-          );
-        })}
-      </ul>
-      {(speciesDone.length > 0 || foodDone.length > 0) && (
-        <>
-          <p className="eyebrow">{t('passport.others', { species: speciesDone.length, dishes: foodDone.length })}</p>
-          <ul className="passport__grid passport__grid--small">
-            {speciesDone.map((d) => { const sp = content?.species.find((x) => x.id === d.id); return (
-              <li key={'s-' + d.id}><Stamp label={sp ? l(sp.commonNames) : d.id} date={d.at} color="var(--forest)" stamped /><Link to={'/wildlife?focus=' + d.id} className="passport__name">{sp ? l(sp.commonNames) : d.id}</Link></li>
-            ); })}
-            {foodDone.map((d) => { const f = content?.foods.find((x) => x.id === d.id); return (
-              <li key={'f-' + d.id}><Stamp label={f ? l(f.name) : d.id} date={d.at} color="var(--sunset)" stamped /><Link to={'/food?focus=' + d.id} className="passport__name">{f ? l(f.name) : d.id}</Link></li>
-            ); })}
-          </ul>
-        </>
-      )}
-      {discoveries.length > 0 && <button type="button" className="btn btn--ghost btn--sm" onClick={clear}>{t('passport.clear')}</button>}
-    </div>
   );
 }
 

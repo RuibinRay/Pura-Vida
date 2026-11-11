@@ -26,6 +26,7 @@ import * as topojsonSimplify from 'topojson-simplify';
 import cdt2d from 'cdt2d';
 import { PNG } from 'pngjs';
 import { project, unproject, reliefKmAtXZ, elevationToY, installDem, EXTENT } from '../src/map/relief.js';
+import { provinceLocator } from './province_at.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CACHE = path.join(ROOT, 'tools', 'cache');
@@ -288,8 +289,8 @@ const report = { ...full.report, lite: lite.report.totals };
 const placesRaw = await readShp('ne_10m_populated_places', (f) => f.properties.ADM0_A3 === 'CRI');
 // Natural Earth's Chinese place names mix traditional and simplified forms; the site is Simplified Chinese.
 const ZH_PLACES = { 'San José': '圣何塞', Alajuela: '阿拉胡埃拉', Cartago: '卡塔戈', Heredia: '埃雷迪亚', Puntarenas: '蓬塔雷纳斯', 'Limón': '利蒙', Liberia: '利韦里亚', Quesada: '克萨达', 'Cañas': '卡尼亚斯', Golfito: '戈尔菲托', 'La Cruz': '拉克鲁斯', 'Ciudad Cortés': '科尔特斯城', Sixaola: '锡克绍拉' };
-const provinceRingsLL = feats.map((f) => ({ id: f.id, polys: (f.geometry.type === 'MultiPolygon' ? f.geometry.coordinates : [f.geometry.coordinates]).map((p) => p[0]) }));
-const provinceAt = (lon, lat) => provinceRingsLL.find((p) => p.polys.some((r) => pointInRing(lon, lat, r)))?.id || null;
+// a town's province is the outline it stands in (or stands beside: Puntarenas is on a sand spit the simplified coast cuts)
+const provinceAt = provinceLocator(feats, 6);
 const places = placesRaw.map((f) => ({ id: f.properties.NAME.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-'), name: { en: f.properties.NAME_EN || f.properties.NAME, es: f.properties.NAME_ES || f.properties.NAME, zh: ZH_PLACES[f.properties.NAME] || f.properties.NAME }, lon: +f.properties.LONGITUDE.toFixed(4), lat: +f.properties.LATITUDE.toFixed(4), kind: f.properties.ADM0CAP ? 'capital' : f.properties.FEATURECLA === 'Admin-1 capital' ? 'province-capital' : 'town', province: provinceAt(f.properties.LONGITUDE, f.properties.LATITUDE), popNE: f.properties.POP_MAX })).sort((a, b) => b.popNE - a.popNE);
 
 // ---- 6. water (OpenStreetMap) --------------------------------------------------------------------

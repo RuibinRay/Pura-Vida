@@ -37,6 +37,8 @@ export interface Landmark {
   lat: number;
   province: ProvinceId | null;
   provinces?: ProvinceId[];
+  /** the province was read from the place's coordinates on the map's outlines (the research named none) */
+  provinceFrom?: 'coordinates';
   elevationM?: number;
   text?: Localized;
   status?: Status;

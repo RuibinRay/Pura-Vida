@@ -13,6 +13,7 @@ import { spritePositions, SPRITE_PX } from './sprites';
 import { ANIMAL_ART } from '../art/animals';
 import { stickerFor } from '../ui/AnimalPicture';
 import { FOOD_PHOTOS, foodPhotoSrc } from '../content/foodPhotos';
+import { useRoute } from '../state/route';
 import { DISH_ART } from '../journey/dishes';
 
 type Box = [number, number, number, number];
@@ -94,6 +95,8 @@ export function Map2D({ data, landmarks }: { data: MapData; landmarks: Landmark[
   }, [data]);
   const neighborPaths = useMemo(() => data.neighbors.map((n) => n.rings.map(ringPath).join(' ')), [data]);
   const lakePaths = useMemo(() => data.lakes.map(ringPath), [data]);
+  const routeIds = useRoute((r) => r.stops);
+  const routePts = useMemo(() => routeIds.map((id) => landmarks.find((x) => x.id === id)).filter((x): x is Landmark => !!x).map((lm) => { const [lon, lat] = displayLonLat(lm); return project(lon, lat) as [number, number]; }), [routeIds, landmarks]);
   const riverPaths = useMemo(() => data.rivers.map((r) => r.map(([lon, lat], i) => { const [x, z] = project(lon, lat); return (i ? 'L' : 'M') + x.toFixed(1) + ' ' + z.toFixed(1); }).join('')), [data]);
 
   const scale = box[2] / countryBox[2]; // 1 = whole country; smaller = zoomed in
@@ -173,6 +176,13 @@ export function Map2D({ data, landmarks }: { data: MapData; landmarks: Landmark[
           {showLabel && <text x={x + markerR * 1.6} y={z + fontSize * 0.3} fontSize={fontSize * 0.72} className={'map2d__place' + (isActive ? ' is-active' : '')} paintOrder="stroke" stroke="#f4eedf" strokeWidth={fontSize * 0.22}>{name}{isActive && lm.elevationM ? ` · ${lm.elevationM.toLocaleString(lang)} m` : ''}</text>}
         </g>
       ); })}
+      {routePts.length > 1 && <path d={routePts.map(([x, z], i) => (i ? 'L' : 'M') + x.toFixed(1) + ' ' + z.toFixed(1)).join('')} fill="none" stroke="#e0a526" strokeWidth={unit * 3} strokeLinejoin="round" strokeLinecap="round" strokeDasharray={`${unit * 2} ${unit * 6}`} pointerEvents="none" />}
+      {routePts.map(([x, z], i) => (
+        <g key={'route-' + i} pointerEvents="none">
+          <circle cx={x} cy={z - markerR * 3.2} r={markerR * 1.7} fill="#e0a526" stroke="#1d2b22" strokeWidth={unit} />
+          <text x={x} y={z - markerR * 3.2} textAnchor="middle" dominantBaseline="central" fontSize={fontSize * 0.85} fontWeight={700} fill="#1d2b22">{i + 1}</text>
+        </g>
+      ))}
       {sprites.map((s) => {
         const [lon, lat] = displayLonLat(s.lm);
         const [x0, z0] = project(lon, lat);

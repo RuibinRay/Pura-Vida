@@ -12,6 +12,9 @@ import { useTier } from '../perf/tier';
 import { useSettings, useCalmMotion } from '../state/settings';
 import { useT } from '../i18n';
 import type { Landmark } from '../content/types';
+import { useRoute } from '../state/route';
+import { displayLonLat } from './explore';
+import { Line } from '@react-three/drei';
 
 const SKY = '#d5e4f0';
 
@@ -64,6 +67,16 @@ export function Map3D({ data, landmarks, stageRef }: { data: MapData; landmarks:
     return { by, seaRivers: [...rivers.sea, ...streams.sea], seaParks: outlines?.sea };
   }, [surface, data, parks]);
 
+  // the visitor's route: straight legs between the stops, draped on the land
+  const routeIds = useRoute((r) => r.stops);
+  const routeLine = useMemo(() => {
+    const byId = new Map(landmarks.map((l) => [l.id, l]));
+    const pts = routeIds.map((id) => byId.get(id)).filter((l): l is Landmark => !!l).map((l) => displayLonLat(l));
+    if (pts.length < 2) return [] as number[];
+    const d = drapeLines(surface, [pts.flatMap(([lon, lat]) => [lon, lat])], { lift: 0.6, step: 1.2, seaY: 0.45, scale: 1 });
+    return [...d.sea, ...[...d.byProvince.values()].flat()];
+  }, [routeIds, landmarks, surface]);
+
   return (
     <div className="map3d">
       <Canvas
@@ -92,6 +105,7 @@ export function Map3D({ data, landmarks, stageRef }: { data: MapData; landmarks:
         <Borders data={data} show={layers.borders} surface={surface} relief={layers.relief} light={style !== 'terrain'} />
         <SelectedOutline data={data} provinces={provinces} relief={layers.relief} />
         {layers.markers && <LandmarkMarkers landmarks={landmarks} surfaceKey={surface} />}
+        {routeLine.length > 0 && layers.relief && <Line points={routeLine} segments color="#ffd24a" lineWidth={3} transparent opacity={0.95} depthTest={false} renderOrder={4} />}
         <CocoInset data={data} />
         {!lite && weather !== 'clear' && <Clouds data={data} weather={weather} still={calm} />}
         {!lite && !calm && weather === 'rain' && <Rain />}
