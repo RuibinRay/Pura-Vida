@@ -24,23 +24,27 @@ All storage access goes through `src/save/storage.ts` (try/catch, never load-bea
 
 `full → lite → still → text`. The auto tier comes from WebGL2 availability, GPU string (software renderers → lite), cores and memory. A frame-rate watchdog inside each Canvas demotes one step after four seconds under 22 fps (never promotes). `?tier=` wins over everything and is never demoted; the settings sheet lets the visitor choose. `?why` prints the status. Every tier keeps the content: the still tier shows the illustrated hero and the 2D map; the text tier shows the keyboard list.
 
-## Geodata pipeline (tools/build_geo.mjs)
+## Geodata pipeline (tools/fetch_geo.py → build_terrain.py → build_geo.mjs) — rebuilt 2026-11-11
 
-1. Natural Earth 1:10m admin-1 (provinces), admin-0 (Nicaragua, Panama for context), lakes, rivers, populated places — public domain, cached in `tools/cache/`.
-2. `topojson-server` builds one topology (quantised 1e5) so provinces share borders exactly; arcs used by two provinces are *internal borders*, arcs used by one are *coast / national border*.
-3. Each province polygon is triangulated with **cdt2d** (constrained Delaunay) after a hexagonal Steiner grid (3 km) is dropped inside it — crisp coastline, smooth interior. Triangles are emitted with upward normals (a test checks every triangle).
-4. Heights come from `src/map/relief.js`, shared by the tool and the app: a **stylised** relief — ridge polylines for the four cordilleras, Gaussian peaks at named summits, the Valle Central plateau, 40 m of value noise — ×5 vertical exaggeration on a 0.35 km plinth. It is a museum raised-relief model, not a DEM; swap `reliefKm` for a DEM sampler when a licensed heightmap is available (SRTM tile for lon −86…−82.5, lat 8…11.3).
-5. Outputs: `public/geo/costa-rica.topo.json` (47 KB), `mesh.json` (355 KB, 8.4k vertices, 14.2k triangles), `places.json`. Isla del Coco is kept as its own part of Puntarenas and drawn ×7 in an inset.
+Everything is resampled into one local planar frame (`src/map/relief.js`: 1 unit = 1 km, x east, z south, centred on 84.2° W 9.75° N) and every raster covers one square of it (centre −5, 14; half-size 256 km).
 
-Measured: the mesh areas match the official province areas within 3 % (total 51,167 km² vs IGN 2021 51,179.92 km²).
+1. **Fetch** (`tools/fetch_geo.py`, standard library, cached in `tools/cache/`): Terrain Tiles on AWS at zoom 10 (elevation and bathymetry), Sentinel-2 cloudless 2016 at zoom 10–11, NASA Black Marble, Natural Earth (neighbours, places), geoBoundaries CRI ADM1 (the provinces, OpenStreetMap-derived), and three Overpass queries (rivers, lakes, protected areas).
+2. **Rasters** (`tools/build_terrain.py`, numpy + Pillow): `dem.png` (1024 px, 500 m cells, 8 bits, square-root encoded: h = (v/255)² × 3900 m), `normal-2048/1024.webp` (object-space normals of the 250 m relief with the ×4 exaggeration baked in), `sat-4096/2048.webp` and `relief-2048/1024.webp` (alpha = land, cut clean along Costa Rica's own coast), `bathy.png` (sea depth), `night-1024.webp`, `terrain.json` (the encodings and the measured summits).
+3. **Vectors** (`tools/build_geo.mjs`): the province outlines are simplified as one topology (25,984 → 9,473 points; shared borders stay shared), each part is triangulated with **cdt2d** over a hexagonal interior grid — 1.5 km for `mesh.json` (35,816 vertices, 60,349 triangles), 3 km for `mesh-lite.json` — with the named summits added as vertices, and every vertex takes its height from `dem.png`. Rivers are joined by name and touching ends, ranked (the principal rivers, or ≥ 55 km: rank 1; ≥ 22 km: rank 2) and simplified; lakes ≥ 0.6 km² and the protected areas are assembled from OSM relations into closed rings.
+
+Measured: the province areas match the official ones within 2 % (total 51,104 km² vs IGN 2021 51,179.92 km²; the old Natural Earth outlines were within 3 %). Lake Arenal comes out at 85.8 km².
 
 ## 3D map (src/map)
 
-- `Province` — one BufferGeometry per part plus a wall geometry down to the plinth; vertex colours tint highlands; hover lifts 0.5, selection lifts 1.6 and dims the others.
-- `Borders` (Line2 segments), `SelectedOutline` (gold), `Ocean` (small shader with ripples and aerial perspective; plain material in lite), `NeighborPlates`, `LandmarkMarkers` (cones for peaks, "trees" for protected areas, dots for cities; scaled by camera distance).
-- Labels are **DOM**, not sprites and not drei `Html`: `overlay.tsx` registers anchors and a `Projector` writes screen positions every frame. This removed a `removeChild` crash that drei's portal produced when the Canvas unmounted on a tier change.
-- `CameraRig` — OrbitControls with limits, target clamped to the country, a 1.15 s eased glide to the goal, arrow keys/+/−/Home on the stage element, a zoom-level bucket (`far/mid/near`) that controls label density.
-- `Map2D` — the same topology as an SVG with the same state; viewBox animates to the goal; provinces are focusable buttons; label sizes are computed from the measured pixel width.
+- `relief.js` — the projection and the elevation lookup shared by the builder, the tests and the app. `installDem` hands it the grid; `setSurfaceSampler` lets the app answer `surfaceY` from the mesh that is actually drawn (`terrain.ts` builds a bucket grid over its triangles), so markers, labels and lines stand on the surface.
+- `geo.ts` — `loadMapData()` loads the outlines, the places, the water, the grid and the lighter mesh on every page; `loadDenseMesh()` and `loadParks()` are asked for by the 3D map only.
+- `Province` — one geometry per part with planar UVs into the shared textures, lit through the object-space normal map; three styles (satellite, elevation tints, province colours as a tint over the relief); the wash of the protected areas is a canvas texture every land material reads; the province's rivers and park outlines are draped on the mesh and live inside its group, so they rise with it. Hover lifts 0.22, selection lifts 1.6, tints it and dims the others.
+- `Ocean` — coloured by the real depth (shelf, slope, trench), small waves and a sun glint near the camera. `ContextLand` — Nicaragua and Panama as a flat plate in the same paint, normal-mapped, held back. `Atmosphere` — the sun of the chosen hour (equinox at 9.9° N: east at six, just south of overhead at noon), the sky gradient, haze, the weather's overcast; `SkyDome` (sun disc, stars), `Clouds` (billboards whose odds follow the measured relief, drifting west-south-west with the trades, fading as the camera closes in), `Rain`. NASA's night imagery is the land's emissive map and comes up as the day goes.
+- Labels are **DOM**, not sprites and not drei `Html`: `overlay.tsx` registers anchors and a `Projector` writes screen positions every frame.
+- `CameraRig` — OrbitControls with limits; a flight to a goal is interpolated in orbit terms (target, log-distance, tilt, bearing) with a rise on long hops and a few degrees of swing on arrival; arrow keys/+/−/Home; a zoom-level bucket (`far/mid/near`) that controls label density and the smaller rivers.
+- Shader materials that read the shared light uniforms (`ATMO`) are built with `useShader`, not `<shaderMaterial uniforms>`: R3F copies a uniforms prop and the link would be cut.
+- `Map2D` — the same topology as an SVG with the same state.
+- Tiers: `lite` uses the lighter mesh, 2048/1024 textures, no shadows, clouds or rain. Reduced motion keeps the clouds but stops their drift, drops the rain and makes camera moves instant.
 
 ## The homepage journey (src/journey)
 

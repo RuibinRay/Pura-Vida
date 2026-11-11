@@ -6,7 +6,8 @@ import { Link } from '../ui/Link';
 import { useMapData } from './useMapData';
 import { Map2D } from './Map2D';
 import { PROVINCE_COLORS, PROVINCE_ORDER } from './geo';
-import { useMap, type ProvinceId, type Layers } from '../state/map';
+import { useMap, type ProvinceId, type Layers, type MapStyle, type Weather } from '../state/map';
+import { hourLabel } from './terrain';
 import { usePassport } from '../state/passport';
 import { useTier } from '../perf/tier';
 import { useSettings } from '../state/settings';
@@ -18,7 +19,7 @@ import { FOOD_PLACES, dishesAt } from '../content/foodPlaces';
 import { FILTERS, TOUR_STOPS, displayLonLat, landmarkName, type KindFilter } from './explore';
 import { Icon } from '../ui/Icon';
 import { PlacePicture } from '../ui/PlacePicture';
-import { AnimalSvg } from '../art/animals';
+import { AnimalPicture } from '../ui/AnimalPicture';
 import { DishCard } from '../art/food/DishCard';
 import { StatusTag } from '../ui/Sources';
 
@@ -56,6 +57,12 @@ export function MapStage({ focus, compact }: { focus?: ProvinceId; compact?: boo
   const showFood = useMap((s) => s.showFood);
   const setShowFood = useMap((s) => s.setShowFood);
   const flyTo = useMap((s) => s.flyTo);
+  const style = useMap((s) => s.style);
+  const setStyle = useMap((s) => s.setStyle);
+  const hour = useMap((s) => s.hour);
+  const setHour = useMap((s) => s.setHour);
+  const weather = useMap((s) => s.weather);
+  const setWeather = useMap((s) => s.setWeather);
   const activeLandmark = useMap((s) => s.activeLandmark);
   const setLandmark = useMap((s) => s.setLandmark);
   const activeAnimal = useMap((s) => s.activeAnimal);
@@ -148,8 +155,11 @@ export function MapStage({ focus, compact }: { focus?: ProvinceId; compact?: boo
   const activeSp = activeAnimal ? content?.species.find((s) => s.id === activeAnimal) : undefined;
   const activeDish = activeFood ? content?.foods.find((f) => f.id === activeFood) : undefined;
 
-  const displayKeys: (keyof Layers)[] = ['relief', 'borders', 'labels'];
-  const layerLabel: Record<keyof Layers, MessageKey> = { relief: 'explore.layerRelief', borders: 'explore.layerBorders', labels: 'explore.layerLabels', cities: 'explore.layerCities', peaks: 'explore.layerPeaks', parks: 'explore.layerParks' };
+  const displayKeys: (keyof Layers)[] = effectiveView === '3d' ? ['relief', 'borders', 'rivers', 'areas', 'markers', 'labels'] : ['borders', 'labels'];
+  const layerLabel: Record<keyof Layers, MessageKey> = { relief: 'explore.layerRelief', borders: 'explore.layerBorders', labels: 'explore.layerLabels', cities: 'explore.layerCities', peaks: 'explore.layerPeaks', parks: 'explore.layerParks', rivers: 'explore.layerRivers', areas: 'explore.layerAreas', markers: 'explore.layerMarkers' };
+  const STYLES: { id: MapStyle; key: MessageKey }[] = [{ id: 'satellite', key: 'explore.styleSatellite' }, { id: 'terrain', key: 'explore.styleTerrain' }, { id: 'provinces', key: 'explore.styleProvinces' }];
+  const WEATHERS: { id: Weather; key: MessageKey }[] = [{ id: 'clear', key: 'explore.weatherClear' }, { id: 'clouds', key: 'explore.weatherClouds' }, { id: 'rain', key: 'explore.weatherRain' }];
+  const HOURS: { h: number; key: MessageKey }[] = [{ h: 6.2, key: 'explore.dawn' }, { h: 12, key: 'explore.midday' }, { h: 17.6, key: 'explore.dusk' }, { h: 22, key: 'explore.night' }];
   const tourIndex = tour.active ? Math.min(tour.step, tourStops.length - 1) : -1;
 
   return (
@@ -178,6 +188,13 @@ export function MapStage({ focus, compact }: { focus?: ProvinceId; compact?: boo
             </ul>
           )}
         </div>
+        {effectiveView === '3d' && (
+          <div className="seg" role="group" aria-label={t('explore.style')}>
+            {STYLES.map((o) => (
+              <button key={o.id} type="button" className={'seg__btn' + (style === o.id ? ' is-on' : '')} aria-pressed={style === o.id} onClick={() => setStyle(o.id)}>{t(o.key)}</button>
+            ))}
+          </div>
+        )}
         <details className="menu">
           <summary className="btn btn--ghost btn--sm"><Icon name="layers" /> {t('explore.display')}</summary>
           <div className="menu__panel">
@@ -228,6 +245,26 @@ export function MapStage({ focus, compact }: { focus?: ProvinceId; compact?: boo
           {data && effectiveView === '2d' && <Map2D data={data} landmarks={landmarks} />}
           {effectiveView === 'text' && <p className="map-textnote">{t('explore.textTier')}</p>}
           {effectiveView === '3d' && !tour.active && <p className="map-hint ui">{t('explore.hoverHint')}</p>}
+          {effectiveView === '3d' && (
+            <div className="sky-bar on-dark ui" role="group" aria-label={t('explore.sky')}>
+              <label className="sky-bar__hour">
+                <span className="visually-hidden">{t('explore.hour')}</span>
+                <Icon name={hour > 6 && hour < 18 ? 'sun' : 'moon'} />
+                <input type="range" min={0} max={24} step={0.25} value={hour} onChange={(e) => setHour(Number(e.target.value))} aria-valuetext={t('explore.hourValue', { time: hourLabel(hour) })} />
+                <output className="tnum">{hourLabel(hour)}</output>
+              </label>
+              <div className="sky-bar__presets">
+                {HOURS.map((o) => (
+                  <button key={o.key} type="button" className={'sky-bar__btn' + (Math.abs(hour - o.h) < 0.13 ? ' is-on' : '')} onClick={() => setHour(o.h)}>{t(o.key)}</button>
+                ))}
+              </div>
+              <div className="sky-bar__weather" role="group" aria-label={t('explore.weather')}>
+                {WEATHERS.map((o) => (
+                  <button key={o.id} type="button" className={'sky-bar__btn' + (weather === o.id ? ' is-on' : '')} aria-pressed={weather === o.id} onClick={() => setWeather(o.id)}>{t(o.key)}</button>
+                ))}
+              </div>
+            </div>
+          )}
           {tour.active && tourStops.length > 0 && (
             <div className="tour-bar on-dark ui" role="group" aria-label={t('explore.tour')}>
               <button type="button" className="btn btn--ghost btn--sm" onClick={() => setTour({ step: (tourIndex + tourStops.length - 1) % tourStops.length, auto: false })} aria-label={t('explore.tourPrev')}><Icon name="back" /></button>
@@ -323,7 +360,7 @@ function LandmarkCard({ lm, species, foods, provinces, tourIndex, tourTotal, onC
             {animals.map((sp) => (
               <li key={sp.id}>
                 <button type="button" className="avatar" onClick={() => onAnimal(sp.id)} title={l(sp.commonNames)}>
-                  <AnimalSvg species={sp.id} size={46} />
+                  <AnimalPicture species={sp.id} size={46} />
                   <span>{l(sp.commonNames)}</span>
                 </button>
               </li>
@@ -362,7 +399,7 @@ function AnimalCard({ sp, byId, onClose, onPlace }: { sp: Species; byId: Map<str
   const places = (HABITATS[sp.id] ?? []).map((h) => ({ h, lm: byId.get(h.at) })).filter((x): x is { h: (typeof HABITATS)[string][number]; lm: Landmark } => !!x.lm);
   return (
     <div className="map-panel__animal map-card map-card--animal">
-      <div className="animal-hero"><AnimalSvg species={sp.id} size={150} title={l(sp.commonNames)} /></div>
+      <div className="animal-hero"><AnimalPicture species={sp.id} size={150} title={l(sp.commonNames)} /></div>
       <p className="eyebrow">{t('nav.wildlife')} · <i>{sp.scientific}</i></p>
       <h2 className="map-panel__title">{l(sp.commonNames)}</h2>
       {sp.habitat && <p className="map-panel__text">{l(sp.habitat)}</p>}

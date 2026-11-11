@@ -4,17 +4,22 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { useMap } from '../state/map';
-import { framingFor, levelFor, useZoomLevel, easeInOut, COUNTRY_TARGET, COUNTRY_DISTANCE, COUNTRY_POLAR, COUNTRY_AZIMUTH } from './camera';
+import { framingFor, levelFor, useZoomLevel, easeInOut, COUNTRY_POLAR, COUNTRY_AZIMUTH } from './camera';
 import type { MapData } from './geo';
 import { makeFpsWatchdog, useTier } from '../perf/tier';
 
+/** A flight between two views, in the orbit's own terms (target, distance, tilt, bearing) so the camera swings
+ *  round the land instead of cutting a straight line through it; long hops rise before they come down. */
 interface Glide {
   t: number;
   dur: number;
-  fromPos: THREE.Vector3;
   fromTarget: THREE.Vector3;
-  toPos: THREE.Vector3;
   toTarget: THREE.Vector3;
+  fromR: number; toR: number;
+  fromPhi: number; toPhi: number;
+  fromTheta: number; toTheta: number;
+  /** extra distance at the middle of the flight */
+  rise: number;
 }
 
 const sph = new THREE.Spherical();
@@ -34,8 +39,9 @@ export function CameraRig({ data, calm, stageRef }: { data: MapData; calm: boole
   useEffect(() => {
     const c = controls.current;
     if (!c) return;
-    c.target.copy(COUNTRY_TARGET);
-    sph.set(COUNTRY_DISTANCE, COUNTRY_POLAR, COUNTRY_AZIMUTH);
+    const f0 = framingFor({ kind: 'country', seq: 0 }, data, (camera as THREE.PerspectiveCamera).fov, size.width / Math.max(1, size.height));
+    c.target.copy(f0.target);
+    sph.set(f0.distance, COUNTRY_POLAR, COUNTRY_AZIMUTH);
     camera.position.copy(c.target).add(tmp.setFromSpherical(sph));
     c.update();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,7 +65,15 @@ export function CameraRig({ data, calm, stageRef }: { data: MapData; calm: boole
       glide.current = null;
       return;
     }
-    glide.current = { t: 0, dur: 1.15, fromPos: camera.position.clone(), fromTarget: c.target.clone(), toPos, toTarget: f.target.clone() };
+    const fromR = offset.length();
+    const from = new THREE.Spherical().setFromVector3(offset);
+    const travel = c.target.distanceTo(f.target);
+    // a short hop is quick; crossing the country takes its time and lifts a little on the way
+    const dur = THREE.MathUtils.clamp(0.95 + travel / 260 + Math.abs(Math.log(f.distance / Math.max(1, fromR))) * 0.35, 1.05, 2.6);
+    const rise = Math.max(0, travel * 0.55 - Math.abs(f.distance - fromR) * 0.5);
+    // arriving at a place, the bearing swings a few degrees: the land turns under the camera as it comes in
+    const swing = goal.kind === 'country' ? 0 : (f.target.x - c.target.x >= 0 ? 0.16 : -0.16);
+    glide.current = { t: 0, dur, fromTarget: c.target.clone(), toTarget: f.target.clone(), fromR, toR: f.distance, fromPhi: from.phi, toPhi: f.polar, fromTheta: from.theta, toTheta: goal.kind === 'country' ? COUNTRY_AZIMUTH : from.theta + swing, rise };
   }, [goal, data, camera, size, calm]);
 
   // cancel glide on user interaction + clamp target
@@ -71,7 +85,7 @@ export function CameraRig({ data, calm, stageRef }: { data: MapData; calm: boole
     const onChange = () => {
       c.target.x = THREE.MathUtils.clamp(c.target.x, x0 - 80, x1 + 80);
       c.target.z = THREE.MathUtils.clamp(c.target.z, z0 - 80, z1 + 80);
-      c.target.y = THREE.MathUtils.clamp(c.target.y, 0, 20);
+      c.target.y = THREE.MathUtils.clamp(c.target.y, 0, 22);
     };
     c.addEventListener('start', onStart);
     c.addEventListener('change', onChange);
@@ -115,8 +129,13 @@ export function CameraRig({ data, calm, stageRef }: { data: MapData; calm: boole
     if (g) {
       g.t = Math.min(1, g.t + dt / g.dur);
       const e = easeInOut(g.t);
-      camera.position.lerpVectors(g.fromPos, g.toPos, e);
       c.target.lerpVectors(g.fromTarget, g.toTarget, e);
+      // distance eases in log space (a zoom feels even), plus the rise of a long hop
+      const r = Math.exp(THREE.MathUtils.lerp(Math.log(g.fromR), Math.log(g.toR), e)) + g.rise * Math.sin(Math.PI * g.t);
+      let dTheta = g.toTheta - g.fromTheta;
+      if (dTheta > Math.PI) dTheta -= Math.PI * 2; else if (dTheta < -Math.PI) dTheta += Math.PI * 2;
+      sph.set(r, THREE.MathUtils.lerp(g.fromPhi, g.toPhi, e), g.fromTheta + dTheta * e);
+      camera.position.copy(c.target).add(tmp.setFromSpherical(sph));
       if (g.t >= 1) glide.current = null;
     }
     c.update();
@@ -124,5 +143,5 @@ export function CameraRig({ data, calm, stageRef }: { data: MapData; calm: boole
     if (lv !== level.current) { level.current = lv; setLevel(lv); }
   });
 
-  return <OrbitControls ref={controls} makeDefault enableDamping dampingFactor={0.08} minDistance={32} maxDistance={760} minPolarAngle={0.12} maxPolarAngle={1.32} screenSpacePanning={false} zoomToCursor rotateSpeed={0.6} enablePan />;
+  return <OrbitControls ref={controls} makeDefault enableDamping dampingFactor={0.08} minDistance={22} maxDistance={820} minPolarAngle={0.08} maxPolarAngle={1.38} screenSpacePanning={false} zoomToCursor rotateSpeed={0.6} enablePan />;
 }

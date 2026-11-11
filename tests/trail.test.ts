@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
-import { ZONES, TRAIL_SPECIES, STICKERS, ENV } from '../src/journey/trail';
+import { ZONES, TRAIL_SPECIES, STICKERS, ENV } from '../src/journey/trailZones';
 import en from '../src/i18n/messages/en';
 import es from '../src/i18n/messages/es';
 import zh from '../src/i18n/messages/zh';

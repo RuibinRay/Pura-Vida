@@ -100,9 +100,14 @@ export function makeFpsWatchdog(onDemote: () => void) {
   let lowSince: number | null = null;
   const start = performance.now();
   let lastReport = start;
+  let prev = start;
   return () => {
-    frames++;
     const now = performance.now();
+    // A gap of most of a second is not a slow GPU: the browser stopped drawing the page (a hidden tab, a covered
+    // window, an embedded pane in the background). Counting it would step a capable device down for nothing.
+    if (now - prev > 900 || document.hidden) { prev = now; frames = 0; last = now; lowSince = null; return; }
+    prev = now;
+    frames++;
     if (now - last >= 1000) {
       const fps = (frames * 1000) / (now - last);
       frames = 0;

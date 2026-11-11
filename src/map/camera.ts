@@ -4,8 +4,8 @@ import type { MapData } from './geo';
 import type { CameraGoal } from '../state/map';
 import { project, surfaceY } from './relief.js';
 
-export const COUNTRY_TARGET = new THREE.Vector3(-12, 0, -22);
-export const COUNTRY_DISTANCE = 430;
+export const COUNTRY_TARGET = new THREE.Vector3(-6, 0, 26);
+export const COUNTRY_DISTANCE = 455;
 export const COUNTRY_POLAR = 1.0;
 export const COUNTRY_AZIMUTH = -0.32;
 
@@ -20,14 +20,16 @@ export function framingFor(goal: CameraGoal, data: MapData, fovDeg: number, aspe
       const span = Math.max(w / Math.max(0.6, Math.min(aspect, 1.9)), d * 1.15) * 1.18;
       const distance = Math.max(70, span / (2 * Math.tan(fov / 2)) + 30);
       const [cx, cz] = [(x0 + x1) / 2, (z0 + z1) / 2];
-      return { target: new THREE.Vector3(cx, 2, cz), distance, polar: 0.82 };
+      return { target: new THREE.Vector3(cx, 2, cz), distance, polar: 0.9 };
     }
   }
   if (goal.kind === 'point') {
     const [x, z] = project(goal.lon, goal.lat);
-    return { target: new THREE.Vector3(x, surfaceY(goal.lon, goal.lat), z), distance: goal.distance ?? 60, polar: 0.75 };
+    // a place is looked at from lower down, so its relief stands against the horizon
+    return { target: new THREE.Vector3(x, surfaceY(goal.lon, goal.lat), z), distance: goal.distance ?? 60, polar: 1.02 };
   }
-  return { target: COUNTRY_TARGET.clone(), distance: COUNTRY_DISTANCE, polar: COUNTRY_POLAR };
+  // a narrow stage backs off so the country still fits from Santa Elena to Punta Burica
+  return { target: COUNTRY_TARGET.clone(), distance: COUNTRY_DISTANCE * Math.max(1, Math.pow(1.5 / Math.max(0.45, aspect), 0.85)), polar: COUNTRY_POLAR };
 }
 
 /** Zoom level buckets for label density (updated from the render loop only when a threshold is crossed). */

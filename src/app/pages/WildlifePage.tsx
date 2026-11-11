@@ -16,7 +16,7 @@ import { useTier } from '../../perf/tier';
 import { usePassport } from '../../state/passport';
 import type { Species } from '../../content/types';
 import { Trail } from '../../journey/Trail';
-import { STICKERS, ZONES, stickerSrc, stickerSrcSet } from '../../journey/trail';
+import { STICKERS, ZONES, stickerSrc, stickerSrcSet } from '../../journey/trailZones';
 import { STOPS } from '../../journey/scenes';
 
 const ZONE_OF = new Map(ZONES.flatMap((z) => z.animals.map((a) => [a.id, z.key] as const)));

@@ -9,7 +9,7 @@ import { useTier } from '../perf/tier';
 import { usePassport } from '../state/passport';
 import type { Species } from '../content/types';
 import { useJourneyDriver, journey, onJourney, scrollToChapter } from './driver';
-import { ZONES, ZONE_COUNT, STICKERS, ENV, TRAIL_SPECIES, stickerSrc, stickerSrcSet, envSrc, envSrcSet, type TrailAnimal, type TrailZone } from './trail';
+import { ZONES, ZONE_COUNT, STICKERS, ENV, TRAIL_SPECIES, stickerSrc, stickerSrcSet, envSrc, envSrcSet, type TrailAnimal, type TrailZone } from './trailZones';
 import { startAmbience, stopAmbience, ambienceAvailable } from '../audio/ambience';
 import { Icon } from '../ui/Icon';
 import { FLOCK } from './Scene';
