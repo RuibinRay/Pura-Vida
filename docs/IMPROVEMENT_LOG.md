@@ -2,6 +2,19 @@
 
 What was reviewed, what was wrong, what changed. Newest first. Only things that were actually checked (screenshot, test, measurement) are recorded as fixed.
 
+## 2026-11-11 — A passport to fill, a route to draw, the journal by kind
+
+- **The passport listed what was found and nothing else** → it is a collection now: a level, progress overall and per kind, every animal and dish shown grey until met, the places as a count with the last visited, and the next thing to find of each kind with a link to it (`src/ui/Passport.tsx`).
+- **A visitor could not plan anything** → a route of up to twelve places, built from the place cards, drawn on the land (draped on the mesh) and on the 2D map with numbered stops, measured leg by leg in straight lines (and labelled as such: these are not road distances), flown with the tour bar, and shared as a link. A shared link is cleaned: only ids of places that exist are kept.
+- **The journal was one list of thirty-two** → filters by kind of animal (from each species' taxonomic order), by habitat (the trail's nine zones) and by province, with counts that say what each choice would show; the choice lives in the address, so a filtered journal can be linked.
+- **The province filter was nearly empty, and that exposed a hole in the data**: 46 of the 113 landmarks — every park and every peak — had no province, because the research lists several provinces for most of them and the builder kept none. Their place cards had no province link, clicking them did not select a province, and "postcards from a province" left them out. `tools/build_content.mjs` now reads the province of such a place from its coordinates on the map's own outlines (`tools/province_at.mjs`) and marks it `provinceFrom: 'coordinates'`: a reading of the point, not a claim that a park lies in one province.
+- **Puntarenas city had lost its province** in the first session's rebuild of `places.json`: the town stands on a sand spit that the simplified coast cuts off. A point just off an outline now takes the nearest province within a few kilometres; a test names the town.
+
+### Known weaknesses carried forward
+- A park that spans provinces is filed under the one its centre point falls in (La Amistad under Limón, Rincón de la Vieja's summit under Alajuela). The filter says "the places where the sources put a species", and the note under it says it is not a range map.
+- The route's legs are straight lines over mountains and gulfs alike; there is no road network in the data.
+- The passport's level is a share of everything on the site; it rewards opening things, not knowing them.
+
 ## 2026-11-11 — The table, photographed
 
 - **The dishes were drawings** → photographs of real plates from Wikimedia Commons, each credited where it is shown and in `ASSET_CREDITS.md`. `tools/fetch_food.py` downloads them and records title, author, licence and page; `tools/food_plates.py` cuts the plate out along an outline given by hand (an ellipse, a polygon for the tamal's leaf, a "union" for bread standing above a rim). Nothing is segmented by a model and nothing is generated.

@@ -19,6 +19,11 @@ import { Trail } from '../../journey/Trail';
 import { STICKERS, ZONES, stickerSrc, stickerSrcSet } from '../../journey/trailZones';
 import { STOPS } from '../../journey/scenes';
 
+import { ANIMAL_CLASSES, classOf, provincesOf, type AnimalClass } from '../../content/taxa';
+import { useMapData } from '../../map/useMapData';
+import { PROVINCE_ORDER } from '../../map/geo';
+import type { ProvinceId } from '../../state/map';
+
 const ZONE_OF = new Map(ZONES.flatMap((z) => z.animals.map((a) => [a.id, z.key] as const)));
 
 /** The stop of the homepage walk where the species is drawn at home (the first one whose habitat verdict is yes). */
@@ -36,8 +41,9 @@ export function WildlifePage() {
   usePageTitle(t('wildlife.title'));
   const content = useContent();
   const tier = useTier((s) => s.tier);
-  const [params] = useSearchParams();
+  const [params, setParams] = useSearchParams();
   const focus = params.get('focus');
+  const { data: mapData } = useMapData();
   const byId = useMemo(() => new Map((content?.landmarks ?? []).map((x) => [x.id, x])), [content]);
   const stamp = usePassport((s) => s.stamp);
 
@@ -54,6 +60,27 @@ export function WildlifePage() {
   }, [content, focus]);
 
   const places = (sp: Species) => (HABITATS[sp.id] ?? []).map((h) => ({ h, lm: byId.get(h.at) })).filter((x) => !!x.lm);
+
+  // the journal's filters: kind of animal, habitat (the trail's zones), province. They live in the address, so a
+  // filtered journal can be linked (/wildlife?kind=bird&province=limon)
+  const fKind = (ANIMAL_CLASSES as string[]).includes(params.get('kind') || '') ? (params.get('kind') as AnimalClass) : null;
+  const fZone = ZONES.some((z) => z.key === params.get('habitat')) ? params.get('habitat') : null;
+  const fProv = (PROVINCE_ORDER as string[]).includes(params.get('province') || '') ? (params.get('province') as ProvinceId) : null;
+  const setFilter = (key: 'kind' | 'habitat' | 'province', value: string | null) => {
+    const next = new URLSearchParams(params);
+    if (value) next.set(key, value); else next.delete(key);
+    next.delete('focus');
+    setParams(next, { replace: true, preventScrollReset: true });
+  };
+  const facets = useMemo(() => (content?.species ?? []).map((sp) => ({ sp, kind: classOf(sp), zone: ZONE_OF.get(sp.id) ?? null, provinces: provincesOf(sp.id, byId) })), [content, byId]);
+  const shown = facets.filter((f) => (!fKind || f.kind === fKind) && (!fZone || f.zone === fZone) && (!fProv || f.provinces.includes(fProv)));
+  // a facet's count is what choosing it would show, given the other two filters
+  const countKind = (k: AnimalClass) => facets.filter((f) => f.kind === k && (!fZone || f.zone === fZone) && (!fProv || f.provinces.includes(fProv))).length;
+  const countZone = (z: string) => facets.filter((f) => f.zone === z && (!fKind || f.kind === fKind) && (!fProv || f.provinces.includes(fProv))).length;
+  const countProv = (p: ProvinceId) => facets.filter((f) => f.provinces.includes(p) && (!fKind || f.kind === fKind) && (!fZone || f.zone === fZone)).length;
+  const provinceName = (id: ProvinceId) => { const g = mapData?.provinces.find((q) => q.id === id); return g ? g.name[lang] || g.name.en : id; };
+  const filtered = !!(fKind || fZone || fProv);
+  const clearFilters = () => { const next = new URLSearchParams(params); next.delete('kind'); next.delete('habitat'); next.delete('province'); setParams(next, { replace: true, preventScrollReset: true }); };
   const trail = tier !== 'text' && !!content;
 
   return (
@@ -79,8 +106,35 @@ export function WildlifePage() {
           <h2 id="journal">{t('trail.journalTitle')}</h2>
           <p className="lede">{t('trail.journalLede')}</p>
           {content && (
+            <div className="facets ui" role="group" aria-label={t('wildlife.filters')}>
+              <div className="facets__row">
+                <span className="facets__label">{t('wildlife.byKind')}</span>
+                {ANIMAL_CLASSES.map((k) => (
+                  <button key={k} type="button" className={'chip chip--facet' + (fKind === k ? ' is-on' : '')} aria-pressed={fKind === k} disabled={countKind(k) === 0 && fKind !== k} onClick={() => setFilter('kind', fKind === k ? null : k)}>{t(('wildlife.kinds.' + k) as MessageKey)} <b className="tnum">{countKind(k)}</b></button>
+                ))}
+              </div>
+              <div className="facets__row">
+                <span className="facets__label">{t('wildlife.byHabitat')}</span>
+                {ZONES.map((z) => (
+                  <button key={z.key} type="button" className={'chip chip--facet' + (fZone === z.key ? ' is-on' : '')} aria-pressed={fZone === z.key} disabled={countZone(z.key) === 0 && fZone !== z.key} onClick={() => setFilter('habitat', fZone === z.key ? null : z.key)}>{t(('trail.zones.' + z.key + '.name') as MessageKey)} <b className="tnum">{countZone(z.key)}</b></button>
+                ))}
+              </div>
+              <div className="facets__row">
+                <span className="facets__label">{t('wildlife.byProvince')}</span>
+                {PROVINCE_ORDER.map((p) => (
+                  <button key={p} type="button" className={'chip chip--facet' + (fProv === p ? ' is-on' : '')} aria-pressed={fProv === p} disabled={countProv(p) === 0 && fProv !== p} onClick={() => setFilter('province', fProv === p ? null : p)}>{provinceName(p)} <b className="tnum">{countProv(p)}</b></button>
+                ))}
+              </div>
+              <p className="facets__status" aria-live="polite">
+                {t('wildlife.showing', { n: shown.length, total: facets.length })}
+                {filtered && <> · <button type="button" className="linklike" onClick={clearFilters}>{t('wildlife.clearFilters')}</button></>}
+                <small className="muted"> · {t('wildlife.facetNote')}</small>
+              </p>
+            </div>
+          )}
+          {content && (
             <nav className="avatar-index ui" aria-label={t('wildlife.index')}>
-              {content.species.map((sp) => (
+              {shown.map(({ sp }) => (
                 <a key={sp.id} href={'#' + sp.id} className="avatar avatar--index" onClick={(e) => { e.preventDefault(); document.getElementById(sp.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}>
                   {STICKERS[sp.id] ? <img src={stickerSrc(sp.id, 240)} alt="" width={64} height={64} loading="lazy" decoding="async" /> : <AnimalSvg species={sp.id} size={64} />}
                   <span>{l(sp.commonNames)}</span>
@@ -90,7 +144,8 @@ export function WildlifePage() {
           )}
         </header>
         {!content && <p className="muted">{t('common.loading')}</p>}
-        {content?.species.map((sp) => {
+        {content && shown.length === 0 && <p className="muted">{t('wildlife.noMatch')}</p>}
+        {shown.map(({ sp }) => {
           const where = places(sp);
           const sticker = STICKERS[sp.id];
           return (

@@ -16,6 +16,7 @@ import { DishPhoto } from '../ui/DishPhoto';
 import { PlacePicture } from '../ui/PlacePicture';
 import { useContent } from '../content';
 import { spritePositions, SPRITE_PX } from './sprites';
+import { useRoute } from '../state/route';
 
 export function MapOverlay({ data, landmarks, lang, surfaceKey }: { data: MapData; landmarks: Landmark[]; lang: Lang; surfaceKey?: unknown }) {
   void surfaceKey; // heights are read from the installed surface: a new mesh re-renders the labels
@@ -34,6 +35,7 @@ export function MapOverlay({ data, landmarks, lang, surfaceKey }: { data: MapDat
   const activeFood = useMap((s) => s.activeFood);
   const setFood = useMap((s) => s.setFood);
   const content = useContent();
+  const routeIds = useRoute((r) => r.stops);
   const kindLabel = (k: string) => t(('explore.kinds.' + k) as MessageKey);
   const countryLabels: { id: string; lon: number; lat: number; name: string }[] = data.neighbors.map((n) => ({ id: n.id, lon: n.id === 'nic' ? -85.3 : -82.0, lat: n.id === 'nic' ? 11.55 : 8.45, name: pickLang(n.name, lang).toUpperCase() }));
   const visible = layers.markers ? visibleLandmarks(landmarks, filter, level, active) : landmarks.filter((lm) => lm.id === active);
@@ -92,6 +94,17 @@ export function MapOverlay({ data, landmarks, lang, surfaceKey }: { data: MapDat
             <button type="button" tabIndex={-1} className={'map-sprite map-sprite--' + s.kind + (isOn ? ' is-on' : '')} style={{ ['--px' as string]: px + 'px' }} onClick={(e) => { e.stopPropagation(); if (s.kind === 'animal') { if (s.lm.province) useMap.getState().select(s.lm.province, false); setAnimal(isOn ? null : s.id); } else setFood(isOn ? null : s.id); }} aria-label={name + ' · ' + landmarkName(s.lm, lang)} title={name}>
               {s.kind === 'animal' ? <AnimalPicture species={s.id} size={40} /> : <DishPhoto id={s.id} size={44} eager />}
             </button>
+          </Anchor>
+        );
+      })}
+      {routeIds.map((id, i) => {
+        const lm = landmarks.find((x) => x.id === id);
+        if (!lm) return null;
+        const [lon, lat] = displayLonLat(lm);
+        const [x, z] = project(lon, lat);
+        return (
+          <Anchor key={'route-' + id} id={'route-' + id} position={[x, placeY(lm, selected, layers.relief) + 1.2, z]}>
+            <span className="map-route-n tnum">{i + 1}</span>
           </Anchor>
         );
       })}

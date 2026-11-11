@@ -8,6 +8,7 @@ import { Map2D } from './Map2D';
 import { PROVINCE_COLORS, PROVINCE_ORDER } from './geo';
 import { useMap, type ProvinceId, type Layers, type MapStyle, type Weather } from '../state/map';
 import { hourLabel } from './terrain';
+import { useRoute, routeLegs, routeToParam, ROUTE_MAX } from '../state/route';
 import { usePassport } from '../state/passport';
 import { useTier } from '../perf/tier';
 import { useSettings } from '../state/settings';
@@ -102,7 +103,11 @@ export function MapStage({ focus, compact }: { focus?: ProvinceId; compact?: boo
   };
 
   // the guided tour: each step opens one place; auto-play advances every few seconds
-  const tourStops = useMemo(() => TOUR_STOPS.map((id) => byId.get(id)).filter((x): x is Landmark => !!x), [byId]);
+  const routeIds = useRoute((r) => r.stops);
+  const routeStops = useMemo(() => routeIds.map((id) => byId.get(id)).filter((x): x is Landmark => !!x), [routeIds, byId]);
+  const guidedStops = useMemo(() => TOUR_STOPS.map((id) => byId.get(id)).filter((x): x is Landmark => !!x), [byId]);
+  // the tour bar walks the site's own tour or the visitor's route
+  const tourStops = tour.kind === 'route' ? routeStops : guidedStops;
   useEffect(() => {
     if (!tour.active || !tourStops.length) return;
     const lm = tourStops[Math.min(tour.step, tourStops.length - 1)];
@@ -114,7 +119,8 @@ export function MapStage({ focus, compact }: { focus?: ProvinceId; compact?: boo
     const id = setTimeout(() => setTour({ step: (tour.step + 1) % tourStops.length }), 7000);
     return () => clearTimeout(id);
   }, [tour, tourStops.length, setTour]);
-  const startTour = () => { setShowWildlife(true); setTour({ active: true, step: 0, auto: false }); };
+  const startTour = () => { setShowWildlife(true); setTour({ active: true, step: 0, auto: false, kind: 'guided' }); };
+  const flyRoute = () => { if (routeStops.length) setTour({ active: true, step: 0, auto: true, kind: 'route' }); };
   const surprise = () => {
     if (!landmarks.length) return;
     const lm = landmarks[Math.floor(Math.random() * landmarks.length)];
@@ -278,6 +284,7 @@ export function MapStage({ focus, compact }: { focus?: ProvinceId; compact?: boo
 
         <aside className="map-panel paper" aria-live="polite">
           <p className="visually-hidden" aria-live="polite">{live}</p>
+          {routeStops.length > 0 && <RoutePanel stops={routeStops} onPick={(lm) => goToPlace(lm)} onFly={flyRoute} flying={tour.active && tour.kind === 'route'} />}
           {activeSp ? (
             <AnimalCard sp={activeSp} byId={byId} onClose={() => setAnimal(null)} onPlace={(lm) => { const [lon, lat] = displayLonLat(lm); flyTo({ kind: 'point', lon, lat, distance: 120 }); }} />
           ) : activeDish ? (
@@ -302,7 +309,7 @@ export function MapStage({ focus, compact }: { focus?: ProvinceId; compact?: boo
           ) : (
             <div className="map-panel__intro map-card">
               <p className="map-panel__text">{t('explore.hoverHint')}</p>
-              <PostcardStrip title={t('explore.highlights')} items={tourStops.slice(0, 8)} onPick={(lm) => goToPlace(lm)} />
+              <PostcardStrip title={t('explore.highlights')} items={guidedStops.slice(0, 8)} onPick={(lm) => goToPlace(lm)} />
               <div className="map-card__actions">
                 <button type="button" className="btn btn--primary btn--sm" onClick={startTour}><Icon name="route" /> {t('explore.tour')}</button>
                 <button type="button" className="btn btn--ghost btn--sm" onClick={surprise}><Icon name="spark" /> {t('explore.surprise')}</button>
@@ -338,6 +345,47 @@ function PostcardStrip({ title, items, onPick }: { title: string; items: Landmar
   );
 }
 
+/** The visitor's own route: the stops in order, the straight-line distance, and what can be done with it. */
+function RoutePanel({ stops, onPick, onFly, flying }: { stops: Landmark[]; onPick: (lm: Landmark) => void; onFly: () => void; flying: boolean }) {
+  const { t, lang } = useT();
+  const move = useRoute((r) => r.move);
+  const remove = useRoute((r) => r.remove);
+  const clear = useRoute((r) => r.clear);
+  const [copied, setCopied] = useState(false);
+  const legs = routeLegs(stops.map((lm) => displayLonLat(lm)));
+  const total = legs.reduce((a, b) => a + b, 0);
+  const share = async () => {
+    const url = `${window.location.origin}${window.location.pathname}#/explore?route=${routeToParam(stops.map((s) => s.id))}`;
+    try { await navigator.clipboard.writeText(url); setCopied(true); window.setTimeout(() => setCopied(false), 2400); } catch { window.prompt(t('explore.routeShare'), url); }
+  };
+  return (
+    <details className="route-panel map-card ui" open>
+      <summary><Icon name="route" /> <b>{t('explore.route')}</b> <span className="tnum">{t('explore.routeStops', { n: stops.length })}{stops.length > 1 ? ` · ${t('explore.routeDistance', { km: Math.round(total).toLocaleString(lang) })}` : ''}</span></summary>
+      <ol className="route-list">
+        {stops.map((lm, i) => {
+          const name = landmarkName(lm, lang);
+          return (
+            <li key={lm.id}>
+              <span className="route-list__n tnum" aria-hidden="true">{i + 1}</span>
+              <button type="button" className="route-list__name" onClick={() => onPick(lm)}>{name}{i > 0 && <small className="tnum"> · {Math.round(legs[i - 1]).toLocaleString(lang)} km</small>}</button>
+              <button type="button" className="route-list__btn" disabled={i === 0} onClick={() => move(i, -1)} aria-label={t('explore.routeUp', { name })} title={t('explore.routeUp', { name })}>↑</button>
+              <button type="button" className="route-list__btn" disabled={i === stops.length - 1} onClick={() => move(i, 1)} aria-label={t('explore.routeDown', { name })} title={t('explore.routeDown', { name })}>↓</button>
+              <button type="button" className="route-list__btn" onClick={() => remove(lm.id)} aria-label={t('explore.routeRemove') + ': ' + name} title={t('explore.routeRemove')}>×</button>
+            </li>
+          );
+        })}
+      </ol>
+      {stops.length > 1 && <p className="muted"><small>{t('explore.routeDistanceNote')}</small></p>}
+      <div className="map-card__actions">
+        <button type="button" className={'btn btn--primary btn--sm' + (flying ? ' is-on' : '')} onClick={onFly} disabled={flying}><Icon name="play" /> {t('explore.routeFly')}</button>
+        <button type="button" className="btn btn--ghost btn--sm" onClick={share}>{copied ? t('explore.routeCopied') : t('explore.routeShare')}</button>
+        <button type="button" className="btn btn--ghost btn--sm" onClick={clear}>{t('explore.routeClear')}</button>
+      </div>
+      <p className="visually-hidden" aria-live="polite">{copied ? t('explore.routeCopied') : ''}</p>
+    </details>
+  );
+}
+
 function LandmarkCard({ lm, species, foods, provinces, tourIndex, tourTotal, onClose, onAnimal, onFood }: { lm: Landmark; species: Species[]; foods: Food[]; provinces: ProvinceContent[]; tourIndex: number; tourTotal: number; onClose: () => void; onAnimal: (id: string) => void; onFood: (id: string) => void }) {
   const { t, l, lang } = useT();
   const stamp = usePassport((s) => s.stamp);
@@ -345,6 +393,10 @@ function LandmarkCard({ lm, species, foods, provinces, tourIndex, tourTotal, onC
   const animals = speciesAt(lm.id).map((id) => species.find((s) => s.id === id)).filter((s): s is Species => !!s);
   const dishes = dishesAt(lm.id).map((id) => foods.find((f) => f.id === id)).filter((f): f is Food => !!f);
   useEffect(() => { stamp('place', lm.id); }, [lm.id, stamp]);
+  const onRoute = useRoute((r) => r.stops.includes(lm.id));
+  const routeFull = useRoute((r) => r.stops.length >= ROUTE_MAX);
+  const addStop = useRoute((r) => r.add);
+  const removeStop = useRoute((r) => r.remove);
   const provinceName = lm.province ? l(provinces.find((p) => p.id === lm.province)?.name ?? lm.province) : '';
   return (
     <div className="map-panel__landmark map-card map-card--place">
@@ -384,7 +436,8 @@ function LandmarkCard({ lm, species, foods, provinces, tourIndex, tourTotal, onC
         </div>
       )}
       <div className="map-card__actions">
-        {lm.province && <Link className="btn btn--primary btn--sm" to={'/provinces/' + lm.province}>{t('explore.openProvince', { name: provinceName })} <Icon name="arrow" /></Link>}
+        <button type="button" className={'btn btn--sm ' + (onRoute ? 'btn--ghost is-on' : 'btn--primary')} aria-pressed={onRoute} disabled={!onRoute && routeFull} title={!onRoute && routeFull ? t('explore.routeFull', { n: ROUTE_MAX }) : undefined} onClick={() => (onRoute ? removeStop(lm.id) : addStop(lm.id))}><Icon name="route" /> {onRoute ? t('explore.routeRemove') : t('explore.routeAdd')}</button>
+        {lm.province && <Link className="btn btn--ghost btn--sm" to={'/provinces/' + lm.province}>{t('explore.openProvince', { name: provinceName })} <Icon name="arrow" /></Link>}
         <button type="button" className="btn btn--ghost btn--sm" onClick={onClose}>{t('common.close')}</button>
       </div>
       {lm.coordsStatus === 'approximate' && <p className="ui"><StatusTag status="approximate" /></p>}

@@ -816,3 +816,55 @@ body {
 .dish-hero--photo { overflow: visible; box-shadow: none; max-width: 220px; margin-inline: auto; filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.3)); }
 .dish-hero--photo .dishphoto { display: block; width: 100%; }
 .map-sprite--food .dishphoto { filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.4)); }
+
+/* ---- the visitor's route on the map ---------------------------------------------------------------------- */
+.route-panel { margin-bottom: var(--s-3); padding: var(--s-3); }
+.route-panel > summary { display: flex; align-items: center; gap: 0.5em; cursor: pointer; list-style: none; font-size: var(--t-sm); }
+.route-panel > summary::-webkit-details-marker { display: none; }
+.route-panel > summary b { white-space: nowrap; }
+.route-panel > summary span { margin-left: auto; color: var(--ink-muted); font-size: var(--t-xs); text-align: right; }
+.route-list { list-style: none; margin: var(--s-2) 0; padding: 0; display: grid; gap: 2px; }
+.route-list li { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr) repeat(3, 28px); align-items: center; gap: 2px; }
+.route-list__n { display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--gold); color: #1d2b22; font-weight: 700; font-size: 0.72rem; }
+.route-list__name { text-align: left; background: none; border: 0; padding: 4px 6px; border-radius: 6px; font: inherit; font-size: var(--t-sm); color: inherit; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.route-list__name small { color: var(--ink-muted); }
+.route-list__name:hover { background: rgba(0, 0, 0, 0.06); }
+.route-list__btn { width: 28px; height: 28px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface-solid, #fff); color: inherit; font: inherit; line-height: 1; cursor: pointer; }
+.route-list__btn:disabled { opacity: 0.35; cursor: default; }
+.route-list__btn:hover:not(:disabled) { border-color: var(--ink-muted); }
+.route-list__name:focus-visible, .route-list__btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.map-route-n { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #ffd24a; color: #1d2b22; border: 2px solid #1d2b22; font-family: var(--font-ui); font-size: 11px; font-weight: 700; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); }
+
+/* ---- the wildlife journal's filters ---------------------------------------------------------------------- */
+.facets { display: grid; gap: var(--s-2); margin: var(--s-4) 0 var(--s-3); }
+.facets__row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.facets__label { flex: 0 0 8.5rem; font-size: var(--t-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
+.chip--facet b { margin-left: 0.3em; opacity: 0.65; font-weight: 600; }
+.chip--facet:disabled { opacity: 0.4; cursor: default; }
+.facets__status { margin: var(--s-1) 0 0; font-size: var(--t-sm); }
+.linklike { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; cursor: pointer; }
+@media (max-width: 640px) { .facets__label { flex-basis: 100%; } }
+
+/* ---- the discovery passport ----------------------------------------------------------------------------- */
+.passport__summary { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); margin: var(--s-3) 0 var(--s-4); }
+.passport__level { display: inline-flex; align-items: center; gap: 0.4em; padding: 0.3em 0.8em; border-radius: 999px; background: var(--forest, #1f5a3a); color: #fff; font-weight: 600; font-size: var(--t-sm); }
+.passport__level--3 { background: var(--gold); color: #1d2b22; }
+.passport__route { display: inline-flex; align-items: center; gap: 0.35em; font-size: var(--t-sm); }
+.pmeter { display: inline-flex; align-items: center; gap: 0.6em; font-family: var(--font-ui); font-size: var(--t-sm); }
+.pmeter__bar { display: block; width: 96px; height: 8px; border-radius: 999px; background: rgba(0, 0, 0, 0.1); overflow: hidden; }
+.pmeter__bar span { display: block; height: 100%; border-radius: inherit; background: var(--gold); transition: width 500ms var(--ease-out); }
+.pmeter small { font-weight: 400; color: var(--ink-muted); }
+.passport__h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-2); margin: var(--s-5) 0 var(--s-2); font-family: var(--font-ui); font-size: var(--t-sm); letter-spacing: 0.06em; text-transform: uppercase; }
+.passport__next ul { list-style: none; margin: var(--s-2) 0 0; padding: 0; display: grid; gap: 4px; }
+.passport__next a { display: inline-flex; align-items: center; gap: 0.5em; font-size: var(--t-sm); }
+.passport__tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 8px; }
+.passport__tiles li a { display: grid; place-items: center; aspect-ratio: 1; border-radius: 50%; background: rgba(0, 0, 0, 0.05); border: 1px dashed rgba(0, 0, 0, 0.22); }
+/* not found yet: the shape is there, the colour is not */
+.passport__tiles li:not(.is-found) a > :first-child { filter: grayscale(1) brightness(0.55) contrast(0.6); opacity: 0.4; }
+.passport__tiles li.is-found a { background: #fff8ea; border: 2px solid var(--gold); }
+.passport__tiles li a:hover { border-color: var(--ink-muted); }
+.passport__tiles li a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.passport__tiles--dishes { grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); }
+.passport__recent { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: var(--s-2) 0 var(--s-4); }
+.chip--sm { padding: 0.15em 0.7em; font-size: var(--t-xs); }
+@media (prefers-reduced-motion: reduce) { .pmeter__bar span { transition: none; } }
