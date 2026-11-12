@@ -23,7 +23,7 @@ export const SECTIONS: Section[] = [
   { id: 'nature', path: '/nature', labelKey: 'nav.nature', color: 'var(--volcanic)', ready: 4 },
   { id: 'history', path: '/history', labelKey: 'nav.history', color: 'var(--wood)', ready: 3 },
   { id: 'food', path: '/food', labelKey: 'nav.food', tabKey: 'nav.tab.food', color: 'var(--sunset)', ready: true, ink: 'dark' },
-  { id: 'culture', path: '/culture', labelKey: 'nav.culture', color: 'var(--wood)', ready: 3 },
+  { id: 'culture', path: '/culture', labelKey: 'nav.culture', tabKey: 'nav.tab.culture', color: 'var(--wood)', ready: true },
   { id: 'symbols', path: '/symbols', labelKey: 'nav.symbols', color: 'var(--orchid)', ready: 3 },
   { id: 'conservation', path: '/conservation', labelKey: 'nav.conservation', color: 'var(--turquoise)', ready: 4, ink: 'dark' },
   { id: 'adventure', path: '/adventure', labelKey: 'nav.adventure', color: 'var(--gold)', ready: 4, ink: 'dark' },

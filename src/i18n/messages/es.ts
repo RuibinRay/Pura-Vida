@@ -31,7 +31,7 @@ const es: Messages = {
     passport: 'Pasaporte',
     settings: 'Ajustes',
     skip: 'Ir al contenido',
-    tab: { home: 'Inicio', explore: 'Mapa', provinces: 'Provincias', wildlife: 'Fauna', myCostaRica: 'Sobre mí', food: 'Comida', sources: 'Fuentes', contents: 'Índice' },
+    tab: { home: 'Inicio', culture: 'Cultura', explore: 'Mapa', provinces: 'Provincias', wildlife: 'Fauna', myCostaRica: 'Sobre mí', food: 'Comida', sources: 'Fuentes', contents: 'Índice' },
   },
   journey: {
     railLabel: 'Capítulos del recorrido',
@@ -175,6 +175,24 @@ const es: Messages = {
     ringLabel: 'Ingredientes típicos, alrededor del plato',
     onMap: 'Verlo en el mapa',
     heritageLabel: 'Condición patrimonial',
+  },
+  culture: {
+    title: 'Música, tradiciones y café',
+    lede: 'A qué suena Costa Rica, qué celebra, y el cultivo que pagó sus caminos y su teatro.',
+    sections: 'Partes de este capítulo',
+    note: 'Cada entrada está escrita a partir de las fuentes que aparecen debajo. Las fotografías son de Wikimedia Commons, acreditadas bajo cada una; la marimba y el chorreador están dibujados para este sitio.',
+    groups: { music: 'Música y baile', traditions: 'Tradiciones', coffee: 'Café' },
+    groupLede: {
+      music: 'Un instrumento nacional, un baile nacional, el calipso del Caribe y un baile que alguna vez estuvo prohibido.',
+      traditions: 'Carretas pintadas, máscaras gigantes, una romería a pie y una antorcha que cruza el país.',
+      coffee: 'El «grano de oro»: de dónde vino, dónde crece y cómo pasa de la fruta a la taza.',
+    },
+    symbolSince: 'Símbolo nacional desde {year}',
+    marimbaLabel: 'Una marimba de quince teclas, de do4 a do6',
+    marimbaScale: 'Tocar la escala',
+    marimbaNote: 'Tóquela con el puntero, con un dedo o con las teclas de la A a la L y de la Z a la V. Las notas son sintetizadas, no una grabación.',
+    marimbaSilent: 'Este navegador no tiene salida de sonido disponible; las teclas se mueven igual.',
+    chorreadorAlt: 'Un chorreador, dibujado: una bolsa de tela abierta sobre un soporte de madera, goteando café en una taza. Una ilustración.',
   },
   explore: {
     title: 'Explorar Costa Rica',

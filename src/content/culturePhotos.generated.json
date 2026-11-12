@@ -1,0 +1,98 @@
+{
+ "boyeo-carreta": {
+  "widths": [
+   640,
+   1200
+  ],
+  "aspect": 1.0,
+  "title": "Rueda de Carreta Típica Costa Rica.jpg",
+  "author": "Jmillan325",
+  "licence": "CC BY-SA 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Rueda_de_Carreta_T%C3%ADpica_Costa_Rica.jpg"
+ },
+ "mascaradas": {
+  "widths": [
+   640,
+   1200
+  ],
+  "aspect": 0.8,
+  "title": "Mascarada.Giganta.Aserrí.Costa.Rica.2013.jpg",
+  "author": "Rodtico21",
+  "licence": "CC BY-SA 3.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Mascarada.Giganta.Aserr%C3%AD.Costa.Rica.2013.jpg"
+ },
+ "calypso-limonense": {
+  "widths": [
+   640,
+   1200
+  ],
+  "aspect": 1.5,
+  "title": "Calypso. Limon. Costa Rica (2).jpg",
+  "author": "Filipe Fortes",
+  "licence": "CC BY-SA 2.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Calypso._Limon._Costa_Rica_(2).jpg"
+ },
+ "romeria": {
+  "widths": [
+   640,
+   1200
+  ],
+  "aspect": 1.5,
+  "title": "Romería 2011.jpg",
+  "author": "ArquiWHAT",
+  "licence": "CC BY-SA 3.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Romer%C3%ADa_2011.jpg"
+ },
+ "punto-guanacasteco": {
+  "widths": [
+   640,
+   1200
+  ],
+  "aspect": 1.5,
+  "title": "15 de Septiembre... Bailes Folclóricos - panoramio.jpg",
+  "author": "Andrés Berrocal Soto",
+  "licence": "CC BY-SA 3.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:15_de_Septiembre..._Bailes_Folcl%C3%B3ricos_-_panoramio.jpg"
+ },
+ "coffee-history": {
+  "widths": [
+   640,
+   1200
+  ],
+  "aspect": 1.5,
+  "title": "Coffee-cherries-green-coffee-tarrazu-costa-rica.jpg",
+  "author": "Tarrazu at en.wikipedia",
+  "licence": "Public domain",
+  "licenceUrl": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Coffee-cherries-green-coffee-tarrazu-costa-rica.jpg"
+ },
+ "coffee-growing": {
+  "widths": [
+   640,
+   1200
+  ],
+  "aspect": 1.5,
+  "title": "Coffee-cherry-picker-san-marcos-tarrazu-costa-rica.jpg",
+  "author": "Tarrazu at en.wikipedia",
+  "licence": "Public domain",
+  "licenceUrl": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Coffee-cherry-picker-san-marcos-tarrazu-costa-rica.jpg"
+ },
+ "coffee-cup": {
+  "widths": [
+   640,
+   1200
+  ],
+  "aspect": 1.5,
+  "title": "Coffee drying Doka Plantation Costa Rica IMG 0114.jpg",
+  "author": "Passengerpigeon",
+  "licence": "CC BY-SA 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Coffee_drying_Doka_Plantation_Costa_Rica_IMG_0114.jpg"
+ }
+}

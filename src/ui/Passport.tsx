@@ -38,20 +38,22 @@ export function Passport({ onNavigate }: { onNavigate?: () => void }) {
   const { data } = useMapData();
   const content = useContent();
   const found = useMemo(() => {
-    const by = { province: new Map<string, string>(), species: new Map<string, string>(), food: new Map<string, string>(), place: new Map<string, string>() };
+    const by = { province: new Map<string, string>(), species: new Map<string, string>(), food: new Map<string, string>(), place: new Map<string, string>(), culture: new Map<string, string>() };
     for (const d of discoveries) if (d.kind in by) by[d.kind as keyof typeof by].set(d.id, d.at);
     return by;
   }, [discoveries]);
   const species = content?.species ?? [];
   const foods = content?.foods ?? [];
   const landmarks = content?.landmarks ?? [];
+  const culture = content?.culture ?? [];
   // only what still exists counts (a stamp for a place that left the map is not a discovery to show)
   const doneProv = PROVINCE_ORDER.filter((id) => found.province.has(id)).length;
   const doneSp = species.filter((s) => found.species.has(s.id)).length;
   const doneFood = foods.filter((f) => found.food.has(f.id)).length;
   const donePlace = landmarks.filter((x) => found.place.has(x.id)).length;
-  const total = PROVINCE_ORDER.length + species.length + foods.length + landmarks.length;
-  const done = doneProv + doneSp + doneFood + donePlace;
+  const doneCulture = culture.filter((c) => found.culture.has(c.id)).length;
+  const total = PROVINCE_ORDER.length + species.length + foods.length + culture.length + landmarks.length;
+  const done = doneProv + doneSp + doneFood + doneCulture + donePlace;
   const level = passportLevel(done, total);
   const provinceName = (id: string) => { const g = data?.provinces.find((p) => p.id === id); return g ? g.name[lang] || g.name.en : id; };
 
@@ -130,6 +132,15 @@ export function Passport({ onNavigate }: { onNavigate?: () => void }) {
               );
             })}
           </ul>
+        </section>
+      )}
+
+      {culture.length > 0 && (
+        <section aria-labelledby="pp-culture">
+          <h3 id="pp-culture" className="passport__h">{t('nav.culture')} <Meter done={doneCulture} total={culture.length} label={t('nav.culture')} /></h3>
+          <p className="passport__recent ui">
+            {culture.map((c) => (<Link key={c.id} to={'/culture?focus=' + c.id} onClick={onNavigate} className={'chip chip--sm' + (found.culture.has(c.id) ? ' is-on' : '')} title={found.culture.has(c.id) ? undefined : t('passport.notYet')}>{l(c.name)}</Link>))}
+          </p>
         </section>
       )}
 

@@ -2,6 +2,20 @@
 
 What was reviewed, what was wrong, what changed. Newest first. Only things that were actually checked (screenshot, test, measurement) are recorded as fixed.
 
+## 2026-11-11 — The culture chapter
+
+- **`/culture` said "being written"** → eleven entries in three groups, each written from sources read in the session (`research/culture.json`, `research/log-culture.md`) and from the national-symbols research of the first session, whose legal instruments the entries now show.
+- **What the sources did not settle is said, not smoothed**: coffee's arrival is given as 1776 *and* 1779 because two sources differ; the punto guanacasteco is "regarded as" the national dance because no declaration was read; the calypso's heritage status is repeated without a year; the 1785 marimba at Orosi is marked secondary. The lantern parade of 14 September is left out: nothing retrieved supported it. Five such items are listed under `unverified`.
+- **The UNESCO dates of the ox-cart tradition were checked at the source**: proclaimed 2005, inscribed 2008 (a Wikipedia article gives only the first).
+- **Photographs**: eight from Wikimedia Commons, each credited under the picture, each with an alt text in three languages that says what the photograph shows and no more (the folk-dance picture is not captioned as the punto). No photograph of a Costa Rican marimba or of a chorreador was found under a clear licence, so the marimba is a drawn, playable instrument with synthesized notes and the chorreador is a labelled drawing.
+- **The marimba** plays with pointer, touch (a finger dragged across the bars) and keyboard; it is tuned by test (A4 = 440 Hz, fifteen white notes C4–C6).
+- **`tools/fetch_food.py` became a fetcher of photo sets** (`--set culture`), so the culture pictures have the same record of author and licence as the dishes; a test checks that the credit shown is the credit of the file used.
+
+### Known weaknesses carried forward
+- The chapter leans on Wikipedia (Spanish and English) more than the rest of the site does: the official sites (ICAFE, the Ministry of Culture, SCIJ) were not retrieved. UNESCO and the first session's legal sources are the exceptions.
+- There is no recorded music: a visitor can read about calypso and play a scale, not hear Walter Ferguson.
+- Swing criollo and the Independence Torch have no picture.
+
 ## 2026-11-11 — A passport to fill, a route to draw, the journal by kind
 
 - **The passport listed what was found and nothing else** → it is a collection now: a level, progress overall and per kind, every animal and dish shown grey until met, the places as a count with the last visited, and the next thing to find of each kind with a link to it (`src/ui/Passport.tsx`).

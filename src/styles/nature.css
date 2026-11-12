@@ -868,3 +868,62 @@ body {
 .passport__recent { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: var(--s-2) 0 var(--s-4); }
 .chip--sm { padding: 0.15em 0.7em; font-size: var(--t-xs); }
 @media (prefers-reduced-motion: reduce) { .pmeter__bar span { transition: none; } }
+
+/* ---- the culture chapter --------------------------------------------------------------------------------- */
+.culture-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: var(--s-4) 0 var(--s-2); }
+.culture-group { margin-top: var(--s-8, 4rem); }
+.culture-group__head { border-top: 1px solid var(--rule); padding-top: var(--s-5); margin-bottom: var(--s-5); }
+.culture-entry { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: var(--s-6); align-items: start; margin: 0 0 var(--s-7); }
+.culture-entry--plain { grid-template-columns: minmax(0, 1fr); max-width: 62rem; }
+/* photographs alternate sides; the photograph's column keeps its width whichever side it is on */
+.culture-entry:nth-of-type(even):not(.culture-entry--plain) { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); }
+.culture-entry:nth-of-type(even):not(.culture-entry--plain) .culture-entry__photo { order: 2; }
+.culture-entry__photo { margin: 0; position: sticky; top: 84px; opacity: 0; transform: translateY(18px) scale(0.98); transition: opacity 600ms ease, transform 700ms var(--ease-out); }
+.culture-entry.is-in .culture-entry__photo { opacity: 1; transform: none; }
+.culture-entry__photo img { display: block; width: 100%; height: auto; aspect-ratio: var(--ratio); object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-leaf); }
+.culture-entry__photo .photo-credit { margin: var(--s-2) 0 0; }
+.culture-entry__body h3 { font-size: var(--t-2xl, 1.9rem); margin: 0 0 var(--s-2); }
+.culture-entry__summary { font-family: var(--font-display, inherit); font-style: italic; font-size: var(--t-lg); color: var(--ink-muted); margin: 0 0 var(--s-3); }
+.culture-entry__text { max-width: 62ch; }
+.culture-facts { list-style: none; margin: var(--s-4) 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s-3); }
+.culture-facts li { display: grid; gap: 2px; padding: var(--s-3); border-left: 3px solid var(--gold); background: var(--surface-solid, #fff); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
+.culture-facts b { font-size: var(--t-xl); line-height: 1.1; }
+.culture-facts b small { font-size: 0.6em; font-weight: 500; }
+.culture-facts span { font-size: var(--t-sm); color: var(--ink-muted); }
+.culture-entry__where { display: flex; flex-wrap: wrap; gap: 6px; margin: var(--s-3) 0; }
+.culture-entry__where .chip { display: inline-flex; align-items: center; gap: 0.35em; }
+.culture-steps { display: grid; grid-template-columns: minmax(0, 1fr) 150px; gap: var(--s-4); align-items: center; margin: var(--s-4) 0; }
+.chorreador { margin: 0; text-align: center; color: var(--ink-muted); }
+.chorreador svg { width: 100%; height: auto; }
+.chorreador__drop { animation: chorreador-drip 1.6s ease-in infinite; }
+@keyframes chorreador-drip { 0% { transform: translateY(-6px); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(22px); opacity: 0; } }
+@media (max-width: 900px) {
+  .culture-entry, .culture-entry:nth-of-type(even):not(.culture-entry--plain) { grid-template-columns: 1fr; gap: var(--s-4); }
+  .culture-entry:nth-of-type(even):not(.culture-entry--plain) .culture-entry__photo { order: 0; }
+  .culture-entry__photo { position: static; }
+  .culture-steps { grid-template-columns: 1fr; }
+  .chorreador { max-width: 140px; margin-inline: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .culture-entry__photo { transition: none; opacity: 1; transform: none; }
+  .chorreador__drop { animation: none; }
+}
+
+/* ---- a marimba to play ----------------------------------------------------------------------------------- */
+.marimba { margin: var(--s-4) 0; padding: var(--s-4) var(--s-4) var(--s-3); border-radius: var(--radius-xl); background: linear-gradient(#3a2416, #2a190f); box-shadow: var(--shadow-leaf); }
+.marimba__bars { display: flex; align-items: flex-start; gap: 1.2%; height: clamp(150px, 26vw, 220px); touch-action: none; }
+.marimba__bar { flex: 1 1 0; height: calc(100% - var(--i) / var(--n) * 42%); padding: 0; border: 0; background: none; position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.marimba__wood { position: absolute; inset: 0; border-radius: 5px 5px 8px 8px; background: linear-gradient(90deg, rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0.14) 30%, rgba(0, 0, 0, 0.12)), linear-gradient(#c98a4b, #a8672f 60%, #8a4f22); box-shadow: inset 0 -6px 8px rgba(0, 0, 0, 0.25), 0 3px 4px rgba(0, 0, 0, 0.5); transform-origin: 50% 0; }
+/* the cord holes, top and bottom of each bar */
+.marimba__wood::before, .marimba__wood::after { content: ''; position: absolute; left: 50%; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: #2a190f; }
+.marimba__wood::before { top: 9%; } .marimba__wood::after { bottom: 11%; }
+.marimba__wood.is-hit { animation: marimba-hit 520ms ease-out; }
+.marimba__note { position: absolute; left: 0; right: 0; bottom: -1.5em; text-align: center; font-size: 0.7rem; color: rgba(244, 238, 223, 0.7); pointer-events: none; }
+.marimba__bar:hover .marimba__wood { filter: brightness(1.08); }
+.marimba__bar:focus-visible { outline: none; }
+.marimba__bar:focus-visible .marimba__wood { outline: 3px solid var(--gold); outline-offset: 2px; }
+.marimba__foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); margin: 2.2em 0 0; }
+.marimba__foot .btn { color: #f4eedf; border-color: rgba(244, 238, 223, 0.4); }
+.marimba__foot .muted { color: rgba(244, 238, 223, 0.72); }
+@keyframes marimba-hit { 0% { transform: translateY(0) scaleY(1); filter: brightness(1.5); } 18% { transform: translateY(5px) scaleY(0.985); } 45% { transform: translateY(-2px); } 100% { transform: none; filter: none; } }
+@media (prefers-reduced-motion: reduce) { .marimba__wood.is-hit { animation: none; filter: brightness(1.3); } }

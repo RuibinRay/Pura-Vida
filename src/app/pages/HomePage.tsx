@@ -242,7 +242,7 @@ export function HomePage() {
                     <p className="jcopy__kicker">{String(n).padStart(2, '0')} / {t('journey.ch5.kicker')}</p>
                     <h2 id={`ch${n}-title`} className="jcopy__h2">{t('journey.ch5.title')}</h2>
                     <p className="jcopy__text">{t('journey.ch5.text')}</p>
-                    <p className="jcopy__links ui"><Link to="/food">{t('journey.ch5.all')}</Link><Link to="/culture">{t('nav.culture')} <small>· {t('journey.soon')}</small></Link></p>
+                    <p className="jcopy__links ui"><Link to="/food">{t('journey.ch5.all')}</Link><Link to="/culture">{t('nav.culture')}</Link></p>
                   </div>
                   <ul className="visually-hidden">
                     {content?.foods.map((f) => (<li key={f.id}><Link to={'/food?focus=' + f.id}>{l(f.name)}</Link></li>))}
