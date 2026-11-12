@@ -1,0 +1,122 @@
+{
+ "boyeo-carreta": {
+  "file": "boyeo-carreta.jpg",
+  "title": "File:Rueda de Carreta Típica Costa Rica.jpg",
+  "author": "Jmillan325",
+  "licence": "CC BY-SA 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Rueda_de_Carreta_T%C3%ADpica_Costa_Rica.jpg",
+  "original": {
+   "width": 2048,
+   "height": 1870,
+   "sha1": "b9c137017c86f24f1843dda4658f146c0224d92f"
+  },
+  "description": "Muestra de la rueda de una carreta típica costarricense utilizada por los Boyeros (foto de José Millán: jmillan325@gmail.com)",
+  "retrieved": "2026-11-11"
+ },
+ "mascaradas": {
+  "file": "mascaradas.jpg",
+  "title": "File:Mascarada.Giganta.Aserrí.Costa.Rica.2013.jpg",
+  "author": "Rodtico21",
+  "licence": "CC BY-SA 3.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Mascarada.Giganta.Aserr%C3%AD.Costa.Rica.2013.jpg",
+  "original": {
+   "width": 1944,
+   "height": 2592,
+   "sha1": "9cda9f2f82db80601230e81ef2b5857a916a4978"
+  },
+  "description": "La Giganta está inspirada en las señoras acaudaladas y encopetadas de la Costa Rica colonial.",
+  "retrieved": "2026-11-11"
+ },
+ "calypso-limonense": {
+  "file": "calypso-limonense.jpg",
+  "title": "File:Calypso. Limon. Costa Rica (2).jpg",
+  "author": "Filipe Fortes",
+  "licence": "CC BY-SA 2.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Calypso._Limon._Costa_Rica_(2).jpg",
+  "original": {
+   "width": 3000,
+   "height": 2000,
+   "sha1": "51d849f08dd433fe27ba2ebfa4e751d3fdbf452e"
+  },
+  "description": "Un grupo de calypso limonense en Costa Rica.",
+  "retrieved": "2026-11-11"
+ },
+ "romeria": {
+  "file": "romeria.jpg",
+  "title": "File:Romería 2011.jpg",
+  "author": "ArquiWHAT",
+  "licence": "CC BY-SA 3.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Romer%C3%ADa_2011.jpg",
+  "original": {
+   "width": 3888,
+   "height": 2592,
+   "sha1": "5caf2f3d715be6c90dda2cc7a09afd6620f78df2"
+  },
+  "description": "Romería de Nuestra Señora de los Ángeles, Cartago 2011.",
+  "retrieved": "2026-11-11"
+ },
+ "punto-guanacasteco": {
+  "file": "punto-guanacasteco.jpg",
+  "title": "File:15 de Septiembre... Bailes Folclóricos - panoramio.jpg",
+  "author": "Andrés Berrocal Soto",
+  "licence": "CC BY-SA 3.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:15_de_Septiembre..._Bailes_Folcl%C3%B3ricos_-_panoramio.jpg",
+  "original": {
+   "width": 3648,
+   "height": 2736,
+   "sha1": "1cd156f503fc93d95059408adb677c79e41b0933"
+  },
+  "description": "15 de Septiembre... Bailes Folclóricos",
+  "retrieved": "2026-11-11"
+ },
+ "coffee-history": {
+  "file": "coffee-history.jpg",
+  "title": "File:Coffee-cherries-green-coffee-tarrazu-costa-rica.jpg",
+  "author": "Tarrazu at en.wikipedia",
+  "licence": "Public domain",
+  "licenceUrl": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Coffee-cherries-green-coffee-tarrazu-costa-rica.jpg",
+  "original": {
+   "width": 1600,
+   "height": 1200,
+   "sha1": "cb8ebb15b4b05d7a2f3002de5c133cbff9d94aaf"
+  },
+  "description": "Coffee cherries under the sun - San Marcos de Tarrazu Costa Rica",
+  "retrieved": "2026-11-11"
+ },
+ "coffee-growing": {
+  "file": "coffee-growing.jpg",
+  "title": "File:Coffee-cherry-picker-san-marcos-tarrazu-costa-rica.jpg",
+  "author": "Tarrazu at en.wikipedia",
+  "licence": "Public domain",
+  "licenceUrl": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Coffee-cherry-picker-san-marcos-tarrazu-costa-rica.jpg",
+  "original": {
+   "width": 2592,
+   "height": 1944,
+   "sha1": "0fa46a463c4334216eefa4df664827af491dbd82"
+  },
+  "description": "Local coffee picker in a farm near San Marcos Tarrazu, Costa Rica",
+  "retrieved": "2026-11-11"
+ },
+ "coffee-cup": {
+  "file": "coffee-cup.jpg",
+  "title": "File:Coffee drying Doka Plantation Costa Rica IMG 0114.jpg",
+  "author": "Passengerpigeon",
+  "licence": "CC BY-SA 4.0",
+  "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Coffee_drying_Doka_Plantation_Costa_Rica_IMG_0114.jpg",
+  "original": {
+   "width": 2048,
+   "height": 1536,
+   "sha1": "65aef8a33c120b5b403253f2798844b4e19781b6"
+  },
+  "description": "Drying coffee beans",
+  "retrieved": "2026-11-11"
+ }
+}

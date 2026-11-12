@@ -307,6 +307,43 @@ if (foodsIn) {
   }
 } else warnings.push('missing foods.json (the Flavors chapter will be empty)');
 
+// ---- culture (research/culture.json): music and dance, traditions, coffee ------------------------
+const cultureIn = readJSON('culture.json');
+const culture = [];
+if (cultureIn) {
+  for (const u of cultureIn.unverified || []) unverified.push({ ...u, from: 'culture.json' });
+  const GROUPS = new Set(['music', 'traditions', 'coffee']);
+  const loc = (o) => (o && o.en ? { en: o.en.trim(), es: (o.es || '').trim() || undefined, zh: (o.zh || '').trim() || undefined } : undefined);
+  for (const e of cultureIn.entries || []) {
+    if (!e.id || !e.name?.en || !GROUPS.has(e.group)) { warnings.push('culture: record without id/name/group skipped'); continue; }
+    const used = 'culture · ' + e.name.en;
+    // an entry stands on its own sources, on those of the national symbols it names, and on those of a place record
+    const own = (e.sources || []).slice();
+    const symbols = (e.symbols || []).map((id) => (country?.symbols || []).find((y) => y.id === id)).filter(Boolean);
+    for (const y of symbols) own.push(...(y.sources || []));
+    if (e.sourcesFromPlace) { const pl = (placesIn?.places || []).find((x) => x.id === e.sourcesFromPlace); if (pl) own.push(...(pl.sources || [])); else warnings.push(`culture.${e.id}: place ${e.sourcesFromPlace} not found`); }
+    const seen = new Set();
+    const src = sources(own.filter((x) => x && x.url && !seen.has(x.url) && seen.add(x.url)), used);
+    if (!src.length) { warnings.push(`culture.${e.id}: no sources — skipped`); continue; }
+    const text = e.text && e.text.en ? { en: e.text.en.trim(), es: (e.text.es || '').trim() || undefined } : null;
+    if (!text) { warnings.push(`culture.${e.id}: no text — skipped`); continue; }
+    culture.push({
+      id: e.id,
+      group: e.group,
+      name: loc(e.name),
+      summary: loc(e.summary),
+      text,
+      status: status(e.status || 'uncertain', `culture.${e.id}`),
+      facts: (e.facts || []).filter((f) => f && f.value && f.label?.en).map((f) => ({ value: String(f.value), unit: loc(f.unit), label: loc(f.label), status: f.status ? status(f.status, `culture.${e.id}.fact`) : undefined })),
+      steps: (e.steps || []).filter((x) => x && x.en).map((x) => loc(x)),
+      province: PROVINCE_IDS.includes(e.province) ? e.province : undefined,
+      places: (e.places || []).filter((x) => typeof x === 'string'),
+      symbols: symbols.map((y) => ({ id: y.id, year: y.designatedYear ?? null, instrument: y.legalInstrument || undefined })),
+      sources: src,
+    });
+  }
+} else warnings.push('missing culture.json (the culture chapter will be empty)');
+
 // ---- nature facts (research/nature-facts.json) → merged into the country facts ---------------------
 const nature = readJSON('nature-facts.json');
 if (nature) {
@@ -342,10 +379,16 @@ fs.writeFileSync(path.join(OUT, 'landmarks.json'), JSON.stringify({ retrieved, l
 fs.writeFileSync(path.join(OUT, 'species.json'), JSON.stringify({ retrieved, species, unesco }, null, 0));
 fs.writeFileSync(path.join(OUT, 'country.json'), JSON.stringify({ retrieved, facts, symbols: country?.symbols || [], conservationAreas: country?.conservationAreas || [] }, null, 0));
 fs.writeFileSync(path.join(OUT, 'foods.json'), JSON.stringify({ retrieved, foods }, null, 0));
+// a culture entry may only point at places that are on the map
+{
+  const known = new Set(dedupedLandmarks.map((l) => l.id));
+  for (const c of culture) { const bad = c.places.filter((id) => !known.has(id)); if (bad.length) { warnings.push(`culture.${c.id}: unknown places ${bad.join(', ')} dropped`); c.places = c.places.filter((id) => known.has(id)); } }
+}
+fs.writeFileSync(path.join(OUT, 'culture.json'), JSON.stringify({ retrieved: cultureIn?.retrieved || retrieved, culture }, null, 0));
 fs.writeFileSync(path.join(OUT, 'places.json'), JSON.stringify({ retrieved, places }, null, 0));
 fs.writeFileSync(path.join(OUT, 'irazu.json'), JSON.stringify({ retrieved, irazu }, null, 0));
 fs.writeFileSync(path.join(OUT, 'sources.json'), JSON.stringify({ retrieved, sources: registry, unverified }, null, 0));
 
-console.log(`provinces ${provinces.length}/7 · landmarks ${dedupedLandmarks.length} (peaks ${peaks.length}) · species ${species.length} · foods ${foods.length} · places ${places.length} · irazu ${irazu ? irazu.timeline.length + ' events' : 'none'} · unesco ${unesco.length} · facts ${facts.length} · sources ${registry.length} · unverified ${unverified.length}`);
+console.log(`provinces ${provinces.length}/7 · landmarks ${dedupedLandmarks.length} (peaks ${peaks.length}) · species ${species.length} · foods ${foods.length} · culture ${culture.length} · places ${places.length} · irazu ${irazu ? irazu.timeline.length + ' events' : 'none'} · unesco ${unesco.length} · facts ${facts.length} · sources ${registry.length} · unverified ${unverified.length}`);
 if (warnings.length) console.log('warnings:\n - ' + warnings.join('\n - '));
 if (errors.length) { console.error('errors:\n - ' + errors.join('\n - ')); process.exitCode = 1; }

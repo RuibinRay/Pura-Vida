@@ -30,7 +30,7 @@ const en = {
     passport: 'Passport',
     settings: 'Settings',
     skip: 'Skip to content',
-    tab: { home: 'Home', explore: 'Map', provinces: 'Provinces', wildlife: 'Wildlife', myCostaRica: 'About me', food: 'Food', sources: 'Sources', contents: 'Contents' },
+    tab: { home: 'Home', culture: 'Culture', explore: 'Map', provinces: 'Provinces', wildlife: 'Wildlife', myCostaRica: 'About me', food: 'Food', sources: 'Sources', contents: 'Contents' },
   },
   journey: {
     railLabel: 'Chapters of the journey',
@@ -174,6 +174,24 @@ const en = {
     ringLabel: 'Typical ingredients, around the dish',
     onMap: 'Find it on the map',
     heritageLabel: 'Heritage status',
+  },
+  culture: {
+    title: 'Music, traditions and coffee',
+    lede: 'What Costa Rica sounds like, what it celebrates, and the crop that paid for its roads and its theatre.',
+    sections: 'Parts of this chapter',
+    note: 'Every entry is written from the sources listed under it. The photographs are from Wikimedia Commons, credited under each; the marimba and the chorreador are drawn for this site.',
+    groups: { music: 'Music and dance', traditions: 'Traditions', coffee: 'Coffee' },
+    groupLede: {
+      music: 'A national instrument, a national dance, the calypso of the Caribbean coast and a dance that was once forbidden.',
+      traditions: 'Painted ox-carts, giant masks, a pilgrimage on foot and a torch that crosses the country.',
+      coffee: 'The "golden bean": where it came from, where it grows, and how it gets from the cherry to the cup.',
+    },
+    symbolSince: 'National symbol since {year}',
+    marimbaLabel: 'A marimba of fifteen bars, from C4 to C6',
+    marimbaScale: 'Play the scale',
+    marimbaNote: 'Play it with the pointer, a finger, or the keys A to L and Z to V. The notes are synthesized, not a recording.',
+    marimbaSilent: 'This browser has no sound output available; the bars still move.',
+    chorreadorAlt: 'A chorreador, drawn: a cloth bag held open on a wooden stand, dripping coffee into a cup. An illustration.',
   },
   explore: {
     title: 'Explore Costa Rica',

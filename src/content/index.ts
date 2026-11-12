@@ -1,7 +1,7 @@
 // Educational content lives in src/content/generated/*.json, produced by tools/build_content.mjs from the
 // sourced research in research/*.json. Rendering components only read these typed structures.
 import { useEffect, useState } from 'react';
-import type { Food, IrazuDossier, Landmark, Place, ProvinceContent, Species, Source, Status } from './types';
+import type { CultureEntry, Food, IrazuDossier, Landmark, Place, ProvinceContent, Species, Source, Status } from './types';
 import type { Localized } from '../i18n';
 
 export interface CountryFact {
@@ -39,6 +39,7 @@ export interface Content {
   landmarks: Landmark[];
   species: Species[];
   foods: Food[];
+  culture: CultureEntry[];
   places: Place[];
   country: CountryFact[];
   unesco: UnescoSite[];
@@ -58,7 +59,8 @@ export function loadContent(): Promise<Content> {
       import('./generated/sources.json'),
       import('./generated/foods.json'),
       import('./generated/places.json'),
-    ]).then(([p, l, s, c, src, fd, pls]) => {
+      import('./generated/culture.json'),
+    ]).then(([p, l, s, c, src, fd, pls, cu]) => {
       const prov = p.default as unknown as { provinces: ProvinceContent[] };
       const lm = l.default as unknown as { landmarks: Landmark[] };
       const sp = s.default as unknown as { species: Species[]; unesco: UnescoSite[] };
@@ -66,7 +68,8 @@ export function loadContent(): Promise<Content> {
       const so = src.default as unknown as { sources: SourceEntry[]; unverified: Content['unverified']; retrieved: string };
       const fo = fd.default as unknown as { foods: Food[] };
       const pc = pls.default as unknown as { places: Place[] };
-      return { provinces: prov.provinces, landmarks: lm.landmarks, species: sp.species, foods: fo.foods, places: pc.places, unesco: sp.unesco, country: co.facts, sources: so.sources, unverified: so.unverified, retrieved: so.retrieved };
+      const cul = cu.default as unknown as { culture: CultureEntry[] };
+      return { provinces: prov.provinces, landmarks: lm.landmarks, species: sp.species, foods: fo.foods, culture: cul.culture, places: pc.places, unesco: sp.unesco, country: co.facts, sources: so.sources, unverified: so.unverified, retrieved: so.retrieved };
     });
   }
   return promise;

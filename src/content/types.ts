@@ -159,3 +159,22 @@ export interface Food {
   facts?: { en: string; es?: string; status?: Status; sources?: Source[] }[];
   sources?: Source[];
 }
+
+/** One entry of the culture chapter: a piece of music, a tradition, or a part of the story of coffee. */
+export interface CultureEntry {
+  id: string;
+  group: 'music' | 'traditions' | 'coffee';
+  name: Localized;
+  summary?: Localized;
+  text: { en: string; es?: string };
+  status: Status;
+  facts: { value: string; unit?: Localized; label: Localized; status?: Status }[];
+  /** an ordered process (coffee, from the cherry to the cup) */
+  steps: Localized[];
+  province?: ProvinceId;
+  /** landmark ids where the map shows it */
+  places: string[];
+  /** the national symbols the entry is about, with the instrument that declared them */
+  symbols: { id: string; year: number | null; instrument?: string }[];
+  sources: Source[];
+}

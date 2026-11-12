@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Downloads the photographs of the five dishes from Wikimedia Commons into tools/cache/food/ (not committed) and
-writes tools/food/sources.json with what each one is: title, author, licence, page. Standard library only.
+"""Downloads the site's photographs from Wikimedia Commons into tools/cache/<set>/ (not committed) and writes
+tools/<set>/sources.json with what each one is: title, author, licence, page. Standard library only.
 
-    python3 -I tools/fetch_food.py
+    python3 -I tools/fetch_food.py                  # the five dishes (tools/food_plates.py cuts the plates out)
+    python3 -I tools/fetch_food.py --set culture    # the culture chapter (tools/culture_photos.py sizes them)
 
-The choice of photograph per dish is in PHOTOS below; tools/food_plates.py cuts the plates out of them.
+The choice of photograph per subject is in PHOTO_SETS below.
 """
 import json
 import os
@@ -17,14 +18,27 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CACHE = os.path.join(ROOT, 'tools', 'cache', 'food')
 UA = 'food-photo-fetch/1.0 (static educational site; cached, one-off)'
-PHOTOS = {
-    'gallo-pinto': 'File:Desayuno tradicional de Costa Rica.jpg',
-    'casado': 'File:Casado tipico Costa Rica.jpg',
-    'tamal': 'File:Tamaldecostarica.jpg',
-    'olla-de-carne': 'File:Olla de carne 2.jpg',
-    # what goes into the pot, as a second picture on the food page
-    'olla-de-carne-ingredients': 'File:Olla de carne 1.png',
-    'rice-and-beans': 'File:Casado de rice and beans.png',
+# The photograph chosen for each subject, per set. `--set culture` fetches the culture chapter's pictures.
+PHOTO_SETS = {
+    'food': {
+        'gallo-pinto': 'File:Desayuno tradicional de Costa Rica.jpg',
+        'casado': 'File:Casado tipico Costa Rica.jpg',
+        'tamal': 'File:Tamaldecostarica.jpg',
+        'olla-de-carne': 'File:Olla de carne 2.jpg',
+        # what goes into the pot, as a second picture on the food page
+        'olla-de-carne-ingredients': 'File:Olla de carne 1.png',
+        'rice-and-beans': 'File:Casado de rice and beans.png',
+    },
+    'culture': {
+        'boyeo-carreta': 'File:Rueda de Carreta Típica Costa Rica.jpg',
+        'mascaradas': 'File:Mascarada.Giganta.Aserrí.Costa.Rica.2013.jpg',
+        'calypso-limonense': 'File:Calypso. Limon. Costa Rica (2).jpg',
+        'romeria': 'File:Romería 2011.jpg',
+        'punto-guanacasteco': 'File:15 de Septiembre... Bailes Folclóricos - panoramio.jpg',
+        'coffee-history': 'File:Coffee-cherries-green-coffee-tarrazu-costa-rica.jpg',
+        'coffee-growing': 'File:Coffee-cherry-picker-san-marcos-tarrazu-costa-rica.jpg',
+        'coffee-cup': 'File:Coffee drying Doka Plantation Costa Rica IMG 0114.jpg',
+    },
 }
 
 
@@ -48,9 +62,15 @@ def strip(html):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--set', default='food', choices=sorted(PHOTO_SETS))
+    name = ap.parse_args().set
+    global CACHE
+    CACHE = os.path.join(ROOT, 'tools', 'cache', name)
     os.makedirs(CACHE, exist_ok=True)
     out = {}
-    for dish, title in PHOTOS.items():
+    for dish, title in PHOTO_SETS[name].items():
         d = api({'action': 'query', 'titles': title, 'prop': 'imageinfo', 'iiprop': 'url|extmetadata|size|sha1', 'iiurlwidth': 2200, 'format': 'json'})
         page = next(iter(d['query']['pages'].values()))
         ii = page['imageinfo'][0]
@@ -89,8 +109,8 @@ def main():
         }
         print(dish, '|', out[dish]['author'], '|', out[dish]['licence'], '|', os.path.getsize(path) // 1024, 'KB')
         time.sleep(2)
-    os.makedirs(os.path.join(ROOT, 'tools', 'food'), exist_ok=True)
-    with open(os.path.join(ROOT, 'tools', 'food', 'sources.json'), 'w', encoding='utf-8') as f:
+    os.makedirs(os.path.join(ROOT, 'tools', name), exist_ok=True)
+    with open(os.path.join(ROOT, 'tools', name, 'sources.json'), 'w', encoding='utf-8') as f:
         json.dump(out, f, indent=1, ensure_ascii=False)
 
 

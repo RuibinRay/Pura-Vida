@@ -31,7 +31,7 @@ const zh: Messages = {
     passport: '护照',
     settings: '设置',
     skip: '跳到正文',
-    tab: { home: '首页', explore: '地图', provinces: '省份', wildlife: '动物', myCostaRica: '关于我', food: '美食', sources: '来源', contents: '目录' },
+    tab: { home: '首页', culture: '文化', explore: '地图', provinces: '省份', wildlife: '动物', myCostaRica: '关于我', food: '美食', sources: '来源', contents: '目录' },
   },
   journey: {
     railLabel: '旅程章节',
@@ -175,6 +175,24 @@ const zh: Messages = {
     ringLabel: '常用食材，环绕在菜肴周围',
     onMap: '在地图上找到它',
     heritageLabel: '遗产地位',
+  },
+  culture: {
+    title: '音乐、传统与咖啡',
+    lede: '哥斯达黎加的声音、它的节庆，以及那种为它修路、建剧院的作物。',
+    sections: '本章各部分',
+    note: '每个条目都依据其下方列出的资料撰写。照片来自维基共享资源，均在图下注明作者；马林巴琴和 chorreador 为本站绘制。',
+    groups: { music: '音乐与舞蹈', traditions: '传统', coffee: '咖啡' },
+    groupLede: {
+      music: '一种国家乐器、一支国家舞蹈、加勒比海岸的卡利普索，以及一种曾被禁止的舞蹈。',
+      traditions: '彩绘牛车、巨型面具、徒步朝圣，以及穿越全国的火炬。',
+      coffee: '“黄金之豆”：它从哪里来，在哪里生长，又如何从果实变成杯中的咖啡。',
+    },
+    symbolSince: '{year} 年起为国家象征',
+    marimbaLabel: '一架十五键的马林巴琴，音域从 C4 到 C6',
+    marimbaScale: '演奏音阶',
+    marimbaNote: '可用鼠标、手指，或键盘 A 至 L、Z 至 V 键演奏。音色为合成音，并非录音。',
+    marimbaSilent: '此浏览器没有可用的声音输出；琴键仍会动。',
+    chorreadorAlt: '手绘的 chorreador：木架上撑开的布袋，咖啡滴入杯中。此为插图。',
   },
   explore: {
     title: '探索哥斯达黎加',
