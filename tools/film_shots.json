@@ -1,0 +1,122 @@
+{
+ "note": "The shots of the home page's film, in order, and the take each is cut from (tools/cache/film/takes/<take>.mp4). Read by tools/film_build.py. 'from'/'to' are seconds into the take; 'crf' is the H.264 quality of a size set (lower = better and larger).",
+ "fps": 12,
+ "sets": {
+  "sd": {
+   "w": 960,
+   "h": 540,
+   "crf": 31
+  },
+  "hd": {
+   "w": 1600,
+   "h": 900,
+   "crf": 30
+  }
+ },
+ "shots": [
+  {
+   "id": "map",
+   "take": "m0-map",
+   "poster": 0.0
+  },
+  {
+   "id": "sky",
+   "take": "a1-sky-kling4",
+   "poster": 0.12
+  },
+  {
+   "id": "falls",
+   "take": "a2-falls-kling4",
+   "poster": 0.55
+  },
+  {
+   "id": "river",
+   "take": "a3-river",
+   "poster": 0.4
+  },
+  {
+   "id": "zip",
+   "take": "b1-zip",
+   "poster": 0.45,
+   "from": 0,
+   "to": 5.5
+  },
+  {
+   "id": "drop",
+   "take": "b2-drop",
+   "poster": 0.7
+  },
+  {
+   "id": "raft",
+   "take": "b3-raft",
+   "poster": 0.5,
+   "from": 0,
+   "to": 6
+  },
+  {
+   "id": "float",
+   "take": "c1-float",
+   "poster": 0.35,
+   "from": 0.3,
+   "to": 7
+  },
+  {
+   "id": "beach",
+   "take": "c2-beach",
+   "poster": 0.95
+  },
+  {
+   "id": "volcano",
+   "take": "d1-volcano",
+   "poster": 0.1
+  },
+  {
+   "id": "crater",
+   "take": "d2-crater",
+   "poster": 0.2
+  },
+  {
+   "id": "theatre",
+   "take": "e1-theatre",
+   "poster": 0.1
+  },
+  {
+   "id": "foyer",
+   "take": "e2-foyer",
+   "poster": 0.1
+  },
+  {
+   "id": "ruins",
+   "take": "e3-ruins",
+   "poster": 0.15,
+   "from": 0,
+   "to": 7.5
+  },
+  {
+   "id": "museum",
+   "take": "e4-museum",
+   "poster": 0.05,
+   "from": 0,
+   "to": 7
+  },
+  {
+   "id": "house",
+   "take": "f1-usure",
+   "poster": 0.2,
+   "from": 0,
+   "to": 6.5
+  },
+  {
+   "id": "mask",
+   "take": "f2-mask",
+   "poster": 0.1
+  },
+  {
+   "id": "up",
+   "take": "g1-up",
+   "poster": 0.95
+  }
+ ],
+ "keyint": 12,
+ "denoise": "hqdn3d=2:1.5:8:6"
+}

@@ -64,3 +64,22 @@ Eighteen RGBA PNGs supplied by the author (`research/plates-original/2026-10-25/
 
 ## The environment images (2026-10-25, night)
 Nineteen scenes without animals supplied by the author (`research/plates-original/2026-10-25/environments/`, 1672×941 PNG, numbered in the order sent): the Arenal volcano and lake (two), the cloud forest (two), a turquoise waterfall (two), the Guanacaste dry forest (two), the Chirripó páramo (two), the coffee highlands (two), a rocky Pacific cove, three Pacific beaches, a rainforest river, a mangrove channel and a crater lake. None matches an image used before (a registration against every original finds no correlation above 0.56). Nine are the backdrops of the wildlife trail (`public/zoo/env/`, upscaled ×2 with FSRCNN as the plates are): e19 the canopy, e01 the cloud forest, e03 the waterfall, e17 the crater, e06 the gardens, e04 the dry forest, e08 the forest floor, e12 the canals, e07 the coast; the other ten are kept unused. The four sprite sheets (`…/sheets/`) supplied with the cut-outs are the source of the trail's small stickers. Same origin and licence as the originals, to be stated by the author.
+
+## The home page film (2026-11-13)
+The film on the home page (`public/film/`, see `docs/HOME_FILM.md`) is made of four kinds of picture.
+
+- **The opening** is filmed from this site's own 3D map (`tools/film_map.mjs`): terrain tiles by Mapzen and Sentinel-2 cloudless 2016 imagery by EOX (CC BY 4.0), credited above with the map.
+- **Seven generated shots** (`sky`, `falls`, `river`, `zip`, `drop`, `raft`, `up`) were generated from text, or from the last frame of the shot before, with Kling 4.0 and Google Veo 3.1 on the author's Higgsfield account. They are imagined scenes, not footage of a place.
+- **Four shots start from the author's own environment images** (`float` from e12, `beach` ending on e07, `volcano` from e09 to e17, `crater` from e17; origin and licence of those images as stated above, to be confirmed by the author), animated with the same models.
+- **Six shots start from photographs on Wikimedia Commons** and are AI animations of them: only the first frame is the photograph. Each is a derivative of a CC BY-SA work, so it is offered under the same licence as its photograph, with the change stated here and on the page (under the caption and in the film's notes):
+
+| Shot | Photograph | Author | Licence |
+|---|---|---|---|
+| `theatre` | [Teatro Nacional CRI 07 2019 8963.jpg](https://commons.wikimedia.org/wiki/File:Teatro_Nacional_CRI_07_2019_8963.jpg) | Mariordo (Mario Roberto Durán Ortiz) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) |
+| `foyer` | [Costa Rica - San José 20.jpg](https://commons.wikimedia.org/wiki/File:Costa_Rica_-_San_Jos%C3%A9_20.jpg) | Wayne77 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) |
+| `ruins` | [Old Ruins in Cartago, Costa Rica by Daniel Vargas - 25.jpg](https://commons.wikimedia.org/wiki/File:Old_Ruins_in_Cartago,_Costa_Rica_by_Daniel_Vargas_-_25.jpg) | Daniel32708 - Daniel Vargas | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) |
+| `museum` | [Diquis Stone Spheres Museo Nacional CRI 01 2020 1880.jpg](https://commons.wikimedia.org/wiki/File:Diquis_Stone_Spheres_Museo_Nacional_CRI_01_2020_1880.jpg) | Mariordo (Mario Roberto Durán Ortiz) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) |
+| `house` | [Úsure.jpg](https://commons.wikimedia.org/wiki/File:%C3%9Asure.jpg) | Darell31 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) |
+| `mask` | [Keeper of the Wind.jpg](https://commons.wikimedia.org/wiki/File:Keeper_of_the_Wind.jpg) | THE ROVERS QUEST | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) |
+
+`tools/film_photos.py` downloads them and writes the authors and licences to `src/film/photoSources.json`, which the page reads; a test checks every photograph shot has both. Other photographs fetched while choosing (a second view of the ruins, the museum courtyard, the gold museum) are not used and not in the repository.

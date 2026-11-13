@@ -197,7 +197,7 @@ export function WildlifePage() {
                   </>
                 )}
                 <p className="trail-popup__links">
-                  {walkStop(open.sp) && <Link to={'/?stop=' + walkStop(open.sp)} className="btn btn--ghost btn--sm"><Icon name="play" /> {t('trail.seeOnWalk')}</Link>}
+                  {walkStop(open.sp) && <Link to={'/walk?stop=' + walkStop(open.sp)} className="btn btn--ghost btn--sm"><Icon name="play" /> {t('trail.seeOnWalk')}</Link>}
                   <Link to={'/explore?animal=' + open.sp.id} className="btn btn--ghost btn--sm"><Icon name="paw" /> {t('wildlife.onMap')}</Link>
                   <a href={'#' + open.sp.id} className="btn btn--ghost btn--sm" onClick={(e) => { e.preventDefault(); close(); setTimeout(() => document.getElementById(open.sp.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60); }}>{t('trail.readEntry')}</a>
                 </p>

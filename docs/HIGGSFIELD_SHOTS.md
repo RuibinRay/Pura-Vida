@@ -1,5 +1,7 @@
 # Film clips for the walk — a Higgsfield shot list
 
+> **Update, 2026-11-13.** The account is now on the Ultra plan and clips can be generated from this repository with the Higgsfield CLI (`tools/film_gen.py`). The home page film was made that way and is documented in `docs/HOME_FILM.md`. The list below, clips of single animals for the plates of the walk, has still not been generated.
+
 The walk's animals are cut-outs animated in real time: heads turn, wings flap, bodies sway. That is as far as layered
 stills go — a toucan cannot shift its weight or a sloth reach along a branch without a filmed (or generated) frame
 sequence. This file is the plan for getting those sequences from Higgsfield and the place they plug in.

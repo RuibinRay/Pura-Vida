@@ -6,6 +6,7 @@ import { ComingPage } from './pages/ComingPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { SECTIONS } from './sections';
 
+const WalkPage = lazy(() => import('./pages/WalkPage').then((m) => ({ default: m.WalkPage })));
 const ExplorePage = lazy(() => import('./pages/ExplorePage').then((m) => ({ default: m.ExplorePage })));
 const ProvincesPage = lazy(() => import('./pages/ProvincesPage').then((m) => ({ default: m.ProvincesPage })));
 const ProvincePage = lazy(() => import('./pages/ProvincePage').then((m) => ({ default: m.ProvincePage })));
@@ -24,6 +25,7 @@ const router = createHashRouter([
     element: <Shell />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: 'walk', element: wrap(<WalkPage />) },
       { path: 'explore', element: wrap(<ExplorePage />) },
       { path: 'provinces', element: wrap(<ProvincesPage />) },
       { path: 'provinces/:id', element: wrap(<ProvincePage />) },

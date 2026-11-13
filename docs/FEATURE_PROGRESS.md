@@ -220,3 +220,12 @@ The owner saw the live walk and said the animals were not moving. Two causes, bo
 6. State the licence/origin of the three plates in `docs/ASSET_CREDITS.md` (they were supplied without one).
 4. If a licensed DEM is available (SRTM 90 m GeoTIFF for lon −86…−82.5, lat 8…11.3), supply it and the relief becomes measured instead of stylised.
 5. Review the `unverified` list in `src/content/generated/sources.json` / docs/RESEARCH_SOURCES.md and the "approximate" facts drawn from press coverage where official sites blocked fetching.
+
+## The home page film (2026-11-13)
+
+The home page is now a film scrubbed frame by frame with the scroll (`src/film/`, `docs/HOME_FILM.md`); the illustrated walk moved to `/walk` unchanged, and the wildlife trail's "see it on the walk" links point there.
+
+- **Built:** 18 shots (the 3D map's own zoom, then 17 clips generated on Higgsfield with Kling 4.0 and Veo 3.1: six from text, five continuing the take before or one of the author's scenes, six from Commons photographs); captions in three languages from the site's sourced records; a chapter rail, a play button, notes on how each picture was made; stills for reduced motion and the still tier; a page of stills for the text tier.
+- **Measured (headless Chrome, Apple M2, 1440×900):** a scrub of the whole film holds 16.7 ms a frame at the 95th percentile with the exact frame on screen 99.8–100 % of the time; the film is 27.5 MB (960×540) or 72.7 MB (1600×900), fetched shot by shot.
+- **Not verified:** Safari, Firefox, a real phone, touch, a slow connection.
+- **Open for the owner:** whether the bare volcano cones of the opening flight are acceptable (Costa Rica's are forested); whether the theatre shot, which animates the passers-by of the photograph, should be remade from a frame without people; 294.6 Higgsfield credits remain for remakes.

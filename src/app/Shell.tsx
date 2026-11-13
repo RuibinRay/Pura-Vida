@@ -13,7 +13,8 @@ import { Passport } from '../ui/Passport';
 export function Shell() {
   const { t, lang } = useT();
   const location = useLocation();
-  const isHome = location.pathname === '/';
+  // the film (/) and the illustrated walk (/walk) are full-bleed stages under an overlaid top bar
+  const isHome = location.pathname === '/' || location.pathname === '/walk';
   const [open, setOpen] = useState<'contents' | 'passport' | 'settings' | null>(null);
   const stamps = usePassport((s) => s.discoveries.length);
   const mainRef = useRef<HTMLElement>(null);

@@ -1,6 +1,6 @@
 # Costa Rica — Pura Vida: The Living Country
 
-An interactive, trilingual (EN · ES · 简体中文) field journal of Costa Rica: a homepage that is a walk through the country in thirteen stops, one or more in every province (a rainforest that opens as you scroll, Arenal, Monteverde, Río Celeste, Guanacaste, the flavors of the everyday table, the coffee highlands of Heredia, the basilica of Cartago, Irazú with a sourced "what if it erupted?", Cerro Chirripó, Corcovado, Tortuguero, a turtle on the Manuel Antonio beach at sunset — every animal cut out of its plate and moving in its own 1–5 s loop, the water flowing, the trees in the wind), a 3D map of the seven provinces on measured terrain with satellite imagery, real rivers and protected areas and a day–night light, and chapters written from official and scientific sources. Built as a static site for GitHub Pages — no backend, no trackers, no accounts.
+An interactive, trilingual (EN · ES · 简体中文) field journal of Costa Rica. The home page is a film scrubbed frame by frame with the scroll: the country from above, a scarlet macaw's flight down through the clouds to a waterfall and a river, a zip line, rafts in a gorge, a canal, a Pacific beach, Arenal, a crater, the National Theatre, the ruins of Cartago, the stone spheres, a Bribri house, a Boruca mask, and back up to the sky (`docs/HOME_FILM.md`). Behind it: an illustrated walk through the country in thirteen stops (`/walk`), a 3D map of the seven provinces on measured terrain with satellite imagery, real rivers and protected areas and a day–night light, and chapters on wildlife, food and culture written from official and scientific sources. Built as a static site for GitHub Pages — no backend, no trackers, no accounts.
 
 **Status: Milestone 1 (working foundation) + the homepage walk.** See `docs/FEATURE_PROGRESS.md` for what is built, what is measured, and what comes next; `docs/HOMEPAGE_REDESIGN.md` for the audit, the reference analysis and the direction.
 
@@ -14,7 +14,7 @@ npm run build      # typecheck + production build into dist/
 npm run preview    # serve dist/ on :4173
 ```
 
-Useful URL switches: `?tier=full|lite|still|text` forces a rendering tier, `?why` shows the diagnostics overlay (tier, reason, fps, GPU), `?lang=es` picks a language, `?draft` shows the editable placeholders of the personal section. The homepage is scroll-driven: every position of the scrollbar is a frame, so there is nothing to replay.
+Useful URL switches: `?tier=full|lite|still|text` forces a rendering tier, `?why` shows the diagnostics overlay (tier, reason, fps, GPU), `?lang=es` picks a language, `?draft` shows the editable placeholders of the personal section. The home page is scroll-driven: every position of the scrollbar is a frame of the film.
 
 ## Deploy
 
@@ -25,7 +25,8 @@ Push to `main`. `.github/workflows/deploy.yml` typechecks, tests, builds with a 
 | Folder | What |
 |---|---|
 | `src/app/` | router, shell (index tabs, sheets), pages |
-| `src/journey/` | the homepage walk: scroll driver, stop list (`scenes.ts`), scenes (plates with moving animals and water), the Irazú eruption, stop copy, home map (not on the walk now), flavors table, dish illustrations |
+| `src/film/` | the home page film: the shots on the scroll (`shots.ts`), the clip decoder (`frames.ts`), the player (`usePlayer.ts`), the page (`Film.tsx`); clips in `public/film/`, cut by `tools/film_build.py` |
+| `src/journey/` | the illustrated walk (`/walk`): scroll driver, stop list (`scenes.ts`), scenes (plates with moving animals and water), the Irazú eruption, stop copy, home map (not on the walk now), flavors table, dish illustrations |
 | `public/plates/` | the owner's three images as responsive WebP plates and cut-out layers (built by `tools/hero_assets.py`) |
 | `public/zoo/` | the wildlife trail: the owner's animal cut-outs as stickers and his environment images as backdrops (`tools/zoo_stickers.py`, `tools/zoo_envs.py`) |
 | `src/map/` | 3D map on measured terrain (R3F): satellite / terrain / province styles, rivers, protected areas, day–night light, clouds and rain; 2D SVG map; camera; labels overlay; the shared projection and elevation lookup (`relief.js`, `terrain.ts`) |
