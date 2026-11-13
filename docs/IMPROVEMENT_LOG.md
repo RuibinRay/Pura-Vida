@@ -144,3 +144,14 @@ What was reviewed, what was wrong, what changed. Newest first. Only things that 
 - **Dissolves need two shots at once.** Stills flashed in every dissolve because the cache held four groups and a dissolve needs five. → Both shots' groups are requested and five are kept.
 - **Re-configuring the decoder restarts it** (a fifth of a second). → It is only re-configured when a clip's codec record differs, which for clips cut alike is never.
 - **Chosen against:** Seedance 2.5 at 1080p (160 credits a shot: the film would not fit the balance); AI-generated people for the Indigenous shots (the two shots start from real photographs of a Bribri house and a Boruca dancer instead).
+
+## 2026-11-13 — the film, reshot as one flight
+
+The owner's review of the first cut: the macaw dives at one waterfall and the zip line looks at another (and the rafts paddled at a third); the rafting did not follow from the zip line ("there is a wall of water in front"); every scene should be smooth.
+
+- **Cut review.** Every cut was laid out as a pair of frames (outgoing last, incoming first). Beyond what the owner saw: the river ended at one platform and the zip line started at another; the rapids cut straight to a mangrove; the beach cut to Arenal; the ending's macaw appeared from nowhere.
+- **One flight.** From the clouds to the mangroves every take is now generated from the last frame of the one before (Kling 4.0, image to video): one waterfall into one pool; the river turning its back on the falls and climbing to a platform; the rider's view across the gorge; letting go and diving to a single raft on the same river; the rapids easing into calm water and, by giving Kling the canal scene as the end frame, arriving exactly on the canal shot's first frame. Prompts say "only this one waterfall" and "no waterfall anywhere" where it mattered.
+- **Travelling shots instead of dissolves.** The beach lifts off and flies inland to land on the Arenal frame; the theatre shot walks through the doors and lands on the foyer photograph; the mask shot's branches are where the macaw flies up from. These three play without a caption.
+- **Kept as dissolves:** the four cuts between the culture scenes, which are in different towns.
+- **Lost takes.** Two paid zip-line takes were lost when the CLI's connection dropped and no job id had been kept; Kling jobs are not listed by `higgsfield generate list`. The generation tool now records the id at submission and can resume.
+- **Also changed on the owner's request:** no AI labels or sound button on the film (how it was made is on the Sources page); the old walk is back as the "Meet the wild" tab, without its sound button.

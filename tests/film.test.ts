@@ -114,14 +114,14 @@ describe('captions', () => {
   it('has a kicker, a title and a text for every shot in English, Spanish and Chinese', () => {
     for (const [lang, m] of [['en', en], ['es', es], ['zh', zh]] as const) {
       const all = m.film.shots as Record<string, { kicker: string; title: string; text: string }>;
-      for (const s of SHOT_DEFS) {
+      for (const s of SHOT_DEFS.filter((x) => x.caption !== false)) {
         const c = all[s.id];
         expect(c, `${lang} ${s.id}`).toBeTruthy();
         expect(c.kicker.length, `${lang} ${s.id} kicker`).toBeGreaterThan(1);
         expect(c.title.length, `${lang} ${s.id} title`).toBeGreaterThan(1);
         expect(c.text.length, `${lang} ${s.id} text`).toBeGreaterThan(8);
       }
-      expect(Object.keys(all).sort()).toEqual(SHOT_DEFS.map((s) => s.id).sort());
+      expect(Object.keys(all).sort()).toEqual(SHOT_DEFS.filter((s) => s.caption !== false).map((s) => s.id).sort());
       for (const c of CHAPTERS) expect((m.film.chapters as Record<string, string>)[c], `${lang} chapter ${c}`).toBeTruthy();
     }
   });
@@ -131,7 +131,7 @@ describe('captions', () => {
     for (const s of SHOT_DEFS) {
       if (!s.link) continue;
       expect(labels).toContain(s.link.label);
-      expect(s.link.to).toMatch(/^\/(explore|wildlife|culture|provinces\/[a-z-]+)(\?[a-z]+=[a-z-]+)?$/);
+      expect(s.link.to).toMatch(/^\/(walk|explore|wildlife|culture|provinces\/[a-z-]+)(\?[a-z]+=[a-z-]+)?$/);
     }
   });
 });

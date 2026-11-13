@@ -26,44 +26,43 @@
   },
   {
    "id": "falls",
-   "take": "a2-falls-kling4",
-   "poster": 0.55
+   "take": "r2-falls",
+   "poster": 0.6
   },
   {
    "id": "river",
-   "take": "a3-river",
+   "take": "r3-river",
    "poster": 0.4
   },
   {
    "id": "zip",
-   "take": "b1-zip",
-   "poster": 0.45,
-   "from": 0,
-   "to": 5.5
+   "take": "r4-zip",
+   "poster": 0.6
   },
   {
    "id": "drop",
-   "take": "b2-drop",
-   "poster": 0.7
+   "take": "r5-drop",
+   "poster": 0.6
   },
   {
    "id": "raft",
-   "take": "b3-raft",
-   "poster": 0.5,
-   "from": 0,
-   "to": 6
+   "take": "r6-raft",
+   "poster": 0.2
   },
   {
    "id": "float",
    "take": "c1-float",
-   "poster": 0.35,
-   "from": 0.3,
-   "to": 7
+   "poster": 0.35
   },
   {
    "id": "beach",
    "take": "c2-beach",
    "poster": 0.95
+  },
+  {
+   "id": "inland",
+   "take": "r7-volcano",
+   "poster": 0.5
   },
   {
    "id": "volcano",
@@ -78,7 +77,13 @@
   {
    "id": "theatre",
    "take": "e1-theatre",
-   "poster": 0.1
+   "poster": 0.1,
+   "to": 7.92
+  },
+  {
+   "id": "doors",
+   "take": "r8-doors",
+   "poster": 0.5
   },
   {
    "id": "foyer",
@@ -89,21 +94,18 @@
    "id": "ruins",
    "take": "e3-ruins",
    "poster": 0.15,
-   "from": 0,
    "to": 7.5
   },
   {
    "id": "museum",
    "take": "e4-museum",
    "poster": 0.05,
-   "from": 0,
    "to": 7
   },
   {
    "id": "house",
    "take": "f1-usure",
    "poster": 0.2,
-   "from": 0,
    "to": 6.5
   },
   {
@@ -113,7 +115,7 @@
   },
   {
    "id": "up",
-   "take": "g1-up",
+   "take": "r9-up",
    "poster": 0.95
   }
  ],

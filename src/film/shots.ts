@@ -21,32 +21,37 @@ export interface ShotDef {
   /** for made = 'photo': the photograph the clip starts from (credits in photoCredits.ts) */
   photo?: PhotoKey;
   /** a link out of the film for this shot */
-  link?: { to: string; label: 'map' | 'wildlife' | 'culture' | 'province' | 'place' };
+  link?: { to: string; label: 'map' | 'wildlife' | 'culture' | 'province' | 'place' | 'wild' };
   /** horizontal focus of the picture when a narrow screen crops it (0 = left edge, 1 = right edge) */
   focus?: number;
   /** scroll per frame relative to the default (1); slower shots can take less scroll */
   pace?: number;
+  /** false: a travelling shot between two scenes, played without a caption */
+  caption?: false;
 }
 
 export const SHOT_DEFS: ShotDef[] = [
   { id: 'map', chapter: 'above', into: 'fade', side: 'left', made: 'map', link: { to: '/explore', label: 'map' }, pace: 1.5 },
   { id: 'sky', chapter: 'above', into: 'cloud', side: 'left', made: 'generated', link: { to: '/wildlife?focus=scarlet-macaw', label: 'wildlife' } },
+  // from here to the canal the film is one flight: each take was generated from the last frame of the one before
   { id: 'falls', chapter: 'water', into: 'join', side: 'left', made: 'generated', link: { to: '/explore?place=rio-celeste', label: 'place' } },
   { id: 'river', chapter: 'water', into: 'join', side: 'right', made: 'generated' },
-  { id: 'zip', chapter: 'canopy', into: 'fade', side: 'left', made: 'generated', link: { to: '/explore?place=monteverde', label: 'place' } },
+  { id: 'zip', chapter: 'canopy', into: 'join', side: 'left', made: 'generated', link: { to: '/explore?place=monteverde', label: 'place' } },
   { id: 'drop', chapter: 'canopy', into: 'join', side: 'right', made: 'generated' },
-  { id: 'raft', chapter: 'canopy', into: 'fade', side: 'left', made: 'generated', focus: 0.45 },
-  { id: 'float', chapter: 'coast', into: 'fade', side: 'left', made: 'scene', link: { to: '/explore?place=tortuguero', label: 'place' } },
+  { id: 'raft', chapter: 'canopy', into: 'join', side: 'left', made: 'generated', link: { to: '/walk', label: 'wild' } },
+  { id: 'float', chapter: 'coast', into: 'join', side: 'left', made: 'scene', link: { to: '/explore?place=tortuguero', label: 'place' } },
   { id: 'beach', chapter: 'coast', into: 'join', side: 'right', made: 'scene', link: { to: '/explore?place=manuel-antonio', label: 'place' } },
-  { id: 'volcano', chapter: 'fire', into: 'fade', side: 'left', made: 'scene', link: { to: '/explore?place=arenal', label: 'place' } },
-  { id: 'crater', chapter: 'fire', into: 'fade', side: 'right', made: 'scene', link: { to: '/explore?place=irazu', label: 'place' } },
+  { id: 'inland', chapter: 'fire', into: 'join', side: 'left', made: 'generated', caption: false },
+  { id: 'volcano', chapter: 'fire', into: 'join', side: 'left', made: 'scene', link: { to: '/explore?place=arenal', label: 'place' } },
+  { id: 'crater', chapter: 'fire', into: 'join', side: 'right', made: 'scene', link: { to: '/explore?place=irazu', label: 'place' } },
   { id: 'theatre', chapter: 'city', into: 'cloud', side: 'left', made: 'photo', photo: 'theatre-front', link: { to: '/provinces/san-jose', label: 'province' } },
-  { id: 'foyer', chapter: 'city', into: 'fade', side: 'right', made: 'photo', photo: 'theatre-foyer' },
+  { id: 'doors', chapter: 'city', into: 'join', side: 'right', made: 'generated', caption: false },
+  { id: 'foyer', chapter: 'city', into: 'join', side: 'right', made: 'photo', photo: 'theatre-foyer' },
   { id: 'ruins', chapter: 'city', into: 'fade', side: 'left', made: 'photo', photo: 'ruins-b', link: { to: '/provinces/cartago', label: 'province' } },
   { id: 'museum', chapter: 'roots', into: 'fade', side: 'right', made: 'photo', photo: 'spheres-hall' },
   { id: 'house', chapter: 'roots', into: 'fade', side: 'right', made: 'photo', photo: 'usure' },
   { id: 'mask', chapter: 'roots', into: 'fade', side: 'left', made: 'photo', photo: 'diablitos', link: { to: '/culture', label: 'culture' } },
-  { id: 'up', chapter: 'return', into: 'fade', side: 'left', made: 'generated' },
+  { id: 'up', chapter: 'return', into: 'join', side: 'left', made: 'generated' },
 ];
 
 export const CHAPTERS: ChapterId[] = ['above', 'water', 'canopy', 'coast', 'fire', 'city', 'roots', 'return'];

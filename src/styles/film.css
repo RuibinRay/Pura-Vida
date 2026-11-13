@@ -268,3 +268,5 @@
 }
 /* the text tier sits under the home page's overlaid top bar, which is light-on-dark: give it a dark band to sit on */
 .film-text::before { content: ''; position: fixed; inset: 0 0 auto 0; height: 3.9rem; z-index: 1; background: #16321f; }
+/* the Sources page's film section, reached from the film by #film: clear the fixed top bar */
+#film { scroll-margin-top: 5rem; }

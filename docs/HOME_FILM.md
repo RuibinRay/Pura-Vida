@@ -1,20 +1,23 @@
 # The home page film
 
-The home page is one film of Costa Rica in 18 shots, scrubbed frame by frame with the scroll: the map from
-above, a scarlet macaw's flight down through the clouds, a waterfall, a river, a zip line, a drop to the rafts in the
-gorge, the rapids, a boat on a quiet canal, a Pacific beach, Arenal, a crater, the National Theatre, the ruins of
-Cartago, the stone spheres in the National Museum, a Bribri house, a Boruca mask, and the macaw going back up to a sky
-framed by leaves. The illustrated walk that was the home page until 13 November 2026 is at `/walk`, unchanged.
+The home page is one film of Costa Rica in 20 shots, scrubbed frame by frame with the scroll: the map from
+above, a scarlet macaw's flight down through the clouds to a single waterfall, down the river to a zip-line
+platform, across the gorge, a drop to the raft on the river below, the rapids, the calm water into a mangrove canal, a
+Pacific beach, inland to Arenal, a crater, the National Theatre and through its doors, the ruins of Cartago, the stone
+spheres in the National Museum, a Bribri house, a Boruca mask, and the macaw flying back up to a sky framed by leaves.
+From the clouds to the mangroves it is one continuous flight: every take there was generated from the last frame of
+the one before. The illustrated walk that was the home page until 13 November 2026 is the "Meet the wild" tab
+(`/walk`), unchanged except that its sound button is gone.
 
 ## How it works
 
-- **Shots and scroll** (`src/film/shots.ts`). The page is as tall as the film is long: 1737 frames at 2 vh of scroll a
+- **Shots and scroll** (`src/film/shots.ts`). The page is as tall as the film is long: 1919 frames at 2 vh of scroll a
   frame. Shots that continue one another (`into: 'join'`) meet with no gap, because the later take was generated from
   the earlier take's last frame; the others dissolve over 46 vh, and three come in through white (cloud, steam).
 - **Clips** (`tools/film_build.py`, `public/film/<shot>/{sd,hd}.pvf`). Each shot is H.264 at 12 frames a second with a
   keyframe every 12 frames, in a small container of our own that lists every frame's bytes (the format is described at
   the top of the build tool). Two sizes: 960×540 (phones, the lite tier, slow links) and 1600×900. The whole film is
-  27 MB small and 73 MB large; a visitor only downloads the shots they scroll through.
+  27 MB small and 69 MB large; a visitor only downloads the shots they scroll through.
 - **Player** (`src/film/frames.ts`, `src/film/usePlayer.ts`). The clips around the visitor are streamed and decoded a
   group of pictures at a time with WebCodecs, forwards or backwards, and drawn to a canvas; two neighbouring frames are
   blended while the scroll moves, and the picture settles on a whole frame when it stops. Nothing re-renders in React
@@ -28,28 +31,31 @@ framed by leaves. The illustrated walk that was the home page until 13 November 
 
 ## What every picture is
 
-The page says under each caption how the picture was made, and the "AI-generated footage" button opens the notes.
+The film itself carries no labels. How each picture was made, and the credits of the photographs, are on the Sources
+page (`/sources#film`), linked from the film's last shot.
 
 | # | Shot | Made with | From | Take | Frames | Size (sd / hd) |
 |---|---|---|---|---|---|---|
 | 1 | `map` | the site's 3D map (`tools/film_map.mjs`) | — | — | 60 | 0.4 / 1.0 MB |
 | 2 | `sky` | Kling 4.0 | text only | `a1-sky-kling4` | 121 | 0.5 / 1.4 MB |
-| 3 | `falls` | Kling 4.0 | from the last frame of the previous shot's take | `a2-falls-kling4` | 121 | 0.7 / 1.8 MB |
-| 4 | `river` | Kling 4.0 | from the last frame of the previous shot's take | `a3-river` | 121 | 0.9 / 2.3 MB |
-| 5 | `zip` | Google Veo 3.1 (fast, high) | text only | `b1-zip` | 66 | 1.5 / 3.9 MB |
-| 6 | `drop` | Kling 4.0 | from the last frame of the previous shot's take | `b2-drop` | 121 | 1.6 / 3.8 MB |
-| 7 | `raft` | Google Veo 3.1 (fast, high) | text only | `b3-raft` | 72 | 2.1 / 5.4 MB |
-| 8 | `float` | Google Veo 3.1 (fast, high) | from the author's scene `e12-mangrove-channel.png` | `c1-float` | 81 | 2.8 / 7.2 MB |
+| 3 | `falls` | Kling 4.0 | from the last frame of the previous shot's take | `r2-falls` | 121 | 0.8 / 1.9 MB |
+| 4 | `river` | Kling 4.0 | from the last frame of the previous shot's take | `r3-river` | 97 | 0.7 / 1.8 MB |
+| 5 | `zip` | Kling 4.0 | from the last frame of the previous shot's take | `r4-zip` | 97 | 0.7 / 1.6 MB |
+| 6 | `drop` | Kling 4.0 | from the last frame of the previous shot's take | `r5-drop` | 73 | 0.5 / 1.3 MB |
+| 7 | `raft` | Kling 4.0 | from the last frame of the previous shot's take to the author's scene `e12-mangrove-channel.png` | `r6-raft` | 121 | 1.6 / 3.6 MB |
+| 8 | `float` | Google Veo 3.1 (fast, high) | from the author's scene `e12-mangrove-channel.png` | `c1-float` | 96 | 3.2 / 8.4 MB |
 | 9 | `beach` | Kling 4.0 | from the last frame of the previous shot's take to the author's scene `e07-beach-cove-sunset-palm-left.png` | `c2-beach` | 121 | 1.9 / 4.6 MB |
-| 10 | `volcano` | Kling 4.0 | from the author's scene `e09-arenal-volcano-lake-sunrise-left.png` to the author's scene `e17-crater-lake.png` | `d1-volcano` | 121 | 1.4 / 3.2 MB |
-| 11 | `crater` | Google Veo 3.1 (fast, high) | from the author's scene `e17-crater-lake.png` | `d2-crater` | 96 | 1.5 / 4.1 MB |
-| 12 | `theatre` | Google Veo 3.1 (fast, high) | from photograph [Teatro Nacional CRI 07 2019 8963.jpg](https://commons.wikimedia.org/wiki/File:Teatro_Nacional_CRI_07_2019_8963.jpg) by Mariordo (Mario Roberto Durán Ortiz) (CC BY-SA 4.0) | `e1-theatre` | 96 | 1.3 / 3.7 MB |
-| 13 | `foyer` | Google Veo 3.1 (fast, high) | from photograph [Costa Rica - San José 20.jpg](https://commons.wikimedia.org/wiki/File:Costa_Rica_-_San_Jos%C3%A9_20.jpg) by Wayne77 (CC BY-SA 4.0) | `e2-foyer` | 96 | 1.5 / 4.1 MB |
-| 14 | `ruins` | Google Veo 3.1 (fast, high) | from photograph [Old Ruins in Cartago, Costa Rica by Daniel Vargas - 25.jpg](https://commons.wikimedia.org/wiki/File:Old_Ruins_in_Cartago,_Costa_Rica_by_Daniel_Vargas_-_25.jpg) by Daniel32708 - Daniel Vargas (CC BY-SA 3.0) | `e3-ruins` | 90 | 2.0 / 6.0 MB |
-| 15 | `museum` | Google Veo 3.1 (fast, high) | from photograph [Diquis Stone Spheres Museo Nacional CRI 01 2020 1880.jpg](https://commons.wikimedia.org/wiki/File:Diquis_Stone_Spheres_Museo_Nacional_CRI_01_2020_1880.jpg) by Mariordo (Mario Roberto Durán Ortiz) (CC BY-SA 4.0) | `e4-museum` | 84 | 1.4 / 4.2 MB |
-| 16 | `house` | Google Veo 3.1 (fast, high) | from photograph [Úsure.jpg](https://commons.wikimedia.org/wiki/File:%C3%9Asure.jpg) by Darell31 (CC BY-SA 4.0) | `f1-usure` | 78 | 1.8 / 5.2 MB |
-| 17 | `mask` | Google Veo 3.1 (fast, high) | from photograph [Keeper of the Wind.jpg](https://commons.wikimedia.org/wiki/File:Keeper_of_the_Wind.jpg) by THE ROVERS QUEST (CC BY-SA 4.0) | `f2-mask` | 96 | 2.0 / 5.0 MB |
-| 18 | `up` | Google Veo 3.1 (fast, high) | text only | `g1-up` | 96 | 2.2 / 5.6 MB |
+| 10 | `inland` | Kling 4.0 | from the last frame of the previous shot's take to the author's scene `e09-arenal-volcano-lake-sunrise-left.png` | `r7-volcano` | 73 | 1.0 / 2.3 MB |
+| 11 | `volcano` | Kling 4.0 | from the author's scene `e09-arenal-volcano-lake-sunrise-left.png` to the author's scene `e17-crater-lake.png` | `d1-volcano` | 121 | 1.4 / 3.2 MB |
+| 12 | `crater` | Google Veo 3.1 (fast, high) | from the author's scene `e17-crater-lake.png` | `d2-crater` | 96 | 1.5 / 4.1 MB |
+| 13 | `theatre` | Google Veo 3.1 (fast, high) | from photograph [Teatro Nacional CRI 07 2019 8963.jpg](https://commons.wikimedia.org/wiki/File:Teatro_Nacional_CRI_07_2019_8963.jpg) by Mariordo (Mario Roberto Durán Ortiz) (CC BY-SA 4.0) | `e1-theatre` | 96 | 1.3 / 3.7 MB |
+| 14 | `doors` | Kling 4.0 | from the last frame of the previous shot's take to photograph [Costa Rica - San José 20.jpg](https://commons.wikimedia.org/wiki/File:Costa_Rica_-_San_Jos%C3%A9_20.jpg) by Wayne77 (CC BY-SA 4.0) | `r8-doors` | 61 | 0.6 / 1.5 MB |
+| 15 | `foyer` | Google Veo 3.1 (fast, high) | from photograph [Costa Rica - San José 20.jpg](https://commons.wikimedia.org/wiki/File:Costa_Rica_-_San_Jos%C3%A9_20.jpg) by Wayne77 (CC BY-SA 4.0) | `e2-foyer` | 96 | 1.5 / 4.1 MB |
+| 16 | `ruins` | Google Veo 3.1 (fast, high) | from photograph [Old Ruins in Cartago, Costa Rica by Daniel Vargas - 25.jpg](https://commons.wikimedia.org/wiki/File:Old_Ruins_in_Cartago,_Costa_Rica_by_Daniel_Vargas_-_25.jpg) by Daniel32708 - Daniel Vargas (CC BY-SA 3.0) | `e3-ruins` | 90 | 2.0 / 6.0 MB |
+| 17 | `museum` | Google Veo 3.1 (fast, high) | from photograph [Diquis Stone Spheres Museo Nacional CRI 01 2020 1880.jpg](https://commons.wikimedia.org/wiki/File:Diquis_Stone_Spheres_Museo_Nacional_CRI_01_2020_1880.jpg) by Mariordo (Mario Roberto Durán Ortiz) (CC BY-SA 4.0) | `e4-museum` | 84 | 1.4 / 4.2 MB |
+| 18 | `house` | Google Veo 3.1 (fast, high) | from photograph [Úsure.jpg](https://commons.wikimedia.org/wiki/File:%C3%9Asure.jpg) by Darell31 (CC BY-SA 4.0) | `f1-usure` | 78 | 1.8 / 5.2 MB |
+| 19 | `mask` | Google Veo 3.1 (fast, high) | from photograph [Keeper of the Wind.jpg](https://commons.wikimedia.org/wiki/File:Keeper_of_the_Wind.jpg) by THE ROVERS QUEST (CC BY-SA 4.0) | `f2-mask` | 96 | 2.0 / 5.0 MB |
+| 20 | `up` | Kling 4.0 | from the last frame of the previous shot's take | `r9-up` | 121 | 1.9 / 4.4 MB |
 
 Takes are kept in `tools/cache/film/takes/` (not in the repository) with their job records; the photographs' start
 frames in `tools/cache/film/stills/`.
@@ -70,23 +76,23 @@ scenes (the volcanoes above the clouds, for one, look more like bare cinder cone
 
 **3. `falls`** (Kling 4.0, 10 s)
 
-> Continuous aerial chase shot, no cuts. The scarlet macaw glides down over the rainforest canopy and the camera follows close behind it, crossing a forested ridge. Beyond the ridge a tall waterfall appears, plunging from the jungle into a vivid sky-blue turquoise river pool. The macaw peels away to the right and leaves the frame; the camera keeps flying forward and down toward the waterfall, through its drifting mist, until the white water and the blue pool fill the frame. Photorealistic nature documentary, warm golden morning light, natural colours, smooth stabilised motion, no text.
+> Continuous aerial chase shot. The scarlet macaw glides down over the rainforest canopy, the camera close behind it. Ahead, a single tall waterfall pours from a forested cliff into one round sky-blue turquoise pool. There is only this one waterfall in the whole shot, a single drop, no second cascade below it. The macaw banks away to the right and leaves the frame; the camera keeps flying forward and down past the falling water, through its mist, and levels out low over the turquoise pool. Photorealistic nature documentary, warm golden morning light, natural colours, smooth stabilised camera, one continuous take with no cuts, no text.
 
-**4. `river`** (Kling 4.0, 10 s)
+**4. `river`** (Kling 4.0, 8 s)
 
-> Continuous FPV drone shot. The camera bursts out of the waterfall mist and skims fast and low downstream over a vivid turquoise-blue jungle river, between mossy boulders and overhanging rainforest, small rapids rushing just below the lens. Ahead a steel zip-line cable crosses high above the river gorge between two wooden platforms in the trees; the camera climbs steadily from the water toward the cable and the platform. Photorealistic nature documentary footage, warm golden light, natural colours, smooth stabilised motion, one continuous take with no cuts, no text, no logos.
+> Continuous FPV drone shot. The camera turns away from the waterfall and flies low and fast across the turquoise pool, then follows the river downstream as it leaves the pool and runs through a deep rainforest gorge with mossy boulders and small rapids. No other waterfall appears anywhere: the waterfall stays behind the camera. The camera rises from the water up the side of the gorge toward a wooden zip-line platform built around a tall tree at the top, where a steel cable stretches across the gorge high above the river. It ends close to the platform. Photorealistic nature documentary, warm golden morning light, natural colours, smooth stabilised camera, one continuous take with no cuts, no text.
 
-**5. `zip`** (Google Veo 3.1 (fast, high), 8 s)
+**5. `zip`** (Kling 4.0, 8 s)
 
-> First-person POV of a rider on a zip line high above the Costa Rican cloud forest. Gloved hands grip the trolley handle at the bottom of the frame, the steel cable runs straight ahead toward a distant platform, harness straps visible. The rider launches from a wooden platform and glides fast over the misty green canopy, tree crowns rushing past below, a river gorge opening far beneath. Wide-angle action camera look. Photorealistic nature documentary footage, IMAX quality, warm golden morning light, natural colours, smooth stabilised motion, one continuous take with no cuts, no text, no logos.
+> Continuous shot. The camera glides onto the wooden platform and becomes the first-person view of a zip-line rider: two gloved hands come up into the frame and grip the trolley handles clipped to the steel cable. The rider pushes off the platform and glides fast along the cable across the gorge, high above the river and the rainforest canopy, tree crowns rushing past below, the far platform growing ahead. No waterfall anywhere in view. Wide-angle action camera look. Photorealistic, warm golden morning light, natural colours, smooth motion, one continuous take with no cuts, no text.
 
-**6. `drop`** (Kling 4.0, 10 s)
+**6. `drop`** (Kling 4.0, 6 s)
 
-> Continuous shot. The rider lets go of the view: the camera leaves the zip line, the gloves and cables drop out of frame, and it tilts straight down and descends like a bird toward the river far below in the gorge. Looking straight down from above: two inflatable rafts full of people in helmets and life jackets paddle through white-water rapids between jungle banks. The camera keeps descending until the rafts and the foaming water fill the frame. Photorealistic nature documentary footage, warm golden light, natural colours, smooth stabilised motion, one continuous take with no cuts, no text, no logos.
+> Continuous shot. The gloved hands and the cable slide out of the top of the frame as the camera leaves the zip line and swoops down like a bird toward the same river below, descending into the gorge. On the river, a single inflatable raft with six people in helmets and life jackets paddles through white-water rapids between the rocky banks. The camera dives down and comes in low behind the raft, just above the water. No waterfall anywhere. Photorealistic, warm golden morning light, natural colours, smooth stabilised motion, one continuous take with no cuts, no text.
 
-**7. `raft`** (Google Veo 3.1 (fast, high), 8 s)
+**7. `raft`** (Kling 4.0, 10 s)
 
-> Action camera view from the back of an inflatable raft on a white-water river in a Costa Rican rainforest gorge. Six people in helmets and life jackets paddle together through a rapid, water splashing over the bow; lush jungle walls on both sides, a small waterfall on the bank, sunlight through mist. The raft drops through the rapid and glides into calm green water. Photorealistic nature documentary footage, IMAX quality, warm golden morning light, natural colours, smooth stabilised motion, one continuous take with no cuts, no text, no logos.
+> Continuous action-camera shot following the same inflatable raft down the river. The camera closes in behind the raft as the six people in helmets and life jackets paddle together through the white-water rapids, spray flying. The rapids end, the river slows, widens and turns calm and glassy, and the gorge opens into a quiet jungle channel lined with mangrove roots in golden morning mist. The raft glides out of frame to one side and the camera drifts forward along the still channel. No waterfall anywhere. Photorealistic, warm golden morning light, natural colours, smooth stabilised motion, one continuous take with no cuts, no text.
 
 **8. `float`** (Google Veo 3.1 (fast, high), 8 s)
 
@@ -96,41 +102,49 @@ scenes (the volcanoes above the clouds, for one, look more like bare cinder cone
 
 > Continuous shot from the bow of a small boat. The mangrove channel widens and opens to the sea; the boat glides out of the trees at the river mouth, the camera lifts off the water and flies along a wide Pacific beach with palms, rocky islets and turquoise surf under a golden sun low over the ocean. Photorealistic nature documentary footage, warm golden light, natural colours, smooth stabilised motion, one continuous take with no cuts, no text, no logos.
 
-**10. `volcano`** (Kling 4.0, 10 s)
+**10. `inland`** (Kling 4.0, 6 s)
+
+> Continuous aerial drone flight. The camera lifts off the beach, turns inland and flies fast and low over rolling rainforest hills, until a large lake and the forested cone of a volcano appear ahead in the morning light. Photorealistic nature documentary, warm golden morning light, natural colours, smooth stabilised camera, one continuous take with no cuts, no text.
+
+**11. `volcano`** (Kling 4.0, 10 s)
 
 > Continuous aerial drone flight. The camera rises out of the rainforest foliage, flies across the misty lake toward the cone of the volcano, climbs fast up its forested and then bare rocky slope, and comes over the crater rim to reveal a turquoise crater lake with steam and clouds drifting inside the crater. Photorealistic nature documentary footage, warm golden light, natural colours, smooth stabilised motion, one continuous take with no cuts, no text, no logos.
 
-**11. `crater`** (Google Veo 3.1 (fast, high), 8 s)
+**12. `crater`** (Google Veo 3.1 (fast, high), 8 s)
 
 > Aerial drone shot: the camera flies forward over the crater rim and descends into the volcano crater toward the turquoise acid lake; steam and fumaroles drift across the bare grey walls, clouds spill over the rim. It ends close above the steaming water as white steam fills the whole frame. Photorealistic nature documentary footage, IMAX quality, warm golden morning light, natural colours, smooth stabilised motion, one continuous take with no cuts, no text, no logos.
 
-**12. `theatre`** (Google Veo 3.1 (fast, high), 8 s)
+**13. `theatre`** (Google Veo 3.1 (fast, high), 8 s)
 
 > Steadicam walking shot at eye level: the camera glides forward across the plaza toward the entrance of this neoclassical theatre, pigeons take off from the paving, the flag moves in the breeze. It keeps moving straight toward the doors under the columns. Photorealistic travel documentary, soft morning light, natural colours, smooth motion, one continuous take, no text.
 
-**13. `foyer`** (Google Veo 3.1 (fast, high), 8 s)
+**14. `doors`** (Kling 4.0, 5 s)
+
+> Steadicam walking shot at eye level: the camera passes between the stone columns, through the open wooden doors of the theatre, and glides into its ornate foyer of gilded arches, marble columns, velvet curtains and a white marble statue. Smooth motion, natural colours, one continuous take, no text.
+
+**15. `foyer`** (Google Veo 3.1 (fast, high), 8 s)
 
 > Slow steadicam glide forward through this ornate theatre foyer: gilded arches, marble columns, velvet curtains, chandeliers glowing warmly; the camera moves past the white marble statue toward the curtained doorway ahead, light glinting on the gold leaf. Photorealistic documentary, natural colours, smooth motion, one continuous take, no people in the foreground, no text.
 
-**14. `ruins`** (Google Veo 3.1 (fast, high), 8 s)
+**16. `ruins`** (Google Veo 3.1 (fast, high), 8 s)
 
 > Slow steadicam glide forward at eye level toward and through the tall stone arch of these roofless church ruins, into the garden inside the walls: sunlight on old grey stone, moss and small ferns in the joints, red flowers, a hummingbird hovering. Photorealistic travel documentary, natural colours, smooth motion, one continuous take, no text.
 
-**15. `museum`** (Google Veo 3.1 (fast, high), 8 s)
+**17. `museum`** (Google Veo 3.1 (fast, high), 8 s)
 
 > Slow museum dolly shot: the camera glides forward past these ancient pre-Columbian stone spheres in a quiet gallery, soft spotlights sweeping over the rough granite surface, and pushes in toward the largest sphere until its carved stone surface fills the frame. Photorealistic documentary, natural colours, smooth motion, one continuous take, no people, no text.
 
-**16. `house`** (Google Veo 3.1 (fast, high), 8 s)
+**18. `house`** (Google Veo 3.1 (fast, high), 8 s)
 
 > Slow steadicam glide forward across the grass toward this traditional conical thatched house in a rainforest clearing. Smoke from the cooking fire seeps through the palm thatch and drifts into the trees, sunlight flickers through the leaves, cacao pods dry on a wooden rack beside the entrance, a hen crosses the grass. The camera moves gently toward the shaded doorway. Photorealistic documentary, natural colours, smooth motion, one continuous take, no text.
 
-**17. `mask`** (Google Veo 3.1 (fast, high), 8 s)
+**19. `mask`** (Google Veo 3.1 (fast, high), 8 s)
 
 > Gentle documentary shot: the dancer wearing this carved wooden mask turns the head slowly, the woven purple cloth and burlap moving in the breeze, leaves rustling behind. Then the camera tilts slowly upward, past the branches, until it looks up into the green leaves and the bright blue sky. Photorealistic, natural colours, smooth motion, one continuous take, no text.
 
-**18. `up`** (Google Veo 3.1 (fast, high), 8 s)
+**20. `up`** (Kling 4.0, 10 s)
 
-> A scarlet macaw perched on a mossy branch in the rainforest understory spreads its wings and takes off, flying upward. The camera follows it up through the layers of the jungle, then tilts until it looks straight up from the forest floor: the macaw is a small shape crossing the bright blue sky, framed all around by silhouetted palm fronds and giant leaves, sun flaring through the canopy. The camera settles and holds while the leaves sway gently. Photorealistic nature documentary footage, IMAX quality, warm golden morning light, natural colours, smooth stabilised motion, one continuous take with no cuts, no text, no logos.
+> Continuous shot looking up through the branches and leaves into a bright blue sky. A scarlet macaw flies in through the branches, red, yellow and blue wings beating, and climbs upward; the camera tilts up and follows it as it rises above the canopy into the open sky. The camera settles looking straight up at the blue sky, framed on every side by dark green jungle leaves and palm fronds that sway gently in the wind, the macaw a small shape crossing the sky. Photorealistic nature documentary, warm golden morning light, natural colours, smooth stabilised camera, one continuous take with no cuts, no text.
 
 
 ## Remaking a shot
@@ -147,14 +161,20 @@ node tools/film_shots.mjs && node tools/film_scrub.mjs       # screenshots of ev
 `node tools/film_map.mjs` films the opening again from the 3D map (it needs the dev server), and
 `python3 tools/film_photos.py` fetches the photographs and records their authors and licences.
 
-Costs on 13 November 2026: Kling 4.0 at 1080p, 10 s — 32.5 credits; Veo 3.1 fast at "high", 8 s — 32 credits;
-Seedance 2.5 at 1080p, 10 s — 160 credits (not used: the film would have cost about 2,700). The film used 611 credits,
-64 of them on two alternative openings that were not used; uploads that failed were not charged.
+Costs on 13 November 2026: Kling 4.0 at 1080p — 3.25 credits a second (32.5 for 10 s); Veo 3.1 fast at "high", 8 s — 32 credits;
+Seedance 2.5 at 1080p, 10 s — 160 credits (not used: the film would have cost about 2,700). The first cut used 611
+credits, 64 of them on two alternative openings that were not used. The reshoot of the same day (one waterfall, the
+chain from the falls to the canal, three travelling shots, a new ending) used 256.9 more, 52 of them on two zip-line
+takes that were paid for but lost when the CLI's connection dropped before their job ids were saved (Kling jobs do not
+appear in `higgsfield generate list`, so they could not be found again). `tools/film_gen.py` now saves the job id the
+moment a job is submitted, and `--resume <job-id>` fetches a take whose download failed. 37.7 credits remained.
 
 ## Checked, and not checked
 
 - Headless Chrome on an Apple M2, 1440×900: scrubbing the whole film down, half of it back up, and down again holds
   16.7 ms a frame (95th percentile), and the exact frame asked for was decoded and on screen 99.8–100 % of the time.
+- Every cut was checked as a pair of frames (the last frame of a shot beside the first of the next,
+  `tools/scratch/cut_sheet.py`): the joins match; the four cuts between the culture scenes are dissolves.
 - Every shot, the phone layout (390×844), reduced motion, the text tier, Spanish and Chinese, the play button, the
   chapter rail, the notes and the production build were exercised with no console errors.
 - **Not checked:** Safari and Firefox (both have WebCodecs; neither was run), a real phone, touch scrolling, and a slow

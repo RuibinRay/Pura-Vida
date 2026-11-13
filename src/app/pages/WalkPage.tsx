@@ -20,7 +20,6 @@ import { EruptionLayers, EruptionSheet } from '../../journey/Eruption';
 import { FlavorsTable } from '../../journey/FlavorsTable';
 import { NatureFacts } from '../../journey/NatureFacts';
 import { PERSONAL } from '../../content/personal';
-import { startAmbience, stopAmbience, ambienceAvailable, rumble } from '../../audio/ambience';
 import { Icon } from '../../ui/Icon';
 import { Sheet } from '../../ui/Sheet';
 import { SpeciesEntry } from '../../ui/SpeciesEntry';
@@ -37,7 +36,7 @@ const Map2D = lazy(() => import('../../map/Map2D').then((m) => ({ default: m.Map
 
 export function WalkPage() {
   const { t, l, lang } = useT();
-  usePageTitle(t('journey.walk'));
+  usePageTitle(t('nav.walk'));
   const navigate = useNavigate();
   const calm = useCalmMotion();
   const motionPref = useSettings((s) => s.motion);
@@ -70,11 +69,6 @@ export function WalkPage() {
   }, []);
   const mounted = (i: number) => i === 1 || reach > i - 2 + 0.25; // stop i (1-based) mounts 0.75 of a chapter before it starts
 
-  const sound = useSettings((s) => s.sound);
-  const setSound = useSettings((s) => s.setSound);
-  useEffect(() => () => { stopAmbience(); setSound(false); }, [setSound]);
-  const toggleSound = async () => { if (sound) { stopAmbience(); setSound(false); return; } setSound(await startAmbience()); };
-
   // species entries opened from the hotspots
   const [openSp, setOpenSp] = useState<{ sp: Species; stop: string } | null>(null);
   const stamp = usePassport((s) => s.stamp);
@@ -87,7 +81,6 @@ export function WalkPage() {
     const next = !erupting;
     setErupting(next);
     if (next && live && !calm) {
-      rumble(7);
       const st = stageRef.current;
       if (st) { st.classList.add('is-tremor'); window.setTimeout(() => st.classList.remove('is-tremor'), 900); }
     }
@@ -323,11 +316,6 @@ export function WalkPage() {
             </li>
           ))}
         </ol>
-        {live && ambienceAvailable() && (
-          <button type="button" className="rail__sound" aria-pressed={sound} onClick={toggleSound} title={t('journey.soundNote')} aria-label={sound ? t('journey.soundOn') : t('journey.soundOff')}>
-            <Icon name={sound ? 'sound' : 'mute'} />
-          </button>
-        )}
       </nav>
 
       {/* the system asked for reduced motion: say so, and offer the animals anyway */}
