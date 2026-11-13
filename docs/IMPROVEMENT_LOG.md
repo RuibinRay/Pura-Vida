@@ -134,3 +134,13 @@ What was reviewed, what was wrong, what changed. Newest first. Only things that 
 - Lab performance for the 3D pages cannot be scored in this environment (SwiftShader, 1–5 fps); needs a real-GPU run (see TEST_RESULTS.md).
 - The relief is stylised; a DEM swap is the single biggest realism win for the map.
 - Provinces' chapter content depends on how much the official sites allowed to be fetched; several official domains (inec.cr, sinac.go.cr, pgrweb.go.cr) blocked automated access, so some figures are from press coverage or secondary sources and are marked approximate.
+
+## 2026-11-13 — the home page becomes a film
+
+- **A frame per file was the wrong unit.** The first cut stored every frame as a WebP: 1,470 frames at 1280×720 came to 135 MB, because generated footage is dense in every frame and still images cannot share anything between frames. AVIF was no smaller. → The shots are H.264 clips in a container that lists every frame's bytes, decoded with WebCodecs: 1,737 frames at 1600×900 in 73 MB.
+- **Generated footage shimmers.** A slow glide over water cost as much as a fast flight, because every pixel changes a little in every frame. → A temporal denoise before encoding (`hqdn3d=2:1.5:8:6`) took a quarter off with no visible change.
+- **Software decoding was ten times slower than hardware** (110 ms against 10 ms for twelve frames at 1600×900). → The decoder is left to the browser's choice, and its frames are copied to bitmaps at once so a hardware decoder's few output buffers are never held.
+- **A group decoded twice evicted itself.** A group that finished while the wanted list was being rebuilt was decoded again, entered the cache twice, and its second eviction closed frames still on screen: only 60 % of frames were exact. → Finished groups are skipped; 100 %.
+- **Dissolves need two shots at once.** Stills flashed in every dissolve because the cache held four groups and a dissolve needs five. → Both shots' groups are requested and five are kept.
+- **Re-configuring the decoder restarts it** (a fifth of a second). → It is only re-configured when a clip's codec record differs, which for clips cut alike is never.
+- **Chosen against:** Seedance 2.5 at 1080p (160 credits a shot: the film would not fit the balance); AI-generated people for the Indigenous shots (the two shots start from real photographs of a Bribri house and a Boruca dancer instead).

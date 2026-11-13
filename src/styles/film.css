@@ -1,0 +1,270 @@
+/* The home page's film: a sticky stage with the canvas, the captions over it, a chapter rail and a thin bar of
+   controls. The page's own height is the film's length (set inline), so the scroll bar is the film's timeline. */
+.film {
+  position: relative;
+  --film-p: 0;
+  --film-bg: #0b1512;
+  background: var(--film-bg);
+  color: #f4eedf;
+  overflow-x: clip; /* clip, not hidden: hidden would make this a scroll container and unstick the stage */
+}
+.film__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--film-bg);
+}
+.film__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* scrims: under the top bar, and under the captions */
+.film__shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(6, 12, 10, 0.5) 0, rgba(6, 12, 10, 0) 16%),
+    linear-gradient(to top, rgba(6, 12, 10, 0.86) 0, rgba(6, 12, 10, 0.52) 24%, rgba(6, 12, 10, 0.12) 50%, rgba(6, 12, 10, 0) 64%);
+}
+
+/* ---- captions ---- */
+.film__captions { position: absolute; inset: 0; pointer-events: none; }
+.fcap {
+  --rise: 0px;
+  position: absolute;
+  bottom: clamp(4.6rem, 11vh, 7rem);
+  width: min(36rem, calc(100% - 2 * var(--gutter)));
+  pointer-events: auto;
+  transform: translateY(var(--rise));
+  will-change: opacity, transform;
+  outline: none;
+}
+/* a soft pool of shade behind the words, for the frames that are bright where the caption sits */
+.fcap::before {
+  content: '';
+  position: absolute;
+  inset: -3.5rem -4.5rem -2.5rem;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgba(6, 12, 10, 0.6), rgba(6, 12, 10, 0.34) 62%, rgba(6, 12, 10, 0));
+}
+.fcap--left { left: clamp(1rem, 6.5vw, 6rem); }
+.fcap--right { right: clamp(1rem, 7.5vw, 7rem); }
+.fcap > * { margin: 0; }
+.fcap__kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f0c25a;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+}
+.fcap__kicker .tnum { color: rgba(244, 238, 223, 0.72); }
+.fcap__kicker::after { content: ''; flex: 0 0 2.6rem; height: 1px; background: currentColor; opacity: 0.6; }
+.fcap__h2 {
+  margin-top: 0.35em;
+  font-family: var(--font-display);
+  font-variation-settings: 'opsz' 72;
+  font-weight: 500;
+  font-size: clamp(2rem, 1.3rem + 2.7vw, 3.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
+}
+.fcap__text {
+  margin-top: 0.8em;
+  max-width: 33rem;
+  font-size: var(--t-lg);
+  line-height: 1.5;
+  color: rgba(244, 238, 223, 0.94);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.7);
+  text-wrap: pretty;
+}
+.fcap__links { margin-top: 1.1em; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; font-size: var(--t-sm); }
+.fcap__links a:not(.btn) { color: #f4eedf; }
+.fcap__made { margin-top: 0.9em; max-width: 33rem; color: rgba(244, 238, 223, 0.66); line-height: 1.35; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7); }
+.fcap__made small { font-size: var(--t-xs); }
+
+/* the opening */
+.fcap--hero { bottom: clamp(5rem, 13vh, 8.5rem); width: min(46rem, calc(100% - 2 * var(--gutter))); }
+.fcap__h1 {
+  margin-top: 0.12em;
+  font-family: var(--font-display);
+  font-variation-settings: 'opsz' 72;
+  font-weight: 600;
+  font-size: var(--t-display);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+}
+.fcap__tagline {
+  margin-top: -0.1em;
+  font-family: var(--font-note);
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.6rem);
+  line-height: 1;
+  color: #f0c25a;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+}
+.fcap__intro { margin-top: 0.9em; max-width: 34rem; font-size: var(--t-lg); line-height: 1.5; text-shadow: 0 1px 14px rgba(0, 0, 0, 0.7); }
+.fcap__actions { margin-top: 1.3em; display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.fcap__fact { margin-top: 1.2em; max-width: 34rem; font-size: var(--t-sm); color: rgba(244, 238, 223, 0.8); text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7); }
+.fcap__hint {
+  margin-top: 1.4em;
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  font-size: var(--t-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(244, 238, 223, 0.8);
+}
+.fcap__hint span { position: relative; width: 1px; height: 2.4rem; background: rgba(244, 238, 223, 0.3); overflow: hidden; }
+.fcap__hint span::after { content: ''; position: absolute; inset: 0; background: #f0c25a; animation: film-hint 2.2s var(--ease-in-out) infinite; }
+@keyframes film-hint { 0% { translate: 0 -100%; } 60%, 100% { translate: 0 100%; } }
+.film--still .fcap__hint span::after, .film.is-playing .fcap__hint span::after { animation: none; }
+
+/* the ending */
+.fcap--end { width: min(44rem, calc(100% - 2 * var(--gutter))); }
+.fcap__chapters { list-style: none; margin: 1.2em 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.fcap__chapters .chip--section { color: #f4eedf; background: color-mix(in srgb, var(--tab) 46%, rgba(8, 16, 13, 0.72)); border-color: color-mix(in srgb, var(--tab) 70%, rgba(244, 238, 223, 0.25)); text-decoration: none; }
+.fcap__chapters .chip--section:hover { background: color-mix(in srgb, var(--tab) 72%, rgba(8, 16, 13, 0.6)); }
+/* the reduced-motion notice is a light card: give it back the light surface's inks inside the dark film */
+.film .motion-notice { --ink: #16321f; --ink-muted: #44583f; --paper: #eef4e3; --paper-edge: #c8d9ad; --rule: rgba(22, 50, 31, 0.16); --gold-ink: #8a5a00; --surface: rgba(255, 255, 255, 0.55); color: #16321f; }
+
+/* ---- the bar under the picture: what the picture is, where the film is, the controls ---- */
+.film__bar {
+  position: absolute;
+  left: clamp(1rem, 6.5vw, 6rem);
+  right: clamp(1rem, 7.5vw, 7rem);
+  bottom: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: var(--t-xs);
+  color: rgba(244, 238, 223, 0.78);
+}
+.film__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.38em 0.8em;
+  border: 1px solid rgba(244, 238, 223, 0.28);
+  border-radius: 999px;
+  background: rgba(8, 16, 13, 0.5);
+  backdrop-filter: blur(6px);
+  color: inherit;
+  font: inherit;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: color 200ms, border-color 200ms, background 200ms;
+}
+.film__tag:hover { color: #fff; border-color: rgba(244, 238, 223, 0.6); background: rgba(8, 16, 13, 0.72); }
+.film__count { margin-left: auto; letter-spacing: 0.1em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7); }
+.film__ctl { display: inline-flex; gap: 0.4rem; }
+.film__btn {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(244, 238, 223, 0.32);
+  background: rgba(8, 16, 13, 0.5);
+  backdrop-filter: blur(6px);
+  color: #f4eedf;
+  cursor: pointer;
+  transition: background 200ms, border-color 200ms, color 200ms;
+}
+.film__btn:hover { background: rgba(8, 16, 13, 0.78); border-color: rgba(244, 238, 223, 0.65); }
+.film__btn[aria-pressed='true'] { background: #f0c25a; border-color: #f0c25a; color: #1b1a14; }
+.film__tag:focus-visible, .film__btn:focus-visible, .film-rail__item:focus-visible { outline: 2px solid #f0c25a; outline-offset: 2px; }
+.film__progress { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(244, 238, 223, 0.14); }
+.film__progress i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, #e8893a, #f0c25a); transform-origin: 0 50%; transform: scaleX(var(--film-p)); }
+.film__note { position: absolute; top: 4.2rem; left: 50%; translate: -50% 0; margin: 0; padding: 0.35em 0.9em; border-radius: 999px; background: rgba(8, 16, 13, 0.6); font-size: var(--t-xs); color: rgba(244, 238, 223, 0.85); }
+
+/* ---- chapter rail (left edge) ---- */
+.film-rail { position: fixed; left: var(--s-3); top: 50%; transform: translateY(-50%); z-index: 30; }
+.film-rail ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.film-rail__item {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  padding: 0.3em 0.55em;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(244, 238, 223, 0.62);
+  font: inherit;
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 200ms, background 200ms;
+}
+.film-rail__n { font-weight: 600; }
+.film-rail__label { max-width: 0; overflow: hidden; white-space: nowrap; opacity: 0; transition: max-width 300ms var(--ease-out), opacity 200ms; }
+.film-rail__item:hover, .film-rail__item:focus-visible { color: #fff; background: rgba(8, 16, 13, 0.6); }
+.film-rail__item.is-current { color: #1b1a14; background: #f0c25a; }
+.film-rail:hover .film-rail__label, .film-rail:focus-within .film-rail__label { max-width: 14em; opacity: 1; }
+
+/* ---- the notes sheet ---- */
+.film-notes ul { padding-left: 1.1em; display: grid; gap: 0.6em; }
+.film-notes h3 { margin: 1.2em 0 0.4em; font-size: var(--t-base); }
+.film-notes__photos { font-size: var(--t-sm); }
+
+/* ---- the text tier: the film as stills and captions ---- */
+.film-text { padding-block: 5.5rem var(--s-7); max-width: 54rem; }
+.film-text h1 { font-size: var(--t-3xl); margin: 0; }
+.film-text__lead { font-size: var(--t-lg); }
+.film-text ol { list-style: none; margin: var(--s-6) 0; padding: 0; display: grid; gap: var(--s-7); }
+.film-text img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); background: var(--paper-deep); }
+.film-text h2 { margin: 0.2em 0 0.3em; font-size: var(--t-xl); }
+.film-text .fcap__kicker { margin-top: 1em; color: var(--gold-ink); text-shadow: none; }
+.film-text .fcap__kicker .tnum { color: var(--ink-muted); }
+
+/* ---- narrow screens: the caption takes the width, the rail becomes dots ---- */
+@media (max-width: 760px) {
+  .fcap, .fcap--hero, .fcap--end { left: var(--gutter); right: var(--gutter); width: auto; bottom: 4.4rem; }
+  .fcap__text, .fcap__intro { font-size: var(--t-base); line-height: 1.45; }
+  .fcap__h1 { font-size: clamp(2.9rem, 15vw, 4.4rem); }
+  .fcap__actions .btn { flex: 1 1 auto; justify-content: center; }
+  .fcap__fact { display: none; }
+  .fcap__hint { margin-top: 1em; }
+  .fcap__hint span { height: 1.6rem; }
+  .film__shade { background:
+    linear-gradient(to bottom, rgba(6, 12, 10, 0.55) 0, rgba(6, 12, 10, 0) 14%),
+    linear-gradient(to top, rgba(6, 12, 10, 0.92) 0, rgba(6, 12, 10, 0.7) 30%, rgba(6, 12, 10, 0.2) 56%, rgba(6, 12, 10, 0) 70%); }
+  .film__bar { left: var(--gutter); right: var(--gutter); bottom: 0.7rem; gap: 0.5rem; }
+  .film__count { display: none; }
+  .film__ctl { margin-left: auto; }
+  .film__btn { width: 2.75rem; height: 2.75rem; }
+  .film-rail { left: auto; right: 0.35rem; top: 42%; }
+  .film-rail__item { padding: 0.5em; }
+  .film-rail__n, .film-rail__label { display: none; }
+  .film-rail__item::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: rgba(244, 238, 223, 0.55); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35); }
+  .film-rail__item.is-current { background: transparent; }
+  .film-rail__item.is-current::before { background: #f0c25a; scale: 1.5; }
+}
+/* short, wide screens (a phone on its side): keep the caption compact */
+@media (max-height: 520px) and (min-width: 600px) {
+  .fcap, .fcap--hero { bottom: 3.6rem; }
+  .fcap__h2 { font-size: 1.7rem; }
+  .fcap__h1 { font-size: 3rem; }
+  .fcap__text, .fcap__intro { font-size: var(--t-sm); margin-top: 0.4em; }
+  .fcap__fact, .fcap__made, .fcap__hint { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fcap__hint span::after { animation: none; }
+}
+/* the text tier sits under the home page's overlaid top bar, which is light-on-dark: give it a dark band to sit on */
+.film-text::before { content: ''; position: fixed; inset: 0 0 auto 0; height: 3.9rem; z-index: 1; background: #16321f; }
