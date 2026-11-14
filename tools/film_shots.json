@@ -21,13 +21,14 @@
   },
   {
    "id": "sky",
-   "take": "a1-sky-kling4",
-   "poster": 0.12
+   "take": "s1-flight",
+   "poster": 0.25
   },
   {
    "id": "falls",
    "take": "r2-falls",
-   "poster": 0.6
+   "poster": 0.4,
+   "from": 6.0
   },
   {
    "id": "river",

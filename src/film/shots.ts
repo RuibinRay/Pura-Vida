@@ -31,9 +31,10 @@ export interface ShotDef {
 }
 
 export const SHOT_DEFS: ShotDef[] = [
+  // from the map to the canal the film is one flight: each take was generated from the last frame of the one before
+  // (the flight from the map's last frame to a frame six seconds into the waterfall take)
   { id: 'map', chapter: 'above', into: 'fade', side: 'left', made: 'map', link: { to: '/explore', label: 'map' }, pace: 1.5 },
-  { id: 'sky', chapter: 'above', into: 'cloud', side: 'left', made: 'generated', link: { to: '/wildlife?focus=scarlet-macaw', label: 'wildlife' } },
-  // from here to the canal the film is one flight: each take was generated from the last frame of the one before
+  { id: 'sky', chapter: 'above', into: 'join', side: 'left', made: 'generated', link: { to: '/wildlife?focus=scarlet-macaw', label: 'wildlife' } },
   { id: 'falls', chapter: 'water', into: 'join', side: 'left', made: 'generated', link: { to: '/explore?place=rio-celeste', label: 'place' } },
   { id: 'river', chapter: 'water', into: 'join', side: 'right', made: 'generated' },
   { id: 'zip', chapter: 'canopy', into: 'join', side: 'left', made: 'generated', link: { to: '/explore?place=monteverde', label: 'place' } },

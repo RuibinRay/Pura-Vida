@@ -155,3 +155,7 @@ The owner's review of the first cut: the macaw dives at one waterfall and the zi
 - **Kept as dissolves:** the four cuts between the culture scenes, which are in different towns.
 - **Lost takes.** Two paid zip-line takes were lost when the CLI's connection dropped and no job id had been kept; Kling jobs are not listed by `higgsfield generate list`. The generation tool now records the id at submission and can resume.
 - **Also changed on the owner's request:** no AI labels or sound button on the film (how it was made is on the Sources page); the old walk is back as the "Meet the wild" tab, without its sound button.
+
+## 2026-11-14 — the opening flight, reshot
+
+The first flight crossed bare grey cinder cones that look nothing like Costa Rica's forested volcanoes. With 37.7 credits left (a new flight plus a new waterfall take would have cost 65), one Kling 4.0 take was generated from the 3D map's last frame to the frame six seconds into the waterfall take, where the old cones have left the picture: the map's zoom now carries straight on through the clouds, over green volcano cones, picks up the macaw and arrives at the waterfall. It replaces the old sky shot, the map → flight dissolve becomes a join, and the waterfall shot starts at 6.0 s (the closest frame to the new take's last, by a pixel comparison of ±12 frames).
