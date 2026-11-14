@@ -1,23 +1,24 @@
 # The home page film
 
 The home page is one film of Costa Rica in 20 shots, scrubbed frame by frame with the scroll: the map from
-above, a scarlet macaw's flight down through the clouds to a single waterfall, down the river to a zip-line
+above, zooming down until the map gives way to a real flight through the clouds over green, forested volcanoes,
+where a scarlet macaw leads the way to a single waterfall, down the river to a zip-line
 platform, across the gorge, a drop to the raft on the river below, the rapids, the calm water into a mangrove canal, a
 Pacific beach, inland to Arenal, a crater, the National Theatre and through its doors, the ruins of Cartago, the stone
 spheres in the National Museum, a Bribri house, a Boruca mask, and the macaw flying back up to a sky framed by leaves.
-From the clouds to the mangroves it is one continuous flight: every take there was generated from the last frame of
+From the map to the mangroves it is one continuous flight: every take there was generated from the last frame of
 the one before. The illustrated walk that was the home page until 13 November 2026 is the "Meet the wild" tab
 (`/walk`), unchanged except that its sound button is gone.
 
 ## How it works
 
-- **Shots and scroll** (`src/film/shots.ts`). The page is as tall as the film is long: 1919 frames at 2 vh of scroll a
+- **Shots and scroll** (`src/film/shots.ts`). The page is as tall as the film is long: 1847 frames at 2 vh of scroll a
   frame. Shots that continue one another (`into: 'join'`) meet with no gap, because the later take was generated from
   the earlier take's last frame; the others dissolve over 46 vh, and three come in through white (cloud, steam).
 - **Clips** (`tools/film_build.py`, `public/film/<shot>/{sd,hd}.pvf`). Each shot is H.264 at 12 frames a second with a
   keyframe every 12 frames, in a small container of our own that lists every frame's bytes (the format is described at
   the top of the build tool). Two sizes: 960×540 (phones, the lite tier, slow links) and 1600×900. The whole film is
-  27 MB small and 69 MB large; a visitor only downloads the shots they scroll through.
+  26 MB small and 69 MB large; a visitor only downloads the shots they scroll through.
 - **Player** (`src/film/frames.ts`, `src/film/usePlayer.ts`). The clips around the visitor are streamed and decoded a
   group of pictures at a time with WebCodecs, forwards or backwards, and drawn to a canvas; two neighbouring frames are
   blended while the scroll moves, and the picture settles on a whole frame when it stops. Nothing re-renders in React
@@ -37,8 +38,8 @@ page (`/sources#film`), linked from the film's last shot.
 | # | Shot | Made with | From | Take | Frames | Size (sd / hd) |
 |---|---|---|---|---|---|---|
 | 1 | `map` | the site's 3D map (`tools/film_map.mjs`) | — | — | 60 | 0.4 / 1.0 MB |
-| 2 | `sky` | Kling 4.0 | text only | `a1-sky-kling4` | 121 | 0.5 / 1.4 MB |
-| 3 | `falls` | Kling 4.0 | from the last frame of the previous shot's take | `r2-falls` | 121 | 0.8 / 1.9 MB |
+| 2 | `sky` | Kling 4.0 | from the last frame of the previous shot's take to `r2-at6.png` | `s1-flight` | 121 | 0.8 / 2.0 MB |
+| 3 | `falls` | Kling 4.0 | from the last frame of the previous shot's take | `r2-falls` | 49 | 0.3 / 0.8 MB |
 | 4 | `river` | Kling 4.0 | from the last frame of the previous shot's take | `r3-river` | 97 | 0.7 / 1.8 MB |
 | 5 | `zip` | Kling 4.0 | from the last frame of the previous shot's take | `r4-zip` | 97 | 0.7 / 1.6 MB |
 | 6 | `drop` | Kling 4.0 | from the last frame of the previous shot's take | `r5-drop` | 73 | 0.5 / 1.3 MB |
@@ -72,7 +73,7 @@ scenes (the volcanoes above the clouds, for one, look more like bare cinder cone
 
 **2. `sky`** (Kling 4.0, 10 s)
 
-> Cinematic aerial chase shot, one continuous take with no cuts. The camera flies just behind and slightly above a scarlet macaw in flight, its red, yellow and blue wings beating, high above a sea of clouds at sunrise over Costa Rica. Volcano peaks rise through the clouds in warm golden light with long shadows. The macaw banks and dives through a gap in the clouds; the camera follows it down through the mist until the rainforest canopy of a deep green valley appears below. Photorealistic nature documentary, IMAX quality, smooth stabilised forward motion, natural colours, no text, no logos.
+> One continuous aerial shot with no cuts. From this high view over the green mountains of Costa Rica, the camera dives forward and down through a layer of soft white morning clouds, and the landscape below becomes real, photorealistic rainforest: steep volcanic mountains and rounded volcano cones entirely covered in dense green tropical forest, mist in the valleys, warm golden sunrise light. A scarlet macaw, red, yellow and blue, sweeps into the frame from below and the camera follows close behind it as it glides low over the canopy toward a single tall waterfall falling into a round turquoise pool in a forested hollow. Every mountain and volcano is green and forested; no bare grey or brown cinder cones. Nature documentary, smooth stabilised drone motion, natural colours, no text.
 
 **3. `falls`** (Kling 4.0, 10 s)
 
@@ -167,7 +168,8 @@ credits, 64 of them on two alternative openings that were not used. The reshoot 
 chain from the falls to the canal, three travelling shots, a new ending) used 256.9 more, 52 of them on two zip-line
 takes that were paid for but lost when the CLI's connection dropped before their job ids were saved (Kling jobs do not
 appear in `higgsfield generate list`, so they could not be found again). `tools/film_gen.py` now saves the job id the
-moment a job is submitted, and `--resume <job-id>` fetches a take whose download failed. 37.7 credits remained.
+moment a job is submitted, and `--resume <job-id>` fetches a take whose download failed. The opening flight was reshot the next day (32.5 credits) from the map's last frame to a frame six
+seconds into the waterfall take, replacing a first flight whose volcanoes were bare grey cones; 5.2 credits remain.
 
 ## Checked, and not checked
 
