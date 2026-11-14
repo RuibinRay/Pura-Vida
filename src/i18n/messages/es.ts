@@ -501,6 +501,7 @@ const es: Messages = {
   },
   film: {
     label: 'Un vuelo sobre Costa Rica en {n} planos. Desplácese para recorrerlo.',
+    loading: 'Cargando este plano',
     scrollHint: 'Desplácese para volar',
     play: 'Reproducir la película',
     pause: 'Pausa',

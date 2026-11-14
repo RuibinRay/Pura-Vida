@@ -150,3 +150,5 @@ export function captionShot(st: FilmState): number {
 
 export const clipUrl = (base: string, shot: string, set: SetName) => `${base}film/${shot}/${set}.pvf`;
 export const posterUrl = (base: string, shot: string) => `${base}film/${shot}/poster.webp`;
+/** the still at 480 px: what stands in while a shot's clip is on its way */
+export const thumbUrl = (base: string, shot: string) => `${base}film/${shot}/thumb.webp`;

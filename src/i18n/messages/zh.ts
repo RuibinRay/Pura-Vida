@@ -501,6 +501,7 @@ const zh: Messages = {
   },
   film: {
     label: '飞越哥斯达黎加，共 {n} 个镜头。滚动页面即可前进。',
+    loading: '正在加载这个镜头',
     scrollHint: '向下滚动，开始飞行',
     play: '播放影片',
     pause: '暂停',

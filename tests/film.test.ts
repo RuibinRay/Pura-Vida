@@ -145,6 +145,9 @@ describe('the clips', () => {
         expect(fs.statSync(file).size, file).toBe(s.bytes[set]);
       }
       expect(fs.existsSync(path.join(ROOT, 'public', 'film', s.id, 'poster.webp')), s.id + ' poster').toBe(true);
+      const thumb = path.join(ROOT, 'public', 'film', s.id, 'thumb.webp');
+      expect(fs.existsSync(thumb), s.id + ' thumb').toBe(true);
+      expect(fs.statSync(thumb).size, s.id + ' thumb size').toBeLessThan(40_000);
     }
   });
 

@@ -500,6 +500,7 @@ const en = {
   },
   film: {
     label: 'A flight over Costa Rica in {n} shots. Scroll to move through it.',
+    loading: 'Loading this shot',
     scrollHint: 'Scroll to fly',
     play: 'Play the film',
     pause: 'Pause',

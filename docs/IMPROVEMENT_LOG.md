@@ -159,3 +159,12 @@ The owner's review of the first cut: the macaw dives at one waterfall and the zi
 ## 2026-11-14 — the opening flight, reshot
 
 The first flight crossed bare grey cinder cones that look nothing like Costa Rica's forested volcanoes. With 37.7 credits left (a new flight plus a new waterfall take would have cost 65), one Kling 4.0 take was generated from the 3D map's last frame to the frame six seconds into the waterfall take, where the old cones have left the picture: the map's zoom now carries straight on through the clouds, over green volcano cones, picks up the macaw and arrives at the waterfall. It replaces the old sky shot, the map → flight dissolve becomes a join, and the waterfall shot starts at 6.0 s (the closest frame to the new take's last, by a pixel comparison of ±12 frames).
+
+## 2026-11-14 — the film on slow connections
+
+Measured with `tools/film_slow.mjs` (Chrome throttled, the film scrolled at a visitor's pace, then a jump far ahead).
+
+- **Two clips competed for a slow line.** The shot on screen and the next one downloaded together, each at half speed. → The next clip starts once a third of the current one is in (or straight away on a fast line, above 4 MB/s).
+- **The large clips are too heavy below about 0.7 MB/s.** → The download speed is measured on every clip; below that the player switches to the small clips for the rest of the film, and refetches the shot on screen if less than 60 % of it had arrived. At 450 KB/s it switched after the second shot.
+- **A jump left the screen blank for over three seconds** at 150 KB/s: the stills standing in for the shot and its neighbours (100–200 KB each) were downloading ahead of the clip. → A 480-pixel still per shot (7–20 KB, 0.4 MB for the film) stands in instead; the full stills are kept for the version without motion. The picture now appears at once and moves after about two seconds.
+- **Loading line.** "Loading this shot" with a progress bar, above the controls, only after a third of a second of waiting: on a fast connection it never showed (0 frames over three full scrubs).

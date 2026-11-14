@@ -63,7 +63,7 @@ export function usePlayer(opts: PlayerOptions): RefObject<PlayerApi | null> {
     let cw = 0, ch = 0;
     let dir = 1;
     // development only: how often the frame asked for was there (tools/film_scrub.mjs reads this)
-    const stats = import.meta.env.DEV ? ((window as unknown as { __filmStats?: { exact: number; near: number; still: number; moving: boolean; where: Record<string, number> } }).__filmStats = { exact: 0, near: 0, still: 0, moving: store.moving, where: {} as Record<string, number> }) : null;
+    const stats = import.meta.env.DEV ? ((window as unknown as { __filmStats?: Record<string, unknown> }).__filmStats = { exact: 0, near: 0, still: 0, moving: store.moving, where: {} as Record<string, number>, set: '', rate: 0, loadingShown: 0 }) as { exact: number; near: number; still: number; moving: boolean; where: Record<string, number>; set: string; rate: number; loadingShown: number } : null;
 
     const size = () => {
       const r = canvas.getBoundingClientRect();
@@ -87,6 +87,12 @@ export function usePlayer(opts: PlayerOptions): RefObject<PlayerApi | null> {
       ctx.globalAlpha = alpha;
       ctx.drawImage(pic.img, (cw - dw) * focus, (ch - dh) / 2, dw, dh);
     };
+
+    // whether the main picture is waiting for its clip (a still stands in), and since when
+    let mainWaiting = false;
+    let waitingSince = 0;
+    let loadingShown = false;
+    let loadShown = -1;
 
     /** Draws one shot at a (fractional) frame; false when nothing of it has arrived yet. */
     const drawShot = (index: number, frame: number, alpha: number, settle: number): boolean => {
@@ -112,6 +118,7 @@ export function usePlayer(opts: PlayerOptions): RefObject<PlayerApi | null> {
         const prev = store.nearest(index - 1, shots[index - 1].frames - 1);
         if (prev && !prev.still) hit = prev;
       }
+      if (alpha === 1) mainWaiting = store.moving && (!hit || hit.still);
       if (!hit) return false;
       if (stats) { if (hit.exact) stats.exact++; else if (hit.still) { stats.still++; stats.where[shot.id + ':' + Math.floor(f0 / KEYINT)] = (stats.where[shot.id + ':' + Math.floor(f0 / KEYINT)] || 0) + 1; } else stats.near++; }
       cover(hit, alpha, focus);
@@ -184,6 +191,19 @@ export function usePlayer(opts: PlayerOptions): RefObject<PlayerApi | null> {
       }
       const cap = captionShot(st);
       if (cap !== shown) { shown = cap; o.onShot(cap); }
+      // the loading line: only when the picture has been waiting for its clip for a moment (no flicker on a fast
+      // connection), with how much of the shot's clip has arrived
+      if (mainWaiting) { if (!waitingSince) waitingSince = now; } else waitingSince = 0;
+      const showLoading = mainWaiting && now - waitingSince > 350;
+      if (showLoading !== loadingShown) {
+        loadingShown = showLoading;
+        if (showLoading) root.dataset.loading = ''; else delete root.dataset.loading;
+      }
+      if (showLoading) {
+        const f = Math.round(store.loaded(lead ? st.next : st.shot) * 100) / 100;
+        if (f !== loadShown) { loadShown = f; root.style.setProperty('--film-load', String(f)); }
+      }
+      if (stats) { stats.set = store.currentSet; stats.rate = Math.round(store.rate); stats.loadingShown = (stats.loadingShown || 0) + (showLoading ? 1 : 0); }
     };
     raf = requestAnimationFrame(tick);
 
