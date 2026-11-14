@@ -16,6 +16,7 @@ export interface Section {
 
 export const SECTIONS: Section[] = [
   { id: 'home', path: '/', labelKey: 'nav.home', tabKey: 'nav.tab.home', color: 'var(--paper-edge)', ready: true, ink: 'dark' },
+  { id: 'walk', path: '/walk', labelKey: 'nav.walk', tabKey: 'nav.tab.walk', color: 'var(--canopy)', ready: true },
   { id: 'explore', path: '/explore', labelKey: 'nav.explore', tabKey: 'nav.tab.explore', color: 'var(--ocean)', ready: true },
   { id: 'provinces', path: '/provinces', labelKey: 'nav.provinces', tabKey: 'nav.tab.provinces', color: 'var(--moss-ink)', ready: true },
   { id: 'wildlife', path: '/wildlife', labelKey: 'nav.wildlife', tabKey: 'nav.tab.wildlife', color: 'var(--forest)', ready: true },

@@ -229,3 +229,5 @@ The home page is now a film scrubbed frame by frame with the scroll (`src/film/`
 - **Measured (headless Chrome, Apple M2, 1440×900):** a scrub of the whole film holds 16.7 ms a frame at the 95th percentile with the exact frame on screen 99.8–100 % of the time; the film is 27.5 MB (960×540) or 72.7 MB (1600×900), fetched shot by shot.
 - **Not verified:** Safari, Firefox, a real phone, touch, a slow connection.
 - **Open for the owner:** whether the bare volcano cones of the opening flight are acceptable (Costa Rica's are forested); whether the theatre shot, which animates the passers-by of the photograph, should be remade from a frame without people; 294.6 Higgsfield credits remain for remakes.
+
+- **2026-11-13, later:** the film reshot as one continuous flight from the clouds to the mangroves (one waterfall, the rafting following from the zip line), three travelling shots between scenes, a new ending; no AI labels or sound on the film (the notes are on the Sources page); the illustrated walk is the "Meet the wild" tab. 37.7 Higgsfield credits remain.

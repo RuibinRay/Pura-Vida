@@ -1,6 +1,7 @@
 """Generates one shot of the home page's film with the Higgsfield CLI, downloads it and makes a contact sheet.
 
     python3 -I tools/film_gen.py <take-name> <model> [--param value ...]
+    python3 -I tools/film_gen.py <take-name> --resume <job-id>      (fetch a take whose download failed)
 
 The CLI must be installed and signed in (`npm i -g @higgsfield/cli`, `higgsfield auth login`). Every take is kept:
 tools/cache/film/takes/<take-name>.mp4, its job record beside it as .json (model, parameters, prompt, job id), and
@@ -12,6 +13,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 import urllib.request
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cache', 'film', 'takes')
@@ -33,26 +35,44 @@ def main():
     name, model, rest = sys.argv[1], sys.argv[2], sys.argv[3:]
     os.makedirs(OUT, exist_ok=True)
     base = os.path.join(OUT, name)
-    cmd = ['higgsfield', 'generate', 'create', model, *rest, '--wait', '--wait-timeout', '40m', '--wait-interval', '10s', '--json']
-    run = subprocess.run(cmd, capture_output=True, text=True)
-    record = {'take': name, 'model': model, 'args': rest, 'exit': run.returncode, 'stderr': run.stderr[-2000:]}
-    text = run.stdout.strip()
-    try:
-        record['result'] = json.loads(text)
-    except ValueError:
-        # --wait may print more than one JSON document: keep the last that parses
-        docs = []
-        dec = json.JSONDecoder()
-        i = 0
-        while i < len(text):
-            try:
-                doc, end = dec.raw_decode(text, i)
-                docs.append(doc)
-                i = end
-            except ValueError:
-                i += 1
-        record['result'] = docs[-1] if docs else None
-        record['stdout'] = text[-3000:]
+    # submit first and keep the job id at once: if the connection drops while waiting, the take (already paid for)
+    # can be fetched later with `python3 tools/film_gen.py <take> --resume <job-id>`
+    record = {'take': name, 'model': model, 'args': rest}
+    if model == '--resume':
+        job = rest[0]
+        record = json.load(open(base + '.json')) if os.path.exists(base + '.json') else record
+    else:
+        sub = subprocess.run(['higgsfield', 'generate', 'create', model, *rest, '--json'], capture_output=True, text=True)
+        record['submit_stdout'] = sub.stdout[-2000:]
+        record['submit_stderr'] = sub.stderr[-2000:]
+        # the CLI answers with a JSON list of job ids; take any id it printed
+        ids = re.findall(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', sub.stdout)
+        if not ids:
+            record['exit'] = sub.returncode
+            with open(base + '.json', 'w') as f:
+                json.dump(record, f, indent=1)
+            print(name, 'FAILED to submit:', (sub.stderr or sub.stdout)[-600:])
+            sys.exit(1)
+        job = ids[0]
+    record['job'] = job
+    with open(base + '.json', 'w') as f:
+        json.dump(record, f, indent=1)
+    result = None
+    for attempt in range(6):
+        run = subprocess.run(['higgsfield', 'generate', 'wait', job, '--timeout', '40m', '--interval', '10s', '--quiet', '--json'], capture_output=True, text=True)
+        try:
+            result = json.loads(run.stdout)
+            break
+        except ValueError:
+            record['stderr'] = run.stderr[-2000:]
+            time.sleep(15)
+    if result is None:  # one more look with `get`
+        got = subprocess.run(['higgsfield', 'generate', 'get', job, '--json'], capture_output=True, text=True)
+        try:
+            result = json.loads(got.stdout)
+        except ValueError:
+            pass
+    record['result'] = result
     urls = []
     find_urls(record.get('result'), urls)
     media = [u for u in urls if re.search(r'\.(mp4|mov|webm)(\?|$)', u, re.I)] or urls
@@ -60,8 +80,7 @@ def main():
     with open(base + '.json', 'w') as f:
         json.dump(record, f, indent=1)
     if not media:
-        print(name, 'FAILED: no media url; see', base + '.json')
-        print((run.stderr or text)[-600:])
+        print(name, 'FAILED: no media url yet; job', record.get('job'), '- resume later; see', base + '.json')
         sys.exit(1)
     url = media[0]
     ext = re.search(r'\.(\w+)(\?|$)', url).group(1).lower()

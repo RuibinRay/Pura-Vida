@@ -69,9 +69,9 @@ Nineteen scenes without animals supplied by the author (`research/plates-origina
 The film on the home page (`public/film/`, see `docs/HOME_FILM.md`) is made of four kinds of picture.
 
 - **The opening** is filmed from this site's own 3D map (`tools/film_map.mjs`): terrain tiles by Mapzen and Sentinel-2 cloudless 2016 imagery by EOX (CC BY 4.0), credited above with the map.
-- **Seven generated shots** (`sky`, `falls`, `river`, `zip`, `drop`, `raft`, `up`) were generated from text, or from the last frame of the shot before, with Kling 4.0 and Google Veo 3.1 on the author's Higgsfield account. They are imagined scenes, not footage of a place.
+- **Nine generated shots** (`sky`, `falls`, `river`, `zip`, `drop`, `raft`, `inland`, `doors`, `up`) were generated from text, or from the last frame of the shot before (the raft ending on the author's e12, `inland` on e09, `doors` on the foyer photograph below), with Kling 4.0 and Google Veo 3.1 on the author's Higgsfield account. They are imagined scenes, not footage of a place.
 - **Four shots start from the author's own environment images** (`float` from e12, `beach` ending on e07, `volcano` from e09 to e17, `crater` from e17; origin and licence of those images as stated above, to be confirmed by the author), animated with the same models.
-- **Six shots start from photographs on Wikimedia Commons** and are AI animations of them: only the first frame is the photograph. Each is a derivative of a CC BY-SA work, so it is offered under the same licence as its photograph, with the change stated here and on the page (under the caption and in the film's notes):
+- **Six shots start from photographs on Wikimedia Commons** and are AI animations of them: only the first frame is the photograph. Each is a derivative of a CC BY-SA work, so it is offered under the same licence as its photograph, with the change stated here and on the page (in the film's notes on the Sources page):
 
 | Shot | Photograph | Author | Licence |
 |---|---|---|---|

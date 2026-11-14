@@ -1,19 +1,18 @@
 // The home page: one film of Costa Rica, scrubbed frame by frame with the scroll. A sticky stage holds the canvas
 // and the captions; the page's height is the film's length. The shots, their frames and the way the picture is
 // drawn live in shots.ts, frames.ts and usePlayer.ts — this file is the page around them: the captions, the chapter
-// rail, the play button, the notes on how the film was made, and the versions for reduced motion and the text tier.
+// rail, the play button, and the versions for reduced motion and the text tier. How the film was made, and the
+// credits of the photographs some shots start from, are on the Sources page (FilmNotes).
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from '../ui/Link';
 import { Icon } from '../ui/Icon';
-import { Sheet } from '../ui/Sheet';
 import { useT, type MessageKey } from '../i18n';
 import { useCalmMotion, useSettings } from '../state/settings';
 import { useTier } from '../perf/tier';
-import { startAmbience, stopAmbience, ambienceAvailable } from '../audio/ambience';
 import { SECTIONS } from '../app/sections';
 import { CHAPTERS, FILM, posterUrl, type Shot } from './shots';
 import { usePlayer } from './usePlayer';
-import { photoCredit, PHOTO_CREDITS, FILM_SOURCES } from './photoCredits';
+
 
 const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -39,7 +38,6 @@ function FilmStage({ still, lite, shots, total, notice, note }: { still: boolean
   const capRefs = useRef<(HTMLElement | null)[]>([]);
   const [current, setCurrent] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const [notes, setNotes] = useState(false);
   const [noticeOff, setNoticeOff] = useState(false);
 
   const onShot = useCallback((i: number) => setCurrent(i), []);
@@ -56,11 +54,6 @@ function FilmStage({ still, lite, shots, total, notice, note }: { still: boolean
     window.addEventListener('keydown', key);
     return () => { window.removeEventListener('wheel', stop); window.removeEventListener('touchstart', stop); window.removeEventListener('keydown', key); };
   }, [playing]);
-
-  const sound = useSettings((s) => s.sound);
-  const setSound = useSettings((s) => s.setSound);
-  useEffect(() => () => { stopAmbience(); setSound(false); }, [setSound]);
-  const toggleSound = async () => { if (sound) { stopAmbience(); setSound(false); return; } setSound(await startAmbience()); };
 
   const goTo = (i: number) => { setPlaying(false); player.current?.goTo(i, !still); };
   const togglePlay = () => {
@@ -82,9 +75,8 @@ function FilmStage({ still, lite, shots, total, notice, note }: { still: boolean
 
         <div className="film__captions">
           {shots.map((s, i) => {
+            if (s.caption === false) { capRefs.current[i] = null; return null; }
             const k = `film.shots.${s.id}` as const;
-            const credit = s.photo ? photoCredit(s.photo) : undefined;
-            const madeLine = s.made === 'photo' && credit ? t('film.made.photo', { author: credit.author, licence: credit.licence }) : t(`film.made.${s.made === 'photo' ? 'generated' : s.made}` as MessageKey);
             const hero = i === 0;
             const end = i === last;
             return (
@@ -111,11 +103,10 @@ function FilmStage({ still, lite, shots, total, notice, note }: { still: boolean
                       <>
                         <ul className="fcap__chapters ui">
                           {ready.map((sec) => (<li key={sec.id}><Link to={sec.path} className="chip chip--section" style={{ ['--tab' as string]: sec.color }}>{t(sec.labelKey)}</Link></li>))}
-                          <li><Link to="/walk" className="chip chip--section" style={{ ['--tab' as string]: 'var(--leaf)' }}>{t('film.end.walk')}</Link></li>
                         </ul>
                         <p className="fcap__links ui">
                           <button type="button" className="btn btn--glass btn--sm" onClick={() => goTo(0)}><Icon name="back" /> {t('film.replay')}</button>
-                          <button type="button" className="btn btn--link" onClick={() => setNotes(true)}>{t('film.about')}</button>
+                          <Link to="/sources#film">{t('film.about')}</Link>
                           <Link to="/sources">{t('film.end.sources')}</Link>
                         </p>
                       </>
@@ -124,26 +115,17 @@ function FilmStage({ still, lite, shots, total, notice, note }: { still: boolean
                     ) : null}
                   </>
                 )}
-                <p className="fcap__made ui"><small>{madeLine}</small></p>
               </section>
             );
           })}
         </div>
 
         <div className="film__bar ui">
-          <button type="button" className="film__tag" onClick={() => setNotes(true)} aria-haspopup="dialog">
-            <Icon name="spark" size={14} /> <span>{shots[current]?.made === 'map' ? t('film.about') : t('film.aiTag')}</span>
-          </button>
           <span className="film__count tnum" aria-live="off">{t('film.shotOf', { n: current + 1, total: shots.length })}</span>
           <span className="film__ctl">
             {!still && (
               <button type="button" className="film__btn" onClick={togglePlay} aria-pressed={playing} aria-label={playing ? t('film.pause') : t('film.play')} title={playing ? t('film.pause') : t('film.play')}>
                 <Icon name={playing ? 'pause' : 'play'} />
-              </button>
-            )}
-            {ambienceAvailable() && (
-              <button type="button" className="film__btn" onClick={toggleSound} aria-pressed={sound} title={t('journey.soundNote')} aria-label={sound ? t('journey.soundOn') : t('journey.soundOff')}>
-                <Icon name={sound ? 'sound' : 'mute'} />
               </button>
             )}
           </span>
@@ -176,41 +158,10 @@ function FilmStage({ still, lite, shots, total, notice, note }: { still: boolean
         </div>
       )}
 
-      <Sheet open={notes} onClose={() => setNotes(false)} title={t('film.about')}>
-        <FilmNotes count={shots.length} />
-      </Sheet>
     </div>
   );
 }
 
-/** How the film was made, and who took the photographs it starts from. */
-function FilmNotes({ count }: { count: number }) {
-  const { t } = useT();
-  return (
-    <div className="film-notes">
-      <p>{t('film.notes.intro', { n: count })}</p>
-      <ul>
-        <li>{t('film.notes.map')}</li>
-        <li>{t('film.notes.generated')}</li>
-        <li>{t('film.notes.scene')}</li>
-        <li>{t('film.notes.photo')}</li>
-      </ul>
-      <h3>{t('film.notes.photos')}</h3>
-      <ul className="film-notes__photos">
-        {PHOTO_CREDITS.map((c) => (
-          <li key={c.key}>
-            <a href={c.page} rel="noopener">{c.title}</a> — {c.author}, <a href={c.licenceUrl} rel="noopener license">{c.licence}</a>
-          </li>
-        ))}
-      </ul>
-      <p className="muted"><small>{t('film.notes.facts')}</small></p>
-      <ul className="film-notes__photos">
-        {FILM_SOURCES.map((src) => (<li key={src.url}><a href={src.url} rel="noopener">{src.title}</a> — {src.publisher}</li>))}
-      </ul>
-      <p className="ui"><Link to="/sources" className="btn btn--ghost btn--sm">{t('film.end.sources')}</Link></p>
-    </div>
-  );
-}
 
 /** The text tier: the film as a page of stills and their captions. */
 function FilmText() {
@@ -223,22 +174,20 @@ function FilmText() {
         <p className="film-text__lead">{t('film.hero.intro')}</p>
       </header>
       <ol>
-        {shots.map((s, i) => {
+        {shots.filter((s) => s.caption !== false).map((s, i) => {
           const k = `film.shots.${s.id}`;
-          const credit = s.photo ? photoCredit(s.photo) : undefined;
           return (
             <li key={s.id}>
               <img src={posterUrl(BASE, s.id)} alt="" loading={i < 2 ? 'eager' : 'lazy'} width={1920} height={1080} />
               <p className="fcap__kicker ui"><span className="tnum">{pad(i + 1)}</span> {t(`${k}.kicker` as MessageKey)}</p>
               <h2>{t(`${k}.title` as MessageKey)}</h2>
               <p>{t(`${k}.text` as MessageKey)}</p>
-              <p className="muted"><small>{s.made === 'photo' && credit ? t('film.made.photo', { author: credit.author, licence: credit.licence }) : t(`film.made.${s.made === 'photo' ? 'generated' : s.made}` as MessageKey)}</small></p>
               {s.link && <p className="ui"><Link to={s.link.to}>{t(`film.open.${s.link.label}` as MessageKey)}</Link></p>}
             </li>
           );
         })}
       </ol>
-      <p className="ui"><Link to="/walk">{t('film.end.walk')}</Link> · <Link to="/sources">{t('film.end.sources')}</Link></p>
+      <p className="ui"><Link to="/walk">{t('nav.walk')}</Link> · <Link to="/sources">{t('film.end.sources')}</Link></p>
     </article>
   );
 }

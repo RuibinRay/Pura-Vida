@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useT } from '../../i18n';
 import { useContent } from '../../content';
 import { Icon } from '../../ui/Icon';
@@ -14,10 +16,19 @@ const ASSETS: { name: string; author: string; source: string; license: string; a
   { name: 'Rainforest scene, map relief, icons, stamps, illustrations', author: 'Built procedurally for this site', source: 'this repository', license: 'Part of the site', attribution: 'The scene is a stylised illustration, not a photograph or a survey' },
 ];
 
+import { FilmNotes } from '../../film/FilmNotes';
+
 export function SourcesPage() {
   const { t, l } = useT();
   usePageTitle(t('sources.title'));
   const content = useContent();
+  // /sources#film (the film's "The home page film" link): open at that section
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (hash !== '#film') return;
+    const id = window.setTimeout(() => document.getElementById('film')?.scrollIntoView({ block: 'start' }), 60);
+    return () => window.clearTimeout(id);
+  }, [hash]);
   return (
     <article className="page container">
       <header className="page__head">
@@ -29,6 +40,10 @@ export function SourcesPage() {
         <h2>{t('sources.method')}</h2>
         <p className="prose">{t('sources.methodText')}</p>
         <p className="ui"><span className="status confirmed">{t('status.confirmed')}</span> · <span className="status approximate">{t('status.approximate')}</span> · <span className="status interpretation">{t('status.interpretation')}</span> · <span className="status folklore">{t('status.folklore')}</span> · <span className="status uncertain">{t('status.uncertain')}</span></p>
+      </section>
+      <section className="chapter-part" id="film">
+        <h2>{t('film.about')}</h2>
+        <FilmNotes />
       </section>
       <section className="chapter-part" style={{ minHeight: content ? undefined : '70vh' }}>
         <h2>{t('sources.research')} {content && <small className="muted tnum">({content.sources.length})</small>}</h2>
