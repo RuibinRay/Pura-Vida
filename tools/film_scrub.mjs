@@ -28,7 +28,7 @@ await page.evaluate(() => {
   requestAnimationFrame(tick);
 });
 const run = async (label, from, to) => {
-  await page.evaluate(() => { window.__times.length = 0; const s = window.__filmStats; s.exact = s.near = s.still = 0; s.where = {}; });
+  await page.evaluate(() => { window.__times.length = 0; const s = window.__filmStats; s.exact = s.near = s.still = 0; s.where = {}; s.loadingShown = 0; });
   const max = await page.evaluate(() => document.documentElement.scrollHeight - window.innerHeight);
   const a = from * max, b = to * max;
   const t0 = Date.now();
@@ -40,7 +40,7 @@ const run = async (label, from, to) => {
     return { frames: t.length, median: t[Math.floor(t.length / 2)], p95: t[Math.floor(t.length * 0.95)], worst: t[t.length - 1], over33: t.filter((x) => x > 33.4).length, ...s };
   });
   const drawn = r.exact + r.near + r.still;
-  console.log(`${label}: ${((Date.now() - t0) / 1000).toFixed(1)} s, frame time median ${r.median.toFixed(1)} ms, 95th ${r.p95.toFixed(1)} ms, worst ${r.worst.toFixed(0)} ms, ${r.over33} of ${r.frames} frames over 33 ms; pictures drawn: ${(100 * r.exact / drawn).toFixed(1)}% exact, ${(100 * r.near / drawn).toFixed(1)}% a neighbouring frame, ${(100 * r.still / drawn).toFixed(1)}% the still (decoding: ${r.moving})`);
+  console.log(`${label}: ${((Date.now() - t0) / 1000).toFixed(1)} s, frame time median ${r.median.toFixed(1)} ms, 95th ${r.p95.toFixed(1)} ms, worst ${r.worst.toFixed(0)} ms, ${r.over33} of ${r.frames} frames over 33 ms; pictures drawn: ${(100 * r.exact / drawn).toFixed(1)}% exact, ${(100 * r.near / drawn).toFixed(1)}% a neighbouring frame, ${(100 * r.still / drawn).toFixed(1)}% the still (decoding: ${r.moving}); loading line on ${r.loadingShown} frames; clips ${r.set}`);
   if (process.env.WHERE) console.log('   stills by shot:group', JSON.stringify(r.where));
 };
 await run('down the whole film', 0, 1);

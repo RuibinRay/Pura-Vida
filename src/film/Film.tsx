@@ -120,6 +120,7 @@ function FilmStage({ still, lite, shots, total, notice, note }: { still: boolean
           })}
         </div>
 
+        <div className="film__loading ui" aria-hidden="true"><span>{t('film.loading')}</span><i /></div>
         <div className="film__bar ui">
           <span className="film__count tnum" aria-live="off">{t('film.shotOf', { n: current + 1, total: shots.length })}</span>
           <span className="film__ctl">

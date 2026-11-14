@@ -5,7 +5,7 @@
 // been decoded yet — so the picture is never blank.
 //
 // Where WebCodecs is missing (or the film runs as stills: reduced motion, the still tier) only the stills are used.
-import { posterUrl, clipUrl, type SetName, type Shot } from './shots';
+import { posterUrl, thumbUrl, clipUrl, type SetName, type Shot } from './shots';
 
 /** `exact`: the frame asked for; `still`: the shot's still, not a frame of the clip */
 export type Picture = { img: CanvasImageSource; w: number; h: number; exact: boolean; still: boolean };
@@ -27,6 +27,8 @@ const KEEP = 2;
  *  other shot's during a dissolve */
 const GOPS_KEPT = 5;
 const STAMP = 100000; // frame id in a chunk's timestamp: shot × STAMP + frame
+/** below this download speed (bytes a second) the large clips are dropped for the small ones */
+const SLOW = 700_000;
 
 export const canDecode = (): boolean => typeof window !== 'undefined' && 'VideoDecoder' in window && 'EncodedVideoChunk' in window;
 
@@ -70,8 +72,12 @@ export class FrameStore {
   version = 0;
   /** set when decoding failed for good: the film goes on as stills */
   broken = false;
+  /** download speed measured on the clips so far, bytes a second (0 = not measured yet) */
+  rate = 0;
+  /** true once the store stepped down to the small clips because the connection is slow */
+  steppedDown = false;
 
-  constructor(private base: string, private set: SetName, private shots: Shot[], private keyint: number, stillsOnly = false) {
+  constructor(private base: string, private set: SetName, private shots: Shot[], private keyint: number, stillsOnly = false, private sets: SetName[] = ['sd', 'hd']) {
     this.posters = new Array(shots.length);
     this.clips = new Array(shots.length);
     this.video = !stillsOnly && canDecode();
@@ -96,7 +102,9 @@ export class FrameStore {
       img = new Image();
       img.decoding = 'async';
       img.onload = () => { this.version++; };
-      img.src = posterUrl(this.base, this.shots[shot].id);
+      // while the film moves the still only stands in until the clip arrives: the small one, so it is there at once
+      // even on a slow connection; as the picture itself (no motion) the full one
+      img.src = (this.video ? thumbUrl : posterUrl)(this.base, this.shots[shot].id);
       this.posters[shot] = img;
     }
     return img.complete && img.naturalWidth > 0 ? img : null;
@@ -123,6 +131,9 @@ export class FrameStore {
     return p ? { img: p, w: p.naturalWidth, h: p.naturalHeight, exact: !this.moving, still: true } : null;
   }
 
+  /** The size set the store is fetching now. */
+  get currentSet(): SetName { return this.set; }
+
   /** How much of a shot's clip has arrived, 0–1. */
   loaded(shot: number): number {
     const c = this.clips[shot];
@@ -136,10 +147,11 @@ export class FrameStore {
     if (shot > 0) this.poster(shot - 1);
     if (!this.moving) return;
     const f = Math.max(0, Math.min(this.shots[shot].frames - 1, Math.round(frame)));
-    // clips: this shot, then the one ahead, then the one behind; the rest are let go
+    // clips: the one on screen first, with the whole connection to itself; the one ahead once a third of it is in
+    // (on a fast connection both arrive long before they are needed); the one behind once most of it is
     this.fetch(shot);
     const ahead = shot + dir;
-    if (ahead >= 0 && ahead < this.shots.length) this.fetch(ahead);
+    if (ahead >= 0 && ahead < this.shots.length && (this.loaded(shot) > 0.33 || this.rate > 4e6)) this.fetch(ahead);
     const behind = shot - dir;
     if (behind >= 0 && behind < this.shots.length && this.loaded(shot) > 0.6) this.fetch(behind);
     for (let s = 0; s < this.shots.length; s++) {
@@ -191,12 +203,32 @@ export class FrameStore {
       if (!size) return fail();
       clip.data = new Uint8Array(size);
       const reader = res.body.getReader();
+      const t0 = performance.now();
       for (;;) {
         const { done, value } = await reader.read();
         if (done || this.dead) break;
         if (clip.got + value.length > clip.data.length) return fail(); // not the file the manifest describes
         clip.data.set(value, clip.got);
         clip.got += value.length;
+        const secs = (performance.now() - t0) / 1000;
+        if (secs > 1.2) {
+          const r = clip.got / secs;
+          this.rate = this.rate ? this.rate * 0.6 + r * 0.4 : r;
+          // too slow for the large clips: the film needs about a shot every few seconds of scrolling, so below
+          // ~0.7 MB/s step down to the small ones (about 40 % of the size), refetching this clip if it is far off
+          if (this.set === 'hd' && this.rate < SLOW && this.sets.includes('sd')) {
+            this.set = 'sd';
+            this.steppedDown = true;
+            this.version++;
+            if (clip.got / clip.data.length < 0.6) {
+              clip.abort.abort();
+              reader.cancel().catch(() => undefined);
+              if (this.clips[shot] === clip) this.clips[shot] = undefined;
+              this.fetch(shot);
+              return;
+            }
+          }
+        }
         if (!clip.head) {
           const head = parseHead(clip.data.subarray(0, clip.got));
           if (head === 'bad') return fail();

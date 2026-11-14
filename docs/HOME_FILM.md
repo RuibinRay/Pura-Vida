@@ -23,6 +23,12 @@ the one before. The illustrated walk that was the home page until 13 November 20
   group of pictures at a time with WebCodecs, forwards or backwards, and drawn to a canvas; two neighbouring frames are
   blended while the scroll moves, and the picture settles on a whole frame when it stops. Nothing re-renders in React
   per frame. A "Play the film" button scrolls the page at film speed; any wheel, touch or key takes the scroll back.
+- **On a slow connection** (`node tools/film_slow.mjs` throttles Chrome and reports what happens). The clip on screen
+  is fetched first and the next one only once a third of it is in. The download speed is measured on every clip: below
+  about 0.7 MB/s the player switches to the small clips for the rest of the film, refetching the shot on screen if
+  little of it has arrived. Each shot has a 480-pixel still of about 15 KB (`thumb.webp`) that stands in until its
+  clip is decoded, so the picture is never blank, and after a third of a second of waiting a quiet "Loading this
+  shot" line with a progress bar appears above the controls. On a fast connection none of this is visible.
 - **Without motion.** With reduced motion (the system setting, unless the visitor overrides it), on the still tier and
   in a browser without WebCodecs the film is one still per shot, cross-faded by the scroll. The text tier is a page of
   the stills and their captions.

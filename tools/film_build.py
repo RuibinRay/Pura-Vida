@@ -6,7 +6,8 @@ Reads tools/film_shots.json: for each shot the chosen take (a clip in tools/cach
 tools/film_gen.py or tools/film_map.mjs) and the part of it to use. Writes
 
     public/film/<shot>/<set>.pvf     the shot as H.264 in a small container of our own (below), one per size set
-    public/film/<shot>/poster.webp   the still shown before the clip arrives, and when motion is off
+    public/film/<shot>/poster.webp   the shot's still, shown when motion is off (and on the text tier)
+    public/film/<shot>/thumb.webp    the same still at 480 px (~15 KB): what stands in while the clip is on its way
     src/film/manifest.json           frame counts and sizes, read by the player
 
 Why a container of our own: the page decodes single frames with WebCodecs as the visitor scrolls, forwards and
@@ -91,7 +92,18 @@ def pack(annexb, width, height, keyint, fps):
     return head + table + b''.join(b for _, b in frames), len(frames)
 
 
+def make_thumb(out_dir):
+    subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', os.path.join(out_dir, 'poster.webp'), '-vf', 'scale=480:270:flags=lanczos',
+                    '-c:v', 'libwebp', '-quality', '55', '-preset', 'photo', os.path.join(out_dir, 'thumb.webp')], check=True)
+
+
 def main():
+    if sys.argv[1:2] == ['--thumbs']:  # only the small stills, from the posters already cut
+        for sid in sorted(os.listdir(PUBLIC)):
+            if os.path.exists(os.path.join(PUBLIC, sid, 'poster.webp')):
+                make_thumb(os.path.join(PUBLIC, sid))
+        print('thumbs written')
+        return
     cfg = json.load(open(os.path.join(ROOT, 'tools', 'film_shots.json')))
     sets = cfg['sets']
     keyint = int(cfg.get('keyint', 12))
@@ -143,6 +155,7 @@ def main():
         at = start + (end - start) * float(shot.get('poster', 0.5))
         subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-ss', f'{min(at, end - 0.05):.3f}', '-i', src, '-frames:v', '1', '-vf', ','.join([c for c in chain[1:] if not c.startswith('hqdn3d')] + ['scale=1600:900:force_original_aspect_ratio=increase:flags=lanczos', 'crop=1600:900']),
                         '-c:v', 'libwebp', '-quality', '62', '-preset', 'photo', os.path.join(out_dir, 'poster.webp')], check=True)
+        make_thumb(out_dir)
         shots[sid] = {'frames': count, 'fps': fps, 'bytes': sizes}
         total += size
         print(f'  {sid}: {count} frames from {shot["take"]} [{start:.2f}–{end:.2f} s], ' + ', '.join(f'{n} {b / 1e6:.1f} MB' for n, b in sizes.items()), flush=True)
